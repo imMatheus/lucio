@@ -1,38 +1,36 @@
-import React, { useEffect, useState, useRef } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import Editor, { useMonaco } from '@monaco-editor/react'
 // https://www.npmjs.com/package/@monaco-editor/react
 const Monako = () => {
     const monaco = useMonaco()
-    const initialEditorValue = `\nfunction solveMeFirst(a, b) {
-    // Hint: Type return a+b below 
-}`
+
     const files = {
         'script.js': {
             name: 'script.js',
             language: 'javascript',
             value: `
-            for (i = 0, len = keys.length; i < len; i++) {
-                var key = keys[i];
-                var enumerable = key.charCodeAt(0) !== /*_*/95;
-                var member = members[key];
-                if (member && typeof member === 'object') {
-                    if (member.value !== undefined || typeof member.get === 'function' || typeof member.set === 'function') {
-                        if (member.enumerable === undefined) {
-                            member.enumerable = enumerable;
-                        }
-                        properties = properties || {};
-                        properties[key] = member;
-                        continue;
-                    } 
-                }
-                if (!enumerable) {
-                    properties = properties || {};
-                    properties[key] = { value: member, enumerable: enumerable, configurable: true, writable: true }
-                    continue;
-                }
-                target[key] = member;
+for (i = 0, len = keys.length; i < len; i++) {
+    var key = keys[i];
+    var enumerable = key.charCodeAt(0) !== /*_*/95;
+    var member = members[key];
+    if (member && typeof member === 'object') {
+        if (member.value !== undefined || typeof member.get === 'function' || typeof member.set === 'function') {
+            if (member.enumerable === undefined) {
+                member.enumerable = enumerable;
             }
+            properties = properties || {};
+            properties[key] = member;
+            continue;
+        } 
+    }
+    if (!enumerable) {
+        properties = properties || {};
+        properties[key] = { value: member, enumerable: enumerable, configurable: true, writable: true }
+        continue;
+    }
+    target[key] = member;
+}
             `,
         },
         'style.css': {
@@ -168,20 +166,21 @@ const Monako = () => {
     useEffect(() => {
         if (monaco) {
             console.log('here is the monaco isntance:')
-            // import('monaco-themes/themes/Monokai.json').then((data) => {
-            //     monaco.editor.defineTheme('monokai', data)
-            //     monaco.editor.setTheme('monokai')
-            // })
-            import('monaco-themes/themes/Night Owl.json').then((data) => {
-                monaco.editor.defineTheme('nightOwl', data)
-                monaco.editor.setTheme('nightOwl')
+            import('monaco-themes/themes/Monokai.json').then((data) => {
+                monaco.editor.defineTheme('monokai', data)
+                monaco.editor.setTheme('monokai')
                 console.log(data)
             })
+            // import('monaco-themes/themes/Sunburst.json').then((data) => {
+            //     monaco.editor.defineTheme('Sunburst', data)
+            //     monaco.editor.setTheme('Sunburst')
+            //     console.log(data)
+            // })
         }
     }, [monaco])
 
     return (
-        <div>
+        <div className='editor'>
             <button disabled={fileName === 'script.js'} onClick={() => setFileName('script.js')}>
                 script.js
             </button>
@@ -210,12 +209,21 @@ const Monako = () => {
                             background: '808080',
                         },
                     ],
+
                     minimap: {
                         enabled: false,
                     },
                     fontSize: 13,
                     // cursorStyle: 'block',
-                    wordWrap: 'on',
+                    // wordWrap: 'on',
+                    wordWrap: 'wordWrapColumn',
+                    wordWrapColumn: 90,
+
+                    // Set this to false to not auto word wrap minified files
+                    wordWrapMinified: true,
+
+                    // try "same", "indent" or "none"
+                    wrappingIndent: 'same',
                 }}
             />
         </div>

@@ -1,0 +1,10 @@
+.form {
+    width: 100vw;
+    height: 100vh;
+    background-color: orange;
+    display: grid;
+    grid-template-columns: auto 1fr;
+
+    @import './form/monako.scss';
+    @import './form/question.scss';
+}

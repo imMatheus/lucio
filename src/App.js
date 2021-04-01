@@ -1,10 +1,10 @@
-import Monako from './components/Monako'
-
+import Form from './components/Form'
+import './global.css'
 function App() {
     return (
         <div className='App'>
-            Lucio to the moon 🚀🌙
-            <Monako />
+            {/* Lucio to the moon 🚀🌙 */}
+            <Form />
         </div>
     )
 }
