@@ -6,6 +6,7 @@
   font-size: 100%;
   font: inherit;
   vertical-align: baseline;
+  box-sizing: border-box;
 }
 
 body .form {
@@ -19,12 +20,66 @@ body .form .editor {
   width: 100%;
   overflow: scroll;
 }
-body .form .question {
-  width: 400px;
-  background-color: orangered;
+body .form .editor .files {
+  --files-bg: #21252b;
+  display: flex;
+  justify-content: flex-start;
+  background: var(--files-bg);
 }
-body .form .question .header {
-  padding: 12px 20px;
+body .form .editor .files .file-btn {
+  cursor: pointer;
+  padding: 7px 12px;
+  background: var(--files-bg);
+  border: 0;
+  border-left: solid 0px #3d3d3d;
+  border-right: solid 1px #3d3d3d;
+  border-collapse: collapse;
+  outline: none;
+  font-size: 14px;
+  color: white;
+  font-family: "Roboto Mono", monospace;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+body .form .editor .files .file-btn .icon {
+  width: 21px;
+  height: 21px;
+  background-size: cover;
+  margin-right: 4px;
+  background-position: center;
+}
+body .form .editor .files .file-btn:disabled {
+  background: orange;
+  background: #282c34;
+}
+body .form .question {
+  --bg: #222218;
+  --text-color: white;
+  --paraghrap-fontsize: 1rem;
+  --header-fontsize: 1.5rem;
+  --bold: 700;
+  --font-family: "Roboto Mono", monospace;
+  width: 400px;
+  background-color: #00ffbf;
+  font-family: var(--font-family);
+  padding: 12px 0 0 20px;
+}
+body .form .question .header .title {
+  font-weight: var(--bold);
+  font-size: var(--header-fontsize);
+  color: var(--text-color);
+}
+body .form .question .header .info {
+  background: orange;
+  display: flex;
+  align-items: center;
+}
+body .form .question .header .info div {
+  background: chartreuse;
+}
+body .form .question .header .info div .easy {
+  color: greenyellow;
 }
 
 /*# sourceMappingURL=global.css.map */

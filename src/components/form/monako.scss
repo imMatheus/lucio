@@ -1,5 +1,41 @@
 .editor {
-    // flex: ;
     width: 100%;
     overflow: scroll;
+
+    .files {
+        --files-bg: #21252b;
+        display: flex;
+        justify-content: flex-start;
+        background: var(--files-bg);
+
+        .file-btn {
+            // #ABB2BF
+            // background	#282C34
+            cursor: pointer;
+            padding: 7px 12px;
+            background: var(--files-bg);
+            border: 0;
+            border-left: solid 0px rgb(61, 61, 61);
+            border-right: solid 1px rgb(61, 61, 61);
+            border-collapse: collapse;
+            outline: none;
+            font-size: 14px;
+            color: white;
+            font-family: 'Roboto Mono', monospace;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            .icon {
+                width: 21px;
+                height: 21px;
+                background-size: cover;
+                margin-right: 4px;
+                background-position: center;
+            }
+            &:disabled {
+                background: orange;
+                background: #282c34;
+            }
+        }
+    }
 }

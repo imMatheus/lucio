@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 
 import Editor, { useMonaco } from '@monaco-editor/react'
+import File from './File'
 // https://www.npmjs.com/package/@monaco-editor/react
 const Monako = () => {
     const monaco = useMonaco()
-
     const files = {
         'script.js': {
             name: 'script.js',
@@ -166,11 +166,72 @@ for (i = 0, len = keys.length; i < len; i++) {
     useEffect(() => {
         if (monaco) {
             console.log('here is the monaco isntance:')
-            import('monaco-themes/themes/Monokai.json').then((data) => {
-                monaco.editor.defineTheme('monokai', data)
-                monaco.editor.setTheme('monokai')
-                console.log(data)
+            // import('monaco-themes/themes/Monokai.json').then((data) => {
+            //     monaco.editor.defineTheme('monokai', data)
+            //     monaco.editor.setTheme('monokai')
+            //     console.log(data)
+            // })
+
+            monaco.editor.defineTheme('myCustomTheme', {
+                base: 'vs-dark',
+                inherit: true,
+                rules: [
+                    { token: '', foreground: '61afef' }, //everything
+                    { token: 'invalid', foreground: '00ff00' },
+                    { token: 'emphasis', fontStyle: 'italic' },
+                    { token: 'strong', fontStyle: 'bold' },
+                    { token: 'variable', foreground: '00ff00' },
+                    { token: 'variable.predefined', foreground: '00ff00' },
+                    { token: 'constant', foreground: '00ff00' },
+                    { token: 'comment', foreground: '7f848e', fontStyle: 'italic' },
+                    { token: 'number', foreground: 'd19a66' }, //number
+                    { token: 'number.hex', foreground: 'd19a66' },
+                    { token: 'regexp', foreground: '56b6c2' }, //rexexp
+                    { token: 'annotation', foreground: 'ff00ff' },
+                    { token: 'type', foreground: 'E5C07B' }, // promise och math
+                    { token: 'delimiter', foreground: 'abb2bf' }, //stuff
+                    { token: 'delimiter.html', foreground: 'abb2bf' },
+                    { token: 'delimiter.xml', foreground: 'abb2bf' },
+                    { token: 'tag', foreground: 'E06C75' },
+                    { token: 'tag.id.jade', foreground: 'E06C75' },
+                    { token: 'tag.class.jade', foreground: 'E06C75' },
+                    { token: 'meta.scss', foreground: 'e7c547' },
+                    { token: 'metatag', foreground: 'ff00ff' },
+                    { token: 'metatag.content.html', foreground: 'd19a66' },
+                    { token: 'metatag.html', foreground: 'E06C75' },
+                    { token: 'metatag.xml', foreground: '86b300' },
+                    { token: 'metatag.php', fontStyle: 'bold' },
+                    { token: 'key', foreground: '00ff00' },
+                    { token: 'string.key.json', foreground: '41a6d9' },
+                    { token: 'string.value.json', foreground: '86b300' },
+                    { token: 'attribute.name', foreground: 'd19a66' },
+                    { token: 'attribute.value', foreground: '98c379' },
+                    { token: 'attribute.value.number', foreground: '98c379' },
+                    { token: 'attribute.value.unit', foreground: '98c379' },
+                    { token: 'attribute.value.html', foreground: '98c379' },
+                    { token: 'attribute.value.xml', foreground: '98c379' },
+                    { token: 'string', foreground: '98c379' }, //strings
+                    { token: 'string.html', foreground: 'ff0000' },
+                    { token: 'string.sql', foreground: '98c379' },
+                    { token: 'string.yaml', foreground: '98c379' },
+                    { token: 'keyword', foreground: 'C678DD' },
+                    { token: 'keyword.json', foreground: 'C678DD' },
+                    { token: 'keyword.flow', foreground: 'C678DD' },
+                    { token: 'keyword.flow.scss', foreground: 'C678DD' },
+                    { token: 'operator.scss', foreground: '666666' },
+                    { token: 'operator.sql', foreground: '778899' },
+                    { token: 'operator.swift', foreground: '666666' },
+                    { token: 'predefined.sql', foreground: 'FF00FF' },
+                ],
+                colors: {
+                    'editor.background': '#282C34',
+                    'editor.foreground': '#ff0000',
+                    // 'editorIndentGuide.background': '#ABB2BF',
+                    // 'editorIndentGuide.activeBackground': '#282C34',
+                },
             })
+
+            monaco.editor.setTheme('myCustomTheme')
             // import('monaco-themes/themes/Sunburst.json').then((data) => {
             //     monaco.editor.defineTheme('Sunburst', data)
             //     monaco.editor.setTheme('Sunburst')
@@ -181,35 +242,20 @@ for (i = 0, len = keys.length; i < len; i++) {
 
     return (
         <div className='editor'>
-            <button disabled={fileName === 'script.js'} onClick={() => setFileName('script.js')}>
-                script.js
-            </button>
-            <button disabled={fileName === 'style.css'} onClick={() => setFileName('style.css')}>
-                style.css
-            </button>
-            <button disabled={fileName === 'index.html'} onClick={() => setFileName('index.html')}>
-                index.html
-            </button>
+            <div className='files'>
+                <File file='script.js' fileName={fileName} setFileName={setFileName} />
+                <File file='style.css' fileName={fileName} setFileName={setFileName} />
+                <File file='index.html' fileName={fileName} setFileName={setFileName} />
+            </div>
+
             <Editor
-                height='90vh'
-                theme='monakai'
+                // height='0vh'
+                theme='vs-dark'
                 path={file.name}
                 defaultLanguage={file.language}
                 defaultValue={file.value}
                 options={{
                     inherit: true,
-                    rules: [
-                        { token: 'comment', foreground: 'f00', background: '0f0', fontStyle: 'italic underline' },
-                        { token: 'comment.js', foreground: '008800', fontStyle: 'bold' },
-                        {
-                            token: 'comment.css',
-                            foreground: '0000ff',
-                            fontStyle: 'bold',
-                            inherit: false,
-                            background: '808080',
-                        },
-                    ],
-
                     minimap: {
                         enabled: false,
                     },
