@@ -27,16 +27,22 @@ const Question = () => {
                     <div className='bold'>Problem descripsion</div>
                     <p>
                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem harum hic quis cupiditate dolores
-                        possimus <span className='variable'>n</span> nobis magnam nihil ab, magni vero eligendi tempora
-                        distinctio doloremque? Perspiciatis eum ex odio voluptatem.
+                        possimus <span className='variable'>n</span> nobis magnam nihil ab.
+                        <p className='bulletpoint'>
+                            <span className='variable'>T</span> is a string
+                        </p>
+                        <p className='bulletpoint'>
+                            <span className='variable'>T</span> is a string
+                        </p>
+                        magni vero eligendi tempora distinctio doloremque? Perspiciatis eum ex odio voluptatem.
                     </p>
                 </div>
                 <div className='content-subpart'>
                     <div className='bold'>Input format</div>
                     <p>
                         The first line contains number of testcases <span className='variable'>T</span>. The
-                        <span className='variable'> 2 x T</span>subsequent lines each describe a test case over
-                        <span className='variable'> 2 </span>lines: The first contains <span className='variable'>3 </span>
+                        <span className='variable'>2*T</span>subsequent lines each describe a test case over
+                        <span className='variable'>2</span>lines: The first contains <span className='variable'>3</span>
                         space-separated integers, <span className='variable'>N</span> , <span className='variable'>A</span>,
                         and <span className='variable'>B</span>, respectively. The second contains{' '}
                         <span className='variable'>S</span> (the string Greg wishes to build).
@@ -44,9 +50,29 @@ const Question = () => {
                 </div>
                 <div className='content-subpart'>
                     <div className='bold'>Constrains</div>
-                    <p>
-                        <span></span>
+                    <p className='bulletpoint'>
+                        <span className='variable'>T</span> is a string
                     </p>
+                    <p className='bulletpoint'>
+                        <span className='variable'>W</span> is a integer
+                    </p>
+                    <p className='bulletpoint'>
+                        <span className='variable'>S</span>is composed of lowercase letters only.
+                    </p>
+                </div>
+
+                <div className='content-subpart'>
+                    <div className='bold'>Sample inputs</div>
+                    <div className='inputs'>
+                        <div>9</div>
+                        <div>LucioCode</div>
+                    </div>
+                </div>
+                <div className='content-subpart'>
+                    <div className='bold'>Sample output</div>
+                    <div className='inputs'>
+                        <div>3</div>
+                    </div>
                 </div>
             </div>
         </div>

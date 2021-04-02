@@ -58,9 +58,9 @@ body .form .question {
   --bg: #21252b;
   --text-color: white;
   --hover-color: rgb(207, 207, 207);
-  --bold-fontsize: 1.2rem;
+  --bold-fontsize: 1.02rem;
   --bold-color: #d4e4f9;
-  --mini-fontsize: 0.7rem;
+  --mini-fontsize: 0.72rem;
   --header-fontsize: 1.5rem;
   --transition-speed: 200ms;
   --bold: 600;
@@ -69,8 +69,11 @@ body .form .question {
   --paraghrap-color: #8a9bba;
   --paraghrap-fontfamily: "Open Sans", Arial, Helvetica, sans-serif;
   --varible-fontfamily: "Roboto Slab", serif;
-  --variable-fontsize: 0.85rem;
-  width: 400px;
+  --variable-fontsize: 0.91rem;
+  --inputs-fontsize: 0.8rem;
+  --inputs-color: #d4e4f9;
+  --inputs-bg: #141618;
+  width: 800px;
   background-color: var(--bg);
   font-family: var(--font-family);
   color: var(--text-color);
@@ -89,7 +92,7 @@ body .form .question .content .content-subpart .bold {
   color: var(--bold-color);
 }
 body .form .question .content .content-subpart p {
-  font-size: 14px;
+  font-size: var(--paraghrap-fontsize);
   font-family: var(--paraghrap-fontfamily);
   color: var(--paraghrap-color);
   font-weight: 300;
@@ -97,12 +100,37 @@ body .form .question .content .content-subpart p {
 }
 body .form .question .content .content-subpart p .variable {
   font-style: italic;
-  padding: 0 3px;
+  margin: 0 2px;
   word-break: break-all;
-  color: #d4e4f9;
+  color: var(--bold-color);
   font-weight: 400;
   font-size: var(--variable-fontsize);
   font-family: var(--varible-fontfamily);
+}
+body .form .question .content .content-subpart p.bulletpoint {
+  display: flex;
+  align-items: center;
+}
+body .form .question .content .content-subpart p.bulletpoint::before {
+  content: "";
+  display: block;
+  margin-right: 7px;
+  width: 6px;
+  height: 6px;
+  background: var(--bold-color);
+  border-radius: 50%;
+}
+body .form .question .content .content-subpart .inputs {
+  padding: 17px;
+  max-width: 550px;
+  margin-top: 15px;
+  background: var(--inputs-bg);
+  color: var(--inputs-color);
+  font-size: var(--inputs-fontsize);
+}
+body .form .question .content .content-subpart .inputs div {
+  margin: 5px 0;
+  word-wrap: break-word;
 }
 body .form .question .header {
   padding: 7px 0;
