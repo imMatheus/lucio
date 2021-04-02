@@ -13,7 +13,7 @@ const File = ({ file, fileName, setFileName }) => {
     let IconColor
     if (prefix[0] === 'js') {
         Icon = JsSvg
-        IconColor = '#fffb00'
+        IconColor = '#ffff00'
     } else if (prefix[0] === 'css') {
         Icon = CssSvg
         IconColor = '#2382ff'
