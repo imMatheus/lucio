@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import Editor, { useMonaco } from '@monaco-editor/react'
 import File from './File'
 // https://www.npmjs.com/package/@monaco-editor/react
-const Monako = () => {
+const Monako = ({ mref }) => {
     const monaco = useMonaco()
     const files = {
         'script.js': {
@@ -241,7 +241,7 @@ for (i = 0, len = keys.length; i < len; i++) {
     }, [monaco])
 
     return (
-        <div className='editor'>
+        <div className='editor' ref={mref}>
             <div className='files'>
                 <File file='script.js' fileName={fileName} setFileName={setFileName} />
                 <File file='style.css' fileName={fileName} setFileName={setFileName} />

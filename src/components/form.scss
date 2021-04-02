@@ -3,7 +3,39 @@
     height: 100vh;
     background-color: orange;
     display: grid;
-    grid-template-columns: auto 1fr;
+    grid-template-columns: auto auto 1fr;
+
+    --resize-bg: rgb(23, 22, 24);
+    --dots-color: rgb(255, 255, 255);
+
+    & .resizebar {
+        cursor: col-resize;
+        display: grid;
+        place-items: center;
+        width: 12px;
+        height: 100%;
+        position: sticky;
+        top: 0;
+        left: 0;
+        background-color: var(--resize-bg);
+
+        & .dots {
+            height: 50px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-evenly;
+
+            & span {
+                display: block;
+                width: 4px;
+                height: 4px;
+                border-radius: 50%;
+                background-color: var(--dots-color);
+            }
+        }
+    }
 
     @import './form/monako.scss';
     @import './form/question.scss';

@@ -14,11 +14,39 @@ body .form {
   height: 100vh;
   background-color: orange;
   display: grid;
-  grid-template-columns: auto 1fr;
+  grid-template-columns: auto auto 1fr;
+  --resize-bg: rgb(23, 22, 24);
+  --dots-color: rgb(255, 255, 255);
+}
+body .form .resizebar {
+  cursor: col-resize;
+  display: grid;
+  place-items: center;
+  width: 12px;
+  height: 100%;
+  position: sticky;
+  top: 0;
+  left: 0;
+  background-color: var(--resize-bg);
+}
+body .form .resizebar .dots {
+  height: 50px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+body .form .resizebar .dots span {
+  display: block;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background-color: var(--dots-color);
 }
 body .form .editor {
   width: 100%;
-  overflow: scroll;
+  overflow-y: scroll;
 }
 body .form .editor .files {
   --files-bg: #21252b;
@@ -55,6 +83,7 @@ body .form .editor .files .file-btn:disabled {
   background: #282c34;
 }
 body .form .question {
+  overflow-y: scroll;
   --bg: #21252b;
   --text-color: white;
   --hover-color: rgb(207, 207, 207);
@@ -73,7 +102,7 @@ body .form .question {
   --inputs-fontsize: 0.8rem;
   --inputs-color: #d4e4f9;
   --inputs-bg: #141618;
-  width: 800px;
+  width: 510px;
   background-color: var(--bg);
   font-family: var(--font-family);
   color: var(--text-color);

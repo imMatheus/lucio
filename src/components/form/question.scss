@@ -1,5 +1,5 @@
 .question {
-    // overflow-y: scroll;
+    overflow-y: scroll;
     --bg: #21252b;
     --text-color: white;
     --hover-color: rgb(207, 207, 207);
@@ -19,7 +19,7 @@
     --inputs-color: #d4e4f9;
     --inputs-bg: #141618;
 
-    width: 800px;
+    width: 510px;
     background-color: var(--bg);
     font-family: var(--font-family);
     color: var(--text-color);

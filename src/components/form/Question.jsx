@@ -2,9 +2,9 @@ import React from 'react'
 import ThumbUpSharpIcon from '@material-ui/icons/ThumbUpSharp'
 import FavoriteBorderSharpIcon from '@material-ui/icons/FavoriteBorderSharp'
 import ShareSharpIcon from '@material-ui/icons/ShareSharp'
-const Question = () => {
+const Question = ({ qref }) => {
     return (
-        <div className='question'>
+        <div className='question' ref={qref}>
             <div className='header'>
                 <div className='title'>1.Two Sum</div>
                 <div className='info'>
@@ -61,6 +61,26 @@ const Question = () => {
                     </p>
                 </div>
 
+                <div className='content-subpart'>
+                    <div className='bold'>Sample inputs</div>
+                    <div className='inputs'>
+                        <div>9</div>
+                        <div>LucioCode</div>
+                    </div>
+                </div>
+                <div className='content-subpart'>
+                    <div className='bold'>Sample output</div>
+                    <div className='inputs'>
+                        <div>3</div>
+                    </div>
+                </div>
+                <div className='content-subpart'>
+                    <div className='bold'>Explanations</div>
+                    <p>
+                        She can make the password strong by adding characters, for example, $hk, turning the password into
+                        Ab1$hk which is strong. characters aren't enough since the length must be at least .
+                    </p>
+                </div>
                 <div className='content-subpart'>
                     <div className='bold'>Sample inputs</div>
                     <div className='inputs'>
