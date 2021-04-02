@@ -22,8 +22,7 @@ const Form = () => {
         let barWidth = 12
         //setting width to the mouse x cord or to a min or max value specified at the top
         var pointerRelativeXpos = e.clientX
-        questionRef.current.style.width =
-            Math.min(Math.max(questionBoxMinWidth, pointerRelativeXpos - barWidth), questionBoxMaxWidth) + 'px'
+        questionRef.current.style.width = pointerRelativeXpos - barWidth + 'px'
     })
 
     document.addEventListener('mouseup', function (e) {

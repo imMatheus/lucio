@@ -20,6 +20,9 @@
     --inputs-bg: #141618;
 
     width: 510px;
+    // max and min is for the scroll bar so it does exeed these values
+    max-width: 70vw;
+    min-width: 20vw;
     background-color: var(--bg);
     font-family: var(--font-family);
     color: var(--text-color);

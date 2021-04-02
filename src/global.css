@@ -103,6 +103,8 @@ body .form .question {
   --inputs-color: #d4e4f9;
   --inputs-bg: #141618;
   width: 510px;
+  max-width: 70vw;
+  min-width: 20vw;
   background-color: var(--bg);
   font-family: var(--font-family);
   color: var(--text-color);
