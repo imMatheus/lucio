@@ -6,10 +6,10 @@ const Question = () => {
             <div className='header'>
                 <div className='title'>Two Sum</div>
                 <div className='info'>
-                    <div className='easy'>Easy</div>
-                    <div>20678</div>
-                    <div>Add to list</div>
-                    <div>Share</div>
+                    <div className='info-div easy'>Easy</div>
+                    <div className='info-div'>20678</div>
+                    <div className='info-div'>Add to list</div>
+                    <div className='info-div'>Share</div>
                 </div>
             </div>
         </div>

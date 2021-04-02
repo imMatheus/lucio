@@ -54,15 +54,16 @@ body .form .editor .files .file-btn:disabled {
   background: #282c34;
 }
 body .form .question {
-  --bg: #222218;
+  --bg: #21252b;
   --text-color: white;
-  --paraghrap-fontsize: 1rem;
+  --paraghrap-fontsize: 0.95rem;
   --header-fontsize: 1.5rem;
-  --bold: 700;
+  --bold: 600;
   --font-family: "Roboto Mono", monospace;
   width: 400px;
-  background-color: #00ffbf;
+  background-color: var(--bg);
   font-family: var(--font-family);
+  color: var(--text-color);
   padding: 12px 0 0 20px;
 }
 body .form .question .header .title {
@@ -74,11 +75,15 @@ body .form .question .header .info {
   background: orange;
   display: flex;
   align-items: center;
+  padding: 1px;
 }
-body .form .question .header .info div {
-  background: chartreuse;
+body .form .question .header .info .info-div {
+  background: #084781;
+  margin: 0 4px;
+  font-weight: 300;
+  font-size: var(--paraghrap-fontsize);
 }
-body .form .question .header .info div .easy {
+body .form .question .header .info .info-div.easy {
   color: greenyellow;
 }
 
