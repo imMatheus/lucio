@@ -1,36 +1,19 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 
 import Editor, { useMonaco } from '@monaco-editor/react'
 import File from './File'
 // https://www.npmjs.com/package/@monaco-editor/react
-const Monako = ({ mref }) => {
+const Monako = ({ mref, setCurrentCode, currentCode }) => {
     const monaco = useMonaco()
-
+    const editorRef = useRef(null)
     const files = {
         'script.js': {
             name: 'script.js',
             language: 'javascript',
             value: `
-for (i = 0, len = keys.length; i < len; i++) {
-    var key = keys[i];
-    var enumerable = key.charCodeAt(0) !== /*_*/95;
-    var member = members[key];
-    if (member && typeof member === 'object') {
-        if (member.value !== undefined || typeof member.get === 'function' || typeof member.set === 'function') {
-            if (member.enumerable === undefined) {
-                member.enumerable = enumerable;
-            }
-            properties = properties || {};
-            properties[key] = member;
-            continue;
-        } 
-    }
-    if (!enumerable) {
-        properties = properties || {};
-        properties[key] = { value: member, enumerable: enumerable, configurable: true, writable: true }
-        continue;
-    }
-    target[key] = member;
+//complete the TwoSum function below
+const TwoSum = (t, y)=>{
+
 }
             `,
         },
@@ -58,106 +41,27 @@ body {
             name: 'index.html',
             language: 'html',
             value: `
-            <!DOCTYPE HTML>
-            <!--Example of comments in HTML-->
-            <html>
-            <head>
-                <!--This is the head section-->
-                <title>HTML Sample</title>
-                <meta charset="utf-8">
-            
-                <!--This is the style tag to set style on elements-->
-                <style type="text/css">
-                    h1
-                    {
-                        font-family: Tahoma;
-                        font-size: 40px;
-                        font-weight: normal;
-                        margin: 50px;
-                        color: #a0a0a0;
-                    }
-            
-                    h2
-                    {
-                        font-family: Tahoma;
-                        font-size: 30px;
-                        font-weight: normal;
-                        margin: 50px;
-                        color: #fff;
-                    }
-            
-                    p
-                    {
-                        font-family: Tahoma;
-                        font-size: 17px;
-                        font-weight: normal;
-                        margin: 0px 200px;
-                        color: #fff;
-                    }
-            
-                    div.Center
-                    {
-                        text-align: center;
-                    }
-            
-                    div.Blue
-                    {
-                        padding: 50px;
-                        background-color: #7bd2ff;
-                    }
-            
-                    button.Gray
-                    {
-                        font-family: Tahoma;
-                        font-size: 17px;
-                        font-weight: normal;
-                        margin-top: 100px;
-                        padding: 10px 50px;
-                        background-color: #727272;
-                        color: #fff;
-                        outline: 0;
-                            border: none;
-                            cursor: pointer;
-                    }
-            
-                    button.Gray:hover
-                    {
-                        background-color: #898888;
-                    }
-            
-                    button.Gray:active
-                    {
-                        background-color: #636161;
-                    }
-            
-                </style>
-            
-                <!--This is the script tag-->
-                <script type="text/javascript">
-                    function ButtonClick(){
-                        // Example of comments in JavaScript
-                        window.alert("I'm an alert sample!");
-                    }
-                </script>
-            </head>
-            <body>
-                <!--This is the body section-->
-                <div class="Center">
-                    <h1>NAME OF SITE</h1>
-                </div>
-                <div class="Center Blue">
-                        <h2>I'm h2 Header! Edit me in &lt;h2&gt;</h2>
-                        <p>
-                            I'm a paragraph! Edit me in &lt;p&gt;
-                            to add your own content and make changes to the style and font.
-                            It's easy! Just change the text between &lt;p&gt; ... &lt;/p&gt; and change the style in &lt;style&gt;.
-                            You can make it as long as you wish. The browser will automatically wrap the lines to accommodate the
-                            size of the browser window.
-                        </p>
-                        <button class="Gray" onclick="ButtonClick()">Click Me!</button>
-                </div>
-            </body>
-            </html>`,
+<!DOCTYPE html>
+<!--Example of comments in HTML-->
+<html>
+    <head>
+    <!--This is the head section-->
+        <title>HTML Sample</title>
+        <meta charset="utf-8">
+        <script type="text/javascript">
+            function ButtonClick(){
+                // Example of comments in JavaScript
+                window.alert("I'm an alert sample!");
+            }
+        </script>
+    </head>
+    <body>
+        <div class="Center Blue">
+            <h2>I'm h2 Header! Edit me in &lt;h2&gt;</h2>
+            <button class="Gray" onclick="ButtonClick()">Click Me!</button>
+        </div>
+    </body>
+</html>`,
         },
     }
 
@@ -169,8 +73,8 @@ body {
             console.log('here is the monaco isntance:')
             // import('monaco-themes/themes/Monokai.json').then((data) => {
             //     monaco.editor.defineTheme('monokai', data)
-            //     monaco.editor.setTheme('monokai')
-            //     console.log(data)
+            //     // monaco.editor.setTheme('monokai')
+            //     // console.log(data)
             // })
 
             monaco.editor.defineTheme('myCustomTheme', {
@@ -244,26 +148,41 @@ body {
         }
     }, [monaco])
 
+    const handleEditorDidMount = (editor) => {
+        editorRef.current = editor
+        setCurrentCode(editorRef.current.getValue())
+    }
+
+    const runCodeHandler = () => {
+        setCurrentCode(editorRef.current.getValue())
+    }
+
     return (
         <div className='editor' ref={mref}>
             <div className='files'>
                 <File file='script.js' fileName={fileName} setFileName={setFileName} />
                 <File file='style.css' fileName={fileName} setFileName={setFileName} />
                 <File file='index.html' fileName={fileName} setFileName={setFileName} />
+                {/* button to run the code */}
+                <button className='file-btn run-btn' onClick={runCodeHandler}>
+                    Run Code
+                </button>
+                <button className='file-btn run-btn'>Submit Code</button>
             </div>
 
             <Editor
-                // height='0vh'
+                onMount={handleEditorDidMount}
                 theme='vs-dark'
                 path={file.name}
                 defaultLanguage={file.language}
                 defaultValue={file.value}
+                onChange={() => setCurrentCode(editorRef.current.getValue())}
                 options={{
                     inherit: true,
                     minimap: {
                         enabled: false,
                     },
-                    fontSize: 13,
+                    fontSize: 15,
                     // cursorStyle: 'block',
                     // wordWrap: 'on',
                     wordWrap: 'wordWrapColumn',

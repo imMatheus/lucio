@@ -1,12 +1,15 @@
-import React, { useRef } from 'react'
+import React, { useRef, useState } from 'react'
 import Question from './form/Question'
 import Monako from './form/Monako'
+import WebFrame from './form/WebFrame'
 const Form = () => {
     const resizebarRef = useRef(null)
     const questionRef = useRef(null)
     const editorRef = useRef(null)
-    const questionBoxMinWidth = 340
-    const questionBoxMaxWidth = 800
+    const frameRef = useRef(null)
+
+    const [currentCode, setCurrentCode] = useState('')
+
     let isDraging = false
 
     const mouseDownHandler = (e) => {
@@ -22,7 +25,7 @@ const Form = () => {
         let barWidth = 12
         //setting width to the mouse x cord or to a min or max value specified at the top
         var pointerRelativeXpos = e.clientX
-        questionRef.current.style.width = pointerRelativeXpos - barWidth + 'px'
+        frameRef.current.style.width = pointerRelativeXpos - barWidth + 'px'
     })
 
     document.addEventListener('mouseup', function (e) {
@@ -33,7 +36,8 @@ const Form = () => {
     console.log(isDraging)
     return (
         <div className='form'>
-            <Question qref={questionRef} />
+            {/* <Question qref={questionRef} /> */}
+            <WebFrame code={currentCode} fref={frameRef} />
             <div ref={resizebarRef} className='resizebar' onMouseDown={mouseDownHandler}>
                 <div className='dots'>
                     <span></span>
@@ -42,7 +46,7 @@ const Form = () => {
                     <span></span>
                 </div>
             </div>
-            <Monako mref={editorRef} />
+            <Monako mref={editorRef} setCurrentCode={setCurrentCode} currentCode={currentCode} />
         </div>
     )
 }

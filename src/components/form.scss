@@ -1,15 +1,34 @@
 .form {
     width: 100vw;
     height: 100vh;
-    background-color: orange;
     display: grid;
     grid-template-columns: auto auto 1fr;
-
-    --resize-bg: rgb(23, 22, 24);
+    --main-bg: #282c34;
+    --resize-bg: rgb(22, 21, 22);
     --dots-color: rgb(255, 255, 255);
+    --bg: #21252b;
+    --text-color: white;
+    --hover-color: rgb(207, 207, 207);
+    --bold-fontsize: 1.02rem;
+    --bold-color: #d4e4f9;
+    --mini-fontsize: 0.72rem;
+    --header-fontsize: 1.5rem;
+    --transition-speed: 200ms;
+    --bold: 600;
+    --font-family: 'Roboto Mono', monospace;
+    --paraghrap-fontsize: 0.8rem;
+    --paraghrap-color: #8a9bba;
+    --paraghrap-fontfamily: 'Open Sans', Arial, Helvetica, sans-serif;
+    --varible-fontfamily: 'Roboto Slab', serif;
+    --variable-fontsize: 0.91rem;
+    --inputs-fontsize: 0.8rem;
+    --inputs-color: #d4e4f9;
+    --inputs-bg: #141618;
+    --files-bg: #21252b;
+    background: var(--main-bg);
 
     & .resizebar {
-        cursor: col-resize;
+        cursor: ew-resize;
         display: grid;
         place-items: center;
         width: 12px;
@@ -39,4 +58,5 @@
 
     @import './form/monako.scss';
     @import './form/question.scss';
+    @import './form/webframe.scss';
 }

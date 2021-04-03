@@ -3,7 +3,6 @@
     overflow-y: scroll;
 
     .files {
-        --files-bg: #21252b;
         display: flex;
         justify-content: flex-start;
         background: var(--files-bg);
@@ -36,6 +35,12 @@
             &:disabled {
                 background: orange;
                 background: #282c34;
+            }
+
+            &.run-btn {
+                padding: 9px 19px;
+                color: rgb(58, 212, 19);
+                text-decoration: underline;
             }
         }
     }
