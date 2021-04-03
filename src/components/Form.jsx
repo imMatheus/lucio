@@ -21,7 +21,7 @@ const Form = () => {
         if (!isDraging) {
             return false
         }
-        // bar width is har coded as 12 px in scss
+        // bar width is hard coded as 12 px in scss
         let barWidth = 12
         //setting width to the mouse x cord or to a min or max value specified at the top
         var pointerRelativeXpos = e.clientX
