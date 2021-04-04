@@ -3,12 +3,12 @@
     height: 100%;
     max-width: 70vw;
     min-width: 20vw;
-    background: royalblue;
+    background: rgb(255, 255, 255);
 
     & #webframeId {
         width: 100%;
         height: 100%;
+        background: #d4d4d4;
         border: none;
-        background: rgb(126, 66, 66);
     }
 }

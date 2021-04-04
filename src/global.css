@@ -3,6 +3,7 @@
 *::before {
   margin: 0;
   padding: 0;
+  border: 0;
   font-size: 100%;
   font: inherit;
   vertical-align: baseline;
@@ -64,16 +65,42 @@ body .form .resizebar .dots span {
   border-radius: 50%;
   background-color: var(--dots-color);
 }
-body .form .editor {
-  width: 100%;
+body .form .editorial {
   overflow-y: scroll;
+  background: orange;
+  --main-bg: #282c34;
+  --resize-bg: rgb(22, 21, 22);
+  --dots-color: rgb(255, 255, 255);
+  --bg: #21252b;
+  --text-color: white;
+  --hover-color: rgb(207, 207, 207);
+  --bold-fontsize: 1.02rem;
+  --bold-color: #d4e4f9;
+  --mini-fontsize: 0.72rem;
+  --header-fontsize: 1.5rem;
+  --transition-speed: 200ms;
+  --bold: 600;
+  --font-family: "Roboto Mono", monospace;
+  --paraghrap-fontsize: 0.8rem;
+  --paraghrap-color: #8a9bba;
+  --paraghrap-fontfamily: "Open Sans", Arial, Helvetica, sans-serif;
+  --varible-fontfamily: "Roboto Slab", serif;
+  --variable-fontsize: 0.91rem;
+  --inputs-fontsize: 0.8rem;
+  --inputs-color: #d4e4f9;
+  --inputs-bg: #141618;
+  --files-bg: #21252b;
 }
-body .form .editor .files {
+body .form .editorial .editor {
+  width: 100%;
+  height: 90vh;
+}
+body .form .editorial .editor .files {
   display: flex;
   justify-content: flex-start;
   background: var(--files-bg);
 }
-body .form .editor .files .file-btn {
+body .form .editorial .editor .files .file-btn {
   cursor: pointer;
   padding: 9px 15px;
   background: var(--files-bg);
@@ -85,26 +112,85 @@ body .form .editor .files .file-btn {
   font-size: 14px;
   color: white;
   font-weight: 300;
-  font-family: "Roboto Mono", monospace;
+  font-family: var(--font-family);
   display: flex;
   justify-content: center;
   align-items: flex-end;
 }
-body .form .editor .files .file-btn .icon {
+body .form .editorial .editor .files .file-btn .icon {
   width: 21px;
   height: 21px;
   background-size: cover;
   margin-right: 4px;
   background-position: center;
 }
-body .form .editor .files .file-btn:disabled {
+body .form .editorial .editor .files .file-btn:disabled {
   background: orange;
   background: #282c34;
 }
-body .form .editor .files .file-btn.run-btn {
+body .form .editorial .editor .files .file-btn.run-btn {
   padding: 9px 19px;
   color: #3ad413;
   text-decoration: underline;
+}
+body .form .editorial .codecompileview {
+  background: var(--inputs-bg);
+  position: relative;
+  padding-bottom: 15px;
+  font-family: var(--font-family);
+}
+body .form .editorial .codecompileview .title {
+  background: var(--bg);
+  font-size: 35px;
+  font-weight: 300;
+  padding: 0 22px;
+}
+body .form .editorial .codecompileview .title.red {
+  color: red;
+}
+body .form .editorial .codecompileview p {
+  padding: 10px 22px;
+  font-size: var(--paraghrap-fontsize);
+  font-weight: 200;
+  color: var(--paraghrap-color);
+}
+body .form .editorial .codecompileview .compilecases-wrapper {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  background: green;
+  min-height: 600px;
+}
+body .form .editorial .codecompileview .compilecases-wrapper .case-list {
+  background: orange;
+}
+body .form .editorial .codecompileview .compilecases-wrapper .case-list ul {
+  list-style: none;
+}
+body .form .editorial .codecompileview .compilecases-wrapper .case-list ul li {
+  font-size: 1.2rem;
+  padding: 10px 22px;
+  font-weight: 300;
+  background: var(--main-bg);
+  display: flex;
+  align-items: center;
+  line-height: 30px;
+}
+body .form .editorial .codecompileview .compilecases-wrapper .case-list ul li svg {
+  margin-right: 3px;
+}
+body .form .editorial .codecompileview .compilecases-wrapper .case-list ul li.red {
+  color: red;
+}
+body .form .editorial .codecompileview .compilecases-wrapper .case-list ul li.green {
+  color: yellowgreen;
+}
+body .form .editorial .codecompileview .compilecases-wrapper .case-list ul li:hover {
+  background: var(--bg);
+}
+body .form .editorial .codecompileview .compilecases-wrapper .case-content {
+  width: 100%;
+  height: 100px;
+  background: blue;
 }
 body .form .question {
   overflow-y: scroll;
@@ -223,13 +309,13 @@ body .form .webframe {
   height: 100%;
   max-width: 70vw;
   min-width: 20vw;
-  background: royalblue;
+  background: white;
 }
 body .form .webframe #webframeId {
   width: 100%;
   height: 100%;
+  background: #d4d4d4;
   border: none;
-  background: #7e4242;
 }
 
 /*# sourceMappingURL=global.css.map */

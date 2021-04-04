@@ -25,7 +25,7 @@ const Form = () => {
         let barWidth = 12
         //setting width to the mouse x cord or to a min or max value specified at the top
         var pointerRelativeXpos = e.clientX
-        frameRef.current.style.width = pointerRelativeXpos - barWidth + 'px'
+        questionRef.current.style.width = pointerRelativeXpos - barWidth + 'px'
     })
 
     document.addEventListener('mouseup', function (e) {
@@ -36,8 +36,8 @@ const Form = () => {
     console.log(isDraging)
     return (
         <div className='form'>
-            {/* <Question qref={questionRef} /> */}
-            <WebFrame code={currentCode} fref={frameRef} />
+            <Question qref={questionRef} />
+            {/* <WebFrame code={currentCode} fref={frameRef} /> */}
             <div ref={resizebarRef} className='resizebar' onMouseDown={mouseDownHandler}>
                 <div className='dots'>
                     <span></span>

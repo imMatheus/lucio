@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from 'react'
 
 import Editor, { useMonaco } from '@monaco-editor/react'
 import File from './File'
+import CodeCompileView from './CodeCompileView'
 // https://www.npmjs.com/package/@monaco-editor/react
 const Monako = ({ mref, setCurrentCode, currentCode }) => {
     const monaco = useMonaco()
@@ -41,74 +42,8 @@ body {
             name: 'index.html',
             language: 'html',
             value: `
-            <!DOCTYPE html>
-            <!--Example of comments in HTML-->
-            <html>
-                <head>
-                <!--This is the head section-->
-                    <title>HTML Sample</title>
-                    <meta charset="utf-8">
-                    <style>
-                    h1::before {  
-                        transform: scaleX(0);
-                        transform-origin: bottom right;
-                      }
-                      
-                      h1:hover::before {
-                        transform: scaleX(1);
-                        transform-origin: bottom left;
-                      }
-                      
-                      h1::before {
-                        content: " ";
-                        display: block;
-                        position: absolute;
-                        top: 0; right: 0; bottom: 0; left: 0;
-                        inset: 0 0 0 0;
-                        background: hsl(200 100% 80%);
-                        z-index: -1;
-                        transition: transform .3s ease;
-                      }
-                      
-                      h1 {
-                        position: relative;
-                        font-size: 5rem;
-                      }
-                      
-                      html {
-                        block-size: 100%;
-                        inline-size: 100%;
-                      }
-                      
-                      body {
-                        min-block-size: 100%;
-                        min-inline-size: 100%;
-                        margin: 0;
-                        box-sizing: border-box;
-                        display: grid;
-                        place-content: center;
-                        font-family: system-ui, sans-serif;
-                      }
-                      
-                      @media (orientation: landscape) {
-                        body {
-                          grid-auto-flow: column;
-                        }
-                      }
-                    </style>
-                    <script type="text/javascript">
-                        function ButtonClick(){
-                            // Example of comments in JavaScript
-                            window.alert("I'm an alert sample!");
-                        }
-                    </script>
-                </head>
-                <body>
-                    <div class="Center Blue">
-                      <h1>Hover me</h1>
-                    </div>
-                </body>
-            </html>`,
+<h1>Hellllooo</h1>
+            `,
         },
     }
 
@@ -200,48 +135,64 @@ body {
         setCurrentCode(editorRef.current.getValue())
     }
 
-    const runCodeHandler = () => {
+    const runCodeHandler = async () => {
         setCurrentCode(editorRef.current.getValue())
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                language: 'js',
+                source: 'print(4+6)',
+                stdin: '',
+                args: [],
+            }),
+        }
+        await fetch('https://emkc.org/api/v1/piston/execute', requestOptions)
+            .then((response) => response.json())
+            .then((data) => console.log(data))
     }
 
     return (
-        <div className='editor' ref={mref}>
-            <div className='files'>
-                <File file='script.js' fileName={fileName} setFileName={setFileName} />
-                <File file='style.css' fileName={fileName} setFileName={setFileName} />
-                <File file='index.html' fileName={fileName} setFileName={setFileName} />
-                {/* button to run the code */}
-                <button className='file-btn run-btn' onClick={runCodeHandler}>
-                    Run Code
-                </button>
-                <button className='file-btn run-btn'>Submit Code</button>
+        <div className='editorial'>
+            <div className='editor' ref={mref}>
+                <div className='files'>
+                    <File file='script.js' fileName={fileName} setFileName={setFileName} />
+                    <File file='style.css' fileName={fileName} setFileName={setFileName} />
+                    <File file='index.html' fileName={fileName} setFileName={setFileName} />
+                    {/* button to run the code */}
+                    <button className='file-btn run-btn' onClick={runCodeHandler}>
+                        Run Code
+                    </button>
+                    <button className='file-btn run-btn'>Submit Code</button>
+                </div>
+
+                <Editor
+                    onMount={handleEditorDidMount}
+                    theme='vs-dark'
+                    path={file.name}
+                    defaultLanguage={file.language}
+                    defaultValue={file.value}
+                    onChange={() => setCurrentCode(editorRef.current.getValue())}
+                    options={{
+                        inherit: true,
+                        minimap: {
+                            enabled: false,
+                        },
+                        fontSize: 15,
+                        // cursorStyle: 'block',
+                        // wordWrap: 'on',
+                        wordWrap: 'wordWrapColumn',
+                        wordWrapColumn: 90,
+
+                        // Set this to false to not auto word wrap minified files
+                        wordWrapMinified: true,
+
+                        // try "same", "indent" or "none"
+                        wrappingIndent: 'same',
+                    }}
+                />
             </div>
-
-            <Editor
-                onMount={handleEditorDidMount}
-                theme='vs-dark'
-                path={file.name}
-                defaultLanguage={file.language}
-                defaultValue={file.value}
-                onChange={() => setCurrentCode(editorRef.current.getValue())}
-                options={{
-                    inherit: true,
-                    minimap: {
-                        enabled: false,
-                    },
-                    fontSize: 15,
-                    // cursorStyle: 'block',
-                    // wordWrap: 'on',
-                    wordWrap: 'wordWrapColumn',
-                    wordWrapColumn: 90,
-
-                    // Set this to false to not auto word wrap minified files
-                    wordWrapMinified: true,
-
-                    // try "same", "indent" or "none"
-                    wrappingIndent: 'same',
-                }}
-            />
+            <CodeCompileView />
         </div>
     )
 }

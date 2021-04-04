@@ -3,12 +3,14 @@
 *::before {
     margin: 0;
     padding: 0;
-    // border: 0;
+    border: 0;
     font-size: 100%;
     font: inherit;
     vertical-align: baseline;
     box-sizing: border-box;
 }
+
+//  sass --watch src/global.scss:src/global.css
 body {
     @import './components/form';
 }
