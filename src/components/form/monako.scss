@@ -1,12 +1,12 @@
 .editorial {
     overflow-y: scroll;
-    background: orange;
+    background: var(--main-bg);
     // display: grid;
     // grid-template-rows: 1fr auto;
 
     .editor {
         width: 100%;
-        height: 90vh;
+        height: 80vh;
         // overflow-y: scroll;
 
         .files {
@@ -25,7 +25,7 @@
                 border-right: solid 1px rgb(61, 61, 61);
                 border-collapse: collapse;
                 outline: none;
-                font-size: 14px;
+                font-size: 0.95rem;
                 color: white;
                 font-weight: 300;
                 font-family: var(--font-family);
@@ -43,16 +43,43 @@
                     background: orange;
                     background: #282c34;
                 }
+            }
+        }
+    }
 
-                &.run-btn {
-                    padding: 9px 19px;
-                    color: rgb(58, 212, 19);
-                    text-decoration: underline;
-                }
+    .submit {
+        padding: 17px 12px;
+        display: flex;
+        position: relative;
+        justify-content: flex-end;
+        background: var(--inputs-bg);
+        font-family: var(--font-family);
+
+        & button {
+            cursor: pointer;
+            padding: 10px 16px;
+            margin: 6px;
+            border-radius: 4px;
+            background: transparent;
+            font-size: 1rem;
+            &.testrun-btn {
+                border: solid 1px var(--color-success);
+                color: var(--color-success);
+            }
+
+            &.submit-btn {
+                background: var(--color-success);
+                color: var(--bold-color);
+            }
+
+            &:active,
+            &:hover {
+                outline: none;
             }
         }
     }
     .codecompileview {
+        // display: none;
         background: var(--inputs-bg);
         position: relative;
         padding-bottom: 15px;
@@ -61,13 +88,13 @@
 
         .title {
             background: var(--bg);
-            font-size: 35px;
+            font-size: 2rem;
 
             font-weight: 300;
-            padding: 0 $padding-sides;
+            padding: 3px $padding-sides 8px $padding-sides;
 
             &.red {
-                color: red;
+                color: var(--color-fail);
             }
         }
 
@@ -81,19 +108,20 @@
         .compilecases-wrapper {
             display: grid;
             grid-template-columns: auto 1fr;
-            background: green;
+            background: var(--main-bg);
             min-height: 600px;
 
             & .case-list {
-                // width: 240px;
-                background: orange;
-
                 & ul {
                     list-style: none;
 
                     & li {
-                        font-size: 1.2rem;
-                        padding: 10px $padding-sides;
+                        cursor: pointer;
+                        font-size: 1.1rem;
+                        @include wide-screen() {
+                            font-size: 1.5rem;
+                        }
+                        padding: 13px $padding-sides;
                         font-weight: 300;
                         background: var(--main-bg);
                         display: flex;
@@ -105,11 +133,11 @@
                         }
 
                         &.red {
-                            color: red;
+                            color: var(--color-fail);
                         }
 
                         &.green {
-                            color: yellowgreen;
+                            color: var(--color-success);
                         }
 
                         &:hover {
@@ -121,8 +149,33 @@
 
             & .case-content {
                 width: 100%;
-                height: 100px;
-                background: blue;
+                height: 100%;
+                padding: 20px;
+                background: var(--bg);
+
+                & .subpart {
+                    margin-bottom: 22px;
+                    & h4 {
+                        font-size: 1.05rem;
+                        font-weight: 200;
+                        color: var(--paraghrap-color);
+                    }
+
+                    & .output {
+                        padding: 12px 15px;
+                        // max-width: 550px;
+                        margin-top: 7px;
+                        background: var(--inputs-bg);
+                        color: var(--inputs-color);
+                        font-size: var(--inputs-fontsize);
+
+                        & div {
+                            margin: 4px 0;
+                            word-wrap: break-word;
+                        }
+                    }
+                    // background: orangered;
+                }
             }
         }
     }
@@ -145,7 +198,7 @@
     --paraghrap-fontfamily: 'Open Sans', Arial, Helvetica, sans-serif;
     --varible-fontfamily: 'Roboto Slab', serif;
     --variable-fontsize: 0.91rem;
-    --inputs-fontsize: 0.8rem;
+    --inputs-fontsize: 0.85rem;
     --inputs-color: #d4e4f9;
     --inputs-bg: #141618;
     --files-bg: #21252b;

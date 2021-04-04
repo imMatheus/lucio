@@ -9,12 +9,28 @@
   vertical-align: baseline;
   box-sizing: border-box;
 }
+@media (min-width: 1550px) {
+  *,
+*::after,
+*::before {
+    font-size: 110%;
+  }
+}
+@media (max-width: 350px) {
+  *,
+*::after,
+*::before {
+    font-size: 40%;
+  }
+}
 
 body .form {
   width: 100vw;
   height: 100vh;
   display: grid;
   grid-template-columns: auto auto 1fr;
+  --color-success: #1ba94c;
+  --color-fail: #d11534;
   --main-bg: #282c34;
   --resize-bg: rgb(22, 21, 22);
   --dots-color: rgb(255, 255, 255);
@@ -33,11 +49,18 @@ body .form {
   --paraghrap-fontfamily: "Open Sans", Arial, Helvetica, sans-serif;
   --varible-fontfamily: "Roboto Slab", serif;
   --variable-fontsize: 0.91rem;
-  --inputs-fontsize: 0.8rem;
+  --inputs-fontsize: 0.85rem;
   --inputs-color: #d4e4f9;
   --inputs-bg: #141618;
   --files-bg: #21252b;
   background: var(--main-bg);
+}
+body .form ::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 0px;
+}
+body .form ::-webkit-scrollbar-thumb {
+  display: none;
 }
 body .form .resizebar {
   cursor: ew-resize;
@@ -67,7 +90,7 @@ body .form .resizebar .dots span {
 }
 body .form .editorial {
   overflow-y: scroll;
-  background: orange;
+  background: var(--main-bg);
   --main-bg: #282c34;
   --resize-bg: rgb(22, 21, 22);
   --dots-color: rgb(255, 255, 255);
@@ -86,14 +109,14 @@ body .form .editorial {
   --paraghrap-fontfamily: "Open Sans", Arial, Helvetica, sans-serif;
   --varible-fontfamily: "Roboto Slab", serif;
   --variable-fontsize: 0.91rem;
-  --inputs-fontsize: 0.8rem;
+  --inputs-fontsize: 0.85rem;
   --inputs-color: #d4e4f9;
   --inputs-bg: #141618;
   --files-bg: #21252b;
 }
 body .form .editorial .editor {
   width: 100%;
-  height: 90vh;
+  height: 80vh;
 }
 body .form .editorial .editor .files {
   display: flex;
@@ -109,7 +132,7 @@ body .form .editorial .editor .files .file-btn {
   border-right: solid 1px #3d3d3d;
   border-collapse: collapse;
   outline: none;
-  font-size: 14px;
+  font-size: 0.95rem;
   color: white;
   font-weight: 300;
   font-family: var(--font-family);
@@ -128,10 +151,32 @@ body .form .editorial .editor .files .file-btn:disabled {
   background: orange;
   background: #282c34;
 }
-body .form .editorial .editor .files .file-btn.run-btn {
-  padding: 9px 19px;
-  color: #3ad413;
-  text-decoration: underline;
+body .form .editorial .submit {
+  padding: 17px 12px;
+  display: flex;
+  position: relative;
+  justify-content: flex-end;
+  background: var(--inputs-bg);
+  font-family: var(--font-family);
+}
+body .form .editorial .submit button {
+  cursor: pointer;
+  padding: 10px 16px;
+  margin: 6px;
+  border-radius: 4px;
+  background: transparent;
+  font-size: 1rem;
+}
+body .form .editorial .submit button.testrun-btn {
+  border: solid 1px var(--color-success);
+  color: var(--color-success);
+}
+body .form .editorial .submit button.submit-btn {
+  background: var(--color-success);
+  color: var(--bold-color);
+}
+body .form .editorial .submit button:active, body .form .editorial .submit button:hover {
+  outline: none;
 }
 body .form .editorial .codecompileview {
   background: var(--inputs-bg);
@@ -141,12 +186,12 @@ body .form .editorial .codecompileview {
 }
 body .form .editorial .codecompileview .title {
   background: var(--bg);
-  font-size: 35px;
+  font-size: 2rem;
   font-weight: 300;
-  padding: 0 22px;
+  padding: 3px 22px 8px 22px;
 }
 body .form .editorial .codecompileview .title.red {
-  color: red;
+  color: var(--color-fail);
 }
 body .form .editorial .codecompileview p {
   padding: 10px 22px;
@@ -157,40 +202,63 @@ body .form .editorial .codecompileview p {
 body .form .editorial .codecompileview .compilecases-wrapper {
   display: grid;
   grid-template-columns: auto 1fr;
-  background: green;
+  background: var(--main-bg);
   min-height: 600px;
-}
-body .form .editorial .codecompileview .compilecases-wrapper .case-list {
-  background: orange;
 }
 body .form .editorial .codecompileview .compilecases-wrapper .case-list ul {
   list-style: none;
 }
 body .form .editorial .codecompileview .compilecases-wrapper .case-list ul li {
-  font-size: 1.2rem;
-  padding: 10px 22px;
+  cursor: pointer;
+  font-size: 1.1rem;
+  padding: 13px 22px;
   font-weight: 300;
   background: var(--main-bg);
   display: flex;
   align-items: center;
   line-height: 30px;
 }
+@media (min-width: 1550px) {
+  body .form .editorial .codecompileview .compilecases-wrapper .case-list ul li {
+    font-size: 1.5rem;
+  }
+}
 body .form .editorial .codecompileview .compilecases-wrapper .case-list ul li svg {
   margin-right: 3px;
 }
 body .form .editorial .codecompileview .compilecases-wrapper .case-list ul li.red {
-  color: red;
+  color: var(--color-fail);
 }
 body .form .editorial .codecompileview .compilecases-wrapper .case-list ul li.green {
-  color: yellowgreen;
+  color: var(--color-success);
 }
 body .form .editorial .codecompileview .compilecases-wrapper .case-list ul li:hover {
   background: var(--bg);
 }
 body .form .editorial .codecompileview .compilecases-wrapper .case-content {
   width: 100%;
-  height: 100px;
-  background: blue;
+  height: 100%;
+  padding: 20px;
+  background: var(--bg);
+}
+body .form .editorial .codecompileview .compilecases-wrapper .case-content .subpart {
+  margin-bottom: 22px;
+}
+body .form .editorial .codecompileview .compilecases-wrapper .case-content .subpart h4 {
+  font-size: 1.05rem;
+  font-weight: 200;
+  color: var(--paraghrap-color);
+}
+body .form .editorial .codecompileview .compilecases-wrapper .case-content .subpart .output {
+  padding: 12px 15px;
+  margin-top: 7px;
+  background: var(--inputs-bg);
+  color: var(--inputs-color);
+  font-size: var(--inputs-fontsize);
+}
+body .form .editorial .codecompileview .compilecases-wrapper .case-content .subpart .output div {
+  margin: 4px 0;
+  word-wrap: break-word;
 }
 body .form .question {
   overflow-y: scroll;

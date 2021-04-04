@@ -160,10 +160,6 @@ body {
                     <File file='style.css' fileName={fileName} setFileName={setFileName} />
                     <File file='index.html' fileName={fileName} setFileName={setFileName} />
                     {/* button to run the code */}
-                    <button className='file-btn run-btn' onClick={runCodeHandler}>
-                        Run Code
-                    </button>
-                    <button className='file-btn run-btn'>Submit Code</button>
                 </div>
 
                 <Editor
@@ -191,6 +187,14 @@ body {
                         wrappingIndent: 'same',
                     }}
                 />
+            </div>
+
+            <div className='submit'>
+                {/* submiting code and testing it*/}
+                <button className='testrun-btn' onClick={runCodeHandler}>
+                    Run Code
+                </button>
+                <button className='submit-btn'>Submit Code</button>
             </div>
             <CodeCompileView />
         </div>

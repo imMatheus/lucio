@@ -1,3 +1,15 @@
+@mixin wide-screen {
+    @media (min-width: 1550px) {
+        @content;
+    }
+}
+
+@mixin mobile {
+    @media (max-width: 350px) {
+        @content;
+    }
+}
+
 *,
 *::after,
 *::before {
@@ -5,6 +17,12 @@
     padding: 0;
     border: 0;
     font-size: 100%;
+    @include wide-screen() {
+        font-size: 110%;
+    }
+    @include mobile() {
+        font-size: 40%;
+    }
     font: inherit;
     vertical-align: baseline;
     box-sizing: border-box;
