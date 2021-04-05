@@ -6,7 +6,19 @@ import LoadingSpinner from '../LoadingSpinner'
 const CodeCompileView = ({ testcases, fetchingData }) => {
     // let listPointer = 0
     const [listPointer, setListPointer] = useState(0)
+    let correctAnswer = true
+    let failedCases = testcases.length
+    // console.log(testcases)
 
+    testcases?.forEach((element) => {
+        if (element.correctAnswer === false) {
+            correctAnswer = false
+            return
+        } else {
+            failedCases--
+        }
+    })
+    let title = correctAnswer ? 'Noice job' : 'Wrong answer :('
     const [currentTc, setCurrentTc] = useState(testcases[listPointer])
     useEffect(() => {
         setCurrentTc(testcases[listPointer])
@@ -15,52 +27,55 @@ const CodeCompileView = ({ testcases, fetchingData }) => {
     // changing the currentTc to the index of the btn that has been clicked
     const changeCompileViewHandler = (e) => {
         setListPointer(e.target.value)
-        // setCurrentTc(testcases[e.target.value])
     }
 
     return (
-        <div className='CodeCompileView-wrapper'>
-            {fetchingData ? (
-                <div className='loadingspinner-wrapper-for-codecompile'>
-                    <LoadingSpinner />
-                </div>
-            ) : (
-                <div className='codecompileview'>
-                    <div className='title red'>Wrong answer :-3 </div>
-                    <p>3/3 test cases failed</p>
-                    <div className='compilecases-wrapper'>
-                        <div className='case-list'>
-                            <ul>
-                                {testcases?.map((cas, index) => {
-                                    // i use index to keep track of witch index we should show
-                                    // on the right portion
-                                    let color = cas.correctAnswer ? 'green' : 'red'
-                                    let highlight = index === listPointer ? 'highlight' : ''
-                                    return (
-                                        <li
-                                            key={index}
-                                            value={index}
-                                            className={color + ' ' + highlight}
-                                            onClick={changeCompileViewHandler}
-                                        >
-                                            {cas.correctAnswer ? <CheckIcon /> : <CloseIcon />}
-                                            {'Sample test case ' + cas.caseName}
-                                        </li>
-                                    )
-                                })}
-                            </ul>
-                        </div>
-
-                        <div className='case-content'>
-                            <Subpart header='Compile msg' complileMsg={currentTc?.compileMessage} />
-                            <Subpart header='Inputs' content={currentTc?.inputs} />
-                            <Subpart header='Your output' content={currentTc?.userOutput} />
-                            <Subpart header='expected output' content={currentTc?.expectedOutput} />
-                        </div>
+        <>
+            <div className='CodeCompileView-wrapper'>
+                {fetchingData ? (
+                    <div className='loadingspinner-wrapper-for-codecompile'>
+                        <LoadingSpinner />
                     </div>
-                </div>
-            )}
-        </div>
+                ) : (
+                    testcases.length > 0 && (
+                        <div className='codecompileview'>
+                            <div className={correctAnswer ? 'title green' : 'title red'}>{title}</div>
+                            <p>{failedCases + '/' + testcases.length} test cases failed</p>
+                            <div className='compilecases-wrapper'>
+                                <div className='case-list'>
+                                    <ul>
+                                        {testcases?.map((cas, index) => {
+                                            // i use index to keep track of witch index we should show
+                                            // on the right portion
+                                            let color = cas.correctAnswer ? 'green' : 'red'
+                                            let highlight = index === listPointer ? 'highlight' : ''
+                                            return (
+                                                <li
+                                                    key={index}
+                                                    value={index}
+                                                    className={color + ' ' + highlight}
+                                                    onClick={changeCompileViewHandler}
+                                                >
+                                                    {cas.correctAnswer ? <CheckIcon /> : <CloseIcon />}
+                                                    {'Sample test case ' + cas.caseName}
+                                                </li>
+                                            )
+                                        })}
+                                    </ul>
+                                </div>
+
+                                <div className='case-content'>
+                                    <Subpart header='Compile msg' complileMsg={currentTc?.compileMessage} />
+                                    <Subpart header='Inputs' content={currentTc?.inputs} />
+                                    <Subpart header='Your output' content={currentTc?.userOutput} />
+                                    <Subpart header='expected output' content={currentTc?.expectedOutput} />
+                                </div>
+                            </div>
+                        </div>
+                    )
+                )}
+            </div>
+        </>
     )
 }
 

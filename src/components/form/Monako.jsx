@@ -51,9 +51,9 @@ body {
 
     const sampleCases = [
         {
-            inputs: [2, 3],
+            inputs: [20, 30],
             userOutput: [],
-            expected: [5],
+            expected: [50],
         },
         {
             inputs: [8, 8],
@@ -72,26 +72,7 @@ body {
         },
     ]
 
-    const [testCases, setTestCases] = useState([
-        {
-            correctAnswer: true,
-            compileMessage: 'Wrong Answer',
-            inputs: [1, 4],
-            userOutput: [4545, 61, 23554767, 23, 22, 3, 32, 33, 2, 32, 3],
-            expectedOutput: [111, 3423423, 234234, 234124, 43665765, 65534, 324234, 845],
-            caseName: '0',
-        },
-
-        {
-            correctAnswer: true,
-            compileMessage: 'Wrong Answer',
-            inputs: [10],
-            userOutput: [4, 6, 8, 76, 67, 67, 67, 67, 6, 76, 76, 76, 7],
-            expectedOutput: [1, 5676676, 7, 7, 67, 67, 6, 44, 3, 2, 345, 67, 6, 77654, 323],
-            caseName: ' 1',
-        },
-    ])
-    console.log(testCases)
+    const [testCases, setTestCases] = useState([])
 
     const [fileName, setFileName] = useState('script.js')
     const file = files[fileName]
@@ -210,8 +191,8 @@ body {
                 .then((response) => response.json())
                 .then((data) =>
                     dummyArray.push({
-                        correctAnswer: data.output === expected,
-                        compileMessage: data.output === expected ? 'Right answer' : 'wrong answer',
+                        correctAnswer: data.output == expected,
+                        compileMessage: data.output == expected ? 'Right answer' : 'wrong answer',
                         inputs: args,
                         userOutput: [data.output],
                         expectedOutput: expected,
@@ -224,19 +205,6 @@ body {
 
         setTestCases(dummyArray)
         setFetchingData(false)
-
-        // const sampleCases = [
-        //     {
-        //         inputs: [2, 3],
-        //         userOutput: [],
-        //         expected: [5],
-        //     },
-        //     {
-        //         inputs: [8, 8],
-        //         userOutput: [],
-        //         expected: [16],
-        //     },
-        // ]
     }
 
     return (
@@ -246,7 +214,6 @@ body {
                     <File file='script.js' fileName={fileName} setFileName={setFileName} />
                     <File file='style.css' fileName={fileName} setFileName={setFileName} />
                     <File file='index.html' fileName={fileName} setFileName={setFileName} />
-                    {/* button to run the code */}
                 </div>
 
                 <Editor

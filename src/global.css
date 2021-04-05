@@ -170,6 +170,8 @@ body .form .resizebar .dots span {
 body .form .editorial {
   overflow-y: scroll;
   background: var(--main-bg);
+  display: grid;
+  grid-template-rows: 1fr auto auto;
   --main-bg: #282c34;
   --resize-bg: rgb(22, 21, 22);
   --dots-color: rgb(255, 255, 255);
@@ -234,6 +236,8 @@ body .form .editorial .submit {
   padding: 17px 12px;
   display: flex;
   position: relative;
+  bottom: 0;
+  position: relative;
   justify-content: flex-end;
   background: var(--inputs-bg);
   font-family: var(--font-family);
@@ -271,6 +275,9 @@ body .form .editorial .CodeCompileView-wrapper .codecompileview .title {
 }
 body .form .editorial .CodeCompileView-wrapper .codecompileview .title.red {
   color: var(--color-fail);
+}
+body .form .editorial .CodeCompileView-wrapper .codecompileview .title.green {
+  color: var(--color-success);
 }
 body .form .editorial .CodeCompileView-wrapper .codecompileview p {
   padding: 10px 22px;

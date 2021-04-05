@@ -1,8 +1,9 @@
 .editorial {
     overflow-y: scroll;
     background: var(--main-bg);
-    // display: grid;
-    // grid-template-rows: 1fr auto;
+
+    display: grid;
+    grid-template-rows: 1fr auto auto;
 
     .editor {
         width: 100%;
@@ -51,6 +52,8 @@
         padding: 17px 12px;
         display: flex;
         position: relative;
+        bottom: 0;
+        position: relative;
         justify-content: flex-end;
         background: var(--inputs-bg);
         font-family: var(--font-family);
@@ -97,6 +100,10 @@
 
                 &.red {
                     color: var(--color-fail);
+                }
+
+                &.green {
+                    color: var(--color-success);
                 }
             }
 
