@@ -91,6 +91,28 @@ body .form .resizebar .dots span {
 body .form .editorial {
   overflow-y: scroll;
   background: var(--main-bg);
+  --main-bg: #282c34;
+  --resize-bg: rgb(22, 21, 22);
+  --dots-color: rgb(255, 255, 255);
+  --bg: #21252b;
+  --text-color: white;
+  --hover-color: rgb(207, 207, 207);
+  --bold-fontsize: 1.02rem;
+  --bold-color: #d4e4f9;
+  --mini-fontsize: 0.72rem;
+  --header-fontsize: 1.5rem;
+  --transition-speed: 200ms;
+  --bold: 600;
+  --font-family: "Roboto Mono", monospace;
+  --paraghrap-fontsize: 0.8rem;
+  --paraghrap-color: #8a9bba;
+  --paraghrap-fontfamily: "Open Sans", Arial, Helvetica, sans-serif;
+  --varible-fontfamily: "Roboto Slab", serif;
+  --variable-fontsize: 0.91rem;
+  --inputs-fontsize: 0.9rem;
+  --inputs-color: #d4e4f9;
+  --inputs-bg: #141618;
+  --files-bg: #21252b;
 }
 body .form .editorial .editor {
   width: 100%;
@@ -210,7 +232,7 @@ body .form .editorial .codecompileview .compilecases-wrapper .case-list ul li.re
 body .form .editorial .codecompileview .compilecases-wrapper .case-list ul li.green {
   color: var(--color-success);
 }
-body .form .editorial .codecompileview .compilecases-wrapper .case-list ul li:hover {
+body .form .editorial .codecompileview .compilecases-wrapper .case-list ul li.highlight {
   background: var(--bg);
 }
 body .form .editorial .codecompileview .compilecases-wrapper .case-content {
@@ -242,6 +264,17 @@ body .form .editorial .codecompileview .compilecases-wrapper .case-content .subp
 body .form .editorial .codecompileview .compilecases-wrapper .case-content .subpart .output div {
   margin: 4px 0;
   word-wrap: break-word;
+}
+body .form .editorial .codecompileview .compilecases-wrapper .case-content .subpart .output div::before {
+  content: "&";
+  display: inline-block;
+  color: var(--bold-color);
+  font-weight: 100;
+  font-size: 0.65rem;
+  padding-right: 6px;
+  margin-right: 6px;
+  border-right: 1px var(--bold-color);
+  border-style: solid;
 }
 body .form .question {
   overflow-y: scroll;

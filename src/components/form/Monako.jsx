@@ -7,6 +7,7 @@ import CodeCompileView from './CodeCompileView'
 const Monako = ({ mref, setCurrentCode, currentCode }) => {
     const monaco = useMonaco()
     const editorRef = useRef(null)
+
     const files = {
         'script.js': {
             name: 'script.js',
@@ -14,7 +15,7 @@ const Monako = ({ mref, setCurrentCode, currentCode }) => {
             value: `
 //complete the TwoSum function below
 const TwoSum = (t, y)=>{
-
+    return t + y
 }
             `,
         },
@@ -47,13 +48,36 @@ body {
         },
     }
 
-    const testcases = [
+    const sampleCases = [
+        {
+            inputs: [2, 3],
+            userOutput: [],
+            expected: [5],
+        },
+        {
+            inputs: [8, 8],
+            userOutput: [],
+            expected: [16],
+        },
+        {
+            inputs: [100, -1],
+            userOutput: [],
+            expected: [99],
+        },
+        {
+            inputs: [8, 34],
+            userOutput: [],
+            expected: [42],
+        },
+    ]
+
+    const [testCases, setTestCases] = useState([
         {
             correctAnswer: true,
             compileMessage: 'Wrong Answer',
             inputs: [1, 4],
-            userOutput: [4545, 61],
-            expectedOutput: [111, 845],
+            userOutput: [4545, 61, 23554767, 23, 22, 3, 32, 33, 2, 32, 3],
+            expectedOutput: [111, 3423423, 234234, 234124, 43665765, 65534, 324234, 845],
             caseName: '0',
         },
 
@@ -61,19 +85,12 @@ body {
             correctAnswer: true,
             compileMessage: 'Wrong Answer',
             inputs: [10],
-            userOutput: [4, 6],
-            expectedOutput: [1],
+            userOutput: [4, 6, 8, 76, 67, 67, 67, 67, 6, 76, 76, 76, 7],
+            expectedOutput: [1, 5676676, 7, 7, 67, 67, 6, 44, 3, 2, 345, 67, 6, 77654, 323],
             caseName: ' 1',
         },
-        {
-            correctAnswer: false,
-            compileMessage: 'Wrong Answer',
-            inputs: [1, 'hej', 4],
-            userOutput: [12, 23],
-            expectedOutput: [11, 45],
-            caseName: '2',
-        },
-    ]
+    ])
+    console.log(testCases)
 
     const [fileName, setFileName] = useState('script.js')
     const file = files[fileName]
@@ -160,24 +177,63 @@ body {
 
     const handleEditorDidMount = (editor) => {
         editorRef.current = editor
-        setCurrentCode(editorRef.current.getValue())
+        setCurrentCode(editorRef?.current?.getValue())
     }
 
     const runCodeHandler = async () => {
-        setCurrentCode(editorRef.current.getValue())
-        const requestOptions = {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                language: 'js',
-                source: 'print(4+6)',
-                stdin: '',
-                args: [],
-            }),
+        // a sleep function that blocks code from running for 'ms' millisecs
+        function sleep(ms) {
+            return new Promise((resolve) => setTimeout(resolve, ms))
         }
-        await fetch('https://emkc.org/api/v1/piston/execute', requestOptions)
-            .then((response) => response.json())
-            .then((data) => console.log(data))
+
+        let dummyArray = []
+
+        for (let i = 0; i < sampleCases.length; i++) {
+            const currentCase = sampleCases[i]
+            let args = currentCase.inputs
+            let expected = currentCase.expected
+
+            const requestOptions = {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    language: 'js',
+                    source: `${currentCode} \n \t console.log(TwoSum(${args.join(',')}))`,
+                    stdin: '',
+                    args: [],
+                }),
+            }
+
+            await fetch('https://emkc.org/api/v1/piston/execute', requestOptions)
+                .then((response) => response.json())
+                .then((data) =>
+                    dummyArray.push({
+                        correctAnswer: data.output === expected,
+                        compileMessage: data.output === expected ? 'Right answer' : 'wrong answer',
+                        inputs: args,
+                        userOutput: [data.output],
+                        expectedOutput: expected,
+                        caseName: i,
+                    })
+                )
+            // sleeping for 530ms cuz the api only allows 2 reqs per sec, and 530 just to be on thesafe side
+            await sleep(530)
+        }
+
+        setTestCases(dummyArray)
+
+        // const sampleCases = [
+        //     {
+        //         inputs: [2, 3],
+        //         userOutput: [],
+        //         expected: [5],
+        //     },
+        //     {
+        //         inputs: [8, 8],
+        //         userOutput: [],
+        //         expected: [16],
+        //     },
+        // ]
     }
 
     return (
@@ -224,7 +280,7 @@ body {
                 </button>
                 <button className='submit-btn'>Submit Code</button>
             </div>
-            <CodeCompileView testcases={testcases} />
+            <CodeCompileView testcases={testCases} />
         </div>
     )
 }

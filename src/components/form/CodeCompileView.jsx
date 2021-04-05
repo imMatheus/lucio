@@ -1,14 +1,20 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import CloseIcon from '@material-ui/icons/Close'
 import CheckIcon from '@material-ui/icons/Check'
 
 const CodeCompileView = ({ testcases }) => {
-    console.log(testcases)
-    const [currentTc, setCurrentTc] = useState(testcases[2])
+    // let listPointer = 0
+    const [listPointer, setListPointer] = useState(0)
+
+    const [currentTc, setCurrentTc] = useState(testcases[listPointer])
+    useEffect(() => {
+        setCurrentTc(testcases[listPointer])
+    }, [testcases, listPointer])
 
     // changing the currentTc to the index of the btn that has been clicked
     const changeCompileViewHandler = (e) => {
-        setCurrentTc(testcases[e.target.value])
+        setListPointer(e.target.value)
+        // setCurrentTc(testcases[e.target.value])
     }
 
     return (
@@ -18,13 +24,16 @@ const CodeCompileView = ({ testcases }) => {
             <div className='compilecases-wrapper'>
                 <div className='case-list'>
                     <ul>
-                        {testcases.map((cas, index) => {
+                        {testcases?.map((cas, index) => {
                             // i use index to keep track of witch index we should show
                             // on the right portion
+                            let color = cas.correctAnswer ? 'green' : 'red'
+                            let highlight = index === listPointer ? 'highlight' : ''
                             return (
                                 <li
+                                    key={index}
                                     value={index}
-                                    className={cas.correctAnswer ? 'green' : 'red'}
+                                    className={color + ' ' + highlight}
                                     onClick={changeCompileViewHandler}
                                 >
                                     {cas.correctAnswer ? <CheckIcon /> : <CloseIcon />}
@@ -39,7 +48,7 @@ const CodeCompileView = ({ testcases }) => {
                     <Subpart header='Compile msg' complileMsg={currentTc?.compileMessage} />
                     <Subpart header='Inputs' content={currentTc?.inputs} />
                     <Subpart header='Your output' content={currentTc?.userOutput} />
-                    <Subpart header='expected output' content={currentTc.expectedOutput} />
+                    <Subpart header='expected output' content={currentTc?.expectedOutput} />
                 </div>
             </div>
         </div>
@@ -48,7 +57,7 @@ const CodeCompileView = ({ testcases }) => {
 
 const Subpart = ({ header, content, complileMsg }) => {
     return (
-        <div className='subpart'>
+        <div key={Math.floor(Math.random() * 999999)} className='subpart'>
             <h4>{header}</h4>
             <div className='output'>
                 {/* 
@@ -57,7 +66,7 @@ const Subpart = ({ header, content, complileMsg }) => {
                 */}
                 {content ? (
                     content?.map((item) => {
-                        return <div>{item}</div>
+                        return <div key={Math.floor(Math.random() * 9999999)}>{item}</div>
                     })
                 ) : (
                     <div>{complileMsg}</div>
