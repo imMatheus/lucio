@@ -1,8 +1,9 @@
 .editorial {
     overflow-y: scroll;
     background: var(--main-bg);
-
+    width: 100%;
     display: grid;
+    grid-template-columns: 100%;
     grid-template-rows: 1fr auto auto;
 
     .editor {
@@ -50,9 +51,12 @@
 
     .submit {
         padding: 17px 12px;
+        width: 100%;
+        // max-width: 600px;
         display: flex;
-        position: relative;
-        bottom: 0;
+        // position: relative;
+        // bottom: 0;
+        // left: 0;
         position: relative;
         justify-content: flex-end;
         background: var(--inputs-bg);
