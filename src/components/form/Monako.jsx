@@ -7,6 +7,7 @@ import CodeCompileView from './CodeCompileView'
 const Monako = ({ mref, setCurrentCode, currentCode }) => {
     const monaco = useMonaco()
     const editorRef = useRef(null)
+    const [fetchingData, setFetchingData] = useState(false)
 
     const files = {
         'script.js': {
@@ -185,6 +186,7 @@ body {
         function sleep(ms) {
             return new Promise((resolve) => setTimeout(resolve, ms))
         }
+        setFetchingData(true)
 
         let dummyArray = []
 
@@ -221,6 +223,7 @@ body {
         }
 
         setTestCases(dummyArray)
+        setFetchingData(false)
 
         // const sampleCases = [
         //     {
@@ -280,7 +283,7 @@ body {
                 </button>
                 <button className='submit-btn'>Submit Code</button>
             </div>
-            <CodeCompileView testcases={testCases} />
+            <CodeCompileView testcases={testCases} fetchingData={fetchingData} />
         </div>
     )
 }

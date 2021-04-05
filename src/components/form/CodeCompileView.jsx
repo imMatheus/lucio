@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import CloseIcon from '@material-ui/icons/Close'
 import CheckIcon from '@material-ui/icons/Check'
+import LoadingSpinner from '../LoadingSpinner'
 
-const CodeCompileView = ({ testcases }) => {
+const CodeCompileView = ({ testcases, fetchingData }) => {
     // let listPointer = 0
     const [listPointer, setListPointer] = useState(0)
 
     const [currentTc, setCurrentTc] = useState(testcases[listPointer])
     useEffect(() => {
         setCurrentTc(testcases[listPointer])
-    }, [testcases, listPointer])
+    }, [testcases, listPointer, fetchingData])
 
     // changing the currentTc to the index of the btn that has been clicked
     const changeCompileViewHandler = (e) => {
@@ -18,39 +19,47 @@ const CodeCompileView = ({ testcases }) => {
     }
 
     return (
-        <div className='codecompileview'>
-            <div className='title red'>Wrong answer :-3 </div>
-            <p>3/3 test cases failed</p>
-            <div className='compilecases-wrapper'>
-                <div className='case-list'>
-                    <ul>
-                        {testcases?.map((cas, index) => {
-                            // i use index to keep track of witch index we should show
-                            // on the right portion
-                            let color = cas.correctAnswer ? 'green' : 'red'
-                            let highlight = index === listPointer ? 'highlight' : ''
-                            return (
-                                <li
-                                    key={index}
-                                    value={index}
-                                    className={color + ' ' + highlight}
-                                    onClick={changeCompileViewHandler}
-                                >
-                                    {cas.correctAnswer ? <CheckIcon /> : <CloseIcon />}
-                                    {'Sample test case ' + cas.caseName}
-                                </li>
-                            )
-                        })}
-                    </ul>
+        <div className='CodeCompileView-wrapper'>
+            {fetchingData ? (
+                <div className='loadingspinner-wrapper-for-codecompile'>
+                    <LoadingSpinner />
                 </div>
+            ) : (
+                <div className='codecompileview'>
+                    <div className='title red'>Wrong answer :-3 </div>
+                    <p>3/3 test cases failed</p>
+                    <div className='compilecases-wrapper'>
+                        <div className='case-list'>
+                            <ul>
+                                {testcases?.map((cas, index) => {
+                                    // i use index to keep track of witch index we should show
+                                    // on the right portion
+                                    let color = cas.correctAnswer ? 'green' : 'red'
+                                    let highlight = index === listPointer ? 'highlight' : ''
+                                    return (
+                                        <li
+                                            key={index}
+                                            value={index}
+                                            className={color + ' ' + highlight}
+                                            onClick={changeCompileViewHandler}
+                                        >
+                                            {cas.correctAnswer ? <CheckIcon /> : <CloseIcon />}
+                                            {'Sample test case ' + cas.caseName}
+                                        </li>
+                                    )
+                                })}
+                            </ul>
+                        </div>
 
-                <div className='case-content'>
-                    <Subpart header='Compile msg' complileMsg={currentTc?.compileMessage} />
-                    <Subpart header='Inputs' content={currentTc?.inputs} />
-                    <Subpart header='Your output' content={currentTc?.userOutput} />
-                    <Subpart header='expected output' content={currentTc?.expectedOutput} />
+                        <div className='case-content'>
+                            <Subpart header='Compile msg' complileMsg={currentTc?.compileMessage} />
+                            <Subpart header='Inputs' content={currentTc?.inputs} />
+                            <Subpart header='Your output' content={currentTc?.userOutput} />
+                            <Subpart header='expected output' content={currentTc?.expectedOutput} />
+                        </div>
+                    </div>
                 </div>
-            </div>
+            )}
         </div>
     )
 }

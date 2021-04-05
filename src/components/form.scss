@@ -7,6 +7,13 @@
     ::-webkit-scrollbar-thumb {
         display: none;
     }
+
+    .loadingspinner-wrapper-for-codecompile {
+        height: 400px;
+        position: relative;
+        @import './loadingspinner.scss';
+    }
+
     width: 100vw;
     height: 100vh;
     display: grid;

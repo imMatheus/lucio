@@ -62,6 +62,85 @@ body .form ::-webkit-scrollbar {
 body .form ::-webkit-scrollbar-thumb {
   display: none;
 }
+body .form .loadingspinner-wrapper-for-codecompile {
+  height: 400px;
+  position: relative;
+}
+body .form .loadingspinner-wrapper-for-codecompile .loadingspinner {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  place-items: center;
+}
+body .form .loadingspinner-wrapper-for-codecompile .loadingspinner-spinner {
+  position: absolute;
+  width: 140px;
+  height: 140px;
+  max-width: 90%;
+  max-height: 90%;
+  padding: 10px;
+  z-index: 999;
+}
+body .form .loadingspinner-wrapper-for-codecompile .loadingspinner-spinner:hover .circle-line {
+  animation-play-state: paused;
+}
+body .form .loadingspinner-wrapper-for-codecompile .loadingspinner-spinner .circle-line {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  position: absolute;
+  border-radius: 50%;
+  animation: rotate180 1500ms infinite;
+  border: 5px solid transparent;
+  border-top-color: var(--color-fail);
+}
+body .form .loadingspinner-wrapper-for-codecompile .loadingspinner-spinner .circle-line:nth-child(1) {
+  left: 0%;
+  top: 0%;
+  width: 100%;
+  height: 100%;
+  animation-delay: 0s;
+}
+body .form .loadingspinner-wrapper-for-codecompile .loadingspinner-spinner .circle-line:nth-child(2) {
+  left: 10%;
+  top: 10%;
+  width: 80%;
+  height: 80%;
+  animation-delay: 0.3s;
+}
+body .form .loadingspinner-wrapper-for-codecompile .loadingspinner-spinner .circle-line:nth-child(3) {
+  left: 20%;
+  top: 20%;
+  width: 60%;
+  height: 60%;
+  animation-delay: 0.6s;
+}
+body .form .loadingspinner-wrapper-for-codecompile .loadingspinner-spinner .circle-line:nth-child(4) {
+  left: 30%;
+  top: 30%;
+  width: 40%;
+  height: 40%;
+  animation-delay: 0.9s;
+}
+body .form .loadingspinner-wrapper-for-codecompile .loadingspinner-spinner .circle-line:nth-child(5) {
+  left: 40%;
+  top: 40%;
+  width: 20%;
+  height: 20%;
+  animation-delay: 1.2s;
+}
+@keyframes rotate180 {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
 body .form .resizebar {
   cursor: ew-resize;
   display: grid;
@@ -178,37 +257,37 @@ body .form .editorial .submit button.submit-btn {
 body .form .editorial .submit button:active, body .form .editorial .submit button:hover {
   outline: none;
 }
-body .form .editorial .codecompileview {
+body .form .editorial .CodeCompileView-wrapper .codecompileview {
   background: var(--inputs-bg);
   position: relative;
   padding-bottom: 15px;
   font-family: var(--font-family);
 }
-body .form .editorial .codecompileview .title {
+body .form .editorial .CodeCompileView-wrapper .codecompileview .title {
   background: var(--bg);
   font-size: 2rem;
   font-weight: 300;
   padding: 3px 22px 8px 22px;
 }
-body .form .editorial .codecompileview .title.red {
+body .form .editorial .CodeCompileView-wrapper .codecompileview .title.red {
   color: var(--color-fail);
 }
-body .form .editorial .codecompileview p {
+body .form .editorial .CodeCompileView-wrapper .codecompileview p {
   padding: 10px 22px;
   font-size: var(--paraghrap-fontsize);
   font-weight: 200;
   color: var(--paraghrap-color);
 }
-body .form .editorial .codecompileview .compilecases-wrapper {
+body .form .editorial .CodeCompileView-wrapper .codecompileview .compilecases-wrapper {
   display: grid;
   grid-template-columns: auto 1fr;
   background: var(--main-bg);
   min-height: 600px;
 }
-body .form .editorial .codecompileview .compilecases-wrapper .case-list ul {
+body .form .editorial .CodeCompileView-wrapper .codecompileview .compilecases-wrapper .case-list ul {
   list-style: none;
 }
-body .form .editorial .codecompileview .compilecases-wrapper .case-list ul li {
+body .form .editorial .CodeCompileView-wrapper .codecompileview .compilecases-wrapper .case-list ul li {
   cursor: pointer;
   font-size: 1.1rem;
   padding: 13px 22px;
@@ -219,53 +298,53 @@ body .form .editorial .codecompileview .compilecases-wrapper .case-list ul li {
   line-height: 30px;
 }
 @media (min-width: 1550px) {
-  body .form .editorial .codecompileview .compilecases-wrapper .case-list ul li {
+  body .form .editorial .CodeCompileView-wrapper .codecompileview .compilecases-wrapper .case-list ul li {
     font-size: 1.5rem;
   }
 }
-body .form .editorial .codecompileview .compilecases-wrapper .case-list ul li svg {
+body .form .editorial .CodeCompileView-wrapper .codecompileview .compilecases-wrapper .case-list ul li svg {
   margin-right: 3px;
 }
-body .form .editorial .codecompileview .compilecases-wrapper .case-list ul li.red {
+body .form .editorial .CodeCompileView-wrapper .codecompileview .compilecases-wrapper .case-list ul li.red {
   color: var(--color-fail);
 }
-body .form .editorial .codecompileview .compilecases-wrapper .case-list ul li.green {
+body .form .editorial .CodeCompileView-wrapper .codecompileview .compilecases-wrapper .case-list ul li.green {
   color: var(--color-success);
 }
-body .form .editorial .codecompileview .compilecases-wrapper .case-list ul li.highlight {
+body .form .editorial .CodeCompileView-wrapper .codecompileview .compilecases-wrapper .case-list ul li.highlight {
   background: var(--bg);
 }
-body .form .editorial .codecompileview .compilecases-wrapper .case-content {
+body .form .editorial .CodeCompileView-wrapper .codecompileview .compilecases-wrapper .case-content {
   width: 100%;
   height: 100%;
   padding: 20px;
   background: var(--bg);
 }
-body .form .editorial .codecompileview .compilecases-wrapper .case-content .subpart {
+body .form .editorial .CodeCompileView-wrapper .codecompileview .compilecases-wrapper .case-content .subpart {
   margin-bottom: 22px;
 }
-body .form .editorial .codecompileview .compilecases-wrapper .case-content .subpart h4 {
+body .form .editorial .CodeCompileView-wrapper .codecompileview .compilecases-wrapper .case-content .subpart h4 {
   font-size: 1.05rem;
   font-weight: 200;
   color: var(--paraghrap-color);
 }
 @media (min-width: 1550px) {
-  body .form .editorial .codecompileview .compilecases-wrapper .case-content .subpart h4 {
+  body .form .editorial .CodeCompileView-wrapper .codecompileview .compilecases-wrapper .case-content .subpart h4 {
     font-size: 1.13rem;
   }
 }
-body .form .editorial .codecompileview .compilecases-wrapper .case-content .subpart .output {
+body .form .editorial .CodeCompileView-wrapper .codecompileview .compilecases-wrapper .case-content .subpart .output {
   padding: 12px 15px;
   margin-top: 7px;
   background: var(--inputs-bg);
   color: var(--inputs-color);
   font-size: var(--inputs-fontsize);
 }
-body .form .editorial .codecompileview .compilecases-wrapper .case-content .subpart .output div {
+body .form .editorial .CodeCompileView-wrapper .codecompileview .compilecases-wrapper .case-content .subpart .output div {
   margin: 4px 0;
   word-wrap: break-word;
 }
-body .form .editorial .codecompileview .compilecases-wrapper .case-content .subpart .output div::before {
+body .form .editorial .CodeCompileView-wrapper .codecompileview .compilecases-wrapper .case-content .subpart .output div::before {
   content: "&";
   display: inline-block;
   color: var(--bold-color);
