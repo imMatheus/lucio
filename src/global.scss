@@ -30,5 +30,30 @@
 
 //  sass --watch src/global.scss:src/global.css
 body {
+    --color-success: #1ba94c;
+    --color-fail: #d11534;
+    --main-bg: #282c34;
+    --resize-bg: rgb(22, 21, 22);
+    --dots-color: rgb(255, 255, 255);
+    --bg: #21252b;
+    --text-color: white;
+    --hover-color: rgb(207, 207, 207);
+    --bold-fontsize: 1.02rem;
+    --bold-color: #d4e4f9;
+    --mini-fontsize: 0.72rem;
+    --header-fontsize: 1.5rem;
+    --transition-speed: 200ms;
+    --bold: 600;
+    --font-family: 'Roboto Mono', monospace;
+    --paraghrap-fontsize: 0.8rem;
+    --paraghrap-color: #8a9bba;
+    --paraghrap-fontfamily: 'Open Sans', Arial, Helvetica, sans-serif;
+    --varible-fontfamily: 'Roboto Slab', serif;
+    --variable-fontsize: 0.91rem;
+    --inputs-fontsize: 0.85rem;
+    --inputs-color: #d4e4f9;
+    --inputs-bg: #141618;
+    --files-bg: #21252b;
     @import './components/form';
+    @import './components/problemspage/problems';
 }

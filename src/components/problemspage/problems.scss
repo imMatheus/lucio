@@ -1,0 +1,18 @@
+.problems {
+    // height: 500px;
+    background: red;
+    padding: 25px 40px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    row-gap: 5px;
+    column-gap: 5px;
+    & .problemcard {
+        background: blue;
+        min-height: 200px;
+        padding: 10px;
+
+        & .header {
+            font-size: 24px;
+        }
+    }
+}

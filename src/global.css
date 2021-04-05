@@ -24,11 +24,7 @@
   }
 }
 
-body .form {
-  width: 100vw;
-  height: 100vh;
-  display: grid;
-  grid-template-columns: auto auto 1fr;
+body {
   --color-success: #1ba94c;
   --color-fail: #d11534;
   --main-bg: #282c34;
@@ -53,6 +49,12 @@ body .form {
   --inputs-color: #d4e4f9;
   --inputs-bg: #141618;
   --files-bg: #21252b;
+}
+body .form {
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: auto auto 1fr;
   background: var(--main-bg);
 }
 body .form ::-webkit-scrollbar {
@@ -487,6 +489,22 @@ body .form .webframe #webframeId {
   height: 100%;
   background: #d4d4d4;
   border: none;
+}
+body .problems {
+  background: red;
+  padding: 25px 40px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  row-gap: 5px;
+  column-gap: 5px;
+}
+body .problems .problemcard {
+  background: blue;
+  min-height: 200px;
+  padding: 10px;
+}
+body .problems .problemcard .header {
+  font-size: 24px;
 }
 
 /*# sourceMappingURL=global.css.map */
