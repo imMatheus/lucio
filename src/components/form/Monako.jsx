@@ -47,12 +47,40 @@ body {
         },
     }
 
+    const testcases = [
+        {
+            correctAnswer: true,
+            compileMessage: 'Wrong Answer',
+            inputs: [1, 4],
+            userOutput: [4545, 61],
+            expectedOutput: [111, 845],
+            caseName: '0',
+        },
+
+        {
+            correctAnswer: true,
+            compileMessage: 'Wrong Answer',
+            inputs: [10],
+            userOutput: [4, 6],
+            expectedOutput: [1],
+            caseName: ' 1',
+        },
+        {
+            correctAnswer: false,
+            compileMessage: 'Wrong Answer',
+            inputs: [1, 'hej', 4],
+            userOutput: [12, 23],
+            expectedOutput: [11, 45],
+            caseName: '2',
+        },
+    ]
+
     const [fileName, setFileName] = useState('script.js')
     const file = files[fileName]
 
     useEffect(() => {
         if (monaco) {
-            console.log('here is the monaco isntance:')
+            // console.log('here is the monaco isntance:')
             // import('monaco-themes/themes/Monokai.json').then((data) => {
             //     monaco.editor.defineTheme('monokai', data)
             //     // monaco.editor.setTheme('monokai')
@@ -196,7 +224,7 @@ body {
                 </button>
                 <button className='submit-btn'>Submit Code</button>
             </div>
-            <CodeCompileView />
+            <CodeCompileView testcases={testcases} />
         </div>
     )
 }

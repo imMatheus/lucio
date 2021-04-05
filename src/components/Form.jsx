@@ -33,7 +33,6 @@ const Form = () => {
         isDraging = false
     })
 
-    console.log(isDraging)
     return (
         <div className='form'>
             <Question qref={questionRef} />

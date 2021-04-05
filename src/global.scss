@@ -18,10 +18,10 @@
     border: 0;
     font-size: 100%;
     @include wide-screen() {
-        font-size: 110%;
+        font-size: 100%;
     }
     @include mobile() {
-        font-size: 40%;
+        font-size: 100%;
     }
     font: inherit;
     vertical-align: baseline;

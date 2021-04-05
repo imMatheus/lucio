@@ -1,8 +1,16 @@
-import React from 'react'
+import React, { useState } from 'react'
 import CloseIcon from '@material-ui/icons/Close'
 import CheckIcon from '@material-ui/icons/Check'
 
-const CodeCompileView = () => {
+const CodeCompileView = ({ testcases }) => {
+    console.log(testcases)
+    const [currentTc, setCurrentTc] = useState(testcases[2])
+
+    // changing the currentTc to the index of the btn that has been clicked
+    const changeCompileViewHandler = (e) => {
+        setCurrentTc(testcases[e.target.value])
+    }
+
     return (
         <div className='codecompileview'>
             <div className='title red'>Wrong answer :-3 </div>
@@ -10,66 +18,52 @@ const CodeCompileView = () => {
             <div className='compilecases-wrapper'>
                 <div className='case-list'>
                     <ul>
-                        <li className='red'>
-                            <CloseIcon />
-                            Sample test case 0
-                        </li>
-                        <li className='green'>
-                            <CheckIcon />
-                            Sample test case 1
-                        </li>
-                        <li className='green'>
-                            <CheckIcon />
-                            Sample test case 2
-                        </li>
-                        <li className='red'>
-                            <CloseIcon />
-                            Sample test case 3
-                        </li>
-                        <li className='green'>
-                            <CheckIcon />
-                            Sample test case 4
-                        </li>
+                        {testcases.map((cas, index) => {
+                            // i use index to keep track of witch index we should show
+                            // on the right portion
+                            return (
+                                <li
+                                    value={index}
+                                    className={cas.correctAnswer ? 'green' : 'red'}
+                                    onClick={changeCompileViewHandler}
+                                >
+                                    {cas.correctAnswer ? <CheckIcon /> : <CloseIcon />}
+                                    {'Sample test case ' + cas.caseName}
+                                </li>
+                            )
+                        })}
                     </ul>
                 </div>
+
                 <div className='case-content'>
-                    <div className='subpart'>
-                        <h4>Compile msg</h4>
-                        <div className='output'>
-                            <div>Wrong answer</div>
-                        </div>
-                    </div>
-
-                    <div className='subpart'>
-                        <h4>Input</h4>
-                        <div className='output'>
-                            <div>9</div>
-                            <div>9000</div>
-                            <div>9122</div>
-                        </div>
-                    </div>
-
-                    <div className='subpart'>
-                        <h4>Your output</h4>
-                        <div className='output'>
-                            <div>9</div>
-                            <div>9000</div>
-                            <div>9122</div>
-                        </div>
-                    </div>
-
-                    <div className='subpart'>
-                        <h4>Expected Output</h4>
-                        <div className='output'>
-                            <div>9</div>
-                            <div>9000</div>
-                            <div>9122</div>
-                        </div>
-                    </div>
+                    <Subpart header='Compile msg' complileMsg={currentTc?.compileMessage} />
+                    <Subpart header='Inputs' content={currentTc?.inputs} />
+                    <Subpart header='Your output' content={currentTc?.userOutput} />
+                    <Subpart header='expected output' content={currentTc.expectedOutput} />
                 </div>
             </div>
         </div>
     )
 }
 
+const Subpart = ({ header, content, complileMsg }) => {
+    return (
+        <div className='subpart'>
+            <h4>{header}</h4>
+            <div className='output'>
+                {/* 
+                checking i fwe have content so we render it else it should be the 
+                compile msg so we render that
+                */}
+                {content ? (
+                    content?.map((item) => {
+                        return <div>{item}</div>
+                    })
+                ) : (
+                    <div>{complileMsg}</div>
+                )}
+            </div>
+        </div>
+    )
+}
 export default CodeCompileView
