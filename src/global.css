@@ -54,6 +54,10 @@ body .comp-nav {
   display: grid;
   grid-template-rows: auto 1fr;
 }
+body a {
+  color: var(--resize-bg);
+  text-decoration: none;
+}
 body .form {
   width: 100vw;
   max-height: calc(100vh - 94px);
@@ -499,26 +503,71 @@ body .problems {
   padding: 25px 40px;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  row-gap: 12px;
-  column-gap: 12px;
+  row-gap: 14px;
+  column-gap: 14px;
   font-family: var(--font-family);
 }
 body .problems .problemcard {
+  cursor: pointer;
   background: var(--bold-color);
-  min-height: 200px;
-  padding: 10px;
+  min-height: 160px;
+  padding: 15px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0px 0px 3px var(--bold-color);
+}
+body .problems .problemcard:hover .header {
+  color: var(--color-success);
 }
 body .problems .problemcard .header {
-  font-size: 24px;
+  transition: color 100ms;
+  font-size: 22px;
+  line-height: 1.1;
+  font-weight: 300;
+}
+body .problems .problemcard .metadata {
+  color: var(--bg);
+  border-top: solid 1px black;
+  font-size: 0.8rem;
+  margin-top: auto;
+  font-weight: 600;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 6px 10px;
+  justify-content: space-between;
+}
+body .problems .problemcard .metadata .difficulty {
+  display: inline-block;
+  padding: 4px 11px;
+  border-radius: 20px;
+  color: var(--resize-bg);
+  text-transform: uppercase;
+  background: var(--color-success);
+}
+body .problems .problemcard .metadata .difficulty.easy {
+  background: var(--color-success);
+}
+body .problems .problemcard .metadata .difficulty.medium {
+  background: orange;
+}
+body .problems .problemcard .metadata .difficulty.hard {
+  background: var(--color-fail);
 }
 body .navbar {
+  text-decoration: none;
   padding: 12px 55px;
   background: var(--main-bg);
   display: flex;
   justify-content: space-between;
   font-family: var(--font-family);
 }
+body .navbar a {
+  text-decoration: none;
+}
 body .navbar .logo {
+  cursor: pointer;
   font-size: 2.1rem;
   display: flex;
   align-items: center;
@@ -614,6 +663,20 @@ body .navbar .logo-icon .circle-line:nth-child(5) {
   height: 20%;
   border-color: var(--color-success);
   background-color: var(--color-success);
+}
+body .navbar-content {
+  display: flex;
+  place-items: center;
+}
+body .navbar-content-item {
+  cursor: pointer;
+  margin: 0 6px;
+  padding: 4px 10px;
+  display: inline-flex;
+  place-items: center;
+  color: var(--bold-color);
+  font-size: 1.05rem;
+  font-weight: 300;
 }
 
 /*# sourceMappingURL=global.css.map */

@@ -1,12 +1,17 @@
 .navbar {
+    text-decoration: none;
     padding: 12px 55px;
     background: var(--main-bg);
     display: flex;
     justify-content: space-between;
     font-family: var(--font-family);
 
+    // removing underline for the links
+    & a {
+        text-decoration: none;
+    }
     & .logo {
-        // background: tomato;
+        cursor: pointer;
         font-size: 2.1rem;
         display: flex;
         align-items: center;
@@ -70,6 +75,25 @@
                     }
                 }
             }
+        }
+    }
+
+    &-content {
+        display: flex;
+        // width: 400px;
+        place-items: center;
+        // justify-items: center;
+
+        &-item {
+            cursor: pointer;
+            margin: 0 6px;
+            padding: 4px 10px;
+            display: inline-flex;
+            place-items: center;
+            color: var(--bold-color);
+            // font-size: var(--variable-fontsize);
+            font-size: 1.05rem;
+            font-weight: 300;
         }
     }
 }

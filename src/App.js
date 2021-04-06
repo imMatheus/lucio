@@ -1,33 +1,27 @@
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import Form from './components/Form'
 import HomePage from './components/HomePage'
 import ProblemsPage from './components/problemspage/ProblemsPage'
 import './global.css'
 import Navbar from './components/navbar/Navbar'
-
+import { problems } from './problems/problems'
 function App() {
+    console.log(problems)
     return (
         <div className='App'>
             {/* Lucio to the moon 🚀🌙 */}
             <Router>
+                <Navbar />
                 <Switch>
                     <Route exact path='/'>
-                        <div className='comp-nav'>
-                            <Navbar />
-                            <HomePage />
-                        </div>
+                        <HomePage />
                     </Route>
-                    <Route exact path='/problems'>
-                        <div className='comp-nav'>
-                            <Navbar />
-                            <ProblemsPage />
-                        </div>
-                    </Route>
+                    <Route exact path='/problems' component={ProblemsPage} />
                     <Route exact path='/form'>
-                        <div className='comp-nav'>
-                            <Navbar />
-                            <Form />
-                        </div>
+                        <Form problem={problems[1]} />
+                    </Route>
+                    <Route>
+                        <h6>404</h6>
                     </Route>
                 </Switch>
             </Router>

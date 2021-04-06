@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react'
 import Question from './form/Question'
 import Monako from './form/Monako'
 // import WebFrame from './form/WebFrame'
-const Form = () => {
+const Form = ({ problem }) => {
     const resizebarRef = useRef(null)
     const questionRef = useRef(null)
     const editorRef = useRef(null)
@@ -12,7 +12,7 @@ const Form = () => {
 
     let isDraging = false
 
-    const mouseDownHandler = (e) => {
+    const mouseDownHandler = () => {
         isDraging = true
     }
 
@@ -35,7 +35,7 @@ const Form = () => {
 
     return (
         <div className='form'>
-            <Question qref={questionRef} />
+            <Question qref={questionRef} problem={problem} />
             {/* <WebFrame code={currentCode} fref={frameRef} /> */}
             <div ref={resizebarRef} className='resizebar' onMouseDown={mouseDownHandler}>
                 <div className='dots'>

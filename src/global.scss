@@ -35,6 +35,12 @@ body {
         grid-template-rows: auto 1fr;
     }
 
+    // resetting for route links
+    & a {
+        color: var(--resize-bg);
+        text-decoration: none;
+    }
+
     --color-success: #1ba94c;
     --color-fail: #d11534;
     --main-bg: #282c34;
