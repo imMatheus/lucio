@@ -30,6 +30,11 @@
 
 //  sass --watch src/global.scss:src/global.css
 body {
+    .comp-nav {
+        display: grid;
+        grid-template-rows: auto 1fr;
+    }
+
     --color-success: #1ba94c;
     --color-fail: #d11534;
     --main-bg: #282c34;
@@ -56,4 +61,5 @@ body {
     --files-bg: #21252b;
     @import './components/form';
     @import './components/problemspage/problems';
+    @import './components/navbar/navbar';
 }

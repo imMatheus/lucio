@@ -1,26 +1,56 @@
 import React from 'react'
+import Navbar from '../navbar/Navbar'
 
 const ProblemsPage = () => {
     return (
-        <div className='problems'>
-            <ProblemCard />
-            <ProblemCard />
-            <ProblemCard />
-            <ProblemCard />
-            <ProblemCard />
-            <ProblemCard />
-            <ProblemCard />
-            <ProblemCard />
-            <ProblemCard />
-            <ProblemCard />
-        </div>
+        <>
+            {/* <Navbar /> */}
+            <div className='problems'>
+                <ProblemCard />
+                <ProblemCard name='marre är cool' />
+                <ProblemCard />
+                <ProblemCard />
+                <ProblemCard />
+                <ProblemCard />
+                <ProblemCard />
+                <ProblemCard />
+                <ProblemCard />
+                <ProblemCard />
+                <ProblemCard />
+                <ProblemCard />
+                <ProblemCard />
+                <ProblemCard />
+                <ProblemCard />
+                <ProblemCard />
+                <ProblemCard />
+                <ProblemCard />
+                <ProblemCard />
+                <ProblemCard />
+                <ProblemCard />
+                <ProblemCard />
+                <ProblemCard />
+                <ProblemCard />
+                <ProblemCard />
+                <ProblemCard />
+                <ProblemCard />
+                <ProblemCard />
+                <ProblemCard />
+                <ProblemCard />
+                <ProblemCard />
+                <ProblemCard />
+                <ProblemCard />
+                <ProblemCard />
+                <ProblemCard />
+                <ProblemCard />
+            </div>
+        </>
     )
 }
 
-const ProblemCard = () => {
+const ProblemCard = ({ name }) => {
     return (
         <div className='problemcard'>
-            <div className='header'>header</div>
+            <div className='header'>{name ? name : 'marrre '}</div>
         </div>
     )
 }

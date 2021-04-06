@@ -1,13 +1,14 @@
 .problems {
-    // height: 500px;
-    background: red;
+    // min-height: ;
+    background: var(--bg);
     padding: 25px 40px;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    row-gap: 5px;
-    column-gap: 5px;
+    row-gap: 12px;
+    column-gap: 12px;
+    font-family: var(--font-family);
     & .problemcard {
-        background: blue;
+        background: var(--bold-color);
         min-height: 200px;
         padding: 10px;
 

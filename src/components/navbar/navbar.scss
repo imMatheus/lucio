@@ -1,0 +1,75 @@
+.navbar {
+    padding: 12px 55px;
+    background: var(--main-bg);
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--font-family);
+
+    & .logo {
+        // background: tomato;
+        font-size: 2.1rem;
+        display: flex;
+        align-items: center;
+
+        & h2 {
+            color: var(--bold-color);
+        }
+
+        &-icon {
+            width: 70px;
+            padding: 6px;
+            height: 70px;
+            margin-left: 11px;
+            display: grid;
+            place-items: center;
+            position: relative;
+            box-sizing: border-box;
+
+            @mixin rotateAnimation($prefix, $currentRotation, $animationTime) {
+                animation: #{'ani' + $currentRotation} $animationTime 1;
+                $startRoatation: $currentRotation + $prefix;
+                @keyframes ani#{$currentRotation} {
+                    0% {
+                        transform: rotate(#{$startRoatation}deg);
+                    }
+
+                    100% {
+                        transform: rotate(0deg);
+                    }
+                }
+            }
+
+            .circle-line {
+                -webkit-box-sizing: border-box;
+                -moz-box-sizing: border-box;
+                box-sizing: border-box;
+                position: absolute;
+                border-radius: 50%;
+                // padding: ;
+                border: 3px solid transparent;
+                border-left-color: var(--color-success);
+                border-right-color: var(--color-success);
+                @for $i from 1 through 5 {
+                    &:nth-child(#{$i}) {
+                        left: 10% * ($i - 1);
+                        top: 10% * ($i - 1);
+                        width: 100% - 20% * ($i - 1);
+                        height: 100% - 20% * ($i - 1);
+
+                        @if $i != 5 {
+                            @include rotateAnimation(-72, $i * -72, 1100ms);
+                        }
+
+                        @if $i == 4 {
+                            border-color: var(--color-success);
+                        }
+                        @if $i == 5 {
+                            border-color: var(--color-success);
+                            background-color: var(--color-success);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -3,6 +3,7 @@ import Form from './components/Form'
 import HomePage from './components/HomePage'
 import ProblemsPage from './components/problemspage/ProblemsPage'
 import './global.css'
+import Navbar from './components/navbar/Navbar'
 
 function App() {
     return (
@@ -11,13 +12,22 @@ function App() {
             <Router>
                 <Switch>
                     <Route exact path='/'>
-                        <HomePage />
+                        <div className='comp-nav'>
+                            <Navbar />
+                            <HomePage />
+                        </div>
                     </Route>
                     <Route exact path='/problems'>
-                        <ProblemsPage />
+                        <div className='comp-nav'>
+                            <Navbar />
+                            <ProblemsPage />
+                        </div>
                     </Route>
                     <Route exact path='/form'>
-                        <Form />
+                        <div className='comp-nav'>
+                            <Navbar />
+                            <Form />
+                        </div>
                     </Route>
                 </Switch>
             </Router>
