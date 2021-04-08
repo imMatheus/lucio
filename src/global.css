@@ -60,7 +60,7 @@ body a {
 }
 body .form {
   width: 100vw;
-  max-height: calc(100vh - 94px);
+  height: calc(100vh - 94px);
   display: grid;
   grid-template-columns: auto auto 1fr;
   background: var(--main-bg);
@@ -179,6 +179,7 @@ body .form .resizebar .dots span {
 }
 body .form .editorial {
   overflow-y: scroll;
+  height: 100%;
   background: var(--main-bg);
   width: 100%;
   display: grid;
@@ -375,6 +376,7 @@ body .form .editorial .CodeCompileView-wrapper .codecompileview .compilecases-wr
 }
 body .form .question {
   overflow-y: scroll;
+  height: 90vh;
   width: 510px;
   max-width: 70vw;
   min-width: 20vw;
@@ -562,9 +564,6 @@ body .navbar {
   display: flex;
   justify-content: space-between;
   font-family: var(--font-family);
-}
-body .navbar a {
-  text-decoration: none;
 }
 body .navbar .logo {
   cursor: pointer;
