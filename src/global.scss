@@ -30,6 +30,21 @@
 
 //  sass --watch src/global.scss:src/global.css
 body {
+    .App {
+        width: 100%;
+        min-height: 100vh;
+        display: flex;
+        flex-flow: column;
+
+        & .flex-1-1-auto {
+            flex: 1 1 auto;
+        }
+        @import './components/logoicon';
+        @import './components/form';
+        @import './components/problemspage/problems';
+        @import './components/navbar/navbar';
+        @import './components/page404';
+    }
     .comp-nav {
         display: grid;
         grid-template-rows: auto 1fr;
@@ -65,7 +80,4 @@ body {
     --inputs-color: #d4e4f9;
     --inputs-bg: #141618;
     --files-bg: #21252b;
-    @import './components/form';
-    @import './components/problemspage/problems';
-    @import './components/navbar/navbar';
 }

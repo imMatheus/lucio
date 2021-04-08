@@ -1,17 +1,13 @@
 import { Link } from 'react-router-dom'
+import LogoIcon from '../LogoIcon'
 const Navbar = () => {
     return (
         <div className='navbar'>
             <Link exact to='/'>
                 <div className='logo'>
                     <h2>LucioCode</h2>
-                    <div className='logo-icon'>
-                        <div className='circle-line'></div>
-                        <div className='circle-line'></div>
-                        <div className='circle-line'></div>
-                        <div className='circle-line'></div>
-                        <div className='circle-line'></div>
-                    </div>
+                    {/* setting spinn to true so it spinns */}
+                    <LogoIcon spinn={true} />
                 </div>
             </Link>
             <div className='navbar-content'>

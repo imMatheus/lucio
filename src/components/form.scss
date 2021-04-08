@@ -1,9 +1,9 @@
 .form {
+    // removing the scrollbar on windows
     ::-webkit-scrollbar {
         -webkit-appearance: none;
         width: 0px;
     }
-
     ::-webkit-scrollbar-thumb {
         display: none;
     }
@@ -15,7 +15,6 @@
     }
 
     width: 100vw;
-    height: calc(100vh - 94px);
     display: grid;
     grid-template-columns: auto auto 1fr;
 

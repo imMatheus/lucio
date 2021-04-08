@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import Form from './components/Form'
 import HomePage from './components/HomePage'
 import ProblemsPage from './components/problemspage/ProblemsPage'
+import Page404 from './components/Page_404'
 import './global.css'
 import Navbar from './components/navbar/Navbar'
 import { problems } from './problems/problems'
@@ -21,7 +22,7 @@ function App() {
                         <Form problem={problems[1]} />
                     </Route>
                     <Route>
-                        <h6>404</h6>
+                        <Page404 />
                     </Route>
                 </Switch>
             </Router>

@@ -50,40 +50,137 @@ body {
   --inputs-bg: #141618;
   --files-bg: #21252b;
 }
-body .comp-nav {
+body .App {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-flow: column;
+}
+body .App .flex-1-1-auto {
+  flex: 1 1 auto;
+}
+body .App .logo-icon {
+  width: 70px;
+  padding: 6px;
+  height: 70px;
+  margin-left: 11px;
   display: grid;
-  grid-template-rows: auto 1fr;
+  place-items: center;
+  position: relative;
+  box-sizing: border-box;
 }
-body a {
-  color: var(--resize-bg);
-  text-decoration: none;
+body .App .logo-icon .circle-line {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  position: absolute;
+  border-radius: 50%;
+  border: 3px solid transparent;
+  border-left-color: var(--color-success);
+  border-right-color: var(--color-success);
 }
-body .form {
+body .App .logo-icon .circle-line:nth-child(1) {
+  left: 0%;
+  top: 0%;
+  width: 100%;
+  height: 100%;
+}
+body .App .logo-icon .circle-line:nth-child(2) {
+  left: 10%;
+  top: 10%;
+  width: 80%;
+  height: 80%;
+}
+body .App .logo-icon .circle-line:nth-child(3) {
+  left: 20%;
+  top: 20%;
+  width: 60%;
+  height: 60%;
+}
+body .App .logo-icon .circle-line:nth-child(4) {
+  left: 30%;
+  top: 30%;
+  width: 40%;
+  height: 40%;
+  border-color: var(--color-success);
+}
+body .App .logo-icon .circle-line:nth-child(5) {
+  left: 40%;
+  top: 40%;
+  width: 20%;
+  height: 20%;
+  border-color: var(--color-success);
+  background-color: var(--color-success);
+}
+body .App .logo-icon.spinn .circle-line:nth-child(1) {
+  animation: ani-72 1100ms 1;
+}
+@keyframes ani-72 {
+  0% {
+    transform: rotate(-144deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+body .App .logo-icon.spinn .circle-line:nth-child(2) {
+  animation: ani-144 1100ms 1;
+}
+@keyframes ani-144 {
+  0% {
+    transform: rotate(-216deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+body .App .logo-icon.spinn .circle-line:nth-child(3) {
+  animation: ani-216 1100ms 1;
+}
+@keyframes ani-216 {
+  0% {
+    transform: rotate(-288deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+body .App .logo-icon.spinn .circle-line:nth-child(4) {
+  animation: ani-288 1100ms 1;
+}
+@keyframes ani-288 {
+  0% {
+    transform: rotate(-360deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+body .App .form {
   width: 100vw;
-  height: calc(100vh - 94px);
   display: grid;
   grid-template-columns: auto auto 1fr;
   background: var(--main-bg);
 }
-body .form ::-webkit-scrollbar {
+body .App .form ::-webkit-scrollbar {
   -webkit-appearance: none;
   width: 0px;
 }
-body .form ::-webkit-scrollbar-thumb {
+body .App .form ::-webkit-scrollbar-thumb {
   display: none;
 }
-body .form .loadingspinner-wrapper-for-codecompile {
+body .App .form .loadingspinner-wrapper-for-codecompile {
   height: 400px;
   position: relative;
 }
-body .form .loadingspinner-wrapper-for-codecompile .loadingspinner {
+body .App .form .loadingspinner-wrapper-for-codecompile .loadingspinner {
   width: 100%;
   height: 100%;
   display: flex;
   justify-content: center;
   place-items: center;
 }
-body .form .loadingspinner-wrapper-for-codecompile .loadingspinner-spinner {
+body .App .form .loadingspinner-wrapper-for-codecompile .loadingspinner-spinner {
   position: absolute;
   width: 140px;
   height: 140px;
@@ -92,10 +189,10 @@ body .form .loadingspinner-wrapper-for-codecompile .loadingspinner-spinner {
   padding: 10px;
   z-index: 999;
 }
-body .form .loadingspinner-wrapper-for-codecompile .loadingspinner-spinner:hover .circle-line {
+body .App .form .loadingspinner-wrapper-for-codecompile .loadingspinner-spinner:hover .circle-line {
   animation-play-state: paused;
 }
-body .form .loadingspinner-wrapper-for-codecompile .loadingspinner-spinner .circle-line {
+body .App .form .loadingspinner-wrapper-for-codecompile .loadingspinner-spinner .circle-line {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
@@ -105,35 +202,35 @@ body .form .loadingspinner-wrapper-for-codecompile .loadingspinner-spinner .circ
   border: 5px solid transparent;
   border-top-color: var(--color-fail);
 }
-body .form .loadingspinner-wrapper-for-codecompile .loadingspinner-spinner .circle-line:nth-child(1) {
+body .App .form .loadingspinner-wrapper-for-codecompile .loadingspinner-spinner .circle-line:nth-child(1) {
   left: 0%;
   top: 0%;
   width: 100%;
   height: 100%;
   animation-delay: 0s;
 }
-body .form .loadingspinner-wrapper-for-codecompile .loadingspinner-spinner .circle-line:nth-child(2) {
+body .App .form .loadingspinner-wrapper-for-codecompile .loadingspinner-spinner .circle-line:nth-child(2) {
   left: 10%;
   top: 10%;
   width: 80%;
   height: 80%;
   animation-delay: 0.3s;
 }
-body .form .loadingspinner-wrapper-for-codecompile .loadingspinner-spinner .circle-line:nth-child(3) {
+body .App .form .loadingspinner-wrapper-for-codecompile .loadingspinner-spinner .circle-line:nth-child(3) {
   left: 20%;
   top: 20%;
   width: 60%;
   height: 60%;
   animation-delay: 0.6s;
 }
-body .form .loadingspinner-wrapper-for-codecompile .loadingspinner-spinner .circle-line:nth-child(4) {
+body .App .form .loadingspinner-wrapper-for-codecompile .loadingspinner-spinner .circle-line:nth-child(4) {
   left: 30%;
   top: 30%;
   width: 40%;
   height: 40%;
   animation-delay: 0.9s;
 }
-body .form .loadingspinner-wrapper-for-codecompile .loadingspinner-spinner .circle-line:nth-child(5) {
+body .App .form .loadingspinner-wrapper-for-codecompile .loadingspinner-spinner .circle-line:nth-child(5) {
   left: 40%;
   top: 40%;
   width: 20%;
@@ -151,7 +248,7 @@ body .form .loadingspinner-wrapper-for-codecompile .loadingspinner-spinner .circ
     transform: rotate(360deg);
   }
 }
-body .form .resizebar {
+body .App .form .resizebar {
   cursor: ew-resize;
   display: grid;
   place-items: center;
@@ -162,7 +259,7 @@ body .form .resizebar {
   left: 0;
   background-color: var(--resize-bg);
 }
-body .form .resizebar .dots {
+body .App .form .resizebar .dots {
   height: 50px;
   width: 100%;
   display: flex;
@@ -170,14 +267,14 @@ body .form .resizebar .dots {
   align-items: center;
   justify-content: space-evenly;
 }
-body .form .resizebar .dots span {
+body .App .form .resizebar .dots span {
   display: block;
   width: 4px;
   height: 4px;
   border-radius: 50%;
   background-color: var(--dots-color);
 }
-body .form .editorial {
+body .App .form .editorial {
   overflow-y: scroll;
   height: 100%;
   background: var(--main-bg);
@@ -208,16 +305,16 @@ body .form .editorial {
   --inputs-bg: #141618;
   --files-bg: #21252b;
 }
-body .form .editorial .editor {
+body .App .form .editorial .editor {
   width: 100%;
   height: 80vh;
 }
-body .form .editorial .editor .files {
+body .App .form .editorial .editor .files {
   display: flex;
   justify-content: flex-start;
   background: var(--files-bg);
 }
-body .form .editorial .editor .files .file-btn {
+body .App .form .editorial .editor .files .file-btn {
   cursor: pointer;
   padding: 9px 15px;
   background: var(--files-bg);
@@ -234,18 +331,18 @@ body .form .editorial .editor .files .file-btn {
   justify-content: center;
   align-items: flex-end;
 }
-body .form .editorial .editor .files .file-btn .icon {
+body .App .form .editorial .editor .files .file-btn .icon {
   width: 21px;
   height: 21px;
   background-size: cover;
   margin-right: 4px;
   background-position: center;
 }
-body .form .editorial .editor .files .file-btn:disabled {
+body .App .form .editorial .editor .files .file-btn:disabled {
   background: orange;
   background: #282c34;
 }
-body .form .editorial .submit {
+body .App .form .editorial .submit {
   padding: 17px 12px;
   width: 100%;
   display: flex;
@@ -254,7 +351,7 @@ body .form .editorial .submit {
   background: var(--inputs-bg);
   font-family: var(--font-family);
 }
-body .form .editorial .submit button {
+body .App .form .editorial .submit button {
   cursor: pointer;
   padding: 10px 16px;
   margin: 6px;
@@ -262,51 +359,51 @@ body .form .editorial .submit button {
   background: transparent;
   font-size: 1rem;
 }
-body .form .editorial .submit button.testrun-btn {
+body .App .form .editorial .submit button.testrun-btn {
   border: solid 1px var(--color-success);
   color: var(--color-success);
 }
-body .form .editorial .submit button.submit-btn {
+body .App .form .editorial .submit button.submit-btn {
   background: var(--color-success);
   color: var(--bold-color);
 }
-body .form .editorial .submit button:active, body .form .editorial .submit button:hover {
+body .App .form .editorial .submit button:active, body .App .form .editorial .submit button:hover {
   outline: none;
 }
-body .form .editorial .CodeCompileView-wrapper .codecompileview {
+body .App .form .editorial .CodeCompileView-wrapper .codecompileview {
   background: var(--inputs-bg);
   position: relative;
   padding-bottom: 15px;
   font-family: var(--font-family);
 }
-body .form .editorial .CodeCompileView-wrapper .codecompileview .title {
+body .App .form .editorial .CodeCompileView-wrapper .codecompileview .title {
   background: var(--bg);
   font-size: 2rem;
   font-weight: 300;
   padding: 3px 22px 8px 22px;
 }
-body .form .editorial .CodeCompileView-wrapper .codecompileview .title.red {
+body .App .form .editorial .CodeCompileView-wrapper .codecompileview .title.red {
   color: var(--color-fail);
 }
-body .form .editorial .CodeCompileView-wrapper .codecompileview .title.green {
+body .App .form .editorial .CodeCompileView-wrapper .codecompileview .title.green {
   color: var(--color-success);
 }
-body .form .editorial .CodeCompileView-wrapper .codecompileview p {
+body .App .form .editorial .CodeCompileView-wrapper .codecompileview p {
   padding: 10px 22px;
   font-size: var(--paraghrap-fontsize);
   font-weight: 200;
   color: var(--paraghrap-color);
 }
-body .form .editorial .CodeCompileView-wrapper .codecompileview .compilecases-wrapper {
+body .App .form .editorial .CodeCompileView-wrapper .codecompileview .compilecases-wrapper {
   display: grid;
   grid-template-columns: auto 1fr;
   background: var(--main-bg);
   min-height: 600px;
 }
-body .form .editorial .CodeCompileView-wrapper .codecompileview .compilecases-wrapper .case-list ul {
+body .App .form .editorial .CodeCompileView-wrapper .codecompileview .compilecases-wrapper .case-list ul {
   list-style: none;
 }
-body .form .editorial .CodeCompileView-wrapper .codecompileview .compilecases-wrapper .case-list ul li {
+body .App .form .editorial .CodeCompileView-wrapper .codecompileview .compilecases-wrapper .case-list ul li {
   cursor: pointer;
   font-size: 1.1rem;
   padding: 13px 22px;
@@ -317,53 +414,53 @@ body .form .editorial .CodeCompileView-wrapper .codecompileview .compilecases-wr
   line-height: 30px;
 }
 @media (min-width: 1550px) {
-  body .form .editorial .CodeCompileView-wrapper .codecompileview .compilecases-wrapper .case-list ul li {
+  body .App .form .editorial .CodeCompileView-wrapper .codecompileview .compilecases-wrapper .case-list ul li {
     font-size: 1.5rem;
   }
 }
-body .form .editorial .CodeCompileView-wrapper .codecompileview .compilecases-wrapper .case-list ul li svg {
+body .App .form .editorial .CodeCompileView-wrapper .codecompileview .compilecases-wrapper .case-list ul li svg {
   margin-right: 3px;
 }
-body .form .editorial .CodeCompileView-wrapper .codecompileview .compilecases-wrapper .case-list ul li.red {
+body .App .form .editorial .CodeCompileView-wrapper .codecompileview .compilecases-wrapper .case-list ul li.red {
   color: var(--color-fail);
 }
-body .form .editorial .CodeCompileView-wrapper .codecompileview .compilecases-wrapper .case-list ul li.green {
+body .App .form .editorial .CodeCompileView-wrapper .codecompileview .compilecases-wrapper .case-list ul li.green {
   color: var(--color-success);
 }
-body .form .editorial .CodeCompileView-wrapper .codecompileview .compilecases-wrapper .case-list ul li.highlight {
+body .App .form .editorial .CodeCompileView-wrapper .codecompileview .compilecases-wrapper .case-list ul li.highlight {
   background: var(--bg);
 }
-body .form .editorial .CodeCompileView-wrapper .codecompileview .compilecases-wrapper .case-content {
+body .App .form .editorial .CodeCompileView-wrapper .codecompileview .compilecases-wrapper .case-content {
   width: 100%;
   height: 100%;
   padding: 20px;
   background: var(--bg);
 }
-body .form .editorial .CodeCompileView-wrapper .codecompileview .compilecases-wrapper .case-content .subpart {
+body .App .form .editorial .CodeCompileView-wrapper .codecompileview .compilecases-wrapper .case-content .subpart {
   margin-bottom: 22px;
 }
-body .form .editorial .CodeCompileView-wrapper .codecompileview .compilecases-wrapper .case-content .subpart h4 {
+body .App .form .editorial .CodeCompileView-wrapper .codecompileview .compilecases-wrapper .case-content .subpart h4 {
   font-size: 1.05rem;
   font-weight: 200;
   color: var(--paraghrap-color);
 }
 @media (min-width: 1550px) {
-  body .form .editorial .CodeCompileView-wrapper .codecompileview .compilecases-wrapper .case-content .subpart h4 {
+  body .App .form .editorial .CodeCompileView-wrapper .codecompileview .compilecases-wrapper .case-content .subpart h4 {
     font-size: 1.13rem;
   }
 }
-body .form .editorial .CodeCompileView-wrapper .codecompileview .compilecases-wrapper .case-content .subpart .output {
+body .App .form .editorial .CodeCompileView-wrapper .codecompileview .compilecases-wrapper .case-content .subpart .output {
   padding: 12px 15px;
   margin-top: 7px;
   background: var(--inputs-bg);
   color: var(--inputs-color);
   font-size: var(--inputs-fontsize);
 }
-body .form .editorial .CodeCompileView-wrapper .codecompileview .compilecases-wrapper .case-content .subpart .output div {
+body .App .form .editorial .CodeCompileView-wrapper .codecompileview .compilecases-wrapper .case-content .subpart .output div {
   margin: 4px 0;
   word-wrap: break-word;
 }
-body .form .editorial .CodeCompileView-wrapper .codecompileview .compilecases-wrapper .case-content .subpart .output div::before {
+body .App .form .editorial .CodeCompileView-wrapper .codecompileview .compilecases-wrapper .case-content .subpart .output div::before {
   content: "&";
   display: inline-block;
   color: var(--bold-color);
@@ -374,7 +471,7 @@ body .form .editorial .CodeCompileView-wrapper .codecompileview .compilecases-wr
   border-right: 1px var(--bold-color);
   border-style: solid;
 }
-body .form .question {
+body .App .form .question {
   overflow-y: scroll;
   height: 90vh;
   width: 510px;
@@ -385,26 +482,26 @@ body .form .question {
   color: var(--text-color);
   padding: 12px 20px;
 }
-body .form .question .content {
+body .App .form .question .content {
   padding-top: 10px;
 }
-body .form .question .content .content-subpart {
+body .App .form .question .content .content-subpart {
   margin: 5px 0 13px 0;
 }
-body .form .question .content .content-subpart .bold {
+body .App .form .question .content .content-subpart .bold {
   font-size: var(--bold-fontsize);
   font-weight: 900;
   padding-bottom: 2px;
   color: var(--bold-color);
 }
-body .form .question .content .content-subpart p {
+body .App .form .question .content .content-subpart p {
   font-size: var(--paraghrap-fontsize);
   font-family: var(--paraghrap-fontfamily);
   color: var(--paraghrap-color);
   font-weight: 300;
   line-height: 1.75;
 }
-body .form .question .content .content-subpart p .variable {
+body .App .form .question .content .content-subpart p .variable {
   font-style: italic;
   margin: 0 2px;
   word-break: break-all;
@@ -413,11 +510,11 @@ body .form .question .content .content-subpart p .variable {
   font-size: var(--variable-fontsize);
   font-family: var(--varible-fontfamily);
 }
-body .form .question .content .content-subpart p.bulletpoint {
+body .App .form .question .content .content-subpart p.bulletpoint {
   display: flex;
   align-items: center;
 }
-body .form .question .content .content-subpart p.bulletpoint::before {
+body .App .form .question .content .content-subpart p.bulletpoint::before {
   content: "";
   display: block;
   margin-right: 7px;
@@ -426,7 +523,7 @@ body .form .question .content .content-subpart p.bulletpoint::before {
   background: var(--bold-color);
   border-radius: 50%;
 }
-body .form .question .content .content-subpart .inputs {
+body .App .form .question .content .content-subpart .inputs {
   padding: 17px;
   max-width: 550px;
   margin-top: 15px;
@@ -434,26 +531,26 @@ body .form .question .content .content-subpart .inputs {
   color: var(--inputs-color);
   font-size: var(--inputs-fontsize);
 }
-body .form .question .content .content-subpart .inputs div {
+body .App .form .question .content .content-subpart .inputs div {
   margin: 5px 0;
   word-wrap: break-word;
 }
-body .form .question .header {
+body .App .form .question .header {
   padding: 7px 0;
   border-bottom: solid 1px #ffffff70;
 }
-body .form .question .header .title {
+body .App .form .question .header .title {
   font-weight: var(--bold);
   font-size: var(--header-fontsize);
   color: var(--text-color);
   margin-bottom: 10px;
 }
-body .form .question .header .info {
+body .App .form .question .header .info {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
 }
-body .form .question .header .info .info-div {
+body .App .form .question .header .info .info-div {
   cursor: pointer;
   margin-right: 13px;
   padding: 2px 0;
@@ -466,41 +563,41 @@ body .form .question .header .info .info-div {
   transition: color var(--transition-speed);
   color: var(--text-color);
 }
-body .form .question .header .info .info-div:hover {
+body .App .form .question .header .info .info-div:hover {
   color: var(--hover-color);
 }
-body .form .question .header .info .info-div svg {
+body .App .form .question .header .info .info-div svg {
   width: 15px;
   height: 15px;
   margin-right: 6px;
   color: inherit;
 }
-body .form .question .header .info .info-div svg:hover {
+body .App .form .question .header .info .info-div svg:hover {
   fill: var(--hover-color);
 }
-body .form .question .header .info .info-div.easy {
+body .App .form .question .header .info .info-div.easy {
   color: #55b45a;
 }
-body .form .question .header .info .info-div.medium {
+body .App .form .question .header .info .info-div.medium {
   color: orange;
 }
-body .form .question .header .info .info-div.hard {
+body .App .form .question .header .info .info-div.hard {
   color: red;
 }
-body .form .webframe {
+body .App .form .webframe {
   width: 400px;
   height: 100%;
   max-width: 70vw;
   min-width: 20vw;
   background: white;
 }
-body .form .webframe #webframeId {
+body .App .form .webframe #webframeId {
   width: 100%;
   height: 100%;
   background: #d4d4d4;
   border: none;
 }
-body .problems {
+body .App .problems {
   background: var(--bg);
   padding: 25px 40px;
   display: grid;
@@ -509,7 +606,7 @@ body .problems {
   column-gap: 14px;
   font-family: var(--font-family);
 }
-body .problems .problemcard {
+body .App .problems .problemcard {
   cursor: pointer;
   background: var(--bold-color);
   min-height: 160px;
@@ -519,16 +616,16 @@ body .problems .problemcard {
   flex-direction: column;
   box-shadow: 0px 0px 3px var(--bold-color);
 }
-body .problems .problemcard:hover .header {
+body .App .problems .problemcard:hover .header {
   color: var(--color-success);
 }
-body .problems .problemcard .header {
+body .App .problems .problemcard .header {
   transition: color 100ms;
   font-size: 22px;
   line-height: 1.1;
   font-weight: 300;
 }
-body .problems .problemcard .metadata {
+body .App .problems .problemcard .metadata {
   color: var(--bg);
   border-top: solid 1px black;
   font-size: 0.8rem;
@@ -540,7 +637,7 @@ body .problems .problemcard .metadata {
   padding: 6px 10px;
   justify-content: space-between;
 }
-body .problems .problemcard .metadata .difficulty {
+body .App .problems .problemcard .metadata .difficulty {
   display: inline-block;
   padding: 4px 11px;
   border-radius: 20px;
@@ -548,126 +645,38 @@ body .problems .problemcard .metadata .difficulty {
   text-transform: uppercase;
   background: var(--color-success);
 }
-body .problems .problemcard .metadata .difficulty.easy {
+body .App .problems .problemcard .metadata .difficulty.easy {
   background: var(--color-success);
 }
-body .problems .problemcard .metadata .difficulty.medium {
+body .App .problems .problemcard .metadata .difficulty.medium {
   background: orange;
 }
-body .problems .problemcard .metadata .difficulty.hard {
+body .App .problems .problemcard .metadata .difficulty.hard {
   background: var(--color-fail);
 }
-body .navbar {
+body .App .navbar {
   text-decoration: none;
   padding: 12px 55px;
   background: var(--main-bg);
   display: flex;
+  flex: 0 1 auto;
   justify-content: space-between;
   font-family: var(--font-family);
 }
-body .navbar .logo {
+body .App .navbar .logo {
   cursor: pointer;
   font-size: 2.1rem;
   display: flex;
   align-items: center;
 }
-body .navbar .logo h2 {
+body .App .navbar .logo h2 {
   color: var(--bold-color);
 }
-body .navbar .logo-icon {
-  width: 70px;
-  padding: 6px;
-  height: 70px;
-  margin-left: 11px;
-  display: grid;
-  place-items: center;
-  position: relative;
-  box-sizing: border-box;
-}
-body .navbar .logo-icon .circle-line {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  position: absolute;
-  border-radius: 50%;
-  border: 3px solid transparent;
-  border-left-color: var(--color-success);
-  border-right-color: var(--color-success);
-}
-body .navbar .logo-icon .circle-line:nth-child(1) {
-  left: 0%;
-  top: 0%;
-  width: 100%;
-  height: 100%;
-  animation: ani-72 1100ms 1;
-}
-@keyframes ani-72 {
-  0% {
-    transform: rotate(-144deg);
-  }
-  100% {
-    transform: rotate(0deg);
-  }
-}
-body .navbar .logo-icon .circle-line:nth-child(2) {
-  left: 10%;
-  top: 10%;
-  width: 80%;
-  height: 80%;
-  animation: ani-144 1100ms 1;
-}
-@keyframes ani-144 {
-  0% {
-    transform: rotate(-216deg);
-  }
-  100% {
-    transform: rotate(0deg);
-  }
-}
-body .navbar .logo-icon .circle-line:nth-child(3) {
-  left: 20%;
-  top: 20%;
-  width: 60%;
-  height: 60%;
-  animation: ani-216 1100ms 1;
-}
-@keyframes ani-216 {
-  0% {
-    transform: rotate(-288deg);
-  }
-  100% {
-    transform: rotate(0deg);
-  }
-}
-body .navbar .logo-icon .circle-line:nth-child(4) {
-  left: 30%;
-  top: 30%;
-  width: 40%;
-  height: 40%;
-  animation: ani-288 1100ms 1;
-  border-color: var(--color-success);
-}
-@keyframes ani-288 {
-  0% {
-    transform: rotate(-360deg);
-  }
-  100% {
-    transform: rotate(0deg);
-  }
-}
-body .navbar .logo-icon .circle-line:nth-child(5) {
-  left: 40%;
-  top: 40%;
-  width: 20%;
-  height: 20%;
-  border-color: var(--color-success);
-  background-color: var(--color-success);
-}
-body .navbar-content {
+body .App .navbar-content {
   display: flex;
   place-items: center;
 }
-body .navbar-content-item {
+body .App .navbar-content-item {
   cursor: pointer;
   margin: 0 6px;
   padding: 4px 10px;
@@ -676,6 +685,19 @@ body .navbar-content-item {
   color: var(--bold-color);
   font-size: 1.05rem;
   font-weight: 300;
+}
+body .App .page404 {
+  display: table-row;
+  height: 100px;
+  background: var(--bg);
+}
+body .comp-nav {
+  display: grid;
+  grid-template-rows: auto 1fr;
+}
+body a {
+  color: var(--resize-bg);
+  text-decoration: none;
 }
 
 /*# sourceMappingURL=global.css.map */

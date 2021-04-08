@@ -34,11 +34,12 @@ const Form = ({ problem }) => {
     })
 
     return (
-        <div className='form'>
+        <div className='form flex-1-1-auto'>
             <Question qref={questionRef} problem={problem} />
             {/* <WebFrame code={currentCode} fref={frameRef} /> */}
             <div ref={resizebarRef} className='resizebar' onMouseDown={mouseDownHandler}>
                 <div className='dots'>
+                    {/* spans that get styled to be circles */}
                     <span></span>
                     <span></span>
                     <span></span>

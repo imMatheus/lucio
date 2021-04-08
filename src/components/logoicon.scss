@@ -1,0 +1,72 @@
+.logo-icon {
+    width: 70px;
+    padding: 6px;
+    height: 70px;
+    margin-left: 11px;
+    display: grid;
+    place-items: center;
+    position: relative;
+    box-sizing: border-box;
+
+    @mixin rotateAnimation($prefix, $currentRotation, $animationTime) {
+        animation: #{'ani' + $currentRotation} $animationTime 1;
+        $startRoatation: $currentRotation + $prefix;
+        @keyframes ani#{$currentRotation} {
+            0% {
+                transform: rotate(#{$startRoatation}deg);
+            }
+
+            100% {
+                transform: rotate(0deg);
+            }
+        }
+    }
+
+    .circle-line {
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        position: absolute;
+        border-radius: 50%;
+        border: 3px solid transparent;
+        // changin only the left and  rightbordet to have a border color so
+        // it shows
+        border-left-color: var(--color-success);
+        border-right-color: var(--color-success);
+
+        // making the width of each cirlce to be decresingly  small
+        @for $i from 1 through 5 {
+            &:nth-child(#{$i}) {
+                left: 10% * ($i - 1);
+                top: 10% * ($i - 1);
+                width: 100% - 20% * ($i - 1);
+                height: 100% - 20% * ($i - 1);
+
+                // @include rotateAnimation(-72, $i * -72, 1100ms);
+
+                @if $i == 4 {
+                    border-color: var(--color-success);
+                }
+                @if $i == 5 {
+                    border-color: var(--color-success);
+                    background-color: var(--color-success);
+                }
+            }
+        }
+    }
+    &.spinn {
+        .circle-line {
+            @for $i from 1 through 5 {
+                &:nth-child(#{$i}) {
+                    // then adding animation the circle aslong as it is not the
+                    // 5th circle as it does not to rotate
+                    @if $i != 5 {
+                        // thes prefix can be changed as you like
+                        // itjust kinda looks good
+                        @include rotateAnimation(-72, $i * -72, 1100ms);
+                    }
+                }
+            }
+        }
+    }
+}
