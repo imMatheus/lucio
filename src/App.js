@@ -19,7 +19,7 @@ function App() {
                     </Route>
                     <Route exact path='/problems' component={ProblemsPage} />
                     <Route exact path='/form'>
-                        <Form problem={problems[1]} />
+                        <Form problem={problems[0]} />
                     </Route>
                     <Route>
                         <Page404 />

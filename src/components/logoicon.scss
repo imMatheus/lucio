@@ -1,23 +1,24 @@
 .logo-icon {
-    width: 70px;
-    padding: 6px;
-    height: 70px;
-    margin-left: 11px;
+    width: 100%;
+    height: 100%;
     display: grid;
     place-items: center;
     position: relative;
     box-sizing: border-box;
 
     @mixin rotateAnimation($prefix, $currentRotation, $animationTime) {
-        animation: #{'ani' + $currentRotation} $animationTime 1;
+        animation: #{'ani' + $currentRotation} $animationTime 1 alternate;
         $startRoatation: $currentRotation + $prefix;
         @keyframes ani#{$currentRotation} {
             0% {
                 transform: rotate(#{$startRoatation}deg);
             }
 
+            50% {
+                transform: rotate(#{$startRoatation * (-1)}deg);
+            }
             100% {
-                transform: rotate(0deg);
+                transform: rotate(#{$startRoatation}deg);
             }
         }
     }
@@ -63,7 +64,7 @@
                     @if $i != 5 {
                         // thes prefix can be changed as you like
                         // itjust kinda looks good
-                        @include rotateAnimation(-72, $i * -72, 1100ms);
+                        @include rotateAnimation(-72, $i * -72, 3000ms);
                     }
                 }
             }

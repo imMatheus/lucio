@@ -10,7 +10,7 @@ const Question = ({ qref, problem }) => {
     let problemName = problem.problemName
     let inputFormat = problem.inputFormat
     let testCases = problem.sampleCases
-    console.log(testCases)
+    // console.log(testCases)
 
     return (
         <div className='question' ref={qref}>
@@ -57,6 +57,7 @@ const Question = ({ qref, problem }) => {
                         <span className='variable'>S</span> (the string Greg wishes to build).
                     </p> */}
                 </div>
+
                 <div className='content-subpart'>
                     {constrains && (
                         <>

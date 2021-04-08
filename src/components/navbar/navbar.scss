@@ -17,6 +17,12 @@
         & h2 {
             color: var(--bold-color);
         }
+
+        & .logo-icon-container {
+            width: 70px;
+            height: 70px;
+            margin-left: 11px;
+        }
     }
 
     &-content {

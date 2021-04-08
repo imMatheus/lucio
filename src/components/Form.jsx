@@ -34,7 +34,7 @@ const Form = ({ problem }) => {
     })
 
     return (
-        <div className='form flex-1-1-auto'>
+        <div className='form '>
             <Question qref={questionRef} problem={problem} />
             {/* <WebFrame code={currentCode} fref={frameRef} /> */}
             <div ref={resizebarRef} className='resizebar' onMouseDown={mouseDownHandler}>
@@ -46,7 +46,7 @@ const Form = ({ problem }) => {
                     <span></span>
                 </div>
             </div>
-            <Monako mref={editorRef} setCurrentCode={setCurrentCode} currentCode={currentCode} />
+            <Monako mref={editorRef} setCurrentCode={setCurrentCode} currentCode={currentCode} problem={problem} />
         </div>
     )
 }

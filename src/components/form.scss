@@ -1,4 +1,7 @@
 .form {
+    @import './form/monako.scss';
+    @import './form/question.scss';
+    @import './form/webframe.scss';
     // removing the scrollbar on windows
     ::-webkit-scrollbar {
         -webkit-appearance: none;
@@ -17,7 +20,9 @@
     width: 100vw;
     display: grid;
     grid-template-columns: auto auto 1fr;
-
+    height: calc(100vh - 94px);
+    // height: 100vh;
+    // overflow-y: hidden;
     background: var(--main-bg);
 
     & .resizebar {
@@ -48,8 +53,4 @@
             }
         }
     }
-
-    @import './form/monako.scss';
-    @import './form/question.scss';
-    @import './form/webframe.scss';
 }

@@ -60,10 +60,8 @@ body .App .flex-1-1-auto {
   flex: 1 1 auto;
 }
 body .App .logo-icon {
-  width: 70px;
-  padding: 6px;
-  height: 70px;
-  margin-left: 11px;
+  width: 100%;
+  height: 100%;
   display: grid;
   place-items: center;
   position: relative;
@@ -113,166 +111,67 @@ body .App .logo-icon .circle-line:nth-child(5) {
   background-color: var(--color-success);
 }
 body .App .logo-icon.spinn .circle-line:nth-child(1) {
-  animation: ani-72 1100ms 1;
+  animation: ani-72 3000ms 1 alternate;
 }
 @keyframes ani-72 {
   0% {
     transform: rotate(-144deg);
   }
+  50% {
+    transform: rotate(144deg);
+  }
   100% {
-    transform: rotate(0deg);
+    transform: rotate(-144deg);
   }
 }
 body .App .logo-icon.spinn .circle-line:nth-child(2) {
-  animation: ani-144 1100ms 1;
+  animation: ani-144 3000ms 1 alternate;
 }
 @keyframes ani-144 {
   0% {
     transform: rotate(-216deg);
   }
+  50% {
+    transform: rotate(216deg);
+  }
   100% {
-    transform: rotate(0deg);
+    transform: rotate(-216deg);
   }
 }
 body .App .logo-icon.spinn .circle-line:nth-child(3) {
-  animation: ani-216 1100ms 1;
+  animation: ani-216 3000ms 1 alternate;
 }
 @keyframes ani-216 {
   0% {
     transform: rotate(-288deg);
   }
+  50% {
+    transform: rotate(288deg);
+  }
   100% {
-    transform: rotate(0deg);
+    transform: rotate(-288deg);
   }
 }
 body .App .logo-icon.spinn .circle-line:nth-child(4) {
-  animation: ani-288 1100ms 1;
+  animation: ani-288 3000ms 1 alternate;
 }
 @keyframes ani-288 {
   0% {
     transform: rotate(-360deg);
   }
+  50% {
+    transform: rotate(360deg);
+  }
   100% {
-    transform: rotate(0deg);
+    transform: rotate(-360deg);
   }
 }
 body .App .form {
   width: 100vw;
   display: grid;
   grid-template-columns: auto auto 1fr;
+  height: calc(100vh - 94px);
   background: var(--main-bg);
-}
-body .App .form ::-webkit-scrollbar {
-  -webkit-appearance: none;
-  width: 0px;
-}
-body .App .form ::-webkit-scrollbar-thumb {
-  display: none;
-}
-body .App .form .loadingspinner-wrapper-for-codecompile {
-  height: 400px;
-  position: relative;
-}
-body .App .form .loadingspinner-wrapper-for-codecompile .loadingspinner {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  place-items: center;
-}
-body .App .form .loadingspinner-wrapper-for-codecompile .loadingspinner-spinner {
-  position: absolute;
-  width: 140px;
-  height: 140px;
-  max-width: 90%;
-  max-height: 90%;
-  padding: 10px;
-  z-index: 999;
-}
-body .App .form .loadingspinner-wrapper-for-codecompile .loadingspinner-spinner:hover .circle-line {
-  animation-play-state: paused;
-}
-body .App .form .loadingspinner-wrapper-for-codecompile .loadingspinner-spinner .circle-line {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  position: absolute;
-  border-radius: 50%;
-  animation: rotate180 1500ms infinite;
-  border: 5px solid transparent;
-  border-top-color: var(--color-fail);
-}
-body .App .form .loadingspinner-wrapper-for-codecompile .loadingspinner-spinner .circle-line:nth-child(1) {
-  left: 0%;
-  top: 0%;
-  width: 100%;
-  height: 100%;
-  animation-delay: 0s;
-}
-body .App .form .loadingspinner-wrapper-for-codecompile .loadingspinner-spinner .circle-line:nth-child(2) {
-  left: 10%;
-  top: 10%;
-  width: 80%;
-  height: 80%;
-  animation-delay: 0.3s;
-}
-body .App .form .loadingspinner-wrapper-for-codecompile .loadingspinner-spinner .circle-line:nth-child(3) {
-  left: 20%;
-  top: 20%;
-  width: 60%;
-  height: 60%;
-  animation-delay: 0.6s;
-}
-body .App .form .loadingspinner-wrapper-for-codecompile .loadingspinner-spinner .circle-line:nth-child(4) {
-  left: 30%;
-  top: 30%;
-  width: 40%;
-  height: 40%;
-  animation-delay: 0.9s;
-}
-body .App .form .loadingspinner-wrapper-for-codecompile .loadingspinner-spinner .circle-line:nth-child(5) {
-  left: 40%;
-  top: 40%;
-  width: 20%;
-  height: 20%;
-  animation-delay: 1.2s;
-}
-@keyframes rotate180 {
-  0% {
-    transform: rotate(0deg);
-  }
-  50% {
-    transform: rotate(180deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-body .App .form .resizebar {
-  cursor: ew-resize;
-  display: grid;
-  place-items: center;
-  width: 12px;
-  height: 100%;
-  position: sticky;
-  top: 0;
-  left: 0;
-  background-color: var(--resize-bg);
-}
-body .App .form .resizebar .dots {
-  height: 50px;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-evenly;
-}
-body .App .form .resizebar .dots span {
-  display: block;
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
-  background-color: var(--dots-color);
 }
 body .App .form .editorial {
   overflow-y: scroll;
@@ -398,7 +297,6 @@ body .App .form .editorial .CodeCompileView-wrapper .codecompileview .compilecas
   display: grid;
   grid-template-columns: auto 1fr;
   background: var(--main-bg);
-  min-height: 600px;
 }
 body .App .form .editorial .CodeCompileView-wrapper .codecompileview .compilecases-wrapper .case-list ul {
   list-style: none;
@@ -473,7 +371,7 @@ body .App .form .editorial .CodeCompileView-wrapper .codecompileview .compilecas
 }
 body .App .form .question {
   overflow-y: scroll;
-  height: 90vh;
+  height: 100%;
   width: 510px;
   max-width: 70vw;
   min-width: 20vw;
@@ -597,6 +495,118 @@ body .App .form .webframe #webframeId {
   background: #d4d4d4;
   border: none;
 }
+body .App .form ::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 0px;
+}
+body .App .form ::-webkit-scrollbar-thumb {
+  display: none;
+}
+body .App .form .loadingspinner-wrapper-for-codecompile {
+  height: 400px;
+  position: relative;
+}
+body .App .form .loadingspinner-wrapper-for-codecompile .loadingspinner {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  place-items: center;
+}
+body .App .form .loadingspinner-wrapper-for-codecompile .loadingspinner-spinner {
+  position: absolute;
+  width: 140px;
+  height: 140px;
+  max-width: 90%;
+  max-height: 90%;
+  padding: 10px;
+  z-index: 999;
+}
+body .App .form .loadingspinner-wrapper-for-codecompile .loadingspinner-spinner:hover .circle-line {
+  animation-play-state: paused;
+}
+body .App .form .loadingspinner-wrapper-for-codecompile .loadingspinner-spinner .circle-line {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  position: absolute;
+  border-radius: 50%;
+  animation: rotate180 1500ms infinite;
+  border: 5px solid transparent;
+  border-top-color: var(--color-fail);
+}
+body .App .form .loadingspinner-wrapper-for-codecompile .loadingspinner-spinner .circle-line:nth-child(1) {
+  left: 0%;
+  top: 0%;
+  width: 100%;
+  height: 100%;
+  animation-delay: 0s;
+}
+body .App .form .loadingspinner-wrapper-for-codecompile .loadingspinner-spinner .circle-line:nth-child(2) {
+  left: 10%;
+  top: 10%;
+  width: 80%;
+  height: 80%;
+  animation-delay: 0.3s;
+}
+body .App .form .loadingspinner-wrapper-for-codecompile .loadingspinner-spinner .circle-line:nth-child(3) {
+  left: 20%;
+  top: 20%;
+  width: 60%;
+  height: 60%;
+  animation-delay: 0.6s;
+}
+body .App .form .loadingspinner-wrapper-for-codecompile .loadingspinner-spinner .circle-line:nth-child(4) {
+  left: 30%;
+  top: 30%;
+  width: 40%;
+  height: 40%;
+  animation-delay: 0.9s;
+}
+body .App .form .loadingspinner-wrapper-for-codecompile .loadingspinner-spinner .circle-line:nth-child(5) {
+  left: 40%;
+  top: 40%;
+  width: 20%;
+  height: 20%;
+  animation-delay: 1.2s;
+}
+@keyframes rotate180 {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+body .App .form .resizebar {
+  cursor: ew-resize;
+  display: grid;
+  place-items: center;
+  width: 12px;
+  height: 100%;
+  position: sticky;
+  top: 0;
+  left: 0;
+  background-color: var(--resize-bg);
+}
+body .App .form .resizebar .dots {
+  height: 50px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+body .App .form .resizebar .dots span {
+  display: block;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background-color: var(--dots-color);
+}
 body .App .problems {
   background: var(--bg);
   padding: 25px 40px;
@@ -671,6 +681,11 @@ body .App .navbar .logo {
 }
 body .App .navbar .logo h2 {
   color: var(--bold-color);
+}
+body .App .navbar .logo .logo-icon-container {
+  width: 70px;
+  height: 70px;
+  margin-left: 11px;
 }
 body .App .navbar-content {
   display: flex;

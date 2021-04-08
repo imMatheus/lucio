@@ -4,19 +4,21 @@ import Editor, { useMonaco } from '@monaco-editor/react'
 import File from './File'
 import CodeCompileView from './CodeCompileView'
 // https://www.npmjs.com/package/@monaco-editor/react
-const Monako = ({ mref, setCurrentCode, currentCode }) => {
+const Monako = ({ mref, setCurrentCode, currentCode, problem }) => {
     const monaco = useMonaco()
     const editorRef = useRef(null)
     const [fetchingData, setFetchingData] = useState(false)
-
+    const problemName = problem.problemName
+    const problemInputs = problem.inputs
+    console.log(problem)
     const files = {
         'script.js': {
             name: 'script.js',
             language: 'javascript',
             value: `
 //complete the TwoSum function below
-const TwoSum = (t, y)=>{
-    return t + y
+const ${problemName} = (${problemInputs})=>{
+    return 
 }
             `,
         },
@@ -49,28 +51,30 @@ body {
         },
     }
 
-    const sampleCases = [
-        {
-            inputs: [20, 30],
-            userOutput: [],
-            expected: [50],
-        },
-        {
-            inputs: [8, 8],
-            userOutput: [],
-            expected: [16],
-        },
-        {
-            inputs: [100, -1],
-            userOutput: [],
-            expected: [99],
-        },
-        {
-            inputs: [8, 34],
-            userOutput: [],
-            expected: [42],
-        },
-    ]
+    const sampleCases = problem.sampleCases
+
+    // const sampleCases = [
+    //     {
+    //         inputs: [20, 30],
+    //         userOutput: [],
+    //         expected: [50],
+    //     },
+    //     {
+    //         inputs: [8, 8],
+    //         userOutput: [],
+    //         expected: [16],
+    //     },
+    //     {
+    //         inputs: [100, -1],
+    //         userOutput: [],
+    //         expected: [99],
+    //     },
+    //     {
+    //         inputs: [8, 34],
+    //         userOutput: [],
+    //         expected: [42],
+    //     },
+    // ]
 
     const [testCases, setTestCases] = useState([])
 
@@ -173,15 +177,15 @@ body {
 
         for (let i = 0; i < sampleCases.length; i++) {
             const currentCase = sampleCases[i]
-            let args = currentCase.inputs
-            let expected = currentCase.expected
+            let args = currentCase.input
+            let expected = currentCase.output
 
             const requestOptions = {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     language: 'js',
-                    source: `${currentCode} \n \t console.log(TwoSum(${args.join(',')}))`,
+                    source: `${currentCode} \n \t console.log(${problemName}(${args.join(',')}))`,
                     stdin: '',
                     args: [],
                 }),

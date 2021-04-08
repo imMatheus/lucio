@@ -7,7 +7,9 @@ const Navbar = () => {
                 <div className='logo'>
                     <h2>LucioCode</h2>
                     {/* setting spinn to true so it spinns */}
-                    <LogoIcon spinn={true} />
+                    <div className='logo-icon-container'>
+                        <LogoIcon spinn={true} />
+                    </div>
                 </div>
             </Link>
             <div className='navbar-content'>
