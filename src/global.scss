@@ -31,6 +31,46 @@
 //  sass --watch src/global.scss:src/global.css
 body {
     .App {
+        --paraghrap-fontfamily: 'Open Sans', Arial, Helvetica, sans-serif;
+        --varible-fontfamily: 'Roboto Slab', serif;
+        --color-success: #1ba94c;
+        --color-fail: #d11534;
+        --bold-fontsize: 1.02rem;
+        --mini-fontsize: 0.72rem;
+        --header-fontsize: 1.5rem;
+        --transition-speed: 200ms;
+        --font-family: 'Roboto Mono', monospace;
+        --bold: 600;
+        --paraghrap-fontsize: 0.8rem;
+        --variable-fontsize: 0.91rem;
+        --inputs-fontsize: 0.85rem;
+        &.dark {
+            --main-bg: #282c34;
+            --resize-bg: rgb(22, 21, 22);
+            --dots-color: rgb(255, 255, 255);
+            --bg: #21252b;
+            --text-color: white;
+            --hover-color: rgb(207, 207, 207);
+            --bold-color: #d4e4f9;
+            --paraghrap-color: #8a9bba;
+            --inputs-color: #d4e4f9;
+            --inputs-bg: #141618;
+            --files-bg: #21252b;
+        }
+
+        &.light {
+            --main-bg: #e7f1f1;
+            --resize-bg: #dfe2e2;
+            --dots-color: #d3d4d4;
+            --bg: #ffffff;
+            --text-color: #414c52;
+            --hover-color: #596266;
+            --bold-color: #0e141e;
+            --paraghrap-color: #576871;
+            --inputs-color: #040a1d;
+            --inputs-bg: #e8eaea;
+            --files-bg: #e7eeef;
+        }
         width: 100%;
         min-height: 100vh;
         display: flex;
@@ -57,29 +97,4 @@ body {
         color: var(--resize-bg);
         text-decoration: none;
     }
-
-    --color-success: #1ba94c;
-    --color-fail: #d11534;
-    --main-bg: #282c34;
-    --resize-bg: rgb(22, 21, 22);
-    --dots-color: rgb(255, 255, 255);
-    --bg: #21252b;
-    --text-color: white;
-    --hover-color: rgb(207, 207, 207);
-    --bold-fontsize: 1.02rem;
-    --bold-color: #d4e4f9;
-    --mini-fontsize: 0.72rem;
-    --header-fontsize: 1.5rem;
-    --transition-speed: 200ms;
-    --bold: 600;
-    --font-family: 'Roboto Mono', monospace;
-    --paraghrap-fontsize: 0.8rem;
-    --paraghrap-color: #8a9bba;
-    --paraghrap-fontfamily: 'Open Sans', Arial, Helvetica, sans-serif;
-    --varible-fontfamily: 'Roboto Slab', serif;
-    --variable-fontsize: 0.91rem;
-    --inputs-fontsize: 0.85rem;
-    --inputs-color: #d4e4f9;
-    --inputs-bg: #141618;
-    --files-bg: #21252b;
 }

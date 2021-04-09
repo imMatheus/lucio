@@ -24,37 +24,50 @@
   }
 }
 
-body {
+body .App {
+  --paraghrap-fontfamily: "Open Sans", Arial, Helvetica, sans-serif;
+  --varible-fontfamily: "Roboto Slab", serif;
   --color-success: #1ba94c;
   --color-fail: #d11534;
+  --bold-fontsize: 1.02rem;
+  --mini-fontsize: 0.72rem;
+  --header-fontsize: 1.5rem;
+  --transition-speed: 200ms;
+  --font-family: "Roboto Mono", monospace;
+  --bold: 600;
+  --paraghrap-fontsize: 0.8rem;
+  --variable-fontsize: 0.91rem;
+  --inputs-fontsize: 0.85rem;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-flow: column;
+}
+body .App.dark {
   --main-bg: #282c34;
   --resize-bg: rgb(22, 21, 22);
   --dots-color: rgb(255, 255, 255);
   --bg: #21252b;
   --text-color: white;
   --hover-color: rgb(207, 207, 207);
-  --bold-fontsize: 1.02rem;
   --bold-color: #d4e4f9;
-  --mini-fontsize: 0.72rem;
-  --header-fontsize: 1.5rem;
-  --transition-speed: 200ms;
-  --bold: 600;
-  --font-family: "Roboto Mono", monospace;
-  --paraghrap-fontsize: 0.8rem;
   --paraghrap-color: #8a9bba;
-  --paraghrap-fontfamily: "Open Sans", Arial, Helvetica, sans-serif;
-  --varible-fontfamily: "Roboto Slab", serif;
-  --variable-fontsize: 0.91rem;
-  --inputs-fontsize: 0.85rem;
   --inputs-color: #d4e4f9;
   --inputs-bg: #141618;
   --files-bg: #21252b;
 }
-body .App {
-  width: 100%;
-  min-height: 100vh;
-  display: flex;
-  flex-flow: column;
+body .App.light {
+  --main-bg: #e7f1f1;
+  --resize-bg: #dfe2e2;
+  --dots-color: #d3d4d4;
+  --bg: #ffffff;
+  --text-color: #414c52;
+  --hover-color: #596266;
+  --bold-color: #0e141e;
+  --paraghrap-color: #576871;
+  --inputs-color: #040a1d;
+  --inputs-bg: #e8eaea;
+  --files-bg: #e7eeef;
 }
 body .App .flex-1-1-auto {
   flex: 1 1 auto;
@@ -181,15 +194,15 @@ body .App .homepage .herobanner {
   color: transparent;
   -webkit-font-smoothing: antialiased;
   -webkit-text-stroke: 1px var(--color-success);
-  text-shadow: 0px 0px 0px #0905e0, 3px -2px 0px #0d05db, 6px -4px 0px #1106d6, 9px -6px 0px #1406d2, 12px -8px 0px #1806cd, 15px -10px 0px #1c07c8, 18px -12px 0px #2007c3, 21px -14px 0px #2407be, 24px -16px 0px #2708ba, 27px -18px 0px #2b08b5, 30px -20px 0px #2f09b0, 33px -22px 0px #3309ab, 36px -24px 0px #3709a6, 39px -26px 0px #3a0aa2, 42px -28px 0px #3e0a9d, 45px -30px 0px #420a98, 48px -32px 0px #460b93, 51px -34px 0px #4a0b8e, 54px -36px 0px #4d0b8a, 57px -38px 0px #510c85, 60px -40px 0px #550c80;
+  text-shadow: 0px 0px 0px #0905e0, 1px -1px 0px #0b05de, 2px -2px 0px #0c05dc, 3px -3px 0px #0e05da, 4px -4px 0px #0f06d8, 5px -5px 0px #1106d6, 6px -6px 0px #1206d4, 7px -7px 0px #1406d3, 8px -8px 0px #1506d1, 9px -9px 0px #1706cf, 10px -10px 0px #1806cd, 11px -11px 0px #1a07cb, 12px -12px 0px #1b07c9, 13px -13px 0px #1d07c7, 14px -14px 0px #1e07c5, 15px -15px 0px #2007c3, 16px -16px 0px #2107c1, 17px -17px 0px #2307bf, 18px -18px 0px #2408bd, 19px -19px 0px #2608bc, 20px -20px 0px #2708ba, 21px -21px 0px #2908b8, 22px -22px 0px #2a08b6, 23px -23px 0px #2c08b4, 24px -24px 0px #2d08b2, 25px -25px 0px #2f09b0, 26px -26px 0px #3109ae, 27px -27px 0px #3209ac, 28px -28px 0px #3409aa, 29px -29px 0px #3509a8, 30px -30px 0px #3709a6, 31px -31px 0px #3809a4, 32px -32px 0px #3a09a3, 33px -33px 0px #3b0aa1, 34px -34px 0px #3d0a9f, 35px -35px 0px #3e0a9d, 36px -36px 0px #400a9b, 37px -37px 0px #410a99, 38px -38px 0px #430a97, 39px -39px 0px #440a95, 40px -40px 0px #460b93, 41px -41px 0px #470b91, 42px -42px 0px #490b8f, 43px -43px 0px #4a0b8d, 44px -44px 0px #4c0b8c, 45px -45px 0px #4d0b8a, 46px -46px 0px #4f0b88, 47px -47px 0px #500c86, 48px -48px 0px #520c84, 49px -49px 0px #530c82, 50px -50px 0px #550c80;
   animation: text-shadow-ani 2000ms 1;
 }
 @keyframes text-shadow-ani {
   0% {
-    text-shadow: 0 0 0px #0d05db, 0 0 0px #1106d6, 0 0 0px #1406d2, 0 0 0px #1806cd, 0 0 0px #1c07c8, 0 0 0px #2007c3, 0 0 0px #2407be, 0 0 0px #2708ba, 0 0 0px #2b08b5, 0 0 0px #2f09b0, 0 0 0px #3309ab, 0 0 0px #3709a6, 0 0 0px #3a0aa2, 0 0 0px #3e0a9d, 0 0 0px #420a98, 0 0 0px #460b93, 0 0 0px #4a0b8e, 0 0 0px #4d0b8a, 0 0 0px #510c85, 0 0 0px #550c80;
+    text-shadow: 0 0 0px #0b05de, 0 0 0px #0c05dc, 0 0 0px #0e05da, 0 0 0px #0f06d8, 0 0 0px #1106d6, 0 0 0px #1206d4, 0 0 0px #1406d3, 0 0 0px #1506d1, 0 0 0px #1706cf, 0 0 0px #1806cd, 0 0 0px #1a07cb, 0 0 0px #1b07c9, 0 0 0px #1d07c7, 0 0 0px #1e07c5, 0 0 0px #2007c3, 0 0 0px #2107c1, 0 0 0px #2307bf, 0 0 0px #2408bd, 0 0 0px #2608bc, 0 0 0px #2708ba, 0 0 0px #2908b8, 0 0 0px #2a08b6, 0 0 0px #2c08b4, 0 0 0px #2d08b2, 0 0 0px #2f09b0, 0 0 0px #3109ae, 0 0 0px #3209ac, 0 0 0px #3409aa, 0 0 0px #3509a8, 0 0 0px #3709a6, 0 0 0px #3809a4, 0 0 0px #3a09a3, 0 0 0px #3b0aa1, 0 0 0px #3d0a9f, 0 0 0px #3e0a9d, 0 0 0px #400a9b, 0 0 0px #410a99, 0 0 0px #430a97, 0 0 0px #440a95, 0 0 0px #460b93, 0 0 0px #470b91, 0 0 0px #490b8f, 0 0 0px #4a0b8d, 0 0 0px #4c0b8c, 0 0 0px #4d0b8a, 0 0 0px #4f0b88, 0 0 0px #500c86, 0 0 0px #520c84, 0 0 0px #530c82, 0 0 0px #550c80;
   }
   100% {
-    text-shadow: 3px -2px 0px #0d05db, 6px -4px 0px #1106d6, 9px -6px 0px #1406d2, 12px -8px 0px #1806cd, 15px -10px 0px #1c07c8, 18px -12px 0px #2007c3, 21px -14px 0px #2407be, 24px -16px 0px #2708ba, 27px -18px 0px #2b08b5, 30px -20px 0px #2f09b0, 33px -22px 0px #3309ab, 36px -24px 0px #3709a6, 39px -26px 0px #3a0aa2, 42px -28px 0px #3e0a9d, 45px -30px 0px #420a98, 48px -32px 0px #460b93, 51px -34px 0px #4a0b8e, 54px -36px 0px #4d0b8a, 57px -38px 0px #510c85, 60px -40px 0px #550c80;
+    text-shadow: 1px -1px 0px #0b05de, 2px -2px 0px #0c05dc, 3px -3px 0px #0e05da, 4px -4px 0px #0f06d8, 5px -5px 0px #1106d6, 6px -6px 0px #1206d4, 7px -7px 0px #1406d3, 8px -8px 0px #1506d1, 9px -9px 0px #1706cf, 10px -10px 0px #1806cd, 11px -11px 0px #1a07cb, 12px -12px 0px #1b07c9, 13px -13px 0px #1d07c7, 14px -14px 0px #1e07c5, 15px -15px 0px #2007c3, 16px -16px 0px #2107c1, 17px -17px 0px #2307bf, 18px -18px 0px #2408bd, 19px -19px 0px #2608bc, 20px -20px 0px #2708ba, 21px -21px 0px #2908b8, 22px -22px 0px #2a08b6, 23px -23px 0px #2c08b4, 24px -24px 0px #2d08b2, 25px -25px 0px #2f09b0, 26px -26px 0px #3109ae, 27px -27px 0px #3209ac, 28px -28px 0px #3409aa, 29px -29px 0px #3509a8, 30px -30px 0px #3709a6, 31px -31px 0px #3809a4, 32px -32px 0px #3a09a3, 33px -33px 0px #3b0aa1, 34px -34px 0px #3d0a9f, 35px -35px 0px #3e0a9d, 36px -36px 0px #400a9b, 37px -37px 0px #410a99, 38px -38px 0px #430a97, 39px -39px 0px #440a95, 40px -40px 0px #460b93, 41px -41px 0px #470b91, 42px -42px 0px #490b8f, 43px -43px 0px #4a0b8d, 44px -44px 0px #4c0b8c, 45px -45px 0px #4d0b8a, 46px -46px 0px #4f0b88, 47px -47px 0px #500c86, 48px -48px 0px #520c84, 49px -49px 0px #530c82, 50px -50px 0px #550c80;
   }
 }
 body .App .form {
@@ -207,28 +220,6 @@ body .App .form .editorial {
   display: grid;
   grid-template-columns: 100%;
   grid-template-rows: 1fr auto auto;
-  --main-bg: #282c34;
-  --resize-bg: rgb(22, 21, 22);
-  --dots-color: rgb(255, 255, 255);
-  --bg: #21252b;
-  --text-color: white;
-  --hover-color: rgb(207, 207, 207);
-  --bold-fontsize: 1.02rem;
-  --bold-color: #d4e4f9;
-  --mini-fontsize: 0.72rem;
-  --header-fontsize: 1.5rem;
-  --transition-speed: 200ms;
-  --bold: 600;
-  --font-family: "Roboto Mono", monospace;
-  --paraghrap-fontsize: 0.8rem;
-  --paraghrap-color: #8a9bba;
-  --paraghrap-fontfamily: "Open Sans", Arial, Helvetica, sans-serif;
-  --varible-fontfamily: "Roboto Slab", serif;
-  --variable-fontsize: 0.91rem;
-  --inputs-fontsize: 0.9rem;
-  --inputs-color: #d4e4f9;
-  --inputs-bg: #141618;
-  --files-bg: #21252b;
 }
 body .App .form .editorial .editor {
   width: 100%;
@@ -461,7 +452,7 @@ body .App .form .question .content .content-subpart .inputs div {
 }
 body .App .form .question .header {
   padding: 7px 0;
-  border-bottom: solid 1px #ffffff70;
+  border-bottom: solid 1px var(--paraghrap-color);
 }
 body .App .form .question .header .title {
   font-weight: var(--bold);
@@ -735,16 +726,40 @@ body .App .navbar-content a:hover, body .App .navbar-content a:focus {
 body .App .navbar-right {
   margin-left: auto;
   padding: 0 5px;
-  background: blue;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
 }
 body .App .navbar-right .dark-theme-toogler {
-  width: 80px;
-  height: 32px;
+  cursor: pointer;
+  width: 70px;
+  height: 35px;
+  padding: 3px;
+  border-radius: 30px;
   margin-right: 30px;
-  background: orange;
+  overflow: hidden;
+  background: #111;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 1;
+}
+body .App .navbar-right .dark-theme-toogler svg {
+  width: 50%;
+  color: #f1c40f;
+}
+body .App .navbar-right .dark-theme-toogler .theme-btn {
+  position: absolute;
+  z-index: 4;
+  width: 46%;
+  height: 92%;
+  border-radius: 50%;
+  background: white;
+  transition: transform 400ms;
+}
+body .App .navbar-right .dark-theme-toogler.light .theme-btn {
+  transform: translateX(100%);
 }
 body .App .navbar-right .account {
   width: 50px;

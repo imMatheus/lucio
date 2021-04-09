@@ -1,6 +1,11 @@
 import { Link } from 'react-router-dom'
 import LogoIcon from '../LogoIcon'
-const Navbar = () => {
+import NightsStayIcon from '@material-ui/icons/NightsStay'
+import WbSunnyIcon from '@material-ui/icons/WbSunny'
+const Navbar = ({ isDarkMode, setIsDarkMode }) => {
+    const toogleThemeHandler = () => {
+        setIsDarkMode(!isDarkMode)
+    }
     return (
         <div className='navbar'>
             <Link exact to='/'>
@@ -27,7 +32,13 @@ const Navbar = () => {
                 </Link>
             </div>
             <div className='navbar-right'>
-                <div className='dark-theme-toogler'></div>
+                <div
+                    className={isDarkMode ? 'dark-theme-toogler dark' : 'dark-theme-toogler light'}
+                    onClick={toogleThemeHandler}
+                >
+                    <NightsStayIcon /> <WbSunnyIcon />
+                    <div className='theme-btn'></div>
+                </div>
                 <div className='account'></div>
             </div>
         </div>

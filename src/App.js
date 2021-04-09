@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import Form from './components/Form'
 import HomePage from './components/HomePage'
@@ -8,11 +9,14 @@ import Navbar from './components/navbar/Navbar'
 import { problems } from './problems/problems'
 function App() {
     console.log(problems)
+
+    const [isDarkMode, setIsDarkMode] = useState(true)
+
     return (
-        <div className='App'>
+        <div className={isDarkMode ? 'App dark' : 'App light'}>
             {/* Lucio to the moon 🚀🌙 */}
             <Router>
-                <Navbar />
+                <Navbar isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} />
                 <Switch>
                     <Route exact path='/'>
                         <HomePage />
