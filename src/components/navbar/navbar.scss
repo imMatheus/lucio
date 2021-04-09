@@ -5,7 +5,7 @@
     display: flex;
     // display: table-row;
     flex: 0 1 auto;
-    justify-content: space-between;
+    // justify-content: space-between;
     font-family: var(--font-family);
 
     & .logo {
@@ -27,20 +27,48 @@
 
     &-content {
         display: flex;
-        // width: 400px;
         place-items: center;
-        // justify-items: center;
+        margin-left: 30px;
 
-        &-item {
+        & a {
             cursor: pointer;
             margin: 0 6px;
             padding: 4px 10px;
             display: inline-flex;
             place-items: center;
             color: var(--bold-color);
-            // font-size: var(--variable-fontsize);
-            font-size: 1.05rem;
-            font-weight: 300;
+            font-size: 1.1rem;
+            font-weight: 400;
+
+            &:hover,
+            &:focus {
+                outline: none;
+                border: none;
+                text-decoration: underline;
+            }
+        }
+    }
+
+    &-right {
+        margin-left: auto;
+        padding: 0 5px;
+        background: blue;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+
+        & .dark-theme-toogler {
+            width: 80px;
+            height: 32px;
+            margin-right: 30px;
+            background: orange;
+        }
+
+        & .account {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: red;
         }
     }
 }

@@ -39,7 +39,9 @@ body {
         & .flex-1-1-auto {
             flex: 1 1 auto;
         }
+
         @import './components/logoicon';
+        @import './components/homepage';
         @import './components/form';
         @import './components/problemspage/problems';
         @import './components/navbar/navbar';

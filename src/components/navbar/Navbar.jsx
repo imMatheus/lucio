@@ -14,17 +14,21 @@ const Navbar = () => {
             </Link>
             <div className='navbar-content'>
                 <Link exact to='/'>
-                    <div className='navbar-content-item'>Home</div>
+                    Home
                 </Link>
                 <Link exact to='/problems'>
-                    <div className='navbar-content-item'>Problems</div>
+                    Problems
                 </Link>
                 <Link exact to='/acrticles'>
-                    <div className='navbar-content-item'>Articles</div>
+                    Articles
                 </Link>
                 <Link exact to='/form'>
-                    <div className='navbar-content-item'>Form</div>
+                    Form
                 </Link>
+            </div>
+            <div className='navbar-right'>
+                <div className='dark-theme-toogler'></div>
+                <div className='account'></div>
             </div>
         </div>
     )

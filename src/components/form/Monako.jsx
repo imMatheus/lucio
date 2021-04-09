@@ -16,7 +16,7 @@ const Monako = ({ mref, setCurrentCode, currentCode, problem }) => {
             name: 'script.js',
             language: 'javascript',
             value: `
-//complete the TwoSum function below
+//complete the ${problemName} function below
 const ${problemName} = (${problemInputs})=>{
     return 
 }
@@ -52,29 +52,6 @@ body {
     }
 
     const sampleCases = problem.sampleCases
-
-    // const sampleCases = [
-    //     {
-    //         inputs: [20, 30],
-    //         userOutput: [],
-    //         expected: [50],
-    //     },
-    //     {
-    //         inputs: [8, 8],
-    //         userOutput: [],
-    //         expected: [16],
-    //     },
-    //     {
-    //         inputs: [100, -1],
-    //         userOutput: [],
-    //         expected: [99],
-    //     },
-    //     {
-    //         inputs: [8, 34],
-    //         userOutput: [],
-    //         expected: [42],
-    //     },
-    // ]
 
     const [testCases, setTestCases] = useState([])
 
@@ -177,8 +154,8 @@ body {
 
         for (let i = 0; i < sampleCases.length; i++) {
             const currentCase = sampleCases[i]
-            let args = currentCase.input
-            let expected = currentCase.output
+            const args = currentCase.input
+            const expected = currentCase.output
 
             const requestOptions = {
                 method: 'POST',
@@ -203,7 +180,7 @@ body {
                         caseName: i,
                     })
                 )
-            // sleeping for 530ms cuz the api only allows 2 reqs per sec, and 530 just to be on thesafe side
+            // sleeping for 530ms cuz the api only allows 2 reqs per sec, and 530 just to be on the safe side
             await sleep(530)
         }
 

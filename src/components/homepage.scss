@@ -1,0 +1,51 @@
+.homepage {
+    min-height: 600px;
+    background: var(--bg);
+    font-family: var(--font-family);
+
+    & .herobanner {
+        $text-color: rgb(232, 235, 207);
+        $color-green: #550c80;
+        $color-blue: #0905e0;
+        $shadow-number: 20;
+        $he: #ff00ff;
+        font-size: 4.3rem;
+        font-weight: 900;
+        display: grid;
+        place-items: center;
+        height: 450px;
+        color: var(--text-color);
+        color: transparent;
+        -webkit-font-smoothing: antialiased;
+
+        -webkit-text-stroke: 1px var(--color-success);
+        $offset-x: 3px;
+        $offset-y: -2px;
+        $value: ();
+        @for $i from 0 through $shadow-number {
+            $theShadow: $offset-x * $i $offset-y * $i 0px mix($color-green, $color-blue, 5% * ($i));
+            $value: append($value, $theShadow, comma);
+        }
+        text-shadow: $value;
+        animation: text-shadow-ani 2000ms 1;
+
+        @keyframes text-shadow-ani {
+            0% {
+                $value: ();
+                @for $i from 1 through $shadow-number {
+                    $theShadow: 0 0 0px mix($color-green, $color-blue, 5% * ($i));
+                    $value: append($value, $theShadow, comma);
+                }
+                text-shadow: $value;
+            }
+            100% {
+                $value: ();
+                @for $i from 1 through $shadow-number {
+                    $theShadow: $offset-x * $i $offset-y * $i 0px mix($color-green, $color-blue, 5% * ($i));
+                    $value: append($value, $theShadow, comma);
+                }
+                text-shadow: $value;
+            }
+        }
+    }
+}
