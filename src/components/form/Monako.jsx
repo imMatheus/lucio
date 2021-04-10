@@ -153,7 +153,7 @@ const Monako = ({ mref, setCurrentCode, currentCode, problem }) => {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     language: file.language,
-                    source: `print('hej') \n ${currentCode} `,
+                    source: `${currentCode} \t print(${displayProblemName}(${[args]}))`,
                     stdin: '',
                     args: [],
                 }),
