@@ -10,14 +10,18 @@ const Monako = ({ mref, setCurrentCode, currentCode, problem }) => {
     const [fetchingData, setFetchingData] = useState(false)
     const problemName = problem.problemName
     const problemInputs = problem.inputs
-    console.log(problem)
+    const displayProblemName = problemName
+        ?.split(' ')
+        .filter((word) => word !== '')
+        .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+        .join('')
     const files = {
         'script.js': {
             name: 'script.js',
             language: 'javascript',
             value: `
-//complete the ${problemName} function below
-const ${problemName} = (${problemInputs})=>{
+//complete the ${displayProblemName} function below
+const ${displayProblemName} = (${problemInputs})=>{
     return 
 }
             `,
@@ -52,9 +56,7 @@ body {
     }
 
     const sampleCases = problem.sampleCases
-
     const [testCases, setTestCases] = useState([])
-
     const [fileName, setFileName] = useState('script.js')
     const file = files[fileName]
 
@@ -144,6 +146,7 @@ body {
     }
 
     const runCodeHandler = async () => {
+        if (fetchingData) return
         // a sleep function that blocks code from running for 'ms' millisecs
         function sleep(ms) {
             return new Promise((resolve) => setTimeout(resolve, ms))
@@ -157,12 +160,14 @@ body {
             const args = currentCase.input
             const expected = currentCase.output
 
+            console.log(args + ' sshej')
+
             const requestOptions = {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     language: 'js',
-                    source: `${currentCode} \n \t console.log(${problemName}(${args.join(',')}))`,
+                    source: `${currentCode} \n \t console.log(${displayProblemName}(${[args]}))`,
                     stdin: '',
                     args: [],
                 }),
@@ -172,14 +177,15 @@ body {
                 .then((response) => response.json())
                 .then((data) =>
                     dummyArray.push({
-                        correctAnswer: data.output == expected,
-                        compileMessage: data.output == expected ? 'Right answer' : 'wrong answer',
+                        correctAnswer: data.output === expected,
+                        compileMessage: data.output === expected ? 'Right answer' : 'wrong answer',
                         inputs: args,
                         userOutput: [data.output],
                         expectedOutput: expected,
                         caseName: i,
                     })
                 )
+
             // sleeping for 530ms cuz the api only allows 2 reqs per sec, and 530 just to be on the safe side
             await sleep(530)
         }

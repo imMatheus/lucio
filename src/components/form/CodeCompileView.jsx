@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import CloseIcon from '@material-ui/icons/Close'
 import CheckIcon from '@material-ui/icons/Check'
 import LoadingSpinner from '../LoadingSpinner'
+import { v4 as uuidv4 } from 'uuid'
 
 const CodeCompileView = ({ testcases, fetchingData }) => {
     // let listPointer = 0
@@ -51,7 +52,7 @@ const CodeCompileView = ({ testcases, fetchingData }) => {
                                             let highlight = index === listPointer ? 'highlight' : ''
                                             return (
                                                 <li
-                                                    key={index}
+                                                    key={uuidv4()}
                                                     value={index}
                                                     className={color + ' ' + highlight}
                                                     onClick={changeCompileViewHandler}
@@ -81,7 +82,7 @@ const CodeCompileView = ({ testcases, fetchingData }) => {
 
 const Subpart = ({ header, content, complileMsg }) => {
     return (
-        <div key={Math.floor(Math.random() * 999999)} className='subpart'>
+        <div key={uuidv4()} className='subpart'>
             <h4>{header}</h4>
             <div className='output'>
                 {/* 
@@ -90,7 +91,7 @@ const Subpart = ({ header, content, complileMsg }) => {
                 */}
                 {content ? (
                     content?.map((item) => {
-                        return <div key={Math.floor(Math.random() * 9999999)}>{item}</div>
+                        return <div key={uuidv4()}>{item}</div>
                     })
                 ) : (
                     <div>{complileMsg}</div>

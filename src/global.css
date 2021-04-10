@@ -58,8 +58,8 @@ body .App.dark {
 }
 body .App.light {
   --main-bg: #e7f1f1;
-  --resize-bg: #dfe2e2;
-  --dots-color: #d3d4d4;
+  --resize-bg: #a7a8a8;
+  --dots-color: #525252;
   --bg: #ffffff;
   --text-color: #414c52;
   --hover-color: #596266;
@@ -668,7 +668,6 @@ body .App .problems .problemcard .metadata .difficulty {
   display: inline-block;
   padding: 4px 11px;
   border-radius: 20px;
-  color: var(--resize-bg);
   text-transform: uppercase;
   background: var(--color-success);
 }

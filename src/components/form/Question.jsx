@@ -2,8 +2,9 @@ import React from 'react'
 import ThumbUpSharpIcon from '@material-ui/icons/ThumbUpSharp'
 import FavoriteBorderSharpIcon from '@material-ui/icons/FavoriteBorderSharp'
 import ShareSharpIcon from '@material-ui/icons/ShareSharp'
+import { v4 as uuidv4 } from 'uuid'
+
 const Question = ({ qref, problem }) => {
-    console.log(problem)
     let description = problem.problemDescription
     let constrains = problem.constrains
     let difficulty = problem.difficulty
@@ -64,7 +65,9 @@ const Question = ({ qref, problem }) => {
                             <div className='bold'>Constrains</div>
                             <div>
                                 {constrains.map((constrain) => (
-                                    <p className='bulletpoint'>{constrain}</p>
+                                    <p key={uuidv4()} className='bulletpoint'>
+                                        {constrain}
+                                    </p>
                                 ))}
                             </div>
                         </>
@@ -78,21 +81,21 @@ const Question = ({ qref, problem }) => {
                         (testCase) => (
                             <>
                                 {testCase.input && (
-                                    <div className='content-subpart'>
+                                    <div key={uuidv4()} className='content-subpart'>
                                         <div className='bold'>Sample inputs</div>
                                         <div className='inputs'>
                                             {testCase.input.map((input) => (
-                                                <div>{input.toString()}</div>
+                                                <div key={uuidv4()}>{input.toString()}</div>
                                             ))}
                                         </div>
                                     </div>
                                 )}
                                 {testCase.output && (
-                                    <div className='content-subpart'>
+                                    <div key={uuidv4()} className='content-subpart'>
                                         <div className='bold'>Sample output</div>
                                         <div className='inputs'>
                                             {testCase.output.map((output) => (
-                                                <div>{output.toString()}</div>
+                                                <div key={uuidv4()}>{output.toString()}</div>
                                             ))}
                                         </div>
                                     </div>

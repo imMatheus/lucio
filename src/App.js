@@ -8,8 +8,6 @@ import './global.css'
 import Navbar from './components/navbar/Navbar'
 import { problems } from './problems/problems'
 function App() {
-    console.log(problems)
-
     const [isDarkMode, setIsDarkMode] = useState(true)
 
     return (
@@ -22,6 +20,18 @@ function App() {
                         <HomePage />
                     </Route>
                     <Route exact path='/problems' component={ProblemsPage} />
+                    {problems.map((problem) => {
+                        let path = problem.problemName
+                            ?.split(' ')
+                            .filter((word) => word !== '')
+                            .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+                            .join('')
+                        return (
+                            <Route exact path={`/problems/${path}`}>
+                                <Form problem={problem} />
+                            </Route>
+                        )
+                    })}
                     <Route exact path='/form'>
                         <Form problem={problems[0]} />
                     </Route>
