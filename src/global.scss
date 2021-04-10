@@ -30,5 +30,71 @@
 
 //  sass --watch src/global.scss:src/global.css
 body {
-    @import './components/form';
+    .App {
+        --paraghrap-fontfamily: 'Open Sans', Arial, Helvetica, sans-serif;
+        --varible-fontfamily: 'Roboto Slab', serif;
+        --color-success: #1ba94c;
+        --color-fail: #d11534;
+        --bold-fontsize: 1.02rem;
+        --mini-fontsize: 0.72rem;
+        --header-fontsize: 1.5rem;
+        --transition-speed: 200ms;
+        --font-family: 'Roboto Mono', monospace;
+        --bold: 600;
+        --paraghrap-fontsize: 0.8rem;
+        --variable-fontsize: 0.91rem;
+        --inputs-fontsize: 0.85rem;
+        &.dark {
+            --main-bg: #282c34;
+            --resize-bg: rgb(22, 21, 22);
+            --dots-color: rgb(255, 255, 255);
+            --bg: #21252b;
+            --text-color: white;
+            --hover-color: rgb(207, 207, 207);
+            --bold-color: #d4e4f9;
+            --paraghrap-color: #8a9bba;
+            --inputs-color: #d4e4f9;
+            --inputs-bg: #141618;
+            --files-bg: #21252b;
+        }
+
+        &.light {
+            --main-bg: #e7f1f1;
+            --resize-bg: #a7a8a8;
+            --dots-color: #525252;
+            --bg: #ffffff;
+            --text-color: #414c52;
+            --hover-color: #596266;
+            --bold-color: #0e141e;
+            --paraghrap-color: #576871;
+            --inputs-color: #040a1d;
+            --inputs-bg: #e8eaea;
+            --files-bg: #e7eeef;
+        }
+        width: 100%;
+        min-height: 100vh;
+        display: flex;
+        flex-flow: column;
+
+        & .flex-1-1-auto {
+            flex: 1 1 auto;
+        }
+
+        @import './components/logoicon';
+        @import './components/homepage';
+        @import './components/form';
+        @import './components/problemspage/problems';
+        @import './components/navbar/navbar';
+        @import './components/page404';
+    }
+    .comp-nav {
+        display: grid;
+        grid-template-rows: auto 1fr;
+    }
+
+    // resetting for route links
+    & a {
+        color: var(--resize-bg);
+        text-decoration: none;
+    }
 }

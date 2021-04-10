@@ -4,17 +4,25 @@ import Editor, { useMonaco } from '@monaco-editor/react'
 import File from './File'
 import CodeCompileView from './CodeCompileView'
 // https://www.npmjs.com/package/@monaco-editor/react
-const Monako = ({ mref, setCurrentCode, currentCode }) => {
+const Monako = ({ mref, setCurrentCode, currentCode, problem }) => {
     const monaco = useMonaco()
     const editorRef = useRef(null)
+    const [fetchingData, setFetchingData] = useState(false)
+    const problemName = problem.problemName
+    const problemInputs = problem.inputs
+    const displayProblemName = problemName
+        ?.split(' ')
+        .filter((word) => word !== '')
+        .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+        .join('')
     const files = {
         'script.js': {
             name: 'script.js',
             language: 'javascript',
             value: `
-//complete the TwoSum function below
-const TwoSum = (t, y)=>{
-
+//complete the ${displayProblemName} function below
+const ${displayProblemName} = (${problemInputs})=>{
+    return 
 }
             `,
         },
@@ -47,34 +55,8 @@ body {
         },
     }
 
-    const testcases = [
-        {
-            correctAnswer: true,
-            compileMessage: 'Wrong Answer',
-            inputs: [1, 4],
-            userOutput: [4545, 61],
-            expectedOutput: [111, 845],
-            caseName: '0',
-        },
-
-        {
-            correctAnswer: true,
-            compileMessage: 'Wrong Answer',
-            inputs: [10],
-            userOutput: [4, 6],
-            expectedOutput: [1],
-            caseName: ' 1',
-        },
-        {
-            correctAnswer: false,
-            compileMessage: 'Wrong Answer',
-            inputs: [1, 'hej', 4],
-            userOutput: [12, 23],
-            expectedOutput: [11, 45],
-            caseName: '2',
-        },
-    ]
-
+    const sampleCases = problem.sampleCases
+    const [testCases, setTestCases] = useState([])
     const [fileName, setFileName] = useState('script.js')
     const file = files[fileName]
 
@@ -160,24 +142,56 @@ body {
 
     const handleEditorDidMount = (editor) => {
         editorRef.current = editor
-        setCurrentCode(editorRef.current.getValue())
+        setCurrentCode(editorRef?.current?.getValue())
     }
 
     const runCodeHandler = async () => {
-        setCurrentCode(editorRef.current.getValue())
-        const requestOptions = {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                language: 'js',
-                source: 'print(4+6)',
-                stdin: '',
-                args: [],
-            }),
+        if (fetchingData) return
+        // a sleep function that blocks code from running for 'ms' millisecs
+        function sleep(ms) {
+            return new Promise((resolve) => setTimeout(resolve, ms))
         }
-        await fetch('https://emkc.org/api/v1/piston/execute', requestOptions)
-            .then((response) => response.json())
-            .then((data) => console.log(data))
+        setFetchingData(true)
+
+        let dummyArray = []
+
+        for (let i = 0; i < sampleCases.length; i++) {
+            const currentCase = sampleCases[i]
+            const args = currentCase.input
+            const expected = currentCase.output
+
+            console.log(args + ' sshej')
+
+            const requestOptions = {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    language: 'js',
+                    source: `${currentCode} \n \t console.log(${displayProblemName}(${[args]}))`,
+                    stdin: '',
+                    args: [],
+                }),
+            }
+
+            await fetch('https://emkc.org/api/v1/piston/execute', requestOptions)
+                .then((response) => response.json())
+                .then((data) =>
+                    dummyArray.push({
+                        correctAnswer: data.output === expected,
+                        compileMessage: data.output === expected ? 'Right answer' : 'wrong answer',
+                        inputs: args,
+                        userOutput: [data.output],
+                        expectedOutput: expected,
+                        caseName: i,
+                    })
+                )
+
+            // sleeping for 530ms cuz the api only allows 2 reqs per sec, and 530 just to be on the safe side
+            await sleep(530)
+        }
+
+        setTestCases(dummyArray)
+        setFetchingData(false)
     }
 
     return (
@@ -187,7 +201,6 @@ body {
                     <File file='script.js' fileName={fileName} setFileName={setFileName} />
                     <File file='style.css' fileName={fileName} setFileName={setFileName} />
                     <File file='index.html' fileName={fileName} setFileName={setFileName} />
-                    {/* button to run the code */}
                 </div>
 
                 <Editor
@@ -224,7 +237,7 @@ body {
                 </button>
                 <button className='submit-btn'>Submit Code</button>
             </div>
-            <CodeCompileView testcases={testcases} />
+            <CodeCompileView testcases={testCases} fetchingData={fetchingData} />
         </div>
     )
 }

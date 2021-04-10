@@ -1,0 +1,19 @@
+.page404 {
+    display: grid;
+    place-items: center;
+    height: 100px;
+    font-size: 5rem;
+    font-family: var(--font-family);
+    background: var(--bg);
+    $color-green: #550c80;
+    $color-blue: #0905e0;
+    $shadow-number: 5;
+    $offset-x: 3px;
+    $offset-y: -2px;
+    $value: ();
+    @for $i from 0 through $shadow-number {
+        $theShadow: $offset-x * $i $offset-y * $i 0px mix($color-green, $color-blue, 100% / $shadow-number * ($i));
+        $value: append($value, $theShadow, comma);
+    }
+    text-shadow: $value;
+}

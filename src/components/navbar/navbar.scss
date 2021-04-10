@@ -1,0 +1,102 @@
+.navbar {
+    text-decoration: none;
+    padding: 12px 55px;
+    background: var(--main-bg);
+    display: flex;
+    // display: table-row;
+    flex: 0 1 auto;
+    // justify-content: space-between;
+    font-family: var(--font-family);
+
+    & .logo {
+        cursor: pointer;
+        font-size: 2.1rem;
+        display: flex;
+        align-items: center;
+
+        & h2 {
+            color: var(--bold-color);
+        }
+
+        & .logo-icon-container {
+            width: 70px;
+            height: 70px;
+            margin-left: 11px;
+        }
+    }
+
+    &-content {
+        display: flex;
+        place-items: center;
+        margin-left: 30px;
+
+        & a {
+            cursor: pointer;
+            margin: 0 6px;
+            padding: 4px 10px;
+            display: inline-flex;
+            place-items: center;
+            color: var(--bold-color);
+            font-size: 1.1rem;
+            font-weight: 400;
+
+            &:hover,
+            &:focus {
+                outline: none;
+                border: none;
+                text-decoration: underline;
+            }
+        }
+    }
+
+    &-right {
+        margin-left: auto;
+        padding: 0 5px;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+
+        & .dark-theme-toogler {
+            cursor: pointer;
+            width: 70px;
+            height: 35px;
+            padding: 3px;
+            border-radius: 30px;
+            margin-right: 30px;
+            overflow: hidden;
+            background: #111;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 1;
+            & svg {
+                width: 50%;
+                color: #f1c40f;
+            }
+
+            & .theme-btn {
+                position: absolute;
+                z-index: 4;
+                width: 46%;
+                height: 92%;
+                border-radius: 50%;
+                background: white;
+                transition: transform 400ms;
+            }
+
+            &.light {
+                & .theme-btn {
+                    transform: translateX(100%);
+                }
+            }
+        }
+
+        & .account {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: red;
+        }
+    }
+}

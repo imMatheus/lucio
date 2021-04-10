@@ -1,6 +1,6 @@
 .question {
     overflow-y: scroll;
-
+    height: 100%;
     width: 510px;
     // max and min is for the scroll bar so it does exeed these values
     max-width: 70vw;
@@ -70,7 +70,7 @@
 
     .header {
         padding: 7px 0;
-        border-bottom: solid 1px #ffffff70;
+        border-bottom: solid 1px var(--paraghrap-color);
         .title {
             font-weight: var(--bold);
             font-size: var(--header-fontsize);
