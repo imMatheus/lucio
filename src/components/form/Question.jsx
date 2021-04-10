@@ -3,6 +3,7 @@ import ThumbUpSharpIcon from '@material-ui/icons/ThumbUpSharp'
 import FavoriteBorderSharpIcon from '@material-ui/icons/FavoriteBorderSharp'
 import ShareSharpIcon from '@material-ui/icons/ShareSharp'
 import { v4 as uuidv4 } from 'uuid'
+import ReactHtmlParser from 'react-html-parser'
 
 const Question = ({ qref, problem }) => {
     let description = problem.problemDescription
@@ -33,46 +34,50 @@ const Question = ({ qref, problem }) => {
                 </div>
             </div>
             <div className='content'>
-                <div className='content-subpart'>
-                    {description && (
+                {description && (
+                    <div className='content-subpart'>
                         <>
                             <div className='bold'>Problem descripsion</div>
-                            <p>{description}</p>
+                            {console.log(description)}
+                            <p>{ReactHtmlParser(description)}</p>
                         </>
-                    )}
-                </div>
-                <div className='content-subpart'>
-                    {inputFormat && (
+                    </div>
+                )}
+                {inputFormat && (
+                    <div className='content-subpart'>
                         <>
                             <div className='bold'>Input format</div>
-                            <p>{inputFormat}</p>
+                            <p>
+                                {' '}
+                                <p>{ReactHtmlParser(inputFormat)}</p>
+                            </p>
                         </>
-                    )}
-                    {/* <div className='bold'>Input format</div>
+                        {/* <div className='bold'>Input format</div>
                     <p>
-                        The first line contains number of testcases <span className='variable'>T</span>. The
-                        <span className='variable'>2*T</span>subsequent lines each describe a test case over
-                        <span className='variable'>2</span>lines: The first contains <span className='variable'>3</span>
-                        space-separated integers, <span className='variable'>N</span> , <span className='variable'>A</span>,
-                        and <span className='variable'>B</span>, respectively. The second contains{' '}
-                        <span className='variable'>S</span> (the string Greg wishes to build).
-                    </p> */}
-                </div>
+                    The first line contains number of testcases <span className='variable'>T</span>. The
+                    <span className='variable'>2*T</span>subsequent lines each describe a test case over
+                    <span className='variable'>2</span>lines: The first contains <span className='variable'>3</span>
+                    space-separated integers, <span className='variable'>N</span> , <span className='variable'>A</span>,
+                    and <span className='variable'>B</span>, respectively. The second contains{' '}
+                    <span className='variable'>S</span> (the string Greg wishes to build).
+                </p> */}
+                    </div>
+                )}
 
-                <div className='content-subpart'>
-                    {constrains && (
+                {constrains && (
+                    <div className='content-subpart'>
                         <>
                             <div className='bold'>Constrains</div>
                             <div>
                                 {constrains.map((constrain) => (
                                     <p key={uuidv4()} className='bulletpoint'>
-                                        {constrain}
+                                        <p>{ReactHtmlParser(constrain)}</p>
                                     </p>
                                 ))}
                             </div>
                         </>
-                    )}
-                </div>
+                    </div>
+                )}
 
                 {/* do we have testCase? */}
                 {testCases &&

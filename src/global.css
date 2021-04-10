@@ -416,7 +416,7 @@ body .App .form .question .content .content-subpart p {
   font-weight: 300;
   line-height: 1.75;
 }
-body .App .form .question .content .content-subpart p .variable {
+body .App .form .question .content .content-subpart p span {
   font-style: italic;
   margin: 0 2px;
   word-break: break-all;
@@ -430,7 +430,7 @@ body .App .form .question .content .content-subpart p.bulletpoint {
   align-items: center;
 }
 body .App .form .question .content .content-subpart p.bulletpoint::before {
-  content: "";
+  content: "hee";
   display: block;
   margin-right: 7px;
   width: 6px;

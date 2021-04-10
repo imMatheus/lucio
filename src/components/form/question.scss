@@ -28,7 +28,7 @@
                 font-weight: 300;
                 line-height: 1.75;
 
-                .variable {
+                & span {
                     font-style: italic;
                     margin: 0 2px;
                     word-break: break-all;
@@ -41,7 +41,7 @@
                     display: flex;
                     align-items: center;
                     &::before {
-                        content: '';
+                        content: 'hee';
                         display: block;
                         margin-right: 7px;
                         width: 6px;

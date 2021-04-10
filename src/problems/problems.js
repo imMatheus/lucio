@@ -37,18 +37,7 @@ export const problems = [
         ],
         inputs: ['x', 'y', 'z'],
     },
-    {
-        problemName: 'Counting Valley',
-        difficulty: 'hard',
-        problemDescription: `Alice and Bob each created one problem for HackerRank. A reviewer rates the two challenges, awarding points on a scale from 1 to 100 for b[1], b[2])`,
-        inputFormat: `The first line contains number of testcases T. The2*Tsubsequent lines each describe a test case over2lines: The first contains 3space-separated integers, N , A, and B, respectively. The second contains S (the string Greg wishes to build).`,
-        constrains: ['T is a string', 'W is a integer'],
-        sampleCases: [
-            { input: [9, 'lucioo'], output: [34, 2], explanation: 'he can cuz he cool ngl' },
-            { input: ['uga'], output: [4, 52], explanation: 'he can cuz he cool ngl' },
-        ],
-        inputs: ['arr', 'x'],
-    },
+
     {
         problemName: 'MinMax Sum',
         difficulty: 'easy',
@@ -58,14 +47,42 @@ export const problems = [
         return: `Print two space-separated integers on one line: the minimum sum and the maximum sum of  of  elements.`,
         sampleCases: [
             {
-                input: [[1, 2, 3, 4, 5]],
+                input: [`[1, 2, 3, 4, 5]`, `[69, 69]`],
                 output: [[10 + ' ' + 14]],
             },
             {
-                input: [[3, 3, 3, 3, 3]],
-                output: [[15 + ' ' + 15]],
+                input: [`[3, 3, 3, 3, 3]`],
+                output: [[12 + ' ' + 12]],
             },
         ],
         inputs: ['arr'],
+    },
+    {
+        problemName: 'Counting Valleys',
+        difficulty: 'Hard',
+
+        problemDescription: `
+                An avid hiker keeps meticulous records of their hikes. During the last hike that took exactly <span>steps</span> steps, for every step it was noted if it was an uphill, <span>U</span> , or a downhill, <span>D</span> step. Hikes always start and end at sea level, and each step up or down represents a <span>1</span> unit change in altitude.
+                <span>2</span>
+        \n
+        Given the sequence of up and down steps during a hike, find and print the number of valleys walked through.
+
+
+                 `,
+        inputFormat: `The first line contains an integer <span>steps</span>, the number of steps in the hike.
+        The second line contains a single string  <span>path</span>, of   <span>steps</span>characters that describe the path.`,
+        // constrains: [`0 < n < 100`],
+        return: `int: the number of valleys traversed`,
+        sampleCases: [
+            {
+                input: [8, `'UDDDUDUU'`],
+                output: [1],
+            },
+            {
+                input: [6, `'DUDUDU'`],
+                output: [3],
+            },
+        ],
+        inputs: ['steps', 'path'],
     },
 ]

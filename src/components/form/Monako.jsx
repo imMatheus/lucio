@@ -160,7 +160,9 @@ body {
             const args = currentCase.input
             const expected = currentCase.output
 
-            console.log(args + ' sshej')
+            console.log(`
+            console.log(${displayProblemName}(${[args]}))
+            `)
 
             const requestOptions = {
                 method: 'POST',
@@ -177,8 +179,8 @@ body {
                 .then((response) => response.json())
                 .then((data) =>
                     dummyArray.push({
-                        correctAnswer: data.output === expected,
-                        compileMessage: data.output === expected ? 'Right answer' : 'wrong answer',
+                        correctAnswer: data.output == expected,
+                        compileMessage: data.output == expected ? 'Right answer' : 'wrong answer',
                         inputs: args,
                         userOutput: [data.output],
                         expectedOutput: expected,

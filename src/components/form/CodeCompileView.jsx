@@ -86,7 +86,7 @@ const Subpart = ({ header, content, complileMsg }) => {
             <h4>{header}</h4>
             <div className='output'>
                 {/* 
-                checking i fwe have content so we render it else it should be the 
+                checking if we have content so we render it else it should be the 
                 compile msg so we render that
                 */}
                 {content ? (
