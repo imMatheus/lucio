@@ -38,7 +38,6 @@ const Question = ({ qref, problem }) => {
                     <div className='content-subpart'>
                         <>
                             <div className='bold'>Problem descripsion</div>
-                            {console.log(description)}
                             <p>{parse(description)}</p>
                         </>
                     </div>
@@ -49,15 +48,6 @@ const Question = ({ qref, problem }) => {
                             <div className='bold'>Input format</div>
                             <p>{parse(inputFormat)}</p>
                         </>
-                        {/* <div className='bold'>Input format</div>
-                    <p>
-                    The first line contains number of testcases <span className='variable'>T</span>. The
-                    <span className='variable'>2*T</span>subsequent lines each describe a test case over
-                    <span className='variable'>2</span>lines: The first contains <span className='variable'>3</span>
-                    space-separated integers, <span className='variable'>N</span> , <span className='variable'>A</span>,
-                    and <span className='variable'>B</span>, respectively. The second contains{' '}
-                    <span className='variable'>S</span> (the string Greg wishes to build).
-                </p> */}
                     </div>
                 )}
 
@@ -68,7 +58,7 @@ const Question = ({ qref, problem }) => {
                             <div>
                                 {constrains.map((constrain) => (
                                     <p key={uuidv4()} className='bulletpoint'>
-                                        <p>{parse(constrain)}</p>
+                                        {parse(constrain)}
                                     </p>
                                 ))}
                             </div>
@@ -104,15 +94,23 @@ const Question = ({ qref, problem }) => {
                                 )}
                                 {testCase.explanation && (
                                     <div className='content-subpart'>
-                                        <div className='bold'>Explanations</div>
-                                        <p>{parse(testCase.explanation.text.toString())}</p>
-                                        <div className='inputs'>
-                                            {testCase.explanation.explanationOutput?.map((output) => (
-                                                <div className='short-line-height' key={uuidv4()}>
-                                                    {parse(output.toString())}
-                                                </div>
-                                            ))}
-                                        </div>
+                                        {testCase.explanation.text && (
+                                            <>
+                                                <div className='bold'>Explanation</div>
+
+                                                <p>{parse(testCase.explanation.text.toString())}</p>
+
+                                                {testCase.explanation.explanationOutput && (
+                                                    <div className='inputs'>
+                                                        {testCase.explanation.explanationOutput.map((output) => (
+                                                            <div className='short-line-height' key={uuidv4()}>
+                                                                {parse(output.toString())}
+                                                            </div>
+                                                        ))}
+                                                    </div>
+                                                )}
+                                            </>
+                                        )}
                                     </div>
                                 )}
                             </>
@@ -132,20 +130,6 @@ const Question = ({ qref, problem }) => {
                         //     </div>
                         // )
                     )}
-
-                {/* <div className='content-subpart'>
-                    <div className='bold'>Sample inputs</div>
-                    <div className='inputs'>
-                        <div>9</div>
-                        <div>LucioCode</div>
-                    </div>
-                </div>
-                <div className='content-subpart'>
-                    <div className='bold'>Sample output</div>
-                    <div className='inputs'>
-                        <div>3</div>
-                    </div>
-                </div> */}
             </div>
         </div>
     )

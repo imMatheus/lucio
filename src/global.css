@@ -185,24 +185,27 @@ body .App .homepage {
   font-family: var(--font-family);
 }
 body .App .homepage .herobanner {
-  font-size: 4.3rem;
-  font-weight: 900;
+  height: 450px;
   display: grid;
   place-items: center;
-  height: 450px;
+}
+body .App .homepage .herobanner h1 {
+  font-weight: 900;
+  font-size: 4.7rem;
   color: var(--text-color);
   color: transparent;
   -webkit-font-smoothing: antialiased;
+  padding: 0px;
   -webkit-text-stroke: 1px var(--color-success);
-  text-shadow: 0px 0px 0px #0905e0, 1px -1px 0px #0b05de, 2px -2px 0px #0c05dc, 3px -3px 0px #0e05da, 4px -4px 0px #0f06d8, 5px -5px 0px #1106d6, 6px -6px 0px #1206d4, 7px -7px 0px #1406d3, 8px -8px 0px #1506d1, 9px -9px 0px #1706cf, 10px -10px 0px #1806cd, 11px -11px 0px #1a07cb, 12px -12px 0px #1b07c9, 13px -13px 0px #1d07c7, 14px -14px 0px #1e07c5, 15px -15px 0px #2007c3, 16px -16px 0px #2107c1, 17px -17px 0px #2307bf, 18px -18px 0px #2408bd, 19px -19px 0px #2608bc, 20px -20px 0px #2708ba, 21px -21px 0px #2908b8, 22px -22px 0px #2a08b6, 23px -23px 0px #2c08b4, 24px -24px 0px #2d08b2, 25px -25px 0px #2f09b0, 26px -26px 0px #3109ae, 27px -27px 0px #3209ac, 28px -28px 0px #3409aa, 29px -29px 0px #3509a8, 30px -30px 0px #3709a6, 31px -31px 0px #3809a4, 32px -32px 0px #3a09a3, 33px -33px 0px #3b0aa1, 34px -34px 0px #3d0a9f, 35px -35px 0px #3e0a9d, 36px -36px 0px #400a9b, 37px -37px 0px #410a99, 38px -38px 0px #430a97, 39px -39px 0px #440a95, 40px -40px 0px #460b93, 41px -41px 0px #470b91, 42px -42px 0px #490b8f, 43px -43px 0px #4a0b8d, 44px -44px 0px #4c0b8c, 45px -45px 0px #4d0b8a, 46px -46px 0px #4f0b88, 47px -47px 0px #500c86, 48px -48px 0px #520c84, 49px -49px 0px #530c82, 50px -50px 0px #550c80;
+  text-shadow: 0px 0px 0px #04247a, 1px -1px 0px #062878, 2px -2px 0px #092b75, 3px -3px 0px #0b2f73, 4px -4px 0px #0e3271, 5px -5px 0px #10366e, 6px -6px 0px #12396c, 7px -7px 0px #153d69, 8px -8px 0px #174067, 9px -9px 0px #194465, 10px -10px 0px #1c4862, 11px -11px 0px #1e4b60, 12px -12px 0px #214f5e, 13px -13px 0px #23525b, 14px -14px 0px #255659, 15px -15px 0px #285957, 16px -16px 0px #2a5d54, 17px -17px 0px #2c6152, 18px -18px 0px #2f6450, 19px -19px 0px #31684d, 20px -20px 0px #346b4b, 21px -21px 0px #366f48, 22px -22px 0px #387246, 23px -23px 0px #3b7644, 24px -24px 0px #3d7941, 25px -25px 0px #407d3f, 26px -26px 0px #42813d, 27px -27px 0px #44843a, 28px -28px 0px #478838, 29px -29px 0px #498b36, 30px -30px 0px #4b8f33, 31px -31px 0px #4e9231, 32px -32px 0px #50962e, 33px -33px 0px #53992c, 34px -34px 0px #559d2a, 35px -35px 0px #57a127, 36px -36px 0px #5aa425, 37px -37px 0px #5ca823, 38px -38px 0px #5eab20, 39px -39px 0px #61af1e, 40px -40px 0px #63b21c, 41px -41px 0px #66b619, 42px -42px 0px #68ba17, 43px -43px 0px #6abd15, 44px -44px 0px #6dc112, 45px -45px 0px #6fc410, 46px -46px 0px #71c80d, 47px -47px 0px #74cb0b, 48px -48px 0px #76cf09, 49px -49px 0px #79d206, 50px -50px 0px #7bd604;
   animation: text-shadow-ani 2000ms 1;
 }
 @keyframes text-shadow-ani {
   0% {
-    text-shadow: 0 0 0px #0b05de, 0 0 0px #0c05dc, 0 0 0px #0e05da, 0 0 0px #0f06d8, 0 0 0px #1106d6, 0 0 0px #1206d4, 0 0 0px #1406d3, 0 0 0px #1506d1, 0 0 0px #1706cf, 0 0 0px #1806cd, 0 0 0px #1a07cb, 0 0 0px #1b07c9, 0 0 0px #1d07c7, 0 0 0px #1e07c5, 0 0 0px #2007c3, 0 0 0px #2107c1, 0 0 0px #2307bf, 0 0 0px #2408bd, 0 0 0px #2608bc, 0 0 0px #2708ba, 0 0 0px #2908b8, 0 0 0px #2a08b6, 0 0 0px #2c08b4, 0 0 0px #2d08b2, 0 0 0px #2f09b0, 0 0 0px #3109ae, 0 0 0px #3209ac, 0 0 0px #3409aa, 0 0 0px #3509a8, 0 0 0px #3709a6, 0 0 0px #3809a4, 0 0 0px #3a09a3, 0 0 0px #3b0aa1, 0 0 0px #3d0a9f, 0 0 0px #3e0a9d, 0 0 0px #400a9b, 0 0 0px #410a99, 0 0 0px #430a97, 0 0 0px #440a95, 0 0 0px #460b93, 0 0 0px #470b91, 0 0 0px #490b8f, 0 0 0px #4a0b8d, 0 0 0px #4c0b8c, 0 0 0px #4d0b8a, 0 0 0px #4f0b88, 0 0 0px #500c86, 0 0 0px #520c84, 0 0 0px #530c82, 0 0 0px #550c80;
+    text-shadow: 0 0 0px #062878, 0 0 0px #092b75, 0 0 0px #0b2f73, 0 0 0px #0e3271, 0 0 0px #10366e, 0 0 0px #12396c, 0 0 0px #153d69, 0 0 0px #174067, 0 0 0px #194465, 0 0 0px #1c4862, 0 0 0px #1e4b60, 0 0 0px #214f5e, 0 0 0px #23525b, 0 0 0px #255659, 0 0 0px #285957, 0 0 0px #2a5d54, 0 0 0px #2c6152, 0 0 0px #2f6450, 0 0 0px #31684d, 0 0 0px #346b4b, 0 0 0px #366f48, 0 0 0px #387246, 0 0 0px #3b7644, 0 0 0px #3d7941, 0 0 0px #407d3f, 0 0 0px #42813d, 0 0 0px #44843a, 0 0 0px #478838, 0 0 0px #498b36, 0 0 0px #4b8f33, 0 0 0px #4e9231, 0 0 0px #50962e, 0 0 0px #53992c, 0 0 0px #559d2a, 0 0 0px #57a127, 0 0 0px #5aa425, 0 0 0px #5ca823, 0 0 0px #5eab20, 0 0 0px #61af1e, 0 0 0px #63b21c, 0 0 0px #66b619, 0 0 0px #68ba17, 0 0 0px #6abd15, 0 0 0px #6dc112, 0 0 0px #6fc410, 0 0 0px #71c80d, 0 0 0px #74cb0b, 0 0 0px #76cf09, 0 0 0px #79d206, 0 0 0px #7bd604;
   }
   100% {
-    text-shadow: 1px -1px 0px #0b05de, 2px -2px 0px #0c05dc, 3px -3px 0px #0e05da, 4px -4px 0px #0f06d8, 5px -5px 0px #1106d6, 6px -6px 0px #1206d4, 7px -7px 0px #1406d3, 8px -8px 0px #1506d1, 9px -9px 0px #1706cf, 10px -10px 0px #1806cd, 11px -11px 0px #1a07cb, 12px -12px 0px #1b07c9, 13px -13px 0px #1d07c7, 14px -14px 0px #1e07c5, 15px -15px 0px #2007c3, 16px -16px 0px #2107c1, 17px -17px 0px #2307bf, 18px -18px 0px #2408bd, 19px -19px 0px #2608bc, 20px -20px 0px #2708ba, 21px -21px 0px #2908b8, 22px -22px 0px #2a08b6, 23px -23px 0px #2c08b4, 24px -24px 0px #2d08b2, 25px -25px 0px #2f09b0, 26px -26px 0px #3109ae, 27px -27px 0px #3209ac, 28px -28px 0px #3409aa, 29px -29px 0px #3509a8, 30px -30px 0px #3709a6, 31px -31px 0px #3809a4, 32px -32px 0px #3a09a3, 33px -33px 0px #3b0aa1, 34px -34px 0px #3d0a9f, 35px -35px 0px #3e0a9d, 36px -36px 0px #400a9b, 37px -37px 0px #410a99, 38px -38px 0px #430a97, 39px -39px 0px #440a95, 40px -40px 0px #460b93, 41px -41px 0px #470b91, 42px -42px 0px #490b8f, 43px -43px 0px #4a0b8d, 44px -44px 0px #4c0b8c, 45px -45px 0px #4d0b8a, 46px -46px 0px #4f0b88, 47px -47px 0px #500c86, 48px -48px 0px #520c84, 49px -49px 0px #530c82, 50px -50px 0px #550c80;
+    text-shadow: 1px -1px 0px #062878, 2px -2px 0px #092b75, 3px -3px 0px #0b2f73, 4px -4px 0px #0e3271, 5px -5px 0px #10366e, 6px -6px 0px #12396c, 7px -7px 0px #153d69, 8px -8px 0px #174067, 9px -9px 0px #194465, 10px -10px 0px #1c4862, 11px -11px 0px #1e4b60, 12px -12px 0px #214f5e, 13px -13px 0px #23525b, 14px -14px 0px #255659, 15px -15px 0px #285957, 16px -16px 0px #2a5d54, 17px -17px 0px #2c6152, 18px -18px 0px #2f6450, 19px -19px 0px #31684d, 20px -20px 0px #346b4b, 21px -21px 0px #366f48, 22px -22px 0px #387246, 23px -23px 0px #3b7644, 24px -24px 0px #3d7941, 25px -25px 0px #407d3f, 26px -26px 0px #42813d, 27px -27px 0px #44843a, 28px -28px 0px #478838, 29px -29px 0px #498b36, 30px -30px 0px #4b8f33, 31px -31px 0px #4e9231, 32px -32px 0px #50962e, 33px -33px 0px #53992c, 34px -34px 0px #559d2a, 35px -35px 0px #57a127, 36px -36px 0px #5aa425, 37px -37px 0px #5ca823, 38px -38px 0px #5eab20, 39px -39px 0px #61af1e, 40px -40px 0px #63b21c, 41px -41px 0px #66b619, 42px -42px 0px #68ba17, 43px -43px 0px #6abd15, 44px -44px 0px #6dc112, 45px -45px 0px #6fc410, 46px -46px 0px #71c80d, 47px -47px 0px #74cb0b, 48px -48px 0px #76cf09, 49px -49px 0px #79d206, 50px -50px 0px #7bd604;
   }
 }
 body .App .form {
@@ -390,8 +393,8 @@ body .App .form .question {
   overflow-y: scroll;
   height: 100%;
   width: 510px;
-  max-width: 70vw;
-  min-width: 20vw;
+  max-width: 55vw;
+  min-width: 22vw;
   background-color: var(--bg);
   font-family: var(--font-family);
   color: var(--text-color);
@@ -399,6 +402,7 @@ body .App .form .question {
 }
 body .App .form .question .content {
   padding-top: 10px;
+  max-width: 1000px;
 }
 body .App .form .question .content .content-subpart {
   margin: 5px 0 13px 0;
@@ -425,18 +429,27 @@ body .App .form .question .content .content-subpart p span.varieble {
   font-size: var(--variable-fontsize);
   font-family: var(--varible-fontfamily);
 }
-body .App .form .question .content .content-subpart p.bulletpoint {
-  display: flex;
-  align-items: center;
+body .App .form .question .content .content-subpart p.bulletpoint, body .App .form .question .content .content-subpart p .bulletpoint {
+  padding: 4px 0;
 }
-body .App .form .question .content .content-subpart p.bulletpoint::before {
+body .App .form .question .content .content-subpart p.bulletpoint::before, body .App .form .question .content .content-subpart p .bulletpoint::before {
   content: "";
-  display: block;
-  margin-right: 7px;
-  width: 6px;
-  height: 6px;
-  background: var(--bold-color);
+  display: inline-block;
+  height: 8px;
+  padding-inline: 4px;
   border-radius: 50%;
+  margin-right: 8px;
+  margin-top: 8px;
+  background: var(--bold-color);
+}
+body .App .form .question .content .content-subpart p.bulletpoint .numberlist, body .App .form .question .content .content-subpart p .bulletpoint .numberlist {
+  padding: 5px 0 5px 35px;
+}
+body .App .form .question .content .content-subpart .numberlist {
+  list-style: decimal;
+}
+body .App .form .question .content .content-subpart .numberlist li::before {
+  content: none;
 }
 body .App .form .question .content .content-subpart .inputs {
   padding: 17px;
@@ -777,7 +790,7 @@ body .App .page404 {
   font-size: 5rem;
   font-family: var(--font-family);
   background: var(--bg);
-  text-shadow: 0px 0px 0px #0905e0, 3px -2px 0px #1806cd, 6px -4px 0px #2708ba, 9px -6px 0px #3709a6, 12px -8px 0px #460b93, 15px -10px 0px #550c80;
+  text-shadow: 0px 0px 0px #0905e0, 1px 1px 0px #1c07c8, 2px 2px 0px #2f09b0, 3px 3px 0px #420a98, 4px 4px 0px #550c80, 0px 0px 0px #0905e0, -1px -1px 0px #1c07c8, -2px -2px 0px #2f09b0, -3px -3px 0px #420a98, -4px -4px 0px #550c80;
 }
 body .comp-nav {
   display: grid;

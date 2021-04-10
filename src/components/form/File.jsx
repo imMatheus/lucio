@@ -20,6 +20,9 @@ const File = ({ file, fileName, setFileName }) => {
     } else if (prefix[0] === 'html') {
         Icon = HtmlSvg
         IconColor = '#c04425'
+    } else {
+        Icon = HtmlSvg
+        IconColor = '#c04425'
     }
 
     return (

@@ -3,6 +3,8 @@ import React, { useEffect, useState, useRef } from 'react'
 import Editor, { useMonaco } from '@monaco-editor/react'
 import File from './File'
 import CodeCompileView from './CodeCompileView'
+import generateJavascript from '../../functions/generateJavascript'
+import generatePython from '../../functions/generatePython'
 // https://www.npmjs.com/package/@monaco-editor/react
 const Monako = ({ mref, setCurrentCode, currentCode, problem }) => {
     const monaco = useMonaco()
@@ -19,39 +21,12 @@ const Monako = ({ mref, setCurrentCode, currentCode, problem }) => {
         'script.js': {
             name: 'script.js',
             language: 'javascript',
-            value: `
-//complete the ${displayProblemName} function below
-const ${displayProblemName} = (${problemInputs})=>{
-    return 
-}
-            `,
+            value: generateJavascript(displayProblemName, problemInputs),
         },
-        'style.css': {
-            name: 'style.css',
-            language: 'css',
-            value: `
-html {
-    background-color: #e2e2e2;
-    margin: 0;
-    padding: 0;
-}
-            
-body {
-    background-color: #fff;
-    border-top: solid 10px #000;
-    color: #333;
-    font-size: .85em;
-    font-family: "Segoe UI","HelveticaNeue-Light", sans-serif;
-    margin: 0;
-    padding: 0;
-}`,
-        },
-        'index.html': {
-            name: 'index.html',
-            language: 'html',
-            value: `
-<h1>Hellllooo</h1>
-            `,
+        'scri.py': {
+            name: 'script.py',
+            language: 'python',
+            value: generatePython(displayProblemName, problemInputs),
         },
     }
 
@@ -59,6 +34,7 @@ body {
     const [testCases, setTestCases] = useState([])
     const [fileName, setFileName] = useState('script.js')
     const file = files[fileName]
+    console.log(file?.language)
 
     useEffect(() => {
         if (monaco) {
@@ -140,13 +116,21 @@ body {
         }
     }, [monaco])
 
+    console.log(currentCode)
+
     const handleEditorDidMount = (editor) => {
         editorRef.current = editor
         setCurrentCode(editorRef?.current?.getValue())
     }
 
+    // useEffect(() => {
+    //     setCurrentCode(editorRef?.current?.getValue())
+    // }, [editorRef.current])
+
     const runCodeHandler = async () => {
         if (fetchingData) return
+        setCurrentCode(editorRef?.current?.getValue())
+        console.log(currentCode)
         // a sleep function that blocks code from running for 'ms' millisecs
         function sleep(ms) {
             return new Promise((resolve) => setTimeout(resolve, ms))
@@ -168,8 +152,8 @@ body {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    language: 'js',
-                    source: `${currentCode} \n \t console.log(${displayProblemName}(${[args]}))`,
+                    language: file.language,
+                    source: `print('hej') \n ${currentCode} `,
                     stdin: '',
                     args: [],
                 }),
@@ -201,8 +185,10 @@ body {
             <div className='editor' ref={mref}>
                 <div className='files'>
                     <File file='script.js' fileName={fileName} setFileName={setFileName} />
-                    <File file='style.css' fileName={fileName} setFileName={setFileName} />
-                    <File file='index.html' fileName={fileName} setFileName={setFileName} />
+                    <File file='scri.py' fileName={fileName} setFileName={setFileName} />
+
+                    {/* <File file='style.css' fileName={fileName} setFileName={setFileName} /> */}
+                    {/* <File file='index.html' fileName={fileName} setFileName={setFileName} /> */}
                 </div>
 
                 <Editor
@@ -217,7 +203,7 @@ body {
                         minimap: {
                             enabled: false,
                         },
-                        fontSize: 15,
+                        fontSize: 16,
                         // cursorStyle: 'block',
                         // wordWrap: 'on',
                         wordWrap: 'wordWrapColumn',

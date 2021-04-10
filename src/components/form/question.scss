@@ -3,8 +3,8 @@
     height: 100%;
     width: 510px;
     // max and min is for the scroll bar so it does exeed these values
-    max-width: 70vw;
-    min-width: 20vw;
+    max-width: 55vw;
+    min-width: 22vw;
     background-color: var(--bg);
     font-family: var(--font-family);
     color: var(--text-color);
@@ -12,6 +12,7 @@
 
     & .content {
         padding-top: 10px;
+        max-width: 1000px;
 
         & .content-subpart {
             margin: 5px 0 13px 0;
@@ -37,19 +38,37 @@
                     font-size: var(--variable-fontsize);
                     font-family: var(--varible-fontfamily);
                 }
-                &.bulletpoint {
-                    display: flex;
-                    align-items: center;
+                &.bulletpoint,
+                & .bulletpoint {
+                    padding: 4px 0;
+
+                    // margin: 10px 0;
+                    // display: grid;
+                    // grid-template-columns: auto 1fr;
 
                     &::before {
                         //the little cirle on the left of the bullet point
                         content: '';
-                        display: block;
-                        margin-right: 7px;
-                        width: 6px;
-                        height: 6px;
-                        background: var(--bold-color);
+                        display: inline-block;
+                        height: 8px;
+                        padding-inline: 4px;
                         border-radius: 50%;
+                        margin-right: 8px;
+                        margin-top: 8px;
+                        background: var(--bold-color);
+                    }
+
+                    & .numberlist {
+                        padding: 5px 0 5px 35px;
+                    }
+                }
+            }
+
+            & .numberlist {
+                list-style: decimal;
+                & li {
+                    &::before {
+                        content: none;
                     }
                 }
             }
