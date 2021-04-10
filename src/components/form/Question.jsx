@@ -3,7 +3,7 @@ import ThumbUpSharpIcon from '@material-ui/icons/ThumbUpSharp'
 import FavoriteBorderSharpIcon from '@material-ui/icons/FavoriteBorderSharp'
 import ShareSharpIcon from '@material-ui/icons/ShareSharp'
 import { v4 as uuidv4 } from 'uuid'
-import ReactHtmlParser from 'react-html-parser'
+import parse, { domToReact } from 'html-react-parser'
 
 const Question = ({ qref, problem }) => {
     let description = problem.problemDescription
@@ -39,7 +39,7 @@ const Question = ({ qref, problem }) => {
                         <>
                             <div className='bold'>Problem descripsion</div>
                             {console.log(description)}
-                            <p>{ReactHtmlParser(description)}</p>
+                            <p>{parse(description)}</p>
                         </>
                     </div>
                 )}
@@ -47,10 +47,7 @@ const Question = ({ qref, problem }) => {
                     <div className='content-subpart'>
                         <>
                             <div className='bold'>Input format</div>
-                            <p>
-                                {' '}
-                                <p>{ReactHtmlParser(inputFormat)}</p>
-                            </p>
+                            <p>{parse(inputFormat)}</p>
                         </>
                         {/* <div className='bold'>Input format</div>
                     <p>
@@ -71,7 +68,7 @@ const Question = ({ qref, problem }) => {
                             <div>
                                 {constrains.map((constrain) => (
                                     <p key={uuidv4()} className='bulletpoint'>
-                                        <p>{ReactHtmlParser(constrain)}</p>
+                                        <p>{parse(constrain)}</p>
                                     </p>
                                 ))}
                             </div>
@@ -90,7 +87,7 @@ const Question = ({ qref, problem }) => {
                                         <div className='bold'>Sample inputs</div>
                                         <div className='inputs'>
                                             {testCase.input.map((input) => (
-                                                <div key={uuidv4()}>{input.toString()}</div>
+                                                <div key={uuidv4()}>{parse(input.toString())}</div>
                                             ))}
                                         </div>
                                     </div>
@@ -100,7 +97,7 @@ const Question = ({ qref, problem }) => {
                                         <div className='bold'>Sample output</div>
                                         <div className='inputs'>
                                             {testCase.output.map((output) => (
-                                                <div key={uuidv4()}>{output.toString()}</div>
+                                                <div key={uuidv4()}>{parse(output.toString())}</div>
                                             ))}
                                         </div>
                                     </div>
@@ -108,7 +105,14 @@ const Question = ({ qref, problem }) => {
                                 {testCase.explanation && (
                                     <div className='content-subpart'>
                                         <div className='bold'>Explanations</div>
-                                        <p>{testCase.explanation.toString()}</p>
+                                        <p>{parse(testCase.explanation.text.toString())}</p>
+                                        <div className='inputs'>
+                                            {testCase.explanation.explanationOutput?.map((output) => (
+                                                <div className='short-line-height' key={uuidv4()}>
+                                                    {parse(output.toString())}
+                                                </div>
+                                            ))}
+                                        </div>
                                     </div>
                                 )}
                             </>

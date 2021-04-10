@@ -416,7 +416,7 @@ body .App .form .question .content .content-subpart p {
   font-weight: 300;
   line-height: 1.75;
 }
-body .App .form .question .content .content-subpart p span {
+body .App .form .question .content .content-subpart p span.varieble {
   font-style: italic;
   margin: 0 2px;
   word-break: break-all;
@@ -430,7 +430,7 @@ body .App .form .question .content .content-subpart p.bulletpoint {
   align-items: center;
 }
 body .App .form .question .content .content-subpart p.bulletpoint::before {
-  content: "hee";
+  content: "";
   display: block;
   margin-right: 7px;
   width: 6px;
@@ -449,6 +449,10 @@ body .App .form .question .content .content-subpart .inputs {
 body .App .form .question .content .content-subpart .inputs div {
   margin: 5px 0;
   word-wrap: break-word;
+  white-space: pre;
+}
+body .App .form .question .content .content-subpart .inputs div.short-line-height {
+  line-height: 0.8;
 }
 body .App .form .question .header {
   padding: 7px 0;

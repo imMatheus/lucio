@@ -28,7 +28,7 @@
                 font-weight: 300;
                 line-height: 1.75;
 
-                & span {
+                & span.varieble {
                     font-style: italic;
                     margin: 0 2px;
                     word-break: break-all;
@@ -40,8 +40,10 @@
                 &.bulletpoint {
                     display: flex;
                     align-items: center;
+
                     &::before {
-                        content: 'hee';
+                        //the little cirle on the left of the bullet point
+                        content: '';
                         display: block;
                         margin-right: 7px;
                         width: 6px;
@@ -63,6 +65,11 @@
                 & div {
                     margin: 5px 0;
                     word-wrap: break-word;
+                    white-space: pre;
+
+                    &.short-line-height {
+                        line-height: 0.8;
+                    }
                 }
             }
         }

@@ -62,21 +62,29 @@ export const problems = [
         difficulty: 'Hard',
 
         problemDescription: `
-                An avid hiker keeps meticulous records of their hikes. During the last hike that took exactly <span>steps</span> steps, for every step it was noted if it was an uphill, <span>U</span> , or a downhill, <span>D</span> step. Hikes always start and end at sea level, and each step up or down represents a <span>1</span> unit change in altitude.
-                <span>2</span>
+                An avid hiker keeps meticulous records of their hikes. During the last hike that took exactly <span class="varieble">steps</span> steps, for every step it was noted if it was an uphill, <span class="varieble">U</span> , or a downhill, <span class="varieble">D</span> step. Hikes always start and end at sea level, and each step up or down represents a <span class="varieble">1</span> unit change in altitude.
+              
         \n
         Given the sequence of up and down steps during a hike, find and print the number of valleys walked through.
 
 
                  `,
-        inputFormat: `The first line contains an integer <span>steps</span>, the number of steps in the hike.
-        The second line contains a single string  <span>path</span>, of   <span>steps</span>characters that describe the path.`,
+        constrains: [
+            ` <span class="varieble">2 < steps < 1000`,
+            `<span class="varieble">path[i] = "U"</span> or <span class="varieble">path[i] = "D"</span>`,
+        ],
+        inputFormat: `The first line contains an integer <span class="varieble">steps</span>, the number of steps in the hike.
+        The second line contains a single string  <span class="varieble">path</span>, of   <span class="varieble">steps</span>characters that describe the path.`,
         // constrains: [`0 < n < 100`],
         return: `int: the number of valleys traversed`,
         sampleCases: [
             {
                 input: [8, `'UDDDUDUU'`],
                 output: [1],
+                explanation: {
+                    text: `If we represent <span class="varieble">_</span> as sea level, a step up as <span class="varieble">/</span>, and a step down as <span class="varieble">&#92</span>, the hike can be drawn as:`,
+                    explanationOutput: [' _/&#92      _', '    &#92    /', '     &#92/&#92/'],
+                },
             },
             {
                 input: [6, `'DUDUDU'`],
