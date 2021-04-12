@@ -3,7 +3,7 @@ import ThumbUpSharpIcon from '@material-ui/icons/ThumbUpSharp'
 import FavoriteBorderSharpIcon from '@material-ui/icons/FavoriteBorderSharp'
 import ShareSharpIcon from '@material-ui/icons/ShareSharp'
 import { v4 as uuidv4 } from 'uuid'
-import parse, { domToReact } from 'html-react-parser'
+import parse from 'html-react-parser'
 
 const Question = ({ qref, problem }) => {
     let description = problem.problemDescription

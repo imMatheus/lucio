@@ -243,19 +243,23 @@ body .App .form .editorial .editor .files .file-btn {
   border-collapse: collapse;
   outline: none;
   font-size: 0.95rem;
-  color: white;
-  font-weight: 300;
+  color: var(--text-color);
+  font-weight: 400;
   font-family: var(--font-family);
   display: flex;
   justify-content: center;
   align-items: flex-end;
 }
 body .App .form .editorial .editor .files .file-btn .icon {
-  width: 21px;
-  height: 21px;
+  width: 18px;
+  height: 18px;
   background-size: cover;
-  margin-right: 4px;
+  margin-right: 7px;
   background-position: center;
+}
+body .App .form .editorial .editor .files .file-btn .icon svg {
+  width: 100%;
+  height: 100%;
 }
 body .App .form .editorial .editor .files .file-btn:disabled {
   background: orange;

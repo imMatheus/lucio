@@ -1,8 +1,7 @@
 import React from 'react'
-// import JsSvg from '../../icons/JsSvg.svg'
-import { ReactComponent as JsSvg } from '../../icons/jsSvg.svg'
-import { ReactComponent as HtmlSvg } from '../../icons/htmlSvg.svg'
-import { ReactComponent as CssSvg } from '../../icons/cssSvg.svg'
+
+import { ReactComponent as PythonSvg } from '../../icons/python-5.svg'
+import { ReactComponent as JavascriptSvg } from '../../icons/logo-javascript.svg'
 
 const File = ({ file, fileName, setFileName }) => {
     // finding the prefix of the file, so .js or .html.
@@ -12,24 +11,20 @@ const File = ({ file, fileName, setFileName }) => {
     let Icon
     let IconColor
     if (prefix[0] === 'js') {
-        Icon = JsSvg
-        IconColor = '#ffff00'
+        Icon = JavascriptSvg
+    } else if (prefix[0] === 'py') {
+        Icon = PythonSvg
     } else if (prefix[0] === 'css') {
-        Icon = CssSvg
-        IconColor = '#2382ff'
     } else if (prefix[0] === 'html') {
-        Icon = HtmlSvg
-        IconColor = '#c04425'
-    } else {
-        Icon = HtmlSvg
-        IconColor = '#c04425'
     }
 
     return (
         <button className='file-btn' disabled={fileName === file} onClick={() => setFileName(file)}>
-            <div className='icon'>
-                <Icon style={{ fill: IconColor }} />
-            </div>
+            {Icon && (
+                <div className='icon'>
+                    <Icon />
+                </div>
+            )}
             {file}
         </button>
     )
