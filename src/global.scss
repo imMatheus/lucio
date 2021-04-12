@@ -45,6 +45,7 @@ body {
         --variable-fontsize: 0.91rem;
         --inputs-fontsize: 0.85rem;
         &.dark {
+            //dark theme colors
             --main-bg: #282c34;
             --resize-bg: rgb(22, 21, 22);
             --dots-color: rgb(255, 255, 255);
@@ -59,6 +60,7 @@ body {
         }
 
         &.light {
+            // light theme colors
             --main-bg: #e7f1f1;
             --resize-bg: #a7a8a8;
             --dots-color: #525252;

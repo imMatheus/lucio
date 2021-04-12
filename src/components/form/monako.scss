@@ -18,8 +18,6 @@
             background: var(--files-bg);
 
             .file-btn {
-                // #ABB2BF
-                // background	#282C34
                 cursor: pointer;
                 padding: 9px 15px;
                 background: var(--files-bg);
@@ -29,18 +27,23 @@
                 border-collapse: collapse;
                 outline: none;
                 font-size: 0.95rem;
-                color: white;
-                font-weight: 300;
+                color: var(--text-color);
+                font-weight: 400;
                 font-family: var(--font-family);
                 display: flex;
                 justify-content: center;
                 align-items: flex-end;
                 .icon {
-                    width: 21px;
-                    height: 21px;
+                    width: 18px;
+                    height: 18px;
                     background-size: cover;
-                    margin-right: 4px;
+                    margin-right: 7px;
                     background-position: center;
+
+                    & svg {
+                        width: 100%;
+                        height: 100%;
+                    }
                 }
                 &:disabled {
                     background: orange;

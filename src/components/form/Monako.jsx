@@ -3,6 +3,8 @@ import React, { useEffect, useState, useRef } from 'react'
 import Editor, { useMonaco } from '@monaco-editor/react'
 import File from './File'
 import CodeCompileView from './CodeCompileView'
+import { generateJavascript, javascriptPrint } from '../../functions/generateJavascript'
+import { generatePython, pythonPrint } from '../../functions/generatePython'
 // https://www.npmjs.com/package/@monaco-editor/react
 const Monako = ({ mref, setCurrentCode, currentCode, problem }) => {
     const monaco = useMonaco()
@@ -15,50 +17,67 @@ const Monako = ({ mref, setCurrentCode, currentCode, problem }) => {
         .filter((word) => word !== '')
         .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
         .join('')
-    const files = {
+    const [files, setFiles] = useState({
         'script.js': {
             name: 'script.js',
             language: 'javascript',
-            value: `
-//complete the ${displayProblemName} function below
-const ${displayProblemName} = (${problemInputs})=>{
-    return 
-}
-            `,
+            value: generateJavascript(displayProblemName, problemInputs),
         },
-        'style.css': {
-            name: 'style.css',
-            language: 'css',
-            value: `
-html {
-    background-color: #e2e2e2;
-    margin: 0;
-    padding: 0;
-}
-            
-body {
-    background-color: #fff;
-    border-top: solid 10px #000;
-    color: #333;
-    font-size: .85em;
-    font-family: "Segoe UI","HelveticaNeue-Light", sans-serif;
-    margin: 0;
-    padding: 0;
-}`,
+        'scri.py': {
+            name: 'script.py',
+            language: 'python',
+            value: generatePython(displayProblemName, problemInputs),
         },
-        'index.html': {
-            name: 'index.html',
-            language: 'html',
-            value: `
-<h1>Hellllooo</h1>
-            `,
-        },
-    }
+    })
 
+    useEffect(() => {
+        setFiles({
+            'script.js': {
+                name: 'script.js',
+                language: 'javascript',
+                value: generateJavascript(displayProblemName, problemInputs),
+            },
+            'scri.py': {
+                name: 'script.py',
+                language: 'python',
+                value: generatePython(displayProblemName, problemInputs),
+            },
+        })
+        console.log('nuuuuuuuuuuuuuuuuuuuuuuuuuuuu')
+    }, [])
+
+    const [defaultValue, setDefaultValue] = useState({
+        'script.js': {
+            name: 'script.js',
+            language: 'javascript',
+            value: generateJavascript(displayProblemName, problemInputs),
+        },
+        'scri.py': {
+            name: 'script.py',
+            language: 'python',
+            value: generatePython(displayProblemName, problemInputs),
+        },
+    })
     const sampleCases = problem.sampleCases
     const [testCases, setTestCases] = useState([])
     const [fileName, setFileName] = useState('script.js')
     const file = files[fileName]
+    useEffect(() => {
+        setCurrentCode(editorRef?.current?.getValue())
+        setFiles({
+            'script.js': {
+                name: 'script.js',
+                language: 'javascript',
+                value: generateJavascript(displayProblemName, problemInputs),
+            },
+            'scri.py': {
+                name: 'script.py',
+                language: 'python',
+                value: generatePython(displayProblemName, problemInputs),
+            },
+        })
+        console.log('testing testing testing')
+    }, [fileName, file])
 
     useEffect(() => {
         if (monaco) {
@@ -132,21 +151,35 @@ body {
             })
 
             monaco.editor.setTheme('myCustomTheme')
-            // import('monaco-themes/themes/Sunburst.json').then((data) => {
-            //     monaco.editor.defineTheme('Sunburst', data)
-            //     monaco.editor.setTheme('Sunburst')
-            //     console.log(data)
-            // })
         }
     }, [monaco])
 
     const handleEditorDidMount = (editor) => {
         editorRef.current = editor
         setCurrentCode(editorRef?.current?.getValue())
+        setDefaultValue({
+            'script.js': {
+                name: 'script.js',
+                language: 'javascript',
+                value: generateJavascript(displayProblemName, problemInputs),
+            },
+            'scri.py': {
+                name: 'script.py',
+                language: 'python',
+                value: generatePython(displayProblemName, problemInputs),
+            },
+        })
+        console.log('hahahahahhahahahahhahahaahhahahahahahhahahahahahahhahahahahhaha')
     }
 
     const runCodeHandler = async () => {
+        // returning early if we are fetching data
+        // otherwise the run button can be spammed cuasing errors
         if (fetchingData) return
+        // if dont have a file for what ever reason we don't whant to precced
+        if (!file) return
+        setCurrentCode(editorRef?.current?.getValue())
+        console.log(currentCode)
         // a sleep function that blocks code from running for 'ms' millisecs
         function sleep(ms) {
             return new Promise((resolve) => setTimeout(resolve, ms))
@@ -160,14 +193,20 @@ body {
             const args = currentCase.input
             const expected = currentCase.output
 
-            console.log(args + ' sshej')
-
+            console.log(`
+            console.log(${displayProblemName}(${[args]}))
+            `)
+            console.log(file.language)
             const requestOptions = {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    language: 'js',
-                    source: `${currentCode} \n \t console.log(${displayProblemName}(${[args]}))`,
+                    language: file.language,
+                    source: `${currentCode} ${
+                        file.language === 'javascript'
+                            ? javascriptPrint(displayProblemName, args)
+                            : pythonPrint(displayProblemName, args)
+                    }`,
                     stdin: '',
                     args: [],
                 }),
@@ -177,8 +216,8 @@ body {
                 .then((response) => response.json())
                 .then((data) =>
                     dummyArray.push({
-                        correctAnswer: data.output === expected,
-                        compileMessage: data.output === expected ? 'Right answer' : 'wrong answer',
+                        correctAnswer: data.output + '' === expected + '',
+                        compileMessage: data.output + '' === expected + '' ? 'Right answer' : 'wrong answer',
                         inputs: args,
                         userOutput: [data.output],
                         expectedOutput: expected,
@@ -199,13 +238,15 @@ body {
             <div className='editor' ref={mref}>
                 <div className='files'>
                     <File file='script.js' fileName={fileName} setFileName={setFileName} />
-                    <File file='style.css' fileName={fileName} setFileName={setFileName} />
-                    <File file='index.html' fileName={fileName} setFileName={setFileName} />
+                    <File file='scri.py' fileName={fileName} setFileName={setFileName} />
+
+                    {/* <File file='style.css' fileName={fileName} setFileName={setFileName} /> */}
+                    {/* <File file='index.html' fileName={fileName} setFileName={setFileName} /> */}
                 </div>
 
                 <Editor
                     onMount={handleEditorDidMount}
-                    theme='vs-dark'
+                    theme='myCustomTheme'
                     path={file.name}
                     defaultLanguage={file.language}
                     defaultValue={file.value}
@@ -215,7 +256,7 @@ body {
                         minimap: {
                             enabled: false,
                         },
-                        fontSize: 15,
+                        fontSize: 16,
                         // cursorStyle: 'block',
                         // wordWrap: 'on',
                         wordWrap: 'wordWrapColumn',

@@ -32,9 +32,7 @@ function App() {
                             </Route>
                         )
                     })}
-                    <Route exact path='/form'>
-                        <Form problem={problems[0]} />
-                    </Route>
+
                     <Route>
                         <Page404 />
                     </Route>

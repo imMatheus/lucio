@@ -5,51 +5,59 @@
 
     & .herobanner {
         $text-color: rgb(232, 235, 207);
-        $color-green: #550c80;
-        $color-blue: #0905e0;
+        // $color-green: #550c80;
+        // $color-blue: #0905e0;
+        $color-green: #7bd604;
+        $color-blue: #04247a;
         $shadow-number: 50;
         $he: #ff00ff;
-        font-size: 4.3rem;
-        font-weight: 900;
+        height: 450px;
         display: grid;
         place-items: center;
-        height: 450px;
-        color: var(--text-color);
-        color: transparent;
-        -webkit-font-smoothing: antialiased;
 
-        -webkit-text-stroke: 1px var(--color-success);
-        $offset-x: 1px;
-        $offset-y: -1px;
-        $value: ();
-        @for $i from 0 through $shadow-number {
-            $theShadow: $offset-x * $i $offset-y * $i 0px mix($color-green, $color-blue, 100% / $shadow-number * ($i));
-            $value: append($value, $theShadow, comma);
-        }
-        text-shadow: $value;
-        animation: text-shadow-ani 2000ms 1;
+        & h1 {
+            font-weight: 900;
+            font-size: 4.7rem;
+            color: var(--text-color);
+            color: transparent;
+            -webkit-font-smoothing: antialiased;
 
-        @keyframes text-shadow-ani {
-            0% {
-                $value: ();
-                @for $i from 1 through $shadow-number {
-                    $theShadow: 0 0 0px mix($color-green, $color-blue, 100% / $shadow-number * ($i));
-                    $value: append($value, $theShadow, comma);
-                }
-                text-shadow: $value;
+            // background: linear-gradient($color-blue, $color-green);
+            padding: 0px;
+
+            -webkit-text-stroke: 1px var(--color-success);
+            $offset-x: 1px;
+            $offset-y: -1px;
+            $value: ();
+            @for $i from 0 through ($shadow-number) {
+                $theShadow: $offset-x * $i $offset-y * $i 0px mix($color-green, $color-blue, 100% / $shadow-number * ($i));
+                $value: append($value, $theShadow, comma);
             }
-            100% {
-                $value: ();
-                @for $i from 1 through $shadow-number {
-                    $theShadow: $offset-x *
-                        $i
-                        $offset-y *
-                        $i
-                        0px
-                        mix($color-green, $color-blue, 100% / $shadow-number * ($i));
-                    $value: append($value, $theShadow, comma);
+            text-shadow: $value;
+            animation: text-shadow-ani 2000ms 1;
+
+            @keyframes text-shadow-ani {
+                0% {
+                    $value: ();
+                    @for $i from 1 through $shadow-number {
+                        $theShadow: 0 0 0px mix($color-green, $color-blue, 100% / $shadow-number * ($i));
+                        $value: append($value, $theShadow, comma);
+                    }
+                    text-shadow: $value;
                 }
-                text-shadow: $value;
+                100% {
+                    $value: ();
+                    @for $i from 1 through $shadow-number {
+                        $theShadow: $offset-x *
+                            $i
+                            $offset-y *
+                            $i
+                            0px
+                            mix($color-green, $color-blue, 100% / $shadow-number * ($i));
+                        $value: append($value, $theShadow, comma);
+                    }
+                    text-shadow: $value;
+                }
             }
         }
     }

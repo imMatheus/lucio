@@ -3,6 +3,7 @@ import ThumbUpSharpIcon from '@material-ui/icons/ThumbUpSharp'
 import FavoriteBorderSharpIcon from '@material-ui/icons/FavoriteBorderSharp'
 import ShareSharpIcon from '@material-ui/icons/ShareSharp'
 import { v4 as uuidv4 } from 'uuid'
+import parse from 'html-react-parser'
 
 const Question = ({ qref, problem }) => {
     let description = problem.problemDescription
@@ -33,46 +34,37 @@ const Question = ({ qref, problem }) => {
                 </div>
             </div>
             <div className='content'>
-                <div className='content-subpart'>
-                    {description && (
+                {description && (
+                    <div className='content-subpart'>
                         <>
                             <div className='bold'>Problem descripsion</div>
-                            <p>{description}</p>
+                            <p>{parse(description)}</p>
                         </>
-                    )}
-                </div>
-                <div className='content-subpart'>
-                    {inputFormat && (
+                    </div>
+                )}
+                {inputFormat && (
+                    <div className='content-subpart'>
                         <>
                             <div className='bold'>Input format</div>
-                            <p>{inputFormat}</p>
+                            <p>{parse(inputFormat)}</p>
                         </>
-                    )}
-                    {/* <div className='bold'>Input format</div>
-                    <p>
-                        The first line contains number of testcases <span className='variable'>T</span>. The
-                        <span className='variable'>2*T</span>subsequent lines each describe a test case over
-                        <span className='variable'>2</span>lines: The first contains <span className='variable'>3</span>
-                        space-separated integers, <span className='variable'>N</span> , <span className='variable'>A</span>,
-                        and <span className='variable'>B</span>, respectively. The second contains{' '}
-                        <span className='variable'>S</span> (the string Greg wishes to build).
-                    </p> */}
-                </div>
+                    </div>
+                )}
 
-                <div className='content-subpart'>
-                    {constrains && (
+                {constrains && (
+                    <div className='content-subpart'>
                         <>
                             <div className='bold'>Constrains</div>
                             <div>
                                 {constrains.map((constrain) => (
                                     <p key={uuidv4()} className='bulletpoint'>
-                                        {constrain}
+                                        {parse(constrain)}
                                     </p>
                                 ))}
                             </div>
                         </>
-                    )}
-                </div>
+                    </div>
+                )}
 
                 {/* do we have testCase? */}
                 {testCases &&
@@ -85,7 +77,7 @@ const Question = ({ qref, problem }) => {
                                         <div className='bold'>Sample inputs</div>
                                         <div className='inputs'>
                                             {testCase.input.map((input) => (
-                                                <div key={uuidv4()}>{input.toString()}</div>
+                                                <div key={uuidv4()}>{parse(input.toString())}</div>
                                             ))}
                                         </div>
                                     </div>
@@ -95,15 +87,30 @@ const Question = ({ qref, problem }) => {
                                         <div className='bold'>Sample output</div>
                                         <div className='inputs'>
                                             {testCase.output.map((output) => (
-                                                <div key={uuidv4()}>{output.toString()}</div>
+                                                <div key={uuidv4()}>{parse(output.toString())}</div>
                                             ))}
                                         </div>
                                     </div>
                                 )}
                                 {testCase.explanation && (
                                     <div className='content-subpart'>
-                                        <div className='bold'>Explanations</div>
-                                        <p>{testCase.explanation.toString()}</p>
+                                        {testCase.explanation.text && (
+                                            <>
+                                                <div className='bold'>Explanation</div>
+
+                                                <p>{parse(testCase.explanation.text.toString())}</p>
+
+                                                {testCase.explanation.explanationOutput && (
+                                                    <div className='inputs'>
+                                                        {testCase.explanation.explanationOutput.map((output) => (
+                                                            <div className='short-line-height' key={uuidv4()}>
+                                                                {parse(output.toString())}
+                                                            </div>
+                                                        ))}
+                                                    </div>
+                                                )}
+                                            </>
+                                        )}
                                     </div>
                                 )}
                             </>
@@ -123,20 +130,6 @@ const Question = ({ qref, problem }) => {
                         //     </div>
                         // )
                     )}
-
-                {/* <div className='content-subpart'>
-                    <div className='bold'>Sample inputs</div>
-                    <div className='inputs'>
-                        <div>9</div>
-                        <div>LucioCode</div>
-                    </div>
-                </div>
-                <div className='content-subpart'>
-                    <div className='bold'>Sample output</div>
-                    <div className='inputs'>
-                        <div>3</div>
-                    </div>
-                </div> */}
             </div>
         </div>
     )
