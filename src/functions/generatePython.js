@@ -1,4 +1,4 @@
-function pythonPrint(name, args) {
+const pythonPrint = (name, args) => {
     if (!name) return
 
     return `\t print(${name}(${args}))`
@@ -17,10 +17,10 @@ import re
 import sys
     
 # Complete the ${name} function below.
-def ${name}(${args}):
-
+def ${name}(${args}): 
+\treturn\n
 if __name__ == '__main__': 
-    # Please only edit the ${name} function above 
+\t# Please only edit the ${name} function above 
 `
 
     return val

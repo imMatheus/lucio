@@ -1,4 +1,4 @@
-function javascriptPrint(name, args) {
+const javascriptPrint = (name, args) => {
     if (!name) return
 
     return `console.log(${name}(${args}))`

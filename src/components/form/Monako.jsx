@@ -34,7 +34,13 @@ const Monako = ({ mref, setCurrentCode, currentCode, problem }) => {
     const [testCases, setTestCases] = useState([])
     const [fileName, setFileName] = useState('script.js')
     const file = files[fileName]
+    const [printFunction, setPrintFunction] = useState(javascriptPrint)
+    console.log(printFunction)
     console.log(file?.language)
+    useEffect(() => {
+        setPrintFunction(fileName === 'javascript' ? javascriptPrint() : pythonPrint())
+        setCurrentCode(editorRef?.current?.getValue())
+    }, [fileName])
 
     useEffect(() => {
         if (monaco) {
@@ -116,19 +122,17 @@ const Monako = ({ mref, setCurrentCode, currentCode, problem }) => {
         }
     }, [monaco])
 
-    console.log(currentCode)
-
     const handleEditorDidMount = (editor) => {
         editorRef.current = editor
         setCurrentCode(editorRef?.current?.getValue())
     }
 
-    // useEffect(() => {
-    //     setCurrentCode(editorRef?.current?.getValue())
-    // }, [editorRef.current])
-
     const runCodeHandler = async () => {
+        // returning early if we are fetching data
+        // otherwise the run button can be spammed cuasing errors
         if (fetchingData) return
+        // if dont have a file for what ever reason we don't whant to precced
+        if (!file) return
         setCurrentCode(editorRef?.current?.getValue())
         console.log(currentCode)
         // a sleep function that blocks code from running for 'ms' millisecs
@@ -147,13 +151,17 @@ const Monako = ({ mref, setCurrentCode, currentCode, problem }) => {
             console.log(`
             console.log(${displayProblemName}(${[args]}))
             `)
-
+            console.log(file.language)
             const requestOptions = {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     language: file.language,
-                    source: `${currentCode} ${pythonPrint(displayProblemName, args)}`,
+                    source: `${currentCode} ${
+                        file.language === 'javascript'
+                            ? javascriptPrint(displayProblemName, args)
+                            : pythonPrint(displayProblemName, args)
+                    }`,
                     stdin: '',
                     args: [],
                 }),
