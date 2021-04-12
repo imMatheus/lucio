@@ -83,11 +83,12 @@
                 border-radius: 50%;
                 background: white;
                 transition: transform 400ms;
+                transform: translateX(100%);
             }
 
             &.light {
                 & .theme-btn {
-                    transform: translateX(100%);
+                    transform: translateX(0%);
                 }
             }
         }

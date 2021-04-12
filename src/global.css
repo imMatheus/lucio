@@ -777,9 +777,10 @@ body .App .navbar-right .dark-theme-toogler .theme-btn {
   border-radius: 50%;
   background: white;
   transition: transform 400ms;
+  transform: translateX(100%);
 }
 body .App .navbar-right .dark-theme-toogler.light .theme-btn {
-  transform: translateX(100%);
+  transform: translateX(0%);
 }
 body .App .navbar-right .account {
   width: 50px;

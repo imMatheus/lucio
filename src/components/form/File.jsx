@@ -9,7 +9,6 @@ const File = ({ file, fileName, setFileName }) => {
     let prefix = file.split('.')
     prefix.shift()
     let Icon
-    let IconColor
     if (prefix[0] === 'js') {
         Icon = JavascriptSvg
     } else if (prefix[0] === 'py') {

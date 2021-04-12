@@ -28,7 +28,6 @@ export const problems = [
             { input: [30, 2, 4], output: [240] },
             { input: [0, 0, 0], output: [0], explanation: { text: `0 * 0 * 0 = 0` } },
             { input: [3, 5, 4], output: [60] },
-            { input: [3, 2.5, 2], output: [15] },
         ],
         inputs: ['x', 'y', 'z'],
     },

@@ -17,7 +17,7 @@ const Monako = ({ mref, setCurrentCode, currentCode, problem }) => {
         .filter((word) => word !== '')
         .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
         .join('')
-    const files = {
+    const [files, setFiles] = useState({
         'script.js': {
             name: 'script.js',
             language: 'javascript',
@@ -28,19 +28,56 @@ const Monako = ({ mref, setCurrentCode, currentCode, problem }) => {
             language: 'python',
             value: generatePython(displayProblemName, problemInputs),
         },
-    }
+    })
 
+    useEffect(() => {
+        setFiles({
+            'script.js': {
+                name: 'script.js',
+                language: 'javascript',
+                value: generateJavascript(displayProblemName, problemInputs),
+            },
+            'scri.py': {
+                name: 'script.py',
+                language: 'python',
+                value: generatePython(displayProblemName, problemInputs),
+            },
+        })
+        console.log('nuuuuuuuuuuuuuuuuuuuuuuuuuuuu')
+    }, [])
+
+    const [defaultValue, setDefaultValue] = useState({
+        'script.js': {
+            name: 'script.js',
+            language: 'javascript',
+            value: generateJavascript(displayProblemName, problemInputs),
+        },
+        'scri.py': {
+            name: 'script.py',
+            language: 'python',
+            value: generatePython(displayProblemName, problemInputs),
+        },
+    })
     const sampleCases = problem.sampleCases
     const [testCases, setTestCases] = useState([])
     const [fileName, setFileName] = useState('script.js')
     const file = files[fileName]
-    const [printFunction, setPrintFunction] = useState(javascriptPrint)
-    console.log(printFunction)
-    console.log(file?.language)
     useEffect(() => {
-        setPrintFunction(fileName === 'javascript' ? javascriptPrint() : pythonPrint())
         setCurrentCode(editorRef?.current?.getValue())
-    }, [fileName])
+        setFiles({
+            'script.js': {
+                name: 'script.js',
+                language: 'javascript',
+                value: generateJavascript(displayProblemName, problemInputs),
+            },
+            'scri.py': {
+                name: 'script.py',
+                language: 'python',
+                value: generatePython(displayProblemName, problemInputs),
+            },
+        })
+        console.log('testing testing testing')
+    }, [fileName, file])
 
     useEffect(() => {
         if (monaco) {
@@ -114,17 +151,25 @@ const Monako = ({ mref, setCurrentCode, currentCode, problem }) => {
             })
 
             monaco.editor.setTheme('myCustomTheme')
-            // import('monaco-themes/themes/Sunburst.json').then((data) => {
-            //     monaco.editor.defineTheme('Sunburst', data)
-            //     monaco.editor.setTheme('Sunburst')
-            //     console.log(data)
-            // })
         }
     }, [monaco])
 
     const handleEditorDidMount = (editor) => {
         editorRef.current = editor
         setCurrentCode(editorRef?.current?.getValue())
+        setDefaultValue({
+            'script.js': {
+                name: 'script.js',
+                language: 'javascript',
+                value: generateJavascript(displayProblemName, problemInputs),
+            },
+            'scri.py': {
+                name: 'script.py',
+                language: 'python',
+                value: generatePython(displayProblemName, problemInputs),
+            },
+        })
+        console.log('hahahahahhahahahahhahahaahhahahahahahhahahahahahahhahahahahhaha')
     }
 
     const runCodeHandler = async () => {
@@ -201,7 +246,7 @@ const Monako = ({ mref, setCurrentCode, currentCode, problem }) => {
 
                 <Editor
                     onMount={handleEditorDidMount}
-                    theme='vs-dark'
+                    theme='myCustomTheme'
                     path={file.name}
                     defaultLanguage={file.language}
                     defaultValue={file.value}
