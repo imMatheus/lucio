@@ -3,8 +3,8 @@ import React, { useEffect, useState, useRef } from 'react'
 import Editor, { useMonaco } from '@monaco-editor/react'
 import File from './File'
 import CodeCompileView from './CodeCompileView'
-import generateJavascript from '../../functions/generateJavascript'
-import generatePython from '../../functions/generatePython'
+import { generateJavascript, javascriptPrint } from '../../functions/generateJavascript'
+import { generatePython, pythonPrint } from '../../functions/generatePython'
 // https://www.npmjs.com/package/@monaco-editor/react
 const Monako = ({ mref, setCurrentCode, currentCode, problem }) => {
     const monaco = useMonaco()
@@ -153,7 +153,7 @@ const Monako = ({ mref, setCurrentCode, currentCode, problem }) => {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     language: file.language,
-                    source: `${currentCode} \t print(${displayProblemName}(${[args]}))`,
+                    source: `${currentCode} ${pythonPrint(displayProblemName, args)}`,
                     stdin: '',
                     args: [],
                 }),
@@ -163,8 +163,8 @@ const Monako = ({ mref, setCurrentCode, currentCode, problem }) => {
                 .then((response) => response.json())
                 .then((data) =>
                     dummyArray.push({
-                        correctAnswer: data.output == expected,
-                        compileMessage: data.output == expected ? 'Right answer' : 'wrong answer',
+                        correctAnswer: data.output + '' === expected + '',
+                        compileMessage: data.output + '' === expected + '' ? 'Right answer' : 'wrong answer',
                         inputs: args,
                         userOutput: [data.output],
                         expectedOutput: expected,

@@ -1,4 +1,12 @@
-export default function generatePython(name, args) {
+function pythonPrint(name, args) {
+    if (!name) return
+
+    return `\t print(${name}(${args}))`
+}
+
+function generatePython(name, args) {
+    if (!name || !args) return
+
     const val = `
 #!/bin/python3
 
@@ -17,3 +25,5 @@ if __name__ == '__main__':
 
     return val
 }
+
+export { generatePython, pythonPrint }
