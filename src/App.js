@@ -6,6 +6,7 @@ import ProblemsPage from './components/problemspage/ProblemsPage'
 import Page404 from './components/Page_404'
 import './global.css'
 import Navbar from './components/navbar/Navbar'
+import CssProblems from './components/css-battles/CssProblems'
 import { problems } from './problems/problems'
 function App() {
     const [isDarkMode, setIsDarkMode] = useState(true)
@@ -32,7 +33,9 @@ function App() {
                             </Route>
                         )
                     })}
-
+                    <Route exact path='/css'>
+                        <CssProblems />
+                    </Route>
                     <Route>
                         <Page404 />
                     </Route>
