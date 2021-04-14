@@ -2,11 +2,31 @@ import React, { useEffect, useState, useRef } from 'react'
 import Editor, { useMonaco } from '@monaco-editor/react'
 import { generateStarterFile } from './_GenerateStarterFile'
 import { problem1 } from '../../css-problems/problem1/problem1.js'
-import { problem3 } from '../../css-problems/problem3/problem3'
 
 const CssBattle = () => {
+    // const frameWindow = useRef(null)
+    // let frame = frameWindow?.current?.contentWindow?.document
+    // if (frame) {
+    //     frame.open()
+    //     frame.write(code)
+    //     frame.close()
+    // }
+    // return (
+    //     <div className='webframe' ref={fref}>
+    //         <iframe title='Web Frame' id='webframeId' ref={frameWindow}></iframe>
+    //     </div>
+    // )
+
     const editorRef = useRef(null)
     const monaco = useMonaco()
+    const [currentCode, setCurrentCode] = useState(generateStarterFile())
+    const iframeRef = useRef(null)
+    let frame = iframeRef?.current?.contentWindow?.document
+    if (frame) {
+        frame.open()
+        frame.write(currentCode)
+        frame.close()
+    }
     useEffect(() => {
         if (monaco) {
             monaco.editor.defineTheme('myCustomTheme', {
@@ -74,11 +94,17 @@ const CssBattle = () => {
             monaco.editor.setTheme('myCustomTheme')
         }
     }, [monaco])
+
+    window.onresize = function () {
+        editorRef.current.layout()
+        console.log('hej')
+    }
+    const handleEditorChange = (value) => {
+        setCurrentCode(value)
+    }
     let starterFile = generateStarterFile()
     function handleEditorDidMount(editor, monaco) {
         editorRef.current = editor
-        console.log(monaco)
-        console.log(editor)
     }
     console.log(problem1)
     return (
@@ -88,14 +114,16 @@ const CssBattle = () => {
                     Editor <span>539 characters </span>
                 </div>
                 <Editor
-                    width='100%'
                     height='90vh'
                     theme='myCustomTheme'
                     defaultLanguage='html'
+                    onChange={handleEditorChange}
                     onMount={handleEditorDidMount}
                     defaultValue={starterFile}
+                    automaticLayout={true}
                     options={{
                         inherit: true,
+                        automaticLayout: true,
                         scrollBeyondLastLine: false,
                         minimap: {
                             enabled: false,
@@ -118,7 +146,9 @@ const CssBattle = () => {
                 <div className='column-header'>
                     Output <span>Slide show</span>
                 </div>
-                <div className='img-container'>s</div>
+                <div className='img-container'>
+                    <iframe title='Web Frame' id='webframeId' ref={iframeRef}></iframe>
+                </div>
             </div>
             <div className='column-container'>
                 <div className='column-header'>

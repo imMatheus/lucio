@@ -1,11 +1,33 @@
 .cssbattle {
     display: grid;
-    height: 100%;
+    height: calc(100vh - 94px);
+    margin: 0;
     grid-template-columns: 1fr auto auto;
     background-color: var(--bg);
     font-family: var(--font-family);
 
-    // removing the scrollbar on windows
+    & .editor {
+        // height: calc(100vh - 14px);
+
+        height: 100%;
+        position: relative;
+        top: 0px;
+        overflow-y: scroll;
+
+        // removing the scrollbar on windows
+        ::-webkit-scrollbar {
+            -webkit-appearance: none !important;
+            width: 0px !important;
+        }
+        ::-webkit-scrollbar-thumb {
+            display: none !important;
+        }
+
+        & section {
+            position: relative !important;
+            height: calc(100vh - 49px - 94px) !important;
+        }
+    }
 
     & .column-header {
         width: 100%;
@@ -35,9 +57,17 @@
             width: 400px;
             height: 300px;
             margin: 10px auto;
-            background-color: red;
+            background-color: yellow;
             background-position: center;
             background-size: cover;
+            overflow: hidden;
+
+            & iframe {
+                background-color: white;
+                width: 400px;
+                height: 300px;
+                overflow: hidden;
+            }
         }
 
         & .colors-container {

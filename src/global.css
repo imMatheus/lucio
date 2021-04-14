@@ -74,10 +74,28 @@ body .App .flex-1-1-auto {
 }
 body .App .cssdashboard .cssbattle {
   display: grid;
-  height: 100%;
+  height: calc(100vh - 94px);
+  margin: 0;
   grid-template-columns: 1fr auto auto;
   background-color: var(--bg);
   font-family: var(--font-family);
+}
+body .App .cssdashboard .cssbattle .editor {
+  height: 100%;
+  position: relative;
+  top: 0px;
+  overflow-y: scroll;
+}
+body .App .cssdashboard .cssbattle .editor ::-webkit-scrollbar {
+  -webkit-appearance: none !important;
+  width: 0px !important;
+}
+body .App .cssdashboard .cssbattle .editor ::-webkit-scrollbar-thumb {
+  display: none !important;
+}
+body .App .cssdashboard .cssbattle .editor section {
+  position: relative !important;
+  height: calc(100vh - 49px - 94px) !important;
 }
 body .App .cssdashboard .cssbattle .column-header {
   width: 100%;
@@ -104,9 +122,16 @@ body .App .cssdashboard .cssbattle .column-container .img-container {
   width: 400px;
   height: 300px;
   margin: 10px auto;
-  background-color: red;
+  background-color: yellow;
   background-position: center;
   background-size: cover;
+  overflow: hidden;
+}
+body .App .cssdashboard .cssbattle .column-container .img-container iframe {
+  background-color: white;
+  width: 400px;
+  height: 300px;
+  overflow: hidden;
 }
 body .App .cssdashboard .cssbattle .column-container .colors-container {
   display: flex;
