@@ -72,20 +72,17 @@ body .App.light {
 body .App .flex-1-1-auto {
   flex: 1 1 auto;
 }
-body .App .cssdashboard {
-  border-top: solid 1px var(--bold-color);
-}
 body .App .cssdashboard .cssbattle {
   display: grid;
   height: 100%;
   grid-template-columns: 1fr auto auto;
-  background-color: blueviolet;
+  background-color: var(--bg);
   font-family: var(--font-family);
 }
 body .App .cssdashboard .cssbattle .column-header {
   width: 100%;
   padding: 13px 20px;
-  font-size: 20px;
+  font-size: 1.1rem;
   background-color: var(--bg);
   color: var(--bold-color);
   display: flex;
@@ -94,23 +91,22 @@ body .App .cssdashboard .cssbattle .column-header {
 }
 body .App .cssdashboard .cssbattle .column-header span {
   position: relative;
-  font-size: 1rem;
   color: var(--hover-color);
 }
 body .App .cssdashboard .cssbattle .column-container {
-  border-left: solid 1px var(--bold-color);
-  border-right: solid 1px var(--bold-color);
+  border-left: solid 1px var(--hover-color);
   border-collapse: collapse;
   width: 430px;
   height: 100%;
   position: relative;
-  background: linear-gradient(109deg, #00ff0d, blue);
 }
 body .App .cssdashboard .cssbattle .column-container .img-container {
   width: 400px;
   height: 300px;
   margin: 10px auto;
   background-color: red;
+  background-position: center;
+  background-size: cover;
 }
 body .App .cssdashboard .cssbattle .column-container .colors-container {
   display: flex;

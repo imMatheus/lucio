@@ -2,7 +2,7 @@
     display: grid;
     height: 100%;
     grid-template-columns: 1fr auto auto;
-    background-color: blueviolet;
+    background-color: var(--bg);
     font-family: var(--font-family);
 
     // removing the scrollbar on windows
@@ -10,7 +10,7 @@
     & .column-header {
         width: 100%;
         padding: 13px 20px;
-        font-size: 20px;
+        font-size: 1.1rem;
         background-color: var(--bg);
         color: var(--bold-color);
         display: flex;
@@ -18,25 +18,26 @@
         align-items: center;
         & span {
             position: relative;
-            font-size: 1rem;
             color: var(--hover-color);
         }
     }
 
     & .column-container {
-        border-left: solid 1px var(--bold-color);
-        border-right: solid 1px var(--bold-color);
+        border-left: solid 1px var(--hover-color);
+        // border-right: solid 1px var(--bold-color);
         border-collapse: collapse;
         width: 430px;
         height: 100%;
         position: relative;
-        background: linear-gradient(109deg, rgb(0, 255, 13), blue);
+        // background: linear-gradient(109deg, rgb(0, 255, 13), blue);
 
         & .img-container {
             width: 400px;
             height: 300px;
             margin: 10px auto;
             background-color: red;
+            background-position: center;
+            background-size: cover;
         }
 
         & .colors-container {

@@ -1,6 +1,9 @@
 import React, { useEffect, useState, useRef } from 'react'
 import Editor, { useMonaco } from '@monaco-editor/react'
 import { generateStarterFile } from './_GenerateStarterFile'
+import { problem1 } from '../../css-problems/problem1/problem1.js'
+import { problem3 } from '../../css-problems/problem3/problem3'
+
 const CssBattle = () => {
     const editorRef = useRef(null)
     const monaco = useMonaco()
@@ -77,7 +80,7 @@ const CssBattle = () => {
         console.log(monaco)
         console.log(editor)
     }
-
+    console.log(problem1)
     return (
         <div className='cssbattle'>
             <div className='editor'>
@@ -85,6 +88,7 @@ const CssBattle = () => {
                     Editor <span>539 characters </span>
                 </div>
                 <Editor
+                    width='100%'
                     height='90vh'
                     theme='myCustomTheme'
                     defaultLanguage='html'
@@ -112,24 +116,25 @@ const CssBattle = () => {
             </div>
             <div className='column-container'>
                 <div className='column-header'>
-                    Output <span>539 characters </span>
+                    Output <span>Slide show</span>
                 </div>
                 <div className='img-container'>s</div>
             </div>
             <div className='column-container'>
                 <div className='column-header'>
-                    Target <span>539 characters </span>
+                    Target <span>400px x 300px </span>
                 </div>
-                <div className='img-container'>sbbbbb</div>
+                <div className='img-container' style={{ backgroundImage: ` url(${problem1.image})` }}></div>
                 <div className='colors-container'>
-                    <span>
-                        <div className='color-circle'></div>
-                        #23232
-                    </span>
-                    <span>
-                        <div className='color-circle'></div>
-                        #23232
-                    </span>
+                    {/* rendering out all of the colors */}
+                    {problem1.colors.map((color) => {
+                        return (
+                            <span>
+                                <div className='color-circle' style={{ backgroundColor: color }}></div>
+                                {color}
+                            </span>
+                        )
+                    })}
                 </div>
             </div>
         </div>
