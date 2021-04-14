@@ -72,6 +72,22 @@ body .App.light {
 body .App .flex-1-1-auto {
   flex: 1 1 auto;
 }
+body .App .cssproblems {
+  min-height: 700px;
+  background: var(--bg);
+  padding: 25px 50px;
+  background: chartreuse;
+}
+body .App .cssproblems.lvl-card {
+  height: 230px;
+  background: chocolate;
+}
+body .App .cssproblems .problem {
+  margin: 10px 15px;
+  width: 300px;
+  height: 225px;
+  background: linear-gradient(30deg, orange, blue);
+}
 body .App .logo-icon {
   width: 100%;
   height: 100%;

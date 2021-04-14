@@ -82,6 +82,7 @@ body {
             flex: 1 1 auto;
         }
 
+        @import './components/css-battles/cssbattles';
         @import './components/logoicon';
         @import './components/homepage';
         @import './components/form';
