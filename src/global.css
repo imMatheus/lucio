@@ -78,7 +78,7 @@ body .App .cssproblems {
   padding: 25px 50px;
   background: chartreuse;
 }
-body .App .cssproblems.lvl-card {
+body .App .cssproblems .lvl-card {
   height: 230px;
   background: chocolate;
 }
