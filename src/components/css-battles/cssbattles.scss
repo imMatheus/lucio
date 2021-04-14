@@ -1,16 +1,69 @@
-.cssproblems {
-    min-height: 700px;
-    background: var(--bg);
-    padding: 25px 50px;
-    background: chartreuse;
-    & .lvl-card {
-        height: 230px;
-        background: chocolate;
+.cssbattle {
+    display: grid;
+    height: 100%;
+    grid-template-columns: 1fr auto auto;
+    background-color: blueviolet;
+    font-family: var(--font-family);
+
+    // removing the scrollbar on windows
+
+    & .column-header {
+        width: 100%;
+        padding: 13px 20px;
+        font-size: 20px;
+        background-color: var(--bg);
+        color: var(--bold-color);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        & span {
+            position: relative;
+            font-size: 1rem;
+            color: var(--hover-color);
+        }
     }
-    & .problem {
-        margin: 10px 15px;
-        width: 300px;
-        height: 225px;
-        background: linear-gradient(30deg, orange, blue);
+
+    & .column-container {
+        border-left: solid 1px var(--bold-color);
+        border-right: solid 1px var(--bold-color);
+        border-collapse: collapse;
+        width: 430px;
+        height: 100%;
+        position: relative;
+        background: linear-gradient(109deg, rgb(0, 255, 13), blue);
+
+        & .img-container {
+            width: 400px;
+            height: 300px;
+            margin: 10px auto;
+            background-color: red;
+        }
+
+        & .colors-container {
+            display: flex;
+            flex-wrap: wrap;
+            background-color: var(--resize-bg);
+            padding: 5px 2px;
+            width: 400px;
+            margin: 20px auto;
+            border-radius: 7px;
+
+            & span {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin: 10px 15px;
+                height: auto;
+                font-size: 1.1rem;
+                color: var(--hover-color);
+                & .color-circle {
+                    width: 23px;
+                    height: 23px;
+                    border-radius: 50%;
+                    background-color: orangered;
+                    margin-right: 6px;
+                }
+            }
+        }
     }
 }

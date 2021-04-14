@@ -30,21 +30,21 @@ const Monako = ({ mref, setCurrentCode, currentCode, problem }) => {
         },
     })
 
-    useEffect(() => {
-        setFiles({
-            'script.js': {
-                name: 'script.js',
-                language: 'javascript',
-                value: generateJavascript(displayProblemName, problemInputs),
-            },
-            'scri.py': {
-                name: 'script.py',
-                language: 'python',
-                value: generatePython(displayProblemName, problemInputs),
-            },
-        })
-        console.log('nuuuuuuuuuuuuuuuuuuuuuuuuuuuu')
-    }, [])
+    // useEffect(() => {
+    //     setFiles({
+    //         'script.js': {
+    //             name: 'script.js',
+    //             language: 'javascript',
+    //             value: generateJavascript(displayProblemName, problemInputs),
+    //         },
+    //         'scri.py': {
+    //             name: 'script.py',
+    //             language: 'python',
+    //             value: generatePython(displayProblemName, problemInputs),
+    //         },
+    //     })
+    //     console.log('nuuuuuuuuuuuuuuuuuuuuuuuuuuuu')
+    // }, [])
 
     const [defaultValue, setDefaultValue] = useState({
         'script.js': {
@@ -62,22 +62,22 @@ const Monako = ({ mref, setCurrentCode, currentCode, problem }) => {
     const [testCases, setTestCases] = useState([])
     const [fileName, setFileName] = useState('script.js')
     const file = files[fileName]
-    useEffect(() => {
-        setCurrentCode(editorRef?.current?.getValue())
-        setFiles({
-            'script.js': {
-                name: 'script.js',
-                language: 'javascript',
-                value: generateJavascript(displayProblemName, problemInputs),
-            },
-            'scri.py': {
-                name: 'script.py',
-                language: 'python',
-                value: generatePython(displayProblemName, problemInputs),
-            },
-        })
-        console.log('testing testing testing')
-    }, [fileName, file])
+    // useEffect(() => {
+    //     setCurrentCode(editorRef?.current?.getValue())
+    //     setFiles({
+    //         'script.js': {
+    //             name: 'script.js',
+    //             language: 'javascript',
+    //             value: generateJavascript(displayProblemName, problemInputs),
+    //         },
+    //         'scri.py': {
+    //             name: 'script.py',
+    //             language: 'python',
+    //             value: generatePython(displayProblemName, problemInputs),
+    //         },
+    //     })
+    //     console.log('testing testing testing')
+    // }, [fileName, file])
 
     useEffect(() => {
         if (monaco) {
@@ -193,10 +193,10 @@ const Monako = ({ mref, setCurrentCode, currentCode, problem }) => {
             const args = currentCase.input
             const expected = currentCase.output
 
-            console.log(`
-            console.log(${displayProblemName}(${[args]}))
-            `)
-            console.log(file.language)
+            // console.log(`
+            // console.log(${displayProblemName}(${[args]}))
+            // `)
+            // console.log(file.language)
             const requestOptions = {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },

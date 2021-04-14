@@ -24,7 +24,7 @@ const Navbar = ({ isDarkMode, setIsDarkMode }) => {
                 <Link exact to='/problems'>
                     Problems
                 </Link>
-                <Link exact to='/css'>
+                <Link exact to='/css/problems'>
                     Css
                 </Link>
             </div>

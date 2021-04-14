@@ -1,0 +1,34 @@
+.cssproblems {
+    min-height: 700px;
+    background: var(--resize-bg);
+    padding: 25px 50px;
+    font-family: var(--font-family);
+
+    & .container {
+        background-color: var(--main-bg);
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+        & .problem {
+            cursor: pointer;
+            margin: 20px 10px;
+            width: 300px;
+            height: 225px;
+            position: relative;
+            background-position: center;
+            background-size: cover;
+
+            & h2 {
+                position: absolute;
+                top: 8px;
+                right: 8px;
+                font-size: 1.1rem;
+                background-color: black;
+                color: white;
+                text-align: center;
+                padding: 2px 15px;
+                border-radius: 12px;
+            }
+        }
+    }
+}
