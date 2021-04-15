@@ -1,6 +1,7 @@
 .cssbattle {
     display: grid;
     height: calc(100vh - 94px);
+    min-height: 550px;
     margin: 0;
     grid-template-columns: 1fr auto auto;
     background-color: var(--bg);

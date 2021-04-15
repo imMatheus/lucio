@@ -8,7 +8,7 @@ function generateStarterFile() {
   }
 </style>
 
-<div class=""><div>`
+<div class=""></div>`
 }
 
 export { generateStarterFile }
