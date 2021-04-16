@@ -7,10 +7,13 @@ const CssBattle = () => {
     const editorRef = useRef(null)
     const monaco = useMonaco()
     const [currentCode, setCurrentCode] = useState(generateStarterFile())
+    const iframeContainerRef = useRef(null)
     const iframeRef = useRef(null)
+    const [isHoveringOverIframe, setIsHoveringOverIframe] = useState(false)
     let characterCount
     let frame = iframeRef?.current?.contentWindow?.document
     if (frame) {
+        // this renders the code to the iframe
         frame.open()
         frame.write(currentCode)
         frame.close()
@@ -81,28 +84,33 @@ const CssBattle = () => {
     }, [monaco])
 
     window.onresize = function () {
-        editorRef.current.layout()
+        editorRef?.current?.layout()
+    }
+
+    const handleEditorChange = (value) => {
+        setCurrentCode(value)
     }
     // triming all white space and line breaks from our code
     // then setting it to the 'characterCount' varible that gets displayed
     // in the UI
     characterCount = currentCode
-        ?.replace(/\n|\r/g, '')
+        ?.replace(/\n|\r/g, '') // regex is... nice :\
         .split('')
         .filter((word) => word !== ' ').length
 
-    console.log(characterCount)
-    const handleEditorChange = (value) => {
-        setCurrentCode(value)
-
-        // ?.split(' ')
-        // .filter((word) => word !== '')
-        // .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-        // .join('')
-    }
     let starterFile = generateStarterFile()
-    function handleEditorDidMount(editor, monaco) {
+    function handleEditorDidMount(editor) {
         editorRef.current = editor
+    }
+
+    // for the resizing of the iframeContainer when hovering
+    const resizeOutputHandler = (e) => {
+        // setting the width to its offset
+        iframeContainerRef.current.style.width = e.nativeEvent.offsetX + 'px'
+    }
+    // if we are not hovering over the iframeContainer then we set it back to its og width
+    if (!isHoveringOverIframe && iframeRef.current) {
+        iframeContainerRef.current.style.width = '100%'
     }
     return (
         <div className='cssbattle'>
@@ -110,7 +118,10 @@ const CssBattle = () => {
                 <div className='column-header'>
                     Editor <span>{characterCount} characters</span>
                 </div>
-                <Editor
+                <div className='editor-fraction'></div>
+                <div className='editor-resizebar'></div>
+                <div className='editor-fraction'></div>
+                {/* <Editor
                     height='90vh'
                     theme='myCustomTheme'
                     defaultLanguage='html'
@@ -137,14 +148,23 @@ const CssBattle = () => {
                         // try "same", "indent" or "none"
                         wrappingIndent: 'same',
                     }}
-                />
+                /> */}
             </div>
             <div className='column-container'>
                 <div className='column-header'>
                     Output <span>Slide show</span>
                 </div>
-                <div className='img-container'>
-                    <iframe title='Web Frame' id='webframeId' ref={iframeRef}></iframe>
+                <div
+                    onPointerEnter={() => setIsHoveringOverIframe(true)}
+                    onPointerLeave={() => setIsHoveringOverIframe(false)}
+                    onPointerMove={resizeOutputHandler}
+                    className='img-container output-iframe'
+                    style={{ backgroundImage: ` url(${problem1.image})` }}
+                >
+                    {/* needs the scrolling='no' to stop oveflow in the iframe */}
+                    <div className='iframe-container' ref={iframeContainerRef}>
+                        <iframe title='Web Frame' ref={iframeRef} id='webframeId' scrolling='no'></iframe>
+                    </div>
                 </div>
             </div>
             <div className='column-container'>
