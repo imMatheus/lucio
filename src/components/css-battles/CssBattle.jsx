@@ -1,107 +1,55 @@
 import React, { useEffect, useState, useRef } from 'react'
-import Editor, { useMonaco } from '@monaco-editor/react'
-import { generateStarterFile } from './_GenerateStarterFile'
-import { problem1 } from '../../css-problems/problem1/problem1.js'
+import { generateHtmlStarterFile } from './_generateHtmlStarterFile.js'
+import { generateCssStarterFile } from './_generateCssStarterFile.js'
 
-const CssBattle = () => {
-    const editorRef = useRef(null)
-    const monaco = useMonaco()
-    const [currentCode, setCurrentCode] = useState(generateStarterFile())
+import { problem3 } from '../../css-problems/problem3/problem3.js'
+import EditorComponent from './EditorComponent'
+
+const CssBattle = ({ problem }) => {
+    const cssEditorRef = useRef(null)
+    const htmlEditorRef = useRef(null)
+    const [cssCode, setCssCode] = useState(generateCssStarterFile())
+    const [htmlCode, setHtmlCode] = useState(generateHtmlStarterFile())
     const iframeContainerRef = useRef(null)
     const iframeRef = useRef(null)
     const [isHoveringOverIframe, setIsHoveringOverIframe] = useState(false)
     let characterCount
-    let frame = iframeRef?.current?.contentWindow?.document
-    if (frame) {
-        // this renders the code to the iframe
-        frame.open()
-        frame.write(currentCode)
-        frame.close()
-    }
-    useEffect(() => {
-        if (monaco) {
-            monaco.editor.defineTheme('myCustomTheme', {
-                base: 'vs-dark',
-                inherit: true,
-                rules: [
-                    { token: '', foreground: 'ffffff' }, //everything
-                    { token: 'invalid', foreground: '00ff00' },
-                    { token: 'emphasis', fontStyle: 'italic' },
-                    { token: 'strong', fontStyle: 'bold' },
-                    { token: 'variable', foreground: '00ff00' },
-                    { token: 'variable.predefined', foreground: '00ff00' },
-                    { token: 'constant', foreground: '00ff00' },
-                    { token: 'comment', foreground: '7f848e', fontStyle: 'italic' },
-                    { token: 'number', foreground: 'd19a66' }, //number
-                    { token: 'number.hex', foreground: 'd19a66' },
-                    { token: 'regexp', foreground: '56b6c2' }, //rexexp
-                    { token: 'annotation', foreground: 'ff00ff' },
-                    { token: 'type', foreground: 'E5C07B' }, // promise och math
-                    { token: 'delimiter', foreground: 'abb2bf' }, //stuff
-                    { token: 'delimiter.html', foreground: 'abb2bf' },
-                    { token: 'delimiter.xml', foreground: 'abb2bf' },
-                    { token: 'tag', foreground: 'E06C75' },
-                    { token: 'tag.id.jade', foreground: 'E06C75' },
-                    { token: 'tag.class.jade', foreground: 'E06C75' },
-                    { token: 'meta.scss', foreground: 'e7c547' },
-                    { token: 'metatag', foreground: 'ff00ff' },
-                    { token: 'metatag.content.html', foreground: 'd19a66' },
-                    { token: 'metatag.html', foreground: 'E06C75' },
-                    { token: 'metatag.xml', foreground: '86b300' },
-                    { token: 'metatag.php', fontStyle: 'bold' },
-                    { token: 'key', foreground: '00ff00' },
-                    { token: 'string.key.json', foreground: '41a6d9' },
-                    { token: 'string.value.json', foreground: '86b300' },
-                    { token: 'attribute.name', foreground: 'd19a66' },
-                    { token: 'attribute.value', foreground: '98c379' },
-                    { token: 'attribute.value.number', foreground: '98c379' },
-                    { token: 'attribute.value.unit', foreground: '98c379' },
-                    { token: 'attribute.value.html', foreground: '98c379' },
-                    { token: 'attribute.value.xml', foreground: '98c379' },
-                    { token: 'string', foreground: '98c379' }, //strings
-                    { token: 'string.html', foreground: 'ff0000' },
-                    { token: 'string.sql', foreground: '98c379' },
-                    { token: 'string.yaml', foreground: '98c379' },
-                    { token: 'keyword', foreground: 'C678DD' },
-                    { token: 'keyword.json', foreground: 'C678DD' },
-                    { token: 'keyword.flow', foreground: 'C678DD' },
-                    { token: 'keyword.flow.scss', foreground: 'C678DD' },
-                    { token: 'operator.scss', foreground: '666666' },
-                    { token: 'operator.sql', foreground: '778899' },
-                    { token: 'operator.swift', foreground: '666666' },
-                    { token: 'predefined.sql', foreground: 'FF00FF' },
-                ],
-                colors: {
-                    'editor.background': '#282C34',
-                    // 'editor.foreground': '#ff0000',
-                    // 'editorIndentGuide.background': '#ABB2BF',
-                    // 'editorIndentGuide.activeBackground': '#282C34',
-                },
-            })
+    let currentCode = '<style>' + cssCode + '</style>' + htmlCode
 
-            monaco.editor.setTheme('myCustomTheme')
+    // cretaing a the varibel that will keep track of if we
+    // are draging the resizer or not
+    // and initialing it to false as we are not draging at first
+    let isDragingEditorResizer = false
+    document.addEventListener('mousemove', function (e) {
+        // Don't do anything if we are not dragging
+        if (!isDragingEditorResizer) {
+            return
         }
-    }, [monaco])
+        cssEditorRef.current.style.height = Math.max(e.clientY - 163, 40) + 'px'
+    })
+    document.addEventListener('mouseup', function () {
+        // Turn off dragging flag when user mouse is up
+        isDragingEditorResizer = false
+    })
 
-    window.onresize = function () {
-        editorRef?.current?.layout()
-    }
+    let frame = iframeRef?.current?.contentWindow?.document
+    useEffect(() => {
+        if (frame) {
+            // this renders the code to the iframe
+            frame.open()
+            frame.write(currentCode)
+            frame.close()
+        }
+    }, [frame, currentCode])
 
-    const handleEditorChange = (value) => {
-        setCurrentCode(value)
-    }
     // triming all white space and line breaks from our code
     // then setting it to the 'characterCount' varible that gets displayed
     // in the UI
-    characterCount = currentCode
-        ?.replace(/\n|\r/g, '') // regex is... nice :\
-        .split('')
-        .filter((word) => word !== ' ').length
-
-    let starterFile = generateStarterFile()
-    function handleEditorDidMount(editor) {
-        editorRef.current = editor
-    }
+    characterCount =
+        currentCode
+            ?.replace(/\n|\r/g, '') // regex is... nice :\
+            .split('')
+            .filter((word) => word !== ' ').length - 15
 
     // for the resizing of the iframeContainer when hovering
     const resizeOutputHandler = (e) => {
@@ -112,43 +60,37 @@ const CssBattle = () => {
     if (!isHoveringOverIframe && iframeRef.current) {
         iframeContainerRef.current.style.width = '100%'
     }
+
+    const copyColorHandler = (e) => {
+        // if the user pressed the circle then it will not have any text so we take its parents, the span,
+        // and takes its innerText
+        if (!e.target.innerText) navigator.clipboard.writeText(e.target.parentElement.innerText)
+        // else just take the inner text ofthe span
+        else {
+            navigator.clipboard.writeText(e.target.innerText)
+        }
+    }
     return (
         <div className='cssbattle'>
             <div className='editor'>
                 <div className='column-header'>
                     Editor <span>{characterCount} characters</span>
                 </div>
-                <div className='editor-fraction'></div>
-                <div className='editor-resizebar'></div>
-                <div className='editor-fraction'></div>
-                {/* <Editor
-                    height='90vh'
-                    theme='myCustomTheme'
-                    defaultLanguage='html'
-                    onChange={handleEditorChange}
-                    onMount={handleEditorDidMount}
-                    defaultValue={starterFile}
-                    automaticLayout={true}
-                    options={{
-                        inherit: true,
-                        automaticLayout: true,
-                        scrollBeyondLastLine: false,
-                        minimap: {
-                            enabled: false,
-                        },
-                        fontSize: 17,
-                        // cursorStyle: 'block',
-                        // wordWrap: 'on',
-                        wordWrap: 'wordWrapColumn',
-                        wordWrapColumn: 90,
-
-                        // Set this to false to not auto word wrap minified files
-                        wordWrapMinified: true,
-
-                        // try "same", "indent" or "none"
-                        wrappingIndent: 'same',
-                    }}
-                /> */}
+                <div className='editors-container'>
+                    <div className='editor-fraction' ref={cssEditorRef}>
+                        <EditorComponent language='css' starterCode={generateCssStarterFile()} setter={setCssCode} />
+                    </div>
+                    <div className='editor-resizebar' onMouseDown={() => (isDragingEditorResizer = true)}>
+                        <div className='dots-container'>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </div>
+                    <div className='editor-fraction' ref={htmlEditorRef}>
+                        <EditorComponent language='html' starterCode={generateHtmlStarterFile()} setter={setHtmlCode} />
+                    </div>
+                </div>
             </div>
             <div className='column-container'>
                 <div className='column-header'>
@@ -159,7 +101,7 @@ const CssBattle = () => {
                     onPointerLeave={() => setIsHoveringOverIframe(false)}
                     onPointerMove={resizeOutputHandler}
                     className='img-container output-iframe'
-                    style={{ backgroundImage: ` url(${problem1.image})` }}
+                    style={{ backgroundImage: ` url(${problem.image})` }}
                 >
                     {/* needs the scrolling='no' to stop oveflow in the iframe */}
                     <div className='iframe-container' ref={iframeContainerRef}>
@@ -171,12 +113,12 @@ const CssBattle = () => {
                 <div className='column-header'>
                     Target <span>400px x 300px </span>
                 </div>
-                <div className='img-container' style={{ backgroundImage: ` url(${problem1.image})` }}></div>
+                <div className='img-container' style={{ backgroundImage: ` url(${problem.image})` }}></div>
                 <div className='colors-container'>
                     {/* rendering out all of the colors */}
-                    {problem1.colors.map((color) => {
+                    {problem.colors.map((color) => {
                         return (
-                            <span>
+                            <span onClick={copyColorHandler}>
                                 <div className='color-circle' style={{ backgroundColor: color }}></div>
                                 {color}
                             </span>

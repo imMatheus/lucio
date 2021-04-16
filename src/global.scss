@@ -17,12 +17,6 @@
     padding: 0;
     border: 0;
     font-size: 100%;
-    @include wide-screen() {
-        font-size: 100%;
-    }
-    @include mobile() {
-        font-size: 100%;
-    }
     font: inherit;
     vertical-align: baseline;
     box-sizing: border-box;
@@ -30,7 +24,11 @@
 
 //  sass --watch src/global.scss:src/global.css
 body {
+    min-width: 1100px;
+    height: 100vh;
+    // min-height: 600px;
     .App {
+        height: 100%;
         --paraghrap-fontfamily: 'Open Sans', Arial, Helvetica, sans-serif;
         --varible-fontfamily: 'Roboto Slab', serif;
         --color-success: #1ba94c;
@@ -74,7 +72,7 @@ body {
             --files-bg: #e7eeef;
         }
         width: 100%;
-        min-height: 100vh;
+        min-height: 100vh !important;
         display: flex;
         flex-flow: column;
 
