@@ -165,10 +165,9 @@ body .App .cssdashboard .cssbattle .column-container .img-container.output-ifram
   width: 100%;
   height: 100%;
   overflow: hidden;
-  background-color: plum;
 }
 body .App .cssdashboard .cssbattle .column-container .img-container.output-iframe .iframe-container iframe {
-  background: white;
+  background-color: white;
   width: 400px;
   height: 300px;
   border: 0;

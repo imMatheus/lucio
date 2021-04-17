@@ -1,10 +1,5 @@
 function generateCssStarterFile() {
-    return `
-  div{
-    width: 100px;
-    height: 100px;
-    background: royalblue; 
-  }`
+    return `div{\n\twidth: 100px;\n\theight: 100px;\n\tbackground: royalblue;\n}`
 }
 
 export { generateCssStarterFile }
