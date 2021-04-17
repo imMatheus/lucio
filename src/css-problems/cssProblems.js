@@ -3,7 +3,11 @@ import image2 from './images/problem2.png'
 import image3 from './images/problem3.png'
 import image4 from './images/problem4.png'
 // import image5 from './images/problem5.svg'
+import image7 from './images/problem7.svg'
 import image8 from './images/problem8.png'
+import image9 from './images/problem9.png'
+import image10 from './images/problem10.png'
+import image11 from './images/problem11.png'
 
 export const cssProblems = [
     {
@@ -26,10 +30,30 @@ export const cssProblems = [
         image: image4,
         colors: ['#d62828', '#f77f00', '#fcbf49', '#eae2b7'],
     },
-
+    {
+        target: 7,
+        image: image7,
+        colors: ['#03071e', '#ffba08'],
+    },
     {
         target: 8,
         image: image8,
         colors: ['#14213d', '#fca311'],
+    },
+
+    {
+        target: 9,
+        image: image9,
+        colors: ['#1d3557', '#e63946'],
+    },
+    {
+        target: 10,
+        image: image10,
+        colors: ['#14213d', '#fca311'],
+    },
+    {
+        target: 11,
+        image: image11,
+        colors: ['#081c15', '#95d5b2'],
     },
 ]
