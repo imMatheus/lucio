@@ -2,7 +2,6 @@ import React, { useEffect, useState, useRef } from 'react'
 import { generateHtmlStarterFile } from './_generateHtmlStarterFile.js'
 import { generateCssStarterFile } from './_generateCssStarterFile.js'
 
-import { problem3 } from '../../css-problems/problem3/problem3.js'
 import EditorComponent from './EditorComponent'
 
 const CssBattle = ({ problem }) => {
@@ -118,7 +117,7 @@ const CssBattle = ({ problem }) => {
                     {/* rendering out all of the colors */}
                     {problem.colors.map((color) => {
                         return (
-                            <span onClick={copyColorHandler}>
+                            <span title='Copie' onClick={copyColorHandler}>
                                 <div className='color-circle' style={{ backgroundColor: color }}></div>
                                 {color}
                             </span>
