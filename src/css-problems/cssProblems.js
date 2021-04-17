@@ -9,6 +9,8 @@ import image8 from './images/problem8.png'
 import image9 from './images/problem9.png'
 import image10 from './images/problem10.png'
 import image11 from './images/problem11.png'
+import image12 from './images/problem12.png'
+import image13 from './images/problem13.png'
 
 export const cssProblems = [
     {
@@ -66,5 +68,15 @@ export const cssProblems = [
         target: 11,
         image: image11,
         colors: ['#081c15', '#95d5b2'],
+    },
+    {
+        target: 12,
+        image: image12,
+        colors: ['#1d3557', '#e63946'],
+    },
+    {
+        target: 13,
+        image: image13,
+        colors: ['#00171f', '#00a8e8', '#007ea7'],
     },
 ]
