@@ -110,7 +110,8 @@ const CssBattle = ({ problem }) => {
             </div>
             <div className='column-container'>
                 <div className='column-header'>
-                    Target <span>400px x 300px </span>
+                    Target {problem.target}
+                    <span>400px x 300px </span>
                 </div>
                 <div className='img-container' style={{ backgroundImage: ` url(${problem.image})` }}></div>
                 <div className='colors-container'>
