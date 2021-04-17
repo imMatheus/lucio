@@ -3,6 +3,7 @@ import image2 from './images/problem2.png'
 import image3 from './images/problem3.png'
 import image4 from './images/problem4.png'
 import image5 from './images/problem5.svg'
+import image6 from './images/problem6.svg'
 import image7 from './images/problem7.svg'
 import image8 from './images/problem8.png'
 import image9 from './images/problem9.png'
@@ -34,6 +35,11 @@ export const cssProblems = [
         target: 5,
         image: image5,
         colors: ['#d11149', '#e6c229', '#df8734'],
+    },
+    {
+        target: 6,
+        image: image6,
+        colors: ['#00171f', '#00a8e8', '#007ea7'],
     },
     {
         target: 7,
