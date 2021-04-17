@@ -63,7 +63,7 @@
                     // 5th circle as it does not to rotate
                     @if $i != 5 {
                         // thes prefix can be changed as you like
-                        // itjust kinda looks good
+                        // it just kinda looks good
                         @include rotateAnimation(-72, $i * -72, 3000ms);
                     }
                 }

@@ -1,16 +1,180 @@
-.cssproblems {
-    min-height: 700px;
-    background: var(--bg);
-    padding: 25px 50px;
-    background: chartreuse;
-    & .lvl-card {
-        height: 230px;
-        background: chocolate;
+.cssbattle {
+    display: grid;
+    height: calc(100vh - 94px);
+    min-height: 500px;
+    // height: 100vh;
+
+    margin: 0;
+    grid-template-columns: 1fr auto auto;
+    background-color: var(--bg);
+    font-family: var(--font-family);
+
+    & .editor {
+        height: 100%;
+        max-height: 100%;
+        position: relative;
+        top: 0px;
+        background-color: var(--main-bg);
+        overflow-y: hidden;
+
+        // removing the scrollbar on windows
+        // ::-webkit-scrollbar {
+        //     -webkit-appearance: none !important;
+        //     width: 0px !important;
+        // }
+        // ::-webkit-scrollbar-thumb {
+        //     display: none !important;
+        // }
+        & .editors-container {
+            display: grid;
+            grid-template-rows: auto auto 1fr;
+            height: 100%;
+            & .editor-resizebar {
+                width: 100%;
+                cursor: row-resize;
+                height: 20px;
+                z-index: 11;
+                position: sticky;
+                bottom: 0px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-color: var(--resize-bg);
+
+                & .dots-container {
+                    width: 70px;
+                    height: 4px;
+                    background-color: white;
+                }
+            }
+            & .editor-fraction {
+                width: 100%;
+                height: 100%;
+
+                &:nth-child(1) {
+                    height: 250px;
+                }
+
+                background: linear-gradient(195deg, rgb(3, 149, 47), purple);
+
+                .editor-component {
+                    height: 100%;
+                    min-height: 40px;
+                    // max-height: calc(100% - 40px);
+                    position: relative;
+                    display: grid;
+                    grid-template-rows: auto 1fr;
+                    background-color: var(--main-bg);
+                    z-index: 10;
+
+                    & .header {
+                        height: 40px;
+
+                        font-size: 1.3rem;
+                        margin-bottom: 10px;
+                        font-weight: 400;
+                        padding-left: 20px;
+                        color: var(--bold-color);
+                        display: flex;
+                        align-items: center;
+                    }
+                }
+            }
+            & section {
+                position: relative !important;
+                // height: calc(100vh - 49px - 94px) !important;
+            }
+        }
     }
-    & .problem {
-        margin: 10px 15px;
-        width: 300px;
-        height: 225px;
-        background: linear-gradient(30deg, orange, blue);
+
+    & .column-header {
+        width: 100%;
+        padding: 13px 20px;
+        font-size: 1.1rem;
+        background-color: var(--bg);
+        color: var(--bold-color);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        & span {
+            position: relative;
+            color: var(--hover-color);
+        }
+    }
+
+    & .column-container {
+        border-left: solid 1px var(--hover-color);
+        // border-right: solid 1px var(--bold-color);
+        border-collapse: collapse;
+        width: 430px;
+        height: 100%;
+        position: relative;
+        // background: linear-gradient(109deg, rgb(0, 255, 13), blue);
+
+        & .img-container {
+            width: 400px;
+            height: 300px;
+            margin: 10px auto;
+            background-color: yellow;
+            background-position: center;
+            background-size: cover;
+
+            &.output-iframe {
+                .iframe-container {
+                    width: 100%;
+                    height: 100%;
+                    overflow: hidden;
+                    background-color: plum;
+                    & iframe {
+                        background: white;
+                        width: 400px;
+                        height: 300px;
+                        border: 0;
+                        outline: 0;
+                        overflow: hidden;
+                        pointer-events: none;
+                    }
+                }
+                &.output-iframe:hover {
+                    cursor: col-resize;
+                    .iframe-container {
+                        border-right: solid 2px rgb(255, 0, 0);
+                    }
+                }
+            }
+        }
+
+        & .colors-container {
+            display: flex;
+            flex-wrap: wrap;
+            background-color: var(--resize-bg);
+            padding: 5px 2px;
+            width: 400px;
+            margin: 17px auto;
+            border-radius: 8px;
+
+            & span {
+                cursor: pointer;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin: 8px 15px;
+                height: auto;
+                font-size: 1.05rem;
+                color: var(--hover-color);
+                &:active {
+                    text-decoration: underline;
+                }
+                & .color-circle {
+                    width: 23px;
+                    height: 23px;
+                    border-radius: 50%;
+                    background-color: orangered;
+                    margin-right: 6px;
+                    font-size: 0px;
+                    color: transparent;
+                }
+            }
+        }
     }
 }

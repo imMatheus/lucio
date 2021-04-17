@@ -23,7 +23,7 @@ const Form = ({ problem }) => {
         }
         // bar width is hard coded as 12 px in scss
         let barWidth = 12
-        //setting width to the mouse x cord or to a min or max value specified at the top
+        //setting width to the mouse x cord or to a min or max value specified in the css
         var pointerRelativeXpos = e.clientX
         questionRef.current.style.width = pointerRelativeXpos - barWidth + 'px'
     })

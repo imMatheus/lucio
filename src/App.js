@@ -8,6 +8,7 @@ import './global.css'
 import Navbar from './components/navbar/Navbar'
 import CssProblems from './components/css-battles/CssProblems'
 import { problems } from './problems/problems'
+import CssDashboard from './components/css-battles/CssDashboard'
 function App() {
     const [isDarkMode, setIsDarkMode] = useState(true)
 
@@ -21,6 +22,7 @@ function App() {
                         <HomePage />
                     </Route>
                     <Route exact path='/problems' component={ProblemsPage} />
+                    {/* creating routes forall my problems */}
                     {problems.map((problem) => {
                         let path = problem.problemName
                             ?.split(' ')
@@ -33,8 +35,8 @@ function App() {
                             </Route>
                         )
                     })}
-                    <Route exact path='/css'>
-                        <CssProblems />
+                    <Route exact path='/css/*'>
+                        <CssDashboard />
                     </Route>
                     <Route>
                         <Page404 />

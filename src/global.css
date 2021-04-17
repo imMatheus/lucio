@@ -9,22 +9,13 @@
   vertical-align: baseline;
   box-sizing: border-box;
 }
-@media (min-width: 1550px) {
-  *,
-*::after,
-*::before {
-    font-size: 100%;
-  }
-}
-@media (max-width: 350px) {
-  *,
-*::after,
-*::before {
-    font-size: 100%;
-  }
-}
 
+body {
+  min-width: 1100px;
+  height: 100vh;
+}
 body .App {
+  height: 100%;
   --paraghrap-fontfamily: "Open Sans", Arial, Helvetica, sans-serif;
   --varible-fontfamily: "Roboto Slab", serif;
   --color-success: #1ba94c;
@@ -39,7 +30,7 @@ body .App {
   --variable-fontsize: 0.91rem;
   --inputs-fontsize: 0.85rem;
   width: 100%;
-  min-height: 100vh;
+  min-height: 100vh !important;
   display: flex;
   flex-flow: column;
 }
@@ -49,7 +40,7 @@ body .App.dark {
   --dots-color: rgb(255, 255, 255);
   --bg: #21252b;
   --text-color: white;
-  --hover-color: rgb(207, 207, 207);
+  --hover-color: #ffffff;
   --bold-color: #d4e4f9;
   --paraghrap-color: #8a9bba;
   --inputs-color: #d4e4f9;
@@ -72,21 +63,187 @@ body .App.light {
 body .App .flex-1-1-auto {
   flex: 1 1 auto;
 }
-body .App .cssproblems {
+body .App .cssdashboard .cssbattle {
+  display: grid;
+  height: calc(100vh - 94px);
+  min-height: 500px;
+  margin: 0;
+  grid-template-columns: 1fr auto auto;
+  background-color: var(--bg);
+  font-family: var(--font-family);
+}
+body .App .cssdashboard .cssbattle .editor {
+  height: 100%;
+  max-height: 100%;
+  position: relative;
+  top: 0px;
+  background-color: var(--main-bg);
+  overflow-y: hidden;
+}
+body .App .cssdashboard .cssbattle .editor .editors-container {
+  display: grid;
+  grid-template-rows: auto auto 1fr;
+  height: 100%;
+}
+body .App .cssdashboard .cssbattle .editor .editors-container .editor-resizebar {
+  width: 100%;
+  cursor: row-resize;
+  height: 20px;
+  z-index: 11;
+  position: sticky;
+  bottom: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--resize-bg);
+}
+body .App .cssdashboard .cssbattle .editor .editors-container .editor-resizebar .dots-container {
+  width: 70px;
+  height: 4px;
+  background-color: white;
+}
+body .App .cssdashboard .cssbattle .editor .editors-container .editor-fraction {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(195deg, #03952f, purple);
+}
+body .App .cssdashboard .cssbattle .editor .editors-container .editor-fraction:nth-child(1) {
+  height: 250px;
+}
+body .App .cssdashboard .cssbattle .editor .editors-container .editor-fraction .editor-component {
+  height: 100%;
+  min-height: 40px;
+  position: relative;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  background-color: var(--main-bg);
+  z-index: 10;
+}
+body .App .cssdashboard .cssbattle .editor .editors-container .editor-fraction .editor-component .header {
+  height: 40px;
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+  font-weight: 400;
+  padding-left: 20px;
+  color: var(--bold-color);
+  display: flex;
+  align-items: center;
+}
+body .App .cssdashboard .cssbattle .editor .editors-container section {
+  position: relative !important;
+}
+body .App .cssdashboard .cssbattle .column-header {
+  width: 100%;
+  padding: 13px 20px;
+  font-size: 1.1rem;
+  background-color: var(--bg);
+  color: var(--bold-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+body .App .cssdashboard .cssbattle .column-header span {
+  position: relative;
+  color: var(--hover-color);
+}
+body .App .cssdashboard .cssbattle .column-container {
+  border-left: solid 1px var(--hover-color);
+  border-collapse: collapse;
+  width: 430px;
+  height: 100%;
+  position: relative;
+}
+body .App .cssdashboard .cssbattle .column-container .img-container {
+  width: 400px;
+  height: 300px;
+  margin: 10px auto;
+  background-color: yellow;
+  background-position: center;
+  background-size: cover;
+}
+body .App .cssdashboard .cssbattle .column-container .img-container.output-iframe .iframe-container {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: plum;
+}
+body .App .cssdashboard .cssbattle .column-container .img-container.output-iframe .iframe-container iframe {
+  background: white;
+  width: 400px;
+  height: 300px;
+  border: 0;
+  outline: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+body .App .cssdashboard .cssbattle .column-container .img-container.output-iframe.output-iframe:hover {
+  cursor: col-resize;
+}
+body .App .cssdashboard .cssbattle .column-container .img-container.output-iframe.output-iframe:hover .iframe-container {
+  border-right: solid 2px red;
+}
+body .App .cssdashboard .cssbattle .column-container .colors-container {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: var(--resize-bg);
+  padding: 5px 2px;
+  width: 400px;
+  margin: 17px auto;
+  border-radius: 8px;
+}
+body .App .cssdashboard .cssbattle .column-container .colors-container span {
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 8px 15px;
+  height: auto;
+  font-size: 1.05rem;
+  color: var(--hover-color);
+}
+body .App .cssdashboard .cssbattle .column-container .colors-container span:active {
+  text-decoration: underline;
+}
+body .App .cssdashboard .cssbattle .column-container .colors-container span .color-circle {
+  width: 23px;
+  height: 23px;
+  border-radius: 50%;
+  background-color: orangered;
+  margin-right: 6px;
+  font-size: 0px;
+  color: transparent;
+}
+body .App .cssdashboard .cssproblems {
   min-height: 700px;
-  background: var(--bg);
+  background: var(--resize-bg);
   padding: 25px 50px;
-  background: chartreuse;
+  font-family: var(--font-family);
 }
-body .App .cssproblems .lvl-card {
-  height: 230px;
-  background: chocolate;
+body .App .cssdashboard .cssproblems .container {
+  background-color: var(--main-bg);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
 }
-body .App .cssproblems .problem {
-  margin: 10px 15px;
+body .App .cssdashboard .cssproblems .container .problem {
+  cursor: pointer;
+  margin: 20px 10px;
   width: 300px;
   height: 225px;
-  background: linear-gradient(30deg, orange, blue);
+  position: relative;
+  background-position: center;
+  background-size: cover;
+}
+body .App .cssdashboard .cssproblems .container .problem h2 {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  font-size: 1.1rem;
+  background-color: black;
+  color: white;
+  text-align: center;
+  padding: 2px 15px;
+  border-radius: 12px;
 }
 body .App .logo-icon {
   width: 100%;
