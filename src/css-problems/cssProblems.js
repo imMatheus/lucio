@@ -78,5 +78,5 @@ export const cssProblems = [
         target: 13,
         image: image13,
         colors: ['#00171f', '#00a8e8', '#007ea7'],
-    },
+     },
 ]

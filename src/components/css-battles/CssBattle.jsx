@@ -46,7 +46,7 @@ const CssBattle = ({ problem }) => {
     // in the UI
     characterCount =
         currentCode
-            ?.replace(/\n|\r/g, '') // regex is... nice :\
+            ?.replace(/\s/g, '') // regex is... nice :\
             .split('')
             .filter((word) => word !== ' ').length - 15
 
