@@ -81,6 +81,7 @@ const EditorComponent = ({ language, setter, starterCode }) => {
     const handleEditorChange = (value) => {
         setter(value)
     }
+
     // early return if we dont have language
     if (!language) return null
     return (

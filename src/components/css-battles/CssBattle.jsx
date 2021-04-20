@@ -1,4 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react'
+import * as htmlToImage from 'html-to-image'
+import pixelmatch from 'pixelmatch'
+// import { toPng, toJpeg, toBlob, toPixelData, toSvg } from 'html-to-image'
 import { generateHtmlStarterFile } from './_generateHtmlStarterFile.js'
 import { generateCssStarterFile } from './_generateCssStarterFile.js'
 
@@ -11,9 +14,13 @@ const CssBattle = ({ problem }) => {
     const [htmlCode, setHtmlCode] = useState(generateHtmlStarterFile())
     const iframeContainerRef = useRef(null)
     const iframeRef = useRef(null)
+    const solutionRef = useRef(null)
+    const ugaRef = useRef(null)
     const [isHoveringOverIframe, setIsHoveringOverIframe] = useState(false)
     let characterCount
     let currentCode = '<style>' + cssCode + '</style>' + htmlCode
+    let userImageUrl
+    let solutionImageUrl
 
     // cretaing a the varibel that will keep track of if we
     // are draging the resizer or not
@@ -69,6 +76,76 @@ const CssBattle = ({ problem }) => {
             navigator.clipboard.writeText(e.target.innerText)
         }
     }
+
+    const submitClickedHandler = async () => {
+        if (!iframeRef.current) return
+        console.log(iframeRef.current.contentWindow.document)
+        let dummyImg1
+        let dummyImg2
+        const html = iframeRef.current.contentWindow.document.querySelector('html')
+        html.style.margin = '0px'
+        html.style.padding = '0px'
+        html.style.width = '400px'
+        html.style.height = '300px'
+        if (!html.style.background) html.style.background = 'white'
+        // body.style.background = 'orange'
+        // body.querySelector('body').style.background = 'red'
+        html.querySelector('body').style.width = '400px'
+        html.querySelector('body').style.height = '300px'
+        // iframeContainerRef
+        await htmlToImage
+            .toPng(html)
+            .then(function (dataUrl) {
+                var img = new Image()
+                userImageUrl = dataUrl
+                img.src = dataUrl
+                img.width = 400
+                img.height = 300
+                dummyImg1 = img
+                document.body.appendChild(img)
+            })
+            .catch(function (error) {
+                console.error('oops, something went wrong!', error)
+            })
+        await htmlToImage
+            .toPng(solutionRef.current)
+            .then(function (dataUrl) {
+                var img = new Image()
+                solutionImageUrl = dataUrl
+                img.src = dataUrl
+                img.width = 400
+                img.height = 300
+                dummyImg2 = img
+
+                document.body.appendChild(img)
+            })
+            .catch(function (error) {
+                console.error('oops, something went wrong!', error)
+            })
+
+        const fs = require('fs')
+        const PNG = require('pngjs').PNG
+        const pixelmatch = require('pixelmatch')
+
+        // const img1 = PNG.sync.read(fs.readFileSync('../../'))
+        // const img2 = PNG.sync.read(fs.readFileSync('img2.png'))
+        const img1 = new PNG(dummyImg1)
+        const img2 = new PNG(dummyImg2)
+        console.log(img1)
+        console.log(dummyImg1)
+
+        const { width, height } = img1
+        const diff = new PNG({ width, height })
+
+        const difference = pixelmatch(img1.data, img2.data, diff.data, width, height, { threshold: 0 })
+
+        // fs.writeFileSync('diff.png', PNG.sync.write(diff)) // see diff.png for the difference
+
+        const compatibility = 100 - (difference * 100) / (width * height)
+        console.log(`${difference} pixels differents`)
+        console.log(`Compatibility: ${compatibility}%`)
+    }
+
     return (
         <div className='cssbattle'>
             <div className='editor'>
@@ -101,10 +178,18 @@ const CssBattle = ({ problem }) => {
                     onPointerMove={resizeOutputHandler}
                     className='img-container output-iframe'
                     style={{ backgroundImage: ` url(${problem.image})` }}
+                    ref={ugaRef}
                 >
                     {/* needs the scrolling='no' to stop oveflow in the iframe */}
                     <div className='iframe-container' ref={iframeContainerRef}>
-                        <iframe title='Web Frame' ref={iframeRef} id='webframeId' scrolling='no'></iframe>
+                        <iframe title='Web Frame' ref={iframeRef} id='webframeId' scrolling='no'>
+                            <p>your browser does not support iframes</p>
+                        </iframe>
+                    </div>
+                </div>
+                <div className='submit-wrapper'>
+                    <div className='submit-btn' onClick={submitClickedHandler}>
+                        Submit
                     </div>
                 </div>
             </div>
@@ -113,7 +198,7 @@ const CssBattle = ({ problem }) => {
                     Target {problem.target}
                     <span>400px x 300px </span>
                 </div>
-                <div className='img-container' style={{ backgroundImage: ` url(${problem.image})` }}></div>
+                <div className='img-container' ref={solutionRef} style={{ backgroundImage: ` url(${problem.image})` }}></div>
                 <div className='colors-container'>
                     {/* rendering out all of the colors */}
                     {problem.colors.map((color) => {

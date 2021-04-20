@@ -13,6 +13,7 @@
 body {
   min-width: 1100px;
   height: 100vh;
+  background: green;
 }
 body .App {
   height: 100%;
@@ -134,7 +135,7 @@ body .App .cssdashboard .cssbattle .editor .editors-container section {
 }
 body .App .cssdashboard .cssbattle .column-header {
   width: 100%;
-  padding: 13px 20px;
+  padding: 13px 15px;
   font-size: 1.1rem;
   background-color: var(--bg);
   color: var(--bold-color);
@@ -149,15 +150,31 @@ body .App .cssdashboard .cssbattle .column-header span {
 body .App .cssdashboard .cssbattle .column-container {
   border-left: solid 1px var(--hover-color);
   border-collapse: collapse;
+  padding: 0 15px;
   width: 430px;
   height: 100%;
   position: relative;
 }
+body .App .cssdashboard .cssbattle .column-container .column-header {
+  padding-left: 0;
+  padding-right: 0;
+}
+body .App .cssdashboard .cssbattle .column-container .submit-wrapper {
+  display: flex;
+  align-items: center;
+  margin: 15px 0;
+}
+body .App .cssdashboard .cssbattle .column-container .submit-wrapper .submit-btn {
+  cursor: pointer;
+  padding: 5px 14px;
+  background-color: var(--color-success);
+  border-radius: 14px;
+  font-size: 0.95rem;
+  color: var(--hover-color);
+}
 body .App .cssdashboard .cssbattle .column-container .img-container {
   width: 400px;
   height: 300px;
-  margin: 10px auto;
-  background-color: yellow;
   background-position: center;
   background-size: cover;
 }

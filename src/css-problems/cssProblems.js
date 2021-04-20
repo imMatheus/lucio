@@ -105,7 +105,7 @@ export const cssProblems = [
     {
         target: 18,
         image: image18,
-        colors: ['#ffffff', '##d21034', '#005293'],
+        colors: ['#ffffff', '#d21034', '#005293'],
     },
     {
         target: 19,

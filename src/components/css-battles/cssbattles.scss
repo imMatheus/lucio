@@ -89,7 +89,7 @@
 
     & .column-header {
         width: 100%;
-        padding: 13px 20px;
+        padding: 13px 15px;
         font-size: 1.1rem;
         background-color: var(--bg);
         color: var(--bold-color);
@@ -106,16 +106,35 @@
         border-left: solid 1px var(--hover-color);
         // border-right: solid 1px var(--bold-color);
         border-collapse: collapse;
+        padding: 0 15px;
         width: 430px;
         height: 100%;
         position: relative;
+        & .column-header {
+            padding-left: 0;
+            padding-right: 0;
+        }
         // background: linear-gradient(109deg, rgb(0, 255, 13), blue);
 
+        & .submit-wrapper {
+            display: flex;
+            align-items: center;
+            margin: 15px 0;
+
+            & .submit-btn {
+                cursor: pointer;
+                padding: 5px 14px;
+                background-color: var(--color-success);
+                border-radius: 14px;
+                font-size: 0.95rem;
+                color: var(--hover-color);
+                // color: var(--bold-color);
+            }
+        }
         & .img-container {
             width: 400px;
             height: 300px;
-            margin: 10px auto;
-            background-color: yellow;
+            // margin: 10px auto;
             background-position: center;
             background-size: cover;
 
