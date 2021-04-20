@@ -103,9 +103,9 @@ const EditorComponent = ({ language, setter, starterCode }) => {
                     },
                     fontSize: 17,
                     // cursorStyle: 'block',
-                    // wordWrap: 'on',
-                    wordWrap: 'wordWrapColumn',
-                    wordWrapColumn: 90,
+                    wordWrap: 'on',
+                    // wordWrap: 'wordWrapColumn',
+                    // wordWrapColumn: 90,
 
                     // Set this to false to not auto word wrap minified files
                     wordWrapMinified: true,

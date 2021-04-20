@@ -31,6 +31,34 @@ export const problems = [
         ],
         inputs: ['x', 'y', 'z'],
     },
+    {
+        problemName: 'Number of letters',
+        difficulty: 'easy',
+        problemDescription: `given a string, <span class="varieble">S</span>, and a single letter, <span class="varieble">Letter</span>, return the number of instances that the letter <span class="varieble">Letter</span> appears in the string <span class="varieble">S</span>`,
+        inputFormat: `<span class="varieble">S</span> a string containing lowecase letters, <span class="varieble">Letter</span> a single lowercase letter`,
+        constrains: [
+            `0 &#8804 <span class="varieble">S</span> &#x3c 100000  `,
+            `<span class="varieble">S[i]</span> &#x2208 <span class="varieble">a-z</span>`,
+            `<span class="varieble">Letter</span> &#x2208 <span class="varieble">a-z</span>`,
+        ],
+        sampleCases: [
+            {
+                input: [`'l'`, `'helloworld'`],
+                output: [3],
+                explanation: {
+                    text: `In the string <span class="varieble">'helloworld'</span> the letter <span class="varieble">l</span> appears 3 times`,
+                },
+            },
+            {
+                input: [`'b'`, `'uraqt'`],
+                output: [0],
+                explanation: {
+                    text: `In the string <span class="varieble">'uraqt'</span> the letter <span class="varieble">b</span> doesn't appears, so we return 0`,
+                },
+            },
+        ],
+        inputs: ['letter', 's'],
+    },
 
     {
         problemName: 'MinMax Sum',
