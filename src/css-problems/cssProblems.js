@@ -11,12 +11,14 @@ import image10 from './images/problem10.png'
 import image11 from './images/problem11.png'
 import image12 from './images/problem12.png'
 import image13 from './images/problem13.png'
+import image14 from './images/problem14.png'
 import image16 from './images/problem16.png'
 import image17 from './images/problem17.png'
 import image18 from './images/problem18.png'
 import image19 from './images/problem19.png'
 import image20 from './images/problem20.png'
 import image21 from './images/problem21.png'
+import image22 from './images/problem22.png'
 
 export const cssProblems = [
     {
@@ -86,6 +88,11 @@ export const cssProblems = [
         colors: ['#00171f', '#00a8e8', '#007ea7'],
     },
     {
+        target: 14,
+        image: image14,
+        colors: ['#00171f', '#00a8e8', '#007ea7'],
+    },
+    {
         target: 16,
         image: image16,
         colors: ['#003049', '#d62828', '#f77f00', '#fcbf49', '#eae2b7'],
@@ -114,5 +121,10 @@ export const cssProblems = [
         target: 21,
         image: image21,
         colors: [' #FFFFFF', '#e4002b'],
+    },
+    {
+        target: 22,
+        image: image22,
+        colors: [' #1d3557', '#e63946', '#f1faee'],
     },
 ]
