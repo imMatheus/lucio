@@ -7,8 +7,7 @@ const pythonPrint = (name, args) => {
 function generatePython(name, args) {
     if (!name || !args) return
 
-    const val = `
-#!/bin/python3
+    const val = `#!/bin/python3
 
 import math
 import os

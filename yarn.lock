@@ -5878,6 +5878,11 @@
     "react-property" "1.0.1"
     "style-to-js" "1.1.0"
 
+"html-to-image@^1.6.0":
+  "integrity" "sha512-omzkdNnZOacH7udio09I3eGkOrE8VcpzabQbLYmjojpi+FmtofpNY9lHV2fn2DaDO9G9p10O3E8SF5HHgFhSWg=="
+  "resolved" "https://registry.npmjs.org/html-to-image/-/html-to-image-1.6.0.tgz"
+  "version" "1.6.0"
+
 "html-webpack-plugin@4.5.0":
   "integrity" "sha512-MouoXEYSjTzCrjIxWwg8gxL5fE2X2WZJLmBYXlaJhQUH5K/b5OrqmV7T4dB7iu0xkmJ6JlUuV6fFVtnqbPopZw=="
   "resolved" "https://registry.yarnpkg.com/html-webpack-plugin/-/html-webpack-plugin-4.5.0.tgz"

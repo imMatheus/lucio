@@ -1,6 +1,6 @@
 export const problems = [
     {
-        problemName: 'Add',
+        problemName: 'Simple addition',
         difficulty: 'easy',
         problemDescription: `given two integers, a and b, return the sum of a + b`,
         inputFormat: `a a integer, b a integer `,
