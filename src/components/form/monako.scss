@@ -90,6 +90,17 @@
         }
     }
     .CodeCompileView-wrapper {
+        position: relative;
+        & .loadingspinner-wrapper-for-codecompile {
+            // background-color: green;
+
+            // padding: 10px;
+            // height: 200px;
+            margin: 90px auto;
+            width: 230px;
+            height: 230px;
+            // padding-bottom: 100%;
+        }
         // display: none;
         .codecompileview {
             // display: none;

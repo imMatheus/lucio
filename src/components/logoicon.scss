@@ -1,13 +1,31 @@
 .logo-icon {
     width: 100%;
-    height: 100%;
+    padding-bottom: 100%;
+    // height: 100%;
     display: grid;
     place-items: center;
     position: relative;
     box-sizing: border-box;
 
+    @mixin normalSpinn($prefix, $currentRotation, $animationTime) {
+        animation: #{'ani' + $currentRotation} $animationTime 1;
+        $startRoatation: $currentRotation + $prefix;
+        @keyframes ani#{$currentRotation} {
+            // 0% {
+            //     transform: rotate(#{$startRoatation * (-1)}deg);
+            // }
+            0% {
+                transform: rotate(#{$startRoatation}deg);
+            }
+
+            100% {
+                transform: rotate(0deg);
+            }
+        }
+    }
+
     @mixin rotateAnimation($prefix, $currentRotation, $animationTime) {
-        animation: #{'ani' + $currentRotation} $animationTime 1 alternate;
+        animation: #{'ani' + $currentRotation} $animationTime infinite;
         $startRoatation: $currentRotation + $prefix;
         @keyframes ani#{$currentRotation} {
             0% {
@@ -50,6 +68,10 @@
                 }
                 @if $i == 5 {
                     border-color: var(--color-success);
+                    left: 10% * ($i - 1);
+                    top: 10% * ($i - 1);
+                    width: 100% - 20% * ($i - 1);
+                    height: 100% - 20% * ($i - 1);
                     background-color: var(--color-success);
                 }
             }
@@ -64,7 +86,24 @@
                     @if $i != 5 {
                         // thes prefix can be changed as you like
                         // it just kinda looks good
-                        @include rotateAnimation(-72, $i * -72, 3000ms);
+                        // @include rotateAnimation(-72, $i * -72, 3000ms);
+                        @include normalSpinn(-60, $i * -60, 1800ms);
+                    }
+                }
+            }
+        }
+        &.loader {
+            .circle-line {
+                @for $i from 1 through 5 {
+                    &:nth-child(#{$i}) {
+                        // then adding animation the circle aslong as it is not the
+                        // 5th circle as it does not to rotate
+                        @if $i != 5 {
+                            // thes prefix can be changed as you like
+                            // it just kinda looks good
+                            // @include rotateAnimation(-72, $i * -72, 3000ms);
+                            @include rotateAnimation(-72, $i * -72, 3300ms);
+                        }
                     }
                 }
             }

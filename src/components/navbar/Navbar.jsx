@@ -13,7 +13,7 @@ const Navbar = ({ isDarkMode, setIsDarkMode }) => {
                     <h2>LucioCode</h2>
                     {/* setting spinn to true so it spinns */}
                     <div className='logo-icon-container'>
-                        <LogoIcon spinn={true} />
+                        <LogoIcon spinn={true} loader={false} />
                     </div>
                 </div>
             </Link>

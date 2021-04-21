@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import CloseIcon from '@material-ui/icons/Close'
 import CheckIcon from '@material-ui/icons/Check'
-import LoadingSpinner from '../LoadingSpinner'
+// import LoadingSpinner from '../LoadingSpinner'
 import { v4 as uuidv4 } from 'uuid'
+import LogoIcon from '../LogoIcon'
 
 const CodeCompileView = ({ testcases, fetchingData }) => {
     // let listPointer = 0
@@ -35,7 +36,7 @@ const CodeCompileView = ({ testcases, fetchingData }) => {
             <div className='CodeCompileView-wrapper'>
                 {fetchingData ? (
                     <div className='loadingspinner-wrapper-for-codecompile'>
-                        <LoadingSpinner />
+                        <LogoIcon spinn={true} loader={true} />
                     </div>
                 ) : (
                     testcases.length > 0 && (
