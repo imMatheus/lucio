@@ -1,4 +1,4 @@
-import image1 from './images/problem1.svg'
+import image1 from './images/problem1.png'
 import image2 from './images/problem2.png'
 import image3 from './images/problem3.png'
 import image4 from './images/problem4.png'

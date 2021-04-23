@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react'
 import * as htmlToImage from 'html-to-image'
 import pixelmatch from 'pixelmatch'
+import { useLocalStorage } from '../../hooks/useLocalStorage'
 // import { toPng, toJpeg, toBlob, toPixelData, toSvg } from 'html-to-image'
 import { generateHtmlStarterFile } from './_generateHtmlStarterFile.js'
 import { generateCssStarterFile } from './_generateCssStarterFile.js'
@@ -10,8 +11,9 @@ import EditorComponent from './EditorComponent'
 const CssBattle = ({ problem }) => {
     const cssEditorRef = useRef(null)
     const htmlEditorRef = useRef(null)
-    const [cssCode, setCssCode] = useState(generateCssStarterFile())
-    const [htmlCode, setHtmlCode] = useState(generateHtmlStarterFile())
+    const canvasRef = useRef(null)
+    const [cssCode, setCssCode] = useLocalStorage('cssCode', generateCssStarterFile())
+    const [htmlCode, setHtmlCode] = useLocalStorage('htmlCode', generateHtmlStarterFile())
     const iframeContainerRef = useRef(null)
     const iframeRef = useRef(null)
     const solutionRef = useRef(null)
@@ -22,9 +24,9 @@ const CssBattle = ({ problem }) => {
     let userImageUrl
     let solutionImageUrl
 
-    // cretaing a the varibel that will keep track of if we
-    // are draging the resizer or not
-    // and initialing it to false as we are not draging at first
+    // creating a the variable that will keep track of if we
+    // are dragging the resizer or not
+    // and initialing it to false as we are not dragging at first
     let isDragingEditorResizer = false
     document.addEventListener('mousemove', function (e) {
         // Don't do anything if we are not dragging
@@ -48,8 +50,8 @@ const CssBattle = ({ problem }) => {
         }
     }, [frame, currentCode])
 
-    // triming all white space and line breaks from our code
-    // then setting it to the 'characterCount' varible that gets displayed
+    // trimming all white space and line breaks from our code
+    // then setting it to the 'characterCount' variable that gets displayed
     // in the UI
     characterCount =
         currentCode
@@ -71,79 +73,95 @@ const CssBattle = ({ problem }) => {
         // if the user pressed the circle then it will not have any text so we take its parents, the span,
         // and takes its innerText
         if (!e.target.innerText) navigator.clipboard.writeText(e.target.parentElement.innerText)
-        // else just take the inner text ofthe span
+        // else just take the inner text of the span
         else {
             navigator.clipboard.writeText(e.target.innerText)
         }
     }
 
     const submitClickedHandler = async () => {
+        function getBase64Image(img) {
+            // Create an empty canvas element
+            var canvas = document.createElement('canvas')
+            canvas.width = img.width
+            canvas.height = img.height
+            var ctx = canvas.getContext('2d')
+            ctx.drawImage(img, 0, 0)
+            var dataURL = canvas.toDataURL('image/png')
+
+            return dataURL.replace(/^data:image\/(png|jpg);base64,/, '')
+        }
+
+        function _base64ToArrayBuffer(base64) {
+            var raw = window.atob(base64)
+            var rawLength = raw.length
+            var array = new Uint8Array(new ArrayBuffer(rawLength))
+
+            for (let i = 0; i < rawLength; i++) {
+                array[i] = raw.charCodeAt(i)
+            }
+            console.log(array)
+            return array
+            // let e = Uint8Array.from(atob(base64), (c) => c.charCodeAt(0))
+            // console.log(e)
+            // var binary_string = window.atob(base64)
+            // console.log(binary_string)
+            // var len = binary_string.length
+            // var bytes = new Uint8ClampedArray(len)
+            // for (var i = 0; i < len; i++) {
+            //     bytes[i] = binary_string.charCodeAt(i)
+            // }
+            // console.log(bytes)
+            // return bytes.buffer
+        }
+
         if (!iframeRef.current) return
-        console.log(iframeRef.current.contentWindow.document)
-        let dummyImg1
-        let dummyImg2
+        let img1Data
+        let img2Data
         const html = iframeRef.current.contentWindow.document.querySelector('html')
+        iframeRef.current.contentWindow.margin = '0px'
+        iframeRef.current.contentWindow.padding = '0px'
         html.style.margin = '0px'
         html.style.padding = '0px'
         html.style.width = '400px'
         html.style.height = '300px'
-        if (!html.style.background) html.style.background = 'white'
-        // body.style.background = 'orange'
-        // body.querySelector('body').style.background = 'red'
+        if (!html.style.background) html.style.background = 'blue'
         html.querySelector('body').style.width = '400px'
         html.querySelector('body').style.height = '300px'
-        // iframeContainerRef
-        await htmlToImage
-            .toPng(html)
+
+        htmlToImage
+            .toPng(ugaRef.current)
             .then(function (dataUrl) {
                 var img = new Image()
-                userImageUrl = dataUrl
+                console.log(dataUrl)
                 img.src = dataUrl
                 img.width = 400
                 img.height = 300
-                dummyImg1 = img
+                // getBase64Image(img)
+                let x = _base64ToArrayBuffer(getBase64Image(img))
+                console.log(x)
+                let canvas = canvasRef.current
+                let ctx = canvas.getContext('2d')
+                ctx.drawImage(img, 0, 0)
                 document.body.appendChild(img)
             })
             .catch(function (error) {
                 console.error('oops, something went wrong!', error)
             })
-        await htmlToImage
-            .toPng(solutionRef.current)
-            .then(function (dataUrl) {
-                var img = new Image()
-                solutionImageUrl = dataUrl
-                img.src = dataUrl
-                img.width = 400
-                img.height = 300
-                dummyImg2 = img
-
-                document.body.appendChild(img)
-            })
-            .catch(function (error) {
-                console.error('oops, something went wrong!', error)
-            })
-
-        const fs = require('fs')
-        const PNG = require('pngjs').PNG
-        const pixelmatch = require('pixelmatch')
-
-        // const img1 = PNG.sync.read(fs.readFileSync('../../'))
-        // const img2 = PNG.sync.read(fs.readFileSync('img2.png'))
-        const img1 = new PNG(dummyImg1)
-        const img2 = new PNG(dummyImg2)
-        console.log(img1)
-        console.log(dummyImg1)
-
-        const { width, height } = img1
-        const diff = new PNG({ width, height })
-
-        const difference = pixelmatch(img1.data, img2.data, diff.data, width, height, { threshold: 0 })
-
-        // fs.writeFileSync('diff.png', PNG.sync.write(diff)) // see diff.png for the difference
-
-        const compatibility = 100 - (difference * 100) / (width * height)
-        console.log(`${difference} pixels differents`)
-        console.log(`Compatibility: ${compatibility}%`)
+        // htmlToImage
+        //     .toPng(solutionRef.current)
+        //     .then(function (dataUrl) {
+        //         var img = new Image()
+        //         img.src = dataUrl
+        //         img.width = 400
+        //         img.height = 300
+        //         let x = _base64ToArrayBuffer(getBase64Image(img))
+        //         console.log(x)
+        //         document.body.appendChild(img)
+        //     })
+        //     .catch(function (error) {
+        //         console.error('oops, something went wrong!', error)
+        //     })
     }
 
     return (
@@ -180,7 +198,7 @@ const CssBattle = ({ problem }) => {
                     style={{ backgroundImage: ` url(${problem.image})` }}
                     ref={ugaRef}
                 >
-                    {/* needs the scrolling='no' to stop oveflow in the iframe */}
+                    {/* needs the scrolling='no' to stop overflow in the iframe */}
                     <div className='iframe-container' ref={iframeContainerRef}>
                         <iframe title='Web Frame' ref={iframeRef} id='webframeId' scrolling='no'>
                             <p>your browser does not support iframes</p>
@@ -198,7 +216,11 @@ const CssBattle = ({ problem }) => {
                     Target {problem.target}
                     <span>400px x 300px </span>
                 </div>
-                <div className='img-container' ref={solutionRef} style={{ backgroundImage: ` url(${problem.image})` }}></div>
+                <div
+                    className='img-container'
+                    ref={solutionRef}
+                    style={{ backgroundImage: ` url(${problem.image})`, width: '400px', height: '300px' }}
+                ></div>
                 <div className='colors-container'>
                     {/* rendering out all of the colors */}
                     {problem.colors.map((color) => {
@@ -211,6 +233,14 @@ const CssBattle = ({ problem }) => {
                     })}
                 </div>
             </div>
+            <canvas
+                id='dummyCanvas'
+                style={{ backgroundColor: 'pink', width: '400px', height: '300px' }}
+                width='400px'
+                height='300px'
+                ref={canvasRef}
+            ></canvas>
+            {/* style={{ display: 'none' }} */}
         </div>
     )
 }

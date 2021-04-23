@@ -1,17 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import CloseIcon from '@material-ui/icons/Close'
 import CheckIcon from '@material-ui/icons/Check'
-// import LoadingSpinner from '../LoadingSpinner'
 import { v4 as uuidv4 } from 'uuid'
 import LogoIcon from '../LogoIcon'
 
 const CodeCompileView = ({ testcases, fetchingData }) => {
-    // let listPointer = 0
     const [listPointer, setListPointer] = useState(0)
     let correctAnswer = true
     let failedCases = testcases.length
-    // console.log(testcases)
 
+    // looping thru the tescases and cheking if one of the cases were incorrect
     testcases?.forEach((element) => {
         if (element.correctAnswer === false) {
             correctAnswer = false
@@ -20,7 +18,7 @@ const CodeCompileView = ({ testcases, fetchingData }) => {
             failedCases--
         }
     })
-    let title = correctAnswer ? 'Noice job' : 'Wrong answer :('
+    let title = correctAnswer ? 'Nice job' : 'Wrong answer :('
     const [currentTc, setCurrentTc] = useState(testcases[listPointer])
     useEffect(() => {
         setCurrentTc(testcases[listPointer])
@@ -47,7 +45,7 @@ const CodeCompileView = ({ testcases, fetchingData }) => {
                                 <div className='case-list'>
                                     <ul>
                                         {testcases?.map((cas, index) => {
-                                            // i use index to keep track of witch index we should show
+                                            // I use index to keep track of witch index we should show
                                             // on the right portion
                                             let color = cas.correctAnswer ? 'green' : 'red'
                                             let highlight = index === listPointer ? 'highlight' : ''
@@ -67,10 +65,10 @@ const CodeCompileView = ({ testcases, fetchingData }) => {
                                 </div>
 
                                 <div className='case-content'>
-                                    <Subpart header='Compile msg' complileMsg={currentTc?.compileMessage} />
-                                    <Subpart header='Inputs' content={currentTc?.inputs} />
-                                    <Subpart header='Your output' content={currentTc?.userOutput} />
-                                    <Subpart header='expected output' content={currentTc?.expectedOutput} />
+                                    <Subpart key={uuidv4()} header='Compile msg' complileMsg={currentTc?.compileMessage} />
+                                    <Subpart key={uuidv4()} header='Inputs' content={currentTc?.inputs} />
+                                    <Subpart key={uuidv4()} header='Your output' content={currentTc?.userOutput} />
+                                    <Subpart key={uuidv4()} header='expected output' content={currentTc?.expectedOutput} />
                                 </div>
                             </div>
                         </div>
@@ -83,7 +81,7 @@ const CodeCompileView = ({ testcases, fetchingData }) => {
 
 const Subpart = ({ header, content, complileMsg }) => {
     return (
-        <div key={uuidv4()} className='subpart'>
+        <div className='subpart'>
             <h4>{header}</h4>
             <div className='output'>
                 {/* 
