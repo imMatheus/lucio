@@ -11,9 +11,11 @@
 }
 
 body {
+  --main-bg: #282c34;
   min-width: 1100px;
   height: 100vh;
-  background: var();
+  min-height: 100vh;
+  background-color: var(--main-bg);
   --paraghrap-fontfamily: "Open Sans", Arial, Helvetica, sans-serif;
   --varible-fontfamily: "Roboto Slab", serif;
   --color-success: #ff1053;
@@ -30,10 +32,12 @@ body {
 }
 body .App {
   height: 100%;
+  min-height: 100vh;
   width: 100%;
   min-height: 100vh !important;
   display: flex;
   flex-flow: column;
+  background-color: var(--main-bg);
 }
 body .App.dark {
   --main-bg: #282c34;
@@ -66,9 +70,11 @@ body .App .flex-1-1-auto {
 }
 body .App .outline-btn {
   font-size: 1.25rem;
+  display: inline;
   padding: 6px 24px;
   display: flex;
   align-items: center;
+  justify-content: center;
   border: solid 2px var(--color-success);
   outline: solid 2px var(--color-success);
   outline-offset: -2px;
@@ -76,6 +82,7 @@ body .App .outline-btn {
   font-weight: 300;
   transition: outline-offset 170ms;
   cursor: pointer;
+  color: black;
 }
 body .App .outline-btn:hover {
   outline-offset: 4px;
@@ -437,6 +444,104 @@ body .App .logo-icon.spinn.loader .circle-line:nth-child(4) {
   100% {
     transform: rotate(-360deg);
   }
+}
+body .App .login-container {
+  height: calc(100vh - 94px);
+  min-height: 600px;
+  background: var(--bg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: var(--font-family);
+}
+body .App .login-container .card {
+  width: 480px;
+  height: 610px;
+  background-color: #ffffff;
+  position: relative;
+  overflow: hidden;
+}
+body .App .login-container .card .blobs-container {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 1;
+}
+body .App .login-container .card .blobs-container .blob {
+  position: absolute;
+  fill: var(--color-success);
+  transform: rotate(-30deg);
+  animation: fadeInBlob 1600ms ease-in-out;
+}
+body .App .login-container .card .blobs-container .blob:nth-child(1) {
+  left: calc(1 * 0px - 100px);
+  top: calc(1 * 0px - 100px);
+  width: calc((1 * 30px) + 270px);
+  height: calc((1 * 30px) + 270px);
+  fill: #780000;
+  z-index: 3;
+}
+body .App .login-container .card .blobs-container .blob:nth-child(2) {
+  left: calc(2 * 0px - 100px);
+  top: calc(2 * 0px - 100px);
+  width: calc((2 * 30px) + 270px);
+  height: calc((2 * 30px) + 270px);
+  fill: #c1121f;
+  z-index: 2;
+}
+body .App .login-container .card .blobs-container .blob:nth-child(3) {
+  left: calc(3 * 0px - 100px);
+  top: calc(3 * 0px - 100px);
+  width: calc((3 * 30px) + 270px);
+  height: calc((3 * 30px) + 270px);
+  fill: #fdf0d5;
+  z-index: 1;
+}
+@keyframes fadeInBlob {
+  0% {
+    transform: rotate(40deg) scale(0.7) translate(-100%, -100%);
+  }
+  35% {
+    transform: rotate(-100deg) scale(1) translate(70px, 70px);
+  }
+  75% {
+    transform: rotate(0deg) scale(1) translate(40px, 40px);
+  }
+  100% {
+    transform: rotate(-30deg) scale(1) translate(0px, 0px);
+  }
+}
+body .App .login-container .card .content {
+  width: 100%;
+  height: 100%;
+  padding: 12px;
+  position: relative;
+  z-index: 3;
+}
+body .App .login-container .card .content .title {
+  font-size: 1.5rem;
+  font-weight: 500;
+  text-align: center;
+}
+body .App .login-container .card .content .subtitle {
+  font-size: 0.9rem;
+  padding: 8px 0;
+  font-weight: 300;
+  text-align: center;
+  position: relative;
+}
+body .App .login-container .card .content .input-btn {
+  width: 100%;
+  padding: 8px 14px;
+  margin: 8px 0px;
+  border-radius: 4px;
+  background-color: white;
+  box-shadow: 0px 0px 5px #000000;
+  color: var(--bg);
+  outline: none;
+}
+body .App .login-container .card .content .input-btn:focus {
+  box-shadow: 0px 0px 10px #000000;
 }
 body .App .homepage {
   min-height: 700px;

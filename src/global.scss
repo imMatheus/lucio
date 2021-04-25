@@ -24,9 +24,14 @@
 
 //  sass --watch src/global.scss:src/global.css
 body {
+    --main-bg: #282c34;
+
     min-width: 1100px;
     height: 100vh;
-    background: var();
+    min-height: 100vh;
+    // font-size: 16px;
+    background-color: var(--main-bg);
+
     --paraghrap-fontfamily: 'Open Sans', Arial, Helvetica, sans-serif;
     --varible-fontfamily: 'Roboto Slab', serif;
     --color-success: #ff1053;
@@ -44,6 +49,7 @@ body {
     --inputs-fontsize: 0.85rem;
     .App {
         height: 100%;
+        min-height: 100vh;
 
         &.dark {
             //dark theme colors
@@ -78,16 +84,19 @@ body {
         min-height: 100vh !important;
         display: flex;
         flex-flow: column;
+        background-color: var(--main-bg);
 
         & .flex-1-1-auto {
             flex: 1 1 auto;
         }
         & .outline-btn {
             font-size: 1.25rem;
+            display: inline;
             padding: 6px 24px;
             $outlineprefix: 2px;
             display: flex;
             align-items: center;
+            justify-content: center;
             border: solid $outlineprefix var(--color-success);
             outline: solid $outlineprefix var(--color-success);
             outline-offset: -1 * $outlineprefix;
@@ -95,6 +104,7 @@ body {
             font-weight: 300;
             transition: outline-offset 170ms;
             cursor: pointer;
+            color: black;
 
             &:hover {
                 outline-offset: 2 * $outlineprefix;
@@ -103,6 +113,7 @@ body {
 
         @import './components/css-battles/cssdashboard';
         @import './components/logoicon';
+        @import './components/login/login';
         @import './components/homepage';
         @import './components/form';
         @import './components/problemspage/problems';

@@ -1,0 +1,225 @@
+.login-container {
+    height: calc(100vh - 94px);
+    min-height: 600px;
+    background: var(--bg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: var(--font-family);
+
+    & .card {
+        width: 480px;
+        height: 610px;
+        // background-color: var(--bold-color);
+        background-color: #ffffff;
+        // background-color: #003049;
+
+        position: relative;
+        overflow: hidden;
+
+        & .blobs-container {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            z-index: 1;
+            & .blob {
+                // animation: move 3s ease-in-out infinite;
+                position: absolute;
+                fill: var(--color-success);
+
+                transform: rotate(-30deg);
+                $prefix: 0px;
+                $widthheight: 270px;
+                animation: fadeInBlob 1600ms ease-in-out;
+
+                @for $id from 1 through 3 {
+                    &:nth-child(#{$id}) {
+                        left: calc(#{$id} * #{$prefix} - 100px);
+                        top: calc(#{$id} * #{$prefix} - 100px);
+                        width: calc((#{$id} * 30px) + #{$widthheight});
+                        height: calc((#{$id} * 30px) + #{$widthheight});
+                        // animation-delay: calc((4 - #{$id}) * 150ms);
+                        @if $id == 1 {
+                            fill: #780000;
+
+                            z-index: 3;
+                        }
+                        @if $id == 2 {
+                            fill: #c1121f;
+                            // fill: hsl(17%, 74%, 53%);
+
+                            z-index: 2;
+                        }
+                        @if $id == 3 {
+                            fill: #fdf0d5;
+                            // fill: hsl(24%, 74%, 53%);
+
+                            z-index: 1;
+                        }
+                    }
+                }
+            }
+            @keyframes fadeInBlob {
+                0% {
+                    transform: rotate(40deg) scale(0.7) translate(-100%, -100%);
+                }
+
+                35% {
+                    transform: rotate(-100deg) scale(1) translate(70px, 70px);
+                }
+                75% {
+                    transform: rotate(0deg) scale(1) translate(40px, 40px);
+                }
+
+                100% {
+                    transform: rotate(-30deg) scale(1) translate(0px, 0px);
+                }
+            }
+        }
+
+        & .content {
+            width: 100%;
+            height: 100%;
+            padding: 12px;
+            position: relative;
+            z-index: 3;
+
+            & .title {
+                font-size: 1.5rem;
+                font-weight: 500;
+                text-align: center;
+            }
+            & .subtitle {
+                font-size: 0.9rem;
+                padding: 8px 0;
+                font-weight: 300;
+                text-align: center;
+                position: relative;
+            }
+
+            & .input-btn {
+                width: 100%;
+                padding: 8px 14px;
+                margin: 8px 0px;
+                border-radius: 4px;
+                background-color: white;
+                box-shadow: 0px 0px 5px #000000;
+                color: var(--bg);
+                outline: none;
+                &:focus {
+                    box-shadow: 0px 0px 10px #000000;
+                }
+            }
+        }
+    }
+}
+// .social-login img {
+//     width: 24px;
+// }
+// a {
+//     text-decoration: none;
+// }
+
+// .card {
+//     font-family: sans-serif;
+//     width: 400px;
+//     margin-left: auto;
+//     margin-right: auto;
+//     margin-top: 3em;
+//     margin-bottom: 3em;
+//     border-radius: 10px;
+//     background-color: var(--main-bg);
+//     padding: 1.8rem;
+//     box-shadow: 2px 5px 20px rgba(255, 255, 255, 0.1);
+// }
+
+// .title {
+//     text-align: center;
+//     font-weight: 800;
+//     font-size: 1.4rem;
+//     margin: 0;
+//     padding-bottom: 6px;
+// }
+// .subtitle {
+//     text-align: center;
+//     font-size: 1rem;
+//     font-weight: 300;
+//     padding-bottom: 10px;
+// }
+// .btn-text {
+//     margin: 0;
+// }
+
+// .social-login {
+//     display: flex;
+//     justify-content: center;
+//     gap: 5px;
+// }
+
+// .google-btn {
+//     background: #fff;
+//     border: solid 2px rgb(245 239 239);
+//     border-radius: 8px;
+//     font-weight: bold;
+//     display: flex;
+//     padding: 10px 10px;
+//     flex: auto;
+//     align-items: center;
+//     gap: 5px;
+//     justify-content: center;
+// }
+// .fb-btn {
+//     background: #fff;
+//     border: solid 2px rgb(69, 69, 185);
+//     border-radius: 8px;
+//     padding: 10px;
+//     display: flex;
+//     align-items: center;
+// }
+
+// .or {
+//     text-align: center;
+//     font-weight: bold;
+//     border-bottom: 2px solid rgb(245 239 239);
+//     line-height: 0.1em;
+//     margin: 25px 0;
+// }
+// .or span {
+//     background: #fff;
+//     padding: 0 10px;
+// }
+
+// .email-login {
+//     display: flex;
+//     flex-direction: column;
+// }
+// .email-login label {
+//     color: rgb(170 166 166);
+// }
+
+// input[type='text'],
+// input[type='password'] {
+//     padding: 15px 20px;
+//     margin-top: 8px;
+//     margin-bottom: 15px;
+//     border: 1px solid #ccc;
+//     border-radius: 8px;
+//     box-sizing: border-box;
+// }
+
+// .cta-btn {
+//     background-color: rgb(69, 69, 185);
+//     color: white;
+//     padding: 18px 20px;
+//     margin-top: 10px;
+//     margin-bottom: 20px;
+//     width: 100%;
+//     border-radius: 10px;
+//     border: none;
+// }
+
+// .forget-pass {
+//     text-align: center;
+
+//     display: block;
+// }
