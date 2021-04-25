@@ -1,12 +1,28 @@
-import { cssProblems } from '../../css-problems/cssProblems.js'
+// import { cssProblems } from '../../css-problems/cssProblems.js'
 import { Link } from 'react-router-dom'
+import { db } from '../../firebase'
+import { v4 as uuidv4 } from 'uuid'
 
 const CssProblems = () => {
+    const cssRef = db.ref('css')
+    let cssProblems
+    cssRef.on('value', (snapshot) => {
+        const css = snapshot.val()
+        let cssList = []
+        for (let id in css) {
+            cssList.push(css[id])
+        }
+        cssProblems = cssList[0]
+        console.log(cssProblems)
+    })
+
+    // cssRef.push(cssProblems)
+    // console.log(cssRef)
     return (
         <div className='cssproblems'>
             <div className='container'>
-                {cssProblems.map((problem) => {
-                    return <Problem target={problem.target} image={problem.image} />
+                {cssProblems?.map((problem) => {
+                    return <Problem key={uuidv4()} target={problem.target} image={problem.image} />
                 })}
             </div>
         </div>

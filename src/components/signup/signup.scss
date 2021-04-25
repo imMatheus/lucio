@@ -1,4 +1,4 @@
-.login-container {
+.signup-container {
     height: calc(100vh - 94px);
     min-height: 600px;
     background: var(--bg);
@@ -80,7 +80,7 @@
         & .content {
             width: 100%;
             height: 100%;
-            padding: 12px;
+            padding: 12px 25px;
             position: relative;
             z-index: 3;
 

@@ -445,7 +445,7 @@ body .App .logo-icon.spinn.loader .circle-line:nth-child(4) {
     transform: rotate(-360deg);
   }
 }
-body .App .login-container {
+body .App .signup-container {
   height: calc(100vh - 94px);
   min-height: 600px;
   background: var(--bg);
@@ -454,26 +454,26 @@ body .App .login-container {
   align-items: center;
   font-family: var(--font-family);
 }
-body .App .login-container .card {
+body .App .signup-container .card {
   width: 480px;
   height: 610px;
   background-color: #ffffff;
   position: relative;
   overflow: hidden;
 }
-body .App .login-container .card .blobs-container {
+body .App .signup-container .card .blobs-container {
   width: 100%;
   height: 100%;
   position: absolute;
   z-index: 1;
 }
-body .App .login-container .card .blobs-container .blob {
+body .App .signup-container .card .blobs-container .blob {
   position: absolute;
   fill: var(--color-success);
   transform: rotate(-30deg);
   animation: fadeInBlob 1600ms ease-in-out;
 }
-body .App .login-container .card .blobs-container .blob:nth-child(1) {
+body .App .signup-container .card .blobs-container .blob:nth-child(1) {
   left: calc(1 * 0px - 100px);
   top: calc(1 * 0px - 100px);
   width: calc((1 * 30px) + 270px);
@@ -481,7 +481,7 @@ body .App .login-container .card .blobs-container .blob:nth-child(1) {
   fill: #780000;
   z-index: 3;
 }
-body .App .login-container .card .blobs-container .blob:nth-child(2) {
+body .App .signup-container .card .blobs-container .blob:nth-child(2) {
   left: calc(2 * 0px - 100px);
   top: calc(2 * 0px - 100px);
   width: calc((2 * 30px) + 270px);
@@ -489,7 +489,7 @@ body .App .login-container .card .blobs-container .blob:nth-child(2) {
   fill: #c1121f;
   z-index: 2;
 }
-body .App .login-container .card .blobs-container .blob:nth-child(3) {
+body .App .signup-container .card .blobs-container .blob:nth-child(3) {
   left: calc(3 * 0px - 100px);
   top: calc(3 * 0px - 100px);
   width: calc((3 * 30px) + 270px);
@@ -511,26 +511,26 @@ body .App .login-container .card .blobs-container .blob:nth-child(3) {
     transform: rotate(-30deg) scale(1) translate(0px, 0px);
   }
 }
-body .App .login-container .card .content {
+body .App .signup-container .card .content {
   width: 100%;
   height: 100%;
-  padding: 12px;
+  padding: 12px 25px;
   position: relative;
   z-index: 3;
 }
-body .App .login-container .card .content .title {
+body .App .signup-container .card .content .title {
   font-size: 1.5rem;
   font-weight: 500;
   text-align: center;
 }
-body .App .login-container .card .content .subtitle {
+body .App .signup-container .card .content .subtitle {
   font-size: 0.9rem;
   padding: 8px 0;
   font-weight: 300;
   text-align: center;
   position: relative;
 }
-body .App .login-container .card .content .input-btn {
+body .App .signup-container .card .content .input-btn {
   width: 100%;
   padding: 8px 14px;
   margin: 8px 0px;
@@ -540,7 +540,7 @@ body .App .login-container .card .content .input-btn {
   color: var(--bg);
   outline: none;
 }
-body .App .login-container .card .content .input-btn:focus {
+body .App .signup-container .card .content .input-btn:focus {
   box-shadow: 0px 0px 10px #000000;
 }
 body .App .homepage {
@@ -1201,7 +1201,8 @@ body .App .page404 {
   font-size: 5rem;
   font-family: var(--font-family);
   background: var(--bg);
-  text-shadow: 0px 0px 0px #0905e0, 1px 1px 0px #1c07c8, 2px 2px 0px #2f09b0, 3px 3px 0px #420a98, 4px 4px 0px #550c80, 0px 0px 0px #0905e0, -1px -1px 0px #1c07c8, -2px -2px 0px #2f09b0, -3px -3px 0px #420a98, -4px -4px 0px #550c80;
+  color: transparent;
+  text-shadow: 0px 0px 0px #ff1053, 1px 0px 0px #ed1c5d, 2px 0px 0px #da2866, 3px 0px 0px #c83370, 4px 0px 0px #b63f7a, 5px 0px 0px #a34b83, 6px 0px 0px #91578d, 7px 0px 0px #7e6296, 8px 0px 0px #6c6ea0;
 }
 body .comp-nav {
   display: grid;
@@ -1210,6 +1211,11 @@ body .comp-nav {
 body a {
   color: var(--resize-bg);
   text-decoration: none;
+  outline: none;
+}
+body a:active, body a:focus {
+  text-decoration: underline;
+  text-decoration-color: var(--bold-color);
 }
 
 /*# sourceMappingURL=global.css.map */

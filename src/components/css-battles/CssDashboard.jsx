@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import CssBattle from './CssBattle'
 import CssProblems from './CssProblems'
 import { cssProblems } from '../../css-problems/cssProblems.js'
+import { v4 as uuidv4 } from 'uuid'
 
 const CssDashboard = () => {
     return (
@@ -9,7 +10,7 @@ const CssDashboard = () => {
             <Switch>
                 {cssProblems?.map((problem) => {
                     return (
-                        <Route exact path={`/css/play/${problem.target}`}>
+                        <Route key={uuidv4()} exact path={`/css/play/${problem.target}`}>
                             <CssBattle problem={problem} />
                         </Route>
                     )

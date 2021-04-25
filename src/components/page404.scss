@@ -5,20 +5,21 @@
     font-size: 5rem;
     font-family: var(--font-family);
     background: var(--bg);
-    $color-green: #550c80;
-    $color-blue: #0905e0;
-    $shadow-number: 4;
+    color: transparent;
+    $text-color: rgb(232, 235, 207);
+    $color-green: #6c6ea0;
+    $color-blue: #ff1053;
+    $shadow-number: 8;
     $offset-x: 1px;
-    $offset-y: 1px;
+    $offset-y: 0px;
     $value: ();
-    @for $i from 0 through $shadow-number {
-        $theShadow: $offset-x * $i $offset-y * $i 0px mix($color-green, $color-blue, 100% / $shadow-number * ($i));
-        $value: append($value, $theShadow, comma);
-    }
-    $offset2-x: -1px;
-    $offset2-y: -1px;
-    @for $i from 0 through $shadow-number {
-        $theShadow: $offset2-x * $i $offset2-y * $i 0px mix($color-green, $color-blue, 100% / $shadow-number * ($i));
+    @for $i from 0 through ($shadow-number) {
+        $theShadow: $offset-x *
+            $i
+            $offset-y *
+            $i
+            0px
+            mix($color-green, $color-blue, 100% / $shadow-number * ($i));
         $value: append($value, $theShadow, comma);
     }
     text-shadow: $value;

@@ -113,7 +113,7 @@ body {
 
         @import './components/css-battles/cssdashboard';
         @import './components/logoicon';
-        @import './components/login/login';
+        @import './components/signup/signup';
         @import './components/homepage';
         @import './components/form';
         @import './components/problemspage/problems';
@@ -129,5 +129,12 @@ body {
     & a {
         color: var(--resize-bg);
         text-decoration: none;
+        outline: none;
+
+        &:active,
+        &:focus {
+            text-decoration: underline;
+            text-decoration-color: var(--bold-color);
+        }
     }
 }

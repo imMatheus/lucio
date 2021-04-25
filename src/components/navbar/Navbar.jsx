@@ -1,8 +1,20 @@
 import { Link } from 'react-router-dom'
+import { useAuth } from '../../context/AuthContext'
+import { useHistory } from 'react-router-dom'
 import LogoIcon from '../LogoIcon'
 import NightsStayIcon from '@material-ui/icons/NightsStay'
 import WbSunnyIcon from '@material-ui/icons/WbSunny'
 const Navbar = ({ isDarkMode, setIsDarkMode }) => {
+    const { currentUser, logout } = useAuth()
+    const history = useHistory()
+    const logoutHandler = async () => {
+        try {
+            await logout()
+            history.push('/login')
+        } catch (error) {
+            console.log(error)
+        }
+    }
     const toogleThemeHandler = () => {
         setIsDarkMode(!isDarkMode)
     }
@@ -27,6 +39,7 @@ const Navbar = ({ isDarkMode, setIsDarkMode }) => {
                 <Link exact to='/css/problems'>
                     Css
                 </Link>
+                {currentUser && <p>Email: {currentUser.email}</p>}
             </div>
             <div className='navbar-right'>
                 <div
@@ -36,7 +49,14 @@ const Navbar = ({ isDarkMode, setIsDarkMode }) => {
                     <NightsStayIcon /> <WbSunnyIcon />
                     <div className='theme-btn'></div>
                 </div>
-                <div className='account'></div>
+                {currentUser && (
+                    <div className='outline-btn' onClick={logoutHandler}>
+                        Log Out
+                    </div>
+                )}
+                <Link exact to='/login'>
+                    <div className='account'></div>
+                </Link>
             </div>
         </div>
     )

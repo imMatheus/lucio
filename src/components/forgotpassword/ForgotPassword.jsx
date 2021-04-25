@@ -1,27 +1,27 @@
 import React, { useRef, useState } from 'react'
 import { useAuth } from '../../context/AuthContext'
-import { Link, useHistory } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 const Login = () => {
     const emailRef = useRef(null)
-    const passwordRef = useRef(null)
     const [error, setError] = useState('')
+    const [message, setMessage] = useState('')
     const [loading, setLoading] = useState(false)
-    const { login } = useAuth()
-    const history = useHistory()
+    const { resetPassword } = useAuth()
 
     const handleSubmit = async (e) => {
         e.preventDefault()
 
         try {
+            setMessage('')
             setError('')
             setLoading(true)
             console.log('33')
-            await login(emailRef.current.value, passwordRef.current.value)
-            history.push('/')
+            await resetPassword(emailRef.current.value)
+            setMessage('Check your email to reset password')
         } catch (error) {
             console.log('hej')
-            setError('failed to login')
+            setError('failed to reset password')
         }
         setLoading(false)
     }
@@ -34,22 +34,17 @@ const Login = () => {
                     <Blob blobId='3' />
                 </div>
                 <div className='content'>
-                    <p className='title'>Login</p>
+                    <p className='title'>Password Reset</p>
                     <p className='subtitle'>
                         Or do you not already have an account? <Link to='/signup'> Sing Up</Link>
                     </p>
                     {error && <h3>{error}</h3>}
 
-                    <input type='text' className='input-btn' placeholder='Email' ref={emailRef} />
-                    <input
-                        type='text'
-                        className='input-btn'
-                        placeholder='Password'
-                        ref={passwordRef}
-                    />
-                    <Link to='forgot-password'>Forgot password?</Link>
+                    <input type='email' className='input-btn' placeholder='Email' ref={emailRef} />
+
+                    <Link to='login'>Login</Link>
                     <div className='outline-btn' disabled={loading} onClick={handleSubmit}>
-                        Login
+                        Reset password
                     </div>
                 </div>
             </div>

@@ -2,26 +2,29 @@ import React, { useRef, useState } from 'react'
 import { useAuth } from '../../context/AuthContext'
 import { Link, useHistory } from 'react-router-dom'
 
-const Login = () => {
+const Signup = () => {
     const emailRef = useRef(null)
     const passwordRef = useRef(null)
+    const confirmPasswordRef = useRef(null)
     const [error, setError] = useState('')
     const [loading, setLoading] = useState(false)
-    const { login } = useAuth()
+    const { signup } = useAuth()
     const history = useHistory()
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-
+        if (passwordRef.current.value !== confirmPasswordRef.current.value) {
+            return setError('Passwords do not match')
+        }
         try {
             setError('')
             setLoading(true)
             console.log('33')
-            await login(emailRef.current.value, passwordRef.current.value)
+            await signup(emailRef.current.value, passwordRef.current.value)
             history.push('/')
         } catch (error) {
             console.log('hej')
-            setError('failed to login')
+            setError('failed to create an account')
         }
         setLoading(false)
     }
@@ -34,10 +37,11 @@ const Login = () => {
                     <Blob blobId='3' />
                 </div>
                 <div className='content'>
-                    <p className='title'>Login</p>
+                    <p className='title'>Sign Up</p>
                     <p className='subtitle'>
-                        Or do you not already have an account? <Link to='/signup'> Sing Up</Link>
+                        Or do you already have an account? <Link to='/login'> Sing In</Link>
                     </p>
+
                     {error && <h3>{error}</h3>}
 
                     <input type='text' className='input-btn' placeholder='Email' ref={emailRef} />
@@ -47,9 +51,14 @@ const Login = () => {
                         placeholder='Password'
                         ref={passwordRef}
                     />
-                    <Link to='forgot-password'>Forgot password?</Link>
+                    <input
+                        type='text'
+                        className='input-btn'
+                        placeholder='Confirm Password'
+                        ref={confirmPasswordRef}
+                    />
                     <div className='outline-btn' disabled={loading} onClick={handleSubmit}>
-                        Login
+                        Sign Up
                     </div>
                 </div>
             </div>
@@ -73,4 +82,4 @@ const Blob = ({ blobId }) => {
     )
 }
 
-export default Login
+export default Signup

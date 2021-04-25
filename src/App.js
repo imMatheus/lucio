@@ -9,7 +9,9 @@ import Navbar from './components/navbar/Navbar'
 import CssProblems from './components/css-battles/CssProblems'
 import { problems } from './problems/problems'
 import CssDashboard from './components/css-battles/CssDashboard'
+import Signup from './components/signup/Signup'
 import Login from './components/login/Login'
+import ForgotPassword from './components/forgotpassword/ForgotPassword'
 import { AuthProvider } from './context/AuthContext'
 function App() {
     const [isDarkMode, setIsDarkMode] = useState(true)
@@ -41,8 +43,14 @@ function App() {
                         <Route exact path='/css/*'>
                             <CssDashboard />
                         </Route>
+                        <Route exact path='/signup'>
+                            <Signup />
+                        </Route>
                         <Route exact path='/login'>
                             <Login />
+                        </Route>
+                        <Route exact path='/forgot-password'>
+                            <ForgotPassword />
                         </Route>
                         <Route>
                             <Page404 />
