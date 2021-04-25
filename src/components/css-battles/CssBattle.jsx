@@ -21,8 +21,6 @@ const CssBattle = ({ problem }) => {
     const [isHoveringOverIframe, setIsHoveringOverIframe] = useState(false)
     let characterCount
     let currentCode = '<style>' + cssCode + '</style>' + htmlCode
-    let userImageUrl
-    let solutionImageUrl
 
     // creating a the variable that will keep track of if we
     // are dragging the resizer or not
@@ -116,8 +114,7 @@ const CssBattle = ({ problem }) => {
         }
 
         if (!iframeRef.current) return
-        let img1Data
-        let img2Data
+
         const html = iframeRef.current.contentWindow.document.querySelector('html')
         iframeRef.current.contentWindow.margin = '0px'
         iframeRef.current.contentWindow.padding = '0px'
@@ -203,6 +200,7 @@ const CssBattle = ({ problem }) => {
                         <iframe title='Web Frame' ref={iframeRef} id='webframeId' scrolling='no'>
                             <p>your browser does not support iframes</p>
                         </iframe>
+                        {/* <div className='testing' ref={testRef} scrolling='no'></div> */}
                     </div>
                 </div>
                 <div className='submit-wrapper'>
@@ -235,7 +233,7 @@ const CssBattle = ({ problem }) => {
             </div>
             <canvas
                 id='dummyCanvas'
-                style={{ backgroundColor: 'pink', width: '400px', height: '300px' }}
+                style={{ display: 'none', backgroundColor: 'pink', width: '400px', height: '300px' }}
                 width='400px'
                 height='300px'
                 ref={canvasRef}

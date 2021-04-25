@@ -1,5 +1,3 @@
-function generateHtmlStarterFile() {
+export function generateHtmlStarterFile() {
     return `<div></div>`
 }
-
-export { generateHtmlStarterFile }

@@ -13,13 +13,10 @@
 body {
   min-width: 1100px;
   height: 100vh;
-  background: green;
-}
-body .App {
-  height: 100%;
+  background: var();
   --paraghrap-fontfamily: "Open Sans", Arial, Helvetica, sans-serif;
   --varible-fontfamily: "Roboto Slab", serif;
-  --color-success: #2163f1;
+  --color-success: #ff1053;
   --color-fail: #d11534;
   --bold-fontsize: 1.02rem;
   --mini-fontsize: 0.72rem;
@@ -30,6 +27,9 @@ body .App {
   --paraghrap-fontsize: 0.8rem;
   --variable-fontsize: 0.91rem;
   --inputs-fontsize: 0.85rem;
+}
+body .App {
+  height: 100%;
   width: 100%;
   min-height: 100vh !important;
   display: flex;
@@ -63,6 +63,22 @@ body .App.light {
 }
 body .App .flex-1-1-auto {
   flex: 1 1 auto;
+}
+body .App .outline-btn {
+  font-size: 1.25rem;
+  padding: 6px 24px;
+  display: flex;
+  align-items: center;
+  border: solid 2px var(--color-success);
+  outline: solid 2px var(--color-success);
+  outline-offset: -2px;
+  color: var(--bold-color);
+  font-weight: 300;
+  transition: outline-offset 170ms;
+  cursor: pointer;
+}
+body .App .outline-btn:hover {
+  outline-offset: 4px;
 }
 body .App .cssdashboard .cssbattle {
   display: grid;
@@ -182,6 +198,12 @@ body .App .cssdashboard .cssbattle .column-container .img-container.output-ifram
   width: 100%;
   height: 100%;
   overflow: hidden;
+  background-color: yellowgreen;
+}
+body .App .cssdashboard .cssbattle .column-container .img-container.output-iframe .iframe-container .testing {
+  background-color: yellow;
+  width: 100%;
+  height: 100%;
 }
 body .App .cssdashboard .cssbattle .column-container .img-container.output-iframe .iframe-container iframe {
   background-color: white;
@@ -417,33 +439,67 @@ body .App .logo-icon.spinn.loader .circle-line:nth-child(4) {
   }
 }
 body .App .homepage {
-  min-height: 600px;
+  min-height: 700px;
   background: var(--bg);
   font-family: var(--font-family);
 }
 body .App .homepage .herobanner {
-  height: 450px;
+  height: 650px;
   display: grid;
-  place-items: center;
+  place-content: center;
+  position: relative;
 }
 body .App .homepage .herobanner h1 {
   font-weight: 900;
-  font-size: 4.7rem;
+  font-size: 7rem;
   color: var(--text-color);
-  color: transparent;
+  color: #ff1053;
   -webkit-font-smoothing: antialiased;
   padding: 0px;
-  -webkit-text-stroke: 1px var(--color-success);
-  text-shadow: 0px 0px 0px #04247a, 1px -1px 0px #062878, 2px -2px 0px #092b75, 3px -3px 0px #0b2f73, 4px -4px 0px #0e3271, 5px -5px 0px #10366e, 6px -6px 0px #12396c, 7px -7px 0px #153d69, 8px -8px 0px #174067, 9px -9px 0px #194465, 10px -10px 0px #1c4862, 11px -11px 0px #1e4b60, 12px -12px 0px #214f5e, 13px -13px 0px #23525b, 14px -14px 0px #255659, 15px -15px 0px #285957, 16px -16px 0px #2a5d54, 17px -17px 0px #2c6152, 18px -18px 0px #2f6450, 19px -19px 0px #31684d, 20px -20px 0px #346b4b, 21px -21px 0px #366f48, 22px -22px 0px #387246, 23px -23px 0px #3b7644, 24px -24px 0px #3d7941, 25px -25px 0px #407d3f, 26px -26px 0px #42813d, 27px -27px 0px #44843a, 28px -28px 0px #478838, 29px -29px 0px #498b36, 30px -30px 0px #4b8f33, 31px -31px 0px #4e9231, 32px -32px 0px #50962e, 33px -33px 0px #53992c, 34px -34px 0px #559d2a, 35px -35px 0px #57a127, 36px -36px 0px #5aa425, 37px -37px 0px #5ca823, 38px -38px 0px #5eab20, 39px -39px 0px #61af1e, 40px -40px 0px #63b21c, 41px -41px 0px #66b619, 42px -42px 0px #68ba17, 43px -43px 0px #6abd15, 44px -44px 0px #6dc112, 45px -45px 0px #6fc410, 46px -46px 0px #71c80d, 47px -47px 0px #74cb0b, 48px -48px 0px #76cf09, 49px -49px 0px #79d206, 50px -50px 0px #7bd604;
-  animation: text-shadow-ani 2000ms 1;
+  text-shadow: 0px 0px 0px #ff1053, 1px 0px 0px #ed1c5d, 2px 0px 0px #da2866, 3px 0px 0px #c83370, 4px 0px 0px #b63f7a, 5px 0px 0px #a34b83, 6px 0px 0px #91578d, 7px 0px 0px #7e6296, 8px 0px 0px #6c6ea0;
 }
-@keyframes text-shadow-ani {
-  0% {
-    text-shadow: 0 0 0px #062878, 0 0 0px #092b75, 0 0 0px #0b2f73, 0 0 0px #0e3271, 0 0 0px #10366e, 0 0 0px #12396c, 0 0 0px #153d69, 0 0 0px #174067, 0 0 0px #194465, 0 0 0px #1c4862, 0 0 0px #1e4b60, 0 0 0px #214f5e, 0 0 0px #23525b, 0 0 0px #255659, 0 0 0px #285957, 0 0 0px #2a5d54, 0 0 0px #2c6152, 0 0 0px #2f6450, 0 0 0px #31684d, 0 0 0px #346b4b, 0 0 0px #366f48, 0 0 0px #387246, 0 0 0px #3b7644, 0 0 0px #3d7941, 0 0 0px #407d3f, 0 0 0px #42813d, 0 0 0px #44843a, 0 0 0px #478838, 0 0 0px #498b36, 0 0 0px #4b8f33, 0 0 0px #4e9231, 0 0 0px #50962e, 0 0 0px #53992c, 0 0 0px #559d2a, 0 0 0px #57a127, 0 0 0px #5aa425, 0 0 0px #5ca823, 0 0 0px #5eab20, 0 0 0px #61af1e, 0 0 0px #63b21c, 0 0 0px #66b619, 0 0 0px #68ba17, 0 0 0px #6abd15, 0 0 0px #6dc112, 0 0 0px #6fc410, 0 0 0px #71c80d, 0 0 0px #74cb0b, 0 0 0px #76cf09, 0 0 0px #79d206, 0 0 0px #7bd604;
-  }
-  100% {
-    text-shadow: 1px -1px 0px #062878, 2px -2px 0px #092b75, 3px -3px 0px #0b2f73, 4px -4px 0px #0e3271, 5px -5px 0px #10366e, 6px -6px 0px #12396c, 7px -7px 0px #153d69, 8px -8px 0px #174067, 9px -9px 0px #194465, 10px -10px 0px #1c4862, 11px -11px 0px #1e4b60, 12px -12px 0px #214f5e, 13px -13px 0px #23525b, 14px -14px 0px #255659, 15px -15px 0px #285957, 16px -16px 0px #2a5d54, 17px -17px 0px #2c6152, 18px -18px 0px #2f6450, 19px -19px 0px #31684d, 20px -20px 0px #346b4b, 21px -21px 0px #366f48, 22px -22px 0px #387246, 23px -23px 0px #3b7644, 24px -24px 0px #3d7941, 25px -25px 0px #407d3f, 26px -26px 0px #42813d, 27px -27px 0px #44843a, 28px -28px 0px #478838, 29px -29px 0px #498b36, 30px -30px 0px #4b8f33, 31px -31px 0px #4e9231, 32px -32px 0px #50962e, 33px -33px 0px #53992c, 34px -34px 0px #559d2a, 35px -35px 0px #57a127, 36px -36px 0px #5aa425, 37px -37px 0px #5ca823, 38px -38px 0px #5eab20, 39px -39px 0px #61af1e, 40px -40px 0px #63b21c, 41px -41px 0px #66b619, 42px -42px 0px #68ba17, 43px -43px 0px #6abd15, 44px -44px 0px #6dc112, 45px -45px 0px #6fc410, 46px -46px 0px #71c80d, 47px -47px 0px #74cb0b, 48px -48px 0px #76cf09, 49px -49px 0px #79d206, 50px -50px 0px #7bd604;
-  }
+body .App .homepage .herobanner .buttons {
+  display: flex;
+  margin-top: 12px;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 10px 0;
+}
+body .App .homepage .herobanner .buttons .outline-btn {
+  font-size: 1.4rem;
+}
+body .App .homepage .herobanner .shapes-container {
+  background: rgba(255, 0, 0, 0.205);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+body .App .homepage .herobanner .shapes-container .shapes {
+  overflow: hidden;
+  position: relative;
+}
+body .App .homepage .herobanner .shapes-container .shapes .shape {
+  will-change: transform;
+  position: absolute;
+  border-radius: 50%;
+}
+body .App .homepage .herobanner .shapes-container .shapes .shape.shape-1 {
+  background: #005ffe;
+  width: 650px;
+  height: 650px;
+  margin: -325px 0 0 -325px;
+}
+body .App .homepage .herobanner .shapes-container .shapes .shape.shape-2 {
+  background: #ffe5e3;
+  width: 440px;
+  height: 440px;
+  margin: -220px 0 0 -220px;
+}
+body .App .homepage .herobanner .shapes-container .shapes .shape.shape-3 {
+  background: #ffcc57;
+  width: 270px;
+  height: 270px;
+  margin: -135px 0 0 -135px;
 }
 body .App .form {
   width: 100vw;

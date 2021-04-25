@@ -30,22 +30,6 @@ const Monako = ({ mref, setCurrentCode, currentCode, problem }) => {
         },
     })
 
-    // useEffect(() => {
-    //     setFiles({
-    //         'script.js': {
-    //             name: 'script.js',
-    //             language: 'javascript',
-    //             value: generateJavascript(displayProblemName, problemInputs),
-    //         },
-    //         'scri.py': {
-    //             name: 'script.py',
-    //             language: 'python',
-    //             value: generatePython(displayProblemName, problemInputs),
-    //         },
-    //     })
-    //     console.log('nuuuuuuuuuuuuuuuuuuuuuuuuuuuu')
-    // }, [])
-
     const [defaultValue, setDefaultValue] = useState({
         'script.js': {
             name: 'script.js',
@@ -62,32 +46,9 @@ const Monako = ({ mref, setCurrentCode, currentCode, problem }) => {
     const [testCases, setTestCases] = useState([])
     const [fileName, setFileName] = useState('script.js')
     const file = files[fileName]
-    // useEffect(() => {
-    //     setCurrentCode(editorRef?.current?.getValue())
-    //     setFiles({
-    //         'script.js': {
-    //             name: 'script.js',
-    //             language: 'javascript',
-    //             value: generateJavascript(displayProblemName, problemInputs),
-    //         },
-    //         'scri.py': {
-    //             name: 'script.py',
-    //             language: 'python',
-    //             value: generatePython(displayProblemName, problemInputs),
-    //         },
-    //     })
-    //     console.log('testing testing testing')
-    // }, [fileName, file])
 
     useEffect(() => {
         if (monaco) {
-            // console.log('here is the monaco isntance:')
-            // import('monaco-themes/themes/Monokai.json').then((data) => {
-            //     monaco.editor.defineTheme('monokai', data)
-            //     // monaco.editor.setTheme('monokai')
-            //     // console.log(data)
-            // })
-
             monaco.editor.defineTheme('myCustomTheme', {
                 base: 'vs-dark',
                 inherit: true,
@@ -239,9 +200,6 @@ const Monako = ({ mref, setCurrentCode, currentCode, problem }) => {
                 <div className='files'>
                     <File file='script.js' fileName={fileName} setFileName={setFileName} />
                     <File file='scri.py' fileName={fileName} setFileName={setFileName} />
-
-                    {/* <File file='style.css' fileName={fileName} setFileName={setFileName} /> */}
-                    {/* <File file='index.html' fileName={fileName} setFileName={setFileName} /> */}
                 </div>
 
                 <Editor
