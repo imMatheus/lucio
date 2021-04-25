@@ -13,6 +13,8 @@ import Signup from './components/signup/Signup'
 import Login from './components/login/Login'
 import ForgotPassword from './components/forgotpassword/ForgotPassword'
 import { AuthProvider } from './context/AuthContext'
+import { v4 as uuidv4 } from 'uuid'
+
 function App() {
     const [isDarkMode, setIsDarkMode] = useState(true)
 
@@ -27,7 +29,7 @@ function App() {
                             <HomePage />
                         </Route>
                         <Route exact path='/problems' component={ProblemsPage} />
-                        {/* creating routes forall my problems */}
+                        {/* creating routes for all my problems */}
                         {problems.map((problem) => {
                             let path = problem.problemName
                                 ?.split(' ')
@@ -35,7 +37,7 @@ function App() {
                                 .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
                                 .join('')
                             return (
-                                <Route exact path={`/problems/${path}`}>
+                                <Route key={uuidv4()} exact path={`/problems/${path}`}>
                                     <Form problem={problem} />
                                 </Route>
                             )
