@@ -17,7 +17,7 @@ const Signup = () => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         if (passwordRef.current?.value !== confirmPasswordRef.current?.value) {
-            return setError('Passwrds do ot match')
+            return setError('Passwords do ot match')
         }
         try {
             setError('')
@@ -30,7 +30,7 @@ const Signup = () => {
             } catch (error) {
                 console.log(error)
             }
-            console.log('gi')
+            console.log('git')
 
             history.push('/')
         } catch (error) {
