@@ -31,7 +31,6 @@ const Signup = () => {
                 console.log(error)
             }
             console.log('git')
-
             history.push('/')
         } catch (error) {
             console.log('hej')

@@ -6,6 +6,7 @@ import { v4 as uuidv4 } from 'uuid'
 
 const CssProblems = () => {
     const cssRef = db.ref('css')
+    console.log(db.ref('css'))
     const [cssProblems, setCssProblems] = useState(null)
     useEffect(() => {
         cssRef.on('value', (snapshot) => {
@@ -14,10 +15,22 @@ const CssProblems = () => {
             for (let id in css) {
                 cssList.push(css[id])
             }
+            console.log(cssList)
             setCssProblems(cssList[0])
+            // setCssProblems(css[0])
             console.log(cssProblems)
         })
     }, [])
+    console.log('-------------------')
+    var newPostKey = db.ref().child('css').push().key
+
+    var updates = {}
+    updates['/css/' + newPostKey] = { test: 'tt', ju: 'er' }
+
+    console.log(updates)
+    console.log(db.ref('css').child('s'))
+
+    // db.ref().child('css').update(updates)
 
     // cssRef.push(cssProblems)
     // console.log(cssRef)
