@@ -40,7 +40,14 @@ const Login = () => {
                     </p>
                     {error && <h3>{error}</h3>}
 
-                    <input type='email' className='input-btn' placeholder='Email' ref={emailRef} />
+                    <div className='input-container'>
+                        <input
+                            type='text'
+                            className='input-btn'
+                            placeholder='Email'
+                            ref={emailRef}
+                        />
+                    </div>
 
                     <Link to='login'>Login</Link>
                     <div className='outline-btn' disabled={loading} onClick={handleSubmit}>

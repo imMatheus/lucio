@@ -446,13 +446,14 @@ body .App .logo-icon.spinn.loader .circle-line:nth-child(4) {
 }
 body .App .signup-container {
   height: calc(100vh - 94px);
-  min-height: 600px;
+  min-height: 630px;
   background: var(--bg);
   display: flex;
   justify-content: center;
   align-items: center;
   font-family: var(--font-family);
   color: white;
+  overflow: hidden;
 }
 body .App .signup-container .card {
   width: 480px;
@@ -469,44 +470,44 @@ body .App .signup-container .card .blobs-container {
   z-index: 1;
 }
 body .App .signup-container .card .blobs-container.loading .blob {
-  animation: fadeInBlob 1400ms ease-in-out infinite alternate-reverse;
+  animation: fadeInBlob 1400ms ease infinite alternate-reverse;
 }
 body .App .signup-container .card .blobs-container .blob {
   position: absolute;
   fill: var(--color-success);
   transform: rotate(80deg);
-  animation: fadeInBlob 1400ms ease-in-out;
+  animation: fadeInBlob 1500ms ease;
 }
-body .App .signup-container .card .blobs-container .blob:nth-child(1) {
+body .App .signup-container .card .blobs-container .blob.b1 {
   right: calc(1 * -10px - 55px);
   bottom: calc(1 * -10px - 55px);
   width: calc((1 * 30px) + 220px);
   height: calc((1 * 30px) + 220px);
-  animation-delay: calc((3 - 1) * 125ms);
+  animation-delay: calc((3 - 1) * 100ms);
   fill: #2a9d8f;
   z-index: 3;
 }
-body .App .signup-container .card .blobs-container .blob:nth-child(2) {
+body .App .signup-container .card .blobs-container .blob.b2 {
   right: calc(2 * -10px - 55px);
   bottom: calc(2 * -10px - 55px);
   width: calc((2 * 30px) + 220px);
   height: calc((2 * 30px) + 220px);
-  animation-delay: calc((3 - 2) * 125ms);
+  animation-delay: calc((3 - 2) * 100ms);
   fill: #e9c46a;
   z-index: 2;
 }
-body .App .signup-container .card .blobs-container .blob:nth-child(3) {
+body .App .signup-container .card .blobs-container .blob.b3 {
   right: calc(3 * -10px - 55px);
   bottom: calc(3 * -10px - 55px);
   width: calc((3 * 30px) + 220px);
   height: calc((3 * 30px) + 220px);
-  animation-delay: calc((3 - 3) * 125ms);
+  animation-delay: calc((3 - 3) * 100ms);
   fill: #f4a261;
   z-index: 1;
 }
 @keyframes fadeInBlob {
   0% {
-    transform: rotate(80deg) scale(1) translate(0px, 0px);
+    transform: rotate(80deg);
   }
   25% {
     transform: rotate(80deg) scale(0.55) translate(-30px, 10px);
@@ -518,7 +519,7 @@ body .App .signup-container .card .blobs-container .blob:nth-child(3) {
     transform: rotate(80deg) scale(0.55) translate(-30px, 10px);
   }
   100% {
-    transform: rotate(80deg) scale(1) translate(0, 0);
+    transform: rotate(80deg);
   }
 }
 body .App .signup-container .card .content {

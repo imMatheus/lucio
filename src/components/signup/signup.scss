@@ -1,12 +1,13 @@
 .signup-container {
     height: calc(100vh - 94px);
-    min-height: 600px;
+    min-height: 630px;
     background: var(--bg);
     display: flex;
     justify-content: center;
     align-items: center;
     font-family: var(--font-family);
     color: white;
+    overflow: hidden;
 
     & .card {
         width: 480px;
@@ -25,37 +26,33 @@
 
             &.loading {
                 & .blob {
-                    animation: fadeInBlob 1400ms ease-in-out infinite alternate-reverse;
+                    animation: fadeInBlob 1400ms ease infinite alternate-reverse;
                 }
             }
             & .blob {
                 // animation: move 3s ease-in-out infinite;
                 position: absolute;
                 fill: var(--color-success);
-
                 transform: rotate(80deg);
                 $prefix: -10px;
                 $widthheight: 220px;
-                animation: fadeInBlob 1400ms ease-in-out;
+                animation: fadeInBlob 1500ms ease;
 
                 @for $id from 1 through 3 {
-                    &:nth-child(#{$id}) {
+                    &.b#{$id} {
                         right: calc(#{$id} * #{$prefix} - 55px);
                         bottom: calc(#{$id} * #{$prefix} - 55px);
                         width: calc((#{$id} * 30px) + #{$widthheight});
                         height: calc((#{$id} * 30px) + #{$widthheight});
-                        animation-delay: calc((3 - #{$id}) * 125ms);
+                        animation-delay: calc((3 - #{$id}) * 100ms);
                         @if $id == 1 {
                             // fill: #780000;
-
                             fill: #2a9d8f;
-
                             z-index: 3;
                         }
                         @if $id == 2 {
                             // fill: #c1121f;
                             fill: #e9c46a;
-
                             z-index: 2;
                         }
                         @if $id == 3 {
@@ -83,7 +80,7 @@
                 //     transform: rotate(80deg) scale(1) translate(0, 0);
                 // }
                 0% {
-                    transform: rotate(80deg) scale(1) translate(0px, 0px);
+                    transform: rotate(80deg);
                 }
 
                 25% {
@@ -97,7 +94,7 @@
                 }
 
                 100% {
-                    transform: rotate(80deg) scale(1) translate(0, 0);
+                    transform: rotate(80deg);
                 }
             }
         }
