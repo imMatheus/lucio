@@ -18,7 +18,7 @@ body {
   background-color: var(--main-bg);
   --paraghrap-fontfamily: "Open Sans", Arial, Helvetica, sans-serif;
   --varible-fontfamily: "Roboto Slab", serif;
-  --color-success: #ff1053;
+  --color-success: #2a9d8f;
   --color-fail: #d11534;
   --bold-fontsize: 1.02rem;
   --mini-fontsize: 0.72rem;
@@ -71,7 +71,7 @@ body .App .flex-1-1-auto {
 body .App .outline-btn {
   font-size: 1.25rem;
   display: inline;
-  padding: 6px 24px;
+  padding: 8px 24px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -82,7 +82,6 @@ body .App .outline-btn {
   font-weight: 300;
   transition: outline-offset 170ms;
   cursor: pointer;
-  color: black;
 }
 body .App .outline-btn:hover {
   outline-offset: 4px;
@@ -453,11 +452,13 @@ body .App .signup-container {
   justify-content: center;
   align-items: center;
   font-family: var(--font-family);
+  color: white;
 }
 body .App .signup-container .card {
   width: 480px;
   height: 610px;
-  background-color: #ffffff;
+  background-color: #264653;
+  border-radius: 8px;
   position: relative;
   overflow: hidden;
 }
@@ -467,56 +468,69 @@ body .App .signup-container .card .blobs-container {
   position: absolute;
   z-index: 1;
 }
+body .App .signup-container .card .blobs-container.loading .blob {
+  animation: fadeInBlob 1400ms ease-in-out infinite alternate-reverse;
+}
 body .App .signup-container .card .blobs-container .blob {
   position: absolute;
   fill: var(--color-success);
-  transform: rotate(-30deg);
-  animation: fadeInBlob 1600ms ease-in-out;
+  transform: rotate(80deg);
+  animation: fadeInBlob 1400ms ease-in-out;
 }
 body .App .signup-container .card .blobs-container .blob:nth-child(1) {
-  left: calc(1 * 0px - 100px);
-  top: calc(1 * 0px - 100px);
-  width: calc((1 * 30px) + 270px);
-  height: calc((1 * 30px) + 270px);
-  fill: #780000;
+  right: calc(1 * -10px - 55px);
+  bottom: calc(1 * -10px - 55px);
+  width: calc((1 * 30px) + 220px);
+  height: calc((1 * 30px) + 220px);
+  animation-delay: calc((3 - 1) * 125ms);
+  fill: #2a9d8f;
   z-index: 3;
 }
 body .App .signup-container .card .blobs-container .blob:nth-child(2) {
-  left: calc(2 * 0px - 100px);
-  top: calc(2 * 0px - 100px);
-  width: calc((2 * 30px) + 270px);
-  height: calc((2 * 30px) + 270px);
-  fill: #c1121f;
+  right: calc(2 * -10px - 55px);
+  bottom: calc(2 * -10px - 55px);
+  width: calc((2 * 30px) + 220px);
+  height: calc((2 * 30px) + 220px);
+  animation-delay: calc((3 - 2) * 125ms);
+  fill: #e9c46a;
   z-index: 2;
 }
 body .App .signup-container .card .blobs-container .blob:nth-child(3) {
-  left: calc(3 * 0px - 100px);
-  top: calc(3 * 0px - 100px);
-  width: calc((3 * 30px) + 270px);
-  height: calc((3 * 30px) + 270px);
-  fill: #fdf0d5;
+  right: calc(3 * -10px - 55px);
+  bottom: calc(3 * -10px - 55px);
+  width: calc((3 * 30px) + 220px);
+  height: calc((3 * 30px) + 220px);
+  animation-delay: calc((3 - 3) * 125ms);
+  fill: #f4a261;
   z-index: 1;
 }
 @keyframes fadeInBlob {
   0% {
-    transform: rotate(40deg) scale(0.7) translate(-100%, -100%);
+    transform: rotate(80deg) scale(1) translate(0px, 0px);
   }
-  35% {
-    transform: rotate(-100deg) scale(1) translate(70px, 70px);
+  25% {
+    transform: rotate(80deg) scale(0.55) translate(-30px, 10px);
+  }
+  50% {
+    transform: rotate(80deg) scale(1) translate(0px, 0px);
   }
   75% {
-    transform: rotate(0deg) scale(1) translate(40px, 40px);
+    transform: rotate(80deg) scale(0.55) translate(-30px, 10px);
   }
   100% {
-    transform: rotate(-30deg) scale(1) translate(0px, 0px);
+    transform: rotate(80deg) scale(1) translate(0, 0);
   }
 }
 body .App .signup-container .card .content {
   width: 100%;
   height: 100%;
-  padding: 12px 25px;
+  padding: 16px 40px;
   position: relative;
   z-index: 3;
+}
+body .App .signup-container .card .content a {
+  text-decoration: underline;
+  color: #f4a261;
 }
 body .App .signup-container .card .content .title {
   font-size: 1.5rem;
@@ -530,18 +544,61 @@ body .App .signup-container .card .content .subtitle {
   text-align: center;
   position: relative;
 }
+body .App .signup-container .card .content .subtitle a {
+  color: #f4a261;
+  font-weight: 500;
+}
+body .App .signup-container .card .content .outline-btn {
+  margin: 14px 0;
+}
+body .App .signup-container .card .content .userMessage {
+  width: 100%;
+  padding: 12px 16px;
+  border: solid 1px transparent;
+  border-radius: 6px;
+  margin: 8px 0;
+  font-size: 0.95rem;
+}
+body .App .signup-container .card .content .userMessage.error {
+  color: #721c24;
+  background: #f8d7da;
+  border-color: #f5c6cb;
+}
+body .App .signup-container .card .content .userMessage.success {
+  color: #155724;
+  background: #d4edda;
+  border-color: #c3e6cb;
+}
 body .App .signup-container .card .content .input-btn {
   width: 100%;
   padding: 8px 14px;
-  margin: 8px 0px;
-  border-radius: 4px;
-  background-color: white;
-  box-shadow: 0px 0px 5px #000000;
   color: var(--bg);
   outline: none;
+  border-radius: inherit;
 }
-body .App .signup-container .card .content .input-btn:focus {
-  box-shadow: 0px 0px 10px #000000;
+body .App .signup-container .card .content .input-container {
+  width: 100%;
+  border-radius: 6px;
+  position: relative;
+  margin: 12px 0px;
+  display: flex;
+  align-items: stretch;
+  justify-content: flex-start;
+  background: white;
+}
+body .App .signup-container .card .content .input-container .password-visibility-toggler {
+  width: 50px;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  background: #f4a261;
+  border-top-right-radius: inherit;
+  border-bottom-right-radius: inherit;
+}
+body .App .signup-container .card .content .input-container .password-visibility-toggler svg {
+  fill: var(--color-success);
+  height: 30px;
+  width: 30px;
 }
 body .App .homepage {
   min-height: 700px;
@@ -556,12 +613,11 @@ body .App .homepage .herobanner {
 }
 body .App .homepage .herobanner h1 {
   font-weight: 900;
-  font-size: 7rem;
-  color: var(--text-color);
-  color: #ff1053;
+  font-size: 8rem;
+  color: #2a9d8f;
   -webkit-font-smoothing: antialiased;
   padding: 0px;
-  text-shadow: 0px 0px 0px #ff1053, 1px 0px 0px #ed1c5d, 2px 0px 0px #da2866, 3px 0px 0px #c83370, 4px 0px 0px #b63f7a, 5px 0px 0px #a34b83, 6px 0px 0px #91578d, 7px 0px 0px #7e6296, 8px 0px 0px #6c6ea0;
+  text-shadow: 0px 0px 0px #2a9d8f, 1px 1px 0px #479e88, 2px 2px 0px #649e82, 3px 3px 0px #819f7b, 4px 4px 0px #9da075, 5px 5px 0px #baa16e, 6px 6px 0px #d7a168, 7px 7px 0px #f4a261;
 }
 body .App .homepage .herobanner .buttons {
   display: flex;
@@ -1209,13 +1265,13 @@ body .comp-nav {
   grid-template-rows: auto 1fr;
 }
 body a {
-  color: var(--resize-bg);
+  color: var(--bold-color);
   text-decoration: none;
   outline: none;
+  text-decoration-color: inherit;
 }
 body a:active, body a:focus {
   text-decoration: underline;
-  text-decoration-color: var(--bold-color);
 }
 
 /*# sourceMappingURL=global.css.map */

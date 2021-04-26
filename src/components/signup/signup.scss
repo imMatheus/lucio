@@ -6,14 +6,13 @@
     justify-content: center;
     align-items: center;
     font-family: var(--font-family);
+    color: white;
 
     & .card {
         width: 480px;
         height: 610px;
-        // background-color: var(--bold-color);
-        background-color: #ffffff;
-        // background-color: #003049;
-
+        background-color: #264653;
+        border-radius: 8px;
         position: relative;
         overflow: hidden;
 
@@ -21,58 +20,84 @@
             width: 100%;
             height: 100%;
             position: absolute;
+
             z-index: 1;
+
+            &.loading {
+                & .blob {
+                    animation: fadeInBlob 1400ms ease-in-out infinite alternate-reverse;
+                }
+            }
             & .blob {
                 // animation: move 3s ease-in-out infinite;
                 position: absolute;
                 fill: var(--color-success);
 
-                transform: rotate(-30deg);
-                $prefix: 0px;
-                $widthheight: 270px;
-                animation: fadeInBlob 1600ms ease-in-out;
+                transform: rotate(80deg);
+                $prefix: -10px;
+                $widthheight: 220px;
+                animation: fadeInBlob 1400ms ease-in-out;
 
                 @for $id from 1 through 3 {
                     &:nth-child(#{$id}) {
-                        left: calc(#{$id} * #{$prefix} - 100px);
-                        top: calc(#{$id} * #{$prefix} - 100px);
+                        right: calc(#{$id} * #{$prefix} - 55px);
+                        bottom: calc(#{$id} * #{$prefix} - 55px);
                         width: calc((#{$id} * 30px) + #{$widthheight});
                         height: calc((#{$id} * 30px) + #{$widthheight});
-                        // animation-delay: calc((4 - #{$id}) * 150ms);
+                        animation-delay: calc((3 - #{$id}) * 125ms);
                         @if $id == 1 {
-                            fill: #780000;
+                            // fill: #780000;
+
+                            fill: #2a9d8f;
 
                             z-index: 3;
                         }
                         @if $id == 2 {
-                            fill: #c1121f;
-                            // fill: hsl(17%, 74%, 53%);
+                            // fill: #c1121f;
+                            fill: #e9c46a;
 
                             z-index: 2;
                         }
                         @if $id == 3 {
-                            fill: #fdf0d5;
-                            // fill: hsl(24%, 74%, 53%);
-
+                            // fill: #fdf0d5;
+                            fill: #f4a261;
                             z-index: 1;
                         }
                     }
                 }
             }
             @keyframes fadeInBlob {
+                // 0% {
+                //     transform: rotate(40deg) scale(8) translate(-0%, -0%);
+                // }
+
+                // 35% {
+                //     transform: rotate(-60deg) scale(1) translate(-0%, -0%);
+                // }
+
+                // 75% {
+                //     transform: rotate(0deg) scale(0.9) translate(-40px, 40px);
+                // }
+
+                // 100% {
+                //     transform: rotate(80deg) scale(1) translate(0, 0);
+                // }
                 0% {
-                    transform: rotate(40deg) scale(0.7) translate(-100%, -100%);
+                    transform: rotate(80deg) scale(1) translate(0px, 0px);
                 }
 
-                35% {
-                    transform: rotate(-100deg) scale(1) translate(70px, 70px);
+                25% {
+                    transform: rotate(80deg) scale(0.55) translate(-30px, 10px);
+                }
+                50% {
+                    transform: rotate(80deg) scale(1) translate(0px, 0px);
                 }
                 75% {
-                    transform: rotate(0deg) scale(1) translate(40px, 40px);
+                    transform: rotate(80deg) scale(0.55) translate(-30px, 10px);
                 }
 
                 100% {
-                    transform: rotate(-30deg) scale(1) translate(0px, 0px);
+                    transform: rotate(80deg) scale(1) translate(0, 0);
                 }
             }
         }
@@ -80,9 +105,14 @@
         & .content {
             width: 100%;
             height: 100%;
-            padding: 12px 25px;
+            padding: 16px 40px;
             position: relative;
             z-index: 3;
+
+            & a {
+                text-decoration: underline;
+                color: #f4a261;
+            }
 
             & .title {
                 font-size: 1.5rem;
@@ -95,19 +125,73 @@
                 font-weight: 300;
                 text-align: center;
                 position: relative;
+
+                & a {
+                    color: #f4a261;
+                    font-weight: 500;
+                }
+            }
+            & .outline-btn {
+                margin: 14px 0;
+            }
+
+            & .userMessage {
+                width: 100%;
+                padding: 12px 16px;
+                border: solid 1px transparent;
+                border-radius: 6px;
+                margin: 8px 0;
+                font-size: 0.95rem;
+
+                &.error {
+                    // color: hsl(359, 99%, 26%);
+                    // background-color: hsla(359, 100%, 53%, 0.835);
+                    color: #721c24;
+                    background: #f8d7da;
+                    border-color: #f5c6cb;
+                }
+                &.success {
+                    // color: hsl(145, 71%, 37%);
+                    color: #155724;
+                    background: #d4edda;
+                    border-color: #c3e6cb;
+                    // background-color: hsl(145, 45%, 67%);
+                }
             }
 
             & .input-btn {
                 width: 100%;
                 padding: 8px 14px;
-                margin: 8px 0px;
-                border-radius: 4px;
-                background-color: white;
-                box-shadow: 0px 0px 5px #000000;
                 color: var(--bg);
                 outline: none;
-                &:focus {
-                    box-shadow: 0px 0px 10px #000000;
+                border-radius: inherit;
+            }
+            & .input-container {
+                width: 100%;
+                border-radius: 6px;
+                position: relative;
+                margin: 12px 0px;
+                display: flex;
+                align-items: stretch;
+                justify-content: flex-start;
+                background: white;
+                // background-color: rgb(223, 50, 50);
+                // box-shadow: 0px 0px 5px #000000;
+
+                & .password-visibility-toggler {
+                    width: 50px;
+                    cursor: pointer;
+                    display: grid;
+                    place-items: center;
+                    background: #f4a261;
+                    border-top-right-radius: inherit;
+                    border-bottom-right-radius: inherit;
+
+                    & svg {
+                        fill: var(--color-success);
+                        height: 30px;
+                        width: 30px;
+                    }
                 }
             }
         }

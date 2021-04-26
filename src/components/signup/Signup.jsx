@@ -1,6 +1,8 @@
 import React, { useRef, useState } from 'react'
 import { useAuth } from '../../context/AuthContext'
 import { Link, useHistory } from 'react-router-dom'
+import VisibilityIcon from '@material-ui/icons/Visibility'
+import VisibilityOffIcon from '@material-ui/icons/VisibilityOff'
 
 const Signup = () => {
     const emailRef = useRef(null)
@@ -10,17 +12,26 @@ const Signup = () => {
     const [loading, setLoading] = useState(false)
     const { signup } = useAuth()
     const history = useHistory()
+    const [showPassword, setShowPassword] = useState(false)
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        if (passwordRef.current.value !== confirmPasswordRef.current.value) {
-            return setError('Passwords do not match')
+        if (passwordRef.current?.value !== confirmPasswordRef.current?.value) {
+            return setError('Passwrds do ot match')
         }
         try {
             setError('')
             setLoading(true)
-            console.log('33')
-            await signup(emailRef.current.value, passwordRef.current.value)
+            try {
+                await signup(
+                    emailRef.current.value.trim(),
+                    passwordRef.current.value
+                ).then((response) => console.log(response))
+            } catch (error) {
+                console.log(error)
+            }
+            console.log('gi')
+
             history.push('/')
         } catch (error) {
             console.log('hej')
@@ -42,21 +53,39 @@ const Signup = () => {
                         Or do you already have an account? <Link to='/login'> Sing In</Link>
                     </p>
 
-                    {error && <h3>{error}</h3>}
+                    {error && <div className='userMessage error'>{error}</div>}
 
-                    <input type='text' className='input-btn' placeholder='Email' ref={emailRef} />
-                    <input
-                        type='text'
-                        className='input-btn'
-                        placeholder='Password'
-                        ref={passwordRef}
-                    />
-                    <input
-                        type='text'
-                        className='input-btn'
-                        placeholder='Confirm Password'
-                        ref={confirmPasswordRef}
-                    />
+                    <div className='input-container'>
+                        <input
+                            type='text'
+                            className='input-btn'
+                            placeholder='Email'
+                            ref={emailRef}
+                        />
+                    </div>
+                    <div className='input-container'>
+                        <input
+                            type={showPassword ? 'text' : 'password'}
+                            className='input-btn'
+                            placeholder='Password'
+                            ref={passwordRef}
+                        />
+                        <div
+                            className='password-visibility-toggler'
+                            onClick={() => setShowPassword(!showPassword)}
+                        >
+                            {showPassword ? <VisibilityIcon /> : <VisibilityOffIcon />}
+                        </div>
+                    </div>
+                    <div className='input-container'>
+                        <input
+                            type={showPassword ? 'text' : 'password'}
+                            className='input-btn'
+                            placeholder='Confirm password'
+                            ref={confirmPasswordRef}
+                        />
+                    </div>
+
                     <div className='outline-btn' disabled={loading} onClick={handleSubmit}>
                         Sign Up
                     </div>

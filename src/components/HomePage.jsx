@@ -4,13 +4,13 @@ import { db } from '../firebase'
 import { cssProblems } from '../css-problems/cssProblems'
 
 const HomePage = () => {
-    const cssRef = db.ref('css')
-    cssRef.on('value', (snapshot) => {
-        const css = snapshot.val()
-        console.log(css)
-    })
-    console.log(cssRef)
-    console.log(cssProblems)
+    // const cssRef = db.ref('css')
+    // cssRef.on('value', (snapshot) => {
+    //     const css = snapshot.val()
+    //     console.log(css)
+    // })
+    // console.log(cssRef)
+    // console.log(cssProblems)
     // cssRef.push(cssProblems)
     // console.log(cssRef)
 

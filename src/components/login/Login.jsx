@@ -1,6 +1,8 @@
 import React, { useRef, useState } from 'react'
 import { useAuth } from '../../context/AuthContext'
 import { Link, useHistory } from 'react-router-dom'
+import VisibilityIcon from '@material-ui/icons/Visibility'
+import VisibilityOffIcon from '@material-ui/icons/VisibilityOff'
 
 const Login = () => {
     const emailRef = useRef(null)
@@ -9,6 +11,7 @@ const Login = () => {
     const [loading, setLoading] = useState(false)
     const { login } = useAuth()
     const history = useHistory()
+    const [showPassword, setShowPassword] = useState(false)
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -17,10 +20,10 @@ const Login = () => {
             setError('')
             setLoading(true)
             console.log('33')
-            await login(emailRef.current.value, passwordRef.current.value)
+            await login(emailRef.current.value.trim(), passwordRef.current.value)
             history.push('/')
         } catch (error) {
-            console.log('hej')
+            console.log(error)
             setError('failed to login')
         }
         setLoading(false)
@@ -28,7 +31,7 @@ const Login = () => {
     return (
         <div className='signup-container'>
             <div className='card'>
-                <div className='blobs-container'>
+                <div className={`blobs-container ${loading && 'loading'}`}>
                     <Blob blobId='1' />
                     <Blob blobId='2' />
                     <Blob blobId='3' />
@@ -38,15 +41,32 @@ const Login = () => {
                     <p className='subtitle'>
                         Or do you not already have an account? <Link to='/signup'> Sing Up</Link>
                     </p>
-                    {error && <h3>{error}</h3>}
+                    {error && <div className='userMessage error'>{error}</div>}
 
-                    <input type='text' className='input-btn' placeholder='Email' ref={emailRef} />
-                    <input
-                        type='text'
-                        className='input-btn'
-                        placeholder='Password'
-                        ref={passwordRef}
-                    />
+                    <div className='input-container'>
+                        <input
+                            type='text'
+                            className='input-btn'
+                            placeholder='Email'
+                            ref={emailRef}
+                        />
+                    </div>
+                    <div className='input-container'>
+                        <input
+                            type={showPassword ? 'text' : 'password'}
+                            className='input-btn'
+                            placeholder='Password'
+                            ref={passwordRef}
+                        />
+                        <div
+                            className='password-visibility-toggler'
+                            onClick={() => setShowPassword(!showPassword)}
+                        >
+                            {showPassword ? <VisibilityIcon /> : <VisibilityOffIcon />}
+                        </div>
+                    </div>
+                    {/* <div className='password-visibility-toggler'></div> */}
+
                     <Link to='forgot-password'>Forgot password?</Link>
                     <div className='outline-btn' disabled={loading} onClick={handleSubmit}>
                         Login

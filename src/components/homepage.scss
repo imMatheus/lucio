@@ -5,9 +5,12 @@
 
     & .herobanner {
         $text-color: rgb(232, 235, 207);
-        $color-green: #6c6ea0;
-        $color-blue: #ff1053;
-        $shadow-number: 8;
+        // $color-green: #6c6ea0;
+        // $color-blue: #ff1053;
+        $color-green: #f4a261;
+        $color-blue: #2a9d8f;
+
+        $shadow-number: 7;
         height: 650px;
         display: grid;
         place-content: center;
@@ -15,46 +18,28 @@
 
         & h1 {
             font-weight: 900;
-            font-size: 7rem;
-            color: var(--text-color);
+            font-size: 8rem;
+
+            // color: var(--color-success);
             color: $color-blue;
             -webkit-font-smoothing: antialiased;
             // background: linear-gradient($color-blue, $color-green);
             padding: 0px;
             // -webkit-text-stroke: 1px var(--color-success);
             $offset-x: 1px;
-            $offset-y: 0px;
+            $offset-y: 1px;
             $value: ();
+            // creating the text shadows with a offset of "$offset-x"
             @for $i from 0 through ($shadow-number) {
-                $theShadow: $offset-x * $i $offset-y * $i 0px mix($color-green, $color-blue, 100% / $shadow-number * ($i));
+                $theShadow: $offset-x *
+                    $i
+                    $offset-y *
+                    $i
+                    0px
+                    mix($color-green, $color-blue, 100% / $shadow-number * ($i));
                 $value: append($value, $theShadow, comma);
             }
             text-shadow: $value;
-            // animation: text-shadow-ani 2000ms 1;
-
-            // @keyframes text-shadow-ani {
-            //     0% {
-            //         $value: ();
-            //         @for $i from 1 through $shadow-number {
-            //             $theShadow: 0 0 0px mix($color-green, $color-blue, 100% / $shadow-number * ($i));
-            //             $value: append($value, $theShadow, comma);
-            //         }
-            //         text-shadow: $value;
-            //     }
-            //     100% {
-            //         $value: ();
-            //         @for $i from 1 through $shadow-number {
-            //             $theShadow: $offset-x *
-            //                 $i
-            //                 $offset-y *
-            //                 $i
-            //                 0px
-            //                 mix($color-green, $color-blue, 100% / $shadow-number * ($i));
-            //             $value: append($value, $theShadow, comma);
-            //         }
-            //         text-shadow: $value;
-            //     }
-            // }
         }
 
         & .buttons {

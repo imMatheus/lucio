@@ -34,7 +34,8 @@ body {
 
     --paraghrap-fontfamily: 'Open Sans', Arial, Helvetica, sans-serif;
     --varible-fontfamily: 'Roboto Slab', serif;
-    --color-success: #ff1053;
+    // --color-success: #ff1053;
+    --color-success: #2a9d8f;
     // --color-success: #2163f1;
     // --color-success: #1ba94c;
     --color-fail: #d11534;
@@ -92,7 +93,7 @@ body {
         & .outline-btn {
             font-size: 1.25rem;
             display: inline;
-            padding: 6px 24px;
+            padding: 8px 24px;
             $outlineprefix: 2px;
             display: flex;
             align-items: center;
@@ -104,7 +105,6 @@ body {
             font-weight: 300;
             transition: outline-offset 170ms;
             cursor: pointer;
-            color: black;
 
             &:hover {
                 outline-offset: 2 * $outlineprefix;
@@ -127,14 +127,14 @@ body {
 
     // resetting for route links
     & a {
-        color: var(--resize-bg);
+        color: var(--bold-color);
         text-decoration: none;
         outline: none;
+        text-decoration-color: inherit;
 
         &:active,
         &:focus {
             text-decoration: underline;
-            text-decoration-color: var(--bold-color);
         }
     }
 }
