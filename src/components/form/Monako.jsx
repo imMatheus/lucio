@@ -124,13 +124,12 @@ const Monako = ({ mref, setCurrentCode, currentCode, problem }) => {
                 language: 'javascript',
                 value: generateJavascript(displayProblemName, problemInputs),
             },
-            'scri.py': {
+            'script.py': {
                 name: 'script.py',
                 language: 'python',
                 value: generatePython(displayProblemName, problemInputs),
             },
         })
-        console.log('hahahahahhahahahahhahahaahhahahahahahhahahahahahahhahahahahhaha')
     }
 
     const runCodeHandler = async () => {
@@ -140,7 +139,6 @@ const Monako = ({ mref, setCurrentCode, currentCode, problem }) => {
         // if dont have a file for what ever reason we don't whant to precced
         if (!file) return
         setCurrentCode(editorRef?.current?.getValue())
-        console.log(currentCode)
         // a sleep function that blocks code from running for 'ms' millisecs
         function sleep(ms) {
             return new Promise((resolve) => setTimeout(resolve, ms))
@@ -154,10 +152,7 @@ const Monako = ({ mref, setCurrentCode, currentCode, problem }) => {
             const args = currentCase.input
             const expected = currentCase.output
 
-            // console.log(`
-            // console.log(${displayProblemName}(${[args]}))
-            // `)
-            // console.log(file.language)
+            // the request that we send to the piston api
             const requestOptions = {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -173,12 +168,14 @@ const Monako = ({ mref, setCurrentCode, currentCode, problem }) => {
                 }),
             }
 
+            // sending the request
             await fetch('https://emkc.org/api/v1/piston/execute', requestOptions)
                 .then((response) => response.json())
                 .then((data) =>
                     dummyArray.push({
-                        correctAnswer: data.output + '' === expected + '',
-                        compileMessage: data.output + '' === expected + '' ? 'Right answer' : 'wrong answer',
+                        correctAnswer: (data.output + '').trim() === (expected + '').trim(),
+                        compileMessage:
+                            data.output + '' === expected + '' ? 'Right answer' : 'wrong answer',
                         inputs: args,
                         userOutput: [data.output],
                         expectedOutput: expected,
@@ -189,7 +186,6 @@ const Monako = ({ mref, setCurrentCode, currentCode, problem }) => {
             // sleeping for 530ms cuz the api only allows 2 reqs per sec, and 530 just to be on the safe side
             await sleep(530)
         }
-
         setTestCases(dummyArray)
         setFetchingData(false)
     }
@@ -199,7 +195,7 @@ const Monako = ({ mref, setCurrentCode, currentCode, problem }) => {
             <div className='editor' ref={mref}>
                 <div className='files'>
                     <File file='script.js' fileName={fileName} setFileName={setFileName} />
-                    <File file='scri.py' fileName={fileName} setFileName={setFileName} />
+                    <File file='script.py' fileName={fileName} setFileName={setFileName} />
                 </div>
 
                 <Editor

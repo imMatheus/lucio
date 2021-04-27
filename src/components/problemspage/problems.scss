@@ -28,6 +28,7 @@
             font-size: 22px;
             line-height: 1.1;
             font-weight: 300;
+            color: var(--main-bg);
 
             // justify-self: flex-start;
         }
@@ -53,7 +54,7 @@
 
                 background: var(--color-success);
 
-                // clases to change the background color depending on the difficulty
+                // classes to change the background color depending on the difficulty
                 &.easy {
                     background: var(--color-success);
                 }

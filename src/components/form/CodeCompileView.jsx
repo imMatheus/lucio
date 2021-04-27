@@ -39,7 +39,9 @@ const CodeCompileView = ({ testcases, fetchingData }) => {
                 ) : (
                     testcases.length > 0 && (
                         <div className='codecompileview'>
-                            <div className={correctAnswer ? 'title green' : 'title red'}>{title}</div>
+                            <div className={correctAnswer ? 'title green' : 'title red'}>
+                                {title}
+                            </div>
                             <p>{failedCases + '/' + testcases.length} test cases failed</p>
                             <div className='compilecases-wrapper'>
                                 <div className='case-list'>
@@ -56,7 +58,11 @@ const CodeCompileView = ({ testcases, fetchingData }) => {
                                                     className={color + ' ' + highlight}
                                                     onClick={changeCompileViewHandler}
                                                 >
-                                                    {cas.correctAnswer ? <CheckIcon /> : <CloseIcon />}
+                                                    {cas.correctAnswer ? (
+                                                        <CheckIcon />
+                                                    ) : (
+                                                        <CloseIcon />
+                                                    )}
                                                     {'Sample test case ' + cas.caseName}
                                                 </li>
                                             )
@@ -65,10 +71,26 @@ const CodeCompileView = ({ testcases, fetchingData }) => {
                                 </div>
 
                                 <div className='case-content'>
-                                    <Subpart key={uuidv4()} header='Compile msg' complileMsg={currentTc?.compileMessage} />
-                                    <Subpart key={uuidv4()} header='Inputs' content={currentTc?.inputs} />
-                                    <Subpart key={uuidv4()} header='Your output' content={currentTc?.userOutput} />
-                                    <Subpart key={uuidv4()} header='expected output' content={currentTc?.expectedOutput} />
+                                    <Subpart
+                                        key={uuidv4()}
+                                        header='Compile msg'
+                                        complileMsg={currentTc?.compileMessage}
+                                    />
+                                    <Subpart
+                                        key={uuidv4()}
+                                        header='Inputs'
+                                        content={currentTc?.inputs}
+                                    />
+                                    <Subpart
+                                        key={uuidv4()}
+                                        header='Your output'
+                                        content={currentTc?.userOutput}
+                                    />
+                                    <Subpart
+                                        key={uuidv4()}
+                                        header='expected output'
+                                        content={currentTc?.expectedOutput}
+                                    />
                                 </div>
                             </div>
                         </div>

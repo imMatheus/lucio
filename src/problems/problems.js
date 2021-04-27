@@ -81,7 +81,7 @@ export const problems = [
     },
     {
         problemName: 'Counting Valleys',
-        difficulty: 'Hard',
+        difficulty: 'hard',
 
         problemDescription: `
                 An avid hiker keeps meticulous records of their hikes. During the last hike that took exactly <span class="varieble">steps</span> steps, for every step it was noted if it was an uphill, <span class="varieble">U</span> , or a downhill, <span class="varieble">D</span> step. Hikes always start and end at sea level, and each step up or down represents a <span class="varieble">1</span> unit change in altitude.
@@ -118,7 +118,7 @@ export const problems = [
     },
     {
         problemName: 'Almost Sorted',
-        difficulty: 'Medium',
+        difficulty: 'medium',
 
         problemDescription: `
         Given an array of integers, determine whether the array

@@ -1135,6 +1135,7 @@ body .App .problems .problemcard .header {
   font-size: 22px;
   line-height: 1.1;
   font-weight: 300;
+  color: var(--main-bg);
 }
 body .App .problems .problemcard .metadata {
   color: var(--bg);
