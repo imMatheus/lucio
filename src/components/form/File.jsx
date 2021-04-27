@@ -7,14 +7,14 @@ const File = ({ file, fileName, setFileName }) => {
     // finding the prefix of the file, so .js or .html.
     // so i can put the right icon
     let prefix = file.split('.')
-    prefix.shift()
+
     let Icon
-    if (prefix[0] === 'js') {
+    if (prefix[prefix.length - 1] === 'js') {
         Icon = JavascriptSvg
-    } else if (prefix[0] === 'py') {
+    } else if (prefix[prefix.length - 1] === 'py') {
         Icon = PythonSvg
-    } else if (prefix[0] === 'css') {
-    } else if (prefix[0] === 'html') {
+    } else if (prefix[prefix.length - 1] === 'css') {
+    } else if (prefix[prefix.length - 1] === 'html') {
     }
 
     return (

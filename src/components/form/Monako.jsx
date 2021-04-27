@@ -23,7 +23,7 @@ const Monako = ({ mref, setCurrentCode, currentCode, problem }) => {
             language: 'javascript',
             value: generateJavascript(displayProblemName, problemInputs),
         },
-        'scri.py': {
+        'script.py': {
             name: 'script.py',
             language: 'python',
             value: generatePython(displayProblemName, problemInputs),
@@ -36,7 +36,7 @@ const Monako = ({ mref, setCurrentCode, currentCode, problem }) => {
             language: 'javascript',
             value: generateJavascript(displayProblemName, problemInputs),
         },
-        'scri.py': {
+        'script.py': {
             name: 'script.py',
             language: 'python',
             value: generatePython(displayProblemName, problemInputs),
