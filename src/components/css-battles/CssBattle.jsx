@@ -5,8 +5,10 @@ import { useLocalStorage } from '../../hooks/useLocalStorage'
 // import { toPng, toJpeg, toBlob, toPixelData, toSvg } from 'html-to-image'
 import { generateHtmlStarterFile } from './_generateHtmlStarterFile.js'
 import { generateCssStarterFile } from './_generateCssStarterFile.js'
+import { v4 as uuidv4 } from 'uuid'
 
 import EditorComponent from './EditorComponent'
+import { db, auth } from '../../firebase'
 
 const CssBattle = ({ problem }) => {
     const cssEditorRef = useRef(null)
@@ -19,6 +21,47 @@ const CssBattle = ({ problem }) => {
     const solutionRef = useRef(null)
     const ugaRef = useRef(null)
     const [isHoveringOverIframe, setIsHoveringOverIframe] = useState(false)
+    const [submissions, setSubmissions] = useState(null)
+    const dbRef = db
+        .ref()
+        .child('css')
+        .child(problem.target - 1)
+        .child('submissions')
+    useEffect(() => {
+        dbRef.on('value', (snapshot) => {
+            const css = snapshot.val()
+            console.log(css)
+            setSubmissions(css)
+        })
+        // dbRef.child('submissions').push({ testing: '45990' })
+    }, [])
+    let uy = 0
+    const addSubmission = () => {
+        const user = auth.currentUser
+        const userUID = user.uid
+        // dbRef.child('testing').set(Math.floor(Math.random() * 30))
+        dbRef.child(userUID).child('score').set({ email: user.email, score: 456 })
+        // dbRef.child(userUID).once('value', (snapshot) => {
+        //     if (snapshot.exists()) {
+        //         uy += 1
+        //         const userData = snapshot.val()
+        //         console.log('exists!', userData)
+        //         dbRef.child(userUID).child('score').set(uy)
+        //         // .set(Math.floor(Math.random() * 30))
+        //     } else {
+        //         console.log('did not exist')
+        //         dbRef.child(userUID).set({
+        //             email: user.email,
+        //             score: Math.floor(Math.random() * 30),
+        //             userId: userUID,
+        //         })
+        //     }
+        // })
+        console.log(auth.currentUser)
+        // console.log(userUID)
+    }
+
+    // dbRef.child('submissions').push({ testing: 'cool' })
     let characterCount
     let currentCode = '<style>' + cssCode + '</style>' + htmlCode
 
@@ -77,6 +120,9 @@ const CssBattle = ({ problem }) => {
         }
     }
 
+    /*
+    @todo fix this 
+    */
     const submitClickedHandler = async () => {
         function getBase64Image(img) {
             // Create an empty canvas element
@@ -169,9 +215,16 @@ const CssBattle = ({ problem }) => {
                 </div>
                 <div className='editors-container'>
                     <div className='editor-fraction' ref={cssEditorRef}>
-                        <EditorComponent language='css' starterCode={generateCssStarterFile()} setter={setCssCode} />
+                        <EditorComponent
+                            language='css'
+                            starterCode={generateCssStarterFile()}
+                            setter={setCssCode}
+                        />
                     </div>
-                    <div className='editor-resizebar' onMouseDown={() => (isDragingEditorResizer = true)}>
+                    <div
+                        className='editor-resizebar'
+                        onMouseDown={() => (isDragingEditorResizer = true)}
+                    >
                         <div className='dots-container'>
                             <span></span>
                             <span></span>
@@ -179,7 +232,11 @@ const CssBattle = ({ problem }) => {
                         </div>
                     </div>
                     <div className='editor-fraction' ref={htmlEditorRef}>
-                        <EditorComponent language='html' starterCode={generateHtmlStarterFile()} setter={setHtmlCode} />
+                        <EditorComponent
+                            language='html'
+                            starterCode={generateHtmlStarterFile()}
+                            setter={setHtmlCode}
+                        />
                     </div>
                 </div>
             </div>
@@ -207,7 +264,12 @@ const CssBattle = ({ problem }) => {
                     <div className='submit-btn' onClick={submitClickedHandler}>
                         Submit
                     </div>
+                    <div className='submit-btn' onClick={addSubmission}>
+                        Add submission
+                    </div>
                 </div>
+
+                {submissions && JSON.stringify(submissions)}
             </div>
             <div className='column-container'>
                 <div className='column-header'>
@@ -217,14 +279,21 @@ const CssBattle = ({ problem }) => {
                 <div
                     className='img-container'
                     ref={solutionRef}
-                    style={{ backgroundImage: ` url(${problem.image})`, width: '400px', height: '300px' }}
+                    style={{
+                        backgroundImage: ` url(${problem.image})`,
+                        width: '400px',
+                        height: '300px',
+                    }}
                 ></div>
                 <div className='colors-container'>
                     {/* rendering out all of the colors */}
-                    {problem.colors.map((color) => {
+                    {problem.colors?.map((color) => {
                         return (
-                            <span title='Copie' onClick={copyColorHandler}>
-                                <div className='color-circle' style={{ backgroundColor: color }}></div>
+                            <span key={uuidv4()} title='Copie' onClick={copyColorHandler}>
+                                <div
+                                    className='color-circle'
+                                    style={{ backgroundColor: color }}
+                                ></div>
                                 {color}
                             </span>
                         )
@@ -233,7 +302,12 @@ const CssBattle = ({ problem }) => {
             </div>
             <canvas
                 id='dummyCanvas'
-                style={{ display: 'none', backgroundColor: 'pink', width: '400px', height: '300px' }}
+                style={{
+                    display: 'none',
+                    backgroundColor: 'pink',
+                    width: '400px',
+                    height: '300px',
+                }}
                 width='400px'
                 height='300px'
                 ref={canvasRef}
