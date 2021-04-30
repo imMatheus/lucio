@@ -22,18 +22,16 @@ const Signup = () => {
         try {
             setError('')
             setLoading(true)
-            try {
-                await signup(
-                    emailRef.current.value.trim(),
-                    passwordRef.current.value
-                ).then((response) => console.log(response))
-            } catch (error) {
-                console.log(error)
+            const res = await signup(emailRef.current.value.trim(), passwordRef.current.value)
+
+            // if we didn't get a response back that means it was successful
+            // so we send user back to '/'
+            if (!res) {
+                history.push('/')
+            } else {
+                setError(res.message)
             }
-            console.log('git')
-            history.push('/')
         } catch (error) {
-            console.log('hej')
             setError('failed to create an account')
         }
         setLoading(false)
@@ -41,10 +39,10 @@ const Signup = () => {
     return (
         <div className='signup-container'>
             <div className='card'>
-                <div className='blobs-container'>
-                    <Blob blobId='1' />
-                    <Blob blobId='2' />
-                    <Blob blobId='3' />
+                <div className={`blobs-container ${loading ? 'loading' : ''}`}>
+                    <Blob blobId='b1' />
+                    <Blob blobId='b2' />
+                    <Blob blobId='b3' />
                 </div>
                 <div className='content'>
                     <p className='title'>Sign Up</p>

@@ -41,6 +41,8 @@ const CssBattle = ({ problem }) => {
     let uy = 0
     const addSubmission = () => {
         const user = auth.currentUser
+
+        if (!user) return //  @todo promt the user to login if they are not
         const userUID = user.uid
         let a = 20
         let rnd = Math.floor(Math.random() * a * 2)

@@ -28,10 +28,10 @@ const Login = () => {
     return (
         <div className='signup-container'>
             <div className='card'>
-                <div className='blobs-container'>
-                    <Blob blobId='1' />
-                    <Blob blobId='2' />
-                    <Blob blobId='3' />
+                <div className={`blobs-container ${loading ? 'loading' : ''}`}>
+                    <Blob blobId='b1' />
+                    <Blob blobId='b2' />
+                    <Blob blobId='b3' />
                 </div>
                 <div className='content'>
                     <p className='title'>Password Reset</p>

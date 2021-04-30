@@ -58,7 +58,6 @@ const CssProblems = () => {
                           )
                       })
                     : 'hgej'}
-                <h1>hejhej</h1>
             </div>
         </div>
     )

@@ -9,8 +9,13 @@ export const AuthProvider = ({ children }) => {
     const [currentUser, setCurrentUser] = useState()
     const [loading, setLoading] = useState(true)
 
-    function signup(email, password) {
-        auth.createUserWithEmailAndPassword(email, password)
+    async function signup(email, password) {
+        // if the user submits a invalid user name and
+        try {
+            await auth.createUserWithEmailAndPassword(email, password)
+        } catch (error) {
+            return error
+        }
     }
     function login(email, password) {
         return auth.signInWithEmailAndPassword(email, password)
