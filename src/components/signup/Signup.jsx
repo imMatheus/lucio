@@ -8,18 +8,25 @@ import { v4 as uuidv4 } from 'uuid'
 
 const Signup = () => {
     const emailRef = useRef(null)
+    const displayNameRef = useRef(null)
     const passwordRef = useRef(null)
     const confirmPasswordRef = useRef(null)
     const [error, setError] = useState('')
     const [loading, setLoading] = useState(false)
+    const [chosenAvatar, setChosenAvatar] = useState(null)
+    const chosenAvatarRef = useRef(null)
+
     const { signup } = useAuth()
     const history = useHistory()
     const [showPassword, setShowPassword] = useState(false)
 
     const handleSubmit = async (e) => {
         e.preventDefault()
+        if (displayNameRef.current?.value.trim().length < 6) {
+            return setError('Display name must be 6 or more characters long')
+        }
         if (passwordRef.current?.value !== confirmPasswordRef.current?.value) {
-            return setError('Passwords do ot match')
+            return setError('Passwords do not match')
         }
         try {
             setError('')
@@ -31,6 +38,7 @@ const Signup = () => {
             if (!res) {
                 history.push('/')
             } else {
+                // else, something went wrong so we set an error
                 setError(res.message)
             }
         } catch (error) {
@@ -51,9 +59,7 @@ const Signup = () => {
                     <p className='subtitle'>
                         Or do you already have an account? <Link to='/login'> Sing In</Link>
                     </p>
-
                     {error && <div className='userMessage error'>{error}</div>}
-
                     <div className='input-container'>
                         <input
                             type='text'
@@ -62,14 +68,27 @@ const Signup = () => {
                             ref={emailRef}
                         />
                     </div>
+                    <div className='input-container'>
+                        <input
+                            type='text'
+                            className='input-btn'
+                            placeholder='Display name'
+                            ref={displayNameRef}
+                        />
+                    </div>
+                    Choose your avatar
                     <div className='avatars-container'>
                         {avatars?.map((avatar) => {
-                            console.log(avatar)
+                            console.log(avatar.image.trim())
+                            let chosen = avatar.avatarName === chosenAvatar
                             return (
                                 <div
                                     key={uuidv4()}
-                                    className='avatar-circle'
+                                    className={chosen ? 'avatar-circle chosen' : 'avatar-circle'}
+                                    onClick={() => setChosenAvatar(avatar.avatarName)}
                                     style={{ backgroundImage: `url(${avatar.image})` }}
+                                    // src={avatar.image}
+                                    // alt={avatar.avatarName}
                                 ></div>
                             )
                         })}
@@ -96,7 +115,6 @@ const Signup = () => {
                             ref={confirmPasswordRef}
                         />
                     </div>
-
                     <div className='outline-btn' disabled={loading} onClick={handleSubmit}>
                         Sign Up
                     </div>

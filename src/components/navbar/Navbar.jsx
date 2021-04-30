@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom'
 import LogoIcon from '../LogoIcon'
 import NightsStayIcon from '@material-ui/icons/NightsStay'
 import WbSunnyIcon from '@material-ui/icons/WbSunny'
-import avatarWhite from '../../avatars/avatar-white.png'
+import avatarWhite from '../../avatars/avatar-black.png'
 const Navbar = ({ isDarkMode, setIsDarkMode }) => {
     const { currentUser, logout } = useAuth()
     const history = useHistory()
@@ -24,9 +24,9 @@ const Navbar = ({ isDarkMode, setIsDarkMode }) => {
             <Link exact to='/'>
                 <div className='logo'>
                     <h2>LucioCode</h2>
-                    {/* setting spinn to true so it spinns */}
+                    {/* setting spin to true so it spins */}
                     <div className='logo-icon-container'>
-                        <LogoIcon spinn={true} loader={false} />
+                        <LogoIcon spin={true} loader={false} />
                     </div>
                 </div>
             </Link>

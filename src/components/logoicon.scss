@@ -7,15 +7,15 @@
     position: relative;
     box-sizing: border-box;
 
-    @mixin normalSpinn($prefix, $currentRotation, $animationTime) {
+    @mixin normalSpin($prefix, $currentRotation, $animationTime) {
         animation: #{'ani' + $currentRotation} $animationTime 1;
-        $startRoatation: $currentRotation + $prefix;
+        $startRotation: $currentRotation + $prefix;
         @keyframes ani#{$currentRotation} {
             // 0% {
-            //     transform: rotate(#{$startRoatation * (-1)}deg);
+            //     transform: rotate(#{$startRotation * (-1)}deg);
             // }
             0% {
-                transform: rotate(#{$startRoatation}deg);
+                transform: rotate(#{$startRotation}deg);
             }
 
             100% {
@@ -26,17 +26,17 @@
 
     @mixin rotateAnimation($prefix, $currentRotation, $animationTime) {
         animation: #{'ani' + $currentRotation} $animationTime infinite;
-        $startRoatation: $currentRotation + $prefix;
+        $startRotation: $currentRotation + $prefix;
         @keyframes ani#{$currentRotation} {
             0% {
-                transform: rotate(#{$startRoatation}deg);
+                transform: rotate(#{$startRotation}deg);
             }
 
             50% {
-                transform: rotate(#{$startRoatation * (-1)}deg);
+                transform: rotate(#{$startRotation * (-1)}deg);
             }
             100% {
-                transform: rotate(#{$startRoatation}deg);
+                transform: rotate(#{$startRotation}deg);
             }
         }
     }
@@ -48,12 +48,12 @@
         position: absolute;
         border-radius: 50%;
         border: 3px solid transparent;
-        // changin only the left and  rightbordet to have a border color so
+        // changing only the left and  right border to have a border color so
         // it shows
         border-left-color: var(--color-success);
         border-right-color: var(--color-success);
 
-        // making the width of each cirlce to be decresingly  small
+        // making the width of each circle to be decreasingly  small
         @for $i from 1 through 5 {
             &:nth-child(#{$i}) {
                 left: 10% * ($i - 1);
@@ -77,17 +77,17 @@
             }
         }
     }
-    &.spinn {
+    &.spin {
         .circle-line {
             @for $i from 1 through 5 {
                 &:nth-child(#{$i}) {
-                    // then adding animation the circle aslong as it is not the
+                    // then adding animation the circle as long as it is not the
                     // 5th circle as it does not to rotate
                     @if $i != 5 {
-                        // thes prefix can be changed as you like
+                        // these prefix can be changed as you like
                         // it just kinda looks good
                         // @include rotateAnimation(-72, $i * -72, 3000ms);
-                        @include normalSpinn(-60, $i * -60, 1800ms);
+                        @include normalSpin(-60, $i * -60, 1800ms);
                     }
                 }
             }
@@ -96,10 +96,10 @@
             .circle-line {
                 @for $i from 1 through 5 {
                     &:nth-child(#{$i}) {
-                        // then adding animation the circle aslong as it is not the
+                        // then adding animation the circle as long as it is not the
                         // 5th circle as it does not to rotate
                         @if $i != 5 {
-                            // thes prefix can be changed as you like
+                            // these prefix can be changed as you like
                             // it just kinda looks good
                             // @include rotateAnimation(-72, $i * -72, 3000ms);
                             @include rotateAnimation(-72, $i * -72, 3300ms);
