@@ -1,6 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { problems } from '../../problems/problems'
+import { v4 as uuidv4 } from 'uuid'
+
 let currentPath = ''
 
 const ProblemsPage = ({ match }) => {
@@ -9,7 +11,14 @@ const ProblemsPage = ({ match }) => {
         <>
             <div className='problems'>
                 {problems.map((problem) => {
-                    return <ProblemCard diff={problem.difficulty} name={problem.problemName} category={problem.category} />
+                    return (
+                        <ProblemCard
+                            key={uuidv4()}
+                            diff={problem.difficulty}
+                            name={problem.problemName}
+                            category={problem.category}
+                        />
+                    )
                 })}
             </div>
         </>
@@ -38,7 +47,11 @@ const ProblemCard = ({ name, diff, category }) => {
                     {category && <span>{category}</span>}
                     <div
                         className={
-                            diff === 'easy' ? 'difficulty easy' : diff === 'medium' ? 'difficulty medium' : 'difficulty hard'
+                            diff === 'easy'
+                                ? 'difficulty easy'
+                                : diff === 'medium'
+                                ? 'difficulty medium'
+                                : 'difficulty hard'
                         }
                     >
                         {diff}

@@ -4,6 +4,7 @@ import { Link, useHistory } from 'react-router-dom'
 import VisibilityIcon from '@material-ui/icons/Visibility'
 import VisibilityOffIcon from '@material-ui/icons/VisibilityOff'
 import { avatars } from '../../avatars/avatars.js'
+import { v4 as uuidv4 } from 'uuid'
 
 const Signup = () => {
     const emailRef = useRef(null)
@@ -63,8 +64,10 @@ const Signup = () => {
                     </div>
                     <div className='avatars-container'>
                         {avatars?.map((avatar) => {
+                            console.log(avatar)
                             return (
                                 <div
+                                    key={uuidv4()}
                                     className='avatar-circle'
                                     style={{ backgroundImage: `url(${avatar.image})` }}
                                 ></div>
