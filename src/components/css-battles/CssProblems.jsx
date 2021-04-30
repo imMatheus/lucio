@@ -1,4 +1,4 @@
-// import { cssProblems } from '../../css-problems/cssProblems.js'
+import { cssProblems } from '../../css-problems/cssProblems.js'
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { db } from '../../firebase'
@@ -7,46 +7,58 @@ import { v4 as uuidv4 } from 'uuid'
 const CssProblems = () => {
     const cssRef = db.ref('css')
     console.log(db.ref('css'))
-    const [cssProblems, setCssProblems] = useState(null)
+    const [cssProblemsArray, setCssProblemsArray] = useState(null)
+    let cssId
     useEffect(() => {
         cssRef.on('value', (snapshot) => {
             const css = snapshot.val()
             let cssList = []
             for (let id in css) {
                 cssList.push(css[id])
+                if (!cssId) cssId = id
             }
             console.log(cssList)
-            setCssProblems(cssList[0])
+            setCssProblemsArray(cssList)
             // setCssProblems(css[0])
-            console.log(cssProblems)
+            console.log(cssId)
+            console.log(cssProblemsArray)
         })
     }, [])
-    console.log('-------------------')
-    var newPostKey = db.ref().child('css').push().key
+    // if (cssId) {
+    //     const ve = db.ref('css').child(cssId)
+    //     ve.on('value', (snapshot) => {
+    //         const ver = snapshot.val()
+    //         let cssList = []
+    //         for (let id in ver) {
+    //             cssList.push(ver[id])
+    //         }
+    //         console.log(cssList)
+    //     })
+    //     ve.push({ name: 'hehej', age: 9 })
+    // }
 
-    var updates = {}
-    updates['/css/' + newPostKey] = { test: 'tt', ju: 'er' }
+    // console.log(db.ref('css').child('s'))
 
-    console.log(updates)
-    console.log(db.ref('css').child('s'))
-
-    // db.ref().child('css').update(updates)
+    // db.ref().child('css').child('0').set({ test: 'mautu', ter: 699 })
 
     // cssRef.push(cssProblems)
     // console.log(cssRef)
     return (
         <div className='cssproblems'>
             <div className='container'>
-                {cssProblems?.map((problem) => {
-                    return (
-                        <Problem
-                            key={uuidv4()}
-                            target={problem.target}
-                            image={problem.image}
-                            submissions={problem.submissions.length}
-                        />
-                    )
-                })}
+                {cssProblemsArray
+                    ? cssProblemsArray.map((problem) => {
+                          return (
+                              <Problem
+                                  key={uuidv4()}
+                                  target={problem.target}
+                                  image={problem.image}
+                                  submissions={problem.submissions.length}
+                              />
+                          )
+                      })
+                    : 'hgej'}
+                <h1>hejhej</h1>
             </div>
         </div>
     )

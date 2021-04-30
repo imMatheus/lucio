@@ -3,6 +3,9 @@ import ReactDOM from 'react-dom'
 import App from './App'
 import reportWebVitals from './reportWebVitals'
 
+/*
+@auther imMatheus, Matheus mendes barata de almeida.
+*/
 ReactDOM.render(
     <React.StrictMode>
         <App />

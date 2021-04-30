@@ -9,6 +9,7 @@ import { v4 as uuidv4 } from 'uuid'
 
 import EditorComponent from './EditorComponent'
 import { db, auth } from '../../firebase'
+import { FormatListNumberedRtlSharp } from '@material-ui/icons'
 
 const CssBattle = ({ problem }) => {
     const cssEditorRef = useRef(null)
@@ -22,46 +23,47 @@ const CssBattle = ({ problem }) => {
     const ugaRef = useRef(null)
     const [isHoveringOverIframe, setIsHoveringOverIframe] = useState(false)
     const [submissions, setSubmissions] = useState(null)
-    const dbRef = db
+    const dbSubmissionsRef = db
         .ref()
         .child('css')
         .child(problem.target - 1)
         .child('submissions')
+
     useEffect(() => {
-        dbRef.on('value', (snapshot) => {
+        dbSubmissionsRef.on('value', (snapshot) => {
             const css = snapshot.val()
-            console.log(css)
+            // console.log(css)
             setSubmissions(css)
         })
-        // dbRef.child('submissions').push({ testing: '45990' })
+        // dbSubmissionsRef.child('submissions').push({ testing: '45990' })
     }, [])
+
     let uy = 0
     const addSubmission = () => {
         const user = auth.currentUser
         const userUID = user.uid
-        // dbRef.child('testing').set(Math.floor(Math.random() * 30))
-        dbRef.child(userUID).child('score').set({ email: user.email, score: 456 })
-        // dbRef.child(userUID).once('value', (snapshot) => {
-        //     if (snapshot.exists()) {
-        //         uy += 1
-        //         const userData = snapshot.val()
-        //         console.log('exists!', userData)
-        //         dbRef.child(userUID).child('score').set(uy)
-        //         // .set(Math.floor(Math.random() * 30))
-        //     } else {
-        //         console.log('did not exist')
-        //         dbRef.child(userUID).set({
-        //             email: user.email,
-        //             score: Math.floor(Math.random() * 30),
-        //             userId: userUID,
-        //         })
-        //     }
-        // })
+        let a = 20
+        let rnd = Math.floor(Math.random() * a * 2)
+        let isHigher = false
+        dbSubmissionsRef.child(userUID).once('value', (snapshot) => {
+            const userData = snapshot.val()
+            console.log('exists!', userData)
+            if (rnd > a) {
+                isHigher = true
+            }
+        })
+
+        if (isHigher) {
+            console.log('higher')
+            dbSubmissionsRef.child(userUID).set({ email: user.email, score: rnd, userId: userUID })
+        } else {
+            console.log('lower', rnd)
+        }
+
         console.log(auth.currentUser)
-        // console.log(userUID)
     }
 
-    // dbRef.child('submissions').push({ testing: 'cool' })
+    // dbSubmissionsRef.child('submissions').push({ testing: 'cool' })
     let characterCount
     let currentCode = '<style>' + cssCode + '</style>' + htmlCode
 
@@ -98,7 +100,7 @@ const CssBattle = ({ problem }) => {
         currentCode
             ?.replace(/\s/g, '') // regex is... nice :\
             .split('')
-            .filter((word) => word !== ' ').length - 15
+            .filter((word) => word !== ' ').length - 15 // -15 cuz i had the style tags and it is 15 characters long
 
     // for the resizing of the iframeContainer when hovering
     const resizeOutputHandler = (e) => {
@@ -162,18 +164,20 @@ const CssBattle = ({ problem }) => {
         if (!iframeRef.current) return
 
         const html = iframeRef.current.contentWindow.document.querySelector('html')
-        iframeRef.current.contentWindow.margin = '0px'
-        iframeRef.current.contentWindow.padding = '0px'
-        html.style.margin = '0px'
-        html.style.padding = '0px'
+        console.log(html)
+        console.log(ugaRef.current)
+        // iframeRef.current.contentWindow.margin = '0px'
+        // iframeRef.current.contentWindow.padding = '0px'
+        // html.style.margin = '0px'
+        // html.style.padding = '0px'
         html.style.width = '400px'
         html.style.height = '300px'
         if (!html.style.background) html.style.background = 'blue'
-        html.querySelector('body').style.width = '400px'
-        html.querySelector('body').style.height = '300px'
+        // html.querySelector('body').style.width = '400px'
+        // html.querySelector('body').style.height = '300px'
 
         htmlToImage
-            .toPng(ugaRef.current)
+            .toPng(html)
             .then(function (dataUrl) {
                 var img = new Image()
                 console.log(dataUrl)
@@ -181,30 +185,30 @@ const CssBattle = ({ problem }) => {
                 img.width = 400
                 img.height = 300
                 // getBase64Image(img)
-                let x = _base64ToArrayBuffer(getBase64Image(img))
-                console.log(x)
-                let canvas = canvasRef.current
-                let ctx = canvas.getContext('2d')
-                ctx.drawImage(img, 0, 0)
+                // let x = _base64ToArrayBuffer(getBase64Image(img))
+                // console.log(x)
+                // let canvas = canvasRef.current
+                // let ctx = canvas.getContext('2d')
+                // ctx.drawImage(img, 0, 0)
                 document.body.appendChild(img)
             })
             .catch(function (error) {
                 console.error('oops, something went wrong!', error)
             })
-        // htmlToImage
-        //     .toPng(solutionRef.current)
-        //     .then(function (dataUrl) {
-        //         var img = new Image()
-        //         img.src = dataUrl
-        //         img.width = 400
-        //         img.height = 300
-        //         let x = _base64ToArrayBuffer(getBase64Image(img))
-        //         console.log(x)
-        //         document.body.appendChild(img)
-        //     })
-        //     .catch(function (error) {
-        //         console.error('oops, something went wrong!', error)
-        //     })
+        htmlToImage
+            .toPng(solutionRef.current)
+            .then(function (dataUrl) {
+                var img = new Image()
+                img.src = dataUrl
+                img.width = 400
+                img.height = 300
+                let x = _base64ToArrayBuffer(getBase64Image(img))
+                console.log(x)
+                document.body.appendChild(img)
+            })
+            .catch(function (error) {
+                console.error('oops, something went wrong!', error)
+            })
     }
 
     return (
