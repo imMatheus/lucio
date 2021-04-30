@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom'
 import LogoIcon from '../LogoIcon'
 import NightsStayIcon from '@material-ui/icons/NightsStay'
 import WbSunnyIcon from '@material-ui/icons/WbSunny'
+import avatarWhite from '../../avatars/avatar-white.png'
 const Navbar = ({ isDarkMode, setIsDarkMode }) => {
     const { currentUser, logout } = useAuth()
     const history = useHistory()
@@ -55,7 +56,10 @@ const Navbar = ({ isDarkMode, setIsDarkMode }) => {
                     </div>
                 )}
                 <Link exact to='/login'>
-                    <div className='account'></div>
+                    <div
+                        className='account'
+                        style={{ backgroundImage: `url(${avatarWhite})` }}
+                    ></div>
                 </Link>
             </div>
         </div>

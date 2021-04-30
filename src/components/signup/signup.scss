@@ -156,6 +156,30 @@
                 }
             }
 
+            & .avatars-container {
+                padding: 10px 12px;
+                background-color: white;
+                display: grid;
+                grid-template-columns: repeat(auto-fill, 68px);
+                column-gap: 12px;
+                row-gap: 12px;
+                border-radius: 8px;
+
+                & .avatar-circle {
+                    width: 68px;
+                    height: 68px;
+                    cursor: pointer;
+                    // border-radius: 50%;
+                    // background-color: green;
+                    background-size: cover;
+                    background-position: center;
+
+                    &-chosen {
+                        border-bottom: solid 2px var(--color-success);
+                    }
+                }
+            }
+
             & .input-btn {
                 width: 100%;
                 padding: 8px 14px;

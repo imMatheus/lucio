@@ -3,6 +3,7 @@ import { useAuth } from '../../context/AuthContext'
 import { Link, useHistory } from 'react-router-dom'
 import VisibilityIcon from '@material-ui/icons/Visibility'
 import VisibilityOffIcon from '@material-ui/icons/VisibilityOff'
+import { avatars } from '../../avatars/avatars.js'
 
 const Signup = () => {
     const emailRef = useRef(null)
@@ -59,6 +60,16 @@ const Signup = () => {
                             placeholder='Email'
                             ref={emailRef}
                         />
+                    </div>
+                    <div className='avatars-container'>
+                        {avatars?.map((avatar) => {
+                            return (
+                                <div
+                                    className='avatar-circle'
+                                    style={{ backgroundImage: `url(${avatar.image})` }}
+                                ></div>
+                            )
+                        })}
                     </div>
                     <div className='input-container'>
                         <input

@@ -570,6 +570,25 @@ body .App .signup-container .card .content .userMessage.success {
   background: #d4edda;
   border-color: #c3e6cb;
 }
+body .App .signup-container .card .content .avatars-container {
+  padding: 10px 12px;
+  background-color: white;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 68px);
+  column-gap: 12px;
+  row-gap: 12px;
+  border-radius: 8px;
+}
+body .App .signup-container .card .content .avatars-container .avatar-circle {
+  width: 68px;
+  height: 68px;
+  cursor: pointer;
+  background-size: cover;
+  background-position: center;
+}
+body .App .signup-container .card .content .avatars-container .avatar-circle-chosen {
+  border-bottom: solid 2px var(--color-success);
+}
 body .App .signup-container .card .content .input-btn {
   width: 100%;
   padding: 8px 14px;
@@ -1247,10 +1266,11 @@ body .App .navbar-right .dark-theme-toogler.light .theme-btn {
   transform: translateX(0%);
 }
 body .App .navbar-right .account {
-  width: 50px;
-  height: 50px;
+  width: 68px;
+  height: 68px;
   border-radius: 50%;
-  background: red;
+  background-size: cover;
+  background-position: center;
 }
 body .App .page404 {
   display: grid;
