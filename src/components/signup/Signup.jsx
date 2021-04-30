@@ -15,15 +15,32 @@ const Signup = () => {
     const [loading, setLoading] = useState(false)
     const [chosenAvatar, setChosenAvatar] = useState(null)
     const chosenAvatarRef = useRef(null)
-
     const { signup } = useAuth()
     const history = useHistory()
     const [showPassword, setShowPassword] = useState(false)
+
+    const generateHashedPassword = () => {
+        // Math.random() will return a random double, eg: 0.13562
+        // then toString(36) converts it to base-36: "0.4fzyo82mvyr"
+        // then slice(-4) only keeps the last 4 from the string : "mvyr"
+        var psw = Math.random().toString(36).slice(-4)
+        for (let i = 0; i < 3; i++) {
+            // appending 4 random numbers/letters
+            psw += '-' + Math.random().toString(36).slice(-4)
+        }
+        passwordRef.current.value = psw
+        confirmPasswordRef.current.value = psw
+        return psw
+    }
 
     const handleSubmit = async (e) => {
         e.preventDefault()
         if (displayNameRef.current?.value.trim().length < 6) {
             return setError('Display name must be 6 or more characters long')
+        }
+
+        if (!chosenAvatar) {
+            return setError('Please pick a avatar.')
         }
         if (passwordRef.current?.value !== confirmPasswordRef.current?.value) {
             return setError('Passwords do not match')
@@ -93,6 +110,7 @@ const Signup = () => {
                             )
                         })}
                     </div>
+                    <p onClick={generateHashedPassword}>Generate secure password</p>
                     <div className='input-container'>
                         <input
                             type={showPassword ? 'text' : 'password'}
