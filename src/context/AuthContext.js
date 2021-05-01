@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react'
-import { auth } from '../firebase'
+import { auth, fs } from '../firebase'
 const AuthContext = React.createContext()
 
 export function useAuth() {
@@ -9,17 +9,28 @@ export const AuthProvider = ({ children }) => {
     const [currentUser, setCurrentUser] = useState()
     const [loading, setLoading] = useState(true)
 
-    async function signup(email, password, displayName) {
-        // if the user submits a invalid user name and
+    async function signup(email, password, displayName, imageUrl) {
         try {
             await auth.createUserWithEmailAndPassword(email, password)
         } catch (error) {
+            console.log('error', error)
             return error
         }
         console.log(auth.currentUser)
 
         console.log(auth.currentUser.uid)
-        // firestore.collection('users').add({ displayName: displayName })
+        console.log(displayName)
+
+        const snapshot = await fs.collection('users').get()
+        snapshot.forEach((doc) => {
+            console.log(doc.id, '=>', doc.data())
+        })
+
+        await fs // firestore
+            .collection('users')
+            .doc(auth.currentUser.uid) // adding a doc with the the id of the users uid
+            .set({ displayName: displayName, email: email, userUID: auth.currentUser.uid }) // setting its info
+        // .set({ displayName: displayName, profileImage: imageUrl }) // setting its info
     }
     function login(email, password) {
         return auth.signInWithEmailAndPassword(email, password)

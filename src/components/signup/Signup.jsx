@@ -39,8 +39,8 @@ const Signup = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        if (displayNameRef.current?.value.trim().length < 6) {
-            return setError('Display name must be 6 or more characters long')
+        if (displayNameRef.current?.value.trim().length < 4) {
+            return setError('Display name must be 4 or more characters long')
         }
 
         if (!chosenAvatar) {
@@ -67,6 +67,7 @@ const Signup = () => {
                 setError(res.message)
             }
         } catch (error) {
+            console.log(error)
             setError('failed to create an account')
         }
         setLoading(false)

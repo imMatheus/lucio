@@ -3,6 +3,9 @@ import { useAuth } from '../../context/AuthContext'
 import { Link, useHistory } from 'react-router-dom'
 import VisibilityIcon from '@material-ui/icons/Visibility'
 import VisibilityOffIcon from '@material-ui/icons/VisibilityOff'
+import { auth, fs } from '../../firebase'
+
+import firebase from 'firebase/app'
 
 const Login = () => {
     const emailRef = useRef(null)
@@ -13,6 +16,39 @@ const Login = () => {
     const history = useHistory()
     const [showPassword, setShowPassword] = useState(false)
 
+    const signInWithGoogle = async (e) => {
+        e.preventDefault()
+        try {
+            const provider = new firebase.auth.GoogleAuthProvider()
+            await auth.signInWithPopup(provider).catch((error) => {
+                alert(error.message)
+            })
+            if (auth.currentUser) {
+                const user = auth.currentUser
+                console.log(user)
+                await fs // firestore
+                    .collection('users')
+                    .doc(auth.currentUser.uid) // adding a doc with the the id of the users uid
+                    .set({
+                        displayName: user.displayName,
+                        email: user.email,
+                        userUID: user.uid,
+                        profileImage: user.photoURL,
+                    }) // setting its info
+                console.log('added: ', {
+                    displayName: user.displayName,
+                    email: user.email,
+                    userUID: user.uid,
+                    profileImage: user.photoURL,
+                })
+                history.push('/')
+            } else {
+                console.log('123456789')
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    }
     const handleSubmit = async (e) => {
         e.preventDefault()
 
@@ -43,6 +79,7 @@ const Login = () => {
                         Or do you not already have an account? <Link to='/signup'> Sing Up</Link>
                     </p>
                     {error && <div className='userMessage error'>{error}</div>}
+                    <p onClick={signInWithGoogle}>sing in with google</p>
 
                     <div className='input-container'>
                         <input

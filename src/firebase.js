@@ -14,7 +14,24 @@ const app = firebase.initializeApp({
     appId: process.env.REACT_APP_FIREBASE_APP_ID,
 })
 
-// export const firestore = firebase.firestore()
+export const fs = firebase.firestore()
 export const auth = app.auth()
 export const db = app.database()
+// export const signUpWithGoogle = async (e) => {
+//     e.preventDefault()
+//     const provider = new firebase.auth.GoogleAuthProvider()
+//     auth.signInWithPopup(provider).catch((error) => {
+//         alert(error.message)
+//     })
+//     const user = auth.currentUser
+//     await fs // firestore
+//         .collection('users')
+//         .doc(auth.currentUser.uid) // adding a doc with the the id of the users uid
+//         .set({
+//             displayName: user.displayName,
+//             email: user.email,
+//             userUID: user.uid,
+//             profileImage: user.photoUrl,
+//         }) // setting its info
+// }
 export default app
