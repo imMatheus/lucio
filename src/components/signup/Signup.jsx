@@ -24,13 +24,17 @@ const Signup = () => {
         // then toString(36) converts it to base-36: "0.4fzyo82mvyr"
         // then slice(-4) only keeps the last 4 from the string : "mvyr"
         var psw = Math.random().toString(36).slice(-4)
+
         for (let i = 0; i < 3; i++) {
             // appending 4 random numbers/letters
             psw += '-' + Math.random().toString(36).slice(-4)
         }
         passwordRef.current.value = psw
         confirmPasswordRef.current.value = psw
+        console.log(chosenAvatarRef.current)
         return psw
+
+        // I should probably swap to use uuidv4
     }
 
     const handleSubmit = async (e) => {
@@ -48,7 +52,11 @@ const Signup = () => {
         try {
             setError('')
             setLoading(true)
-            const res = await signup(emailRef.current.value.trim(), passwordRef.current.value)
+            const res = await signup(
+                emailRef.current.value.trim(),
+                passwordRef.current.value,
+                displayNameRef.current.value
+            )
 
             // if we didn't get a response back that means it was successful
             // so we send user back to '/'
@@ -91,21 +99,33 @@ const Signup = () => {
                             className='input-btn'
                             placeholder='Display name'
                             ref={displayNameRef}
+                            max='10'
+                            maxLength='25'
                         />
                     </div>
                     Choose your avatar
                     <div className='avatars-container'>
                         {avatars?.map((avatar) => {
-                            console.log(avatar.image.trim())
                             let chosen = avatar.avatarName === chosenAvatar
+                            if (chosen) {
+                                return (
+                                    <div
+                                        key={uuidv4()}
+                                        className={
+                                            chosen ? 'avatar-circle chosen' : 'avatar-circle'
+                                        }
+                                        onClick={() => setChosenAvatar(avatar.avatarName)}
+                                        style={{ backgroundImage: `url(${avatar.image})` }}
+                                        ref={chosenAvatarRef}
+                                    ></div>
+                                )
+                            }
                             return (
                                 <div
                                     key={uuidv4()}
                                     className={chosen ? 'avatar-circle chosen' : 'avatar-circle'}
                                     onClick={() => setChosenAvatar(avatar.avatarName)}
                                     style={{ backgroundImage: `url(${avatar.image})` }}
-                                    // src={avatar.image}
-                                    // alt={avatar.avatarName}
                                 ></div>
                             )
                         })}

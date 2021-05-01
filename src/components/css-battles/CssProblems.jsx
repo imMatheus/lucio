@@ -65,7 +65,7 @@ const CssProblems = () => {
 
 const Problem = ({ target, image, submissions }) => {
     return (
-        <Link exact to={`/css/play/${target}`}>
+        <Link exact='true' to={`/css/play/${target}`}>
             <div className='problem' style={{ backgroundImage: `url(${image})` }}>
                 <h2>
                     #{target} and {submissions}

@@ -21,7 +21,7 @@ const Navbar = ({ isDarkMode, setIsDarkMode }) => {
     }
     return (
         <div className='navbar'>
-            <Link exact to='/'>
+            <Link exact='true' to='/'>
                 <div className='logo'>
                     <h2>LucioCode</h2>
                     {/* setting spin to true so it spins */}
@@ -31,13 +31,13 @@ const Navbar = ({ isDarkMode, setIsDarkMode }) => {
                 </div>
             </Link>
             <div className='navbar-content'>
-                <Link exact to='/'>
+                <Link exact='true' to='/'>
                     Home
                 </Link>
-                <Link exact to='/problems'>
+                <Link exact='true' to='/problems'>
                     Problems
                 </Link>
-                <Link exact to='/css/problems'>
+                <Link exact='true' to='/css/problems'>
                     Css
                 </Link>
                 {currentUser && <p>Email: {currentUser.email}</p>}
@@ -55,7 +55,7 @@ const Navbar = ({ isDarkMode, setIsDarkMode }) => {
                         Log Out
                     </div>
                 )}
-                <Link exact to='/login'>
+                <Link exact='true' to='/login'>
                     <div
                         className='account'
                         style={{ backgroundImage: `url(${avatarWhite})` }}
