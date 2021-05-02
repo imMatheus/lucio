@@ -21,15 +21,20 @@ export const AuthProvider = ({ children }) => {
         console.log(auth.currentUser.uid)
         console.log(displayName)
 
-        const snapshot = await fs.collection('users').get()
-        snapshot.forEach((doc) => {
-            console.log(doc.id, '=>', doc.data())
-        })
+        // const snapshot = await fs.collection('users').get()
+        // snapshot.forEach((doc) => {
+        //     console.log(doc.id, '=>', doc.data())
+        // })
 
         await fs // firestore
             .collection('users')
             .doc(auth.currentUser.uid) // adding a doc with the the id of the users uid
-            .set({ displayName: displayName, email: email, userUID: auth.currentUser.uid }) // setting its info
+            .set({
+                displayName: displayName,
+                email: email,
+                userUID: auth.currentUser.uid,
+                profileImage: imageUrl,
+            }) // setting its info
         // .set({ displayName: displayName, profileImage: imageUrl }) // setting its info
     }
     function login(email, password) {

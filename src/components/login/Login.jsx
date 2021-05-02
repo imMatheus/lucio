@@ -14,6 +14,7 @@ const Login = () => {
     const [loading, setLoading] = useState(false)
     const { login } = useAuth()
     const history = useHistory()
+
     const [showPassword, setShowPassword] = useState(false)
 
     const signInWithGoogle = async (e) => {
@@ -65,6 +66,7 @@ const Login = () => {
         }
         setLoading(false)
     }
+
     return (
         <div className='signup-container'>
             <div className='card'>
@@ -103,6 +105,7 @@ const Login = () => {
                             {showPassword ? <VisibilityIcon /> : <VisibilityOffIcon />}
                         </div>
                     </div>
+
                     {/* <div className='password-visibility-toggler'></div> */}
 
                     <Link to='forgot-password'>Forgot password?</Link>

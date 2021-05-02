@@ -16,6 +16,7 @@ const Signup = () => {
     const [chosenAvatar, setChosenAvatar] = useState(null)
     const chosenAvatarRef = useRef(null)
     const { signup } = useAuth()
+    const [profileImage, setProfileImage] = useState(null)
     const history = useHistory()
     const [showPassword, setShowPassword] = useState(false)
 
@@ -39,12 +40,12 @@ const Signup = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        if (displayNameRef.current?.value.trim().length < 4) {
-            return setError('Display name must be 4 or more characters long')
+        if (displayNameRef.current?.value.trim().length < 6) {
+            return setError('Display name must be 6 or more characters long')
         }
 
-        if (!chosenAvatar) {
-            return setError('Please pick a avatar.')
+        if (!profileImage) {
+            return setError('Please pick a profile image.')
         }
         if (passwordRef.current?.value !== confirmPasswordRef.current?.value) {
             return setError('Passwords do not match')
@@ -55,7 +56,8 @@ const Signup = () => {
             const res = await signup(
                 emailRef.current.value.trim(),
                 passwordRef.current.value,
-                displayNameRef.current.value
+                displayNameRef.current.value,
+                profileImage
             )
 
             // if we didn't get a response back that means it was successful
@@ -72,6 +74,22 @@ const Signup = () => {
         }
         setLoading(false)
     }
+
+    const imageUploadImgHandler = async (e) => {
+        const reader = new FileReader()
+
+        reader.onload = () => {
+            if (reader.readyState === 2) {
+                setProfileImage(reader.result)
+                console.log(reader.result)
+            }
+        }
+        if (e.target.files[0]) {
+            reader.readAsDataURL(e?.target?.files[0])
+            // console.log(reader.readAsDataURL(e?.target?.files[0]))
+        }
+    }
+    console.log(profileImage)
     return (
         <div className='signup-container'>
             <div className='card'>
@@ -104,8 +122,52 @@ const Signup = () => {
                             maxLength='25'
                         />
                     </div>
+                    <div className='content-box'>
+                        <div className='profileImage-container'>
+                            <div
+                                className='image'
+                                style={{ backgroundImage: `url(${profileImage})` }}
+                            ></div>
+                            <input
+                                type='file'
+                                id='modelPic'
+                                accept='image/*'
+                                style={{ display: ' none' }}
+                                onChange={imageUploadImgHandler}
+                            />
+                            <label htmlFor='modelPic'>
+                                <div className='text'>Choose Profile Image</div>
+                            </label>
+                        </div>
+                        <div className='inputs'>
+                            <p onClick={generateHashedPassword}>Generate secure password</p>
+                            <div className='input-container'>
+                                <input
+                                    type={showPassword ? 'text' : 'password'}
+                                    className='input-btn'
+                                    placeholder='Password'
+                                    ref={passwordRef}
+                                />
+                                <div
+                                    className='password-visibility-toggler'
+                                    onClick={() => setShowPassword(!showPassword)}
+                                >
+                                    {showPassword ? <VisibilityIcon /> : <VisibilityOffIcon />}
+                                </div>
+                            </div>
+                            <div className='input-container'>
+                                <input
+                                    type={showPassword ? 'text' : 'password'}
+                                    className='input-btn'
+                                    placeholder='Confirm password'
+                                    ref={confirmPasswordRef}
+                                />
+                            </div>
+                        </div>
+                    </div>
+                    {/* 
                     Choose your avatar
-                    <div className='avatars-container'>
+                    <div className='avatars-container'>  
                         {avatars?.map((avatar) => {
                             let chosen = avatar.avatarName === chosenAvatar
                             if (chosen) {
@@ -131,29 +193,8 @@ const Signup = () => {
                             )
                         })}
                     </div>
-                    <p onClick={generateHashedPassword}>Generate secure password</p>
-                    <div className='input-container'>
-                        <input
-                            type={showPassword ? 'text' : 'password'}
-                            className='input-btn'
-                            placeholder='Password'
-                            ref={passwordRef}
-                        />
-                        <div
-                            className='password-visibility-toggler'
-                            onClick={() => setShowPassword(!showPassword)}
-                        >
-                            {showPassword ? <VisibilityIcon /> : <VisibilityOffIcon />}
-                        </div>
-                    </div>
-                    <div className='input-container'>
-                        <input
-                            type={showPassword ? 'text' : 'password'}
-                            className='input-btn'
-                            placeholder='Confirm password'
-                            ref={confirmPasswordRef}
-                        />
-                    </div>
+                     */}
+
                     <div className='outline-btn' disabled={loading} onClick={handleSubmit}>
                         Sign Up
                     </div>
