@@ -667,14 +667,79 @@ body .App .signup-container .card .content .input-container .password-visibility
 body .App .homepage {
   background: var(--bg);
   font-family: var(--font-family);
+  position: relative;
 }
 body .App .homepage .herobanner {
   min-height: 550px;
+  position: relative;
   display: grid;
   place-content: center;
-  position: relative;
 }
-body .App .homepage .herobanner h1 {
+body .App .homepage .herobanner .blobs-container {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  overflow: hidden;
+  z-index: 1;
+}
+body .App .homepage .herobanner .blobs-container.loading .blob {
+  animation: fadeInBlob 1400ms ease infinite alternate-reverse;
+}
+body .App .homepage .herobanner .blobs-container .blob {
+  position: absolute;
+  fill: var(--color-success);
+  transform: rotate(80deg);
+  animation: fadeInBlob 1500ms ease;
+}
+body .App .homepage .herobanner .blobs-container .blob.b1 {
+  right: calc(1 * -10px - 50px);
+  bottom: calc(1 * -10px - 55px);
+  width: calc((1 * 30px) + 200px);
+  height: calc((1 * 30px) + 200px);
+  animation-delay: calc((3 - 1) * 100ms);
+  fill: #2a9d8f;
+  z-index: 3;
+}
+body .App .homepage .herobanner .blobs-container .blob.b2 {
+  right: calc(2 * -10px - 50px);
+  bottom: calc(2 * -10px - 55px);
+  width: calc((2 * 30px) + 200px);
+  height: calc((2 * 30px) + 200px);
+  animation-delay: calc((3 - 2) * 100ms);
+  fill: #e9c46a;
+  z-index: 2;
+}
+body .App .homepage .herobanner .blobs-container .blob.b3 {
+  right: calc(3 * -10px - 50px);
+  bottom: calc(3 * -10px - 55px);
+  width: calc((3 * 30px) + 200px);
+  height: calc((3 * 30px) + 200px);
+  animation-delay: calc((3 - 3) * 100ms);
+  fill: #f4a261;
+  z-index: 1;
+}
+@keyframes fadeInBlob {
+  0% {
+    transform: rotate(80deg);
+  }
+  25% {
+    transform: rotate(80deg) scale(0.55) translate(-30px, 10px);
+  }
+  50% {
+    transform: rotate(80deg) scale(1) translate(0px, 0px);
+  }
+  75% {
+    transform: rotate(80deg) scale(0.55) translate(-30px, 10px);
+  }
+  100% {
+    transform: rotate(80deg);
+  }
+}
+body .App .homepage .herobanner .content {
+  position: relative;
+  z-index: 2;
+}
+body .App .homepage .herobanner .content h1 {
   font-weight: 900;
   font-size: 8rem;
   color: #2a9d8f;
@@ -682,44 +747,44 @@ body .App .homepage .herobanner h1 {
   padding: 0px;
   text-shadow: 0px 0px 0px #2a9d8f, 1px 1px 0px #479e88, 2px 2px 0px #649e82, 3px 3px 0px #819f7b, 4px 4px 0px #9da075, 5px 5px 0px #baa16e, 6px 6px 0px #d7a168, 7px 7px 0px #f4a261;
 }
-body .App .homepage .herobanner .buttons {
+body .App .homepage .herobanner .content .buttons {
   display: flex;
   margin-top: 12px;
   justify-content: space-evenly;
   align-items: center;
   padding: 10px 0;
 }
-body .App .homepage .herobanner .buttons .outline-btn {
+body .App .homepage .herobanner .content .buttons .outline-btn {
   font-size: 1.4rem;
 }
-body .App .homepage .herobanner .shapes-container {
+body .App .homepage .herobanner .content .shapes-container {
   background: rgba(255, 0, 0, 0.205);
   width: 100%;
   height: 100%;
   position: absolute;
 }
-body .App .homepage .herobanner .shapes-container .shapes {
+body .App .homepage .herobanner .content .shapes-container .shapes {
   overflow: hidden;
   position: relative;
 }
-body .App .homepage .herobanner .shapes-container .shapes .shape {
+body .App .homepage .herobanner .content .shapes-container .shapes .shape {
   will-change: transform;
   position: absolute;
   border-radius: 50%;
 }
-body .App .homepage .herobanner .shapes-container .shapes .shape.shape-1 {
+body .App .homepage .herobanner .content .shapes-container .shapes .shape.shape-1 {
   background: #005ffe;
   width: 650px;
   height: 650px;
   margin: -325px 0 0 -325px;
 }
-body .App .homepage .herobanner .shapes-container .shapes .shape.shape-2 {
+body .App .homepage .herobanner .content .shapes-container .shapes .shape.shape-2 {
   background: #ffe5e3;
   width: 440px;
   height: 440px;
   margin: -220px 0 0 -220px;
 }
-body .App .homepage .herobanner .shapes-container .shapes .shape.shape-3 {
+body .App .homepage .herobanner .content .shapes-container .shapes .shape.shape-3 {
   background: #ffcc57;
   width: 270px;
   height: 270px;
