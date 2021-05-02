@@ -1,5 +1,4 @@
 .homepage {
-    min-height: 700px;
     background: var(--bg);
     font-family: var(--font-family);
 
@@ -11,7 +10,7 @@
         $color-blue: #2a9d8f;
 
         $shadow-number: 7;
-        height: 650px;
+        min-height: 550px;
         display: grid;
         place-content: center;
         position: relative;
@@ -82,6 +81,80 @@
                             height: $size;
                             margin: (-$size/2) 0 0 (-$size/2);
                         }
+                    }
+                }
+            }
+        }
+    }
+
+    .leaderboard-container {
+        background: var(--main-bg);
+        padding: 30px 60px;
+
+        & .header {
+            text-align: center;
+            color: var(--bold-color);
+            padding: 10px 0;
+            font-size: 2.2rem;
+        }
+
+        & .leaderboard-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            column-gap: 8px;
+            row-gap: 8px;
+            & .row-wrapper {
+                background: var(--bg);
+                border-radius: 6px;
+                padding: 15px;
+                display: grid;
+                grid-template-columns: auto auto 1fr;
+                place-items: center;
+
+                & .number {
+                    font-size: 1.3rem;
+                    font-weight: 900;
+                    color: var(--bold-color);
+                }
+
+                &.gold {
+                    background: rgb(102, 85, 43);
+                    & .number {
+                        color: gold;
+                    }
+                }
+
+                &.silver {
+                    background: rgb(77, 77, 77);
+                    & .number {
+                        color: silver;
+                    }
+                }
+                &.bronze {
+                    background: rgba(177, 113, 18, 0.29);
+                    & .number {
+                        color: rgb(223, 140, 17);
+                    }
+                }
+                & .image {
+                    width: 45px;
+                    height: 45px;
+                    border-radius: 50%;
+                    margin: 0 10px 0 14px;
+                    // background: pink;
+                    background-size: cover;
+                    background-position: center;
+                }
+
+                & .text-field {
+                    font-size: 1.4rem;
+                    font-weight: 700;
+                    width: 100%;
+                    color: var(--bold-color);
+
+                    & .stats {
+                        font-size: 1rem;
+                        font-weight: 300;
                     }
                 }
             }

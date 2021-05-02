@@ -665,12 +665,11 @@ body .App .signup-container .card .content .input-container .password-visibility
   width: 30px;
 }
 body .App .homepage {
-  min-height: 700px;
   background: var(--bg);
   font-family: var(--font-family);
 }
 body .App .homepage .herobanner {
-  height: 650px;
+  min-height: 550px;
   display: grid;
   place-content: center;
   position: relative;
@@ -725,6 +724,71 @@ body .App .homepage .herobanner .shapes-container .shapes .shape.shape-3 {
   width: 270px;
   height: 270px;
   margin: -135px 0 0 -135px;
+}
+body .App .homepage .leaderboard-container {
+  background: var(--main-bg);
+  padding: 30px 60px;
+}
+body .App .homepage .leaderboard-container .header {
+  text-align: center;
+  color: var(--bold-color);
+  padding: 10px 0;
+  font-size: 2.2rem;
+}
+body .App .homepage .leaderboard-container .leaderboard-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  column-gap: 8px;
+  row-gap: 8px;
+}
+body .App .homepage .leaderboard-container .leaderboard-wrapper .row-wrapper {
+  background: var(--bg);
+  border-radius: 6px;
+  padding: 15px;
+  display: grid;
+  grid-template-columns: auto auto 1fr;
+  place-items: center;
+}
+body .App .homepage .leaderboard-container .leaderboard-wrapper .row-wrapper .number {
+  font-size: 1.3rem;
+  font-weight: 900;
+  color: var(--bold-color);
+}
+body .App .homepage .leaderboard-container .leaderboard-wrapper .row-wrapper.gold {
+  background: #66552b;
+}
+body .App .homepage .leaderboard-container .leaderboard-wrapper .row-wrapper.gold .number {
+  color: gold;
+}
+body .App .homepage .leaderboard-container .leaderboard-wrapper .row-wrapper.silver {
+  background: #4d4d4d;
+}
+body .App .homepage .leaderboard-container .leaderboard-wrapper .row-wrapper.silver .number {
+  color: silver;
+}
+body .App .homepage .leaderboard-container .leaderboard-wrapper .row-wrapper.bronze {
+  background: rgba(177, 113, 18, 0.29);
+}
+body .App .homepage .leaderboard-container .leaderboard-wrapper .row-wrapper.bronze .number {
+  color: #df8c11;
+}
+body .App .homepage .leaderboard-container .leaderboard-wrapper .row-wrapper .image {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  margin: 0 10px 0 14px;
+  background-size: cover;
+  background-position: center;
+}
+body .App .homepage .leaderboard-container .leaderboard-wrapper .row-wrapper .text-field {
+  font-size: 1.4rem;
+  font-weight: 700;
+  width: 100%;
+  color: var(--bold-color);
+}
+body .App .homepage .leaderboard-container .leaderboard-wrapper .row-wrapper .text-field .stats {
+  font-size: 1rem;
+  font-weight: 300;
 }
 body .App .form {
   width: 100vw;
