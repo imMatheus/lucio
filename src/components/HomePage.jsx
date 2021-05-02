@@ -152,13 +152,6 @@ const HomePage = () => {
                     </div>
                 </div>
             )}
-            {/* <p>{JSON.stringify(leaderBoard)}</p>
-            <div>
-                {leaderBoard &&
-                    leaderBoard.map((user) => {
-                        return <div>{JSON.stringify(user)}</div>
-                    })}
-            </div> */}
         </div>
     )
 }
