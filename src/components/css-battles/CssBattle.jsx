@@ -6,7 +6,7 @@ import { useLocalStorage } from '../../hooks/useLocalStorage'
 import { generateHtmlStarterFile } from './_generateHtmlStarterFile.js'
 import { generateCssStarterFile } from './_generateCssStarterFile.js'
 import { v4 as uuidv4 } from 'uuid'
-
+import html2canvas from 'html2canvas'
 import EditorComponent from './EditorComponent'
 import { db, auth } from '../../firebase'
 import { FormatListNumberedRtlSharp } from '@material-ui/icons'
@@ -42,7 +42,7 @@ const CssBattle = ({ problem }) => {
     const addSubmission = () => {
         const user = auth.currentUser
 
-        if (!user) return //  @todo promt the user to login if they are not
+        if (!user) return //  @todo prompt the user to login if they are not
         const userUID = user.uid
         let a = 20
         let rnd = Math.floor(Math.random() * a * 2)
@@ -153,7 +153,7 @@ const CssBattle = ({ problem }) => {
             // let e = Uint8Array.from(atob(base64), (c) => c.charCodeAt(0))
             // console.log(e)
             // var binary_string = window.atob(base64)
-            // console.log(binary_string)
+            // // console.log(binary_string)
             // var len = binary_string.length
             // var bytes = new Uint8ClampedArray(len)
             // for (var i = 0; i < len; i++) {
@@ -166,51 +166,54 @@ const CssBattle = ({ problem }) => {
         if (!iframeRef.current) return
 
         const html = iframeRef.current.contentWindow.document.querySelector('html')
-        console.log(html)
-        console.log(ugaRef.current)
-        // iframeRef.current.contentWindow.margin = '0px'
-        // iframeRef.current.contentWindow.padding = '0px'
-        // html.style.margin = '0px'
-        // html.style.padding = '0px'
+
         html.style.width = '400px'
         html.style.height = '300px'
-        if (!html.style.background) html.style.background = 'blue'
-        // html.querySelector('body').style.width = '400px'
-        // html.querySelector('body').style.height = '300px'
+        html.style.display = 'block'
+        var img1
+        await html2canvas(html).then(function (canvas) {
+            // canvas.width = '400'
+            // canvas.height = '300'
+            var target = new Image()
+            target.width = '400'
+            target.height = '300'
+            target.src = canvas.toDataURL()
+            // target.src = target.scr.replace(/^data:image\/(png|jpg);base64,/, '')
+            console.log(target)
+            console.log(_base64ToArrayBuffer(getBase64Image(target)))
+            console.log(getBase64Image(target))
+            console.log(canvas)
+            document.body.appendChild(target)
+            img1 = _base64ToArrayBuffer(getBase64Image(target))
+        })
 
-        htmlToImage
-            .toPng(html)
-            .then(function (dataUrl) {
-                var img = new Image()
-                console.log(dataUrl)
-                img.src = dataUrl
-                img.width = 400
-                img.height = 300
-                // getBase64Image(img)
-                // let x = _base64ToArrayBuffer(getBase64Image(img))
-                // console.log(x)
-                // let canvas = canvasRef.current
-                // let ctx = canvas.getContext('2d')
-                // ctx.drawImage(img, 0, 0)
-                document.body.appendChild(img)
-            })
-            .catch(function (error) {
-                console.error('oops, something went wrong!', error)
-            })
-        htmlToImage
+        var img2
+        await htmlToImage
             .toPng(solutionRef.current)
             .then(function (dataUrl) {
                 var img = new Image()
+                img.width = '400'
+                img.height = '300'
                 img.src = dataUrl
-                img.width = 400
-                img.height = 300
-                let x = _base64ToArrayBuffer(getBase64Image(img))
-                console.log(x)
+                console.log(_base64ToArrayBuffer(getBase64Image(img)))
+                console.log(getBase64Image(img))
+
                 document.body.appendChild(img)
+                img2 = _base64ToArrayBuffer(getBase64Image(img))
             })
             .catch(function (error) {
                 console.error('oops, something went wrong!', error)
             })
+
+        console.log(img1)
+        console.log(img2)
+        if (img1 && img2) {
+            // let re = pixelmatch(img1, img2, null, 400, 300, { threshold: 0.1 })
+            console.log('re')
+        } else {
+            console.log('asdffgh')
+        }
+        console.log('yyyyyyyyyyyyy')
     }
 
     return (
@@ -275,7 +278,7 @@ const CssBattle = ({ problem }) => {
                     </div>
                 </div>
 
-                {submissions && JSON.stringify(submissions)}
+                {/* {submissions && JSON.stringify(submissions)} */}
             </div>
             <div className='column-container'>
                 <div className='column-header'>
