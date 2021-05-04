@@ -140,26 +140,38 @@ const CssBattle = ({ problem }) => {
             return dataURL.replace(/^data:image\/(png|jpg);base64,/, '')
         }
 
-        function _base64ToArrayBuffer(base64) {
-            var raw = window.atob(base64)
-            var rawLength = raw.length
-            var array = new Uint8Array(new ArrayBuffer(rawLength))
-
-            for (let i = 0; i < rawLength; i++) {
-                array[i] = raw.charCodeAt(i)
+        const dataURItoBlob = (byteString) => {
+            // write the bytes of the string to a typed array
+            var ia = new Uint8ClampedArray(byteString.length)
+            for (var i = 0; i < byteString.length; i++) {
+                ia[i] = byteString.charCodeAt(i)
             }
-            console.log(array)
-            return array
-            // let e = Uint8Array.from(atob(base64), (c) => c.charCodeAt(0))
-            // console.log(e)
-            // var binary_string = window.atob(base64)
-            // // console.log(binary_string)
-            // var len = binary_string.length
-            // var bytes = new Uint8ClampedArray(len)
-            // for (var i = 0; i < len; i++) {
-            //     bytes[i] = binary_string.charCodeAt(i)
+
+            return ia
+        }
+
+        function _base64ToArrayBuffer(base64) {
+            // var raw = window.atob(base64)
+            // var rawLength = raw.length
+            // var array = new Uint8Array(new ArrayBuffer(rawLength))
+
+            // for (let i = 0; i < rawLength; i++) {
+            //     array[i] = raw.charCodeAt(i)
             // }
-            // console.log(bytes)
+            // // console.log(array)
+            // return array
+            let e = Uint8Array.from(atob(base64), (c) => c.charCodeAt(0))
+            console.log('e')
+            console.log(e)
+            var binary_string = window.atob(base64)
+            // console.log(binary_string)
+            var len = binary_string.length
+            var bytes = new Uint8ClampedArray(len)
+            for (var i = 0; i < len; i++) {
+                bytes[i] = binary_string.charCodeAt(i)
+            }
+            console.log(bytes)
+            return bytes
             // return bytes.buffer
         }
 
@@ -171,7 +183,7 @@ const CssBattle = ({ problem }) => {
         html.style.height = '300px'
         html.style.display = 'block'
         var img1
-        await html2canvas(html).then(function (canvas) {
+        await html2canvas(html).then(async function (canvas) {
             // canvas.width = '400'
             // canvas.height = '300'
             var target = new Image()
@@ -179,12 +191,35 @@ const CssBattle = ({ problem }) => {
             target.height = '300'
             target.src = canvas.toDataURL()
             // target.src = target.scr.replace(/^data:image\/(png|jpg);base64,/, '')
-            console.log(target)
-            console.log(_base64ToArrayBuffer(getBase64Image(target)))
-            console.log(getBase64Image(target))
-            console.log(canvas)
+            // console.log(target)
+            // console.log(_base64ToArrayBuffer(getBase64Image(target)))
+            // console.log(getBase64Image(target))
+            // console.log(canvas)
+
             document.body.appendChild(target)
+            await htmlToImage
+                .toPng(target)
+                .then(function (dataUrl) {
+                    var img = new Image()
+                    img.width = '400'
+                    img.height = '300'
+                    img.src = dataUrl
+                    // console.log(_base64ToArrayBuffer(getBase64Image(img)))
+                    // console.log(getBase64Image(img))
+                    console.log('yudahdajsdbahjdsbkjh')
+                    document.body.appendChild(img)
+                    let img3 = _base64ToArrayBuffer(getBase64Image(img))
+                    console.log(img3)
+                })
+                .catch(function (error) {
+                    console.error('oops, something went wrong!', error)
+                })
+
+            // console.log(dataURItoBlob(getBase64Image(target)))
             img1 = _base64ToArrayBuffer(getBase64Image(target))
+            console.log('------------hej-------hej------------')
+
+            console.log(img1)
         })
 
         var img2
@@ -195,25 +230,26 @@ const CssBattle = ({ problem }) => {
                 img.width = '400'
                 img.height = '300'
                 img.src = dataUrl
-                console.log(_base64ToArrayBuffer(getBase64Image(img)))
-                console.log(getBase64Image(img))
+                // console.log(_base64ToArrayBuffer(getBase64Image(img)))
+                // console.log(getBase64Image(img))
 
                 document.body.appendChild(img)
                 img2 = _base64ToArrayBuffer(getBase64Image(img))
+                console.log(img2)
             })
             .catch(function (error) {
                 console.error('oops, something went wrong!', error)
             })
 
-        console.log(img1)
-        console.log(img2)
-        if (img1 && img2) {
-            // let re = pixelmatch(img1, img2, null, 400, 300, { threshold: 0.1 })
-            console.log('re')
-        } else {
-            console.log('asdffgh')
-        }
-        console.log('yyyyyyyyyyyyy')
+        // console.log(img1)
+        // console.log(img2)
+        // if (img1 && img2) {
+        //     // let re = pixelmatch(img1, img2, null, 400, 300, { threshold: 0.1 })
+        //     console.log('re')
+        // } else {
+        //     console.log('asdffgh')
+        // }
+        // console.log('yyyyyyyyyyyyy')
     }
 
     return (
