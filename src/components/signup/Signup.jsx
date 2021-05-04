@@ -3,8 +3,6 @@ import { useAuth } from '../../context/AuthContext'
 import { Link, useHistory } from 'react-router-dom'
 import VisibilityIcon from '@material-ui/icons/Visibility'
 import VisibilityOffIcon from '@material-ui/icons/VisibilityOff'
-import { avatars } from '../../avatars/avatars.js'
-import { v4 as uuidv4 } from 'uuid'
 
 const Signup = () => {
     const emailRef = useRef(null)
@@ -13,8 +11,7 @@ const Signup = () => {
     const confirmPasswordRef = useRef(null)
     const [error, setError] = useState('')
     const [loading, setLoading] = useState(false)
-    const [chosenAvatar, setChosenAvatar] = useState(null)
-    const chosenAvatarRef = useRef(null)
+
     const { signup } = useAuth()
     const [profileImage, setProfileImage] = useState(null)
     const history = useHistory()
@@ -32,7 +29,7 @@ const Signup = () => {
         }
         passwordRef.current.value = psw
         confirmPasswordRef.current.value = psw
-        console.log(chosenAvatarRef.current)
+
         return psw
 
         // I should probably swap to use uuidv4
@@ -165,35 +162,6 @@ const Signup = () => {
                             </div>
                         </div>
                     </div>
-                    {/* 
-                    Choose your avatar
-                    <div className='avatars-container'>  
-                        {avatars?.map((avatar) => {
-                            let chosen = avatar.avatarName === chosenAvatar
-                            if (chosen) {
-                                return (
-                                    <div
-                                        key={uuidv4()}
-                                        className={
-                                            chosen ? 'avatar-circle chosen' : 'avatar-circle'
-                                        }
-                                        onClick={() => setChosenAvatar(avatar.avatarName)}
-                                        style={{ backgroundImage: `url(${avatar.image})` }}
-                                        ref={chosenAvatarRef}
-                                    ></div>
-                                )
-                            }
-                            return (
-                                <div
-                                    key={uuidv4()}
-                                    className={chosen ? 'avatar-circle chosen' : 'avatar-circle'}
-                                    onClick={() => setChosenAvatar(avatar.avatarName)}
-                                    style={{ backgroundImage: `url(${avatar.image})` }}
-                                ></div>
-                            )
-                        })}
-                    </div>
-                     */}
 
                     <div className='outline-btn' disabled={loading} onClick={handleSubmit}>
                         Sign Up
