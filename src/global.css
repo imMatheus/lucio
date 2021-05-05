@@ -41,10 +41,10 @@ body .App {
 }
 body .App.dark {
   --main-bg: #282c34;
-  --resize-bg: rgb(22, 21, 22);
-  --dots-color: rgb(255, 255, 255);
+  --resize-bg: #161516;
+  --dots-color: #ffffff;
   --bg: #21252b;
-  --text-color: white;
+  --text-color: #ffffff;
   --hover-color: #ffffff;
   --bold-color: #d4e4f9;
   --paraghrap-color: #8a9bba;
@@ -194,22 +194,35 @@ body .App .cssdashboard .cssbattle .column-container .submit-wrapper .submit-btn
   font-size: 0.95rem;
   color: var(--hover-color);
 }
+body .App .cssdashboard .cssbattle .column-container .userScoreBoard-wrapper {
+  background-color: var(--resize-bg);
+  border-radius: 12px;
+  padding: 10px;
+}
+body .App .cssdashboard .cssbattle .column-container .userScoreBoard-wrapper .scoreBoard-row {
+  color: var(--paraghrap-color);
+  margin: 15px 0;
+  font-weight: 300;
+  font-size: 1rem;
+}
+body .App .cssdashboard .cssbattle .column-container .userScoreBoard-wrapper .scoreBoard-row span {
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--bold-color);
+}
 body .App .cssdashboard .cssbattle .column-container .img-container {
   width: 400px;
   height: 300px;
   background-position: center;
   background-size: cover;
 }
+body .App .cssdashboard .cssbattle .column-container .img-container.output-iframe {
+  overflow: hidden !important;
+}
 body .App .cssdashboard .cssbattle .column-container .img-container.output-iframe .iframe-container {
   width: 100%;
   height: 100%;
   overflow: hidden;
-  background-color: yellowgreen;
-}
-body .App .cssdashboard .cssbattle .column-container .img-container.output-iframe .iframe-container .testing {
-  background-color: yellow;
-  width: 100%;
-  height: 100%;
 }
 body .App .cssdashboard .cssbattle .column-container .img-container.output-iframe .iframe-container iframe {
   background-color: white;
@@ -256,7 +269,7 @@ body .App .cssdashboard .cssbattle .column-container .colors-container span .col
   width: 23px;
   height: 23px;
   border-radius: 50%;
-  background-color: orangered;
+  border: solid 1px rgba(255, 255, 255, 0.4);
   margin-right: 6px;
   font-size: 0px;
   color: transparent;

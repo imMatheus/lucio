@@ -2,9 +2,7 @@ import { Link } from 'react-router-dom'
 import { useAuth } from '../../context/AuthContext'
 import { useHistory } from 'react-router-dom'
 import LogoIcon from '../LogoIcon'
-import NightsStayIcon from '@material-ui/icons/NightsStay'
-import WbSunnyIcon from '@material-ui/icons/WbSunny'
-import avatarWhite from '../../avatars/avatar-black.png'
+
 import { useState, useEffect } from 'react'
 import { fs, db } from '../../firebase'
 const Navbar = ({ isDarkMode, setIsDarkMode }) => {
@@ -78,9 +76,7 @@ const Navbar = ({ isDarkMode, setIsDarkMode }) => {
                     <div
                         className='account'
                         style={{
-                            backgroundImage: `url(${
-                                userData ? userData?.profileImage : avatarWhite
-                            })`,
+                            backgroundImage: `url(${userData?.profileImage})`,
                         }}
                     ></div>
                 </Link>

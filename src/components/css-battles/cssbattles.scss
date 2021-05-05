@@ -131,25 +131,38 @@
                 // color: var(--bold-color);
             }
         }
+
+        .userScoreBoard-wrapper {
+            background-color: var(--resize-bg);
+            border-radius: 12px;
+            padding: 10px;
+
+            & .scoreBoard-row {
+                color: var(--paraghrap-color);
+                margin: 15px 0;
+                font-weight: 300;
+                font-size: 1rem;
+
+                & span {
+                    font-weight: 700;
+                    font-size: 1.1rem;
+                    color: var(--bold-color);
+                }
+            }
+        }
         & .img-container {
             width: 400px;
             height: 300px;
-            // margin: 10px auto;
             background-position: center;
             background-size: cover;
 
             &.output-iframe {
+                // hide the img that gets appended when submitting
+                overflow: hidden !important;
                 .iframe-container {
                     width: 100%;
                     height: 100%;
                     overflow: hidden;
-                    background-color: yellowgreen;
-
-                    .testing {
-                        background-color: yellow;
-                        width: 100%;
-                        height: 100%;
-                    }
 
                     & iframe {
                         background-color: white;
@@ -164,12 +177,10 @@
                         & html {
                             margin: 0px !important ;
                         }
-                        // & body {
-                        //     margin: 30px !important;
-                        // }
                     }
                 }
                 &.output-iframe:hover {
+                    // for the hover over the iframe
                     cursor: col-resize;
                     .iframe-container {
                         border-right: solid 2px rgb(255, 0, 0);
@@ -203,7 +214,7 @@
                     width: 23px;
                     height: 23px;
                     border-radius: 50%;
-                    background-color: orangered;
+                    border: solid 1px rgba(255, 255, 255, 0.4);
                     margin-right: 6px;
                     font-size: 0px;
                     color: transparent;
