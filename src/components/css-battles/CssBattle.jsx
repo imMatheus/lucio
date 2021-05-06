@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react'
 import * as htmlToImage from 'html-to-image'
 import { useLocalStorage } from '../../hooks/useLocalStorage'
-// import { toPng, toJpeg, toBlob, toPixelData, toSvg } from 'html-to-image'
 import { generateHtmlStarterFile } from './_generateHtmlStarterFile.js'
 import { generateCssStarterFile } from './_generateCssStarterFile.js'
 import { v4 as uuidv4 } from 'uuid'
@@ -23,7 +22,9 @@ const CssBattle = ({ problem }) => {
     const outputContainerRef = useRef(null)
     const [isHoveringOverIframe, setIsHoveringOverIframe] = useState(false)
     const [submissions, setSubmissions] = useState(null)
-    const [lastScore, setLastScore] = useState(0)
+    const [loading, setLoading] = useState(false)
+    const [highScore, setHighScore] = useState({ score: 0, percentage: 0, characters: 0 })
+    const [lastScore, setLastScore] = useState({ score: 0, percentage: 0, characters: 0 })
     const dbSubmissionsRef = db
         .ref()
         .child('css')
@@ -36,10 +37,25 @@ const CssBattle = ({ problem }) => {
             // console.log(css)
             setSubmissions(css)
         })
-        // dbSubmissionsRef.child('submissions').push({ testing: '45990' })
+        const user = auth.currentUser // get user
+        if (!user) return // return if we don't have a user
+
+        const userUID = user.uid // get UID for the user
+
+        dbSubmissionsRef.child(userUID).once('value', (snapshot) => {
+            const userData = snapshot.val()
+            console.log('exists!', userData)
+            if (userData) {
+                // check if the user has a submission
+                setHighScore({
+                    score: userData.score,
+                    percentage: userData.percentage,
+                    characters: userData.characters,
+                })
+            }
+        })
     }, [])
 
-    let uy = 0
     const addSubmission = () => {
         const user = auth.currentUser
 
@@ -125,21 +141,21 @@ const CssBattle = ({ problem }) => {
         }
     }
 
-    /*
-    @todo fix this 
-    */
-    const submitClickedHandler = async () => {
+    const getScore = (charCount, per) => {
+        const PER_MODIFIER = 0.042
+        per *= 6
+        let score = per + Math.max(PER_MODIFIER * (per / 100) * (600 - charCount), 0)
+        return Math.round(score * 10) / 10
+    }
+    const compareIframeAndImage = async () => {
         if (!iframeRef.current) return
 
         const html = iframeRef.current.contentWindow.document.querySelector('html')
-
         html.style.width = '400px'
         html.style.height = '300px'
         html.style.display = 'block'
 
         var img1
-        console.time('someFunction')
-
         await html2canvas(html).then(async function (canvas) {
             var target = new Image()
             target.width = '400'
@@ -157,13 +173,11 @@ const CssBattle = ({ problem }) => {
             })
         })
 
-        console.timeEnd('someFunction')
         var img2
-        console.time('someFunction')
         await htmlToImage.toPixelData(solutionRef.current).then(function (pixels) {
             img2 = pixels
         })
-        console.timeEnd('someFunction')
+
         const width = 400
         const height = 300
         let diff = Pixelmatch(img1, img2, null, width, height, {
@@ -171,8 +185,43 @@ const CssBattle = ({ problem }) => {
             /* options */
         })
         console.log(diff)
+        let characters = characterCount
         let percentage = 100 * (1 - diff / (width * height))
-        setLastScore(1000 - percentage * characterCount * 0.01)
+        let score = getScore(characters, percentage)
+
+        percentage = Math.round(percentage * 10) / 10 // rounding percentage to one decimal
+        setLastScore({ score: score, percentage: percentage })
+        return { score, percentage, characters }
+    }
+    const submitClickedHandler = async () => {
+        const user = auth.currentUser
+        if (!user) return //  @todo prompt the user to login if they are not
+        setLoading(true)
+
+        let { score, percentage, characters } = await compareIframeAndImage()
+        console.log(score)
+        console.log(percentage)
+        console.log(characters)
+
+        const userUID = user.uid
+
+        // dbSubmissionsRef.child(userUID).once('value', (snapshot) => {
+        //     const userData = snapshot.val()
+        //     console.log('exists!', userData)
+        // })
+        if (score > highScore.score) {
+            setHighScore({ score: score, percentage: percentage, characters: characters })
+        }
+        dbSubmissionsRef.child(userUID).set({
+            email: user.email,
+            score: score,
+            percentage: percentage,
+            characters: characters,
+            userId: userUID,
+        })
+
+        console.log(auth.currentUser)
+        setLoading(false)
     }
 
     return (
@@ -229,19 +278,30 @@ const CssBattle = ({ problem }) => {
                     </div>
                 </div>
                 <div className='submit-wrapper'>
-                    <div className='submit-btn' onClick={submitClickedHandler}>
+                    <button
+                        className='submit-btn'
+                        disabled={loading}
+                        onClick={submitClickedHandler}
+                    >
                         Submit
-                    </div>
+                    </button>
                     <div className='submit-btn' onClick={addSubmission}>
                         Add submission
                     </div>
                 </div>
                 <div className='userScoreBoard-wrapper'>
                     <div className='scoreBoard-row'>
-                        Last Score: <span>{lastScore} (84 characters)</span>
+                        Last Score:{' '}
+                        <span>
+                            {lastScore.score} ({lastScore.percentage}%)
+                        </span>
                     </div>
                     <div className='scoreBoard-row'>
-                        High Score: <span>423 (82 characters)</span>
+                        High Score:{' '}
+                        <span>
+                            {highScore.score ? highScore.score : 0} (
+                            {highScore.percentage ? highScore.percentage : 0}%)
+                        </span>
                     </div>
                 </div>
 

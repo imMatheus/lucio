@@ -194,6 +194,10 @@ body .App .cssdashboard .cssbattle .column-container .submit-wrapper .submit-btn
   font-size: 0.95rem;
   color: var(--hover-color);
 }
+body .App .cssdashboard .cssbattle .column-container .submit-wrapper .submit-btn:disabled {
+  opacity: 0.62;
+  cursor: progress;
+}
 body .App .cssdashboard .cssbattle .column-container .userScoreBoard-wrapper {
   background-color: var(--resize-bg);
   border-radius: 12px;
