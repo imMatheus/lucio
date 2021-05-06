@@ -74,7 +74,7 @@ const HomePage = () => {
                 if (leaderBoardObj[uid]) {
                     leaderBoardArr.push({
                         uid: uid,
-                        score: leaderBoardObj[uid].score,
+                        score: Math.round(leaderBoardObj[uid].score * 10) / 10, // rounds to one decimal
                         targets: leaderBoardObj[uid].targets,
                     })
                 }

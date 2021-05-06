@@ -190,7 +190,6 @@ const CssBattle = ({ problem }) => {
         let score = getScore(characters, percentage)
 
         percentage = Math.round(percentage * 10) / 10 // rounding percentage to one decimal
-        setLastScore({ score: score, percentage: percentage })
         return { score, percentage, characters }
     }
     const submitClickedHandler = async () => {
@@ -202,6 +201,7 @@ const CssBattle = ({ problem }) => {
         console.log(score)
         console.log(percentage)
         console.log(characters)
+        setLastScore({ score: score, percentage: percentage, characters: characters })
 
         const userUID = user.uid
 
@@ -211,15 +211,14 @@ const CssBattle = ({ problem }) => {
         // })
         if (score > highScore.score) {
             setHighScore({ score: score, percentage: percentage, characters: characters })
+            dbSubmissionsRef.child(userUID).set({
+                email: user.email,
+                score: score,
+                percentage: percentage,
+                characters: characters,
+                userId: userUID,
+            })
         }
-        dbSubmissionsRef.child(userUID).set({
-            email: user.email,
-            score: score,
-            percentage: percentage,
-            characters: characters,
-            userId: userUID,
-        })
-
         console.log(auth.currentUser)
         setLoading(false)
     }
