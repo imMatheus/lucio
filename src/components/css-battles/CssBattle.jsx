@@ -151,20 +151,25 @@ const CssBattle = ({ problem }) => {
         if (!iframeRef.current) return
 
         const html = iframeRef.current.contentWindow.document.querySelector('html')
-        html.style.width = '400px'
-        html.style.height = '300px'
+        html.style.width = '400'
+        html.style.height = '300'
         html.style.display = 'block'
+        html.style.overflow = 'hidden'
 
         var img1
         await html2canvas(html).then(async function (canvas) {
+            canvas.style.width = '400'
+            canvas.style.height = '300'
             var target = new Image()
             target.width = '400'
+            target.intrinsicsize = '250 x 200'
             target.height = '300'
             target.style.width = '400px'
             target.style.height = '300px'
             target.src = canvas.toDataURL()
             const childNodes = outputContainerRef.current.childNodes
             while (childNodes.length > 1) {
+                // removing prev nodes
                 outputContainerRef.current.removeChild(childNodes[1])
             }
             outputContainerRef.current.appendChild(target)
@@ -181,7 +186,7 @@ const CssBattle = ({ problem }) => {
         const width = 400
         const height = 300
         let diff = Pixelmatch(img1, img2, null, width, height, {
-            threshold: 0.05,
+            threshold: 0,
             /* options */
         })
         console.log(diff)
