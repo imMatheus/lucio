@@ -291,7 +291,10 @@ const CssBattle = ({ problem }) => {
                         High Score:{' '}
                         <span>
                             {highScore.score ? highScore.score : 0} (
-                            {highScore.percentage ? highScore.percentage : 0}%)
+                            {highScore.percentage === 100
+                                ? `${highScore.characters} characters`
+                                : `${highScore.percentage}%`}
+                            )
                         </span>
                     </div>
                 </div>
