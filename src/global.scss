@@ -35,7 +35,7 @@ body {
     --paraghrap-fontfamily: 'Open Sans', Arial, Helvetica, sans-serif;
     --varible-fontfamily: 'Roboto Slab', serif;
     // --color-success: #ff1053;
-    --color-success: #2a9d8f;
+    // --color-success: #2a9d8f;
     --color-mainGreen: #2a9d8f;
     --color-lightOrange: #e9c46a;
     --color-darkOrange: #f4a261;
@@ -49,7 +49,7 @@ body {
     --transition-speed: 200ms;
     --font-family: 'Roboto Mono', monospace;
     --bold: 600;
-    --paraghrap-fontsize: 0.8rem;
+    --paragraph-fontsize: 0.8rem;
     --variable-fontsize: 0.91rem;
     --inputs-fontsize: 0.85rem;
     .App {
@@ -65,7 +65,7 @@ body {
             --text-color: #ffffff;
             --hover-color: #ffffff;
             --bold-color: #d4e4f9;
-            --paraghrap-color: #8a9bba;
+            --paragraph-color: #8a9bba;
             --inputs-color: #d4e4f9;
             --inputs-bg: #141618;
             --files-bg: #21252b;
@@ -80,7 +80,7 @@ body {
             --text-color: #414c52;
             --hover-color: #596266;
             --bold-color: #0e141e;
-            --paraghrap-color: #576871;
+            --paragraph-color: #576871;
             --inputs-color: #040a1d;
             --inputs-bg: #e8eaea;
             --files-bg: #e7eeef;
@@ -102,8 +102,8 @@ body {
             display: flex;
             align-items: center;
             justify-content: center;
-            border: solid $outlinePrefix var(--color-success);
-            outline: solid $outlinePrefix var(--color-success);
+            border: solid $outlinePrefix var(--color-mainGreen);
+            outline: solid $outlinePrefix var(--color-mainGreen);
             outline-offset: -1 * $outlinePrefix;
             color: var(--bold-color);
             font-weight: 300;

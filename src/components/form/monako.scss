@@ -70,12 +70,12 @@
             background: transparent;
             font-size: 1rem;
             &.testrun-btn {
-                border: solid 1px var(--color-success);
-                color: var(--color-success);
+                border: solid 1px var(--color-mainGreen);
+                color: var(--color-mainGreen);
             }
 
             &.submit-btn {
-                background: var(--color-success);
+                background: var(--color-mainGreen);
                 color: var(--bold-color);
             }
 
@@ -118,7 +118,7 @@
                 }
 
                 &.green {
-                    color: var(--color-success);
+                    color: var(--color-mainGreen);
                 }
             }
 
@@ -161,7 +161,7 @@
                             }
 
                             &.green {
-                                color: var(--color-success);
+                                color: var(--color-mainGreen);
                             }
 
                             &.highlight {

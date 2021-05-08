@@ -50,8 +50,8 @@
         border: 3px solid transparent;
         // changing only the left and  right border to have a border color so
         // it shows
-        border-left-color: var(--color-success);
-        border-right-color: var(--color-success);
+        border-left-color: var(--color-mainGreen);
+        border-right-color: var(--color-mainGreen);
 
         // making the width of each circle to be decreasingly  small
         @for $i from 1 through 5 {
@@ -64,15 +64,15 @@
                 // @include rotateAnimation(-72, $i * -72, 1100ms);
 
                 @if $i == 4 {
-                    border-color: var(--color-success);
+                    border-color: var(--color-mainGreen);
                 }
                 @if $i == 5 {
-                    border-color: var(--color-success);
+                    border-color: var(--color-mainGreen);
                     left: 10% * ($i - 1);
                     top: 10% * ($i - 1);
                     width: 100% - 20% * ($i - 1);
                     height: 100% - 20% * ($i - 1);
-                    background-color: var(--color-success);
+                    background-color: var(--color-mainGreen);
                 }
             }
         }

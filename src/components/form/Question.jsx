@@ -19,7 +19,12 @@ const Question = ({ qref, problem }) => {
             <div className='header'>
                 {problemName && <div className='title'>{problemName}</div>}
                 <div className='info'>
-                    {difficulty && <div className='info-div easy'>{difficulty}</div>}
+                    {difficulty && (
+                        <div className={`info-div ${difficulty}`}>
+                            {/* changing the first letter to uppercase */}
+                            {difficulty.charAt(0).toUpperCase() + difficulty.slice(1)}
+                        </div>
+                    )}
                     <div className='info-div'>
                         <ThumbUpSharpIcon /> 20678
                     </div>
@@ -102,11 +107,16 @@ const Question = ({ qref, problem }) => {
 
                                                 {testCase.explanation.explanationOutput && (
                                                     <div className='inputs'>
-                                                        {testCase.explanation.explanationOutput.map((output) => (
-                                                            <div className='short-line-height' key={uuidv4()}>
-                                                                {parse(output.toString())}
-                                                            </div>
-                                                        ))}
+                                                        {testCase.explanation.explanationOutput.map(
+                                                            (output) => (
+                                                                <div
+                                                                    className='short-line-height'
+                                                                    key={uuidv4()}
+                                                                >
+                                                                    {parse(output.toString())}
+                                                                </div>
+                                                            )
+                                                        )}
                                                     </div>
                                                 )}
                                             </>

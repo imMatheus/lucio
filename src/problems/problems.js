@@ -2,9 +2,12 @@ export const problems = [
     {
         problemName: 'Simple addition',
         difficulty: 'easy',
-        problemDescription: `given two integers, a and b, return the sum of a + b`,
-        inputFormat: `a a integer, b a integer `,
-        constrains: ['-Infinty > a < Infinity', '-Infinity > b < Infinity'],
+        problemDescription: `given two integers, <span class="variable">a</span> and <span class="variable">b</span>, return the sum of <span class="variable">a</span> + <span class="variable">b</span>`,
+        inputFormat: `<span class="variable">a</span> a integer, <span class="variable">b</span> a integer `,
+        constrains: [
+            '<span class="variable">-Infinity</span> > <span class="variable">a</span> < <span class="variable">Infinity</span>',
+            '<span class="variable">-Infinity</span> > <span class="variable">b</span> < <span class="variable">Infinity</span>',
+        ],
         sampleCases: [
             {
                 input: [9, 6],
@@ -21,9 +24,13 @@ export const problems = [
     {
         problemName: 'Multiply',
         difficulty: 'easy',
-        problemDescription: `given three number, x, y, z, return the product of x * y * z`,
-        inputFormat: `x a number, y a number, z a number`,
-        constrains: ['x a number', 'y a number', 'z a number'],
+        problemDescription: `given three number, <span class="variable">X</span>, <span class="variable">Y</span>, <span class="variable">Z</span>, return the product of <span class="variable">X</span> * <span class="variable">Y</span> * <span class="variable">Z</span>`,
+        inputFormat: `<span class="variable">X</span> a number, <span class="variable">Y</span> a number, <span class="variable">Z</span> a number`,
+        constrains: [
+            '<span class="variable">X</span> a number',
+            '<span class="variable">Y</span> a number',
+            '<span class="variable">Z</span> a number',
+        ],
         sampleCases: [
             { input: [30, 2, 4], output: [240] },
             { input: [0, 0, 0], output: [0], explanation: { text: `0 * 0 * 0 = 0` } },
@@ -34,30 +41,57 @@ export const problems = [
     {
         problemName: 'Number of letters',
         difficulty: 'easy',
-        problemDescription: `given a string, <span class="varieble">S</span>, and a single letter, <span class="varieble">Letter</span>, return the number of instances that the letter <span class="varieble">Letter</span> appears in the string <span class="varieble">S</span>`,
-        inputFormat: `<span class="varieble">S</span> a string containing lowecase letters, <span class="varieble">Letter</span> a single lowercase letter`,
+        problemDescription: `given a string, <span class="variable">S</span>, and a single letter, <span class="variable">Letter</span>, return the number of instances that the letter <span class="variable">Letter</span> appears in the string <span class="variable">S</span>`,
+        inputFormat: `<span class="variable">S</span> a string containing lowercase letters, <span class="variable">Letter</span> a single lowercase letter`,
         constrains: [
-            `0 &#8804 <span class="varieble">S</span> &#x3c 100000  `,
-            `<span class="varieble">S[i]</span> &#x2208 <span class="varieble">a-z</span>`,
-            `<span class="varieble">Letter</span> &#x2208 <span class="varieble">a-z</span>`,
+            `0 &#8804 <span class="variable">S</span> &#x3c 100000  `,
+            `<span class="variable">S[i]</span> &#x2208 <span class="variable">a-z</span>`,
+            `<span class="variable">Letter</span> &#x2208 <span class="variable">a-z</span>`,
         ],
         sampleCases: [
             {
                 input: [`'l'`, `'helloworld'`],
                 output: [3],
                 explanation: {
-                    text: `In the string <span class="varieble">'helloworld'</span> the letter <span class="varieble">l</span> appears 3 times`,
+                    text: `In the string <span class="variable">'helloworld'</span> the letter <span class="variable">l</span> appears 3 times`,
                 },
             },
             {
                 input: [`'b'`, `'uraqt'`],
                 output: [0],
                 explanation: {
-                    text: `In the string <span class="varieble">'uraqt'</span> the letter <span class="varieble">b</span> doesn't appears, so we return 0`,
+                    text: `In the string <span class="variable">'uraqt'</span> the letter <span class="variable">b</span> doesn't appears, so we return 0`,
                 },
             },
         ],
         inputs: ['letter', 's'],
+    },
+    {
+        problemName: 'Score The Name',
+        difficulty: 'easy',
+        problemDescription: `given a name, <span class="variable">n</span>, calculate the alphabetical value for the letters of the name. The alphabetical value of a letter is it's place in the alphabet.`,
+        inputFormat: `<span class="variable">n</span> a single name`,
+        constrains: [
+            ' <span class="variable">n</span> < <span class="variable">100</span>',
+            ' <span class="variable">n[i]</span> &#x2208 <span class="variable">[A-Z]</span>',
+        ],
+        sampleCases: [
+            {
+                input: ['LUCIO'],
+                output: [60],
+                explanation: {
+                    text: `The alphabetical value of each letter in the name, Lucio, is <span class="variable">12 + 21 + 3 + 9 + 15 = 60</span>`,
+                },
+            },
+            {
+                input: ['ABBA'],
+                output: [6],
+                explanation: {
+                    text: `The alphabetical value of each letter in the name, ABBA, is <span class="variable">1 + 2 + 2 + 1 = 6</span>`,
+                },
+            },
+        ],
+        inputs: ['n'],
     },
 
     {
@@ -84,7 +118,7 @@ export const problems = [
         difficulty: 'hard',
 
         problemDescription: `
-                An avid hiker keeps meticulous records of their hikes. During the last hike that took exactly <span class="varieble">steps</span> steps, for every step it was noted if it was an uphill, <span class="varieble">U</span> , or a downhill, <span class="varieble">D</span> step. Hikes always start and end at sea level, and each step up or down represents a <span class="varieble">1</span> unit change in altitude.
+                An avid hiker keeps meticulous records of their hikes. During the last hike that took exactly <span class="variable">steps</span> steps, for every step it was noted if it was an uphill, <span class="variable">U</span> , or a downhill, <span class="variable">D</span> step. Hikes always start and end at sea level, and each step up or down represents a <span class="variable">1</span> unit change in altitude.
               
         <div class="bulletpoint">A level.</div>
         <div class="bulletpoint">A valley is a sequence of consecutive steps below sea level, starting with a step down from sea level and ending with a step up to sea level.</div>
@@ -93,11 +127,11 @@ export const problems = [
 
                  `,
         constrains: [
-            ` <span class="varieble">2 < steps < 1000</span>`,
-            `<span class="varieble">path[i] = "U"</span> or <span class="varieble">path[i] = "D"</span>`,
+            ` <span class="variable">2 < steps < 1000</span>`,
+            `<span class="variable">path[i] = "U"</span> or <span class="variable">path[i] = "D"</span>`,
         ],
-        inputFormat: `The first line contains an integer <span class="varieble">steps</span>, the number of steps in the hike.
-        The second line contains a single string  <span class="varieble">path</span>, of   <span class="varieble">steps</span>characters that describe the path.`,
+        inputFormat: `The first line contains an integer <span class="variable">steps</span>, the number of steps in the hike.
+        The second line contains a single string  <span class="variable">path</span>, of   <span class="variable">steps</span>characters that describe the path.`,
         // constrains: [`0 < n < 100`],
         return: `int: the number of valleys traversed`,
         sampleCases: [
@@ -105,7 +139,7 @@ export const problems = [
                 input: [8, `'UDDDUDUU'`],
                 output: [1],
                 explanation: {
-                    text: `If we represent <span class="varieble">_</span> as sea level, a step up as <span class="varieble">/</span>, and a step down as <span class="varieble">&#92</span>, the hike can be drawn as:`,
+                    text: `If we represent <span class="variable">_</span> as sea level, a step up as <span class="variable">/</span>, and a step down as <span class="variable">&#92</span>, the hike can be drawn as:`,
                     explanationOutput: [' _/&#92      _', '    &#92    /', '     &#92/&#92/'],
                 },
             },
@@ -127,23 +161,22 @@ export const problems = [
         <div class="bulletpoint">Swap two elements.</div>
         <div class="bulletpoint">Reverse one sub-segment.</div>
         Determine whether one, both or neither of the operations will complete the task. Output is as follows.
-        <div class="bulletpoint">If the array is already sorted, output yes on the first line. You do not need to output anything else.</div>
-        <div class="bulletpoint">
-            If you can sort this array using one single operation (from the two permitted operations) then output yes on the first line and then:
+        <div class="bulletpoint">If the array is already sorted, output <span class="variable">yes</span> on the first line. You do not need to output anything else.</div>
+        <div class="bulletpoint">If you can sort this array using one single operation (from the two permitted operations) then output <span class="variable">yes</span> on the first line and then:
             <ul class="numberlist">
                 <li>
-                If elements can only be swapped, <span class="varieble">d[l]</span> and <span class="varieble">d[r]</span>,
-                output swap l r in the second line.  
-                <span class="varieble">l</span> and <span class="varieble">r</span> are the indices of the elements to be swapped, 
-                assuming that the array is indexed from <span class="varieble">1</span> to <span class="varieble">n</span>.
+                If elements can only be swapped, <span class="variable">d[p]</span> and <span class="variable">d[q]</span>,
+                output <span class="variable">swap p q </span> in the second line.  
+                <span class="variable">p</span> and <span class="variable">q</span> are the indices of the elements to be swapped, 
+                assuming that the array is indexed from <span class="variable">1</span> to <span class="variable">n</span>.
                 </li>
                 <li>
-                If elements can only be reversed, for the segment <span class="varieble">d[l...r]</span>, output reverse l r in the second line. 
-                <span class="varieble">l</span> and <span class="varieble">r</span> are the indices of the first and last elements 
+                If elements can only be reversed, for the segment <span class="variable">d[p...q]</span>, output <span class="variable">reverse p q</span> in the second line. 
+                <span class="variable">p</span> and <span class="variable">q</span> are the indices of the first and last elements 
                 of the subarray to be reversed, assuming that 
-                 the array is indexed <span class="varieble">1</span> from <span class="varieble">n</span> to . 
-                Here <span class="varieble">d[l...r]</span> represents the subarray that begins at index  <span class="varieble">l</span> 
-                and ends at index <span class="varieble">r</span>, both inclusive.
+                 the array is indexed <span class="variable">1</span> from <span class="variable">n</span> to . 
+                Here <span class="variable">d[p...q]</span> represents the subarray that begins at index  <span class="variable">p</span> 
+                and ends at index <span class="variable">q</span>, both inclusive.
                 </li>
             </ul>
         </div>
@@ -151,13 +184,13 @@ export const problems = [
         <div class="bulletpoint">If the array cannot be sorted either way, output no on the first line.</div>
         `,
         constrains: [
-            `<span class="varieble">2 &#8804 n &#8804 100000 </span>`,
-            `<span class="varieble">0 &#8804 arr[i] &#8804 1000000 </span>`,
-            `All <span class="varieble">arr[i]</span> are distinct`,
+            `<span class="variable">2 &#8804 n &#8804 100000 </span>`,
+            `<span class="variable">0 &#8804 arr[i] &#8804 1000000 </span>`,
+            `All <span class="variable">arr[i]</span> are distinct`,
         ],
-        inputFormat: `The first line contains a single integer <span class="varieble">n </span>, the size of <span class="varieble">arr</span>.
-        The next line contains <span class="varieble">n</span> space-separated integers <span class="varieble">arr[i]</span> where <span class="varieble">1 &#8804 i &#8804 n </span>.`,
-        return: `int: the length of the longest subset of <span class="varieble">S</span> meeting the criteria`,
+        inputFormat: `The first line contains a single integer <span class="variable">n</span>, the size of <span class="variable">arr</span>.
+        The next line contains <span class="variable">n</span> space-separated integers <span class="variable">arr[i]</span> where <span class="variable">1 &#8804 i &#8804 n </span>.`,
+        return: `int: the length of the longest subset of <span class="variable">S</span> meeting the criteria`,
         sampleCases: [
             {
                 input: [`[3, 1, 2]`],
@@ -171,7 +204,7 @@ export const problems = [
                 input: [`[1, 5, 4, 3, 2, 6]`],
                 output: ['yes reverse 2 5'],
                 explanation: {
-                    text: `You can reverse the sub-array d[2...5] = "5 4 3 2", then the array becomes sorted.`,
+                    text: `You can reverse the sub-array <span class="variable">d[2...5]</span> = "5 4 3 2", then the array becomes sorted.`,
                     explanationOutput: null,
                 },
             },

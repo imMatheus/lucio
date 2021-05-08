@@ -2,7 +2,7 @@
     overflow-y: scroll;
     height: 100%;
     width: 510px;
-    // max and min is for the scroll bar so it does exeed these values
+    // max and min is for the scroll bar so it does exceed these values
     max-width: 55vw;
     min-width: 22vw;
     background-color: var(--bg);
@@ -23,20 +23,20 @@
                 color: var(--bold-color);
             }
             p {
-                font-size: var(--paraghrap-fontsize);
-                font-family: var(--paraghrap-fontfamily);
-                color: var(--paraghrap-color);
+                font-size: var(--paragraph-fontsize);
+                font-family: var(--paragraph-fontfamily);
+                color: var(--paragraph-color);
                 font-weight: 300;
                 line-height: 1.75;
 
-                & span.varieble {
+                & span.variable {
                     font-style: italic;
                     margin: 0 2px;
                     word-break: break-all;
                     color: var(--bold-color);
                     font-weight: 400;
                     font-size: var(--variable-fontsize);
-                    font-family: var(--varible-fontfamily);
+                    font-family: var(--variable-fontfamily);
                 }
                 &.bulletpoint,
                 & .bulletpoint {

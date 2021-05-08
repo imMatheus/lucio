@@ -19,7 +19,7 @@
 
         &:hover {
             & .header {
-                color: var(--color-success);
+                color: var(--color-mainGreen);
             }
         }
 
@@ -52,11 +52,11 @@
                 // color: var(--resize-bg);
                 text-transform: uppercase;
 
-                background: var(--color-success);
+                background: var(--color-mainGreen);
 
                 // classes to change the background color depending on the difficulty
                 &.easy {
-                    background: var(--color-success);
+                    background: var(--color-mainGreen);
                 }
                 &.medium {
                     background: orange;

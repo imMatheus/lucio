@@ -18,7 +18,6 @@ body {
   background-color: var(--main-bg);
   --paraghrap-fontfamily: "Open Sans", Arial, Helvetica, sans-serif;
   --varible-fontfamily: "Roboto Slab", serif;
-  --color-success: #2a9d8f;
   --color-mainGreen: #2a9d8f;
   --color-lightOrange: #e9c46a;
   --color-darkOrange: #f4a261;
@@ -30,7 +29,7 @@ body {
   --transition-speed: 200ms;
   --font-family: "Roboto Mono", monospace;
   --bold: 600;
-  --paraghrap-fontsize: 0.8rem;
+  --paragraph-fontsize: 0.8rem;
   --variable-fontsize: 0.91rem;
   --inputs-fontsize: 0.85rem;
 }
@@ -51,7 +50,7 @@ body .App.dark {
   --text-color: #ffffff;
   --hover-color: #ffffff;
   --bold-color: #d4e4f9;
-  --paraghrap-color: #8a9bba;
+  --paragraph-color: #8a9bba;
   --inputs-color: #d4e4f9;
   --inputs-bg: #141618;
   --files-bg: #21252b;
@@ -64,7 +63,7 @@ body .App.light {
   --text-color: #414c52;
   --hover-color: #596266;
   --bold-color: #0e141e;
-  --paraghrap-color: #576871;
+  --paragraph-color: #576871;
   --inputs-color: #040a1d;
   --inputs-bg: #e8eaea;
   --files-bg: #e7eeef;
@@ -79,8 +78,8 @@ body .App .outline-btn {
   display: flex;
   align-items: center;
   justify-content: center;
-  border: solid 2px var(--color-success);
-  outline: solid 2px var(--color-success);
+  border: solid 2px var(--color-mainGreen);
+  outline: solid 2px var(--color-mainGreen);
   outline-offset: -2px;
   color: var(--bold-color);
   font-weight: 300;
@@ -350,8 +349,8 @@ body .App .logo-icon .circle-line {
   position: absolute;
   border-radius: 50%;
   border: 3px solid transparent;
-  border-left-color: var(--color-success);
-  border-right-color: var(--color-success);
+  border-left-color: var(--color-mainGreen);
+  border-right-color: var(--color-mainGreen);
 }
 body .App .logo-icon .circle-line:nth-child(1) {
   left: 0%;
@@ -376,19 +375,19 @@ body .App .logo-icon .circle-line:nth-child(4) {
   top: 30%;
   width: 40%;
   height: 40%;
-  border-color: var(--color-success);
+  border-color: var(--color-mainGreen);
 }
 body .App .logo-icon .circle-line:nth-child(5) {
   left: 40%;
   top: 40%;
   width: 20%;
   height: 20%;
-  border-color: var(--color-success);
+  border-color: var(--color-mainGreen);
   left: 40%;
   top: 40%;
   width: 20%;
   height: 20%;
-  background-color: var(--color-success);
+  background-color: var(--color-mainGreen);
 }
 body .App .logo-icon.spin .circle-line:nth-child(1) {
   animation: ani-60 1800ms 1;
@@ -980,11 +979,11 @@ body .App .form .editorial .submit button {
   font-size: 1rem;
 }
 body .App .form .editorial .submit button.testrun-btn {
-  border: solid 1px var(--color-success);
-  color: var(--color-success);
+  border: solid 1px var(--color-mainGreen);
+  color: var(--color-mainGreen);
 }
 body .App .form .editorial .submit button.submit-btn {
-  background: var(--color-success);
+  background: var(--color-mainGreen);
   color: var(--bold-color);
 }
 body .App .form .editorial .submit button:active, body .App .form .editorial .submit button:hover {
@@ -1014,7 +1013,7 @@ body .App .form .editorial .CodeCompileView-wrapper .codecompileview .title.red 
   color: var(--color-fail);
 }
 body .App .form .editorial .CodeCompileView-wrapper .codecompileview .title.green {
-  color: var(--color-success);
+  color: var(--color-mainGreen);
 }
 body .App .form .editorial .CodeCompileView-wrapper .codecompileview p {
   padding: 10px 22px;
@@ -1052,7 +1051,7 @@ body .App .form .editorial .CodeCompileView-wrapper .codecompileview .compilecas
   color: var(--color-fail);
 }
 body .App .form .editorial .CodeCompileView-wrapper .codecompileview .compilecases-wrapper .case-list ul li.green {
-  color: var(--color-success);
+  color: var(--color-mainGreen);
 }
 body .App .form .editorial .CodeCompileView-wrapper .codecompileview .compilecases-wrapper .case-list ul li.highlight {
   background: var(--bg);
@@ -1123,20 +1122,20 @@ body .App .form .question .content .content-subpart .bold {
   color: var(--bold-color);
 }
 body .App .form .question .content .content-subpart p {
-  font-size: var(--paraghrap-fontsize);
-  font-family: var(--paraghrap-fontfamily);
-  color: var(--paraghrap-color);
+  font-size: var(--paragraph-fontsize);
+  font-family: var(--paragraph-fontfamily);
+  color: var(--paragraph-color);
   font-weight: 300;
   line-height: 1.75;
 }
-body .App .form .question .content .content-subpart p span.varieble {
+body .App .form .question .content .content-subpart p span.variable {
   font-style: italic;
   margin: 0 2px;
   word-break: break-all;
   color: var(--bold-color);
   font-weight: 400;
   font-size: var(--variable-fontsize);
-  font-family: var(--varible-fontfamily);
+  font-family: var(--variable-fontfamily);
 }
 body .App .form .question .content .content-subpart p.bulletpoint, body .App .form .question .content .content-subpart p .bulletpoint {
   padding: 4px 0;
@@ -1370,7 +1369,7 @@ body .App .problems .problemcard {
   box-shadow: 0px 0px 3px var(--bold-color);
 }
 body .App .problems .problemcard:hover .header {
-  color: var(--color-success);
+  color: var(--color-mainGreen);
 }
 body .App .problems .problemcard .header {
   transition: color 100ms;
@@ -1396,10 +1395,10 @@ body .App .problems .problemcard .metadata .difficulty {
   padding: 4px 11px;
   border-radius: 20px;
   text-transform: uppercase;
-  background: var(--color-success);
+  background: var(--color-mainGreen);
 }
 body .App .problems .problemcard .metadata .difficulty.easy {
-  background: var(--color-success);
+  background: var(--color-mainGreen);
 }
 body .App .problems .problemcard .metadata .difficulty.medium {
   background: orange;
