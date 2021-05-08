@@ -7,13 +7,11 @@ import { v4 as uuidv4 } from 'uuid'
 import html2canvas from 'html2canvas'
 import EditorComponent from './EditorComponent'
 import { db, auth } from '../../firebase'
-
 import Pixelmatch from 'pixelmatch'
 
-const CssBattle = ({ problem }) => {
+const CssArena = ({ problem }) => {
     const cssEditorRef = useRef(null)
     const htmlEditorRef = useRef(null)
-    const canvasRef = useRef(null)
     const [cssCode, setCssCode] = useLocalStorage('cssCode', generateCssStarterFile())
     const [htmlCode, setHtmlCode] = useLocalStorage('htmlCode', generateHtmlStarterFile())
     const iframeContainerRef = useRef(null)
@@ -219,7 +217,7 @@ const CssBattle = ({ problem }) => {
     }
 
     return (
-        <div className='cssbattle'>
+        <div className='cssarena'>
             <div className='editor'>
                 <div className='column-header'>
                     Editor <span>{characterCount} characters</span>
@@ -334,4 +332,4 @@ const CssBattle = ({ problem }) => {
     )
 }
 
-export default CssBattle
+export default CssArena
