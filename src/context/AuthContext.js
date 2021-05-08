@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react'
-import { auth, fs } from '../firebase'
+import { auth, fs, db } from '../firebase'
 const AuthContext = React.createContext()
 
 export function useAuth() {
@@ -7,6 +7,7 @@ export function useAuth() {
 }
 export const AuthProvider = ({ children }) => {
     const [currentUser, setCurrentUser] = useState()
+    const [leaderboard, setLeaderboard] = useState(null)
     const [loading, setLoading] = useState(true)
 
     async function signup(email, password, displayName, imageUrl) {
@@ -16,15 +17,6 @@ export const AuthProvider = ({ children }) => {
             console.log('error', error)
             return error
         }
-        console.log(auth.currentUser)
-
-        console.log(auth.currentUser.uid)
-        console.log(displayName)
-
-        // const snapshot = await fs.collection('users').get()
-        // snapshot.forEach((doc) => {
-        //     console.log(doc.id, '=>', doc.data())
-        // })
 
         await fs // firestore
             .collection('users')
@@ -53,9 +45,86 @@ export const AuthProvider = ({ children }) => {
         })
         return unsubscribe
     }, [])
+    const userRef = db.ref('css')
+    userRef.on('value', async (snapshot) => {
+        let leaderBoardObj = {}
+        let problems = snapshot.val()
+        problems?.forEach((problem) => {
+            // looping threw all the problems
+            const submissions = problem.submissions
+            if (submissions) {
+                // then going threw every single submission in the submissions of the problem
+                for (const uid in submissions) {
+                    if (leaderBoardObj[uid]) {
+                        leaderBoardObj[uid].targets += 1
+                        leaderBoardObj[uid].score += submissions[uid].score
+                    } else {
+                        // leaderBoardObj[uid].targets = 1
+                        leaderBoardObj[uid] = { score: submissions[uid].score, targets: 1 }
+                    }
+                }
+            }
+        })
+
+        // quickSort algorithm
+        function quickSortBasic(array) {
+            if (array.length < 2) {
+                return array
+            }
+
+            var pivot = array[0]
+            var lesserArray = []
+            var greaterArray = []
+
+            for (var i = 1; i < array.length; i++) {
+                if (array[i].score < pivot.score) {
+                    greaterArray.push(array[i])
+                } else {
+                    lesserArray.push(array[i])
+                }
+            }
+
+            return quickSortBasic(lesserArray).concat(pivot, quickSortBasic(greaterArray))
+        }
+
+        let leaderBoardArr = []
+        for (const uid in leaderBoardObj) {
+            // if the user does not have a score we don't push it to leader-board
+            if (leaderBoardObj[uid]) {
+                leaderBoardArr.push({
+                    uid: uid,
+                    score: Math.round(leaderBoardObj[uid].score * 10) / 10, // rounds to one decimal
+                    targets: leaderBoardObj[uid].targets,
+                })
+            }
+        }
+        // sorting the leader-board
+        leaderBoardArr = quickSortBasic(leaderBoardArr)
+
+        let dummyHolder = []
+        for (let i = 0; i < leaderBoardArr.length; i++) {
+            // getting the user from firestore and storing user details in
+            const response = fs.collection('users').doc(leaderBoardArr[i].uid)
+            const rawData = await response.get()
+            const data = rawData.data()
+
+            if (data && leaderBoardArr[i]) {
+                // pushing all the data we got of the user from firestore
+                // and then adding users score and targets
+                dummyHolder.push({
+                    ...data,
+                    score: leaderBoardArr[i].score,
+                    targets: leaderBoardArr[i].targets,
+                })
+            }
+        }
+        console.log(dummyHolder)
+        setLeaderboard(dummyHolder)
+    })
     const value = {
         currentUser,
         logout,
+        leaderboard,
         login,
         signup,
         resetPassword,

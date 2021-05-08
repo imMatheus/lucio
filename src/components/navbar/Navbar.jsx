@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom'
 import LogoIcon from '../LogoIcon'
 
 import { useState, useEffect } from 'react'
-import { fs, db } from '../../firebase'
+import { fs } from '../../firebase'
 const Navbar = ({ isDarkMode, setIsDarkMode }) => {
     const { currentUser, logout } = useAuth()
     const history = useHistory()
@@ -18,11 +18,20 @@ const Navbar = ({ isDarkMode, setIsDarkMode }) => {
     useEffect(() => {
         if (currentUser) {
             fetchUser(currentUser)
+            console.log('1')
+
+            console.log(userData)
         } else {
             setUserData(null)
+            console.log('2')
+
+            console.log(userData)
         }
-    }, [])
+    }, [currentUser])
     const logoutHandler = async () => {
+        console.log('3')
+        console.log(userData)
+
         try {
             await logout()
             history.push('/login')
@@ -59,28 +68,30 @@ const Navbar = ({ isDarkMode, setIsDarkMode }) => {
                 </Link>
                 {currentUser && <p>Email: {currentUser.email}</p>}
             </div>
-            <div className='navbar-right'>
-                {/* <div
+            {currentUser && (
+                <div className='navbar-right'>
+                    {/* <div
                     className={isDarkMode ? 'dark-theme-toogler dark' : 'dark-theme-toogler light'}
                     onClick={toogleThemeHandler}
                 >
                     <NightsStayIcon /> <WbSunnyIcon />
                     <div className='theme-btn'></div>
                 </div> */}
-                {currentUser && (
+
                     <div className='outline-btn' onClick={logoutHandler}>
                         Log Out
                     </div>
-                )}
-                <Link exact='true' to='/login'>
-                    <div
-                        className='account'
-                        style={{
-                            backgroundImage: `url(${userData?.profileImage})`,
-                        }}
-                    ></div>
-                </Link>
-            </div>
+
+                    <Link exact='true' to='/login'>
+                        <div
+                            className='account'
+                            style={{
+                                backgroundImage: `url(${userData?.profileImage})`,
+                            }}
+                        ></div>
+                    </Link>
+                </div>
+            )}
         </div>
     )
 }

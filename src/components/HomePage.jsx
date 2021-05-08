@@ -6,11 +6,9 @@ import { useAuth } from '../context/AuthContext'
 import { v4 as uuidv4 } from 'uuid'
 
 const HomePage = () => {
-    const { currentUser } = useAuth()
+    const { currentUser, leaderboard } = useAuth()
 
     const [userData, setUserData] = useState()
-
-    const [leaderBoard, setLeaderBoard] = useState(null)
 
     const fetchUser = async (user) => {
         // getting the users data from firestore
@@ -26,83 +24,6 @@ const HomePage = () => {
         } else {
             setUserData(null)
         }
-        // loading the leader-board
-        const userRef = db.ref('css')
-        userRef.on('value', async (snapshot) => {
-            let leaderBoardObj = {}
-            let problems = snapshot.val()
-            problems?.forEach((problem) => {
-                // looping threw all the problems
-                const submissions = problem.submissions
-                if (submissions) {
-                    // then going threw every single submission in the submissions of the problem
-                    for (const uid in submissions) {
-                        if (leaderBoardObj[uid]) {
-                            leaderBoardObj[uid].targets += 1
-                            leaderBoardObj[uid].score += submissions[uid].score
-                        } else {
-                            // leaderBoardObj[uid].targets = 1
-                            leaderBoardObj[uid] = { score: submissions[uid].score, targets: 1 }
-                        }
-                    }
-                }
-            })
-
-            // quickSort algorithm
-            function quickSortBasic(array) {
-                if (array.length < 2) {
-                    return array
-                }
-
-                var pivot = array[0]
-                var lesserArray = []
-                var greaterArray = []
-
-                for (var i = 1; i < array.length; i++) {
-                    if (array[i].score < pivot.score) {
-                        greaterArray.push(array[i])
-                    } else {
-                        lesserArray.push(array[i])
-                    }
-                }
-
-                return quickSortBasic(lesserArray).concat(pivot, quickSortBasic(greaterArray))
-            }
-
-            let leaderBoardArr = []
-            for (const uid in leaderBoardObj) {
-                // if the user does not have a score we don't push it to leader-board
-                if (leaderBoardObj[uid]) {
-                    leaderBoardArr.push({
-                        uid: uid,
-                        score: Math.round(leaderBoardObj[uid].score * 10) / 10, // rounds to one decimal
-                        targets: leaderBoardObj[uid].targets,
-                    })
-                }
-            }
-            // sorting the leader-board
-            leaderBoardArr = quickSortBasic(leaderBoardArr)
-
-            let dummyHolder = []
-            for (let i = 0; i < leaderBoardArr.length; i++) {
-                // getting the user from firestore and storing user details in
-                const response = fs.collection('users').doc(leaderBoardArr[i].uid)
-                const rawData = await response.get()
-                const data = rawData.data()
-
-                if (data && leaderBoardArr[i]) {
-                    // pushing all the data we got of the user from firestore
-                    // and then adding users score and targets
-                    dummyHolder.push({
-                        ...data,
-                        score: leaderBoardArr[i].score,
-                        targets: leaderBoardArr[i].targets,
-                    })
-                }
-            }
-            console.log(dummyHolder)
-            setLeaderBoard(dummyHolder)
-        })
     }, [currentUser])
 
     return (
@@ -125,11 +46,11 @@ const HomePage = () => {
             </div>
 
             <div className='leaderboard-container'>
-                {leaderBoard ? (
+                {leaderboard ? (
                     <>
-                        <div className='header'>Top #{leaderBoard.length}</div>
+                        <div className='header'>Top #{leaderboard.length}</div>
                         <div className='leaderboard-wrapper'>
-                            {leaderBoard.map((user, index) => {
+                            {leaderboard.map((user, index) => {
                                 // setting the rank for styling
                                 let rank =
                                     index + 1 === 1
