@@ -27,7 +27,7 @@ const Signup = () => {
             // appending 4 random numbers/letters
             psw += '-' + Math.random().toString(36).slice(-4)
         }
-        passwordRef.current.value = psw
+        passwordRef.current.value = psw // sett psw to the psw fields
         confirmPasswordRef.current.value = psw
 
         return psw
@@ -59,6 +59,7 @@ const Signup = () => {
 
             // if we didn't get a response back that means it was successful
             // so we send user back to '/'
+            setLoading(false)
             if (!res) {
                 history.push('/')
             } else {
@@ -67,9 +68,8 @@ const Signup = () => {
             }
         } catch (error) {
             console.log(error)
-            setError('failed to create an account')
+            setError('failed to create an account, ' + error.message)
         }
-        setLoading(false)
     }
 
     const imageUploadImgHandler = async (e) => {
@@ -86,7 +86,7 @@ const Signup = () => {
             // console.log(reader.readAsDataURL(e?.target?.files[0]))
         }
     }
-    console.log(profileImage)
+
     return (
         <div className='signup-container'>
             <div className='card'>

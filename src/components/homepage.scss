@@ -46,15 +46,15 @@
                         height: calc((#{$id} * 30px) + #{$widthheight});
                         animation-delay: calc((3 - #{$id}) * 100ms);
                         @if $id == 1 {
-                            fill: #2a9d8f;
+                            fill: var(--color-mainGreen);
                             z-index: 3;
                         }
                         @if $id == 2 {
-                            fill: #e9c46a;
+                            fill: var(--color-lightOrange);
                             z-index: 2;
                         }
                         @if $id == 3 {
-                            fill: #f4a261;
+                            fill: var(--color-darkOrange);
                             z-index: 1;
                         }
                     }
@@ -87,17 +87,13 @@
             & h1 {
                 font-weight: 900;
                 font-size: 8rem;
-
-                // color: var(--color-success);
                 color: $color-blue;
                 -webkit-font-smoothing: antialiased;
-                // background: linear-gradient($color-blue, $color-green);
                 padding: 0px;
-                // -webkit-text-stroke: 1px var(--color-success);
                 $offset-x: 1px;
                 $offset-y: 1px;
                 $value: ();
-                // creating the text shadows with a offset of "$offset-x"
+
                 @for $i from 0 through ($shadow-number) {
                     $theShadow: $offset-x *
                         $i
@@ -119,39 +115,6 @@
 
                 & .outline-btn {
                     font-size: 1.4rem;
-                }
-            }
-
-            & .shapes-container {
-                background: rgba(255, 0, 0, 0.205);
-                width: 100%;
-                height: 100%;
-                position: absolute;
-
-                & .shapes {
-                    overflow: hidden;
-                    position: relative;
-
-                    & .shape {
-                        will-change: transform;
-                        position: absolute;
-                        border-radius: 50%;
-
-                        $shapes: (
-                            #005ffe: 650px,
-                            #ffe5e3: 440px,
-                            #ffcc57: 270px,
-                        );
-
-                        @each $color, $size in $shapes {
-                            &.shape-#{index($shapes, ($color $size))} {
-                                background: $color;
-                                width: $size;
-                                height: $size;
-                                margin: (-$size/2) 0 0 (-$size/2);
-                            }
-                        }
-                    }
                 }
             }
         }

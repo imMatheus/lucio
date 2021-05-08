@@ -17,47 +17,25 @@ const CssProblems = () => {
                 cssList.push(css[id])
                 if (!cssId) cssId = id
             }
-            console.log(cssList)
+
             setCssProblemsArray(cssList)
-            // setCssProblems(css[0])
-            console.log(cssId)
-            console.log(cssProblemsArray)
         })
     }, [])
-    // if (cssId) {
-    //     const ve = db.ref('css').child(cssId)
-    //     ve.on('value', (snapshot) => {
-    //         const ver = snapshot.val()
-    //         let cssList = []
-    //         for (let id in ver) {
-    //             cssList.push(ver[id])
-    //         }
-    //         console.log(cssList)
-    //     })
-    //     ve.push({ name: 'hehej', age: 9 })
-    // }
 
-    // console.log(db.ref('css').child('s'))
-
-    // db.ref().child('css').child('0').set({ test: 'mautu', ter: 699 })
-
-    // cssRef.push(cssProblems)
-    // console.log(cssRef)
     return (
         <div className='cssproblems'>
             <div className='container'>
-                {cssProblemsArray
-                    ? cssProblemsArray.map((problem) => {
-                          return (
-                              <Problem
-                                  key={uuidv4()}
-                                  target={problem.target}
-                                  image={problem.image}
-                                  submissions={problem.submissions.length}
-                              />
-                          )
-                      })
-                    : 'hgej'}
+                {cssProblemsArray &&
+                    cssProblemsArray.map((problem) => {
+                        return (
+                            <Problem
+                                key={uuidv4()}
+                                target={problem.target}
+                                image={problem.image}
+                                submissions={problem.submissions.length}
+                            />
+                        )
+                    })}
             </div>
         </div>
     )

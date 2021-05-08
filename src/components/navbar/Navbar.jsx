@@ -81,7 +81,6 @@ const Navbar = ({ isDarkMode, setIsDarkMode }) => {
                     <div className='outline-btn' onClick={logoutHandler}>
                         Log Out
                     </div>
-
                     <Link exact='true' to='/login'>
                         <div
                             className='account'

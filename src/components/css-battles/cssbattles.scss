@@ -128,10 +128,34 @@
                 border-radius: 14px;
                 font-size: 0.95rem;
                 color: var(--hover-color);
+                display: flex;
+                align-items: center;
 
                 &:disabled {
-                    opacity: 0.62;
+                    opacity: 0.65;
                     cursor: progress;
+
+                    /* Spinner Circle Rotation */
+                    & span {
+                        border: 3px var(--color-darkOrange) solid;
+                        border-top: 3px var(--color-darkBlue) solid;
+                        border-radius: 50%;
+                        // width: 32px;
+                        width: 18px;
+                        height: 18px;
+                        margin-left: 10px;
+                        -webkit-animation: spCircRot 0.8s infinite linear;
+                        animation: spCircRot 0.8s infinite linear;
+                    }
+
+                    @keyframes spCircRot {
+                        from {
+                            transform: rotate(0deg);
+                        }
+                        to {
+                            transform: rotate(359deg);
+                        }
+                    }
                 }
             }
         }

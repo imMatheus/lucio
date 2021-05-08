@@ -36,6 +36,10 @@ body {
     --varible-fontfamily: 'Roboto Slab', serif;
     // --color-success: #ff1053;
     --color-success: #2a9d8f;
+    --color-mainGreen: #2a9d8f;
+    --color-lightOrange: #e9c46a;
+    --color-darkOrange: #f4a261;
+    --color-darkBlue: #0a1128;
     // --color-success: #2163f1;
     // --color-success: #1ba94c;
     --color-fail: #d11534;
@@ -94,20 +98,20 @@ body {
             font-size: 1.25rem;
             display: inline;
             padding: 8px 24px;
-            $outlineprefix: 2px;
+            $outlinePrefix: 2px;
             display: flex;
             align-items: center;
             justify-content: center;
-            border: solid $outlineprefix var(--color-success);
-            outline: solid $outlineprefix var(--color-success);
-            outline-offset: -1 * $outlineprefix;
+            border: solid $outlinePrefix var(--color-success);
+            outline: solid $outlinePrefix var(--color-success);
+            outline-offset: -1 * $outlinePrefix;
             color: var(--bold-color);
             font-weight: 300;
             transition: outline-offset 170ms;
             cursor: pointer;
 
             &:hover {
-                outline-offset: 2 * $outlineprefix;
+                outline-offset: 2 * $outlinePrefix;
             }
         }
 

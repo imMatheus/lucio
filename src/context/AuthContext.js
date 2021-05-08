@@ -11,13 +11,22 @@ export const AuthProvider = ({ children }) => {
     const [loading, setLoading] = useState(true)
 
     async function signup(email, password, displayName, imageUrl) {
+        const usersNamesRef = fs.collection('usernames').doc(displayName)
+        const doc = await usersNamesRef.get()
+        if (doc.exists) {
+            // checking if the display name already exist
+            const error = { message: 'Display Name already exist' }
+            return error
+        }
         try {
             await auth.createUserWithEmailAndPassword(email, password)
         } catch (error) {
             console.log('error', error)
             return error
         }
-
+        await usersNamesRef.set({
+            displayName: displayName,
+        })
         await fs // firestore
             .collection('users')
             .doc(auth.currentUser.uid) // adding a doc with the the id of the users uid

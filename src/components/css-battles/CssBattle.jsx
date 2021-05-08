@@ -50,32 +50,6 @@ const CssBattle = ({ problem }) => {
         })
     }, [])
 
-    const addSubmission = () => {
-        const user = auth.currentUser
-
-        if (!user) return //  @todo prompt the user to login if they are not
-        const userUID = user.uid
-        let a = 20
-        let rnd = Math.floor(Math.random() * a * 2)
-        let isHigher = false
-        dbSubmissionsRef.child(userUID).once('value', (snapshot) => {
-            const userData = snapshot.val()
-            console.log('exists!', userData)
-            if (rnd > a) {
-                isHigher = true
-            }
-        })
-
-        if (isHigher) {
-            console.log('higher')
-            dbSubmissionsRef.child(userUID).set({ email: user.email, score: rnd, userId: userUID })
-        } else {
-            console.log('lower', rnd)
-        }
-
-        console.log(auth.currentUser)
-    }
-
     // dbSubmissionsRef.child('submissions').push({ testing: 'cool' })
     let characterCount
     let currentCode = '<style>' + cssCode + '</style>' + htmlCode
@@ -136,10 +110,16 @@ const CssBattle = ({ problem }) => {
     }
 
     const getScore = (charCount, per) => {
-        const PER_MODIFIER = 0.042
-        per *= 6
-        let score = per + Math.max(PER_MODIFIER * (per / 100) * (600 - charCount), 0)
-        return Math.round(score * 10) / 10
+        // const PER_MODIFIER = 1
+        const PER_MODIFIER = 0.16
+        const changeFactor = (per / 100) ** 2
+        console.log(changeFactor)
+        per = 600 * changeFactor * (per / 100)
+        const scoreAddOn = Math.max(changeFactor * PER_MODIFIER * (650 - charCount), 0)
+        console.log(scoreAddOn)
+        console.log(per)
+        const score = per + scoreAddOn
+        return Math.round(score * 10) / 10 // round down to one decimal
     }
     const compareIframeAndImage = async () => {
         if (!iframeRef.current) return
@@ -183,7 +163,7 @@ const CssBattle = ({ problem }) => {
         const width = 400
         const height = 300
         let diff = Pixelmatch(img1, img2, null, width, height, {
-            threshold: 0,
+            threshold: 0.02,
             /* options */
         })
         console.log(diff)
@@ -208,13 +188,9 @@ const CssBattle = ({ problem }) => {
 
         const userUID = user.uid
 
-        // dbSubmissionsRef.child(userUID).once('value', (snapshot) => {
-        //     const userData = snapshot.val()
-        //     console.log('exists!', userData)
-        // })
         if (score > highScore.score) {
             setHighScore({ score: score, percentage: percentage, characters: characters })
-            // update database
+            // update database if user gets new high score
             dbSubmissionsRef.child(userUID).set({
                 email: user.email,
                 score: score,
@@ -224,6 +200,21 @@ const CssBattle = ({ problem }) => {
             })
         }
         console.log(auth.currentUser)
+        function HexCode(color) {
+            const rgba = color.replace(/^rgba?\(|\s+|\)$/g, '').split(',')
+            const hex = `#${(
+                (1 << 24) +
+                (parseInt(rgba[0]) << 16) +
+                (parseInt(rgba[1]) << 8) +
+                parseInt(rgba[2])
+            )
+                .toString(16)
+                .slice(1)}`
+
+            return hex
+        }
+
+        console.log(HexCode('rgba(201,25,255,0.1)'))
         setLoading(false)
     }
 
@@ -277,20 +268,17 @@ const CssBattle = ({ problem }) => {
                         <iframe title='Web Frame' ref={iframeRef} id='webframeId' scrolling='no'>
                             <p>your browser does not support iframes</p>
                         </iframe>
-                        {/* <div className='testing' ref={testRef} scrolling='no'></div> */}
                     </div>
                 </div>
                 <div className='submit-wrapper'>
                     <button
                         className='submit-btn'
+                        // disabled={true}
                         disabled={loading}
                         onClick={submitClickedHandler}
                     >
-                        Submit
+                        Submit <span></span>
                     </button>
-                    <div className='submit-btn' onClick={addSubmission}>
-                        Add submission
-                    </div>
                 </div>
                 <div className='userScoreBoard-wrapper'>
                     <div className='scoreBoard-row'>
@@ -339,19 +327,6 @@ const CssBattle = ({ problem }) => {
                     })}
                 </div>
             </div>
-            <canvas
-                id='dummyCanvas'
-                style={{
-                    display: 'none',
-                    backgroundColor: 'pink',
-                    width: '400px',
-                    height: '300px',
-                }}
-                width='400px'
-                height='300px'
-                ref={canvasRef}
-            ></canvas>
-            {/* style={{ display: 'none' }} */}
         </div>
     )
 }
