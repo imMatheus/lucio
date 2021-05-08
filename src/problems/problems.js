@@ -75,6 +75,7 @@ export const problems = [
             ' <span class="variable">n</span> < <span class="variable">100</span>',
             ' <span class="variable">n[i]</span> &#x2208 <span class="variable">[A-Z]</span>',
         ],
+        output: `Return a integer, the alphabetical value of the given name.`,
         sampleCases: [
             {
                 input: ['LUCIO'],
@@ -100,7 +101,7 @@ export const problems = [
         problemDescription: `Given five positive integers, find the minimum and maximum values that can be calculated by summing exactly four of the five integers. Then print the respective minimum and maximum values as a single line of two space-separated long integers.`,
         inputFormat: `A single line of five space-separated integers.`,
         // constrains: [`0 < n < 100`],
-        return: `Print two space-separated integers on one line: the minimum sum and the maximum sum of  of  elements.`,
+        output: `Print two space-separated integers on one line: the minimum sum and the maximum sum of  of  elements.`,
         sampleCases: [
             {
                 input: [`[1, 2, 3, 4, 5]`, `[69, 69]`],
@@ -190,7 +191,7 @@ export const problems = [
         ],
         inputFormat: `The first line contains a single integer <span class="variable">n</span>, the size of <span class="variable">arr</span>.
         The next line contains <span class="variable">n</span> space-separated integers <span class="variable">arr[i]</span> where <span class="variable">1 &#8804 i &#8804 n </span>.`,
-        return: `int: the length of the longest subset of <span class="variable">S</span> meeting the criteria`,
+        output: `int: the length of the longest subset of <span class="variable">S</span> meeting the criteria`,
         sampleCases: [
             {
                 input: [`[3, 1, 2]`],

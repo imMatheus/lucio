@@ -12,6 +12,7 @@ const Question = ({ qref, problem }) => {
     let problemName = problem.problemName
     let inputFormat = problem.inputFormat
     let testCases = problem.sampleCases
+    let output = problem.output
     // console.log(testCases)
 
     return (
@@ -42,7 +43,7 @@ const Question = ({ qref, problem }) => {
                 {description && (
                     <div className='content-subpart'>
                         <>
-                            <div className='bold'>Problem descripsion</div>
+                            <div className='bold'>Problem description</div>
                             <p>{parse(description)}</p>
                         </>
                     </div>
@@ -52,6 +53,14 @@ const Question = ({ qref, problem }) => {
                         <>
                             <div className='bold'>Input format</div>
                             <p>{parse(inputFormat)}</p>
+                        </>
+                    </div>
+                )}
+                {output && (
+                    <div className='content-subpart'>
+                        <>
+                            <div className='bold'>Output</div>
+                            <p>{parse(output)}</p>
                         </>
                     </div>
                 )}

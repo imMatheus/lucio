@@ -124,7 +124,7 @@
             & .submit-btn {
                 cursor: pointer;
                 padding: 5px 14px;
-                background-color: var(--color-success);
+                background-color: var(--color-mainGreen);
                 border-radius: 14px;
                 font-size: 0.95rem;
                 color: var(--hover-color);
@@ -166,7 +166,7 @@
             padding: 10px;
 
             & .scoreBoard-row {
-                color: var(--paraghrap-color);
+                color: var(--paragraph-color);
                 margin: 15px 0;
                 font-weight: 300;
                 font-size: 1rem;
