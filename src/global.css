@@ -292,7 +292,7 @@ body .App .cssdashboard .cssproblems .container {
 }
 body .App .cssdashboard .cssproblems .container .problem {
   cursor: pointer;
-  margin: 20px 10px;
+  margin: 15px 10px;
   width: 300px;
   height: 225px;
   position: relative;
@@ -814,6 +814,43 @@ body .App .homepage .herobanner .content .shapes-container .shapes .shape.shape-
 body .App .homepage .leaderboard-container {
   background: var(--main-bg);
   padding: 30px 60px;
+}
+body .App .homepage .leaderboard-container .loading-leaderboard-wrapper {
+  display: flex;
+  align-items: center;
+}
+body .App .homepage .leaderboard-container .loading-leaderboard-wrapper div {
+  align-items: center;
+  border: 4px solid var(--color-success);
+  border-radius: 50%;
+  border-top-color: transparent;
+  border-bottom-color: transparent;
+  position: relative;
+  display: flex;
+  height: 130px;
+  width: 130px;
+  margin: 0 auto;
+}
+body .App .homepage .leaderboard-container .loading-leaderboard-wrapper svg {
+  margin: 0 auto;
+  overflow: hidden;
+  width: 80%;
+  height: 60%;
+}
+body .App .homepage .leaderboard-container .loading-leaderboard-wrapper #wave {
+  stroke: var(--color-success);
+  stroke-dasharray: 0 16 101 16;
+  animation: moveTheWave 2600ms linear infinite;
+}
+@keyframes moveTheWave {
+  0% {
+    stroke-dashoffset: 0;
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    stroke-dashoffset: -133;
+    transform: translate3d(-90px, 0, 0);
+  }
 }
 body .App .homepage .leaderboard-container .header {
   text-align: center;

@@ -161,6 +161,49 @@
         background: var(--main-bg);
         padding: 30px 60px;
 
+        & .loading-leaderboard-wrapper {
+            display: flex;
+            align-items: center;
+            $outline-width: 4px;
+            div {
+                align-items: center;
+                border: $outline-width solid var(--color-success);
+                border-radius: 50%;
+                border-top-color: transparent;
+                border-bottom-color: transparent;
+                position: relative;
+                display: flex;
+                height: 130px;
+                width: 130px;
+                margin: 0 auto;
+                // color: rgb(209, 17, 73);
+            }
+
+            svg {
+                margin: 0 auto;
+                overflow: hidden;
+                width: 80%;
+                height: 60%;
+            }
+
+            #wave {
+                stroke: var(--color-success);
+                stroke-dasharray: 0 16 101 16;
+                animation: moveTheWave 2600ms linear infinite;
+            }
+
+            @keyframes moveTheWave {
+                0% {
+                    stroke-dashoffset: 0;
+                    transform: translate3d(0, 0, 0);
+                }
+                100% {
+                    stroke-dashoffset: -133;
+                    transform: translate3d(-90px, 0, 0);
+                }
+            }
+        }
+
         & .header {
             text-align: center;
             color: var(--bold-color);

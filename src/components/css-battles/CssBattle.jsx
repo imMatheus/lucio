@@ -7,7 +7,7 @@ import { v4 as uuidv4 } from 'uuid'
 import html2canvas from 'html2canvas'
 import EditorComponent from './EditorComponent'
 import { db, auth } from '../../firebase'
-import { FormatListNumberedRtlSharp } from '@material-ui/icons'
+
 import Pixelmatch from 'pixelmatch'
 
 const CssBattle = ({ problem }) => {
@@ -21,7 +21,6 @@ const CssBattle = ({ problem }) => {
     const solutionRef = useRef(null)
     const outputContainerRef = useRef(null)
     const [isHoveringOverIframe, setIsHoveringOverIframe] = useState(false)
-    const [submissions, setSubmissions] = useState(null)
     const [loading, setLoading] = useState(false)
     const [highScore, setHighScore] = useState({ score: 0, percentage: 0, characters: 0 })
     const [lastScore, setLastScore] = useState({ score: 0, percentage: 0, characters: 0 })
@@ -32,11 +31,6 @@ const CssBattle = ({ problem }) => {
         .child('submissions')
 
     useEffect(() => {
-        dbSubmissionsRef.on('value', (snapshot) => {
-            const css = snapshot.val()
-            // console.log(css)
-            setSubmissions(css)
-        })
         const user = auth.currentUser // get user
         if (!user) return // return if we don't have a user
 
@@ -151,29 +145,31 @@ const CssBattle = ({ problem }) => {
         if (!iframeRef.current) return
 
         const html = iframeRef.current.contentWindow.document.querySelector('html')
-        html.style.width = '400'
-        html.style.height = '300'
+
+        html.style.width = '400px'
+        html.style.height = '300px'
         html.style.display = 'block'
         html.style.overflow = 'hidden'
 
         var img1
         await html2canvas(html).then(async function (canvas) {
-            canvas.style.width = '400'
-            canvas.style.height = '300'
+            canvas.style.width = '400px'
+            canvas.style.height = '300px'
             var target = new Image()
             target.width = '400'
-            target.intrinsicsize = '250 x 200'
+            // target.intrinsicsize = '250 x 200'
             target.height = '300'
             target.style.width = '400px'
             target.style.height = '300px'
             target.src = canvas.toDataURL()
             const childNodes = outputContainerRef.current.childNodes
             while (childNodes.length > 1) {
-                // removing prev nodes
+                // removing previous nodes
                 outputContainerRef.current.removeChild(childNodes[1])
             }
             outputContainerRef.current.appendChild(target)
             await htmlToImage.toPixelData(target).then(function (pixels) {
+                console.log(pixels)
                 img1 = pixels
             })
         })
@@ -181,6 +177,7 @@ const CssBattle = ({ problem }) => {
         var img2
         await htmlToImage.toPixelData(solutionRef.current).then(function (pixels) {
             img2 = pixels
+            console.log(pixels)
         })
 
         const width = 400
@@ -192,6 +189,7 @@ const CssBattle = ({ problem }) => {
         console.log(diff)
         let characters = characterCount
         let percentage = 100 * (1 - diff / (width * height))
+        console.log(percentage)
         let score = getScore(characters, percentage)
 
         percentage = Math.round(percentage * 10) / 10 // rounding percentage to one decimal
@@ -216,6 +214,7 @@ const CssBattle = ({ problem }) => {
         // })
         if (score > highScore.score) {
             setHighScore({ score: score, percentage: percentage, characters: characters })
+            // update database
             dbSubmissionsRef.child(userUID).set({
                 email: user.email,
                 score: score,
