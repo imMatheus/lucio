@@ -1,7 +1,7 @@
 .form {
-    @import './form/monako.scss';
+    @import './form/monaco.scss';
     @import './form/question.scss';
-    @import './form/webframe.scss';
+
     // removing the scrollbar on windows
     ::-webkit-scrollbar {
         -webkit-appearance: none;

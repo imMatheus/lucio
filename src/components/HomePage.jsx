@@ -81,6 +81,7 @@ const HomePage = () => {
                         </div>
                     </>
                 ) : (
+                    // loader if we don't have leaderboard
                     <LoadingLeaderBoard />
                 )}
             </div>

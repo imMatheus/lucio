@@ -6,7 +6,7 @@ import CodeCompileView from './CodeCompileView'
 import { generateJavascript, javascriptPrint } from '../../functions/generateJavascript'
 import { generatePython, pythonPrint } from '../../functions/generatePython'
 // https://www.npmjs.com/package/@monaco-editor/react
-const Monako = ({ mref, setCurrentCode, currentCode, problem }) => {
+const Monaco = ({ mref, setCurrentCode, currentCode, problem }) => {
     const monaco = useMonaco()
     const editorRef = useRef(null)
     const [fetchingData, setFetchingData] = useState(false)
@@ -134,9 +134,9 @@ const Monako = ({ mref, setCurrentCode, currentCode, problem }) => {
 
     const runCodeHandler = async () => {
         // returning early if we are fetching data
-        // otherwise the run button can be spammed cuasing errors
+        // otherwise the run button can be spammed causing errors
         if (fetchingData) return
-        // if dont have a file for what ever reason we don't whant to precced
+        // if don't have a file for what ever reason we don't want to precede
         if (!file) return
         setCurrentCode(editorRef?.current?.getValue())
         // a sleep function that blocks code from running for 'ms' millisecs
@@ -237,7 +237,7 @@ const Monako = ({ mref, setCurrentCode, currentCode, problem }) => {
     )
 }
 
-export default Monako
+export default Monaco
 
 // { token: '', foreground: '61afef' }, //everything
 //                     { token: 'invalid', foreground: '00ff00' },

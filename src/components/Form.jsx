@@ -1,14 +1,14 @@
 import React, { useRef, useState } from 'react'
+import useLocalStorage from '../hooks/useLocalStorage'
 import Question from './form/Question'
-import Monako from './form/Monako'
-// import WebFrame from './form/WebFrame'
+import Monaco from './form/Monaco'
+
 const Form = ({ problem }) => {
     const resizeBarRef = useRef(null)
     const questionRef = useRef(null)
     const editorRef = useRef(null)
-    // const frameRef = useRef(null)
 
-    const [currentCode, setCurrentCode] = useState('')
+    const [currentCode, setCurrentCode] = useLocalStorage('code', '')
 
     let isDragging = false
 
@@ -46,7 +46,7 @@ const Form = ({ problem }) => {
                     <span></span>
                 </div>
             </div>
-            <Monako
+            <Monaco
                 mref={editorRef}
                 setCurrentCode={setCurrentCode}
                 currentCode={currentCode}

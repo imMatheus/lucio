@@ -10,7 +10,7 @@ const CssDashboard = () => {
             <Switch>
                 {cssProblems?.map((problem) => {
                     return (
-                        <Route key={uuidv4()} exact='true' path={`/css/play/${problem.target}`}>
+                        <Route key={uuidv4()} exact path={`/css/play/${problem.target}`}>
                             <CssArena problem={problem} />
                         </Route>
                     )

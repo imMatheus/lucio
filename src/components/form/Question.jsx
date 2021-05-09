@@ -42,113 +42,89 @@ const Question = ({ qref, problem }) => {
             <div className='content'>
                 {description && (
                     <div className='content-subpart'>
-                        <>
-                            <div className='bold'>Problem description</div>
-                            <p>{parse(description)}</p>
-                        </>
+                        <div className='bold'>Problem description</div>
+                        <p>{parse(description)}</p>
                     </div>
                 )}
                 {inputFormat && (
                     <div className='content-subpart'>
-                        <>
-                            <div className='bold'>Input format</div>
-                            <p>{parse(inputFormat)}</p>
-                        </>
+                        <div className='bold'>Input format</div>
+                        <p>{parse(inputFormat)}</p>
                     </div>
                 )}
                 {output && (
                     <div className='content-subpart'>
-                        <>
-                            <div className='bold'>Output</div>
-                            <p>{parse(output)}</p>
-                        </>
+                        <div className='bold'>Output</div>
+                        <p>{parse(output)}</p>
                     </div>
                 )}
 
                 {constrains && (
                     <div className='content-subpart'>
-                        <>
-                            <div className='bold'>Constrains</div>
-                            <div>
-                                {constrains.map((constrain) => (
-                                    <p key={uuidv4()} className='bulletpoint'>
-                                        {parse(constrain)}
-                                    </p>
-                                ))}
-                            </div>
-                        </>
+                        <div className='bold'>Constrains</div>
+                        <div>
+                            {constrains.map((constrain) => (
+                                <p key={uuidv4()} className='bulletpoint'>
+                                    {parse(constrain)}
+                                </p>
+                            ))}
+                        </div>
                     </div>
                 )}
 
                 {/* do we have testCase? */}
                 {testCases &&
                     // render it
-                    testCases.map(
-                        (testCase) => (
-                            <>
-                                {testCase.input && (
-                                    <div key={uuidv4()} className='content-subpart'>
-                                        <div className='bold'>Sample inputs</div>
-                                        <div className='inputs'>
-                                            {testCase.input.map((input) => (
-                                                <div key={uuidv4()}>{parse(input.toString())}</div>
-                                            ))}
-                                        </div>
+                    testCases.map((testCase) => (
+                        <>
+                            {testCase.input && (
+                                <div key={uuidv4()} className='content-subpart'>
+                                    <div className='bold'>Sample inputs</div>
+                                    <div className='inputs'>
+                                        {testCase.input.map((input) => (
+                                            <div key={uuidv4()}>{parse(input.toString())}</div>
+                                        ))}
                                     </div>
-                                )}
-                                {testCase.output && (
-                                    <div key={uuidv4()} className='content-subpart'>
-                                        <div className='bold'>Sample output</div>
-                                        <div className='inputs'>
-                                            {testCase.output.map((output) => (
-                                                <div key={uuidv4()}>{parse(output.toString())}</div>
-                                            ))}
-                                        </div>
+                                </div>
+                            )}
+                            {testCase.output && (
+                                <div key={uuidv4()} className='content-subpart'>
+                                    <div className='bold'>Sample output</div>
+                                    <div className='inputs'>
+                                        {testCase.output.map((output) => (
+                                            <div key={uuidv4()}>{parse(output.toString())}</div>
+                                        ))}
                                     </div>
-                                )}
-                                {testCase.explanation && (
-                                    <div className='content-subpart'>
-                                        {testCase.explanation.text && (
-                                            <>
-                                                <div className='bold'>Explanation</div>
+                                </div>
+                            )}
+                            {testCase.explanation && (
+                                <div className='content-subpart'>
+                                    {testCase.explanation.text && (
+                                        <>
+                                            <div className='bold'>Explanation</div>
 
-                                                <p>{parse(testCase.explanation.text.toString())}</p>
+                                            <p>{parse(testCase.explanation.text.toString())}</p>
 
-                                                {testCase.explanation.explanationOutput && (
-                                                    <div className='inputs'>
-                                                        {testCase.explanation.explanationOutput.map(
-                                                            (output) => (
-                                                                <div
-                                                                    className='short-line-height'
-                                                                    key={uuidv4()}
-                                                                >
-                                                                    {parse(output.toString())}
-                                                                </div>
-                                                            )
-                                                        )}
-                                                    </div>
-                                                )}
-                                            </>
-                                        )}
-                                    </div>
-                                )}
-                            </>
-                        )
-                        // do we have an input for it?
-                        // testCase.input && (
-                        //     // render it
-
-                        //     <div className='content-subpart'>
-                        //         <div className='bold'>hallo inputs</div>
-                        //         <div className='inputs'>
-                        //             {console.log(testCase.input)}
-                        //             {testCase.input.map((input) => (
-                        //                 <div>{input}</div>
-                        //             ))}
-                        //         </div>
-                        //     </div>
-                        // )
-                    )}
+                                            {testCase.explanation.explanationOutput && (
+                                                <div className='inputs'>
+                                                    {testCase.explanation.explanationOutput.map(
+                                                        (output) => (
+                                                            <div
+                                                                className='short-line-height'
+                                                                key={uuidv4()}
+                                                            >
+                                                                {parse(output.toString())}
+                                                            </div>
+                                                        )
+                                                    )}
+                                                </div>
+                                            )}
+                                        </>
+                                    )}
+                                </div>
+                            )}
+                        </>
+                    ))}
             </div>
         </div>
     )

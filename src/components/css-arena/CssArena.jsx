@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react'
 import * as htmlToImage from 'html-to-image'
-import { useLocalStorage } from '../../hooks/useLocalStorage'
 import { generateHtmlStarterFile } from './_generateHtmlStarterFile.js'
 import { generateCssStarterFile } from './_generateCssStarterFile.js'
 import { v4 as uuidv4 } from 'uuid'
@@ -8,6 +7,7 @@ import html2canvas from 'html2canvas'
 import EditorComponent from './EditorComponent'
 import { db, auth } from '../../firebase'
 import Pixelmatch from 'pixelmatch'
+import useLocalStorage from '../../hooks/useLocalStorage'
 
 const CssArena = ({ problem }) => {
     const cssEditorRef = useRef(null)
@@ -20,8 +20,13 @@ const CssArena = ({ problem }) => {
     const outputContainerRef = useRef(null)
     const [isHoveringOverIframe, setIsHoveringOverIframe] = useState(false)
     const [loading, setLoading] = useState(false)
+    let currentCode = '<style>' + cssCode + '</style>' + htmlCode
     const [highScore, setHighScore] = useState({ score: 0, percentage: 0, characters: 0 })
-    const [lastScore, setLastScore] = useState({ score: 0, percentage: 0, characters: 0 })
+    const [lastScore, setLastScore] = useLocalStorage('lastScore', {
+        score: 0,
+        percentage: 0,
+        characters: 0,
+    })
     const dbSubmissionsRef = db
         .ref()
         .child('css')
@@ -50,7 +55,6 @@ const CssArena = ({ problem }) => {
 
     // dbSubmissionsRef.child('submissions').push({ testing: 'cool' })
     let characterCount
-    let currentCode = '<style>' + cssCode + '</style>' + htmlCode
 
     // creating a the variable that will keep track of if we
     // are dragging the resizer or not
@@ -70,13 +74,15 @@ const CssArena = ({ problem }) => {
 
     let frame = iframeRef?.current?.contentWindow?.document
     useEffect(() => {
+        console.log('hej')
+
         if (frame) {
             // this renders the code to the iframe
             frame.open()
-            frame.write(currentCode)
+            frame.write('<style>' + cssCode + '</style>' + htmlCode)
             frame.close()
         }
-    }, [frame, currentCode])
+    }, [frame, cssCode, htmlCode])
 
     // trimming all white space and line breaks from our code
     // then setting it to the 'characterCount' variable that gets displayed
@@ -224,11 +230,7 @@ const CssArena = ({ problem }) => {
                 </div>
                 <div className='editors-container'>
                     <div className='editor-fraction' ref={cssEditorRef}>
-                        <EditorComponent
-                            language='css'
-                            starterCode={generateCssStarterFile()}
-                            setter={setCssCode}
-                        />
+                        <EditorComponent language='css' starterCode={cssCode} setter={setCssCode} />
                     </div>
                     <div
                         className='editor-resizebar'
@@ -243,7 +245,7 @@ const CssArena = ({ problem }) => {
                     <div className='editor-fraction' ref={htmlEditorRef}>
                         <EditorComponent
                             language='html'
-                            starterCode={generateHtmlStarterFile()}
+                            starterCode={htmlCode}
                             setter={setHtmlCode}
                         />
                     </div>

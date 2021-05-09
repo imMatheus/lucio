@@ -130,7 +130,7 @@
             $outline-width: 4px;
             div {
                 align-items: center;
-                border: $outline-width solid var(--color-success);
+                border: $outline-width solid var(--color-mainGreen);
                 border-radius: 50%;
                 border-top-color: transparent;
                 border-bottom-color: transparent;
@@ -150,7 +150,7 @@
             }
 
             #wave {
-                stroke: var(--color-success);
+                stroke: var(--color-mainGreen);
                 stroke-dasharray: 0 16 101 16;
                 animation: moveTheWave 2600ms linear infinite;
             }

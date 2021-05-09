@@ -82,7 +82,7 @@ const EditorComponent = ({ language, setter, starterCode }) => {
         setter(value)
     }
 
-    // early return if we dont have language
+    // early return if we don't have language
     if (!language) return null
     return (
         <div className='editor-component'>
@@ -94,6 +94,7 @@ const EditorComponent = ({ language, setter, starterCode }) => {
                 onChange={handleEditorChange}
                 onMount={handleEditorDidMount}
                 defaultValue={starterCode}
+                // value={starterCode}
                 automaticLayout={true}
                 options={{
                     inherit: true,
@@ -107,10 +108,8 @@ const EditorComponent = ({ language, setter, starterCode }) => {
                     wordWrap: 'on',
                     // wordWrap: 'wordWrapColumn',
                     // wordWrapColumn: 90,
-
                     // Set this to false to not auto word wrap minified files
                     wordWrapMinified: true,
-
                     // try "same", "indent" or "none"
                     wrappingIndent: 'same',
                 }}
