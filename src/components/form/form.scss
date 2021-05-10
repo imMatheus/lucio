@@ -1,6 +1,6 @@
 .form {
-    @import './form/monaco.scss';
-    @import './form/question.scss';
+    @import 'monaco';
+    @import 'question';
 
     // removing the scrollbar on windows
     ::-webkit-scrollbar {
@@ -14,7 +14,7 @@
     .loadingspinner-wrapper-for-codecompile {
         height: 400px;
         position: relative;
-        @import './loadingspinner.scss';
+        @import '../icons/loadingspinner';
     }
 
     width: 100vw;

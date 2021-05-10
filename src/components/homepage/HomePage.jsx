@@ -1,8 +1,8 @@
 import { useEffect, useState, useRef } from 'react'
 import { Link } from 'react-router-dom'
-import { fs, db } from '../firebase'
+import { fs, db } from '../../firebase'
 // import { cssProblems } from '../css-problems/cssProblems'
-import { useAuth } from '../context/AuthContext'
+import { useAuth } from '../../context/AuthContext'
 import { v4 as uuidv4 } from 'uuid'
 
 const HomePage = () => {

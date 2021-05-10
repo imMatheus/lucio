@@ -117,13 +117,13 @@ body {
 
         // import all the style sheets for the components
         @import './components/css-arena/cssdashboard';
-        @import './components/logoicon';
-        @import './components/signup/signup';
-        @import './components/homepage';
-        @import './components/form';
+        @import './components/icons/logoicon';
+        @import './components/registration/registration.scss';
+        @import './components/homepage/homepage';
+        @import './components/form/form';
         @import './components/problemspage/problems';
         @import './components/navbar/navbar';
-        @import './components/page404';
+        @import './components/404page/page404';
     }
     .comp-nav {
         display: grid;

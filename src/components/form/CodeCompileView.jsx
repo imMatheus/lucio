@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import CloseIcon from '@material-ui/icons/Close'
 import CheckIcon from '@material-ui/icons/Check'
 import { v4 as uuidv4 } from 'uuid'
-import LogoIcon from '../LogoIcon'
+import LogoIcon from '../icons/LogoIcon'
 
 const CodeCompileView = ({ testcases, fetchingData }) => {
     const [listPointer, setListPointer] = useState(0)

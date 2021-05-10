@@ -1,9 +1,9 @@
 import React, { useRef, useState } from 'react'
-import { useAuth } from '../../context/AuthContext'
+import { useAuth } from '../../../context/AuthContext'
 import { Link, useHistory } from 'react-router-dom'
 import VisibilityIcon from '@material-ui/icons/Visibility'
 import VisibilityOffIcon from '@material-ui/icons/VisibilityOff'
-import { auth, fs } from '../../firebase'
+import { auth, fs } from '../../../firebase'
 
 import firebase from 'firebase/app'
 

@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react'
-import useLocalStorage from '../hooks/useLocalStorage'
-import Question from './form/Question'
-import Monaco from './form/Monaco'
+import useLocalStorage from '../../hooks/useLocalStorage'
+import Question from './Question'
+import Monaco from './Monaco'
 
 const Form = ({ problem }) => {
     const resizeBarRef = useRef(null)

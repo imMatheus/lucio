@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import { useAuth } from '../../context/AuthContext'
 import { useHistory } from 'react-router-dom'
-import LogoIcon from '../LogoIcon'
+import LogoIcon from '../icons/LogoIcon'
 
 import { useState, useEffect } from 'react'
 import { fs } from '../../firebase'
