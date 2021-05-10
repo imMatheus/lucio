@@ -21,7 +21,6 @@ export const AuthProvider = ({ children }) => {
         try {
             await auth.createUserWithEmailAndPassword(email, password)
         } catch (error) {
-            console.log('error', error)
             return error
         }
         await usersNamesRef.set({
@@ -44,8 +43,12 @@ export const AuthProvider = ({ children }) => {
     function logout() {
         return auth.signOut()
     }
-    function resetPassword(email) {
-        return auth.sendPasswordResetEmail(email)
+    async function resetPassword(email) {
+        try {
+            await auth.sendPasswordResetEmail(email)
+        } catch (error) {
+            return error
+        }
     }
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged((user) => {
@@ -60,7 +63,6 @@ export const AuthProvider = ({ children }) => {
         userRef.on('value', async (snapshot) => {
             let leaderBoardObj = {} // used to sweep thru the submissions and store all the users submissions
             let problems = snapshot.val()
-            console.log(problems)
             problems?.forEach((problem) => {
                 // looping threw all the problems
                 const submissions = problem.submissions
@@ -105,7 +107,7 @@ export const AuthProvider = ({ children }) => {
                 if (leaderBoardObj[uid]) {
                     leaderBoardArr.push({
                         uid: uid,
-                        score: Math.round(leaderBoardObj[uid].score * 10) / 10, // rounds to one decimal
+                        score: Math.round(leaderBoardObj[uid].score * 100) / 100, // rounds to two decimal
                         targets: leaderBoardObj[uid].targets,
                     })
                 }
@@ -114,6 +116,7 @@ export const AuthProvider = ({ children }) => {
             leaderBoardArr = quickSortBasic(leaderBoardArr)
 
             let dummyHolder = []
+
             for (let i = 0; i < leaderBoardArr.length; i++) {
                 // getting the user from firestore and storing user details in
                 const response = fs.collection('users').doc(leaderBoardArr[i].uid)
@@ -130,7 +133,7 @@ export const AuthProvider = ({ children }) => {
                     })
                 }
             }
-            console.log(dummyHolder)
+
             setLeaderboard(dummyHolder)
         })
     }, [])

@@ -1,6 +1,6 @@
 import React from 'react'
 import { auth } from '../../firebase'
-import { Route, Redirect, useLocation, useHistory } from 'react-router-dom'
+import { Route, Redirect } from 'react-router-dom'
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
     return (

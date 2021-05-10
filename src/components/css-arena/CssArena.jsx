@@ -7,7 +7,6 @@ import html2canvas from 'html2canvas'
 import EditorComponent from './EditorComponent'
 import { db, auth } from '../../firebase'
 import Pixelmatch from 'pixelmatch'
-import useLocalStorage from '../../hooks/useLocalStorage'
 import useSessionStorage from '../../hooks/useSessionStorage'
 
 const CssArena = ({ problem }) => {
@@ -127,7 +126,7 @@ const CssArena = ({ problem }) => {
         per = 600 * changeFactor * (per / 100)
         const scoreAddOn = Math.max(changeFactor * PER_MODIFIER * (650 - charCount), 0)
         const score = per + scoreAddOn
-        return Math.round(score * 10) / 10 // round down to one decimal
+        return Math.round(score * 100) / 100 // round down to two decimal
     }
     const compareIframeAndImage = async () => {
         if (!iframeRef.current) return
@@ -175,7 +174,7 @@ const CssArena = ({ problem }) => {
         let characters = characterCount
         let percentage = 100 * (1 - diff / (width * height))
         let score = getScore(characters, percentage)
-        percentage = Math.round(percentage * 10) / 10 // rounding percentage to one decimal
+        percentage = Math.round(percentage * 100) / 100 // rounding percentage to two decimal
         return { score, percentage, characters }
     }
     const submitClickedHandler = async () => {

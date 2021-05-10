@@ -17,7 +17,7 @@ const Monaco = ({ mref, setCurrentCode, currentCode, problem }) => {
         .filter((word) => word !== '')
         .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
         .join('')
-    const [files, setFiles] = useState({
+    const files = {
         'script.js': {
             name: 'script.js',
             language: 'javascript',
@@ -28,20 +28,8 @@ const Monaco = ({ mref, setCurrentCode, currentCode, problem }) => {
             language: 'python',
             value: generatePython(displayProblemName, problemInputs),
         },
-    })
+    }
 
-    const [defaultValue, setDefaultValue] = useState({
-        'script.js': {
-            name: 'script.js',
-            language: 'javascript',
-            value: generateJavascript(displayProblemName, problemInputs),
-        },
-        'script.py': {
-            name: 'script.py',
-            language: 'python',
-            value: generatePython(displayProblemName, problemInputs),
-        },
-    })
     const sampleCases = problem.sampleCases
     const [testCases, setTestCases] = useState([])
     const [fileName, setFileName] = useState('script.js')
@@ -118,18 +106,6 @@ const Monaco = ({ mref, setCurrentCode, currentCode, problem }) => {
     const handleEditorDidMount = (editor) => {
         editorRef.current = editor
         setCurrentCode(editorRef?.current?.getValue())
-        setDefaultValue({
-            'script.js': {
-                name: 'script.js',
-                language: 'javascript',
-                value: generateJavascript(displayProblemName, problemInputs),
-            },
-            'script.py': {
-                name: 'script.py',
-                language: 'python',
-                value: generatePython(displayProblemName, problemInputs),
-            },
-        })
     }
 
     const runCodeHandler = async () => {

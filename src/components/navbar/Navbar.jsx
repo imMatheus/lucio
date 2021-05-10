@@ -6,7 +6,7 @@ import LogoIcon from '../icons/LogoIcon'
 import { useState, useEffect } from 'react'
 import { fs } from '../../firebase'
 const Navbar = ({ isDarkMode, setIsDarkMode }) => {
-    const { currentUser, logout } = useAuth()
+    const { currentUser, logout, leaderboard } = useAuth()
     const history = useHistory()
     const [userData, setUserData] = useState()
     const fetchUser = async (user) => {
@@ -15,19 +15,24 @@ const Navbar = ({ isDarkMode, setIsDarkMode }) => {
         const data = await response.get()
         setUserData(data.data())
     }
+
     useEffect(() => {
         if (currentUser) {
             fetchUser(currentUser)
-            console.log('1')
-
-            console.log(userData)
+            const userUid = currentUser.uid
+            console.log(userUid)
+            for (const user in leaderboard) {
+                if (leaderboard[user].userUID === userUid) {
+                    console.log(user)
+                    currentUser.score = leaderboard[user].score
+                    currentUser.targets = leaderboard[user].targets
+                }
+                console.log(user)
+            }
         } else {
             setUserData(null)
-            console.log('2')
-
-            console.log(userData)
         }
-    }, [currentUser])
+    }, [currentUser, leaderboard])
     const logoutHandler = async () => {
         console.log('3')
         console.log(userData)
@@ -42,9 +47,7 @@ const Navbar = ({ isDarkMode, setIsDarkMode }) => {
             }
         }
     }
-    const toogleThemeHandler = () => {
-        setIsDarkMode(!isDarkMode)
-    }
+
     return (
         <div className='navbar'>
             <Link exact='true' to='/'>
@@ -66,36 +69,37 @@ const Navbar = ({ isDarkMode, setIsDarkMode }) => {
                 <Link exact='true' to='/css/problems'>
                     Css
                 </Link>
-                {currentUser && <p>Email: {currentUser.email}</p>}
             </div>
-            {currentUser ? (
-                <div className='navbar-right'>
-                    {/* <div
-                    className={isDarkMode ? 'dark-theme-toogler dark' : 'dark-theme-toogler light'}
-                    onClick={toogleThemeHandler}
-                >
-                    <NightsStayIcon /> <WbSunnyIcon />
-                    <div className='theme-btn'></div>
-                </div> */}
+            <div className='navbar-right'>
+                {currentUser ? (
+                    <>
+                        <div className='account'>
+                            <div className='info'>
+                                <h2>{currentUser?.displayName}</h2>
+                                <p>{`${currentUser?.score || 0} (${
+                                    currentUser?.targets || 0
+                                } targets)`}</p>
+                            </div>
+                            <Link exact='true' to='/login'>
+                                <div
+                                    className='profileImage'
+                                    style={{
+                                        backgroundImage: `url(${userData?.profileImage})`,
+                                    }}
+                                ></div>
+                            </Link>
+                        </div>
 
-                    <div className='outline-btn' onClick={logoutHandler}>
-                        Log Out
-                    </div>
-
-                    <Link exact='true' to='/login'>
-                        <div
-                            className='account'
-                            style={{
-                                backgroundImage: `url(${userData?.profileImage})`,
-                            }}
-                        ></div>
+                        <div className='outline-btn' onClick={logoutHandler}>
+                            Log Out
+                        </div>
+                    </>
+                ) : (
+                    <Link className='outline-btn' exact='true' to='/login'>
+                        Login
                     </Link>
-                </div>
-            ) : (
-                <Link exact='true' to='/login'>
-                    Login
-                </Link>
-            )}
+                )}
+            </div>
         </div>
     )
 }

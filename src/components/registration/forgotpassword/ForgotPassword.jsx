@@ -17,11 +17,15 @@ const Login = () => {
             setError('')
             setLoading(true)
             console.log('33')
-            await resetPassword(emailRef.current.value)
+            const response = await resetPassword(emailRef.current.value)
+            if (response) {
+                setLoading(false)
+                return setError('Failed to reset password, ' + response.message)
+            }
             setMessage('Check your email to reset password')
         } catch (error) {
             console.log('hej')
-            setError('failed to reset password')
+            setError('Failed to reset password')
         }
         setLoading(false)
     }
@@ -38,7 +42,8 @@ const Login = () => {
                     <p className='subtitle'>
                         Or do you not already have an account? <Link to='/signup'> Sing Up</Link>
                     </p>
-                    {error && <h3>{error}</h3>}
+                    {message && <div className='userMessage success'>{message}</div>}
+                    {error && <div className='userMessage error'>{error}</div>}
 
                     <div className='input-container'>
                         <input

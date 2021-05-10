@@ -1,4 +1,3 @@
-import { cssProblems } from '../../css-problems/cssProblems.js'
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { db } from '../../firebase'
@@ -7,14 +6,14 @@ import { v4 as uuidv4 } from 'uuid'
 const CssProblems = () => {
     const cssRef = db.ref('css')
     const [cssProblemsArray, setCssProblemsArray] = useState(null)
-    let cssId
+    // let cssId
     useEffect(() => {
         cssRef.on('value', (snapshot) => {
             const css = snapshot.val()
             let cssList = []
             for (let id in css) {
                 cssList.push(css[id])
-                if (!cssId) cssId = id
+                // if (!cssId) cssId = id
             }
 
             setCssProblemsArray(cssList)

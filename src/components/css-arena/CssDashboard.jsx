@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { Switch, Route } from 'react-router-dom'
 import CssArena from './CssArena'
 import CssProblems from './CssProblems'
 import { cssProblems } from '../../css-problems/cssProblems.js'
