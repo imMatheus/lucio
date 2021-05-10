@@ -68,7 +68,7 @@ const Navbar = ({ isDarkMode, setIsDarkMode }) => {
                 </Link>
                 {currentUser && <p>Email: {currentUser.email}</p>}
             </div>
-            {currentUser && (
+            {currentUser ? (
                 <div className='navbar-right'>
                     {/* <div
                     className={isDarkMode ? 'dark-theme-toogler dark' : 'dark-theme-toogler light'}
@@ -81,6 +81,7 @@ const Navbar = ({ isDarkMode, setIsDarkMode }) => {
                     <div className='outline-btn' onClick={logoutHandler}>
                         Log Out
                     </div>
+
                     <Link exact='true' to='/login'>
                         <div
                             className='account'
@@ -90,6 +91,10 @@ const Navbar = ({ isDarkMode, setIsDarkMode }) => {
                         ></div>
                     </Link>
                 </div>
+            ) : (
+                <Link exact='true' to='/login'>
+                    Login
+                </Link>
             )}
         </div>
     )

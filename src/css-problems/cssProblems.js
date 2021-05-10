@@ -134,16 +134,19 @@ export const cssProblems = [
         image: image22,
         colors: [' #1d3557', '#e63946', '#f1faee'],
     },
-    //submissions
 ]
 
 const userRef = db.ref('css')
-userRef.on('value', async (snapshot) => {
-    const value = snapshot.val()
-    console.log(value)
-    userRef.set({ ...value })
-})
+// userRef.on('value', async (snapshot) => {
+//     const value = snapshot.val()
+//     console.log(value)
+// })
 // db.ref('css').set(cssProblems)
+// db.ref('css').push({
+//     target: 22,
+//     image: image15,
+//     colors: [' #275654', '#65b891', '#4e878c'],
+// })
 // userRef.update(
 //     target: 22,
 //     image: image15,

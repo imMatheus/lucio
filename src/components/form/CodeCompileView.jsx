@@ -34,7 +34,7 @@ const CodeCompileView = ({ testcases, fetchingData }) => {
             <div className='CodeCompileView-wrapper'>
                 {fetchingData ? (
                     <div className='loadingspinner-wrapper-for-codecompile'>
-                        <LogoIcon spinn={true} loader={true} />
+                        <LogoIcon spin={true} loader={true} />
                     </div>
                 ) : (
                     testcases.length > 0 && (

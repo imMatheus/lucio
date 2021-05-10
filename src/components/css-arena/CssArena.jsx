@@ -12,8 +12,14 @@ import useLocalStorage from '../../hooks/useLocalStorage'
 const CssArena = ({ problem }) => {
     const cssEditorRef = useRef(null)
     const htmlEditorRef = useRef(null)
-    const [cssCode, setCssCode] = useLocalStorage('cssCode', generateCssStarterFile())
-    const [htmlCode, setHtmlCode] = useLocalStorage('htmlCode', generateHtmlStarterFile())
+    const [cssCode, setCssCode] = useLocalStorage(
+        `${problem.target}-cssCode`,
+        generateCssStarterFile()
+    )
+    const [htmlCode, setHtmlCode] = useLocalStorage(
+        `${problem.target}-htmlCode`,
+        generateHtmlStarterFile()
+    )
     const iframeContainerRef = useRef(null)
     const iframeRef = useRef(null)
     const solutionRef = useRef(null)
@@ -22,7 +28,7 @@ const CssArena = ({ problem }) => {
     const [loading, setLoading] = useState(false)
     let currentCode = '<style>' + cssCode + '</style>' + htmlCode
     const [highScore, setHighScore] = useState({ score: 0, percentage: 0, characters: 0 })
-    const [lastScore, setLastScore] = useLocalStorage('lastScore', {
+    const [lastScore, setLastScore] = useLocalStorage(`${problem.target}-lastScore`, {
         score: 0,
         percentage: 0,
         characters: 0,
