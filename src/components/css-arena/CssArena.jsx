@@ -204,24 +204,11 @@ const CssArena = ({ problem }) => {
                 percentage: percentage,
                 characters: characters,
                 userId: userUID,
+                code: currentCode,
             })
         }
         console.log(auth.currentUser)
-        function HexCode(color) {
-            const rgba = color.replace(/^rgba?\(|\s+|\)$/g, '').split(',')
-            const hex = `#${(
-                (1 << 24) +
-                (parseInt(rgba[0]) << 16) +
-                (parseInt(rgba[1]) << 8) +
-                parseInt(rgba[2])
-            )
-                .toString(16)
-                .slice(1)}`
 
-            return hex
-        }
-
-        console.log(HexCode('rgba(201,25,255,0.1)'))
         setLoading(false)
     }
 
