@@ -8,15 +8,16 @@ import EditorComponent from './EditorComponent'
 import { db, auth } from '../../firebase'
 import Pixelmatch from 'pixelmatch'
 import useLocalStorage from '../../hooks/useLocalStorage'
+import useSessionStorage from '../../hooks/useSessionStorage'
 
 const CssArena = ({ problem }) => {
     const cssEditorRef = useRef(null)
     const htmlEditorRef = useRef(null)
-    const [cssCode, setCssCode] = useLocalStorage(
+    const [cssCode, setCssCode] = useSessionStorage(
         `${problem.target}-cssCode`,
         generateCssStarterFile()
     )
-    const [htmlCode, setHtmlCode] = useLocalStorage(
+    const [htmlCode, setHtmlCode] = useSessionStorage(
         `${problem.target}-htmlCode`,
         generateHtmlStarterFile()
     )
@@ -28,7 +29,7 @@ const CssArena = ({ problem }) => {
     const [loading, setLoading] = useState(false)
     let currentCode = '<style>' + cssCode + '</style>' + htmlCode
     const [highScore, setHighScore] = useState({ score: 0, percentage: 0, characters: 0 })
-    const [lastScore, setLastScore] = useLocalStorage(`${problem.target}-lastScore`, {
+    const [lastScore, setLastScore] = useSessionStorage(`${problem.target}-lastScore`, {
         score: 0,
         percentage: 0,
         characters: 0,
@@ -54,6 +55,8 @@ const CssArena = ({ problem }) => {
                     score: userData.score,
                     percentage: userData.percentage,
                     characters: userData.characters,
+                    cssCode: userData.cssCode,
+                    htmlCode: userData.htmlCode,
                 })
             }
         })
@@ -80,8 +83,6 @@ const CssArena = ({ problem }) => {
 
     let frame = iframeRef?.current?.contentWindow?.document
     useEffect(() => {
-        console.log('hej')
-
         if (frame) {
             // this renders the code to the iframe
             frame.open()
@@ -206,6 +207,27 @@ const CssArena = ({ problem }) => {
         setLoading(false)
     }
 
+    const loadHighScoreCode = () => {
+        setLoading(true)
+        const user = auth.currentUser
+        const userUID = user.uid
+        const dbRef = dbSubmissionsRef.child(userUID)
+        dbRef
+            .get()
+            .then((snapshot) => {
+                if (snapshot.exists()) {
+                    const response = snapshot.val()
+                    console.log(response)
+                    setCssCode(response.cssCode)
+                    setHtmlCode(response.htmlCode)
+                }
+            })
+            .catch((error) => {
+                console.error(error)
+            })
+        setLoading(false)
+    }
+
     return (
         <div className='cssarena'>
             <div className='editor'>
@@ -262,6 +284,9 @@ const CssArena = ({ problem }) => {
                         onClick={submitClickedHandler}
                     >
                         Submit <span></span>
+                    </button>
+                    <button className='submit-btn' onClick={loadHighScoreCode}>
+                        Load HS Code<span></span>
                     </button>
                 </div>
                 <div className='userScoreBoard-wrapper'>

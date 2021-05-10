@@ -6,7 +6,6 @@ import { v4 as uuidv4 } from 'uuid'
 
 const CssProblems = () => {
     const cssRef = db.ref('css')
-    console.log(db.ref('css'))
     const [cssProblemsArray, setCssProblemsArray] = useState(null)
     let cssId
     useEffect(() => {
@@ -27,7 +26,6 @@ const CssProblems = () => {
             <div className='container'>
                 {cssProblemsArray &&
                     cssProblemsArray.map((problem) => {
-                        console.log(problem)
                         return (
                             <Problem
                                 key={uuidv4()}
