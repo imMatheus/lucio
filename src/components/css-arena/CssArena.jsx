@@ -156,7 +156,6 @@ const CssArena = ({ problem }) => {
             }
             outputContainerRef.current.appendChild(target)
             await htmlToImage.toPixelData(target).then(function (pixels) {
-                console.log(pixels)
                 img1 = pixels
             })
         })
@@ -164,7 +163,6 @@ const CssArena = ({ problem }) => {
         var img2
         await htmlToImage.toPixelData(solutionRef.current).then(function (pixels) {
             img2 = pixels
-            console.log(pixels)
         })
 
         const width = 400
@@ -173,12 +171,9 @@ const CssArena = ({ problem }) => {
             threshold: 0.02,
             /* options */
         })
-        console.log(diff)
         let characters = characterCount
         let percentage = 100 * (1 - diff / (width * height))
-        console.log(percentage)
         let score = getScore(characters, percentage)
-
         percentage = Math.round(percentage * 10) / 10 // rounding percentage to one decimal
         return { score, percentage, characters }
     }
@@ -188,9 +183,7 @@ const CssArena = ({ problem }) => {
         setLoading(true)
 
         let { score, percentage, characters } = await compareIframeAndImage()
-        console.log(score)
-        console.log(percentage)
-        console.log(characters)
+
         setLastScore({ score: score, percentage: percentage, characters: characters })
 
         const userUID = user.uid
@@ -204,7 +197,8 @@ const CssArena = ({ problem }) => {
                 percentage: percentage,
                 characters: characters,
                 userId: userUID,
-                code: currentCode,
+                cssCode: cssCode,
+                htmlCode: htmlCode,
             })
         }
         console.log(auth.currentUser)

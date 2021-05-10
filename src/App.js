@@ -11,6 +11,7 @@ import CssDashboard from './components/css-arena/CssDashboard'
 import Signup from './components/registration/signup/Signup'
 import Login from './components/registration/login/Login'
 import ForgotPassword from './components/registration/forgotpassword/ForgotPassword'
+import PrivateRoute from './components/routes/PrivateRoute'
 import { AuthProvider } from './context/AuthContext'
 import { v4 as uuidv4 } from 'uuid'
 
@@ -44,15 +45,12 @@ function App() {
                         <Route exact path='/css/*'>
                             <CssDashboard />
                         </Route>
-                        <Route exact path='/signup'>
-                            <Signup />
-                        </Route>
-                        <Route exact path='/login'>
-                            <Login />
-                        </Route>
-                        <Route exact path='/forgot-password'>
-                            <ForgotPassword />
-                        </Route>
+                        <PrivateRoute exact path='/signup' component={Signup} />
+
+                        <PrivateRoute exact path='/login' component={Login} />
+
+                        <PrivateRoute exact path='/forgot-password' component={ForgotPassword} />
+
                         <Route>
                             <Page404 />
                         </Route>

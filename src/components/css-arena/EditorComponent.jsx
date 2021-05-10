@@ -67,6 +67,13 @@ const EditorComponent = ({ language, setter, starterCode }) => {
             })
             monaco.editor.setTheme('myCustomTheme')
         }
+        fetch('/themes/Monokai.json')
+            .then((data) => data.json())
+            .then((data) => {
+                console.log(data)
+                monaco.editor.defineTheme('monokai', data)
+                monaco.editor.setTheme('monokai')
+            })
     }, [monaco])
 
     function handleEditorDidMount(editor) {
