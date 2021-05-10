@@ -56,9 +56,11 @@ export const AuthProvider = ({ children }) => {
     }, [])
     useEffect(() => {
         const userRef = db.ref('css')
+
         userRef.on('value', async (snapshot) => {
             let leaderBoardObj = {} // used to sweep thru the submissions and store all the users submissions
             let problems = snapshot.val()
+            console.log(problems)
             problems?.forEach((problem) => {
                 // looping threw all the problems
                 const submissions = problem.submissions

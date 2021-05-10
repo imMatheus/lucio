@@ -59,17 +59,17 @@ const CssArena = ({ problem }) => {
     // creating a the variable that will keep track of if we
     // are dragging the resizer or not
     // and initialing it to false as we are not dragging at first
-    let isDragingEditorResizer = false
+    let isDraggingEditorResizer = false
     document.addEventListener('mousemove', function (e) {
         // Don't do anything if we are not dragging
-        if (!isDragingEditorResizer) {
+        if (!isDraggingEditorResizer) {
             return
         }
         cssEditorRef.current.style.height = Math.max(e.clientY - 163, 40) + 'px'
     })
     document.addEventListener('mouseup', function () {
         // Turn off dragging flag when user mouse is up
-        isDragingEditorResizer = false
+        isDraggingEditorResizer = false
     })
 
     let frame = iframeRef?.current?.contentWindow?.document
@@ -117,11 +117,8 @@ const CssArena = ({ problem }) => {
         // const PER_MODIFIER = 1
         const PER_MODIFIER = 0.16
         const changeFactor = (per / 100) ** 2
-        console.log(changeFactor)
         per = 600 * changeFactor * (per / 100)
         const scoreAddOn = Math.max(changeFactor * PER_MODIFIER * (650 - charCount), 0)
-        console.log(scoreAddOn)
-        console.log(per)
         const score = per + scoreAddOn
         return Math.round(score * 10) / 10 // round down to one decimal
     }
@@ -234,7 +231,7 @@ const CssArena = ({ problem }) => {
                     </div>
                     <div
                         className='editor-resizebar'
-                        onMouseDown={() => (isDragingEditorResizer = true)}
+                        onMouseDown={() => (isDraggingEditorResizer = true)}
                     >
                         <div className='dots-container'>
                             <span></span>

@@ -27,12 +27,13 @@ const CssProblems = () => {
             <div className='container'>
                 {cssProblemsArray &&
                     cssProblemsArray.map((problem) => {
+                        console.log(problem)
                         return (
                             <Problem
                                 key={uuidv4()}
                                 target={problem.target}
                                 image={problem.image}
-                                submissions={problem.submissions.length}
+                                submissions={problem.submissions?.length}
                             />
                         )
                     })}

@@ -1489,8 +1489,9 @@ body .App .page404 {
   font-size: 5rem;
   font-family: var(--font-family);
   background: var(--bg);
+  text-align: center;
   color: transparent;
-  text-shadow: 0px 0px 0px #ff1053, 1px 0px 0px #ed1c5d, 2px 0px 0px #da2866, 3px 0px 0px #c83370, 4px 0px 0px #b63f7a, 5px 0px 0px #a34b83, 6px 0px 0px #91578d, 7px 0px 0px #7e6296, 8px 0px 0px #6c6ea0;
+  text-shadow: 0px 0px 0px #2a9d8f, 1px 0px 0px #42a28a, 2px 0px 0px #5aa786, 3px 0px 0px #72ac81, 4px 0px 0px #8ab17d, 5px 0px 0px #a1b578, 6px 0px 0px #b9ba73, 7px 0px 0px #d1bf6f, 8px 0px 0px #e9c46a;
 }
 body .comp-nav {
   display: grid;
