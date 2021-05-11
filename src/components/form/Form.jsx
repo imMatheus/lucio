@@ -8,7 +8,6 @@ const Form = ({ problem }) => {
     const questionRef = useRef(null)
     const editorRef = useRef(null)
 
-    console.log(problem)
     const [currentCode, setCurrentCode] = useLocalStorage(`${problem.problemName}-csCode`, '')
 
     let isDragging = false

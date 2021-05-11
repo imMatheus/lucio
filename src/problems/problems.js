@@ -1,8 +1,8 @@
 import { db } from '../firebase'
 
-export const problems = [
-    {
-        problemName: 'Simple addition',
+export const problems = {
+    SimpleAddition: {
+        problemName: 'Simple Addition',
         difficulty: 'easy',
         problemDescription: `given two integers, <span class="variable">a</span> and <span class="variable">b</span>, return the sum of <span class="variable">a</span> + <span class="variable">b</span>`,
         inputFormat: `<span class="variable">a</span> a integer, <span class="variable">b</span> a integer `,
@@ -23,8 +23,8 @@ export const problems = [
         ],
         inputs: ['a', 'b'],
     },
-    {
-        problemName: 'Multiply',
+    Multiplication: {
+        problemName: 'Multiplication',
         difficulty: 'easy',
         problemDescription: `given three number, <span class="variable">X</span>, <span class="variable">Y</span>, <span class="variable">Z</span>, return the product of <span class="variable">X</span> * <span class="variable">Y</span> * <span class="variable">Z</span>`,
         inputFormat: `<span class="variable">X</span> a number, <span class="variable">Y</span> a number, <span class="variable">Z</span> a number`,
@@ -40,8 +40,8 @@ export const problems = [
         ],
         inputs: ['x', 'y', 'z'],
     },
-    {
-        problemName: 'Number of letters',
+    NumberOfLetters: {
+        problemName: 'Number Of Letters',
         difficulty: 'easy',
         problemDescription: `given a string, <span class="variable">S</span>, and a single letter, <span class="variable">Letter</span>, return the number of instances that the letter <span class="variable">Letter</span> appears in the string <span class="variable">S</span>`,
         inputFormat: `<span class="variable">S</span> a string containing lowercase letters, <span class="variable">Letter</span> a single lowercase letter`,
@@ -68,7 +68,7 @@ export const problems = [
         ],
         inputs: ['letter', 's'],
     },
-    {
+    ScoreTheName: {
         problemName: 'Score The Name',
         difficulty: 'easy',
         problemDescription: `given a name, <span class="variable">n</span>, calculate the alphabetical value for the letters of the name. The alphabetical value of a letter is it's place in the alphabet.`,
@@ -97,7 +97,7 @@ export const problems = [
         inputs: ['n'],
     },
 
-    {
+    MinMaxSum: {
         problemName: 'MinMax Sum',
         difficulty: 'easy',
         problemDescription: `Given five positive integers, find the minimum and maximum values that can be calculated by summing exactly four of the five integers. Then print the respective minimum and maximum values as a single line of two space-separated long integers.`,
@@ -116,7 +116,7 @@ export const problems = [
         ],
         inputs: ['arr'],
     },
-    {
+    CountingValleys: {
         problemName: 'Counting Valleys',
         difficulty: 'hard',
 
@@ -153,7 +153,7 @@ export const problems = [
         ],
         inputs: ['steps', 'path'],
     },
-    {
+    AlmostSorted: {
         problemName: 'Almost Sorted',
         difficulty: 'medium',
 
@@ -218,5 +218,5 @@ export const problems = [
         ],
         inputs: ['arr'],
     },
-]
-// db.ref('programing').set(problems)
+}
+db.ref('programing').set(problems)

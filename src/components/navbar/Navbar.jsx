@@ -64,8 +64,8 @@ const Navbar = ({ isDarkMode, setIsDarkMode }) => {
                 <Link exact='true' to='/'>
                     Home
                 </Link>
-                <Link exact='true' to='/problems'>
-                    Problems
+                <Link exact='true' to='/algorithms/problems'>
+                    Algorithms
                 </Link>
                 <Link exact='true' to='/css/problems'>
                     Css

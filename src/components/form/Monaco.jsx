@@ -164,8 +164,20 @@ const Monaco = ({ mref, setCurrentCode, currentCode, problem }) => {
         }
         setTestCases(dummyArray)
         setFetchingData(false)
+        return dummyArray
     }
+    const submitCodeHandler = async () => {
+        let cases = await runCodeHandler()
+        console.log('hej')
+        console.log(cases)
 
+        for (let i = 0; i < cases.length; i++) {
+            // loop thru all cases and if one of them we early return
+            if (!cases[i].correctAnswer) return
+        }
+        // else user completed the challenge so we push it to db
+        console.log('noice')
+    }
     return (
         <div className='editorial'>
             <div className='editor' ref={mref}>
@@ -206,7 +218,9 @@ const Monaco = ({ mref, setCurrentCode, currentCode, problem }) => {
                 <button className='testrun-btn' onClick={runCodeHandler}>
                     Run Code
                 </button>
-                <button className='submit-btn'>Submit Code</button>
+                <button className='submit-btn' onClick={submitCodeHandler}>
+                    Submit Code
+                </button>
             </div>
             <CodeCompileView testcases={testCases} fetchingData={fetchingData} />
         </div>

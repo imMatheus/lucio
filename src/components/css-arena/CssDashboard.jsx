@@ -3,6 +3,7 @@ import CssArena from './CssArena'
 import CssProblems from './CssProblems'
 import { cssProblems } from '../../css-problems/cssProblems.js'
 import { v4 as uuidv4 } from 'uuid'
+import Page404 from '../404page/Page_404'
 
 const CssDashboard = () => {
     return (
@@ -18,6 +19,9 @@ const CssDashboard = () => {
 
                 <Route exact path='/css/problems'>
                     <CssProblems />
+                </Route>
+                <Route>
+                    <Page404 />
                 </Route>
             </Switch>
         </div>

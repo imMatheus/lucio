@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, Route, Switch } from 'react-router-dom'
 import { v4 as uuidv4 } from 'uuid'
 import { db } from '../../firebase'
-
-let currentPath = ''
+import Page404 from '../404page/Page_404'
+import Form from '../form/Form'
 
 const ProblemsPage = ({ match }) => {
     const cssRef = db.ref('programing')
@@ -20,21 +20,43 @@ const ProblemsPage = ({ match }) => {
             setProblemsArray(problemsList)
         })
     }, [])
-    currentPath = match.path
+
     return (
         <>
-            <div className='problems'>
+            <Switch>
+                <Route exact path='/algorithms/problems'>
+                    <div className='problems'>
+                        {problemsArray?.map((problem) => {
+                            return (
+                                <ProblemCard
+                                    key={uuidv4()}
+                                    diff={problem.difficulty}
+                                    name={problem.problemName}
+                                    category={problem.category}
+                                />
+                            )
+                        })}
+                    </div>
+                </Route>
+
+                {/* creating routes for all my problems */}
                 {problemsArray?.map((problem) => {
+                    let path = problem.problemName
+                        ?.split(' ')
+                        .filter((word) => word !== '')
+                        .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+                        .join('')
+                    console.log(problem)
                     return (
-                        <ProblemCard
-                            key={uuidv4()}
-                            diff={problem.difficulty}
-                            name={problem.problemName}
-                            category={problem.category}
-                        />
+                        <Route key={uuidv4()} exact path={`/algorithms/play/${path}`}>
+                            <Form problem={problem} />
+                        </Route>
                     )
                 })}
-            </div>
+                <Route>
+                    <Page404 />
+                </Route>
+            </Switch>
         </>
     )
 }
@@ -51,7 +73,7 @@ const ProblemCard = ({ name, diff, category }) => {
     let path = dummy || 'noMatch'
     return (
         // changing to path to path appended to the currentPath
-        <Link to={`${currentPath}/${path}`}>
+        <Link to={`/algorithms/play/${path}`}>
             <div className='problemcard'>
                 <div className='header'>{name}</div>
                 <div className='metadata'>
