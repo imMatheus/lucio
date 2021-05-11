@@ -35,7 +35,7 @@ const HomePage = () => {
                 <div className='content'>
                     <h1>LucioCode</h1>
                     <div className='buttons'>
-                        <Link to='/problems'>
+                        <Link to='/algorithms/problems'>
                             <div className='outline-btn'>Algorithms</div>
                         </Link>
                         <Link to='/css/problems'>

@@ -21,7 +21,7 @@ import image21 from './images/problem21.png'
 import image22 from './images/problem22.png'
 import image15 from './images/problem15.png'
 import { db } from '../firebase'
-
+import { problems } from '../problems/problems'
 export const cssProblems = [
     {
         target: 1,
@@ -142,8 +142,9 @@ userRef.on('value', async (snapshot) => {
     console.log(value)
 })
 // db.ref('css').set(cssProblems)
-console.log('hej')
-db.ref('css').set(cssProblems)
+// db.ref('algorithms').set(problems)
+
+// db.ref('css').set(cssProblems)
 // userRef.update(
 //     target: 22,
 //     image: image15,

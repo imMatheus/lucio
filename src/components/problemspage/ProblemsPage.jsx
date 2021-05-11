@@ -6,11 +6,11 @@ import Page404 from '../404page/Page_404'
 import Form from '../form/Form'
 
 const ProblemsPage = ({ match }) => {
-    const cssRef = db.ref('programing')
+    const algoRef = db.ref('algorithms')
     const [problemsArray, setProblemsArray] = useState(null)
     // let cssId
     useEffect(() => {
-        cssRef.on('value', (snapshot) => {
+        algoRef.on('value', (snapshot) => {
             const problems = snapshot.val()
             let problemsList = []
             for (let id in problems) {

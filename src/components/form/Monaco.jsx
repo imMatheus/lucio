@@ -5,6 +5,8 @@ import File from './File'
 import CodeCompileView from './CodeCompileView'
 import { generateJavascript, javascriptPrint } from '../../functions/generateJavascript'
 import { generatePython, pythonPrint } from '../../functions/generatePython'
+import { db } from '../../firebase'
+import { auth } from '../../firebase'
 // https://www.npmjs.com/package/@monaco-editor/react
 const Monaco = ({ mref, setCurrentCode, currentCode, problem }) => {
     const monaco = useMonaco()
@@ -17,6 +19,11 @@ const Monaco = ({ mref, setCurrentCode, currentCode, problem }) => {
         .filter((word) => word !== '')
         .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
         .join('')
+    const dbSubmissionsRef = db
+        .ref()
+        .child('algorithms')
+        .child(displayProblemName)
+        .child('submissions')
     const files = {
         'script.js': {
             name: 'script.js',
@@ -151,7 +158,9 @@ const Monaco = ({ mref, setCurrentCode, currentCode, problem }) => {
                     dummyArray.push({
                         correctAnswer: (data.output + '').trim() === (expected + '').trim(),
                         compileMessage:
-                            data.output + '' === expected + '' ? 'Right answer' : 'wrong answer',
+                            (data.output + '').trim() === (expected + '').trim()
+                                ? 'Right answer'
+                                : 'Wrong answer',
                         inputs: args,
                         userOutput: [data.output],
                         expectedOutput: expected,
@@ -167,14 +176,27 @@ const Monaco = ({ mref, setCurrentCode, currentCode, problem }) => {
         return dummyArray
     }
     const submitCodeHandler = async () => {
+        const user = auth.currentUser
+        console.log(user)
+        if (!user) return //  @todo prompt the user to login if they are not
+        const userUID = user.uid
         let cases = await runCodeHandler()
-        console.log('hej')
         console.log(cases)
 
         for (let i = 0; i < cases.length; i++) {
             // loop thru all cases and if one of them we early return
             if (!cases[i].correctAnswer) return
         }
+        const difficulty = problem.difficulty
+        const score = difficulty === 'hard' ? 600 : difficulty === 'medium' ? 400 : 200
+
+        // update database if user gets new high score
+        dbSubmissionsRef.child(userUID).set({
+            email: user.email,
+            score: score,
+            displayName: user.displayName,
+            userId: userUID,
+        })
         // else user completed the challenge so we push it to db
         console.log('noice')
     }

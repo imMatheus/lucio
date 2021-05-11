@@ -219,4 +219,3 @@ export const problems = {
         inputs: ['arr'],
     },
 }
-db.ref('programing').set(problems)
