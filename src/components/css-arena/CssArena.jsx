@@ -144,7 +144,7 @@ const CssArena = ({ problem }) => {
             canvas.style.height = '300px'
             var target = new Image()
             target.width = '400'
-            // target.intrinsicsize = '250 x 200'
+            // target.intrinsicsize = '400 x 300'
             target.height = '300'
             target.style.width = '400px'
             target.style.height = '300px'
@@ -163,6 +163,7 @@ const CssArena = ({ problem }) => {
         var img2
         await htmlToImage.toPixelData(solutionRef.current).then(function (pixels) {
             img2 = pixels
+            console.log(pixels)
         })
 
         const width = 400

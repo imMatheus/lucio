@@ -15,6 +15,7 @@ const Navbar = ({ isDarkMode, setIsDarkMode }) => {
         const data = await response.get()
         setUserData(data.data())
     }
+    console.log(currentUser)
 
     useEffect(() => {
         if (currentUser) {
@@ -80,14 +81,13 @@ const Navbar = ({ isDarkMode, setIsDarkMode }) => {
                                     currentUser?.targets || 0
                                 } targets)`}</p>
                             </div>
-                            <Link exact='true' to='/login'>
-                                <div
-                                    className='profileImage'
-                                    style={{
-                                        backgroundImage: `url(${userData?.profileImage})`,
-                                    }}
-                                ></div>
-                            </Link>
+
+                            <div
+                                className='profileImage'
+                                style={{
+                                    backgroundImage: `url(${userData?.profileImage})`,
+                                }}
+                            ></div>
                         </div>
 
                         <div className='outline-btn' onClick={logoutHandler}>

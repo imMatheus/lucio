@@ -15,7 +15,7 @@ export const AuthProvider = ({ children }) => {
         const doc = await usersNamesRef.get()
         if (doc.exists) {
             // checking if the display name already exist
-            const error = { message: 'Display Name already exist' }
+            const error = { message: 'Display name already exist' }
             return error
         }
         try {

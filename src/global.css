@@ -1495,8 +1495,8 @@ body .App .navbar-right .account .info p {
   color: var(--color-lightOrange);
 }
 body .App .navbar-right .account .profileImage {
-  width: 68px;
-  height: 68px;
+  width: 57px;
+  height: 57px;
   margin-left: 10px;
   border-radius: 50%;
   background-size: cover;
