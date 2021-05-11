@@ -20,7 +20,7 @@ import image20 from './images/problem20.png'
 import image21 from './images/problem21.png'
 import image22 from './images/problem22.png'
 import image15 from './images/problem15.png'
-// import { db } from '../firebase'
+import { db } from '../firebase'
 
 export const cssProblems = [
     {
@@ -136,17 +136,14 @@ export const cssProblems = [
     },
 ]
 
-// const userRef = db.ref('css')
-// userRef.on('value', async (snapshot) => {
-//     const value = snapshot.val()
-//     console.log(value)
-// })
+const userRef = db.ref('css')
+userRef.on('value', async (snapshot) => {
+    const value = snapshot.val()
+    console.log(value)
+})
 // db.ref('css').set(cssProblems)
-// db.ref('css').push({
-//     target: 22,
-//     image: image15,
-//     colors: [' #275654', '#65b891', '#4e878c'],
-// })
+console.log('hej')
+db.ref('css').set(cssProblems)
 // userRef.update(
 //     target: 22,
 //     image: image15,

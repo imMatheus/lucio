@@ -15,9 +15,11 @@ const CssProblems = () => {
                 cssList.push(css[id])
                 // if (!cssId) cssId = id
             }
+            console.log(cssList)
 
             setCssProblemsArray(cssList)
         })
+        // cssRef.set({ score: 10 })
     }, [])
 
     return (

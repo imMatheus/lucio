@@ -1,16 +1,30 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { problems } from '../../problems/problems'
 import { v4 as uuidv4 } from 'uuid'
+import { db } from '../../firebase'
 
 let currentPath = ''
 
 const ProblemsPage = ({ match }) => {
+    const cssRef = db.ref('programing')
+    const [problemsArray, setProblemsArray] = useState(null)
+    // let cssId
+    useEffect(() => {
+        cssRef.on('value', (snapshot) => {
+            const problems = snapshot.val()
+            let problemsList = []
+            for (let id in problems) {
+                problemsList.push(problems[id])
+            }
+            console.log(problemsList)
+            setProblemsArray(problemsList)
+        })
+    }, [])
     currentPath = match.path
     return (
         <>
             <div className='problems'>
-                {problems.map((problem) => {
+                {problemsArray?.map((problem) => {
                     return (
                         <ProblemCard
                             key={uuidv4()}

@@ -1,3 +1,5 @@
+import { db } from '../firebase'
+
 export const problems = [
     {
         problemName: 'Simple addition',
@@ -217,3 +219,4 @@ export const problems = [
         inputs: ['arr'],
     },
 ]
+// db.ref('programing').set(problems)
