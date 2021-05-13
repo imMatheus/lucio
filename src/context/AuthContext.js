@@ -92,7 +92,6 @@ export const AuthProvider = ({ children }) => {
         let leaderBoardObj = {} // used to sweep thru the submissions and store all the users submissions
         algoRef.on('value', async (snapshot) => {
             let problems = snapshot.val()
-            console.log(problems)
             for (const problem in problems) {
                 const submissions = problems[problem].submissions
                 // console.log(submissions)
@@ -108,8 +107,6 @@ export const AuthProvider = ({ children }) => {
                         }
                     }
                 }
-                // looping threw all the problems
-                // console.log(submissions)
             }
         })
         cssRef.on('value', async (snapshot) => {
@@ -167,6 +164,14 @@ export const AuthProvider = ({ children }) => {
             setLeaderboard(dummyHolder)
         })
     }, [])
+
+    // setting the score and target sto global variable currentUser
+    for (const user in leaderboard) {
+        if (leaderboard[user].userUID === currentUser.uid) {
+            currentUser.score = leaderboard[user].score
+            currentUser.targets = leaderboard[user].targets
+        }
+    }
 
     const value = {
         currentUser,

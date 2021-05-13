@@ -203,9 +203,9 @@ const Monaco = ({ mref, setCurrentCode, currentCode, problem }) => {
                 })
         }
         const difficulty = problem.difficulty
+        // if the difficulty is hard then score is 600 if it is medium then score is 400
+        // and if it is easy score is 200
         const score = difficulty === 'hard' ? 600 : difficulty === 'medium' ? 400 : 200
-
-        // update database if user gets new high score
 
         dbSubmissionsRef.child(userUID).set({
             email: user.email,
