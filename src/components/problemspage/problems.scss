@@ -42,18 +42,28 @@
             display: flex;
             flex-wrap: wrap;
             align-items: center;
-            padding: 6px 10px;
+            padding: 6px 0px;
             justify-content: space-between;
+
+            & .completed,
+            .tryAgain {
+                font-size: 0.92rem;
+                font-weight: 600;
+            }
+            & .completed {
+                color: var(--color-mainGreen);
+            }
+
+            & .tryAgain {
+                color: var(--color-darkOrange);
+            }
 
             & .difficulty {
                 display: inline-block;
                 padding: 4px 11px;
                 border-radius: 20px;
-                // color: var(--resize-bg);
                 text-transform: uppercase;
-
                 background: var(--color-mainGreen);
-
                 // classes to change the background color depending on the difficulty
                 &.easy {
                     background: var(--color-mainGreen);

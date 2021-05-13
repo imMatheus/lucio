@@ -5,6 +5,26 @@ const AuthContext = React.createContext()
 export function useAuth() {
     return useContext(AuthContext)
 }
+// quickSort algorithm
+function quickSortBasic(array) {
+    if (array.length < 2) {
+        return array
+    }
+
+    var pivot = array[0]
+    var lesserArray = []
+    var greaterArray = []
+
+    for (var i = 1; i < array.length; i++) {
+        if (array[i].score < pivot.score) {
+            greaterArray.push(array[i])
+        } else {
+            lesserArray.push(array[i])
+        }
+    }
+
+    return quickSortBasic(lesserArray).concat(pivot, quickSortBasic(greaterArray))
+}
 export const AuthProvider = ({ children }) => {
     const [currentUser, setCurrentUser] = useState()
     const [leaderboard, setLeaderboard] = useState(null)
@@ -18,24 +38,24 @@ export const AuthProvider = ({ children }) => {
             const error = { message: 'Display name already exist' }
             return error
         }
-        try {
-            await auth.createUserWithEmailAndPassword(email, password)
-        } catch (error) {
-            return error
-        }
         await usersNamesRef.set({
             displayName: displayName,
         })
-        await fs // firestore
-            .collection('users')
-            .doc(auth.currentUser.uid) // adding a doc with the the id of the users uid
-            .set({
-                displayName: displayName,
-                email: email,
-                userUID: auth.currentUser.uid,
-                profileImage: imageUrl,
-            }) // setting its info
-        // .set({ displayName: displayName, profileImage: imageUrl }) // setting its info
+        try {
+            await auth.createUserWithEmailAndPassword(email, password)
+
+            await fs // firestore
+                .collection('users')
+                .doc(auth.currentUser.uid) // adding a doc with the the id of the users uid
+                .set({
+                    displayName: displayName,
+                    email: email,
+                    userUID: auth.currentUser.uid,
+                    profileImage: imageUrl,
+                }) // setting its info
+        } catch (error) {
+            return error
+        }
     }
     function login(email, password) {
         return auth.signInWithEmailAndPassword(email, password)
@@ -51,17 +71,48 @@ export const AuthProvider = ({ children }) => {
         }
     }
     useEffect(() => {
-        const unsubscribe = auth.onAuthStateChanged((user) => {
-            setCurrentUser(user)
+        const unsubscribe = auth.onAuthStateChanged(async (user) => {
+            const fetchUser = async (user) => {
+                if (!user) return
+                // getting the users data from firestore
+                const response = fs.collection('users').doc(user.uid)
+                const data = await response.get()
+                return { ...user, ...data.data() }
+            }
+            const response = await fetchUser(user)
+
+            setCurrentUser(response)
             setLoading(false)
         })
         return unsubscribe
     }, [])
     useEffect(() => {
-        const userRef = db.ref('css')
-
-        userRef.on('value', async (snapshot) => {
-            let leaderBoardObj = {} // used to sweep thru the submissions and store all the users submissions
+        const cssRef = db.ref('css')
+        const algoRef = db.ref('algorithms')
+        let leaderBoardObj = {} // used to sweep thru the submissions and store all the users submissions
+        algoRef.on('value', async (snapshot) => {
+            let problems = snapshot.val()
+            console.log(problems)
+            for (const problem in problems) {
+                const submissions = problems[problem].submissions
+                // console.log(submissions)
+                if (submissions) {
+                    // then going threw every single submission in the submissions of the problem
+                    for (const uid in submissions) {
+                        if (leaderBoardObj[uid] && submissions[uid].score > 0) {
+                            leaderBoardObj[uid].targets += 1
+                            leaderBoardObj[uid].score += submissions[uid].score
+                        } else {
+                            // leaderBoardObj[uid].targets = 1
+                            leaderBoardObj[uid] = { score: submissions[uid].score, targets: 1 }
+                        }
+                    }
+                }
+                // looping threw all the problems
+                // console.log(submissions)
+            }
+        })
+        cssRef.on('value', async (snapshot) => {
             let problems = snapshot.val()
             problems?.forEach((problem) => {
                 // looping threw all the problems
@@ -69,7 +120,7 @@ export const AuthProvider = ({ children }) => {
                 if (submissions) {
                     // then going threw every single submission in the submissions of the problem
                     for (const uid in submissions) {
-                        if (leaderBoardObj[uid]) {
+                        if (leaderBoardObj[uid] && submissions[uid].score > 0) {
                             leaderBoardObj[uid].targets += 1
                             leaderBoardObj[uid].score += submissions[uid].score
                         } else {
@@ -79,27 +130,6 @@ export const AuthProvider = ({ children }) => {
                     }
                 }
             })
-
-            // quickSort algorithm
-            function quickSortBasic(array) {
-                if (array.length < 2) {
-                    return array
-                }
-
-                var pivot = array[0]
-                var lesserArray = []
-                var greaterArray = []
-
-                for (var i = 1; i < array.length; i++) {
-                    if (array[i].score < pivot.score) {
-                        greaterArray.push(array[i])
-                    } else {
-                        lesserArray.push(array[i])
-                    }
-                }
-
-                return quickSortBasic(lesserArray).concat(pivot, quickSortBasic(greaterArray))
-            }
 
             let leaderBoardArr = []
             for (const uid in leaderBoardObj) {

@@ -136,11 +136,11 @@ export const cssProblems = [
     },
 ]
 
-const userRef = db.ref('css')
-userRef.on('value', async (snapshot) => {
-    const value = snapshot.val()
-    console.log(value)
-})
+// const userRef = db.ref('css')
+// userRef.on('value', async (snapshot) => {
+//     const value = snapshot.val()
+//     console.log(value)
+// })
 // db.ref('css').set(cssProblems)
 // db.ref('algorithms').set(problems)
 

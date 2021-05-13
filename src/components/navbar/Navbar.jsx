@@ -8,35 +8,43 @@ import { fs } from '../../firebase'
 const Navbar = ({ isDarkMode, setIsDarkMode }) => {
     const { currentUser, logout, leaderboard } = useAuth()
     const history = useHistory()
-    const [userData, setUserData] = useState()
     const fetchUser = async (user) => {
         // getting the users data from firestore
         const response = fs.collection('users').doc(user.uid)
         const data = await response.get()
-        setUserData(data.data())
+        console.log({ ...user, ...data.data() })
+        return { ...user, ...data.data() }
     }
     console.log(currentUser)
 
     useEffect(() => {
         if (currentUser) {
-            fetchUser(currentUser)
             const userUid = currentUser.uid
             console.log(userUid)
+            console.log(currentUser)
             for (const user in leaderboard) {
                 if (leaderboard[user].userUID === userUid) {
                     console.log(user)
+                    // const updateUserData = async () => {
+                    //     const response = await fetchUser(currentUser)
+                    //     console.log(response)
+                    // }
+                    // updateUserData()
+
+                    // userData.score = leaderboard[user].score
+                    // userData.targets = leaderboard[user].targets
                     currentUser.score = leaderboard[user].score
                     currentUser.targets = leaderboard[user].targets
                 }
                 console.log(user)
             }
-        } else {
-            setUserData(null)
+            // currentUser = fetchUser(currentUser)
         }
     }, [currentUser, leaderboard])
+    console.log(currentUser)
+
     const logoutHandler = async () => {
         console.log('3')
-        console.log(userData)
 
         try {
             await logout()
@@ -76,6 +84,7 @@ const Navbar = ({ isDarkMode, setIsDarkMode }) => {
                     <>
                         <div className='account'>
                             <div className='info'>
+                                {console.log(currentUser)}
                                 <h2>{currentUser?.displayName}</h2>
                                 <p>{`${currentUser?.score || 0} (${
                                     currentUser?.targets || 0
@@ -85,7 +94,7 @@ const Navbar = ({ isDarkMode, setIsDarkMode }) => {
                             <div
                                 className='profileImage'
                                 style={{
-                                    backgroundImage: `url(${userData?.profileImage})`,
+                                    backgroundImage: `url(${currentUser?.profileImage})`,
                                 }}
                             ></div>
                         </div>

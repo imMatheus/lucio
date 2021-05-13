@@ -26,6 +26,7 @@ const CssArena = ({ problem }) => {
     const outputContainerRef = useRef(null)
     const [isHoveringOverIframe, setIsHoveringOverIframe] = useState(false)
     const [loading, setLoading] = useState(false)
+    const [copiedColor, setCopiedColor] = useState(null)
     let currentCode = '<style>' + cssCode + '</style>' + htmlCode
     const [highScore, setHighScore] = useState({ score: 0, percentage: 0, characters: 0 })
     const [lastScore, setLastScore] = useSessionStorage(`${problem.target}-lastScore`, {
@@ -112,11 +113,18 @@ const CssArena = ({ problem }) => {
     const copyColorHandler = (e) => {
         // if the user pressed the circle then it will not have any text so we take its parents, the span,
         // and takes its innerText
-        if (!e.target.innerText) navigator.clipboard.writeText(e.target.parentElement.innerText)
+        if (!e.target.innerText) {
+            navigator.clipboard.writeText(e.target.parentElement.innerText)
+            setCopiedColor(e.target.parentElement.innerText)
+        }
         // else just take the inner text of the span
         else {
             navigator.clipboard.writeText(e.target.innerText)
+            setCopiedColor(e.target.innerText)
         }
+        setTimeout(() => {
+            setCopiedColor(null)
+        }, 1000)
     }
 
     const getScore = (charCount, per) => {
@@ -132,20 +140,23 @@ const CssArena = ({ problem }) => {
         if (!iframeRef.current) return
 
         const html = iframeRef.current.contentWindow.document.querySelector('html')
+        const body = html.querySelector('body')
 
         html.style.width = '400px'
         html.style.height = '300px'
         html.style.display = 'block'
         html.style.overflow = 'hidden'
+        body.style.width = '400px'
+        body.style.height = '300px'
 
         var img1
-        await html2canvas(html).then(async function (canvas) {
+        await html2canvas(html).then(async (canvas) => {
             canvas.style.width = '400px'
             canvas.style.height = '300px'
             var target = new Image()
             target.width = '400'
-            // target.intrinsicsize = '400 x 300'
             target.height = '300'
+            target.intrinsicSize = '400 x 300'
             target.style.width = '400px'
             target.style.height = '300px'
             target.src = canvas.toDataURL()
@@ -163,7 +174,6 @@ const CssArena = ({ problem }) => {
         var img2
         await htmlToImage.toPixelData(solutionRef.current).then(function (pixels) {
             img2 = pixels
-            console.log(pixels)
         })
 
         const width = 400
@@ -338,6 +348,11 @@ const CssArena = ({ problem }) => {
                         )
                     })}
                 </div>
+            </div>
+
+            <div className={`popup-container ${copiedColor ? 'show' : ''}`}>
+                Copied color {copiedColor}
+                <div className='color-circle' style={{ backgroundColor: copiedColor || '' }}></div>
             </div>
         </div>
     )

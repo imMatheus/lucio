@@ -175,27 +175,44 @@ const Monaco = ({ mref, setCurrentCode, currentCode, problem }) => {
         setFetchingData(false)
         return dummyArray
     }
-    const submitCodeHandler = async () => {
+    const submitCodeHandler = async (e) => {
         const user = auth.currentUser
-        console.log(user)
+
         if (!user) return //  @todo prompt the user to login if they are not
         const userUID = user.uid
         let cases = await runCodeHandler()
+        setTestCases(cases)
+        let firstTime = true
         console.log(cases)
-
-        for (let i = 0; i < cases.length; i++) {
+        await dbSubmissionsRef.child(userUID).on('value', async (snapshot) => {
+            const response = await snapshot.val()
+            console.log(response)
+            if (response) {
+                firstTime = response.score > 0 ? false : true
+            }
+        })
+        for (let i = 0; i < cases?.length; i++) {
             // loop thru all cases and if one of them we early return
-            if (!cases[i].correctAnswer) return
+            if (!cases[i].correctAnswer && firstTime)
+                return dbSubmissionsRef.child(userUID).set({
+                    email: user.email,
+                    displayName: user.displayName,
+                    userId: userUID,
+                    score: 0,
+                    profileImage: user.photoURL,
+                })
         }
         const difficulty = problem.difficulty
         const score = difficulty === 'hard' ? 600 : difficulty === 'medium' ? 400 : 200
 
         // update database if user gets new high score
+
         dbSubmissionsRef.child(userUID).set({
             email: user.email,
             score: score,
             displayName: user.displayName,
             userId: userUID,
+            profileImage: user.photoURL,
         })
         // else user completed the challenge so we push it to db
         console.log('noice')
@@ -237,10 +254,10 @@ const Monaco = ({ mref, setCurrentCode, currentCode, problem }) => {
 
             <div className='submit'>
                 {/* submiting code and testing it*/}
-                <button className='testrun-btn' onClick={runCodeHandler}>
+                <button className='testrun-btn' onClick={runCodeHandler} disabled={fetchingData}>
                     Run Code
                 </button>
-                <button className='submit-btn' onClick={submitCodeHandler}>
+                <button className='submit-btn' onClick={submitCodeHandler} disabled={fetchingData}>
                     Submit Code
                 </button>
             </div>
