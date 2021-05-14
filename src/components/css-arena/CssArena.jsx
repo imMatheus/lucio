@@ -124,7 +124,7 @@ const CssArena = ({ problem }) => {
         }
         setTimeout(() => {
             setCopiedColor(null)
-        }, 1000)
+        }, 2500)
     }
 
     const getScore = (charCount, per) => {
