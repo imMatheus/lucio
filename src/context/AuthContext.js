@@ -61,6 +61,7 @@ export const AuthProvider = ({ children }) => {
         return auth.signInWithEmailAndPassword(email, password)
     }
     function logout() {
+        sessionStorage.clear()
         return auth.signOut()
     }
     async function resetPassword(email) {
@@ -166,10 +167,12 @@ export const AuthProvider = ({ children }) => {
     }, [])
 
     // setting the score and target sto global variable currentUser
-    for (const user in leaderboard) {
-        if (leaderboard[user].userUID === currentUser.uid) {
-            currentUser.score = leaderboard[user].score
-            currentUser.targets = leaderboard[user].targets
+    if (currentUser) {
+        for (const user in leaderboard) {
+            if (leaderboard[user].userUID === currentUser.uid) {
+                currentUser.score = leaderboard[user].score
+                currentUser.targets = leaderboard[user].targets
+            }
         }
     }
 

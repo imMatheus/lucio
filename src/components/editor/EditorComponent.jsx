@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react'
 
 import Editor, { useMonaco } from '@monaco-editor/react'
 
-const EditorComponent = ({ language, setter, starterCode }) => {
+const EditorComponent = ({ language, setter, starterCode, setJs, setPy }) => {
     const monaco = useMonaco()
     const editorRef = useRef(null)
     useEffect(() => {
@@ -79,7 +79,14 @@ const EditorComponent = ({ language, setter, starterCode }) => {
 
     function handleEditorDidMount(editor) {
         editorRef.current = editor
-        setter(editorRef.current.getValue())
+        setter(editorRef.current?.getValue())
+        if (language === 'javascript') {
+            setJs(editorRef.current?.getValue())
+        } else {
+            setPy(editorRef.current?.getValue())
+        }
+        // setLanguage('css')
+        console.log(language)
     }
 
     window.onresize = function () {
@@ -88,20 +95,28 @@ const EditorComponent = ({ language, setter, starterCode }) => {
 
     const handleEditorChange = (value) => {
         setter(value)
+        if (language === 'javascript') {
+            setJs(editorRef.current?.getValue())
+        } else {
+            setPy(editorRef.current?.getValue())
+        }
     }
 
     // early return if we don't have language
     if (!language) return null
+    console.log(language)
     return (
         <div className='editor-component'>
-            <div className='header'>{language.toUpperCase()}</div>
+            {/* <div className='header'>{language.toUpperCase()}</div> */}
+            {/* {language} */}
+            <span></span>
             <Editor
+                ref={editorRef}
                 height='100%'
                 theme='myCustomTheme'
-                defaultLanguage={language}
+                language={language}
                 onChange={handleEditorChange}
                 onMount={handleEditorDidMount}
-                defaultValue={starterCode}
                 value={starterCode}
                 automaticLayout={true}
                 options={{
@@ -111,7 +126,10 @@ const EditorComponent = ({ language, setter, starterCode }) => {
                     minimap: {
                         enabled: false,
                     },
-                    fontSize: 17,
+                    scrollbar: {
+                        alwaysConsumeMouseWheel: true,
+                    },
+                    fontSize: 16,
                     // cursorStyle: 'block',
                     wordWrap: 'on',
                     // wordWrap: 'wordWrapColumn',

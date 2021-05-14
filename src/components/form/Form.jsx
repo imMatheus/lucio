@@ -8,8 +8,6 @@ const Form = ({ problem }) => {
     const questionRef = useRef(null)
     const editorRef = useRef(null)
 
-    const [currentCode, setCurrentCode] = useLocalStorage(`${problem.problemName}-csCode`, '')
-
     let isDragging = false
 
     const mouseDownHandler = () => {
@@ -36,7 +34,7 @@ const Form = ({ problem }) => {
     return (
         <div className='form '>
             <Question qref={questionRef} problem={problem} />
-            {/* <WebFrame code={currentCode} fref={frameRef} /> */}
+
             <div ref={resizeBarRef} className='resizebar' onMouseDown={mouseDownHandler}>
                 <div className='dots'>
                     {/* spans that get styled to be circles */}
@@ -46,12 +44,7 @@ const Form = ({ problem }) => {
                     <span></span>
                 </div>
             </div>
-            <Monaco
-                mref={editorRef}
-                setCurrentCode={setCurrentCode}
-                currentCode={currentCode}
-                problem={problem}
-            />
+            <Monaco mref={editorRef} problem={problem} />
         </div>
     )
 }

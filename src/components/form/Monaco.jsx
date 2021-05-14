@@ -6,11 +6,14 @@ import CodeCompileView from './CodeCompileView'
 import { generateJavascript, javascriptPrint } from '../../functions/generateJavascript'
 import { generatePython, pythonPrint } from '../../functions/generatePython'
 import { db } from '../../firebase'
-import { auth } from '../../firebase'
+import { useAuth } from '../../context/AuthContext'
+import useSessionStorage from '../../hooks/useSessionStorage'
+import EditorComponent from '../editor/EditorComponent'
+
 // https://www.npmjs.com/package/@monaco-editor/react
-const Monaco = ({ mref, setCurrentCode, currentCode, problem }) => {
+const Monaco = ({ mref, problem }) => {
     const monaco = useMonaco()
-    const editorRef = useRef(null)
+    const { currentUser } = useAuth()
     const [fetchingData, setFetchingData] = useState(false)
     const problemName = problem.problemName
     const problemInputs = problem.inputs
@@ -19,31 +22,51 @@ const Monaco = ({ mref, setCurrentCode, currentCode, problem }) => {
         .filter((word) => word !== '')
         .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
         .join('')
+    const [scriptJs, setScriptJs] = useSessionStorage(
+        `${displayProblemName}-script.js`,
+        generateJavascript(displayProblemName, problemInputs)
+    )
+    const [scriptPy, setScriptPy] = useSessionStorage(
+        `${displayProblemName}-script.py`,
+        generatePython(displayProblemName, problemInputs)
+    )
+    // console.log(scriptJs)
+    const [currentCode, setCurrentCode] = useSessionStorage(
+        `${displayProblemName}-currentCode`,
+        scriptJs
+    )
+    // console.log(currentCode)
     const dbSubmissionsRef = db
         .ref()
         .child('algorithms')
         .child(displayProblemName)
         .child('submissions')
-    const files = {
-        'script.js': {
-            name: 'script.js',
-            language: 'javascript',
-            value: generateJavascript(displayProblemName, problemInputs),
-        },
-        'script.py': {
-            name: 'script.py',
-            language: 'python',
-            value: generatePython(displayProblemName, problemInputs),
-        },
-    }
+    const [files, setFiles] = useSessionStorage(`${displayProblemName}files`, {
+        'script.js': scriptJs,
+        'script.py': scriptPy,
+    })
 
     const sampleCases = problem.sampleCases
-    const [testCases, setTestCases] = useState([])
-    const [fileName, setFileName] = useState('script.js')
+    const [testCases, setTestCases] = useSessionStorage('testCases', [])
+    const [fileName, setFileName] = useSessionStorage('fileName', 'script.js')
     const file = files[fileName]
+    const [language, setLanguage] = useSessionStorage(
+        'language',
+        file === scriptJs ? 'javascript' : 'python'
+    )
 
+    // console.log(language)
+    // console.log(files)
+    // console.log(file)
+    // console.log(fileName)
     useEffect(() => {
+        console.log('ajdjadjkasdbjasdjkasdb')
         if (monaco) {
+            setFiles({
+                'script.js': scriptJs,
+                'script.py': scriptPy,
+            })
+
             monaco.editor.defineTheme('myCustomTheme', {
                 base: 'vs-dark',
                 inherit: true,
@@ -111,17 +134,24 @@ const Monaco = ({ mref, setCurrentCode, currentCode, problem }) => {
     }, [monaco])
 
     const handleEditorDidMount = (editor) => {
-        editorRef.current = editor
-        setCurrentCode(editorRef?.current?.getValue())
+        // editorRef.current = editor
+        setCurrentCode()
     }
 
+    useEffect(() => {
+        if (language === 'javascript') {
+            setCurrentCode(scriptJs)
+        } else {
+            setCurrentCode(scriptPy)
+        }
+    }, [fileName, file, language, scriptJs, scriptPy])
     const runCodeHandler = async () => {
         // returning early if we are fetching data
         // otherwise the run button can be spammed causing errors
         if (fetchingData) return
         // if don't have a file for what ever reason we don't want to precede
         if (!file) return
-        setCurrentCode(editorRef?.current?.getValue())
+        // setCurrentCode(editorRef?.current?.getValue())
         // a sleep function that blocks code from running for 'ms' millisecs
         function sleep(ms) {
             return new Promise((resolve) => setTimeout(resolve, ms))
@@ -136,13 +166,14 @@ const Monaco = ({ mref, setCurrentCode, currentCode, problem }) => {
             const expected = currentCase.output
 
             // the request that we send to the piston api
+            console.log(language)
             const requestOptions = {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    language: file.language,
+                    language: language,
                     source: `${currentCode} ${
-                        file.language === 'javascript'
+                        language === 'javascript'
                             ? javascriptPrint(displayProblemName, args)
                             : pythonPrint(displayProblemName, args)
                     }`,
@@ -171,85 +202,80 @@ const Monaco = ({ mref, setCurrentCode, currentCode, problem }) => {
             // sleeping for 530ms cuz the api only allows 2 reqs per sec, and 530 just to be on the safe side
             await sleep(530)
         }
+        const userUID = currentUser.uid
+
         setTestCases(dummyArray)
         setFetchingData(false)
         return dummyArray
     }
-    const submitCodeHandler = async (e) => {
-        const user = auth.currentUser
+    const submitCodeHandler = async () => {
+        if (!currentUser) return //  @todo prompt the user to login if they are not
+        const userUID = currentUser.uid
 
-        if (!user) return //  @todo prompt the user to login if they are not
-        const userUID = user.uid
         let cases = await runCodeHandler()
-        setTestCases(cases)
+        // setTestCases(cases)
         let firstTime = true
         console.log(cases)
-        await dbSubmissionsRef.child(userUID).on('value', async (snapshot) => {
+        dbSubmissionsRef.child(userUID).on('value', async (snapshot) => {
             const response = await snapshot.val()
             console.log(response)
             if (response) {
                 firstTime = response.score > 0 ? false : true
             }
         })
+        let correctAnswer = true
         for (let i = 0; i < cases?.length; i++) {
             // loop thru all cases and if one of them we early return
-            if (!cases[i].correctAnswer && firstTime)
-                return dbSubmissionsRef.child(userUID).set({
-                    email: user.email,
-                    displayName: user.displayName,
-                    userId: userUID,
-                    score: 0,
-                    profileImage: user.photoURL,
-                })
+            if (!cases[i].correctAnswer && firstTime) correctAnswer = false
         }
         const difficulty = problem.difficulty
         // if the difficulty is hard then score is 600 if it is medium then score is 400
         // and if it is easy score is 200
         const score = difficulty === 'hard' ? 600 : difficulty === 'medium' ? 400 : 200
-
-        dbSubmissionsRef.child(userUID).set({
-            email: user.email,
-            score: score,
-            displayName: user.displayName,
+        console.log(currentUser)
+        dbSubmissionsRef.child(userUID).update({
+            email: currentUser.email,
+            score: correctAnswer ? score : 0,
+            displayName: currentUser.displayName,
             userId: userUID,
-            profileImage: user.photoURL,
+            profileImage: currentUser.photoURL,
         })
-        // else user completed the challenge so we push it to db
-        console.log('noice')
+        console.log('finish')
     }
+    // console.log('-----------lll-----------')
+
     return (
         <div className='editorial'>
             <div className='editor' ref={mref}>
                 <div className='files'>
-                    <File file='script.js' fileName={fileName} setFileName={setFileName} />
-                    <File file='script.py' fileName={fileName} setFileName={setFileName} />
+                    <File
+                        file='script.js'
+                        fileName={fileName}
+                        setFileName={setFileName}
+                        setLanguage={setLanguage}
+                    />
+                    <File
+                        file='script.py'
+                        fileName={fileName}
+                        setFileName={setFileName}
+                        setLanguage={setLanguage}
+                    />
                 </div>
-
-                <Editor
-                    onMount={handleEditorDidMount}
-                    theme='myCustomTheme'
-                    path={file.name}
-                    defaultLanguage={file.language}
-                    defaultValue={file.value}
-                    onChange={() => setCurrentCode(editorRef.current.getValue())}
-                    options={{
-                        inherit: true,
-                        minimap: {
-                            enabled: false,
-                        },
-                        fontSize: 16,
-                        // cursorStyle: 'block',
-                        // wordWrap: 'on',
-                        wordWrap: 'wordWrapColumn',
-                        wordWrapColumn: 90,
-
-                        // Set this to false to not auto word wrap minified files
-                        wordWrapMinified: true,
-
-                        // try "same", "indent" or "none"
-                        wrappingIndent: 'same',
-                    }}
-                />
+                {language === 'javascript' ? (
+                    <EditorComponent
+                        language='javascript'
+                        starterCode={currentCode}
+                        setter={setCurrentCode}
+                        setJs={setScriptJs}
+                    />
+                ) : (
+                    <EditorComponent
+                        language='python'
+                        starterCode={currentCode}
+                        setter={setCurrentCode}
+                        setPy={setScriptPy}
+                    />
+                )}
             </div>
 
             <div className='submit'>

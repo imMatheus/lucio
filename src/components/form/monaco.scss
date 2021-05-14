@@ -10,6 +10,28 @@
     .editor {
         width: 100%;
         height: 80vh;
+        .editor-component {
+            height: 97%;
+            min-height: 40px;
+            // max-height: calc(100% - 40px);
+            position: relative;
+            display: grid;
+            grid-template-rows: auto 1fr;
+            background-color: var(--main-bg);
+            z-index: 10;
+
+            & .header {
+                height: 40px;
+
+                font-size: 1.3rem;
+                margin-bottom: 10px;
+                font-weight: 400;
+                padding-left: 20px;
+                color: var(--bold-color);
+                display: flex;
+                align-items: center;
+            }
+        }
         // overflow-y: scroll;
 
         .files {
@@ -77,6 +99,11 @@
             &.submit-btn {
                 background: var(--color-mainGreen);
                 color: var(--bold-color);
+            }
+
+            &.submit-btn:disabled,
+            &.testrun-btn:disabled {
+                opacity: 0.8;
             }
 
             &:active,

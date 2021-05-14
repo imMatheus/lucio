@@ -12,6 +12,7 @@ import image11 from './images/problem11.png'
 import image12 from './images/problem12.png'
 import image13 from './images/problem13.png'
 import image14 from './images/problem14.png'
+import image15 from './images/problem15.png'
 import image16 from './images/problem16.png'
 import image17 from './images/problem17.png'
 import image18 from './images/problem18.png'
@@ -19,7 +20,7 @@ import image19 from './images/problem19.png'
 import image20 from './images/problem20.png'
 import image21 from './images/problem21.png'
 import image22 from './images/problem22.png'
-import image15 from './images/problem15.png'
+import image23 from './images/problem23.png'
 import { db } from '../firebase'
 import { problems } from '../problems/problems'
 export const cssProblems = [
@@ -134,6 +135,11 @@ export const cssProblems = [
         image: image22,
         colors: [' #1d3557', '#e63946', '#f1faee'],
     },
+    {
+        target: 23,
+        image: image23,
+        colors: [' #293241', '#e0fbfc', '#98c1d9', '#3d5a80'],
+    },
 ]
 
 // const userRef = db.ref('css')
@@ -144,7 +150,11 @@ export const cssProblems = [
 // db.ref('css').set(cssProblems)
 // db.ref('algorithms').set(problems)
 
-// db.ref('css').set(cssProblems)
+// db.ref('css/22').set({
+//     target: 23,
+//     image: image23,
+//     colors: [' #293241', '#e0fbfc', '#98c1d9', '#3d5a80'],
+// })
 // userRef.update(
 //     target: 22,
 //     image: image15,

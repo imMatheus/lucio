@@ -3,7 +3,7 @@ import React from 'react'
 import { ReactComponent as PythonSvg } from '../../icons/python-5.svg'
 import { ReactComponent as JavascriptSvg } from '../../icons/logo-javascript.svg'
 
-const File = ({ file, fileName, setFileName }) => {
+const File = ({ file, fileName, setFileName, setLanguage }) => {
     // finding the prefix of the file, so .js or .html.
     // so i can put the right icon
     let prefix = file.split('.')
@@ -16,9 +16,17 @@ const File = ({ file, fileName, setFileName }) => {
     } else if (prefix[prefix.length - 1] === 'css') {
     } else if (prefix[prefix.length - 1] === 'html') {
     }
+    const changeLanguageHandler = () => {
+        setFileName(file)
+        if (prefix[prefix.length - 1] === 'js') {
+            setLanguage('javascript')
+        } else if (prefix[prefix.length - 1] === 'py') {
+            setLanguage('python')
+        }
+    }
 
     return (
-        <button className='file-btn' disabled={fileName === file} onClick={() => setFileName(file)}>
+        <button className='file-btn' disabled={fileName === file} onClick={changeLanguageHandler}>
             {Icon && (
                 <div className='icon'>
                     <Icon />
