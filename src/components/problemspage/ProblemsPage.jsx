@@ -8,11 +8,12 @@ import Form from '../form/Form'
 const ProblemsPage = ({ match }) => {
     const algoRef = db.ref('algorithms')
     const user = auth.currentUser // get user
-    const userUID = user.uid // get user
+    const userUID = user?.uid // get user uid
     const [problemsArray, setProblemsArray] = useState(null)
 
     useEffect(() => {
         algoRef.on('value', (snapshot) => {
+            // get all the problems from database
             const problems = snapshot.val()
             let problemsList = []
             for (let id in problems) {
@@ -31,6 +32,8 @@ const ProblemsPage = ({ match }) => {
                             const submissions = problem.submissions
                             if (submissions) {
                                 if (submissions[userUID]) {
+                                    // checking if the user has completed problem or should try again
+                                    // both can not be true
                                     var completed = submissions[userUID].score > 0
                                     var tryAgain = submissions[userUID].score === 0
                                 }
@@ -52,6 +55,7 @@ const ProblemsPage = ({ match }) => {
 
                 {/* creating routes for all my problems */}
                 {problemsArray?.map((problem) => {
+                    // turn for example 'Number of letters' into 'NumberOfLetters'
                     let path = problem.problemName
                         ?.split(' ')
                         .filter((word) => word !== '')

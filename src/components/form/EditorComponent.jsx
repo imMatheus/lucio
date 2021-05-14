@@ -85,8 +85,6 @@ const EditorComponent = ({ language, setter, starterCode, setJs, setPy }) => {
         } else {
             setPy(editorRef.current?.getValue())
         }
-        // setLanguage('css')
-        console.log(language)
     }
 
     window.onresize = function () {
@@ -104,7 +102,7 @@ const EditorComponent = ({ language, setter, starterCode, setJs, setPy }) => {
 
     // early return if we don't have language
     if (!language) return null
-    console.log(language)
+
     return (
         <div className='editor-component'>
             {/* <div className='header'>{language.toUpperCase()}</div> */}
@@ -112,7 +110,7 @@ const EditorComponent = ({ language, setter, starterCode, setJs, setPy }) => {
             <span></span>
             <Editor
                 ref={editorRef}
-                height='100%'
+                height='93%'
                 theme='myCustomTheme'
                 language={language}
                 onChange={handleEditorChange}
@@ -120,6 +118,7 @@ const EditorComponent = ({ language, setter, starterCode, setJs, setPy }) => {
                 value={starterCode}
                 automaticLayout={true}
                 options={{
+                    // scrolling: true,
                     inherit: true,
                     automaticLayout: true,
                     scrollBeyondLastLine: false,

@@ -8,7 +8,7 @@ import { generatePython, pythonPrint } from '../../functions/generatePython'
 import { db } from '../../firebase'
 import { useAuth } from '../../context/AuthContext'
 import useSessionStorage from '../../hooks/useSessionStorage'
-import EditorComponent from '../editor/EditorComponent'
+import EditorComponent from './EditorComponent'
 
 // https://www.npmjs.com/package/@monaco-editor/react
 const Monaco = ({ mref, problem }) => {
@@ -41,13 +41,13 @@ const Monaco = ({ mref, problem }) => {
         .child('algorithms')
         .child(displayProblemName)
         .child('submissions')
-    const [files, setFiles] = useSessionStorage(`${displayProblemName}files`, {
+    const [files, setFiles] = useSessionStorage(`${displayProblemName}-files`, {
         'script.js': scriptJs,
         'script.py': scriptPy,
     })
 
     const sampleCases = problem.sampleCases
-    const [testCases, setTestCases] = useSessionStorage('testCases', [])
+    const [testCases, setTestCases] = useSessionStorage(`${displayProblemName}-testCases`, [])
     const [fileName, setFileName] = useSessionStorage('fileName', 'script.js')
     const file = files[fileName]
     const [language, setLanguage] = useSessionStorage(
@@ -60,7 +60,6 @@ const Monaco = ({ mref, problem }) => {
     // console.log(file)
     // console.log(fileName)
     useEffect(() => {
-        console.log('ajdjadjkasdbjasdjkasdb')
         if (monaco) {
             setFiles({
                 'script.js': scriptJs,
@@ -133,11 +132,6 @@ const Monaco = ({ mref, problem }) => {
         }
     }, [monaco])
 
-    const handleEditorDidMount = (editor) => {
-        // editorRef.current = editor
-        setCurrentCode()
-    }
-
     useEffect(() => {
         if (language === 'javascript') {
             setCurrentCode(scriptJs)
@@ -202,7 +196,6 @@ const Monaco = ({ mref, problem }) => {
             // sleeping for 530ms cuz the api only allows 2 reqs per sec, and 530 just to be on the safe side
             await sleep(530)
         }
-        const userUID = currentUser.uid
 
         setTestCases(dummyArray)
         setFetchingData(false)

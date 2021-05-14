@@ -4,7 +4,7 @@ import { generateHtmlStarterFile } from './_generateHtmlStarterFile.js'
 import { generateCssStarterFile } from './_generateCssStarterFile.js'
 import { v4 as uuidv4 } from 'uuid'
 import html2canvas from 'html2canvas'
-import EditorComponent from '../editor/EditorComponent'
+import EditorComponent from './EditorComponent'
 import { db, auth } from '../../firebase'
 import Pixelmatch from 'pixelmatch'
 import useSessionStorage from '../../hooks/useSessionStorage'
@@ -189,13 +189,13 @@ const CssArena = ({ problem }) => {
         return { score, percentage, characters }
     }
     const submitClickedHandler = async () => {
-        const user = auth.currentUser
-        if (!user) return //  @todo prompt the user to login if they are not
         setLoading(true)
 
         let { score, percentage, characters } = await compareIframeAndImage()
 
         setLastScore({ score: score, percentage: percentage, characters: characters })
+        const user = auth.currentUser
+        if (!user) return setLoading(false) //  @todo prompt the user to login if they are not
 
         const userUID = user.uid
 
