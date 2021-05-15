@@ -7,8 +7,8 @@ export const problems = {
         problemDescription: `given two integers, <span class="variable">a</span> and <span class="variable">b</span>, return the sum of <span class="variable">a</span> + <span class="variable">b</span>`,
         inputFormat: `<span class="variable">a</span> a integer, <span class="variable">b</span> a integer `,
         constrains: [
-            '<span class="variable">-Infinity</span> > <span class="variable">a</span> < <span class="variable">Infinity</span>',
-            '<span class="variable">-Infinity</span> > <span class="variable">b</span> < <span class="variable">Infinity</span>',
+            '<span class="variable">-Infinity</span> < <span class="variable">a</span> < <span class="variable">Infinity</span>',
+            '<span class="variable">-Infinity</span> < <span class="variable">b</span> < <span class="variable">Infinity</span>',
         ],
         sampleCases: [
             {
@@ -22,6 +22,69 @@ export const problems = {
             },
         ],
         inputs: ['a', 'b'],
+    },
+    PalindromeNumber: {
+        problemName: 'Palindrome Number',
+        difficulty: 'easy',
+        problemDescription: `
+        Given an integer <span class="variable">x</span>,
+        return <span class="variable">true</span> if <span class="variable">x</span> is palindrome integer.
+        An integer is a palindrome when it reads the same backward as forward. 
+        For example, <span class="variable">121</span> is palindrome while <span class="variable">123</span> is not.
+        `,
+        inputFormat: `<span class="variable">x</span> a integer`,
+        constrains: [
+            '<span class="variable">-1000</span> <= <span class="variable">x</span> < <span class="variable">1000</span>',
+        ],
+        output: '<span class="variable">Boolean:</span> If the number is a palindrome or not',
+
+        sampleCases: [
+            {
+                input: [121],
+                output: [`true`],
+            },
+            {
+                input: [69],
+                output: [`false`],
+                explanation: {
+                    text: `From left to right, it reads <span class="variable">69</span>.
+                From right to left, it becomes <span class="variable">96</span>. Therefore it is not a palindrome.`,
+                },
+            },
+            {
+                input: [-919],
+                output: [`false`],
+                explanation: {
+                    text: `From left to right, it reads <span class="variable">-919</span>.
+                From right to left, it becomes <span class="variable">919-</span>. Therefore it is not a palindrome.`,
+                },
+            },
+        ],
+        inputs: ['x'],
+    },
+    FizzBuzz: {
+        problemName: 'FizzBuzz',
+        difficulty: 'easy',
+        problemDescription: `FizzBuzz is classic in computer programing where given a integer, <span class="variable">n</span>, print every number from 0 to <span class="variable">n</span> with the following constrains:
+        <div class="bulletpoint">If the number evenly devides with 3, print <span class="variable">Fizz</span></div>
+        <div class="bulletpoint">If the number evenly devides with 5, print <span class="variable">Buzz</span></div>
+        <div class="bulletpoint">If the number evenly devides with 3 and 5, print <span class="variable">FizzBuzz</span></div>`,
+        inputFormat: `<span class="variable">n</span> a integer`,
+        constrains: [
+            '<span class="variable">0</span> <= <span class="variable">n</span> < <span class="variable">100</span>',
+        ],
+
+        sampleCases: [
+            {
+                input: [9],
+                output: [`1\n2\nFizz\n4\nBuzz\nFizz\n7\n8\nFizz`],
+            },
+            {
+                input: [15],
+                output: [`1 2 Fizz 4 Buzz Fizz 7 8 Fizz Buzz 11 Fizz 13 14 FizzBuzz`],
+            },
+        ],
+        inputs: ['n'],
     },
     Multiplication: {
         problemName: 'Multiplication',
@@ -77,7 +140,7 @@ export const problems = {
             ' <span class="variable">n</span> < <span class="variable">100</span>',
             ' <span class="variable">n[i]</span> &#x2208 <span class="variable">[A-Z]</span>',
         ],
-        output: `Return a integer, the alphabetical value of the given name.`,
+        output: `int: The alphabetical value of the given name.`,
         sampleCases: [
             {
                 input: ['LUCIO'],
@@ -136,7 +199,7 @@ export const problems = {
         inputFormat: `The first line contains an integer <span class="variable">steps</span>, the number of steps in the hike.
         The second line contains a single string  <span class="variable">path</span>, of   <span class="variable">steps</span>characters that describe the path.`,
         // constrains: [`0 < n < 100`],
-        return: `int: the number of valleys traversed`,
+        output: `int: The number of valleys traveled.`,
         sampleCases: [
             {
                 input: [8, `'UDDDUDUU'`],

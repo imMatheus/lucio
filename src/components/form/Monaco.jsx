@@ -179,7 +179,7 @@ const Monaco = ({ mref, problem }) => {
             // sending the request
             await fetch('https://emkc.org/api/v1/piston/execute', requestOptions)
                 .then((response) => response.json())
-                .then((data) =>
+                .then((data) => {
                     dummyArray.push({
                         correctAnswer: (data.output + '').trim() === (expected + '').trim(),
                         compileMessage:
@@ -191,7 +191,8 @@ const Monaco = ({ mref, problem }) => {
                         expectedOutput: expected,
                         caseName: i,
                     })
-                )
+                    console.log(dummyArray)
+                })
 
             // sleeping for 530ms cuz the api only allows 2 reqs per sec, and 530 just to be on the safe side
             await sleep(530)
@@ -209,7 +210,9 @@ const Monaco = ({ mref, problem }) => {
         // setTestCases(cases)
         let firstTime = true
         console.log(cases)
-        dbSubmissionsRef.child(userUID).on('value', async (snapshot) => {
+        // const yt = await dbSubmissionsRef.child(userUID).orderByValue()
+        // console.log(yt)
+        await dbSubmissionsRef.child(userUID).once('value', async (snapshot) => {
             const response = await snapshot.val()
             console.log(response)
             if (response) {

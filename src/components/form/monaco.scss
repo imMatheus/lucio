@@ -20,7 +20,6 @@
             display: grid;
             grid-template-rows: auto 1fr;
             background-color: var(--main-bg);
-            background-color: orchid;
             z-index: 10;
 
             & .header {
@@ -119,14 +118,10 @@
     .CodeCompileView-wrapper {
         position: relative;
         & .loadingspinner-wrapper-for-codecompile {
-            // background-color: green;
-
             padding: 10px;
-            // height: 200px;
             margin: 90px auto;
             width: 230px;
             height: 230px;
-            // padding-bottom: 100%;
         }
         // display: none;
         .codecompileview {

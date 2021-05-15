@@ -12,10 +12,6 @@
 
 body {
   --main-bg: #282c34;
-  min-width: 1100px;
-  height: 100vh;
-  min-height: 100vh;
-  background-color: var(--main-bg);
   --paraghrap-fontfamily: "Open Sans", Arial, Helvetica, sans-serif;
   --varible-fontfamily: "Roboto Slab", serif;
   --color-mainGreen: #2a9d8f;
@@ -23,15 +19,19 @@ body {
   --color-darkOrange: #f4a261;
   --color-darkBlue: #0a1128;
   --color-fail: #d11534;
-  --bold-fontsize: 1.02rem;
-  --mini-fontsize: 0.72rem;
-  --header-fontsize: 1.5rem;
+  --bold-fontsize: 1.06rem;
+  --mini-fontsize: 0.76rem;
+  --header-fontsize: 1.55rem;
   --transition-speed: 200ms;
   --font-family: "Roboto Mono", monospace;
   --bold: 600;
   --paragraph-fontsize: 0.8rem;
   --variable-fontsize: 0.91rem;
   --inputs-fontsize: 0.85rem;
+  min-width: 1100px;
+  height: 100vh;
+  min-height: 100vh;
+  background-color: var(--main-bg);
 }
 body .App {
   height: 100%;
@@ -962,7 +962,6 @@ body .App .form .editorial .editor .editor-component {
   display: grid;
   grid-template-rows: auto 1fr;
   background-color: var(--main-bg);
-  background-color: orchid;
   z-index: 10;
 }
 body .App .form .editorial .editor .editor-component .header {
@@ -1187,7 +1186,6 @@ body .App .form .question .content .content-subpart p {
 body .App .form .question .content .content-subpart p span.variable {
   font-style: italic;
   margin: 0 2px;
-  word-break: break-all;
   color: var(--bold-color);
   font-weight: 400;
   font-size: var(--variable-fontsize);

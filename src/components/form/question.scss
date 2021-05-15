@@ -32,7 +32,7 @@
                 & span.variable {
                     font-style: italic;
                     margin: 0 2px;
-                    word-break: break-all;
+                    // word-break: break-all;
                     color: var(--bold-color);
                     font-weight: 400;
                     font-size: var(--variable-fontsize);
@@ -41,10 +41,6 @@
                 &.bulletpoint,
                 & .bulletpoint {
                     padding: 4px 0;
-
-                    // margin: 10px 0;
-                    // display: grid;
-                    // grid-template-columns: auto 1fr;
 
                     &::before {
                         //the little cirle on the left of the bullet point

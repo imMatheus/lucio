@@ -148,7 +148,7 @@ export const cssProblems = [
 //     console.log(value)
 // })
 // db.ref('css').set(cssProblems)
-// db.ref('algorithms').set(problems)
+db.ref('algorithms').set(problems)
 
 // db.ref('css/22').set({
 //     target: 23,
