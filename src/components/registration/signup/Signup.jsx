@@ -37,6 +37,8 @@ const Signup = () => {
     }
 
     const handleSubmit = async (e) => {
+        console.log(displayNameRef.current?.value.trim())
+        console.log(displayNameRef.current?.value)
         e.preventDefault()
         if (displayNameRef.current?.value.trim().length < 6) {
             return setError('Display name must be 6 or more characters long')
@@ -51,6 +53,9 @@ const Signup = () => {
         }
         if (passwordRef.current?.value !== confirmPasswordRef.current?.value) {
             return setError('Passwords do not match')
+        }
+        if (passwordRef.current?.value.length < 6) {
+            return setError('Password has to be 6 or more characters ')
         }
         try {
             setError('')
