@@ -3,6 +3,7 @@ import { useAuth } from '../../../context/AuthContext'
 import { Link, useHistory } from 'react-router-dom'
 import VisibilityIcon from '@material-ui/icons/Visibility'
 import VisibilityOffIcon from '@material-ui/icons/VisibilityOff'
+import useBadWordsFilter from '../../../hooks/useBadWordsFilter'
 
 const Signup = () => {
     const emailRef = useRef(null)
@@ -11,7 +12,7 @@ const Signup = () => {
     const confirmPasswordRef = useRef(null)
     const [error, setError] = useState('')
     const [loading, setLoading] = useState(false)
-
+    const filter = useBadWordsFilter()
     const { signup } = useAuth()
     const [profileImage, setProfileImage] = useState(null)
     const history = useHistory()
@@ -39,6 +40,10 @@ const Signup = () => {
         e.preventDefault()
         if (displayNameRef.current?.value.trim().length < 6) {
             return setError('Display name must be 6 or more characters long')
+        }
+        const cleaned = filter.clean(displayNameRef.current?.value.trim())
+        if (displayNameRef.current?.value.trim() !== cleaned) {
+            return setError('Please do not use bad words :)')
         }
 
         if (!profileImage) {

@@ -3519,6 +3519,18 @@
   "resolved" "https://registry.yarnpkg.com/babylon/-/babylon-6.18.0.tgz"
   "version" "6.18.0"
 
+"bad-words@^3.0.4":
+  "integrity" "sha512-v/Q9uRPH4+yzDVLL4vR1+S9KoFgOEUl5s4axd6NIAq8SV2mradgi4E8lma/Y0cw1ltVdvyegCQQKffCPRCp8fg=="
+  "resolved" "https://registry.npmjs.org/bad-words/-/bad-words-3.0.4.tgz"
+  "version" "3.0.4"
+  dependencies:
+    "badwords-list" "^1.0.0"
+
+"badwords-list@^1.0.0":
+  "integrity" "sha1-XphW2/E0gqKVw7CzBK+51M/FxXk="
+  "resolved" "https://registry.npmjs.org/badwords-list/-/badwords-list-1.0.0.tgz"
+  "version" "1.0.0"
+
 "balanced-match@^1.0.0":
   "integrity" "sha1-ibTRmasr7kneFk6gK4nORi1xt2c="
   "resolved" "https://registry.yarnpkg.com/balanced-match/-/balanced-match-1.0.0.tgz"

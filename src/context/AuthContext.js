@@ -29,7 +29,6 @@ export const AuthProvider = ({ children }) => {
     const [currentUser, setCurrentUser] = useState()
     const [leaderboard, setLeaderboard] = useState(null)
     const [loading, setLoading] = useState(true)
-    console.log(leaderboard)
 
     async function signup(email, password, displayName, imageUrl) {
         const usersNamesRef = fs.collection('usernames').doc(displayName.toLowerCase())
@@ -91,28 +90,24 @@ export const AuthProvider = ({ children }) => {
     }, [])
 
     useEffect(() => {
+        // subscribe to the db so we can update the leaderboard when the db gets updated
         db.ref().on('value', async (snapshot) => {
             let problems = await snapshot.val()
-            console.log(problems)
             const cssProblems = problems.css
             const algorithmsProblems = problems.algorithms
-            console.log(cssProblems)
-            console.log(algorithmsProblems)
             let leaderBoardObj = {} // used to sweep thru the submissions and store all the users submissions
 
             for (const problem in algorithmsProblems) {
-                console.log(problem)
                 const submissions = algorithmsProblems[problem]?.submissions
-                console.log(algorithmsProblems[problem])
-                // console.log(submissions)
                 if (submissions) {
                     // then going threw every single submission in the submissions of the problem
                     for (const uid in submissions) {
                         if (leaderBoardObj[uid] && submissions[uid].score > 0) {
+                            // if the uid already  exists just add to it
                             leaderBoardObj[uid].targets += 1
                             leaderBoardObj[uid].score += submissions[uid].score
-                            console.log(submissions[uid].score)
                         } else {
+                            // else set it uid in the object
                             if (submissions[uid].score > 0) {
                                 leaderBoardObj[uid] = {
                                     score: submissions[uid].score,
@@ -130,10 +125,12 @@ export const AuthProvider = ({ children }) => {
                     // then going threw every single submission in the submissions of the problem
                     for (const uid in submissions) {
                         if (leaderBoardObj[uid] && submissions[uid]?.score > 0) {
+                            // if the uid already  exists just add to it
                             leaderBoardObj[uid].targets += 1
                             leaderBoardObj[uid].score += submissions[uid].score
                         } else {
                             if (submissions[uid].score > 0) {
+                                // else set it uid in the object
                                 leaderBoardObj[uid] = {
                                     score: submissions[uid].score,
                                     targets: 1,
@@ -143,7 +140,7 @@ export const AuthProvider = ({ children }) => {
                     }
                 }
             })
-            let leaderBoardArr = []
+            let leaderBoardArr = [] // turn into an object so we can sort
             for (const uid in leaderBoardObj) {
                 // if the user does not have a score we don't push it to leader-board
                 if (leaderBoardObj[uid]) {
@@ -154,6 +151,7 @@ export const AuthProvider = ({ children }) => {
                     })
                 }
             }
+            // sort the array
             leaderBoardArr = quickSortBasic(leaderBoardArr)
             let dummyHolder = []
             for (let i = 0; i < leaderBoardArr.length; i++) {
