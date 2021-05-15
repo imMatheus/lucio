@@ -35,14 +35,14 @@ export const AuthProvider = ({ children }) => {
         const usersNamesRef = fs.collection('usernames').doc(displayName.toLowerCase())
         const doc = await usersNamesRef.get()
         if (doc.exists) {
-            console.log(doc.data())
             // checking if the display name already exist
             const error = { message: 'Display name already exist' }
             return error
+        } else {
+            await usersNamesRef.set({
+                displayName: displayName.toLowerCase(),
+            })
         }
-        await usersNamesRef.set({
-            displayName: displayName,
-        })
         try {
             await auth.createUserWithEmailAndPassword(email, password)
 
@@ -91,100 +91,90 @@ export const AuthProvider = ({ children }) => {
     }, [])
 
     useEffect(() => {
-        const getLeaderBoard = async () => {
-            const cssRef = db.ref('css')
-            const algoRef = db.ref('algorithms')
+        db.ref().on('value', async (snapshot) => {
+            let problems = await snapshot.val()
+            console.log(problems)
+            const cssProblems = problems.css
+            const algorithmsProblems = problems.algorithms
+            console.log(cssProblems)
+            console.log(algorithmsProblems)
             let leaderBoardObj = {} // used to sweep thru the submissions and store all the users submissions
-            console.log(leaderBoardObj)
-            await algoRef.on('value', async (snapshot) => {
-                console.log('-----------99-----------')
-                leaderBoardObj = {}
-                console.log(leaderBoardObj)
-                let problems = snapshot.val()
-                for (const problem in problems) {
-                    const submissions = problems[problem].submissions
-                    // console.log(submissions)
-                    if (submissions) {
-                        // then going threw every single submission in the submissions of the problem
-                        for (const uid in submissions) {
-                            if (leaderBoardObj[uid] && submissions[uid].score > 0) {
-                                leaderBoardObj[uid].targets += 1
-                                leaderBoardObj[uid].score += submissions[uid].score
-                                console.log(submissions[uid].score)
-                            } else {
-                                leaderBoardObj[uid] = { score: submissions[uid].score, targets: 1 }
-                            }
-                        }
-                    }
-                }
-            })
-            await cssRef.on('value', async (snapshot) => {
-                let problems = snapshot.val()
-                console.log('-----------117-----------')
-                leaderBoardObj = {}
-                console.log(leaderBoardObj)
-                problems?.forEach((problem) => {
-                    // looping threw all the problems
-                    const submissions = problem.submissions
-                    if (submissions) {
-                        // then going threw every single submission in the submissions of the problem
-                        for (const uid in submissions) {
-                            if (leaderBoardObj[uid] && submissions[uid].score > 0) {
-                                leaderBoardObj[uid].targets += 1
-                                leaderBoardObj[uid].score += submissions[uid].score
-                                console.log(submissions[uid].score)
-                            } else {
-                                if (submissions[uid].score > 0) {
-                                    leaderBoardObj[uid] = {
-                                        score: submissions[uid].score,
-                                        targets: 1,
-                                    }
+
+            for (const problem in algorithmsProblems) {
+                console.log(problem)
+                const submissions = algorithmsProblems[problem]?.submissions
+                console.log(algorithmsProblems[problem])
+                // console.log(submissions)
+                if (submissions) {
+                    // then going threw every single submission in the submissions of the problem
+                    for (const uid in submissions) {
+                        if (leaderBoardObj[uid] && submissions[uid].score > 0) {
+                            leaderBoardObj[uid].targets += 1
+                            leaderBoardObj[uid].score += submissions[uid].score
+                            console.log(submissions[uid].score)
+                        } else {
+                            if (submissions[uid].score > 0) {
+                                leaderBoardObj[uid] = {
+                                    score: submissions[uid].score,
+                                    targets: 1,
                                 }
                             }
                         }
                     }
-                })
-
-                console.log('-----------135-----------')
-                let leaderBoardArr = []
-                for (const uid in leaderBoardObj) {
-                    // if the user does not have a score we don't push it to leader-board
-                    if (leaderBoardObj[uid]) {
-                        leaderBoardArr.push({
-                            uid: uid,
-                            score: Math.round(leaderBoardObj[uid].score * 100) / 100, // rounds to two decimal
-                            targets: leaderBoardObj[uid].targets,
-                        })
+                }
+            }
+            cssProblems?.forEach((problem) => {
+                // looping threw all the problems
+                const submissions = problem?.submissions
+                if (submissions) {
+                    // then going threw every single submission in the submissions of the problem
+                    for (const uid in submissions) {
+                        if (leaderBoardObj[uid] && submissions[uid]?.score > 0) {
+                            leaderBoardObj[uid].targets += 1
+                            leaderBoardObj[uid].score += submissions[uid].score
+                        } else {
+                            if (submissions[uid].score > 0) {
+                                leaderBoardObj[uid] = {
+                                    score: submissions[uid].score,
+                                    targets: 1,
+                                }
+                            }
+                        }
                     }
                 }
-                // sorting the leader-board
-                leaderBoardArr = quickSortBasic(leaderBoardArr)
-
-                let dummyHolder = []
-                console.log('-----------151-----------')
-
-                for (let i = 0; i < leaderBoardArr.length; i++) {
-                    // getting the user from firestore and storing user details in
-                    const response = fs.collection('users').doc(leaderBoardArr[i].uid)
-                    const rawData = await response.get()
-                    const data = rawData.data()
-
-                    if (data && leaderBoardArr[i]) {
-                        // pushing all the data we got of the user from firestore
-                        // and then adding users score and targets
-                        dummyHolder.push({
-                            ...data,
-                            score: leaderBoardArr[i].score,
-                            targets: leaderBoardArr[i].targets,
-                        })
-                    }
-                }
-                console.log('-----------169-----------')
-
-                setLeaderboard(dummyHolder)
             })
-        }
-        return getLeaderBoard()
+            let leaderBoardArr = []
+            for (const uid in leaderBoardObj) {
+                // if the user does not have a score we don't push it to leader-board
+                if (leaderBoardObj[uid]) {
+                    leaderBoardArr.push({
+                        uid: uid,
+                        score: Math.round(leaderBoardObj[uid].score * 100) / 100, // rounds to two decimal
+                        targets: leaderBoardObj[uid].targets,
+                    })
+                }
+            }
+            leaderBoardArr = quickSortBasic(leaderBoardArr)
+            let dummyHolder = []
+            for (let i = 0; i < leaderBoardArr.length; i++) {
+                // getting the user from firestore and storing user details in
+                const response = fs.collection('users').doc(leaderBoardArr[i].uid)
+                const rawData = await response.get()
+                const data = rawData.data()
+
+                if (data && leaderBoardArr[i]) {
+                    // pushing all the data we got of the user from firestore
+                    // and then adding users score and targets
+                    dummyHolder.push({
+                        ...data,
+                        score: leaderBoardArr[i].score,
+                        targets: leaderBoardArr[i].targets,
+                    })
+                }
+            }
+
+            setLeaderboard(dummyHolder)
+        })
     }, [])
 
     // setting the score and target sto global variable currentUser
