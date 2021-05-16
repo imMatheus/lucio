@@ -110,12 +110,15 @@ export const problems = {
         sampleCases: [
             { input: [30, 3], output: [90], explanation: { text: `30 * 3 = 90` } },
             { input: [3, 5], output: [15] },
-            { input: [0, 0], output: [0] },
         ],
         submitCases: [
             {
                 input: [69, 69],
                 output: [4761],
+            },
+            {
+                input: [0, 7],
+                output: [0],
             },
             {
                 input: [1, 70],

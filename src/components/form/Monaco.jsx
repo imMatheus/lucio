@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react'
 
-import Editor, { useMonaco } from '@monaco-editor/react'
+import { useMonaco } from '@monaco-editor/react'
 import File from './File'
 import CodeCompileView from './CodeCompileView'
 import { generateJavascript, javascriptPrint } from '../../functions/generateJavascript'
@@ -12,11 +12,14 @@ import EditorComponent from './EditorComponent'
 
 // https://www.npmjs.com/package/@monaco-editor/react
 const Monaco = ({ mref, problem }) => {
+    // console.log(problem)
     const monaco = useMonaco()
     const { currentUser } = useAuth()
     const [fetchingData, setFetchingData] = useState(false)
     const problemName = problem.problemName
     const problemInputs = problem.inputs
+    const sampleCases = problem.sampleCases
+    const submitCases = problem.submitCases
     const displayProblemName = problemName
         ?.split(' ')
         .filter((word) => word !== '')
@@ -46,7 +49,6 @@ const Monaco = ({ mref, problem }) => {
         'script.py': scriptPy,
     })
 
-    const sampleCases = problem.sampleCases
     const [testCases, setTestCases] = useSessionStorage(`${displayProblemName}-testCases`, [])
     const [fileName, setFileName] = useSessionStorage('fileName', 'script.js')
     const file = files[fileName]
@@ -135,7 +137,7 @@ const Monaco = ({ mref, problem }) => {
             setCurrentCode(scriptPy)
         }
     }, [fileName, file, language, scriptJs, scriptPy])
-    const runCodeHandler = async () => {
+    const runCodeHandler = async (submit) => {
         // returning early if we are fetching data
         // otherwise the run button can be spammed causing errors
         if (fetchingData) return
@@ -147,16 +149,17 @@ const Monaco = ({ mref, problem }) => {
             return new Promise((resolve) => setTimeout(resolve, ms))
         }
         setFetchingData(true)
+        const l = language
 
+        const cases = submit === true ? sampleCases.concat(submitCases) : sampleCases
         let dummyArray = []
 
-        for (let i = 0; i < sampleCases.length; i++) {
-            const currentCase = sampleCases[i]
+        for (let i = 0; i < cases.length; i++) {
+            const currentCase = cases[i]
             const args = currentCase.input
             const expected = currentCase.output
 
             // the request that we send to the piston api
-            console.log(language)
             const requestOptions = {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -187,7 +190,6 @@ const Monaco = ({ mref, problem }) => {
                         expectedOutput: expected,
                         caseName: i,
                     })
-                    console.log(dummyArray)
                 })
 
             // sleeping for 530ms cuz the api only allows 2 reqs per sec, and 530 just to be on the safe side
@@ -196,21 +198,18 @@ const Monaco = ({ mref, problem }) => {
 
         setTestCases(dummyArray)
         setFetchingData(false)
+        setLanguage(l)
         return dummyArray
     }
     const submitCodeHandler = async () => {
         if (!currentUser) return //  @todo prompt the user to login if they are not
         const userUID = currentUser.uid
-
-        let cases = await runCodeHandler()
-        // setTestCases(cases)
+        const l = language
+        let cases = await runCodeHandler(true)
         let firstTime = true
-        console.log(cases)
-        // const yt = await dbSubmissionsRef.child(userUID).orderByValue()
-        // console.log(yt)
+
         await dbSubmissionsRef.child(userUID).once('value', async (snapshot) => {
             const response = await snapshot.val()
-            console.log(response)
             if (response) {
                 firstTime = response.score > 0 ? false : true
             }
@@ -224,15 +223,15 @@ const Monaco = ({ mref, problem }) => {
         // if the difficulty is hard then score is 600 if it is medium then score is 400
         // and if it is easy score is 200
         const score = difficulty === 'hard' ? 600 : difficulty === 'medium' ? 400 : 200
-        console.log(currentUser)
-        dbSubmissionsRef.child(userUID).update({
+
+        dbSubmissionsRef.child(userUID).set({
             email: currentUser.email,
             score: correctAnswer ? score : 0,
             displayName: currentUser.displayName,
             userId: userUID,
             profileImage: currentUser.photoURL,
         })
-        console.log('finish')
+        setLanguage(l)
     }
     // console.log('-----------lll-----------')
 
@@ -252,6 +251,7 @@ const Monaco = ({ mref, problem }) => {
                         setFileName={setFileName}
                         setLanguage={setLanguage}
                     />
+                    {language}
                 </div>
                 {language === 'javascript' ? (
                     <EditorComponent

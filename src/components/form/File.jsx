@@ -13,11 +13,10 @@ const File = ({ file, fileName, setFileName, setLanguage }) => {
         Icon = JavascriptSvg
     } else if (prefix[prefix.length - 1] === 'py') {
         Icon = PythonSvg
-    } else if (prefix[prefix.length - 1] === 'css') {
-    } else if (prefix[prefix.length - 1] === 'html') {
     }
     const changeLanguageHandler = () => {
         setFileName(file)
+        console.log('ahaaaaaah')
         if (prefix[prefix.length - 1] === 'js') {
             setLanguage('javascript')
         } else if (prefix[prefix.length - 1] === 'py') {

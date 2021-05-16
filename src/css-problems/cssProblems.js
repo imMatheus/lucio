@@ -17,10 +17,11 @@ import image16 from './images/problem16.png'
 import image17 from './images/problem17.png'
 import image18 from './images/problem18.png'
 import image19 from './images/problem19.png'
-import image20 from './images/problem20.png'
-import image21 from './images/problem21.png'
-import image22 from './images/problem22.png'
-import image23 from './images/problem23.png'
+// import image20 from './images/problem20.png'
+// import image21 from './images/problem21.png'
+// import image22 from './images/problem22.png'
+// import image23 from './images/problem23.png'
+// import image24 from './images/problem24.png'
 import { db } from '../firebase'
 import { problems } from '../problems/problems'
 export const cssProblems = [
@@ -105,40 +106,21 @@ export const cssProblems = [
         image: image16,
         colors: ['#003049', '#d62828', '#f77f00', '#fcbf49', '#eae2b7'],
     },
+
     {
         target: 17,
         image: image17,
-        colors: ['#007a33', '#ffffff', '#cb333b'],
+        colors: [' #1d3557', '#e63946', '#f1faee'],
     },
     {
         target: 18,
         image: image18,
-        colors: ['#ffffff', '#d21034', '#005293'],
+        colors: [' #293241', '#e0fbfc', '#98c1d9', '#3d5a80'],
     },
     {
         target: 19,
         image: image19,
-        colors: [' #004B87', '#FFCD00'],
-    },
-    {
-        target: 20,
-        image: image20,
-        colors: [' #FFFFFF', '#e4002b', '#004b87'],
-    },
-    {
-        target: 21,
-        image: image21,
-        colors: [' #FFFFFF', '#e4002b'],
-    },
-    {
-        target: 22,
-        image: image22,
-        colors: [' #1d3557', '#e63946', '#f1faee'],
-    },
-    {
-        target: 23,
-        image: image23,
-        colors: [' #293241', '#e0fbfc', '#98c1d9', '#3d5a80'],
+        colors: [' #293241', '#98c1d9'],
     },
 ]
 
@@ -148,12 +130,12 @@ export const cssProblems = [
 //     console.log(value)
 // })
 // db.ref('css').set(cssProblems)
-db.ref('algorithms').set(problems)
+// db.ref('algorithms').set(problems)
 
-// db.ref('css/22').set({
-//     target: 23,
-//     image: image23,
-//     colors: [' #293241', '#e0fbfc', '#98c1d9', '#3d5a80'],
+// db.ref('css/24').set({
+//     target: 24,
+//     image: image24,
+//     colors: [' #293241', '#98c1d9'],
 // })
 // userRef.update(
 //     target: 22,
@@ -161,3 +143,29 @@ db.ref('algorithms').set(problems)
 //     colors: [' #275654', '#65b891', '#4e878c'],
 //     submissions: [{ user: 'hej' }],
 //
+
+// {
+//     target: 17,
+//     image: image17,
+//     colors: ['#007a33', '#ffffff', '#cb333b'],
+// },
+// {
+//     target: 18,
+//     image: image18,
+//     colors: ['#ffffff', '#d21034', '#005293'],
+// },
+// {
+//     target: 19,
+//     image: image19,
+//     colors: [' #004B87', '#FFCD00'],
+// },
+// {
+//     target: 20,
+//     image: image20,
+//     colors: [' #FFFFFF', '#e4002b', '#004b87'],
+// },
+// {
+//     target: 21,
+//     image: image21,
+//     colors: [' #FFFFFF', '#e4002b'],
+// },
