@@ -336,20 +336,24 @@ body .App .cssdashboard .cssarena .popup-container .color-circle {
 body .App .cssdashboard .cssproblems {
   min-height: 700px;
   background: var(--resize-bg);
-  padding: 25px 50px;
+  padding: 25px 20px;
   font-family: var(--font-family);
 }
 body .App .cssdashboard .cssproblems .container {
   background-color: var(--main-bg);
   display: grid;
-  grid-template-columns: repeat(auto-fit, 336px);
+  grid-template-columns: repeat(auto-fit, 316px);
   gap: 20px;
   padding: 15px;
+  justify-content: center;
+}
+body .App .cssdashboard .cssproblems .container .problem-wrapper {
+  width: 100%;
 }
 body .App .cssdashboard .cssproblems .container .problem-wrapper .problem {
   cursor: pointer;
-  width: 336px;
-  height: 252px;
+  width: 316px;
+  height: 237px;
   position: relative;
   background-position: center;
   background-size: cover;

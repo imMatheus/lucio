@@ -172,12 +172,29 @@ const CssArena = ({ problem }) => {
         })
 
         var img2
-        await htmlToImage.toPixelData(solutionRef.current).then(function (pixels) {
-            img2 = pixels
-        })
+
+        await htmlToImage
+            .toPng(solutionRef.current)
+            .then(async function (dataUrl) {
+                var img = new Image()
+                img.width = '400'
+                img.height = '300'
+                img.src = dataUrl
+                document.body.appendChild(img)
+                console.log(img)
+                await htmlToImage.toPixelData(img).then(function (pixels) {
+                    img2 = pixels
+                    console.log(pixels)
+                })
+            })
+            .catch(function (error) {
+                console.error('oops, something went wrong!', error)
+            })
 
         const width = 400
         const height = 300
+        console.log(img1)
+        console.log(img2)
         let diff = Pixelmatch(img1, img2, null, width, height, {
             threshold: 0.02,
             /* options */

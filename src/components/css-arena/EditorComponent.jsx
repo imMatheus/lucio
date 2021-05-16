@@ -107,7 +107,7 @@ const EditorComponent = ({ language, setter, starterCode }) => {
                 options={{
                     inherit: true,
                     automaticLayout: true,
-                    scrollBeyondLastLine: false,
+                    scrollBeyondLastLine: true,
                     minimap: {
                         enabled: false,
                     },

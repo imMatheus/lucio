@@ -1,20 +1,21 @@
 .cssproblems {
     min-height: 700px;
     background: var(--resize-bg);
-    padding: 25px 50px;
+    padding: 25px 20px;
     font-family: var(--font-family);
 
     & .container {
         background-color: var(--main-bg);
         display: grid;
-        $width: 336px;
+        $width: 316px;
         grid-template-columns: repeat(auto-fit, $width);
         gap: 20px;
         padding: 15px;
+        justify-content: center;
 
         & .problem-wrapper {
-            // margin: 15px 10px;
-            // background-color: pink;
+            width: 100%;
+
             & .problem {
                 cursor: pointer;
                 width: $width;

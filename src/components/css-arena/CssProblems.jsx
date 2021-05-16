@@ -15,22 +15,18 @@ const CssProblems = () => {
             let cssList = []
             for (let id in css) {
                 cssList.push(css[id])
-                // if (!cssId) cssId = id
             }
             console.log(cssList)
 
             setCssProblemsArray(cssList)
         })
-        // cssRef.set({ score: 10 })
     }, [])
-    // console.log(cssProblemsArray[0])
 
     return (
         <div className='cssproblems'>
             <div className='container'>
                 {cssProblemsArray &&
                     cssProblemsArray.map((problem) => {
-                        // console.log(problem)
                         const submissions = problem.submissions
                         if (submissions) {
                             if (submissions[userUID]) {
@@ -69,7 +65,11 @@ const Problem = ({ target, image, submissions, score, percentage }) => {
                     <h2>#{target}</h2>
                 </div>
                 <div className='problem-metadata'>
-                    {score && percentage && <span>{`${score} (${percentage}%)`}</span>}
+                    {score && percentage ? (
+                        <span>{`${score} (${percentage}%)`}</span>
+                    ) : (
+                        <span>No Score</span>
+                    )}
                     <span>{subs}</span>
                 </div>
             </div>

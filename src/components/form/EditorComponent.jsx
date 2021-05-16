@@ -120,7 +120,7 @@ const EditorComponent = ({ language, setter, starterCode, setJs, setPy }) => {
                     // scrolling: true,
                     inherit: true,
                     automaticLayout: true,
-                    scrollBeyondLastLine: false,
+                    scrollBeyondLastLine: true,
                     minimap: {
                         enabled: false,
                     },
