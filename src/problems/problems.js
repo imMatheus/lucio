@@ -21,6 +21,24 @@ export const problems = {
                 output: [120],
             },
         ],
+        submitCases: [
+            {
+                input: [-981, -54],
+                output: [-1035],
+            },
+            {
+                input: [69, 69],
+                output: [138],
+            },
+            {
+                input: [12, 12],
+                output: [24],
+            },
+            {
+                input: [35, -35],
+                output: [0],
+            },
+        ],
         inputs: ['a', 'b'],
     },
     PalindromeNumber: {
@@ -60,48 +78,55 @@ export const problems = {
                 },
             },
         ],
+        submitCases: [
+            {
+                input: [-981],
+                output: [`false`],
+            },
+            {
+                input: [696],
+                output: [`true`],
+            },
+            {
+                input: [0],
+                output: [`true`],
+            },
+            {
+                input: [35],
+                output: [`false`],
+            },
+        ],
         inputs: ['x'],
-    },
-    FizzBuzz: {
-        problemName: 'FizzBuzz',
-        difficulty: 'easy',
-        problemDescription: `FizzBuzz is classic in computer programing where given a integer, <span class="variable">n</span>, print every number from 0 to <span class="variable">n</span> with the following constrains:
-        <div class="bulletpoint">If the number evenly devides with 3, print <span class="variable">Fizz</span></div>
-        <div class="bulletpoint">If the number evenly devides with 5, print <span class="variable">Buzz</span></div>
-        <div class="bulletpoint">If the number evenly devides with 3 and 5, print <span class="variable">FizzBuzz</span></div>`,
-        inputFormat: `<span class="variable">n</span> a integer`,
-        constrains: [
-            '<span class="variable">0</span> <= <span class="variable">n</span> < <span class="variable">100</span>',
-        ],
-
-        sampleCases: [
-            {
-                input: [9],
-                output: [`1\n2\nFizz\n4\nBuzz\nFizz\n7\n8\nFizz`],
-            },
-            {
-                input: [15],
-                output: [`1 2 Fizz 4 Buzz Fizz 7 8 Fizz Buzz 11 Fizz 13 14 FizzBuzz`],
-            },
-        ],
-        inputs: ['n'],
     },
     Multiplication: {
         problemName: 'Multiplication',
         difficulty: 'easy',
-        problemDescription: `given three number, <span class="variable">X</span>, <span class="variable">Y</span>, <span class="variable">Z</span>, return the product of <span class="variable">X</span> * <span class="variable">Y</span> * <span class="variable">Z</span>`,
-        inputFormat: `<span class="variable">X</span> a number, <span class="variable">Y</span> a number, <span class="variable">Z</span> a number`,
+        problemDescription: `Given three numbers, <span class="variable">X</span>, <span class="variable">Y</span>, return the product of <span class="variable">X</span> * <span class="variable">Y</span> `,
+        inputFormat: `<span class="variable">X</span> a number, <span class="variable">Y</span> a number`,
         constrains: [
             '<span class="variable">X</span> a number',
             '<span class="variable">Y</span> a number',
-            '<span class="variable">Z</span> a number',
         ],
         sampleCases: [
-            { input: [30, 2, 4], output: [240] },
-            { input: [0, 0, 0], output: [0], explanation: { text: `0 * 0 * 0 = 0` } },
-            { input: [3, 5, 4], output: [60] },
+            { input: [30, 3], output: [90], explanation: { text: `30 * 3 = 90` } },
+            { input: [3, 5], output: [15] },
+            { input: [0, 0], output: [0] },
         ],
-        inputs: ['x', 'y', 'z'],
+        submitCases: [
+            {
+                input: [69, 69],
+                output: [4761],
+            },
+            {
+                input: [1, 70],
+                output: [70],
+            },
+            {
+                input: [-40, 3],
+                output: [-120],
+            },
+        ],
+        inputs: ['x', 'y'],
     },
     NumberOfLetters: {
         problemName: 'Number Of Letters',
@@ -115,27 +140,42 @@ export const problems = {
         ],
         sampleCases: [
             {
-                input: [`'l'`, `'helloworld'`],
+                input: [`"l"`, `"helloworld"`],
                 output: [3],
                 explanation: {
-                    text: `In the string <span class="variable">'helloworld'</span> the letter <span class="variable">l</span> appears 3 times`,
+                    text: `In the string <span class="variable">"helloworld"</span> the letter <span class="variable">l</span> appears 3 times`,
                 },
             },
             {
-                input: [`'b'`, `'uraqt'`],
+                input: [`"n"`, `"drillmasher"`],
                 output: [0],
                 explanation: {
-                    text: `In the string <span class="variable">'uraqt'</span> the letter <span class="variable">b</span> doesn't appears, so we return 0`,
+                    text: `In the string <span class="variable">"drillmasher"</span> the letter <span class="variable">n</span> doesn't appears, so we return 0`,
                 },
             },
         ],
+        submitCases: [
+            {
+                input: [`"e"`, `"egegeahsdfyegdajebcsdfyegdajebcheavcaebuebu"`],
+                output: [10],
+            },
+            {
+                input: [`"j"`, `"gdykajcbaksdnscnsacnkasdknnsd"`],
+                output: [10],
+            },
+            {
+                input: [`"m"`, `"memememememememe"`],
+                output: [8],
+            },
+        ],
+
         inputs: ['letter', 's'],
     },
     ScoreTheName: {
         problemName: 'Score The Name',
         difficulty: 'easy',
-        problemDescription: `given a name, <span class="variable">n</span>, calculate the alphabetical value for the letters of the name. The alphabetical value of a letter is it's place in the alphabet.`,
-        inputFormat: `<span class="variable">n</span> a single name`,
+        problemDescription: `Given a single name, <span class="variable">n</span>, calculate the alphabetical value for the letters of the name. The alphabetical value of a letter is it"s place in the alphabet.`,
+        inputFormat: `<span class="variable">n</span> a single word containing uppercase letters.`,
         constrains: [
             ' <span class="variable">n</span> < <span class="variable">100</span>',
             ' <span class="variable">n[i]</span> &#x2208 <span class="variable">[A-Z]</span>',
@@ -143,21 +183,71 @@ export const problems = {
         output: `int: The alphabetical value of the given name.`,
         sampleCases: [
             {
-                input: ['LUCIO'],
+                input: [`"LUCIO"`],
                 output: [60],
                 explanation: {
                     text: `The alphabetical value of each letter in the name, Lucio, is <span class="variable">12 + 21 + 3 + 9 + 15 = 60</span>`,
                 },
             },
             {
-                input: ['ABBA'],
+                input: [`"ABBA"`],
                 output: [6],
                 explanation: {
                     text: `The alphabetical value of each letter in the name, ABBA, is <span class="variable">1 + 2 + 2 + 1 = 6</span>`,
                 },
             },
         ],
+        submitCases: [
+            {
+                input: [`"MATHEUSMENDESBARATADEALMEIDA"`],
+                output: [244],
+            },
+            {
+                input: [`"QWQWASZXDESREGG"`],
+                output: [215],
+            },
+            {
+                input: [`"ZZZZZZZZA"`],
+                output: [209],
+            },
+        ],
         inputs: ['n'],
+    },
+    AlphabeticalJustice: {
+        problemName: 'Alphabetical Justice',
+        difficulty: 'easy',
+        problemDescription: `Given a string, <span class="variable">str</span>, convert the string so that each letter is in alphabetical order.`,
+        inputFormat: `<span class="variable">str</span> a string containing uppercase letters.`,
+        output: `string: The string <span class="variable">str</span> with its letters in alphabetical order.`,
+        constrains: [
+            '<span class="variable">0</span> < <span class="variable">str</span> < <span class="variable">1000</span>',
+            '<span class="variable">str[i]</span> &#x2208 <span class="variable">[A-Z]</span>',
+        ],
+        sampleCases: [
+            {
+                input: [`"LUCIO"`],
+                output: [`CILOU`],
+            },
+            {
+                input: [`"SWEDEN"`],
+                output: [`DEENSW`],
+            },
+        ],
+        submitCases: [
+            {
+                input: [`"DGYBSCBYVAEDUJBCUEBHZCV"`],
+                output: [`ABBBBCCCDDEEGHJSUUVVYYZ`],
+            },
+            {
+                input: [`"YATSVSSBHSYSBJHHSHSHKAI"`],
+                output: [`AABBHHHHHIJKSSSSSSSTVYY`],
+            },
+            {
+                input: [`"WESDWEDSEWDSEWDHSBVZVFFF"`],
+                output: [`BDDDDEEEEFFFHSSSSVVWWWWZ`],
+            },
+        ],
+        inputs: ['str'],
     },
 
     MinMaxSum: {
@@ -165,11 +255,10 @@ export const problems = {
         difficulty: 'easy',
         problemDescription: `Given five positive integers, find the minimum and maximum values that can be calculated by summing exactly four of the five integers. Then print the respective minimum and maximum values as a single line of two space-separated long integers.`,
         inputFormat: `A single line of five space-separated integers.`,
-        // constrains: [`0 < n < 100`],
-        output: `Print two space-separated integers on one line: the minimum sum and the maximum sum of  of  elements.`,
+        output: `Print two space-separated integers on one line: the minimum sum and the maximum sum of elements.`,
         sampleCases: [
             {
-                input: [`[1, 2, 3, 4, 5]`, `[69, 69]`],
+                input: [`[1, 2, 3, 4, 5]`],
                 output: [[10 + ' ' + 14]],
             },
             {
@@ -177,11 +266,29 @@ export const problems = {
                 output: [[12 + ' ' + 12]],
             },
         ],
+        submitCases: [
+            {
+                input: [`[69, 812, 11, 0, 981]`],
+                output: [[892 + ' ' + 1873]],
+            },
+            {
+                input: [`[9, 312, 1, 4, 312]`],
+                output: [[326 + ' ' + 637]],
+            },
+            {
+                input: [`[90, 32, 1000, 40, 61]`],
+                output: [[223 + ' ' + 1191]],
+            },
+            {
+                input: [`[99, 23, 100, 32, 1]`],
+                output: [[155 + ' ' + 254]],
+            },
+        ],
         inputs: ['arr'],
     },
     CountingValleys: {
         problemName: 'Counting Valleys',
-        difficulty: 'hard',
+        difficulty: 'medium',
 
         problemDescription: `
                 An avid hiker keeps meticulous records of their hikes. During the last hike that took exactly <span class="variable">steps</span> steps, for every step it was noted if it was an uphill, <span class="variable">U</span> , or a downhill, <span class="variable">D</span> step. Hikes always start and end at sea level, and each step up or down represents a <span class="variable">1</span> unit change in altitude.
@@ -202,7 +309,7 @@ export const problems = {
         output: `int: The number of valleys traveled.`,
         sampleCases: [
             {
-                input: [8, `'UDDDUDUU'`],
+                input: [8, `"UDDDUDUU"`],
                 output: [1],
                 explanation: {
                     text: `If we represent <span class="variable">_</span> as sea level, a step up as <span class="variable">/</span>, and a step down as <span class="variable">&#92</span>, the hike can be drawn as:`,
@@ -210,15 +317,33 @@ export const problems = {
                 },
             },
             {
-                input: [6, `'DUDUDU'`],
+                input: [6, `"DUDUDU"`],
                 output: [3],
+            },
+        ],
+        submitCases: [
+            {
+                input: [26, `"DDUDUUUUDDUUDDUDUDUDUDUDDU"`],
+                output: [2],
+            },
+            {
+                input: [28, `"DUDUDUDUDUDUDUDUDDUDUDUDDUUU"`],
+                output: [9],
+            },
+            {
+                input: [48, `"DUDUDUDUDUDUDUDUDUDUDUDUDUDUDUDUDDUDDUDUDUDUDUUU"`],
+                output: [17],
+            },
+            {
+                input: [16, `"UUUUUUUUDDDDDDDD"`],
+                output: [0],
             },
         ],
         inputs: ['steps', 'path'],
     },
     AlmostSorted: {
         problemName: 'Almost Sorted',
-        difficulty: 'medium',
+        difficulty: 'hard',
 
         problemDescription: `
         Given an array of integers, determine whether the array
@@ -276,8 +401,15 @@ export const problems = {
             },
             {
                 input: [`[1, 2, 5, 4, 3, 6]`],
-                output: ['yes reverse 3 5'],
+                output: ['yes swap 3 5'],
             },
+        ],
+        submitCases: [
+            { input: [`[20, 21, 22, 23, 24, 25]`], output: ['yes'] },
+            { input: [`[10, 14, 12, 9, 24, 25]`], output: ['no'] },
+            { input: [`[1, 2, 5, 4, 3, 6]`], output: ['yes swap 3 5'] },
+            { input: [`[1, 5, 4, 3, 2, 6]`], output: ['yes reverse 2 5'] },
+            { input: [`[80, 82, 84, 86, 88, 87]`], output: ['yes swap 5 6'] },
         ],
         inputs: ['arr'],
     },
