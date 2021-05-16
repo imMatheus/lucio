@@ -17,6 +17,7 @@ import image16 from './images/problem16.png'
 import image17 from './images/problem17.png'
 import image18 from './images/problem18.png'
 import image19 from './images/problem19.png'
+import image20 from './images/problem20.png'
 // import image20 from './images/problem20.png'
 // import image21 from './images/problem21.png'
 // import image22 from './images/problem22.png'
@@ -121,6 +122,11 @@ export const cssProblems = [
         target: 19,
         image: image19,
         colors: [' #293241', '#98c1d9'],
+    },
+    {
+        target: 20,
+        image: image20,
+        colors: [' #293241', '#e0fbfc', '#98c1d9', '#3d5a80'],
     },
 ]
 
