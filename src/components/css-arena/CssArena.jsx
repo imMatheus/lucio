@@ -200,10 +200,10 @@ const CssArena = ({ problem }) => {
         const userUID = user.uid
 
         if (score > highScore.score) {
-            setHighScore({ score: score, percentage: percentage, characters: characters })
             // update database if user gets new high score
             dbSubmissionsRef.child(userUID).set({
                 email: user.email,
+                displayName: user.displayName,
                 score: score,
                 percentage: percentage,
                 characters: characters,
@@ -211,6 +211,7 @@ const CssArena = ({ problem }) => {
                 cssCode: cssCode,
                 htmlCode: htmlCode,
             })
+            setHighScore({ score: score, percentage: percentage, characters: characters })
         }
         console.log(auth.currentUser)
 

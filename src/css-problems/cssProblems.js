@@ -34,17 +34,17 @@ export const cssProblems = [
     {
         target: 2,
         image: image2,
-        colors: ['#1c110a', '#e4d6a7'],
+        colors: ['#14213d', '#fca311'],
     },
     {
         target: 3,
         image: image3,
-        colors: ['#E6C229', '#DF8734', '#D84C3E', '#D11149'],
+        colors: ['#e76f51', '#f4a261', '#e9c46a', '#2a9d8f'],
     },
     {
         target: 4,
         image: image4,
-        colors: ['#d62828', '#f77f00', '#fcbf49', '#eae2b7'],
+        colors: ['#000000', '#14213d', '#fca311', '#e5e5e5'],
     },
     {
         target: 5,
@@ -64,7 +64,7 @@ export const cssProblems = [
     {
         target: 8,
         image: image8,
-        colors: ['#14213d', '#fca311'],
+        colors: ['#2a9d8f', '#fca311'],
     },
 
     {
@@ -85,12 +85,12 @@ export const cssProblems = [
     {
         target: 12,
         image: image12,
-        colors: ['#1d3557', '#e63946'],
+        colors: ['#081c15', '#95d5b2', '#2d6a4f'],
     },
     {
         target: 13,
         image: image13,
-        colors: ['#00171f', '#00a8e8', '#007ea7'],
+        colors: ['#1d3557', '#e63946'],
     },
     {
         target: 14,
@@ -105,13 +105,13 @@ export const cssProblems = [
     {
         target: 16,
         image: image16,
-        colors: ['#003049', '#d62828', '#f77f00', '#fcbf49', '#eae2b7'],
+        colors: ['#2a9d8f', '#e9c46a', '#f4a261', '#e76f51'],
     },
 
     {
         target: 17,
         image: image17,
-        colors: [' #1d3557', '#e63946', '#f1faee'],
+        colors: [' #2a9d8f', '#e9c46a', '#e76f51'],
     },
     {
         target: 18,

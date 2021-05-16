@@ -341,20 +341,20 @@ body .App .cssdashboard .cssproblems {
 }
 body .App .cssdashboard .cssproblems .container {
   background-color: var(--main-bg);
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 336px);
+  gap: 20px;
+  padding: 15px;
 }
-body .App .cssdashboard .cssproblems .container .problem {
+body .App .cssdashboard .cssproblems .container .problem-wrapper .problem {
   cursor: pointer;
-  margin: 15px 10px;
-  width: 300px;
-  height: 225px;
+  width: 336px;
+  height: 252px;
   position: relative;
   background-position: center;
   background-size: cover;
 }
-body .App .cssdashboard .cssproblems .container .problem h2 {
+body .App .cssdashboard .cssproblems .container .problem-wrapper .problem h2 {
   position: absolute;
   top: 8px;
   right: 8px;
@@ -364,6 +364,12 @@ body .App .cssdashboard .cssproblems .container .problem h2 {
   text-align: center;
   padding: 2px 15px;
   border-radius: 12px;
+}
+body .App .cssdashboard .cssproblems .container .problem-wrapper .problem-metadata {
+  background-color: var(--resize-bg);
+  display: flex;
+  justify-content: space-evenly;
+  padding: 8px 4px;
 }
 body .App .logo-icon {
   width: 100%;

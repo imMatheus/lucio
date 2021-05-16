@@ -251,7 +251,6 @@ const Monaco = ({ mref, problem }) => {
                         setFileName={setFileName}
                         setLanguage={setLanguage}
                     />
-                    {language}
                 </div>
                 {language === 'javascript' ? (
                     <EditorComponent
