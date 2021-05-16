@@ -109,7 +109,6 @@ const EditorComponent = ({ language, setter, starterCode, setJs, setPy }) => {
             {/* {language} */}
             <span></span>
             <Editor
-                ref={editorRef}
                 height='93%'
                 theme='myCustomTheme'
                 language={language}

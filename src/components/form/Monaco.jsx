@@ -55,10 +55,6 @@ const Monaco = ({ mref, problem }) => {
         file === scriptJs ? 'javascript' : 'python'
     )
 
-    // console.log(language)
-    // console.log(files)
-    // console.log(file)
-    // console.log(fileName)
     useEffect(() => {
         if (monaco) {
             setFiles({
@@ -242,7 +238,7 @@ const Monaco = ({ mref, problem }) => {
 
     return (
         <div className='editorial'>
-            <div className='editor' ref={mref}>
+            <div className='editor'>
                 <div className='files'>
                     <File
                         file='script.js'

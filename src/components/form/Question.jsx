@@ -1,22 +1,21 @@
-import React from 'react'
 import ThumbUpSharpIcon from '@material-ui/icons/ThumbUpSharp'
 import FavoriteBorderSharpIcon from '@material-ui/icons/FavoriteBorderSharp'
 import ShareSharpIcon from '@material-ui/icons/ShareSharp'
 import { v4 as uuidv4 } from 'uuid'
 import parse from 'html-react-parser'
 
-const Question = ({ qref, problem }) => {
-    let description = problem.problemDescription
-    let constrains = problem.constrains
-    let difficulty = problem.difficulty
-    let problemName = problem.problemName
-    let inputFormat = problem.inputFormat
-    let testCases = problem.sampleCases
-    let output = problem.output
+const Question = ({ problem, questionRef }) => {
+    let description = problem?.problemDescription
+    let constrains = problem?.constrains
+    let difficulty = problem?.difficulty
+    let problemName = problem?.problemName
+    let inputFormat = problem?.inputFormat
+    let testCases = problem?.sampleCases
+    let output = problem?.output
     // console.log(testCases)
 
     return (
-        <div className='question' ref={qref}>
+        <div className='question' ref={questionRef}>
             <div className='header'>
                 {problemName && <div className='title'>{problemName}</div>}
                 <div className='info'>

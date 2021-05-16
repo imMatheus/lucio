@@ -1,12 +1,10 @@
 import React, { useRef, useState } from 'react'
-import useLocalStorage from '../../hooks/useLocalStorage'
 import Question from './Question'
 import Monaco from './Monaco'
 
 const Form = ({ problem }) => {
     const resizeBarRef = useRef(null)
     const questionRef = useRef(null)
-    const editorRef = useRef(null)
 
     let isDragging = false
 
@@ -30,10 +28,9 @@ const Form = ({ problem }) => {
         // Turn off dragging flag when user mouse is up
         isDragging = false
     })
-
     return (
         <div className='form '>
-            <Question qref={questionRef} problem={problem} />
+            <Question questionRef={questionRef} problem={problem} />
 
             <div ref={resizeBarRef} className='resizebar' onMouseDown={mouseDownHandler}>
                 <div className='dots'>
@@ -44,7 +41,7 @@ const Form = ({ problem }) => {
                     <span></span>
                 </div>
             </div>
-            <Monaco mref={editorRef} problem={problem} />
+            <Monaco problem={problem} />
         </div>
     )
 }
