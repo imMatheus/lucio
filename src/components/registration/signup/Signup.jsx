@@ -37,8 +37,6 @@ const Signup = () => {
     }
 
     const handleSubmit = async (e) => {
-        console.log(displayNameRef.current?.value.trim())
-        console.log(displayNameRef.current?.value)
         e.preventDefault()
         try {
             if (displayNameRef.current?.value.trim().length < 6) {
@@ -92,7 +90,6 @@ const Signup = () => {
         reader.onload = () => {
             if (reader.readyState === 2) {
                 setProfileImage(reader.result)
-                console.log(reader.result)
             }
         }
         if (e.target.files[0]) {

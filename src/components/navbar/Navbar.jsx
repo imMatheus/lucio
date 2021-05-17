@@ -45,7 +45,6 @@ const Navbar = ({ isDarkMode, setIsDarkMode }) => {
                     <>
                         <div className='account'>
                             <div className='info'>
-                                {/* {console.log(currentUser)} */}
                                 <h2>{currentUser?.displayName}</h2>
                                 <p>{`${currentUser?.score || 0} (${
                                     currentUser?.targets || 0

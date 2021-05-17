@@ -9,6 +9,7 @@ const CssDashboard = () => {
     return (
         <div className='cssdashboard'>
             <Switch>
+                {/* creating routes for each problem */}
                 {cssProblems?.map((problem) => {
                     return (
                         <Route key={uuidv4()} exact path={`/css/play/${problem.target}`}>

@@ -1,10 +1,13 @@
 import React, { useRef, useState } from 'react'
 import Question from './Question'
 import Monaco from './Monaco'
+import LogoIcon from '../icons/LogoIcon'
+import { Link } from 'react-router-dom/'
 
 const Form = ({ problem }) => {
     const resizeBarRef = useRef(null)
     const questionRef = useRef(null)
+    const [prompUser, setPrompUser] = useState(false)
 
     let isDragging = false
 
@@ -41,7 +44,23 @@ const Form = ({ problem }) => {
                     <span></span>
                 </div>
             </div>
-            <Monaco problem={problem} />
+            <Monaco problem={problem} setPrompUser={setPrompUser} />
+            {prompUser && (
+                <div className='prompUserContainer'>
+                    <div className='content'>
+                        <h2>
+                            Please <Link to='/signup'>sign up</Link>
+                        </h2>
+                        <div className='logoContainer'>
+                            <LogoIcon />
+                        </div>
+                        <div className='exContainer' onClick={() => setPrompUser(false)}>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     )
 }

@@ -21,8 +21,6 @@
     display: grid;
     grid-template-columns: auto auto 1fr;
     height: calc(100vh - 94px);
-    // height: 100vh;
-    // overflow-y: hidden;
     background: var(--main-bg);
 
     & .resizebar {

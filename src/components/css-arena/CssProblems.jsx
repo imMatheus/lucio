@@ -8,7 +8,6 @@ const CssProblems = () => {
     const user = auth.currentUser // get user
     const userUID = user?.uid // get user uid
     const [cssProblemsArray, setCssProblemsArray] = useState(null)
-    // let cssId
     useEffect(() => {
         cssRef.once('value', (snapshot) => {
             const css = snapshot.val()
@@ -54,10 +53,10 @@ const CssProblems = () => {
 }
 
 const Problem = ({ target, image, submissions, score, percentage }) => {
-    let subs = 0
-    if (submissions) {
-        subs = Object.keys(submissions).length
-    }
+    // let subs = 0
+    // if (submissions) {
+    //     subs = Object.keys(submissions).length
+    // }
     return (
         <Link exact='true' to={`/css/play/${target}`}>
             <div className='problem-wrapper'>
@@ -70,7 +69,6 @@ const Problem = ({ target, image, submissions, score, percentage }) => {
                     ) : (
                         <span>No Score</span>
                     )}
-                    <span>{subs}</span>
                 </div>
             </div>
         </Link>

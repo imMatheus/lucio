@@ -1,30 +1,11 @@
-import { useEffect, useState, useRef } from 'react'
+import { useRef } from 'react'
 import { Link } from 'react-router-dom'
-import { fs } from '../../firebase'
 // import { cssProblems } from '../css-problems/cssProblems'
 import { useAuth } from '../../context/AuthContext'
 import { v4 as uuidv4 } from 'uuid'
 
 const HomePage = () => {
-    const { currentUser, leaderboard } = useAuth()
-
-    const [userData, setUserData] = useState()
-
-    const fetchUser = async (user) => {
-        // getting the users data from firestore
-        const response = fs.collection('users').doc(user.uid)
-        const data = await response.get()
-        setUserData(data.data())
-    }
-
-    useEffect(() => {
-        // return false
-        if (currentUser) {
-            fetchUser(currentUser)
-        } else {
-            setUserData(null)
-        }
-    }, [currentUser])
+    const { leaderboard } = useAuth()
 
     return (
         <div className='homepage'>

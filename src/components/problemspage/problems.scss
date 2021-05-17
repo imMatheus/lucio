@@ -1,5 +1,4 @@
 .problems {
-    // min-height: ;
     background: var(--bg);
     padding: 25px 40px;
     display: grid;
@@ -29,8 +28,6 @@
             line-height: 1.1;
             font-weight: 300;
             color: var(--main-bg);
-
-            // justify-self: flex-start;
         }
 
         & .metadata {

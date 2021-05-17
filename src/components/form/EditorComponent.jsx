@@ -12,17 +12,17 @@ const EditorComponent = ({ language, setter, starterCode, setJs, setPy }) => {
                 inherit: true,
                 rules: [
                     { token: '', foreground: 'ffffff' }, //everything
-                    { token: 'invalid', foreground: '00ff00' },
+                    { token: 'invalid', foreground: 'd19a66' },
                     { token: 'emphasis', fontStyle: 'italic' },
                     { token: 'strong', fontStyle: 'bold' },
-                    { token: 'variable', foreground: '00ff00' },
-                    { token: 'variable.predefined', foreground: '00ff00' },
-                    { token: 'constant', foreground: '00ff00' },
+                    { token: 'variable', foreground: 'd19a66' },
+                    { token: 'variable.predefined', foreground: 'd19a66' },
+                    { token: 'constant', foreground: 'd19a66' },
                     { token: 'comment', foreground: '7f848e', fontStyle: 'italic' },
                     { token: 'number', foreground: 'd19a66' }, //number
                     { token: 'number.hex', foreground: 'd19a66' },
                     { token: 'regexp', foreground: '56b6c2' }, //rexexp
-                    { token: 'annotation', foreground: 'ff00ff' },
+                    { token: 'annotation', foreground: '98c379' },
                     { token: 'type', foreground: 'E5C07B' }, // promise och math
                     { token: 'delimiter', foreground: 'abb2bf' }, //stuff
                     { token: 'delimiter.html', foreground: 'abb2bf' },
@@ -36,7 +36,7 @@ const EditorComponent = ({ language, setter, starterCode, setJs, setPy }) => {
                     { token: 'metatag.html', foreground: 'E06C75' },
                     { token: 'metatag.xml', foreground: '86b300' },
                     { token: 'metatag.php', fontStyle: 'bold' },
-                    { token: 'key', foreground: '00ff00' },
+                    { token: 'key', foreground: 'd19a66' },
                     { token: 'string.key.json', foreground: '41a6d9' },
                     { token: 'string.value.json', foreground: '86b300' },
                     { token: 'attribute.name', foreground: 'd19a66' },
@@ -46,7 +46,7 @@ const EditorComponent = ({ language, setter, starterCode, setJs, setPy }) => {
                     { token: 'attribute.value.html', foreground: '98c379' },
                     { token: 'attribute.value.xml', foreground: '98c379' },
                     { token: 'string', foreground: '98c379' }, //strings
-                    { token: 'string.html', foreground: 'ff0000' },
+                    { token: 'string.html', foreground: '98c379' },
                     { token: 'string.sql', foreground: '98c379' },
                     { token: 'string.yaml', foreground: '98c379' },
                     { token: 'keyword', foreground: 'C678DD' },
@@ -56,7 +56,7 @@ const EditorComponent = ({ language, setter, starterCode, setJs, setPy }) => {
                     { token: 'operator.scss', foreground: '666666' },
                     { token: 'operator.sql', foreground: '778899' },
                     { token: 'operator.swift', foreground: '666666' },
-                    { token: 'predefined.sql', foreground: 'FF00FF' },
+                    { token: 'predefined.sql', foreground: '98c379' },
                 ],
 
                 colors: {
@@ -68,13 +68,6 @@ const EditorComponent = ({ language, setter, starterCode, setJs, setPy }) => {
             })
             monaco.editor.setTheme('myCustomTheme')
         }
-        // fetch('/themes/Monokai.json')
-        //     .then((data) => data.json())
-        //     .then((data) => {
-        //         console.log(data)
-        //         monaco.editor.defineTheme('monokai', data)
-        //         monaco.editor.setTheme('monokai')
-        //     })
     }, [monaco])
 
     function handleEditorDidMount(editor) {
@@ -105,11 +98,9 @@ const EditorComponent = ({ language, setter, starterCode, setJs, setPy }) => {
 
     return (
         <div className='editor-component'>
-            {/* <div className='header'>{language.toUpperCase()}</div> */}
-            {/* {language} */}
             <span></span>
             <Editor
-                height='93%'
+                height='95%'
                 theme='myCustomTheme'
                 language={language}
                 onChange={handleEditorChange}

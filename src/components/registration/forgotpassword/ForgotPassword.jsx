@@ -16,7 +16,7 @@ const Login = () => {
             setMessage('')
             setError('')
             setLoading(true)
-            console.log('33')
+
             const response = await resetPassword(emailRef.current.value)
             if (response) {
                 setLoading(false)
@@ -24,7 +24,6 @@ const Login = () => {
             }
             setMessage('Check your email to reset password')
         } catch (error) {
-            console.log('hej')
             setError('Failed to reset password')
         }
         setLoading(false)

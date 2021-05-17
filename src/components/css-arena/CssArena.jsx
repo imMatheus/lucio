@@ -6,8 +6,10 @@ import { v4 as uuidv4 } from 'uuid'
 import html2canvas from 'html2canvas'
 import EditorComponent from './EditorComponent'
 import { db, auth } from '../../firebase'
+import LogoIcon from '../icons/LogoIcon'
 import Pixelmatch from 'pixelmatch'
 import useSessionStorage from '../../hooks/useSessionStorage'
+import { Link } from 'react-router-dom/cjs/react-router-dom.min'
 
 const CssArena = ({ problem }) => {
     const cssEditorRef = useRef(null)
@@ -26,6 +28,7 @@ const CssArena = ({ problem }) => {
     const outputContainerRef = useRef(null)
     const [isHoveringOverIframe, setIsHoveringOverIframe] = useState(false)
     const [loading, setLoading] = useState(false)
+    const [prompUser, setPrompUser] = useState(false)
     const [copiedColor, setCopiedColor] = useState(null)
     let currentCode = '<style>' + cssCode + '</style>' + htmlCode
     const [highScore, setHighScore] = useState({ score: 0, percentage: 0, characters: 0 })
@@ -62,7 +65,6 @@ const CssArena = ({ problem }) => {
         })
     }, [])
 
-    // dbSubmissionsRef.child('submissions').push({ testing: 'cool' })
     let characterCount
 
     // creating a the variable that will keep track of if we
@@ -128,7 +130,6 @@ const CssArena = ({ problem }) => {
     }
 
     const getScore = (charCount, per) => {
-        // const PER_MODIFIER = 1
         const PER_MODIFIER = 0.16
         const changeFactor = (per / 100) ** 2
         per = 600 * changeFactor * (per / 100)
@@ -140,25 +141,12 @@ const CssArena = ({ problem }) => {
         if (!iframeRef.current) return
 
         const html = iframeRef.current.contentWindow.document.querySelector('html')
-        const body = html.querySelector('body')
-
-        html.style.width = '400px'
-        html.style.height = '300px'
-        html.style.display = 'block'
-        html.style.overflow = 'hidden'
-        body.style.width = '400px'
-        body.style.height = '300px'
 
         var img1
         await html2canvas(html).then(async (canvas) => {
-            canvas.style.width = '400px'
-            canvas.style.height = '300px'
             var target = new Image()
             target.width = '400'
             target.height = '300'
-            target.intrinsicSize = '400 x 300'
-            target.style.width = '400px'
-            target.style.height = '300px'
             target.src = canvas.toDataURL()
             const childNodes = outputContainerRef.current.childNodes
             while (childNodes.length > 1) {
@@ -166,37 +154,26 @@ const CssArena = ({ problem }) => {
                 outputContainerRef.current.removeChild(childNodes[1])
             }
             outputContainerRef.current.appendChild(target)
-            document.body.appendChild(target)
             await htmlToImage.toPixelData(target).then(function (pixels) {
                 img1 = pixels
+                console.log(pixels)
             })
         })
 
         var img2
 
-        await htmlToImage
-            .toPng(solutionRef.current)
-            .then(async function (dataUrl) {
-                var img = new Image()
-                img.width = '400'
-                img.height = '300'
-                img.src = dataUrl
-                document.body.appendChild(img)
-                await htmlToImage.toPixelData(solutionRef.current).then(function (pixels) {
-                    img2 = pixels
-                    console.log(pixels)
-                })
-            })
-            .catch(function (error) {
-                console.error('oops, something went wrong!', error)
-            })
+        await htmlToImage.toPixelData(solutionRef.current).then(function (pixels) {
+            img2 = pixels
+        })
 
         const width = 400
         const height = 300
+
         let diff = Pixelmatch(img1, img2, null, width, height, {
             threshold: 0.2,
             /* options */
         })
+
         let characters = characterCount
         let percentage = 100 * (1 - diff / (width * height))
         let score = getScore(characters, percentage)
@@ -210,7 +187,10 @@ const CssArena = ({ problem }) => {
 
         setLastScore({ score: score, percentage: percentage, characters: characters })
         const user = auth.currentUser
-        if (!user) return setLoading(false) //  @todo prompt the user to login if they are not
+        if (!user) {
+            setPrompUser(true)
+            return setLoading(false)
+        }
 
         const userUID = user.uid
 
@@ -228,7 +208,6 @@ const CssArena = ({ problem }) => {
             })
             setHighScore({ score: score, percentage: percentage, characters: characters })
         }
-        console.log(auth.currentUser)
 
         setLoading(false)
     }
@@ -311,7 +290,7 @@ const CssArena = ({ problem }) => {
                     >
                         Submit <span></span>
                     </button>
-                    <button className='submit-btn' onClick={loadHighScoreCode}>
+                    <button className='submit-btn' disabled={loading} onClick={loadHighScoreCode}>
                         Load HS Code<span></span>
                     </button>
                 </div>
@@ -333,8 +312,6 @@ const CssArena = ({ problem }) => {
                         </span>
                     </div>
                 </div>
-
-                {/* {submissions && JSON.stringify(submissions)} */}
             </div>
             <div className='column-container'>
                 <div className='column-header'>
@@ -370,6 +347,22 @@ const CssArena = ({ problem }) => {
                 Copied color {copiedColor}
                 <div className='color-circle' style={{ backgroundColor: copiedColor || '' }}></div>
             </div>
+            {prompUser && (
+                <div className='prompUserContainer'>
+                    <div className='content'>
+                        <h2>
+                            Please <Link to='/signup'>sign up</Link>
+                        </h2>
+                        <div className='logoContainer'>
+                            <LogoIcon />
+                        </div>
+                        <div className='exContainer' onClick={() => setPrompUser(false)}>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     )
 }
