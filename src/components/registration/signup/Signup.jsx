@@ -40,27 +40,31 @@ const Signup = () => {
         console.log(displayNameRef.current?.value.trim())
         console.log(displayNameRef.current?.value)
         e.preventDefault()
-        if (displayNameRef.current?.value.trim().length < 6) {
-            return setError('Display name must be 6 or more characters long')
-        }
-        const cleaned = filter.clean(displayNameRef.current?.value.trim())
-        if (displayNameRef.current?.value.trim() !== cleaned) {
-            return setError('Please do not use bad words :)')
-        }
+        try {
+            if (displayNameRef.current?.value.trim().length < 6) {
+                return setError('Display name must be 6 or more characters long')
+            }
+            const cleaned = filter.clean(displayNameRef.current?.value.trim())
+            if (displayNameRef.current?.value.trim() !== cleaned) {
+                return setError('Please do not use bad words :)')
+            }
 
-        if (!profileImage) {
-            return setError('Please pick a profile image.')
-        }
-        if (passwordRef.current?.value !== confirmPasswordRef.current?.value) {
-            return setError('Passwords do not match')
-        }
-        if (passwordRef.current?.value.length < 6) {
-            return setError('Password has to be 6 or more characters ')
+            if (!profileImage) {
+                return setError('Please pick a profile image.')
+            }
+            if (passwordRef.current?.value !== confirmPasswordRef.current?.value) {
+                return setError('Passwords do not match')
+            }
+            if (passwordRef.current?.value.length < 6) {
+                return setError('Password has to be 6 or more characters ')
+            }
+        } catch (e) {
+            setError('Oops, something went wrong :)')
         }
         try {
             setError('')
             setLoading(true)
-            const res = await signup(
+            const response = await signup(
                 emailRef.current.value.trim(),
                 passwordRef.current.value,
                 displayNameRef.current.value,
@@ -70,11 +74,11 @@ const Signup = () => {
             // if we didn't get a response back that means it was successful
             // so we send user back to '/'
             setLoading(false)
-            if (!res) {
+            if (!response) {
                 history.push('/')
             } else {
                 // else, something went wrong so we set an error
-                setError(res.message)
+                setError(response.message)
             }
         } catch (error) {
             console.log(error)

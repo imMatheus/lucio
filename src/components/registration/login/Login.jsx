@@ -26,7 +26,6 @@ const Login = () => {
             })
             if (auth.currentUser) {
                 const user = auth.currentUser
-                console.log(user)
                 await fs // firestore
                     .collection('users')
                     .doc(auth.currentUser.uid) // adding a doc with the the id of the users uid
@@ -36,15 +35,8 @@ const Login = () => {
                         userUID: user.uid,
                         profileImage: user.photoURL,
                     }) // setting its info
-                console.log('added: ', {
-                    displayName: user.displayName,
-                    email: user.email,
-                    userUID: user.uid,
-                    profileImage: user.photoURL,
-                })
+
                 history.push('/')
-            } else {
-                console.log('123456789')
             }
         } catch (error) {
             console.log(error)
@@ -56,12 +48,14 @@ const Login = () => {
         try {
             setError('')
             setLoading(true)
-            console.log('33')
+
             await login(emailRef.current.value.trim(), passwordRef.current.value)
-            history.push('/')
+            if (auth.currentUser) {
+                history.push('/')
+            }
         } catch (error) {
             console.log(error.message)
-            console.log('ojojojojojojoj')
+
             setError(`Failed to login, ${error.message}`)
         }
         setLoading(false)
@@ -78,10 +72,10 @@ const Login = () => {
                 <div className='content'>
                     <p className='title'>Login</p>
                     <p className='subtitle'>
-                        Or do you not already have an account? <Link to='/signup'> Sing Up</Link>
+                        Or do you not already have an account? <Link to='/signup'> Sign Up</Link>
                     </p>
                     {error && <div className='userMessage error'>{error}</div>}
-                    <p onClick={signInWithGoogle}>sing in with google</p>
+                    <p onClick={signInWithGoogle}>sign in with google</p>
 
                     <div className='input-container'>
                         <input

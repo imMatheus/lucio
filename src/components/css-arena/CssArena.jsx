@@ -166,6 +166,7 @@ const CssArena = ({ problem }) => {
                 outputContainerRef.current.removeChild(childNodes[1])
             }
             outputContainerRef.current.appendChild(target)
+            document.body.appendChild(target)
             await htmlToImage.toPixelData(target).then(function (pixels) {
                 img1 = pixels
             })
@@ -181,8 +182,7 @@ const CssArena = ({ problem }) => {
                 img.height = '300'
                 img.src = dataUrl
                 document.body.appendChild(img)
-                console.log(img)
-                await htmlToImage.toPixelData(img).then(function (pixels) {
+                await htmlToImage.toPixelData(solutionRef.current).then(function (pixels) {
                     img2 = pixels
                     console.log(pixels)
                 })
@@ -193,10 +193,8 @@ const CssArena = ({ problem }) => {
 
         const width = 400
         const height = 300
-        console.log(img1)
-        console.log(img2)
         let diff = Pixelmatch(img1, img2, null, width, height, {
-            threshold: 0.02,
+            threshold: 0.2,
             /* options */
         })
         let characters = characterCount

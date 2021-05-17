@@ -37,10 +37,6 @@ export const AuthProvider = ({ children }) => {
             // checking if the display name already exist
             const error = { message: 'Display name already exist' }
             return error
-        } else {
-            await usersNamesRef.set({
-                displayName: displayName.toLowerCase(),
-            })
         }
         try {
             await auth.createUserWithEmailAndPassword(email, password)
@@ -54,6 +50,9 @@ export const AuthProvider = ({ children }) => {
                     userUID: auth.currentUser.uid,
                     profileImage: imageUrl,
                 }) // setting its info
+            await usersNamesRef.set({
+                displayName: displayName.toLowerCase(),
+            })
         } catch (error) {
             return error
         }
