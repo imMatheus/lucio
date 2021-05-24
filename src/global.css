@@ -925,11 +925,10 @@ body .App .form .editorial {
 }
 body .App .form .editorial .editor {
   width: 100%;
-  height: 90%;
+  height: calc(100vh - 180px);
 }
 body .App .form .editorial .editor .editor-component {
-  height: 100%;
-  min-height: 40px;
+  height: calc(100vh - 180px);
   position: relative;
   display: grid;
   grid-template-rows: auto 1fr;

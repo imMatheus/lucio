@@ -9,7 +9,8 @@ import { db, auth } from '../../firebase'
 import LogoIcon from '../icons/LogoIcon'
 import Pixelmatch from 'pixelmatch'
 import useSessionStorage from '../../hooks/useSessionStorage'
-import { Link } from 'react-router-dom/cjs/react-router-dom.min'
+import { Link } from 'react-router-dom'
+import getImgDiff from '../../functions/getImgDiff'
 
 const CssArena = ({ problem }) => {
     const cssEditorRef = useRef(null)
@@ -147,6 +148,8 @@ const CssArena = ({ problem }) => {
             var target = new Image()
             target.width = '400'
             target.height = '300'
+            target.style.width = '400px'
+            target.style.height = '300px'
             target.src = canvas.toDataURL()
             const childNodes = outputContainerRef.current.childNodes
             while (childNodes.length > 1) {
@@ -173,6 +176,8 @@ const CssArena = ({ problem }) => {
             threshold: 0.2,
             /* options */
         })
+        // const lallish = await getImgDiff(img1, img2)
+        // console.log(lallish)
 
         let characters = characterCount
         let percentage = 100 * (1 - diff / (width * height))
