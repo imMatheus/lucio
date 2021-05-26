@@ -54,8 +54,6 @@ const Login = () => {
                 history.push('/')
             }
         } catch (error) {
-            console.log(error.message)
-
             setError(`Failed to login, ${error.message}`)
         }
         setLoading(false)

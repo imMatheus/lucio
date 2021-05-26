@@ -79,7 +79,6 @@ const Signup = () => {
                 setError(response.message)
             }
         } catch (error) {
-            console.log(error)
             setError('failed to create an account, ' + error.message)
         }
     }
@@ -94,7 +93,6 @@ const Signup = () => {
         }
         if (e.target.files[0]) {
             reader.readAsDataURL(e?.target?.files[0])
-            // console.log(reader.readAsDataURL(e?.target?.files[0]))
         }
     }
 

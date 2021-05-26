@@ -15,7 +15,6 @@ const CssProblems = () => {
             for (let id in css) {
                 cssList.push(css[id])
             }
-            console.log(cssList)
 
             setCssProblemsArray(cssList)
         })
@@ -31,7 +30,7 @@ const CssProblems = () => {
                             if (submissions[userUID]) {
                                 // checking if the user has completed problem or should try again
                                 // both can not be true
-                                console.log(submissions[userUID])
+
                                 var score = submissions[userUID].score
                                 var percentage = submissions[userUID].percentage
                             }

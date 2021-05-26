@@ -51,7 +51,7 @@ const CssArena = ({ problem }) => {
 
         dbSubmissionsRef.child(userUID).once('value', (snapshot) => {
             const userData = snapshot.val()
-            console.log('exists!', userData)
+
             if (userData) {
                 // check if the user has a submission
                 setHighScore({
@@ -158,7 +158,6 @@ const CssArena = ({ problem }) => {
             outputContainerRef.current.appendChild(target)
             await htmlToImage.toPixelData(target).then(function (pixels) {
                 img1 = pixels
-                console.log(pixels)
             })
         })
 
@@ -224,7 +223,7 @@ const CssArena = ({ problem }) => {
             .then((snapshot) => {
                 if (snapshot.exists()) {
                     const response = snapshot.val()
-                    console.log(response)
+
                     setCssCode(response.cssCode)
                     setHtmlCode(response.htmlCode)
                 }

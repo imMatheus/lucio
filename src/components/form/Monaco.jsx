@@ -12,7 +12,6 @@ import EditorComponent from './EditorComponent'
 
 // https://www.npmjs.com/package/@monaco-editor/react
 const Monaco = ({ problem, setPrompUser }) => {
-    // console.log(problem)
     const monaco = useMonaco()
     const compileRef = useRef()
     const editorialRef = useRef()
@@ -35,12 +34,12 @@ const Monaco = ({ problem, setPrompUser }) => {
         `${displayProblemName}-script.py`,
         generatePython(displayProblemName, problemInputs)
     )
-    // console.log(scriptJs)
+
     const [currentCode, setCurrentCode] = useSessionStorage(
         `${displayProblemName}-currentCode`,
         scriptJs
     )
-    // console.log(currentCode)
+
     const dbSubmissionsRef = db
         .ref()
         .child('algorithms')
@@ -156,7 +155,11 @@ const Monaco = ({ problem, setPrompUser }) => {
 
         const cases = submit === true ? sampleCases.concat(submitCases) : sampleCases
         let dummyArray = []
-
+        // editorialRef.current?.scroll({
+        //     top: 600,
+        //     behavior: 'smooth',
+        // })
+        compileRef.current?.scrollIntoView()
         for (let i = 0; i < cases.length; i++) {
             const currentCase = cases[i]
             const args = currentCase.input
@@ -195,14 +198,11 @@ const Monaco = ({ problem, setPrompUser }) => {
                     })
                 })
 
+            if (i === 0) {
+                compileRef.current?.scrollIntoView()
+            }
             // sleeping for 530ms cuz the api only allows 2 reqs per sec, and 530 just to be on the safe side
             await sleep(530)
-            if (i === 1) {
-                editorialRef.current?.scroll({
-                    top: 9999,
-                    behavior: 'smooth',
-                })
-            }
         }
 
         setTestCases(dummyArray)
