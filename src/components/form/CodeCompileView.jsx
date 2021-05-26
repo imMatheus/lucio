@@ -4,7 +4,9 @@ import CheckIcon from '@material-ui/icons/Check'
 import { v4 as uuidv4 } from 'uuid'
 import LogoIcon from '../icons/LogoIcon'
 
-const CodeCompileView = ({ testcases, fetchingData }) => {
+const CodeCompileView = React.forwardRef((props, ref) => {
+    const testcases = props.testcases
+    const fetchingData = props.fetchingData
     const [listPointer, setListPointer] = useState(0)
     let correctAnswer = true
     let failedCases = testcases.length
@@ -30,7 +32,7 @@ const CodeCompileView = ({ testcases, fetchingData }) => {
     }
 
     return (
-        <>
+        <div ref={ref}>
             <div className='CodeCompileView-wrapper'>
                 {fetchingData ? (
                     <div className='loadingspinner-wrapper-for-codecompile'>
@@ -97,9 +99,9 @@ const CodeCompileView = ({ testcases, fetchingData }) => {
                     )
                 )}
             </div>
-        </>
+        </div>
     )
-}
+})
 
 const Subpart = ({ header, content, complileMsg }) => {
     return (

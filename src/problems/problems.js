@@ -1,5 +1,3 @@
-import { db } from '../firebase'
-
 export const problems = {
     SimpleAddition: {
         problemName: 'Simple Addition',

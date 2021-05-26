@@ -1,6 +1,5 @@
 function rgba2hex(orig) {
     var a,
-        isPercent,
         rgb = orig.replace(/\s/g, '').match(/^rgba?\((\d+),(\d+),(\d+),?([^,\s)]+)?/i),
         alpha = ((rgb && rgb[4]) || '').trim(),
         hex = rgb

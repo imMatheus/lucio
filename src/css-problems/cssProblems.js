@@ -23,8 +23,6 @@ import image20 from './images/problem20.png'
 // import image22 from './images/problem22.png'
 // import image23 from './images/problem23.png'
 // import image24 from './images/problem24.png'
-import { db } from '../firebase'
-import { problems } from '../problems/problems'
 export const cssProblems = [
     {
         target: 1,

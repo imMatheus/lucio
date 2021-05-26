@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-import Form from './components/form/Form'
 import HomePage from './components/homepage/HomePage'
 import ProblemsPage from './components/problemspage/ProblemsPage'
 import Page404 from './components/404page/Page_404'
@@ -13,7 +12,6 @@ import Login from './components/registration/login/Login'
 import ForgotPassword from './components/registration/forgotpassword/ForgotPassword'
 import PrivateRoute from './components/routes/PrivateRoute'
 import { AuthProvider } from './context/AuthContext'
-import { v4 as uuidv4 } from 'uuid'
 
 function App() {
     const [isDarkMode, setIsDarkMode] = useState(true)

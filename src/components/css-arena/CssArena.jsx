@@ -10,7 +10,6 @@ import LogoIcon from '../icons/LogoIcon'
 import Pixelmatch from 'pixelmatch'
 import useSessionStorage from '../../hooks/useSessionStorage'
 import { Link } from 'react-router-dom'
-import getImgDiff from '../../functions/getImgDiff'
 
 const CssArena = ({ problem }) => {
     const cssEditorRef = useRef(null)
@@ -176,8 +175,6 @@ const CssArena = ({ problem }) => {
             threshold: 0.2,
             /* options */
         })
-        // const lallish = await getImgDiff(img1, img2)
-        // console.log(lallish)
 
         let characters = characterCount
         let percentage = 100 * (1 - diff / (width * height))
@@ -289,7 +286,6 @@ const CssArena = ({ problem }) => {
                 <div className='submit-wrapper'>
                     <button
                         className='submit-btn'
-                        // disabled={true}
                         disabled={loading}
                         onClick={submitClickedHandler}
                     >

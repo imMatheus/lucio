@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 
 import { useMonaco } from '@monaco-editor/react'
 import File from './File'
@@ -11,9 +11,11 @@ import useSessionStorage from '../../hooks/useSessionStorage'
 import EditorComponent from './EditorComponent'
 
 // https://www.npmjs.com/package/@monaco-editor/react
-const Monaco = ({ mref, problem, setPrompUser }) => {
+const Monaco = ({ problem, setPrompUser }) => {
     // console.log(problem)
     const monaco = useMonaco()
+    const compileRef = useRef()
+    const editorialRef = useRef()
     const { currentUser } = useAuth()
     const [fetchingData, setFetchingData] = useState(false)
     const problemName = problem.problemName
@@ -149,6 +151,7 @@ const Monaco = ({ mref, problem, setPrompUser }) => {
             return new Promise((resolve) => setTimeout(resolve, ms))
         }
         setFetchingData(true)
+
         const l = language
 
         const cases = submit === true ? sampleCases.concat(submitCases) : sampleCases
@@ -194,6 +197,12 @@ const Monaco = ({ mref, problem, setPrompUser }) => {
 
             // sleeping for 530ms cuz the api only allows 2 reqs per sec, and 530 just to be on the safe side
             await sleep(530)
+            if (i === 1) {
+                editorialRef.current?.scroll({
+                    top: 9999,
+                    behavior: 'smooth',
+                })
+            }
         }
 
         setTestCases(dummyArray)
@@ -216,7 +225,7 @@ const Monaco = ({ mref, problem, setPrompUser }) => {
         })
         let correctAnswer = true
         for (let i = 0; i < cases?.length; i++) {
-            // loop thru all cases and if one of them we early return
+            // loop thru all cases and if one of them we set correctAnswer = false
             if (!cases[i].correctAnswer && firstTime) correctAnswer = false
         }
         const difficulty = problem.difficulty
@@ -235,7 +244,7 @@ const Monaco = ({ mref, problem, setPrompUser }) => {
     }
 
     return (
-        <div className='editorial'>
+        <div className='editorial' ref={editorialRef}>
             <div className='editor'>
                 <div className='files'>
                     <File
@@ -277,7 +286,7 @@ const Monaco = ({ mref, problem, setPrompUser }) => {
                     Submit Code
                 </button>
             </div>
-            <CodeCompileView testcases={testCases} fetchingData={fetchingData} />
+            <CodeCompileView ref={compileRef} testcases={testCases} fetchingData={fetchingData} />
         </div>
     )
 }
