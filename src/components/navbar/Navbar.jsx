@@ -39,6 +39,9 @@ const Navbar = ({ isDarkMode, setIsDarkMode }) => {
                 <Link exact='true' to='/css/problems'>
                     Css
                 </Link>
+                <Link exact='true' to='/classes/dashboard'>
+                    Classes
+                </Link>
             </div>
             <div className='navbar-right'>
                 {currentUser ? (

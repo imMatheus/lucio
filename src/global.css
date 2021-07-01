@@ -908,6 +908,31 @@ body .App .homepage .leaderboard-container .leaderboard-wrapper .row-wrapper .te
   font-size: 1rem;
   font-weight: 300;
 }
+body .App .classes-dashboard {
+  background-color: pink;
+  min-height: 700px;
+  display: flex;
+}
+body .App .classes-dashboard .sidebar {
+  background: var(--color-darkBlue);
+  padding: 10px 0px;
+  min-width: 220px;
+}
+body .App .classes-dashboard .sidebar .option-row {
+  padding: 4px 10px;
+  display: flex;
+  color: var(--dots-color);
+  cursor: pointer;
+  justify-content: space-between;
+}
+body .App .classes-dashboard .sidebar .option-row:hover {
+  transform: scale(1.03);
+}
+body .App .classes-dashboard .content-wrapper {
+  width: 100%;
+  height: 100%;
+  background-color: royalblue;
+}
 body .App .form {
   width: 100vw;
   display: grid;

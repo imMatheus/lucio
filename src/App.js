@@ -12,6 +12,7 @@ import Login from './components/registration/login/Login'
 import ForgotPassword from './components/registration/forgotpassword/ForgotPassword'
 import PrivateRoute from './components/routes/PrivateRoute'
 import { AuthProvider } from './context/AuthContext'
+import ClassesDashboard from './components/classes/ClassesDashboard'
 
 function App() {
     const [isDarkMode, setIsDarkMode] = useState(true)
@@ -23,12 +24,13 @@ function App() {
                 <Router>
                     <Navbar isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} />
                     <Switch>
-                        <Route exact path='/'>
-                            <HomePage />
-                        </Route>
+                        <Route exact path='/' component={HomePage} />
+
                         <Route exact path='/algorithms/*' component={ProblemsPage} />
 
                         <Route exact path='/css/*' component={CssDashboard} />
+
+                        <Route exact path='/classes/*' component={ClassesDashboard} />
 
                         <PrivateRoute exact path='/signup' component={Signup} />
                         <PrivateRoute exact path='/login' component={Login} />
