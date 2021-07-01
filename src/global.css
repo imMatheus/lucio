@@ -19,15 +19,15 @@ body {
   --color-darkOrange: #f4a261;
   --color-darkBlue: #0a1128;
   --color-fail: #d11534;
+  --font-family: "Roboto Mono", monospace;
   --bold-fontsize: 1.06rem;
   --mini-fontsize: 0.76rem;
   --header-fontsize: 1.55rem;
-  --transition-speed: 200ms;
-  --font-family: "Roboto Mono", monospace;
-  --bold: 600;
   --paragraph-fontsize: 0.8rem;
   --variable-fontsize: 0.91rem;
   --inputs-fontsize: 0.85rem;
+  --transition-speed: 220ms;
+  --bold: 600;
   min-width: 1100px;
   height: 100vh;
   min-height: 100vh;
