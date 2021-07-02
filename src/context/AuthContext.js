@@ -88,6 +88,7 @@ export const AuthProvider = ({ children }) => {
         return unsubscribe
     }, [])
 
+    // this is the ejac-3000
     useEffect(() => {
         // subscribe to the db so we can update the leaderboard when the db gets updated
         db.ref().on('value', async (snapshot) => {
@@ -97,7 +98,7 @@ export const AuthProvider = ({ children }) => {
             let leaderBoardObj = {} // used to sweep thru the submissions and store all the users submissions
 
             for (const problem in algorithmsProblems) {
-                const submissions = algorithmsProblems[problem]?.submissions
+                const submissions = algorithmsProblems[problem]?.submissions // the submissions of that problem
                 if (submissions) {
                     // then going threw every single submission in the submissions of the problem
                     for (const uid in submissions) {

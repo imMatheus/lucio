@@ -23,6 +23,8 @@ const ProblemsPage = ({ match }) => {
         })
     }, [])
 
+    console.log(problemsArray)
+
     return (
         <>
             <Switch>
@@ -30,7 +32,14 @@ const ProblemsPage = ({ match }) => {
                     <div className='problems'>
                         {problemsArray?.map((problem) => {
                             const submissions = problem.submissions
+                            let amountOfSubmissions = 0
+                            let amountOfSuccessSubmissions = 0
                             if (submissions) {
+                                amountOfSubmissions = Object.keys(submissions).length
+                                for (const submission in submissions) {
+                                    if (submissions[submission].score !== 0)
+                                        amountOfSuccessSubmissions++
+                                }
                                 if (submissions[userUID]) {
                                     // checking if the user has completed problem or should try again
                                     // both can not be true
@@ -47,6 +56,8 @@ const ProblemsPage = ({ match }) => {
                                     diff={problem.difficulty}
                                     name={problem.problemName}
                                     category={problem.category}
+                                    amountOfSubmissions={amountOfSubmissions}
+                                    amountOfSuccessSubmissions={amountOfSuccessSubmissions}
                                 />
                             )
                         })}
@@ -75,7 +86,15 @@ const ProblemsPage = ({ match }) => {
     )
 }
 
-const ProblemCard = ({ name, diff, category, completed, tryAgain }) => {
+const ProblemCard = ({
+    name,
+    diff,
+    category,
+    completed,
+    tryAgain,
+    amountOfSubmissions,
+    amountOfSuccessSubmissions,
+}) => {
     // taking the name then making into one word and changing the first letter
     // of each word to uppercase
     let dummy = name
@@ -86,19 +105,21 @@ const ProblemCard = ({ name, diff, category, completed, tryAgain }) => {
 
     let path = dummy || 'noMatch'
 
+    let successPercentage = ((100 * amountOfSuccessSubmissions) / amountOfSubmissions || 0) + '%'
+
     return (
         // changing to path to path appended to the currentPath
         <Link to={`/algorithms/play/${path}`}>
             <div className='problemcard'>
                 <div className='header'>{name}</div>
                 <div className='metadata'>
+                    <span>{successPercentage}</span>
                     {completed ? (
                         <span className='completed'>Completed</span>
                     ) : tryAgain ? (
                         <span className='tryAgain'>Try again</span>
-                    ) : (
-                        <span></span>
-                    )}
+                    ) : null}
+
                     {category && <span>{category}</span>}
                     <div
                         className={
