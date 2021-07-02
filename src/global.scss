@@ -59,7 +59,7 @@ body {
         min-height: 100vh;
 
         &.dark {
-            //dark theme colors
+            // dark theme colors
             --main-bg: #282c34;
             --resize-bg: #161516;
             --dots-color: #ffffff;
@@ -70,7 +70,7 @@ body {
             --paragraph-color: #8a9bba;
             --inputs-color: #d4e4f9;
             --inputs-bg: #141618;
-            --files-bg: #21252b;
+            --files-bg: #1d2024;
         }
 
         &.light {

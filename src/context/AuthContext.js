@@ -88,6 +88,8 @@ export const AuthProvider = ({ children }) => {
         return unsubscribe
     }, [])
 
+    // in och where
+    // https://firebase.googleblog.com/2019/11/cloud-firestore-now-supports-in-queries.html
     // this is the ejac-3000
     useEffect(() => {
         // subscribe to the db so we can update the leaderboard when the db gets updated

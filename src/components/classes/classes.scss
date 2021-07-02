@@ -1,22 +1,28 @@
 .classes-dashboard {
-    background-color: pink;
     min-height: 700px;
     display: flex;
+    background-color: var(--bg);
 
     .sidebar {
-        background: var(--color-darkBlue);
-        padding: 10px 0px;
+        padding: 18px 0px;
         min-width: 220px;
-
+        background-color: var(--files-bg);
         .option-row {
-            padding: 4px 10px;
+            padding: 5px 18px;
             display: flex;
             color: var(--dots-color);
-            cursor: pointer;
+            cursor: cursor;
             justify-content: space-between;
 
             &:hover {
-                transform: scale(1.03);
+                opacity: 0.5;
+            }
+
+            &.selected {
+                color: var(--color-mainGreen);
+                &:hover {
+                    opacity: 1;
+                }
             }
         }
     }
@@ -24,6 +30,44 @@
     .content-wrapper {
         width: 100%;
         height: 100%;
-        background-color: royalblue;
+    }
+    .myclasses-wrapper {
+        $gap: 28px;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 25%));
+        // row-gap: $gap;
+        // column-gap: $gap;
+        .class-card {
+            background: var(--resize-bg);
+            border-collapse: collapse;
+            padding: 15px;
+
+            margin-top: $gap;
+            margin-left: $gap;
+            &:last-child {
+                margin-right: $gap;
+            }
+
+            .img-wrapper {
+                background-color: blue;
+                $size: 170px;
+                width: $size;
+                height: $size;
+                margin: 0 auto;
+            }
+
+            h3 {
+                text-align: center;
+                padding: 12px 2px;
+                font-size: 28px;
+                font-weight: var(--bold);
+                color: var(--bold-color);
+            }
+            p {
+                text-align: center;
+                font-size: 14px;
+                color: var(--color-mainGreen);
+            }
+        }
     }
 }

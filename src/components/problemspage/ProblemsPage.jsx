@@ -23,8 +23,6 @@ const ProblemsPage = ({ match }) => {
         })
     }, [])
 
-    console.log(problemsArray)
-
     return (
         <>
             <Switch>
