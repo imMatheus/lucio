@@ -120,6 +120,7 @@ export const AuthProvider = ({ children }) => {
                     }
                 }
             }
+
             cssProblems?.forEach((problem) => {
                 // looping threw all the problems
                 const submissions = problem?.submissions
@@ -142,6 +143,7 @@ export const AuthProvider = ({ children }) => {
                     }
                 }
             })
+
             let leaderBoardArr = [] // turn into an object so we can sort
             for (const uid in leaderBoardObj) {
                 // if the user does not have a score we don't push it to leader-board
@@ -153,6 +155,7 @@ export const AuthProvider = ({ children }) => {
                     })
                 }
             }
+
             // sort the array
             leaderBoardArr = quickSortBasic(leaderBoardArr)
             let dummyHolder = []

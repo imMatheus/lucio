@@ -5,17 +5,13 @@ import { Link, useRouteMatch } from 'react-router-dom'
 export default function Sidebar() {
     const { path, url } = useRouteMatch()
     let clearedPath = path.replace(/[*]/g, '')
-    console.log(path)
-    console.log(url.split('/')[2])
 
     function OptionsRow({ path, title }) {
         let selected = url.split('/')[2] === path
-        console.log(selected)
-        console.log(path)
         return (
             <Link to={`${clearedPath + path}`}>
                 <div className={`option-row ${selected ? 'selected' : ''}`}>
-                    {title} aa <ArrowRightIcon />
+                    {title} <ArrowRightIcon />
                 </div>
             </Link>
         )

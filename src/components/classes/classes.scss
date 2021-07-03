@@ -19,8 +19,10 @@
             }
 
             &.selected {
+                // styling for the selected row in sidebar
                 color: var(--color-mainGreen);
                 &:hover {
+                    // override the previous styles
                     opacity: 1;
                 }
             }
@@ -35,18 +37,16 @@
         $gap: 28px;
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(300px, 25%));
-        // row-gap: $gap;
-        // column-gap: $gap;
+        padding-right: $gap;
+
         .class-card {
             background: var(--resize-bg);
-            border-collapse: collapse;
+            cursor: pointer;
             padding: 15px;
-
             margin-top: $gap;
             margin-left: $gap;
-            &:last-child {
-                margin-right: $gap;
-            }
+            display: flex; // to place the last text part at the bottom
+            flex-direction: column;
 
             .img-wrapper {
                 background-color: blue;
@@ -54,6 +54,13 @@
                 width: $size;
                 height: $size;
                 margin: 0 auto;
+
+                img {
+                    width: 100%;
+                    height: 100%;
+                    background-position: center;
+                    background-size: cover;
+                }
             }
 
             h3 {
@@ -63,10 +70,12 @@
                 font-weight: var(--bold);
                 color: var(--bold-color);
             }
+
             p {
                 text-align: center;
                 font-size: 14px;
                 color: var(--color-mainGreen);
+                margin-top: auto;
             }
         }
     }

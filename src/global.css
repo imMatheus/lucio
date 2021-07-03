@@ -941,22 +941,28 @@ body .App .classes-dashboard .content-wrapper {
 body .App .classes-dashboard .myclasses-wrapper {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 25%));
+  padding-right: 28px;
 }
 body .App .classes-dashboard .myclasses-wrapper .class-card {
   background: var(--resize-bg);
-  border-collapse: collapse;
+  cursor: pointer;
   padding: 15px;
   margin-top: 28px;
   margin-left: 28px;
-}
-body .App .classes-dashboard .myclasses-wrapper .class-card:last-child {
-  margin-right: 28px;
+  display: flex;
+  flex-direction: column;
 }
 body .App .classes-dashboard .myclasses-wrapper .class-card .img-wrapper {
   background-color: blue;
   width: 170px;
   height: 170px;
   margin: 0 auto;
+}
+body .App .classes-dashboard .myclasses-wrapper .class-card .img-wrapper img {
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  background-size: cover;
 }
 body .App .classes-dashboard .myclasses-wrapper .class-card h3 {
   text-align: center;
@@ -969,6 +975,7 @@ body .App .classes-dashboard .myclasses-wrapper .class-card p {
   text-align: center;
   font-size: 14px;
   color: var(--color-mainGreen);
+  margin-top: auto;
 }
 body .App .form {
   width: 100vw;
