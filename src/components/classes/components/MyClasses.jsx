@@ -12,63 +12,63 @@ export default function MyClasses() {
     const { url } = useRouteMatch()
 
     const renderCount = useRef(0)
-    console.log(renderCount.current++)
+    console.log(++renderCount.current)
+
     const [userClasses, setUserClasses] = useState(null)
     const usersClassesRef = useRef([])
     const userUID = currentUser.uid
-    console.log(userClasses)
 
     // firestore refs
     const classesRef = fs.collection('classes')
     const usersRef = fs.collection('users')
 
     useEffect(() => {
-        const getClasses = async () => {
-            usersClassesRef.current = [] // reset
+        // const getClasses = () => {
+        usersRef // get users classes, will return an array with all the id's of the classes
+            .doc(userUID)
+            .collection('classes')
+            .onSnapshot(async (doc) => {
+                usersClassesRef.current = [] // reset
+                doc.docs.forEach((doc) => usersClassesRef.current.push(doc.id))
 
-            await usersRef // get users classes, will return an array with all the id's of the classes
-                .doc(userUID)
-                .collection('classes')
-                .get()
-                .then((querySnapshot) => {
-                    querySnapshot.forEach((doc) => {
-                        usersClassesRef.current.push(doc.id)
+                let dummy = []
+                if (usersClassesRef.current.length > 0) {
+                    let usersClassesQuery = classesRef.where(
+                        'classID',
+                        'in',
+                        usersClassesRef.current
+                    )
+                    await usersClassesQuery.get().then((querySnapshot) => {
+                        querySnapshot.forEach((doc) => {
+                            let classData = doc.data()
+                            dummy.push(classData)
+                        })
                     })
-                })
-            console.log(usersClassesRef)
-
-            let dummy = []
-
-            let usersClassesQuery = classesRef.where('classID', 'in', usersClassesRef.current)
-            await usersClassesQuery.get().then((querySnapshot) => {
-                console.log(querySnapshot)
-                querySnapshot.forEach((doc) => {
-                    let classData = doc.data()
-                    console.log(classData)
-                    dummy.push(classData)
-                })
+                    setUserClasses(dummy)
+                }
             })
-            setUserClasses(dummy)
-        }
-        getClasses()
+        // }
+        // getClasses()
     }, [])
-    console.log(usersClassesRef)
 
     const joinClassHandler = async () => {
         const joinLink = prompt('What should your class name be?') // get the join link
         var classQuery = classesRef.where('classJoinLink', '==', joinLink)
-        console.log(classQuery)
         let classID
         let isEmpty = false
+        let isOwnerOfClass = false
 
         await classQuery.get().then((querySnapshot) => {
             if (querySnapshot.empty) return (isEmpty = true)
             querySnapshot.forEach((doc) => {
                 let classData = doc.data()
                 classID = classData.classID
+                console.log(classData)
+                if (classData.ownerUid === userUID) isOwnerOfClass = true
             })
         })
 
+        if (isOwnerOfClass) return alert('You are alredy in this class')
         if (isEmpty) return alert('could not find your class')
 
         usersRef
@@ -145,7 +145,6 @@ export default function MyClasses() {
     }
 
     const goToClassHandler = (joinLink) => {
-        console.log(url + joinLink)
         history.push(url + '/' + joinLink)
     }
     function ClassCard({ title, students, joinLink }) {
@@ -163,12 +162,6 @@ export default function MyClasses() {
         <div className='myclasses-wrapper'>
             <button onClick={addClassHandler}>Add class</button>
             <button onClick={joinClassHandler}>join class</button>
-            {/* <h1>{JSON.stringify(usersClassesRef.current)}</h1> */}
-            <div className='class-card'>
-                <div className='img-wrapper'></div>
-                <h3>It intro</h3>
-                <p>23 students</p>
-            </div>
             {userClasses &&
                 userClasses.map((classItem, index) => {
                     return (

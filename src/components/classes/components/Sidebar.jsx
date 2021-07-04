@@ -21,7 +21,6 @@ export default function Sidebar() {
             <OptionsRow title='My classes' path='myclasses' />
             <OptionsRow title='My' path='my' />
             <OptionsRow title='classes' path='classes' />
-            <OptionsRow title='My classes' path='myclasses' />
         </div>
     )
 }
