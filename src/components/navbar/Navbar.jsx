@@ -3,7 +3,7 @@ import { useAuth } from '../../context/AuthContext'
 import { useHistory } from 'react-router-dom'
 import LogoIcon from '../icons/LogoIcon'
 
-const Navbar = ({ isDarkMode, setIsDarkMode }) => {
+const Navbar = () => {
     const { currentUser, logout } = useAuth()
     const history = useHistory()
 
@@ -23,8 +23,8 @@ const Navbar = ({ isDarkMode, setIsDarkMode }) => {
             <Link exact='true' to='/'>
                 <div className='logo'>
                     <h2>LucioCode</h2>
-                    {/* setting spin to true so it spins */}
                     <div className='logo-icon-container'>
+                        {/* setting spin to true so it spins */}
                         <LogoIcon spin={true} loader={false} />
                     </div>
                 </div>
@@ -39,7 +39,7 @@ const Navbar = ({ isDarkMode, setIsDarkMode }) => {
                 <Link exact='true' to='/css/problems'>
                     Css
                 </Link>
-                <Link exact='true' to='/classes/dashboard'>
+                <Link exact='true' to='/classes/myclasses'>
                     Classes
                 </Link>
             </div>
