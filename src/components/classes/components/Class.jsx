@@ -12,6 +12,7 @@ export default function Class() {
     const [students, setStudents] = useState([])
     const [emptyRoute, setEmptyRoute] = useState(false)
     const { path, url } = useRouteMatch()
+    //TODO https://www.youtube.com/watch?v=HOM47v73yG8
     const classLink = url.split('/')[url.split('/').length - 1]
     useEffect(() => {
         async function getClass() {
