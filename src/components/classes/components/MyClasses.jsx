@@ -2,10 +2,15 @@ import React, { useEffect, useState, useRef } from 'react'
 import mj from './mj-crying.jpg'
 import { fs } from '../../../firebase'
 import { useAuth } from '../../../context/AuthContext'
+import { useHistory, useRouteMatch } from 'react-router-dom'
 //https://firebase.google.com/docs/firestore/query-data/queries
 
 export default function MyClasses() {
     const { currentUser } = useAuth()
+
+    const history = useHistory()
+    const { url } = useRouteMatch()
+
     const renderCount = useRef(0)
     console.log(renderCount.current++)
     const [userClasses, setUserClasses] = useState(null)
@@ -138,9 +143,14 @@ export default function MyClasses() {
                 console.error('Error adding document: ', error)
             })
     }
-    function ClassCard({ title, students }) {
+
+    const goToClassHandler = (joinLink) => {
+        console.log(url + joinLink)
+        history.push(url + '/' + joinLink)
+    }
+    function ClassCard({ title, students, joinLink }) {
         return (
-            <div className='class-card'>
+            <div className='class-card' onClick={() => goToClassHandler(joinLink)}>
                 <div className='img-wrapper'>
                     <img src={mj} alt='mj crying' />
                 </div>
@@ -160,8 +170,14 @@ export default function MyClasses() {
                 <p>23 students</p>
             </div>
             {userClasses &&
-                userClasses.map((classItem) => {
-                    return <ClassCard title={classItem.className} />
+                userClasses.map((classItem, index) => {
+                    return (
+                        <ClassCard
+                            key={index} //TODO change index to uuid
+                            title={classItem.className}
+                            joinLink={classItem.classJoinLink}
+                        />
+                    )
                 })}
         </div>
     )
