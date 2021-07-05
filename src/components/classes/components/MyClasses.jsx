@@ -23,8 +23,7 @@ export default function MyClasses() {
     const usersRef = fs.collection('users')
 
     useEffect(() => {
-        // const getClasses = () => {
-        usersRef // get users classes, will return an array with all the id's of the classes
+        usersRef // get users classes, will push all id's to usersClassesRef
             .doc(userUID)
             .collection('classes')
             .onSnapshot(async (doc) => {
@@ -47,13 +46,12 @@ export default function MyClasses() {
                     setUserClasses(dummy)
                 }
             })
-        // }
-        // getClasses()
     }, [])
 
     const joinClassHandler = async () => {
-        const joinLink = prompt('What should your class name be?') // get the join link
-        var classQuery = classesRef.where('classJoinLink', '==', joinLink)
+        const joinLink = prompt('Please fill in your class link') // get the join link
+        const classQuery = classesRef.where('classJoinLink', '==', joinLink)
+        if (joinLink === null) return
         let classID
         let isEmpty = false
         let isOwnerOfClass = false
@@ -63,12 +61,12 @@ export default function MyClasses() {
             querySnapshot.forEach((doc) => {
                 let classData = doc.data()
                 classID = classData.classID
-                console.log(classData)
                 if (classData.ownerUid === userUID) isOwnerOfClass = true
             })
         })
 
-        if (isOwnerOfClass) return alert('You are alredy in this class')
+        if (isOwnerOfClass)
+            return alert('You cant join as a students because you are the owner of this class')
         if (isEmpty) return alert('could not find your class')
 
         usersRef
@@ -144,10 +142,10 @@ export default function MyClasses() {
             })
     }
 
-    const goToClassHandler = (joinLink) => {
-        history.push(url + '/' + joinLink)
-    }
     function ClassCard({ title, students, joinLink }) {
+        const goToClassHandler = (joinLink) => {
+            history.push(url + '/' + joinLink)
+        }
         return (
             <div className='class-card' onClick={() => goToClassHandler(joinLink)}>
                 <div className='img-wrapper'>
@@ -162,7 +160,7 @@ export default function MyClasses() {
         <div className='myclasses-wrapper'>
             <button onClick={addClassHandler}>Add class</button>
             <button onClick={joinClassHandler}>join class</button>
-            {userClasses &&
+            {userClasses ? (
                 userClasses.map((classItem, index) => {
                     return (
                         <ClassCard
@@ -171,7 +169,10 @@ export default function MyClasses() {
                             joinLink={classItem.classJoinLink}
                         />
                     )
-                })}
+                })
+            ) : (
+                <p>Looks like you don't have any classes</p>
+            )}
         </div>
     )
 }

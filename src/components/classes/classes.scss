@@ -47,6 +47,9 @@
             margin-left: $gap;
             display: flex; // to place the last text part at the bottom
             flex-direction: column;
+            // $height: 30px;
+            // box-shadow: 0 $height 0 -1rem green, 0 (2 * $height) 0 -2rem red,
+            //     0 (3 * $height) 0 -3rem blue;
 
             .img-wrapper {
                 background-color: blue;

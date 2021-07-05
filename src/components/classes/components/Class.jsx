@@ -15,6 +15,7 @@ export default function Class() {
     const classLink = url.split('/')[url.split('/').length - 1]
     useEffect(() => {
         async function getClass() {
+            let isOwnerOfClass = false
             let dummyClass = {}
             let usersClassesQuery = classesRef.where('classJoinLink', '==', classLink)
             await usersClassesQuery.get().then((querySnapshot) => {
@@ -22,6 +23,7 @@ export default function Class() {
                 querySnapshot.forEach((doc) => {
                     let classData = doc.data()
                     dummyClass = classData
+                    if (classData.ownerUid === currentUser.uid) isOwnerOfClass = true
                 })
             })
 
@@ -38,8 +40,7 @@ export default function Class() {
                 })
 
             let t = students.map((s) => s.studentUid)
-            if (!t.includes(currentUser.uid)) {
-                console.log('has test1')
+            if (!t.includes(currentUser.uid) && !isOwnerOfClass) {
                 setEmptyRoute(true)
             }
 
