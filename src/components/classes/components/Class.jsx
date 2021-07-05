@@ -20,14 +20,17 @@ export default function Class() {
             let dummyClass = {}
             let usersClassesQuery = classesRef.where('classJoinLink', '==', classLink)
             await usersClassesQuery.get().then((querySnapshot) => {
-                if (querySnapshot.empty) setEmptyRoute(true)
+                //find th class where the classLink is
+                if (querySnapshot.empty) setEmptyRoute(true) // means the class join link was not found, it does not exist
                 querySnapshot.forEach((doc) => {
-                    let classData = doc.data()
-                    dummyClass = classData
-                    if (classData.ownerUid === currentUser.uid) isOwnerOfClass = true
+                    dummyClass = doc.data() // set the data we got to the dummyClass object
+                    if (dummyClass.ownerUid === currentUser.uid) isOwnerOfClass = true
                 })
             })
 
+            /**
+             * @return {Array(String)} students - a list of all the students uid
+             */
             let students = await classesRef
                 .doc(dummyClass.classID)
                 .collection('students')
@@ -40,13 +43,15 @@ export default function Class() {
                     return g
                 })
 
-            let t = students.map((s) => s.studentUid)
-            if (!t.includes(currentUser.uid) && !isOwnerOfClass) {
+            let s = students.map((s) => s.studentUid) // s is an array of the students uid's
+            if (!s.includes(currentUser.uid) && !isOwnerOfClass) {
+                // if the currents uses uid doesnt exist in the array of students that means the user doesnt go to that class
+                // then we check if it is th owner, if it isn't the owner it should not have access to the class
                 setEmptyRoute(true)
             }
 
             setClassData({ ...dummyClass, students })
-            let dummyHolder = []
+            let studentDummyHolder = []
             for (let i = 0; i < students.length; i++) {
                 // getting the user from firestore and storing user details in
                 const response = fs.collection('users').doc(students[i].studentUid)
@@ -55,16 +60,15 @@ export default function Class() {
 
                 if (data) {
                     // pushing all the data we got of the user from firestore
-                    // and then adding users score and targets
-                    dummyHolder.push({
+                    studentDummyHolder.push({
                         ...data,
                     })
                 }
             }
-            setStudents(dummyHolder)
+            setStudents(studentDummyHolder)
         }
         getClass()
-    }, [])
+    }, [classLink, classesRef, currentUser.uid])
 
     return (
         <div>

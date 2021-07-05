@@ -14,6 +14,7 @@ export default function MyClasses() {
     const renderCount = useRef(0)
     console.log(++renderCount.current)
 
+    const [loading, setLoading] = useState(false)
     const [userClasses, setUserClasses] = useState(null)
     const usersClassesRef = useRef([])
     const userUID = currentUser.uid
@@ -23,6 +24,7 @@ export default function MyClasses() {
     const usersRef = fs.collection('users')
 
     useEffect(() => {
+        setLoading(true)
         usersRef // get users classes, will push all id's to usersClassesRef
             .doc(userUID)
             .collection('classes')
@@ -38,13 +40,26 @@ export default function MyClasses() {
                         usersClassesRef.current
                     )
                     await usersClassesQuery.get().then((querySnapshot) => {
-                        querySnapshot.forEach((doc) => {
+                        // subscribes to the db
+                        querySnapshot.forEach(async (doc) => {
                             let classData = doc.data()
-                            dummy.push(classData)
+                            let students = await classesRef
+                                .doc(classData.classID)
+                                .collection('students')
+                                .get()
+                                .then((querySnapshot) => {
+                                    let g = []
+                                    querySnapshot.forEach((doc) => {
+                                        g.push(doc.data())
+                                    })
+                                    return g
+                                })
+                            dummy.push({ ...classData, students })
                         })
                     })
                     setUserClasses(dummy)
                 }
+                setLoading(false)
             })
     }, [])
 
@@ -69,7 +84,7 @@ export default function MyClasses() {
             return alert('You cant join as a students because you are the owner of this class')
         if (isEmpty) return alert('could not find your class')
 
-        usersRef
+        await usersRef
             .doc(userUID)
             .collection('classes')
             .doc(classID)
@@ -80,7 +95,7 @@ export default function MyClasses() {
                 console.error('Error adding document: ', error)
             })
 
-        classesRef
+        await classesRef
             .doc(classID)
             .collection('students')
             .doc(userUID)
@@ -90,6 +105,7 @@ export default function MyClasses() {
             .catch((error) => {
                 console.error('Error adding document: ', error)
             })
+        history.push(url + '/' + joinLink)
     }
 
     const addClassHandler = async () => {
@@ -142,7 +158,32 @@ export default function MyClasses() {
             })
     }
 
-    function ClassCard({ title, students, joinLink }) {
+    function ClassCard({ classData }) {
+        const title = classData.className
+        const studentsIDs = classData.students
+        const joinLink = classData.classJoinLink
+        const [students, setStudents] = useState([])
+        useEffect(() => {
+            async function getStudents() {
+                let studentDummyHolder = []
+                for (let i = 0; i < studentsIDs.length; i++) {
+                    // getting the user from firestore and storing user details in
+                    const response = fs.collection('users').doc(studentsIDs[i].studentUid)
+                    const rawData = await response.get()
+                    const data = rawData.data()
+
+                    if (data) {
+                        // pushing all the data we got of the user from firestore
+                        studentDummyHolder.push({
+                            ...data,
+                        })
+                    }
+                    console.log(studentDummyHolder)
+                }
+                setStudents(studentDummyHolder)
+            }
+            getStudents()
+        }, [studentsIDs])
         const goToClassHandler = (joinLink) => {
             history.push(url + '/' + joinLink)
         }
@@ -152,12 +193,25 @@ export default function MyClasses() {
                     <img src={mj} alt='mj crying' />
                 </div>
                 <h3>{title}</h3>
-                <p>23 students</p>
+                <p>{students.length} students</p>
+                {students.length > 0 ? (
+                    <div className='students-profiles-wrapper'>
+                        {students.map((student) => {
+                            console.log(student)
+                            return (
+                                <div className='profileImg-wrapper'>
+                                    <img src={student.profileImage} alt='profile img' />
+                                </div>
+                            )
+                        })}
+                    </div>
+                ) : null}
             </div>
         )
     }
     return (
         <div className='myclasses-wrapper'>
+            <p>{loading + ''}</p>
             <button onClick={addClassHandler}>Add class</button>
             <button onClick={joinClassHandler}>join class</button>
             {userClasses ? (
@@ -165,8 +219,7 @@ export default function MyClasses() {
                     return (
                         <ClassCard
                             key={index} //TODO change index to uuid
-                            title={classItem.className}
-                            joinLink={classItem.classJoinLink}
+                            classData={classItem}
                         />
                     )
                 })
