@@ -16,7 +16,6 @@ export default function MyClasses() {
 
     const [loading, setLoading] = useState(false)
     const [userClasses, setUserClasses] = useState(null)
-    const usersClassesRef = useRef([])
     const userUID = currentUser.uid
 
     // firestore refs
@@ -29,37 +28,35 @@ export default function MyClasses() {
             .doc(userUID)
             .collection('classes')
             .onSnapshot(async (doc) => {
-                usersClassesRef.current = [] // reset
-                doc.docs.forEach((doc) => usersClassesRef.current.push(doc.id))
+                let usersClassesIds = []
+                doc.docs.forEach((doc) => usersClassesIds.push(doc.id)) // returns a array of the current users classes ids
 
                 let dummy = []
-                if (usersClassesRef.current.length > 0) {
-                    let usersClassesQuery = classesRef.where(
-                        'classID',
-                        'in',
-                        usersClassesRef.current
-                    )
-                    await usersClassesQuery.get().then((querySnapshot) => {
-                        // subscribes to the db
-                        querySnapshot.forEach(async (doc) => {
-                            let classData = doc.data()
-                            let students = await classesRef
-                                .doc(classData.classID)
+                if (usersClassesIds.length > 0) {
+                    for (const classIDE of usersClassesIds) {
+                        let classData = await classesRef
+                            .doc(classIDE)
+                            .get()
+                            .then((doc) => doc.data())
+                        if (classData !== undefined) {
+                            let studentsIds = await classesRef
+                                .doc(classIDE)
                                 .collection('students')
                                 .get()
                                 .then((querySnapshot) => {
                                     let g = []
                                     querySnapshot.forEach((doc) => {
-                                        g.push(doc.data())
+                                        g.push(doc.data().studentUid)
                                     })
                                     return g
                                 })
-                            dummy.push({ ...classData, students })
-                        })
-                    })
+                            dummy.push({ ...classData, students: studentsIds })
+                        }
+                    }
+
                     setUserClasses(dummy)
+                    setLoading(false)
                 }
-                setLoading(false)
             })
     }, [])
 
@@ -168,21 +165,17 @@ export default function MyClasses() {
                 let studentDummyHolder = []
                 for (let i = 0; i < studentsIDs.length; i++) {
                     // getting the user from firestore and storing user details in
-                    const response = fs.collection('users').doc(studentsIDs[i].studentUid)
+                    const response = fs.collection('users').doc(studentsIDs[i])
                     const rawData = await response.get()
                     const data = rawData.data()
-
                     if (data) {
                         // pushing all the data we got of the user from firestore
-                        studentDummyHolder.push({
-                            ...data,
-                        })
+                        studentDummyHolder.push(data)
                     }
-                    console.log(studentDummyHolder)
                 }
                 setStudents(studentDummyHolder)
             }
-            getStudents()
+            if (studentsIDs) getStudents()
         }, [studentsIDs])
         const goToClassHandler = (joinLink) => {
             history.push(url + '/' + joinLink)
@@ -195,16 +188,22 @@ export default function MyClasses() {
                 <h3>{title}</h3>
                 <p>{students.length} students</p>
                 {students.length > 0 ? (
-                    <div className='students-profiles-wrapper'>
+                    <span className='students-profiles-wrapper'>
+                        <div className='profileImg-wrapper'>
+                            <img src={students[0].profileImage} alt='profile img' />
+                        </div>{' '}
+                        <div className='profileImg-wrapper'>
+                            <img src={students[0].profileImage} alt='profile img' />
+                        </div>
                         {students.map((student) => {
-                            console.log(student)
+                            // console.log(student)
                             return (
                                 <div className='profileImg-wrapper'>
                                     <img src={student.profileImage} alt='profile img' />
                                 </div>
                             )
                         })}
-                    </div>
+                    </span>
                 ) : null}
             </div>
         )
@@ -212,6 +211,7 @@ export default function MyClasses() {
     return (
         <div className='myclasses-wrapper'>
             <p>{loading + ''}</p>
+
             <button onClick={addClassHandler}>Add class</button>
             <button onClick={joinClassHandler}>join class</button>
             {userClasses ? (

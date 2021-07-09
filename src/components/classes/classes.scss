@@ -84,22 +84,29 @@
                 margin-top: auto;
             }
             .students-profiles-wrapper {
-                $transform: 15px;
+                $transform: 0px;
+                background-color: red;
                 display: flex;
                 justify-content: center;
-                padding-left: $transform;
+                // width: 200px;
+                margin: 0 auto;
+                // padding-left: 5 * $transform;
                 position: relative;
                 .profileImg-wrapper {
-                    $size: 50px;
+                    $size: 40px;
                     width: $size;
                     height: $size;
                     border-radius: 50%;
                     overflow: hidden;
-                    border: solid 4px var(--resize-bg);
-                    transform: translateX(-$transform);
+                    border: solid 3px var(--resize-bg);
 
                     &:first-child {
                         transform: none;
+                    }
+                    @for $i from 1 through 6 {
+                        &:nth-child(#{$i}) {
+                            transform: translateX($i * -$transform);
+                        }
                     }
                     img {
                         width: 100%;

@@ -978,21 +978,39 @@ body .App .classes-dashboard .myclasses-wrapper .class-card p {
   margin-top: auto;
 }
 body .App .classes-dashboard .myclasses-wrapper .class-card .students-profiles-wrapper {
+  background-color: red;
   display: flex;
   justify-content: center;
-  padding-left: 15px;
+  margin: 0 auto;
   position: relative;
 }
 body .App .classes-dashboard .myclasses-wrapper .class-card .students-profiles-wrapper .profileImg-wrapper {
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   overflow: hidden;
-  border: solid 4px var(--resize-bg);
-  transform: translateX(-15px);
+  border: solid 3px var(--resize-bg);
 }
 body .App .classes-dashboard .myclasses-wrapper .class-card .students-profiles-wrapper .profileImg-wrapper:first-child {
   transform: none;
+}
+body .App .classes-dashboard .myclasses-wrapper .class-card .students-profiles-wrapper .profileImg-wrapper:nth-child(1) {
+  transform: translateX(0px);
+}
+body .App .classes-dashboard .myclasses-wrapper .class-card .students-profiles-wrapper .profileImg-wrapper:nth-child(2) {
+  transform: translateX(0px);
+}
+body .App .classes-dashboard .myclasses-wrapper .class-card .students-profiles-wrapper .profileImg-wrapper:nth-child(3) {
+  transform: translateX(0px);
+}
+body .App .classes-dashboard .myclasses-wrapper .class-card .students-profiles-wrapper .profileImg-wrapper:nth-child(4) {
+  transform: translateX(0px);
+}
+body .App .classes-dashboard .myclasses-wrapper .class-card .students-profiles-wrapper .profileImg-wrapper:nth-child(5) {
+  transform: translateX(0px);
+}
+body .App .classes-dashboard .myclasses-wrapper .class-card .students-profiles-wrapper .profileImg-wrapper:nth-child(6) {
+  transform: translateX(0px);
 }
 body .App .classes-dashboard .myclasses-wrapper .class-card .students-profiles-wrapper .profileImg-wrapper img {
   width: 100%;
