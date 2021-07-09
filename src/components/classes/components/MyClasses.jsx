@@ -24,7 +24,7 @@ export default function MyClasses() {
 
     useEffect(() => {
         setLoading(true)
-        usersRef // get users classes, will push all id's to usersClassesRef
+        let s = usersRef // get users classes, will push all id's to usersClassesRef
             .doc(userUID)
             .collection('classes')
             .onSnapshot(async (doc) => {
@@ -58,6 +58,10 @@ export default function MyClasses() {
                     setLoading(false)
                 }
             })
+        return () => {
+            console.log('unsub')
+            s()
+        }
     }, [])
 
     const joinClassHandler = async () => {
@@ -156,6 +160,7 @@ export default function MyClasses() {
     }
 
     function ClassCard({ classData }) {
+        //TODO there seems to be a bug that couses students icons to re-render twice when i save vs code file
         const title = classData.className
         const studentsIDs = classData.students
         const joinLink = classData.classJoinLink
@@ -187,24 +192,18 @@ export default function MyClasses() {
                 </div>
                 <h3>{title}</h3>
                 <p>{students.length} students</p>
-                {students.length > 0 ? (
+                {students.length > 0 && (
                     <span className='students-profiles-wrapper'>
-                        <div className='profileImg-wrapper'>
-                            <img src={students[0].profileImage} alt='profile img' />
-                        </div>{' '}
-                        <div className='profileImg-wrapper'>
-                            <img src={students[0].profileImage} alt='profile img' />
-                        </div>
-                        {students.map((student) => {
-                            // console.log(student)
+                        {students.map((student, index) => {
+                            //TODO change to uid
                             return (
-                                <div className='profileImg-wrapper'>
+                                <div className='profileImg-wrapper' key={index}>
                                     <img src={student.profileImage} alt='profile img' />
                                 </div>
                             )
                         })}
                     </span>
-                ) : null}
+                )}
             </div>
         )
     }
