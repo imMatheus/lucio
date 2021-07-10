@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import mj from './mj-crying.jpg'
 import { fs } from '../../../firebase'
 import { useAuth } from '../../../context/AuthContext'
@@ -8,11 +8,16 @@ import { useHistory, useRouteMatch } from 'react-router-dom'
 export default function MyClasses() {
     const { currentUser } = useAuth()
 
-    const history = useHistory()
-    const { url } = useRouteMatch()
-
     const renderCount = useRef(0)
     console.log(++renderCount.current)
+
+    let cd = [11, 22, 33, 44, 55, 66]
+    console.log(cd.slice(-4))
+    console.log(cd.splice(1))
+    console.log(cd)
+
+    const history = useHistory()
+    const { url } = useRouteMatch()
 
     const [loading, setLoading] = useState(false)
     const [userClasses, setUserClasses] = useState(null)
@@ -168,9 +173,9 @@ export default function MyClasses() {
         useEffect(() => {
             async function getStudents() {
                 let studentDummyHolder = []
-                for (let i = 0; i < studentsIDs.length; i++) {
+                for (const studentID of studentsIDs) {
                     // getting the user from firestore and storing user details in
-                    const response = fs.collection('users').doc(studentsIDs[i])
+                    const response = fs.collection('users').doc(studentID)
                     const rawData = await response.get()
                     const data = rawData.data()
                     if (data) {
