@@ -120,7 +120,7 @@ export default function MyClasses() {
          * @return {string} class link - a random generated string of 6 characters, exempla 'djA1k8'
          */
         const getNewClassLink = async () => {
-            const LINK_LENGTH = 7
+            const LINK_LENGTH = 7 // length of link
             const alphabet = 'abcdefghijklmnopqrstuvwxyz'
             const upperCaseAlphabet = alphabet // converts it into uppercase
                 .split('')

@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import mj from './mj-crying.jpg'
 import { fs } from '../../../firebase'
-import { useRouteMatch, useHistory } from 'react-router-dom'
+import { useRouteMatch, useHistory, Route, Link } from 'react-router-dom'
 import { useAuth } from '../../../context/AuthContext'
 import DeleteIcon from '@material-ui/icons/Delete'
 
@@ -22,7 +22,9 @@ export default function Class() {
     const [emptyRoute, setEmptyRoute] = useState(false)
     const { path, url } = useRouteMatch()
     //TODO https://www.youtube.com/watch?v=HOM47v73yG8
-    const classLink = url.split('/')[url.split('/').length - 1] // splits at all '/' then takes the last one witch should be the link
+    const classLink = url.split('/')[3] // splits at all '/' then takes the third one witch should be the link
+    const baseRoute = `${path.replace(/[*]/g, '')}${classLink}`
+    // const classLink = url.split('/')[url.split('/').length - 1] // splits at all '/' then takes the last one witch should be the link
     useEffect(() => {
         let unsubscribe
         async function getClass() {
@@ -193,30 +195,36 @@ export default function Class() {
             ) : (
                 <>
                     <h3>{classLink}</h3>
+                    <h3>{url}</h3>
+                    <h3>{path}</h3>
                     {userIsOwnerOfClass ? (
                         <button onClick={deleteClassHandler}>Delete class</button>
                     ) : (
                         <button onClick={leaveClassHandler}>Leave class</button>
                     )}
-                    {/* <h3>{url}</h3>
-                    <h3>{path}</h3>
-                    <h3>{JSON.stringify(classData)}</h3> */}
-                    <div className='students-wrapper'>
-                        {students?.map((student, index) => {
-                            console.log(student)
-                            //TODO change to uuid
-                            return (
-                                <StudentCard
-                                    key={index}
-                                    name={student.displayName}
-                                    studentUid={student.userUID}
-                                    email={student.email}
-                                    joinedAt={student.joinedAt}
-                                    profileImage={student.profileImage}
-                                />
-                            )
-                        })}
-                    </div>
+                    <Route exact path={`${baseRoute}/work`}>
+                        <Link to={`${baseRoute}`}>to base</Link>
+                        work
+                    </Route>
+                    <Route exact path={baseRoute}>
+                        <Link to={`${baseRoute}/work`}>to work</Link>
+                        base
+                        <div className='students-wrapper'>
+                            {students?.map((student, index) => {
+                                //TODO change to uuid
+                                return (
+                                    <StudentCard
+                                        key={index}
+                                        name={student.displayName}
+                                        studentUid={student.userUID}
+                                        email={student.email}
+                                        joinedAt={student.joinedAt}
+                                        profileImage={student.profileImage}
+                                    />
+                                )
+                            })}
+                        </div>
+                    </Route>
                 </>
             )}
         </div>
