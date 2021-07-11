@@ -71,7 +71,7 @@ export default function MyClasses() {
             .catch((error) => {
                 console.error('Error adding document: ', error)
             })
-        history.push(url + '/' + joinLink)
+        history.push(url + joinLink)
     }
 
     const addClassHandler = async () => {
