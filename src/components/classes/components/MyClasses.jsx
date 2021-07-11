@@ -7,7 +7,7 @@ import { useHistory, useRouteMatch } from 'react-router-dom'
 //https://firebase.google.com/docs/firestore/query-data/queries
 
 export default function MyClasses() {
-    const { currentUser } = useAuth()
+    const { currentUser, userClasses } = useAuth()
 
     const renderCount = useRef(0)
     console.log(++renderCount.current)
@@ -16,7 +16,7 @@ export default function MyClasses() {
     const { url } = useRouteMatch()
 
     const [loading, setLoading] = useState(false)
-    const [userClasses, setUserClasses] = useState(null)
+    // const [userClasses, setUserClasses] = useState(null)
     const userUID = currentUser.uid
 
     // firestore refs
@@ -24,46 +24,9 @@ export default function MyClasses() {
     const usersRef = fs.collection('users')
 
     useEffect(() => {
-        setLoading(true)
-        let s = usersRef // get users classes, will push all id's to usersClassesRef
-            .doc(userUID)
-            .collection('classes')
-            .onSnapshot(async (doc) => {
-                let usersClassesIds = []
-                doc.docs.forEach((doc) => usersClassesIds.push(doc.id)) // returns a array of the current users classes ids
-
-                let dummy = []
-                if (usersClassesIds.length > 0) {
-                    for (const classIDE of usersClassesIds) {
-                        let classData = await classesRef
-                            .doc(classIDE)
-                            .get()
-                            .then((doc) => doc.data())
-                        if (classData !== undefined) {
-                            let studentsIds = await classesRef
-                                .doc(classIDE)
-                                .collection('students')
-                                .get()
-                                .then((querySnapshot) => {
-                                    let g = []
-                                    querySnapshot.forEach((doc) => {
-                                        g.push(doc.data().studentUid)
-                                    })
-                                    return g
-                                })
-                            dummy.push({ ...classData, students: studentsIds })
-                        }
-                    }
-
-                    setUserClasses(dummy)
-                    setLoading(false)
-                }
-            })
-        return () => {
-            console.log('unsub')
-            s()
-        }
-    }, [])
+        if (userClasses?.length > 0) setLoading(false)
+        else setLoading(true)
+    }, [userClasses])
 
     const joinClassHandler = async () => {
         const joinLink = prompt('Please fill in your class link') // get the join link

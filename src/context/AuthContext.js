@@ -29,6 +29,7 @@ export const AuthProvider = ({ children }) => {
     const [currentUser, setCurrentUser] = useState()
     const [leaderboard, setLeaderboard] = useState(null)
     const [loading, setLoading] = useState(true)
+    const [userClasses, setUserClasses] = useState([])
 
     async function signup(email, password, displayName, imageUrl) {
         const usersNamesRef = fs.collection('usernames').doc(displayName.toLowerCase())
@@ -88,8 +89,48 @@ export const AuthProvider = ({ children }) => {
         return unsubscribe
     }, [])
 
-    // in och where
-    // https://firebase.googleblog.com/2019/11/cloud-firestore-now-supports-in-queries.html
+    useEffect(() => {
+        if (!currentUser) return
+        const classesRef = fs.collection('classes')
+        let s = fs
+            .collection('users') // get users classes, will push all id's to usersClassesRef
+            // get users classes, will push all id's to usersClassesRef
+            .doc(currentUser.uid)
+            .collection('classes')
+            .onSnapshot(async (doc) => {
+                let usersClassesIds = []
+                doc.docs.forEach((doc) => usersClassesIds.push(doc.id)) // returns a array of the current users classes ids
+
+                let dummy = []
+                if (usersClassesIds.length > 0) {
+                    for (const classIDE of usersClassesIds) {
+                        let classData = await classesRef
+                            .doc(classIDE)
+                            .get()
+                            .then((doc) => doc.data())
+                        if (classData !== undefined) {
+                            let studentsIds = await classesRef
+                                .doc(classIDE)
+                                .collection('students')
+                                .get()
+                                .then((querySnapshot) => {
+                                    let g = []
+                                    querySnapshot.forEach((doc) => {
+                                        g.push(doc.data().studentUid)
+                                    })
+                                    return g
+                                })
+                            dummy.push({ ...classData, students: studentsIds })
+                        }
+                    }
+                    setUserClasses(dummy)
+                }
+            })
+        return () => {
+            s()
+        }
+    }, [currentUser])
+
     // this is the ejac-3000
     useEffect(() => {
         // subscribe to the db so we can update the leaderboard when the db gets updated
@@ -192,8 +233,9 @@ export const AuthProvider = ({ children }) => {
 
     const value = {
         currentUser,
-        logout,
         leaderboard,
+        userClasses,
+        logout,
         login,
         signup,
         resetPassword,

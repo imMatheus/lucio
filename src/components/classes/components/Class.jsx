@@ -1,9 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react'
 import mj from './mj-crying.jpg'
 import { fs } from '../../../firebase'
-import { useRouteMatch, useHistory, Route, Link } from 'react-router-dom'
+import { useRouteMatch, useHistory, Route, Link, Switch } from 'react-router-dom'
 import { useAuth } from '../../../context/AuthContext'
 import DeleteIcon from '@material-ui/icons/Delete'
+import Page404 from '../../404page/Page_404'
 
 export default function Class() {
     const { currentUser } = useAuth()
@@ -24,7 +25,7 @@ export default function Class() {
     //TODO https://www.youtube.com/watch?v=HOM47v73yG8
     const classLink = url.split('/')[3] // splits at all '/' then takes the third one witch should be the link
     const baseRoute = `${path.replace(/[*]/g, '')}${classLink}`
-    // const classLink = url.split('/')[url.split('/').length - 1] // splits at all '/' then takes the last one witch should be the link
+
     useEffect(() => {
         let unsubscribe
         async function getClass() {
@@ -171,7 +172,8 @@ export default function Class() {
                     <>
                         <div>
                             {new Date(joinedAt.seconds * 1000).toISOString().substring(0, 10)}
-                        </div>{' '}
+                        </div>
+                        {' - - - '}
                         <div>
                             {new Date(joinedAt.seconds * 1000).toISOString().substring(11, 19)}
                         </div>
@@ -193,21 +195,21 @@ export default function Class() {
             {emptyRoute ? (
                 <h3>couldn't find the class</h3>
             ) : (
-                <>
-                    <h3>{classLink}</h3>
-                    <h3>{url}</h3>
-                    <h3>{path}</h3>
-                    {userIsOwnerOfClass ? (
-                        <button onClick={deleteClassHandler}>Delete class</button>
-                    ) : (
-                        <button onClick={leaveClassHandler}>Leave class</button>
-                    )}
-                    <Route exact path={`${baseRoute}/work`}>
+                <Switch>
+                    <Route exact path={`${baseRoute}/homework`}>
                         <Link to={`${baseRoute}`}>to base</Link>
-                        work
+                        homework
                     </Route>
                     <Route exact path={baseRoute}>
-                        <Link to={`${baseRoute}/work`}>to work</Link>
+                        <h3>{classLink}</h3>
+                        <h3>{url}</h3>
+                        <h3>{path}</h3>
+                        {userIsOwnerOfClass ? (
+                            <button onClick={deleteClassHandler}>Delete class</button>
+                        ) : (
+                            <button onClick={leaveClassHandler}>Leave class</button>
+                        )}
+                        <Link to={`${baseRoute}/homework`}>to homework</Link>
                         base
                         <div className='students-wrapper'>
                             {students?.map((student, index) => {
@@ -225,7 +227,10 @@ export default function Class() {
                             })}
                         </div>
                     </Route>
-                </>
+                    <Route>
+                        <Page404 />
+                    </Route>
+                </Switch>
             )}
         </div>
     )
