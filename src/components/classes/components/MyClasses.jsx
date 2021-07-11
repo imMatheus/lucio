@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import mj from './mj-crying.jpg'
 import { fs } from '../../../firebase'
+import firebase from 'firebase'
 import { useAuth } from '../../../context/AuthContext'
 import { useHistory, useRouteMatch } from 'react-router-dom'
 //https://firebase.google.com/docs/firestore/query-data/queries
@@ -10,11 +11,6 @@ export default function MyClasses() {
 
     const renderCount = useRef(0)
     console.log(++renderCount.current)
-
-    let cd = [11, 22, 33, 44, 55, 66]
-    console.log(cd.slice(-4))
-    console.log(cd.splice(1))
-    console.log(cd)
 
     const history = useHistory()
     const { url } = useRouteMatch()
@@ -107,6 +103,7 @@ export default function MyClasses() {
             .doc(userUID)
             .set({
                 studentUid: userUID,
+                joinedAt: firebase.firestore.FieldValue.serverTimestamp(),
             })
             .catch((error) => {
                 console.error('Error adding document: ', error)
@@ -122,8 +119,8 @@ export default function MyClasses() {
         /**
          * @return {string} class link - a random generated string of 6 characters, exempla 'djA1k8'
          */
-        const getNewClassLink = () => {
-            const LINK_LENGTH = 6
+        const getNewClassLink = async () => {
+            const LINK_LENGTH = 7
             const alphabet = 'abcdefghijklmnopqrstuvwxyz'
             const upperCaseAlphabet = alphabet // converts it into uppercase
                 .split('')
@@ -132,11 +129,22 @@ export default function MyClasses() {
             const numbers = '0123456789'
             const characters = alphabet + upperCaseAlphabet + numbers // combine all of them into one string
             let link = ''
-            for (let i = 0; i < LINK_LENGTH; i++) {
-                const n = Math.floor(Math.random() * characters.length)
-                link += characters[n]
+            let newLink = false
+            while (!newLink) {
+                for (let i = 0; i < LINK_LENGTH; i++) {
+                    const n = Math.floor(Math.random() * characters.length)
+                    link += characters[n]
+                }
+
+                await classesRef
+                    .where('classJoinLink', '==', link)
+                    .get()
+                    // eslint-disable-next-line no-loop-func
+                    .then((snapshot) => {
+                        console.log(snapshot)
+                        if (snapshot.empty) newLink = true
+                    })
             }
-            console.log(link)
             return link
         }
 
@@ -146,7 +154,7 @@ export default function MyClasses() {
                 className: className,
                 ownerUid: userUID,
                 classID: classID,
-                classJoinLink: getNewClassLink(),
+                classJoinLink: await getNewClassLink(),
             })
             .catch((error) => {
                 console.error('Error adding document: ', error)

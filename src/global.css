@@ -1040,6 +1040,7 @@ body .App .classes-dashboard .class-wrapper .students-wrapper .student-card-cont
   width: 100%;
   height: 100%;
   border-radius: 50%;
+  background-size: cover;
   background-position: center;
 }
 body .App .classes-dashboard .class-wrapper .students-wrapper .student-card-container .name-wrapper {

@@ -67,6 +67,7 @@ export default function Class() {
                             if (data) {
                                 // pushing all the data we got of the user from firestore
                                 studentDummyHolder.push({
+                                    ...student,
                                     ...data,
                                 })
                             }
@@ -132,7 +133,7 @@ export default function Class() {
         history.push(path.replace(/[*]/g, ''))
     }
 
-    function StudentCard({ profileImage, name, email, studentUid }) {
+    function StudentCard({ profileImage, name, email, studentUid, joinedAt }) {
         const removeStudentHandler = async () => {
             if (!window.confirm(`Are you sure you want to kick ${name}?`)) return // ask user if they are sure they want to leave
             await classesRef
@@ -164,6 +165,18 @@ export default function Class() {
                     <p>{name}</p>
                     <p className='email'>{email}</p>
                 </div>
+                {joinedAt && (
+                    <>
+                        <div>
+                            {new Date(joinedAt.seconds * 1000).toISOString().substring(0, 10)}
+                        </div>{' '}
+                        <div>
+                            {new Date(joinedAt.seconds * 1000).toISOString().substring(11, 19)}
+                        </div>
+                        {'-------'}
+                        <div>{new Date(joinedAt.seconds * 1000).toISOString()}</div>
+                    </>
+                )}
                 {userIsOwnerOfClass && (
                     <div className='delete-wrapper' onClick={removeStudentHandler}>
                         <DeleteIcon />
@@ -190,6 +203,7 @@ export default function Class() {
                     <h3>{JSON.stringify(classData)}</h3> */}
                     <div className='students-wrapper'>
                         {students?.map((student, index) => {
+                            console.log(student)
                             //TODO change to uuid
                             return (
                                 <StudentCard
@@ -197,6 +211,7 @@ export default function Class() {
                                     name={student.displayName}
                                     studentUid={student.userUID}
                                     email={student.email}
+                                    joinedAt={student.joinedAt}
                                     profileImage={student.profileImage}
                                 />
                             )
