@@ -35,7 +35,8 @@ export default function Class() {
 
             let usersClassesQuery = classesRef.where('classJoinLink', '==', classLink) // query class link
             unsubscribe = usersClassesQuery.onSnapshot(async (doc) => {
-                //find th class where the given classLink exist
+                // subscribes to db for realtime updates
+                // find th class where the given classLink exist
                 if (doc.empty) return setEmptyRoute(true) // means the class join link was not found, it does not exist
                 doc.forEach((d) => {
                     dummyClass = d.data() // set the data we got to the dummyClass object

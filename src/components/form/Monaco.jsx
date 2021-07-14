@@ -159,7 +159,7 @@ const Monaco = ({ problem, setPrompUser }) => {
         //     top: 600,
         //     behavior: 'smooth',
         // })
-        compileRef.current?.scrollIntoView()
+        // compileRef.current?.scrollIntoView()
         for (let i = 0; i < cases.length; i++) {
             const currentCase = cases[i]
             const args = currentCase.input
@@ -198,11 +198,15 @@ const Monaco = ({ problem, setPrompUser }) => {
                     })
                 })
 
-            if (i === 0) {
-                compileRef.current?.scrollIntoView()
-            }
             // sleeping for 530ms cuz the api only allows 2 reqs per sec, and 530 just to be on the safe side
             await sleep(530)
+            if (i === 0) {
+                compileRef.current?.scrollIntoView()
+                // window.scroll({
+                //     top: 800,
+                //     behavior: 'smooth',
+                // })
+            }
         }
 
         setTestCases(dummyArray)
