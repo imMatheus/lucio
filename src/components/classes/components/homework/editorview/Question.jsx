@@ -13,7 +13,7 @@ const Question = ({ problem, questionRef }) => {
     return (
         <div className='question' ref={questionRef}>
             <div className='header'>
-                {problemName && <div className='title'>{problemName}</div>}
+                {problemName && <div className='title'>{problemName}Hej</div>}
                 <div className='info'>
                     {difficulty && (
                         <div className={`info-div ${difficulty}`}>
@@ -24,10 +24,14 @@ const Question = ({ problem, questionRef }) => {
                 </div>
             </div>
             <div className='content'>
+                <div className='content-subpart'>
+                    <div className='bold'>Problem description</div>
+                    <p> this is a problem</p>
+                </div>
                 {description && (
                     <div className='content-subpart'>
                         <div className='bold'>Problem description</div>
-                        <p>{parse(description)}</p>
+                        <p>{parse(description)} this is a problem</p>
                     </div>
                 )}
                 {inputFormat && (

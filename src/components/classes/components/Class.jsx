@@ -5,6 +5,7 @@ import { useRouteMatch, useHistory, Route, Link, Switch } from 'react-router-dom
 import { useAuth } from '../../../context/AuthContext'
 import DeleteIcon from '@material-ui/icons/Delete'
 import Page404 from '../../404page/Page_404'
+import Homework from './homework/Homework'
 
 export default function Class() {
     const { currentUser } = useAuth()
@@ -198,7 +199,7 @@ export default function Class() {
                 <Switch>
                     <Route exact path={`${baseRoute}/homework`}>
                         <Link to={`${baseRoute}`}>to base</Link>
-                        homework
+                        <Homework classLink={classLink} classID={classData.classID} />
                     </Route>
                     <Route exact path={baseRoute}>
                         <h3>{classLink}</h3>

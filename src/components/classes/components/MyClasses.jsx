@@ -8,15 +8,13 @@ import { useHistory, useRouteMatch } from 'react-router-dom'
 
 export default function MyClasses() {
     const { currentUser, userClasses } = useAuth()
+    const history = useHistory()
+    const { url } = useRouteMatch()
 
     const renderCount = useRef(0)
     console.log(++renderCount.current)
 
-    const history = useHistory()
-    const { url } = useRouteMatch()
-
     const [loading, setLoading] = useState(false)
-    // const [userClasses, setUserClasses] = useState(null)
     const userUID = currentUser.uid
 
     // firestore refs
@@ -71,7 +69,7 @@ export default function MyClasses() {
             .catch((error) => {
                 console.error('Error adding document: ', error)
             })
-        history.push(url + joinLink)
+        history.push(url + '/' + joinLink)
     }
 
     const addClassHandler = async () => {
