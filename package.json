@@ -26,7 +26,7 @@
         "web-vitals": "^1.0.1"
     },
     "scripts": {
-        "start": "react-scripts start",
+        "start": "react-app-rewired start",
         "style": "sass --watch src/global.scss:src/global.css",
         "build": "react-scripts build",
         "test": "react-scripts test",
@@ -49,5 +49,9 @@
             "last 1 firefox version",
             "last 1 safari version"
         ]
+    },
+    "devDependencies": {
+        "react-app-rewire-alias": "^1.0.3",
+        "react-app-rewired": "^2.1.8"
     }
 }

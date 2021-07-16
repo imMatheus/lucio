@@ -4,6 +4,7 @@ import { fs } from '../../../firebase'
 import firebase from 'firebase'
 import { useAuth } from '../../../context/AuthContext'
 import { useHistory, useRouteMatch } from 'react-router-dom'
+import { generateNewLink } from '@utils/generateNewLink'
 //https://firebase.google.com/docs/firestore/query-data/queries
 
 export default function MyClasses() {
@@ -14,7 +15,7 @@ export default function MyClasses() {
     const renderCount = useRef(0)
     console.log(++renderCount.current)
 
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(true)
     const userUID = currentUser.uid
 
     // firestore refs
@@ -22,7 +23,7 @@ export default function MyClasses() {
     const usersRef = fs.collection('users')
 
     useEffect(() => {
-        if (userClasses?.length > 0) setLoading(false)
+        if (userClasses) setLoading(false)
         else setLoading(true)
     }, [userClasses])
 
@@ -77,45 +78,13 @@ export default function MyClasses() {
         if (!className) return alert('please pick a class name')
         const classID = classesRef.doc().id // get a new id from firestore
 
-        /**
-         * @return {string} class link - a random generated string of 6 characters, exempla 'djA1k8'
-         */
-        const getNewClassLink = async () => {
-            const LINK_LENGTH = 7 // length of link
-            const alphabet = 'abcdefghijklmnopqrstuvwxyz'
-            const upperCaseAlphabet = alphabet // converts it into uppercase
-                .split('')
-                .map((c) => c.toUpperCase())
-                .join('')
-            const numbers = '0123456789'
-            const characters = alphabet + upperCaseAlphabet + numbers // combine all of them into one string
-            let link = ''
-            let newLink = false
-            while (!newLink) {
-                for (let i = 0; i < LINK_LENGTH; i++) {
-                    const n = Math.floor(Math.random() * characters.length)
-                    link += characters[n]
-                }
-
-                await classesRef
-                    .where('classJoinLink', '==', link)
-                    .get()
-                    // eslint-disable-next-line no-loop-func
-                    .then((snapshot) => {
-                        console.log(snapshot)
-                        if (snapshot.empty) newLink = true
-                    })
-            }
-            return link
-        }
-
         classesRef
             .doc(classID)
             .set({
                 className: className,
                 ownerUid: userUID,
                 classID: classID,
-                classJoinLink: await getNewClassLink(),
+                classJoinLink: await generateNewLink(classesRef),
             })
             .catch((error) => {
                 console.error('Error adding document: ', error)

@@ -29,7 +29,7 @@ export const AuthProvider = ({ children }) => {
     const [currentUser, setCurrentUser] = useState()
     const [leaderboard, setLeaderboard] = useState(null)
     const [loading, setLoading] = useState(true)
-    const [userClasses, setUserClasses] = useState([])
+    const [userClasses, setUserClasses] = useState(null)
 
     async function signup(email, password, displayName, imageUrl) {
         const usersNamesRef = fs.collection('usernames').doc(displayName.toLowerCase())
@@ -92,7 +92,7 @@ export const AuthProvider = ({ children }) => {
     useEffect(() => {
         if (!currentUser) return
         const classesRef = fs.collection('classes')
-        let s = fs
+        let unsubscribe = fs
             .collection('users') // get users classes, will push all id's to usersClassesRef
             // get users classes, will push all id's to usersClassesRef
             .doc(currentUser.uid)
@@ -126,9 +126,7 @@ export const AuthProvider = ({ children }) => {
                     setUserClasses(dummy)
                 }
             })
-        return () => {
-            s()
-        }
+        return () => unsubscribe()
     }, [currentUser])
 
     // this is the ejac-3000
