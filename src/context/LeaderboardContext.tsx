@@ -128,8 +128,6 @@ export const LeaderboardProvider: React.FC = ({ children }) => {
         })
         setLoading(false)
     }, [])
-    console.log(leaderboard)
-    console.log(currentUser)
 
     // setting the score and target sto global variable currentUser
     if (currentUser) {
