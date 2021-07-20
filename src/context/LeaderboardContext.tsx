@@ -3,6 +3,10 @@ import { fs, db } from '../firebase'
 import { useAuth } from './AuthContext'
 const LeaderboardContext = createContext(null)
 
+/**
+ *
+ * @returns leaderboardContext - the leaderboard
+ */
 export function useLeaderboard() {
     return useContext(LeaderboardContext)
 }
@@ -33,7 +37,7 @@ export const LeaderboardProvider: React.FC = ({ children }) => {
     const { currentUser }: any = useAuth()
     console.log(currentUser)
 
-    const [leaderboard, setLeaderboard] = useState<any[] | null>(null)
+    const [leaderboard, setLeaderboard] = useState<any[]>([])
     const [loading, setLoading] = useState<Boolean>(true)
 
     // this is the ejac-3000
@@ -131,12 +135,13 @@ export const LeaderboardProvider: React.FC = ({ children }) => {
 
     // setting the score and target sto global variable currentUser
     if (currentUser) {
-        // for (const user in leaderboard) {
-        //     if (leaderboard[user].userUID === currentUser.uid) {
-        //         currentUser.score = leaderboard[user].score
-        //         currentUser.targets = leaderboard[user].targets
-        //     }
-        // }
+        for (let i: number = 0; i < leaderboard?.length; i++) {
+            if (leaderboard[i].userUID === currentUser.uid) {
+                currentUser.score = leaderboard[i].score
+                currentUser.targets = leaderboard[i].targets
+            }
+        }
+        console.log(leaderboard)
     }
 
     const value: any = {
