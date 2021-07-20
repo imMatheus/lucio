@@ -1,8 +1,5 @@
 import React, { ReactElement } from 'react'
-import { test } from '@Utils/test'
+import { generateNewLink } from '../../utils/generateNewLink'
 export default function Homepage(): ReactElement {
-    let h = test('matu')
-    console.log(h)
-
     return <div>Homepage</div>
 }

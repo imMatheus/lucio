@@ -9,15 +9,19 @@ export const generateNewLink = async (
     ref: firebase.firestore.CollectionReference
 ): Promise<string> => {
     const LINK_LENGTH = 7 // length of link
-    const alphabet = 'abcdefghijklmnopqrstuvwxyz'
-    const upperCaseAlphabet = alphabet // converts it into uppercase
+    const alphabet: string = 'abcdefghijklmnopqrstuvwxyz'
+    console.log(alphabet.length)
+
+    const upperCaseAlphabet: string = alphabet // converts it into uppercase
         .split('')
         .map((c) => c.toUpperCase())
         .join('')
-    const numbers = '0123456789'
-    const characters = alphabet + upperCaseAlphabet + numbers // combine all of them into one string
+    const numbers: string = '0123456789-_'
+    const characters: string = alphabet + upperCaseAlphabet + numbers // combine all of them into one string
+    console.log(characters.length)
+
     let link = ''
-    let newLink = false
+    let newLink: boolean = false
     let fails = 0
     while (!newLink) {
         ++fails
