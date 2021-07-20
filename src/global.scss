@@ -39,44 +39,25 @@ $color-fail: #d11534;
     font-family: $fontFamily-base;
 }
 
+:root {
+    --main-bg: #282c34;
+    --resize-bg: #161516;
+    --dots-color: #ffffff;
+    --bg: #21252b;
+    --text-color: #ffffff;
+    --hover-color: #ffffffbd;
+    --bold-color: #d4e4f9;
+    --paragraph-color: #8a9bba;
+    --inputs-color: #d4e4f9;
+    --inputs-bg: #141618;
+    --files-bg: #1d2024;
+}
+
 body {
     background-color: var(--main-bg);
     scroll-behavior: smooth;
 
     .App {
-        &.dark {
-            // dark theme colors
-            --main-bg: #282c34;
-            --resize-bg: #161516;
-            --dots-color: #ffffff;
-            --bg: #21252b;
-            --text-color: #ffffff;
-            --hover-color: #ffffffbd;
-            --bold-color: #d4e4f9;
-            --paragraph-color: #8a9bba;
-            --inputs-color: #d4e4f9;
-            --inputs-bg: #141618;
-            --files-bg: #1d2024;
-        }
-
-        &.light {
-            // light theme colors
-            --main-bg: #e7f1f1;
-            --resize-bg: #a7a8a8;
-            --dots-color: #525252;
-            --bg: #ffffff;
-            --text-color: #414c52;
-            --hover-color: #596266;
-            --bold-color: #0e141e;
-            --paragraph-color: #576871;
-            --inputs-color: #040a1d;
-            --inputs-bg: #e8eaea;
-            --files-bg: #e7eeef;
-        }
-        display: flex;
-        flex-flow: column;
-        background-color: var(--main-bg);
-
         & .flex-1-1-auto {
             flex: 1 1 auto;
         }

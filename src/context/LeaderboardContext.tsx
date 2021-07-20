@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState, useEffect } from 'react'
 import { fs, db } from '../firebase'
 import { useAuth } from './AuthContext'
-const LeaderboardContext = createContext(null)
+const LeaderboardContext = createContext<any[]>([])
 
 /**
  *
