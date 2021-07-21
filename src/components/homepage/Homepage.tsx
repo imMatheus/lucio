@@ -1,7 +1,8 @@
 import React, { ReactElement } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 import { useLeaderboard } from '../../context/LeaderboardContext'
-import firebase from 'firebase/app'
+import User from '../../types/User'
+
 export default function Homepage(): ReactElement {
     const { leaderboard }: any = useLeaderboard()
     console.log(leaderboard)
@@ -30,7 +31,7 @@ export default function Homepage(): ReactElement {
                     <>
                         <div className='header'>Top #{leaderboard.length}</div>
                         <div className='leaderboard-wrapper'>
-                            {leaderboard.map((user: firebase.User, index: number) => {
+                            {leaderboard.map((user: User, index: number) => {
                                 // setting the rank for styling
                                 let rank =
                                     index + 1 === 1
@@ -45,17 +46,14 @@ export default function Homepage(): ReactElement {
                                         <div className='number'>#{index + 1}</div>
                                         <div
                                             className='image'
-                                            style={
-                                                {
-                                                    // backgroundImage: `url(${user.profileURL} )`,
-                                                }
-                                            }
+                                            style={{
+                                                backgroundImage: `url(${user.profileImage} )`,
+                                            }}
                                         ></div>
                                         <div className='text-field'>
                                             {user.displayName}
-                                            {console.log(user)}
                                             <div className='stats'>
-                                                {/* {user.score} {`(${user.targets} targets)`} */}
+                                                {user.score} {`(${user.targets} targets)`}
                                             </div>
                                         </div>
                                     </div>

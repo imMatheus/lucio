@@ -5,6 +5,6 @@ export default interface User extends firebase.User {
     userUID: string
     email: string
     score?: number
-    target?: number
+    targets?: number
     profileImage: string
 }

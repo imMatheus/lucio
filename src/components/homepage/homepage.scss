@@ -1,0 +1,229 @@
+.homepage {
+    background: var(--bg);
+    font-family: var(--font-family);
+    position: relative;
+
+    & .herobanner {
+        $shadow-number: 7;
+        min-height: 550px;
+        position: relative;
+        display: grid;
+        place-content: center;
+
+        & .blobs-container {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            overflow: hidden;
+            z-index: 1;
+
+            &.loading {
+                & .blob {
+                    animation: fadeInBlob 1400ms ease infinite alternate-reverse;
+                }
+            }
+            & .blob {
+                position: absolute;
+                fill: var(--color-success);
+                transform: rotate(80deg);
+                $prefix: -10px;
+                $widthheight: 200px;
+                animation: fadeInBlob 1500ms ease;
+
+                @for $id from 1 through 3 {
+                    &.b#{$id} {
+                        right: calc(#{$id} * #{$prefix} - 50px);
+                        bottom: calc(#{$id} * #{$prefix} - 55px);
+                        width: calc((#{$id} * 30px) + #{$widthheight});
+                        height: calc((#{$id} * 30px) + #{$widthheight});
+                        animation-delay: calc((3 - #{$id}) * 100ms);
+                        @if $id == 1 {
+                            fill: $color-green;
+                            z-index: 3;
+                        }
+                        @if $id == 2 {
+                            fill: $color-lightOrange;
+                            z-index: 2;
+                        }
+                        @if $id == 3 {
+                            fill: $color-darkOrange;
+                            z-index: 1;
+                        }
+                    }
+                }
+            }
+            @keyframes fadeInBlob {
+                0% {
+                    transform: rotate(80deg);
+                }
+
+                25% {
+                    transform: rotate(80deg) scale(0.55) translate(-30px, 10px);
+                }
+                50% {
+                    transform: rotate(80deg) scale(1) translate(0px, 0px);
+                }
+                75% {
+                    transform: rotate(80deg) scale(0.55) translate(-30px, 10px);
+                }
+
+                100% {
+                    transform: rotate(80deg);
+                }
+            }
+        }
+
+        .content {
+            position: relative;
+            z-index: 2;
+            & h1 {
+                font-weight: 900;
+                font-size: 8rem;
+                color: $color-lightOrange;
+                -webkit-font-smoothing: antialiased;
+                padding: 0px;
+                $offset-x: 1px;
+                $offset-y: 1px;
+                $value: ();
+                @for $i from 0 through ($shadow-number) {
+                    $theShadow: $offset-x *
+                        $i
+                        $offset-y *
+                        $i
+                        0px
+                        mix($color-green, $color-darkBlue, math.div(100%, $shadow-number) * ($i));
+                    $value: append($value, $theShadow, comma);
+                }
+                text-shadow: $value;
+            }
+
+            & .buttons {
+                display: flex;
+                margin-top: 12px;
+                justify-content: space-evenly;
+                align-items: center;
+                padding: 10px 0;
+
+                & .outline-btn {
+                    font-size: 1.4rem;
+                }
+            }
+        }
+    }
+
+    .leaderboard-container {
+        background: var(--main-bg);
+        padding: 30px 60px;
+
+        & .loading-leaderboard-wrapper {
+            display: flex;
+            align-items: center;
+            $outline-width: 4px;
+            div {
+                align-items: center;
+                border: $outline-width solid $color-green;
+                border-radius: 50%;
+                border-top-color: transparent;
+                border-bottom-color: transparent;
+                position: relative;
+                display: flex;
+                height: 130px;
+                width: 130px;
+                margin: 0 auto;
+            }
+
+            svg {
+                margin: 0 auto;
+                overflow: hidden;
+                width: 80%;
+                height: 60%;
+            }
+
+            #wave {
+                stroke: var(--color-mainGreen);
+                stroke-dasharray: 0 16 101 16;
+                animation: moveTheWave 2600ms linear infinite;
+            }
+
+            @keyframes moveTheWave {
+                0% {
+                    stroke-dashoffset: 0;
+                    transform: translate3d(0, 0, 0);
+                }
+                100% {
+                    stroke-dashoffset: -133;
+                    transform: translate3d(-90px, 0, 0);
+                }
+            }
+        }
+
+        & .header {
+            text-align: center;
+            color: var(--bold-color);
+            padding: 10px 0;
+            font-size: 2.2rem;
+        }
+
+        & .leaderboard-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            column-gap: 8px;
+            row-gap: 8px;
+            & .row-wrapper {
+                background: var(--bg);
+                border-radius: 6px;
+                padding: 15px;
+                display: grid;
+                grid-template-columns: auto auto 1fr;
+                place-items: center;
+
+                & .number {
+                    font-size: 1.3rem;
+                    font-weight: 900;
+                    color: var(--bold-color);
+                }
+
+                &.gold {
+                    background: rgb(102, 85, 43);
+                    & .number {
+                        color: gold;
+                    }
+                }
+
+                &.silver {
+                    background: rgb(77, 77, 77);
+                    & .number {
+                        color: silver;
+                    }
+                }
+                &.bronze {
+                    background: rgba(177, 113, 18, 0.29);
+                    & .number {
+                        color: rgb(223, 140, 17);
+                    }
+                }
+                & .image {
+                    width: 45px;
+                    height: 45px;
+                    border-radius: 50%;
+                    margin: 0 10px 0 14px;
+                    // background: pink;
+                    background-size: cover;
+                    background-position: center;
+                }
+
+                & .text-field {
+                    font-size: 1.4rem;
+                    font-weight: 700;
+                    width: 100%;
+                    color: var(--bold-color);
+
+                    & .stats {
+                        font-size: 1rem;
+                        font-weight: 300;
+                    }
+                }
+            }
+        }
+    }
+}

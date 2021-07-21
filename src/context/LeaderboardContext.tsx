@@ -1,10 +1,10 @@
 import React, { createContext, useContext, useState, useEffect } from 'react'
 import { fs, db } from '../firebase'
 import { useAuth } from './AuthContext'
+import Leaderboard from '../types/Leaderboard'
 const LeaderboardContext = createContext<any[]>([])
 
 /**
- *
  * @returns leaderboardContext - the leaderboard
  */
 export function useLeaderboard() {
@@ -37,8 +37,9 @@ export const LeaderboardProvider: React.FC = ({ children }) => {
     const { currentUser }: any = useAuth()
     console.log(currentUser)
 
-    const [leaderboard, setLeaderboard] = useState<any[]>([])
+    const [leaderboard, setLeaderboard] = useState<Leaderboard[] | any[]>([])
     const [loading, setLoading] = useState<Boolean>(true)
+    console.log(leaderboard)
 
     // this is the ejac-3000
     useEffect(() => {
@@ -52,6 +53,9 @@ export const LeaderboardProvider: React.FC = ({ children }) => {
             let leaderBoardObj: any = {} // used to sweep thru the submissions and store all the users submissions
 
             for (const problem in algorithmsProblems) {
+                console.log('----algo----')
+                console.log(problem)
+                console.log(algorithmsProblems[problem])
                 const submissions = algorithmsProblems[problem]?.submissions // the submissions of that problem
                 if (submissions) {
                     // then going threw every single submission in the submissions of the problem
@@ -74,6 +78,9 @@ export const LeaderboardProvider: React.FC = ({ children }) => {
             }
 
             cssProblems?.forEach((problem: any) => {
+                console.log('----css----')
+                console.log(problem)
+
                 // looping threw all the problems
                 const submissions = problem?.submissions
                 if (submissions) {
@@ -95,6 +102,9 @@ export const LeaderboardProvider: React.FC = ({ children }) => {
                     }
                 }
             })
+
+            console.log('-------------')
+            console.log(leaderBoardObj)
 
             let leaderBoardArr = [] // turn into an object so we can sort
             for (const uid in leaderBoardObj) {

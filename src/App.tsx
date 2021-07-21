@@ -12,7 +12,9 @@ function App() {
     return (
         <AuthProvider>
             <LeaderboardProvider>
-                <Homepage />
+                <div className='App'>
+                    <Homepage />
+                </div>
             </LeaderboardProvider>
         </AuthProvider>
     )

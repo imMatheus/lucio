@@ -45,6 +45,201 @@ body .App .outline-btn {
 body .App .outline-btn:hover {
   outline-offset: 4px;
 }
+body .App .homepage {
+  background: var(--bg);
+  font-family: var(--font-family);
+  position: relative;
+}
+body .App .homepage .herobanner {
+  min-height: 550px;
+  position: relative;
+  display: grid;
+  place-content: center;
+}
+body .App .homepage .herobanner .blobs-container {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  overflow: hidden;
+  z-index: 1;
+}
+body .App .homepage .herobanner .blobs-container.loading .blob {
+  animation: fadeInBlob 1400ms ease infinite alternate-reverse;
+}
+body .App .homepage .herobanner .blobs-container .blob {
+  position: absolute;
+  fill: var(--color-success);
+  transform: rotate(80deg);
+  animation: fadeInBlob 1500ms ease;
+}
+body .App .homepage .herobanner .blobs-container .blob.b1 {
+  right: calc(1 * -10px - 50px);
+  bottom: calc(1 * -10px - 55px);
+  width: calc((1 * 30px) + 200px);
+  height: calc((1 * 30px) + 200px);
+  animation-delay: calc((3 - 1) * 100ms);
+  fill: #2a9d8f;
+  z-index: 3;
+}
+body .App .homepage .herobanner .blobs-container .blob.b2 {
+  right: calc(2 * -10px - 50px);
+  bottom: calc(2 * -10px - 55px);
+  width: calc((2 * 30px) + 200px);
+  height: calc((2 * 30px) + 200px);
+  animation-delay: calc((3 - 2) * 100ms);
+  fill: #e9c46a;
+  z-index: 2;
+}
+body .App .homepage .herobanner .blobs-container .blob.b3 {
+  right: calc(3 * -10px - 50px);
+  bottom: calc(3 * -10px - 55px);
+  width: calc((3 * 30px) + 200px);
+  height: calc((3 * 30px) + 200px);
+  animation-delay: calc((3 - 3) * 100ms);
+  fill: #f4a261;
+  z-index: 1;
+}
+@keyframes fadeInBlob {
+  0% {
+    transform: rotate(80deg);
+  }
+  25% {
+    transform: rotate(80deg) scale(0.55) translate(-30px, 10px);
+  }
+  50% {
+    transform: rotate(80deg) scale(1) translate(0px, 0px);
+  }
+  75% {
+    transform: rotate(80deg) scale(0.55) translate(-30px, 10px);
+  }
+  100% {
+    transform: rotate(80deg);
+  }
+}
+body .App .homepage .herobanner .content {
+  position: relative;
+  z-index: 2;
+}
+body .App .homepage .herobanner .content h1 {
+  font-weight: 900;
+  font-size: 8rem;
+  color: #e9c46a;
+  -webkit-font-smoothing: antialiased;
+  padding: 0px;
+  text-shadow: 0px 0px 0px #0a1128, 1px 1px 0px #0f2537, 2px 2px 0px #133945, 3px 3px 0px #184d54, 4px 4px 0px #1c6163, 5px 5px 0px #217572, 6px 6px 0px #258980, 7px 7px 0px #2a9d8f;
+}
+body .App .homepage .herobanner .content .buttons {
+  display: flex;
+  margin-top: 12px;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 10px 0;
+}
+body .App .homepage .herobanner .content .buttons .outline-btn {
+  font-size: 1.4rem;
+}
+body .App .homepage .leaderboard-container {
+  background: var(--main-bg);
+  padding: 30px 60px;
+}
+body .App .homepage .leaderboard-container .loading-leaderboard-wrapper {
+  display: flex;
+  align-items: center;
+}
+body .App .homepage .leaderboard-container .loading-leaderboard-wrapper div {
+  align-items: center;
+  border: 4px solid #2a9d8f;
+  border-radius: 50%;
+  border-top-color: transparent;
+  border-bottom-color: transparent;
+  position: relative;
+  display: flex;
+  height: 130px;
+  width: 130px;
+  margin: 0 auto;
+}
+body .App .homepage .leaderboard-container .loading-leaderboard-wrapper svg {
+  margin: 0 auto;
+  overflow: hidden;
+  width: 80%;
+  height: 60%;
+}
+body .App .homepage .leaderboard-container .loading-leaderboard-wrapper #wave {
+  stroke: var(--color-mainGreen);
+  stroke-dasharray: 0 16 101 16;
+  animation: moveTheWave 2600ms linear infinite;
+}
+@keyframes moveTheWave {
+  0% {
+    stroke-dashoffset: 0;
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    stroke-dashoffset: -133;
+    transform: translate3d(-90px, 0, 0);
+  }
+}
+body .App .homepage .leaderboard-container .header {
+  text-align: center;
+  color: var(--bold-color);
+  padding: 10px 0;
+  font-size: 2.2rem;
+}
+body .App .homepage .leaderboard-container .leaderboard-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  column-gap: 8px;
+  row-gap: 8px;
+}
+body .App .homepage .leaderboard-container .leaderboard-wrapper .row-wrapper {
+  background: var(--bg);
+  border-radius: 6px;
+  padding: 15px;
+  display: grid;
+  grid-template-columns: auto auto 1fr;
+  place-items: center;
+}
+body .App .homepage .leaderboard-container .leaderboard-wrapper .row-wrapper .number {
+  font-size: 1.3rem;
+  font-weight: 900;
+  color: var(--bold-color);
+}
+body .App .homepage .leaderboard-container .leaderboard-wrapper .row-wrapper.gold {
+  background: #66552b;
+}
+body .App .homepage .leaderboard-container .leaderboard-wrapper .row-wrapper.gold .number {
+  color: gold;
+}
+body .App .homepage .leaderboard-container .leaderboard-wrapper .row-wrapper.silver {
+  background: #4d4d4d;
+}
+body .App .homepage .leaderboard-container .leaderboard-wrapper .row-wrapper.silver .number {
+  color: silver;
+}
+body .App .homepage .leaderboard-container .leaderboard-wrapper .row-wrapper.bronze {
+  background: rgba(177, 113, 18, 0.29);
+}
+body .App .homepage .leaderboard-container .leaderboard-wrapper .row-wrapper.bronze .number {
+  color: #df8c11;
+}
+body .App .homepage .leaderboard-container .leaderboard-wrapper .row-wrapper .image {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  margin: 0 10px 0 14px;
+  background-size: cover;
+  background-position: center;
+}
+body .App .homepage .leaderboard-container .leaderboard-wrapper .row-wrapper .text-field {
+  font-size: 1.4rem;
+  font-weight: 700;
+  width: 100%;
+  color: var(--bold-color);
+}
+body .App .homepage .leaderboard-container .leaderboard-wrapper .row-wrapper .text-field .stats {
+  font-size: 1rem;
+  font-weight: 300;
+}
 body .prompUserContainer {
   position: absolute;
   width: 100vw;
