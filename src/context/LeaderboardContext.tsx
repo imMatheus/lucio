@@ -2,7 +2,7 @@ import React, { createContext, useContext, useState, useEffect } from 'react'
 import { fs, db } from '../firebase'
 import { useAuth } from './AuthContext'
 import Leaderboard from '../types/Leaderboard'
-const LeaderboardContext = createContext<any[]>([])
+const LeaderboardContext = createContext<Array<Leaderboard>>([])
 
 /**
  * @returns leaderboardContext - the leaderboard
@@ -35,27 +35,19 @@ function quickSortBasic(array: any[]): any[] {
 export const LeaderboardProvider: React.FC = ({ children }) => {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { currentUser }: any = useAuth()
-    console.log(currentUser)
 
-    const [leaderboard, setLeaderboard] = useState<Leaderboard[] | any[]>([])
-    const [loading, setLoading] = useState<Boolean>(true)
-    console.log(leaderboard)
+    const [leaderboard, setLeaderboard] = useState<Leaderboard | []>([])
 
     // this is the ejac-3000
     useEffect(() => {
-        setLoading(true)
         // subscribe to the db so we can update the leaderboard when the db gets updated
         db.ref().on('value', async (snapshot) => {
-            console.log('--- reload ---')
             let problems = await snapshot.val()
             const cssProblems = problems.css
             const algorithmsProblems = problems.algorithms
             let leaderBoardObj: any = {} // used to sweep thru the submissions and store all the users submissions
 
             for (const problem in algorithmsProblems) {
-                console.log('----algo----')
-                console.log(problem)
-                console.log(algorithmsProblems[problem])
                 const submissions = algorithmsProblems[problem]?.submissions // the submissions of that problem
                 if (submissions) {
                     // then going threw every single submission in the submissions of the problem
@@ -78,9 +70,6 @@ export const LeaderboardProvider: React.FC = ({ children }) => {
             }
 
             cssProblems?.forEach((problem: any) => {
-                console.log('----css----')
-                console.log(problem)
-
                 // looping threw all the problems
                 const submissions = problem?.submissions
                 if (submissions) {
@@ -102,9 +91,6 @@ export const LeaderboardProvider: React.FC = ({ children }) => {
                     }
                 }
             })
-
-            console.log('-------------')
-            console.log(leaderBoardObj)
 
             let leaderBoardArr = [] // turn into an object so we can sort
             for (const uid in leaderBoardObj) {
@@ -140,18 +126,16 @@ export const LeaderboardProvider: React.FC = ({ children }) => {
 
             setLeaderboard(dummyHolder)
         })
-        setLoading(false)
     }, [])
 
     // setting the score and target sto global variable currentUser
     if (currentUser) {
-        for (let i: number = 0; i < leaderboard?.length; i++) {
+        for (let i = 0; i < leaderboard?.length; i++) {
             if (leaderboard[i].userUID === currentUser.uid) {
                 currentUser.score = leaderboard[i].score
                 currentUser.targets = leaderboard[i].targets
             }
         }
-        console.log(leaderboard)
     }
 
     const value: any = {

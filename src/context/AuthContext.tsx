@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useState, useEffect, useRef } from 'react'
 import firebase from 'firebase/app'
 import { auth, fs } from '../firebase'
+import User from '../types/User'
 const AuthContext = createContext(null)
 
 export function useAuth() {
@@ -10,7 +11,7 @@ export function useAuth() {
 export const AuthProvider: React.FC = ({ children }) => {
     const renders = useRef(0)
     console.log(++renders.current)
-    const [currentUser, setCurrentUser] = useState<firebase.User | null>(null)
+    const [currentUser, setCurrentUser] = useState<User | null>(null)
 
     async function signup(email: string, password: string, displayName: string, imageUrl: string) {
         const usersNamesRef = fs.collection('users').where('displayName', '==', displayName)
@@ -39,7 +40,7 @@ export const AuthProvider: React.FC = ({ children }) => {
     function login(email: string, password: string): Promise<firebase.auth.UserCredential> {
         return auth.signInWithEmailAndPassword(email, password)
     }
-    function logout(): any {
+    function logout() {
         sessionStorage.clear()
         return auth.signOut()
     }
@@ -66,13 +67,6 @@ export const AuthProvider: React.FC = ({ children }) => {
         return unsubscribe
     }, [])
 
-    type Value = {
-        currentUser: any
-        logout: any
-        login: any
-        signup: any
-        resetPassword: any
-    }
     const value: any = {
         currentUser,
         logout,

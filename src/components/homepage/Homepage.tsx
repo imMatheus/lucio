@@ -5,7 +5,6 @@ import User from '../../types/User'
 
 export default function Homepage(): ReactElement {
     const { leaderboard }: any = useLeaderboard()
-    console.log(leaderboard)
 
     return (
         <div className='homepage'>

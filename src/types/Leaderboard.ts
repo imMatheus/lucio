@@ -1,5 +1,5 @@
 import User from './User'
 
-type Leaderboard = User[]
+type Leaderboard = Array<User>
 
 export default Leaderboard
