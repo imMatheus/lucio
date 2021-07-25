@@ -1,13 +1,12 @@
-interface sampleCases {
-    input: Array<string | number | Array<string | number>>
-    output: Array<string | number>
+export interface sampleCases {
+    input: Array<any>
+    output: Array<any>
     explanation?: {
         text?: string
         explanationOutput?: Array<string>
     }
 }
-
-interface problem {
+export interface problem {
     problemName: string
     difficulty: 'easy' | 'medium' | 'hard'
     problemDescription: string
@@ -19,8 +18,9 @@ interface problem {
     inputs: Array<string>
 }
 
-type typeProblem = { [name: string]: problem }
-export const problems: typeProblem = {
+type typeProblems = { [name: string]: problem }
+
+export const problems: typeProblems = {
     SimpleAddition: {
         problemName: 'Simple Addition',
         difficulty: 'easy',
@@ -68,7 +68,7 @@ export const problems: typeProblem = {
         problemDescription: `
         Given an integer <span class="variable">x</span>,
         return <span class="variable">true</span> if <span class="variable">x</span> is palindrome integer.
-        An integer is a palindrome when it reads the same backward as forward. 
+        An integer is a palindrome when it reads the same backward as forward.
         For example, <span class="variable">121</span> is palindrome while <span class="variable">123</span> is not.
         `,
         inputFormat: `<span class="variable">x</span> a integer`,
@@ -279,6 +279,7 @@ export const problems: typeProblem = {
     MinMaxSum: {
         problemName: 'MinMax Sum',
         difficulty: 'easy',
+        constrains: [],
         problemDescription: `Given five positive integers, find the minimum and maximum values that can be calculated by summing exactly four of the five integers. Then print the respective minimum and maximum values as a single line of two space-separated long integers.`,
         inputFormat: `A single line of five space-separated integers.`,
         output: `Print two space-separated integers on one line: the minimum sum and the maximum sum of elements.`,
@@ -318,7 +319,7 @@ export const problems: typeProblem = {
 
         problemDescription: `
                 An avid hiker keeps meticulous records of their hikes. During the last hike that took exactly <span class="variable">steps</span> steps, for every step it was noted if it was an uphill, <span class="variable">U</span> , or a downhill, <span class="variable">D</span> step. Hikes always start and end at sea level, and each step up or down represents a <span class="variable">1</span> unit change in altitude.
-              
+
         <div class="bulletpoint">A level.</div>
         <div class="bulletpoint">A valley is a sequence of consecutive steps below sea level, starting with a step down from sea level and ending with a step up to sea level.</div>
         Given the sequence of up and down steps during a hike, find and print the number of valleys walked through.
@@ -371,7 +372,7 @@ export const problems: typeProblem = {
 
         problemDescription: `
         Given an array of integers, determine whether the array
-        can be sorted in ascending order using only one of the following 
+        can be sorted in ascending order using only one of the following
         operations one time.
         <div class="bulletpoint">Swap two elements.</div>
         <div class="bulletpoint">Reverse one sub-segment.</div>
@@ -381,16 +382,16 @@ export const problems: typeProblem = {
             <ul class="numberlist">
                 <li>
                 If elements can only be swapped, <span class="variable">d[p]</span> and <span class="variable">d[q]</span>,
-                output <span class="variable">swap p q </span> in the second line.  
-                <span class="variable">p</span> and <span class="variable">q</span> are the indices of the elements to be swapped, 
+                output <span class="variable">swap p q </span> in the second line.
+                <span class="variable">p</span> and <span class="variable">q</span> are the indices of the elements to be swapped,
                 assuming that the array is indexed from <span class="variable">1</span> to <span class="variable">n</span>.
                 </li>
                 <li>
-                If elements can only be reversed, for the segment <span class="variable">d[p...q]</span>, output <span class="variable">reverse p q</span> in the second line. 
-                <span class="variable">p</span> and <span class="variable">q</span> are the indices of the first and last elements 
-                of the subarray to be reversed, assuming that 
-                 the array is indexed <span class="variable">1</span> from <span class="variable">n</span> to . 
-                Here <span class="variable">d[p...q]</span> represents the subarray that begins at index  <span class="variable">p</span> 
+                If elements can only be reversed, for the segment <span class="variable">d[p...q]</span>, output <span class="variable">reverse p q</span> in the second line.
+                <span class="variable">p</span> and <span class="variable">q</span> are the indices of the first and last elements
+                of the subarray to be reversed, assuming that
+                 the array is indexed <span class="variable">1</span> from <span class="variable">n</span> to .
+                Here <span class="variable">d[p...q]</span> represents the subarray that begins at index  <span class="variable">p</span>
                 and ends at index <span class="variable">q</span>, both inclusive.
                 </li>
             </ul>
@@ -412,7 +413,6 @@ export const problems: typeProblem = {
                 output: ['no'],
                 explanation: {
                     text: `It is impossible to sort by one single operation.`,
-                    explanationOutput: null,
                 },
             },
             {
@@ -420,7 +420,6 @@ export const problems: typeProblem = {
                 output: ['yes reverse 2 5'],
                 explanation: {
                     text: `You can reverse the sub-array <span class="variable">d[2...5]</span> = "5 4 3 2", then the array becomes sorted.`,
-                    explanationOutput: null,
                 },
             },
             {

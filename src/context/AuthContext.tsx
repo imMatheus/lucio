@@ -9,8 +9,6 @@ export function useAuth() {
 }
 
 export const AuthProvider: React.FC = ({ children }) => {
-    const renders = useRef(0)
-    console.log(++renders.current)
     const [currentUser, setCurrentUser] = useState<User | null>(null)
 
     async function signup(email: string, password: string, displayName: string, imageUrl: string) {
