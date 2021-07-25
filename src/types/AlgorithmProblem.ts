@@ -1,23 +1,49 @@
-interface sampleCase {
-    explanation?: {
-        explanationOutput: Array<number | string>
-        text?: string
-    }
-    input: Array<number | string>
-    output: Array<number | string>
-}
-interface submitCase {
-    input: Array<number | string>
-    output: Array<number | string>
+type String = 'string'
+type Integer = 'integer'
+type Float = 'float'
+type Double = 'double'
+type Char = 'char'
+type StringArray = Array<string>
+type NumberArray = Array<number>
+type IntegerArray = Array<Integer>
+type FloatArray = Array<Float>
+type DoubleArray = Array<Double>
+type CharArray = Array<Char>
+
+type InputType =
+    | String
+    | Integer
+    | Float
+    | Double
+    | Char
+    | NumberArray
+    | StringArray
+    | IntegerArray
+    | FloatArray
+    | DoubleArray
+    | CharArray
+
+interface Input {
+    input: string
+    type: InputType
 }
 
+export interface sampleCases {
+    input: Array<Input>
+    output: Array<number | string>
+    explanation?: {
+        text?: string
+        explanationOutput?: Array<string>
+    }
+}
 export default interface AlgorithmProblem {
-    constrains: Array<string>
-    difficulty: 'easy' | 'medium' | 'hard'
-    inputFormat: string
-    inputs: Array<string>
-    profileDescription: string
     problemName: string
-    sampleCases: Array<sampleCase>
-    submitCase: Array<submitCase>
+    difficulty: 'easy' | 'medium' | 'hard'
+    problemDescription: string
+    constrains: Array<string>
+    inputFormat: string
+    output: string
+    sampleCases: Array<sampleCases>
+    submitCases?: Array<sampleCases>
+    inputs: Array<Input>
 }

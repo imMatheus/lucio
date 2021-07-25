@@ -1,0 +1,147 @@
+.question {
+    overflow-y: scroll;
+    height: 100%;
+    width: 510px;
+    // max and min is for the scroll bar so it does exceed these values
+    max-width: 55vw;
+    min-width: 22vw;
+    background-color: var(--bg);
+    font-family: var(--font-family);
+    color: var(--text-color);
+    padding: 12px 20px;
+
+    .content {
+        padding-top: 10px;
+        max-width: 1000px;
+
+        .content-subpart {
+            margin: 5px 0 13px 0;
+            .bold {
+                font-size: var(--bold-fontsize);
+                font-weight: 900;
+                padding-bottom: 2px;
+                color: var(--bold-color);
+            }
+            p {
+                font-size: var(--paragraph-fontsize);
+                font-family: var(--paragraph-fontfamily);
+                color: var(--paragraph-color);
+                font-weight: 300;
+                line-height: 1.75;
+
+                span.variable {
+                    font-style: italic;
+                    margin: 0 2px;
+                    // word-break: break-all;
+                    color: var(--bold-color);
+                    font-weight: 400;
+                    font-size: var(--variable-fontsize);
+                    font-family: var(--variable-fontfamily);
+                }
+                .bulletpoint,
+                .bulletpoint {
+                    padding: 4px 0;
+
+                    &::before {
+                        //the little cirle on the left of the bullet point
+                        content: '';
+                        display: inline-block;
+                        height: 8px;
+                        padding-inline: 4px;
+                        border-radius: 50%;
+                        margin-right: 8px;
+                        margin-top: 8px;
+                        background: var(--bold-color);
+                    }
+
+                    .numberlist {
+                        padding: 5px 0 5px 35px;
+                    }
+                }
+            }
+
+            .numberlist {
+                list-style: decimal;
+                li {
+                    &::before {
+                        content: none;
+                    }
+                }
+            }
+
+            .inputs {
+                padding: 17px;
+                max-width: 550px;
+                margin-top: 15px;
+                background: var(--inputs-bg);
+                color: var(--inputs-color);
+                font-size: var(--inputs-fontsize);
+
+                div {
+                    margin: 5px 0;
+                    word-wrap: break-word;
+                    white-space: pre;
+
+                    &.short-line-height {
+                        line-height: 0.8;
+                    }
+                }
+            }
+        }
+    }
+
+    .header {
+        padding: 7px 0;
+        border-bottom: solid 1px var(--paraghrap-color);
+        .title {
+            font-weight: var(--bold);
+            font-size: var(--header-fontsize);
+            color: var(--text-color);
+            margin-bottom: 10px;
+        }
+
+        .info {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+
+            & .info-div {
+                cursor: pointer;
+                margin-right: 13px;
+                padding: 2px 0;
+                font-weight: 300;
+                font-size: var(--mini-fontsize);
+                line-height: 20px;
+                display: flex;
+                align-items: center;
+                justify-content: space-around;
+                transition: color var(--transition-speed);
+                color: var(--text-color);
+                &:hover {
+                    color: var(--hover-color);
+                }
+                & svg {
+                    width: 15px;
+                    height: 15px;
+                    margin-right: 6px;
+                    color: inherit;
+
+                    &:hover {
+                        fill: var(--hover-color);
+                    }
+                }
+                &.easy {
+                    color: #55b45a;
+                }
+
+                &.medium {
+                    color: orange;
+                }
+
+                &.hard {
+                    color: red;
+                }
+            }
+        }
+    }
+}

@@ -240,6 +240,176 @@ body .App .homepage .leaderboard-container .leaderboard-wrapper .row-wrapper .te
   font-size: 1rem;
   font-weight: 300;
 }
+body .App .form {
+  width: 100vw;
+  display: grid;
+  grid-template-columns: auto auto 1fr;
+  background: var(--main-bg);
+  background-color: green;
+}
+body .App .form .question {
+  overflow-y: scroll;
+  height: 100%;
+  width: 510px;
+  max-width: 55vw;
+  min-width: 22vw;
+  background-color: var(--bg);
+  font-family: var(--font-family);
+  color: var(--text-color);
+  padding: 12px 20px;
+}
+body .App .form .question .content {
+  padding-top: 10px;
+  max-width: 1000px;
+}
+body .App .form .question .content .content-subpart {
+  margin: 5px 0 13px 0;
+}
+body .App .form .question .content .content-subpart .bold {
+  font-size: var(--bold-fontsize);
+  font-weight: 900;
+  padding-bottom: 2px;
+  color: var(--bold-color);
+}
+body .App .form .question .content .content-subpart p {
+  font-size: var(--paragraph-fontsize);
+  font-family: var(--paragraph-fontfamily);
+  color: var(--paragraph-color);
+  font-weight: 300;
+  line-height: 1.75;
+}
+body .App .form .question .content .content-subpart p span.variable {
+  font-style: italic;
+  margin: 0 2px;
+  color: var(--bold-color);
+  font-weight: 400;
+  font-size: var(--variable-fontsize);
+  font-family: var(--variable-fontfamily);
+}
+body .App .form .question .content .content-subpart p .bulletpoint,
+body .App .form .question .content .content-subpart p .bulletpoint {
+  padding: 4px 0;
+}
+body .App .form .question .content .content-subpart p .bulletpoint::before,
+body .App .form .question .content .content-subpart p .bulletpoint::before {
+  content: "";
+  display: inline-block;
+  height: 8px;
+  padding-inline: 4px;
+  border-radius: 50%;
+  margin-right: 8px;
+  margin-top: 8px;
+  background: var(--bold-color);
+}
+body .App .form .question .content .content-subpart p .bulletpoint .numberlist,
+body .App .form .question .content .content-subpart p .bulletpoint .numberlist {
+  padding: 5px 0 5px 35px;
+}
+body .App .form .question .content .content-subpart .numberlist {
+  list-style: decimal;
+}
+body .App .form .question .content .content-subpart .numberlist li::before {
+  content: none;
+}
+body .App .form .question .content .content-subpart .inputs {
+  padding: 17px;
+  max-width: 550px;
+  margin-top: 15px;
+  background: var(--inputs-bg);
+  color: var(--inputs-color);
+  font-size: var(--inputs-fontsize);
+}
+body .App .form .question .content .content-subpart .inputs div {
+  margin: 5px 0;
+  word-wrap: break-word;
+  white-space: pre;
+}
+body .App .form .question .content .content-subpart .inputs div.short-line-height {
+  line-height: 0.8;
+}
+body .App .form .question .header {
+  padding: 7px 0;
+  border-bottom: solid 1px var(--paraghrap-color);
+}
+body .App .form .question .header .title {
+  font-weight: var(--bold);
+  font-size: var(--header-fontsize);
+  color: var(--text-color);
+  margin-bottom: 10px;
+}
+body .App .form .question .header .info {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+body .App .form .question .header .info .info-div {
+  cursor: pointer;
+  margin-right: 13px;
+  padding: 2px 0;
+  font-weight: 300;
+  font-size: var(--mini-fontsize);
+  line-height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  transition: color var(--transition-speed);
+  color: var(--text-color);
+}
+body .App .form .question .header .info .info-div:hover {
+  color: var(--hover-color);
+}
+body .App .form .question .header .info .info-div svg {
+  width: 15px;
+  height: 15px;
+  margin-right: 6px;
+  color: inherit;
+}
+body .App .form .question .header .info .info-div svg:hover {
+  fill: var(--hover-color);
+}
+body .App .form .question .header .info .info-div.easy {
+  color: #55b45a;
+}
+body .App .form .question .header .info .info-div.medium {
+  color: orange;
+}
+body .App .form .question .header .info .info-div.hard {
+  color: red;
+}
+body .App .form ::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 0px;
+}
+body .App .form ::-webkit-scrollbar-thumb {
+  display: none;
+}
+body .App .form .resizebar {
+  cursor: ew-resize;
+  display: grid;
+  place-items: center;
+  width: 12px;
+  height: 100%;
+  position: sticky;
+  top: 0;
+  left: 0;
+  background-color: var(--resize-bg);
+  background-color: red;
+}
+body .App .form .resizebar .dots {
+  height: 50px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+body .App .form .resizebar .dots span {
+  display: block;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background-color: var(--dots-color);
+}
 body .prompUserContainer {
   position: absolute;
   width: 100vw;

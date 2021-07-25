@@ -1,5 +1,8 @@
 import React from 'react'
+
+// Components
 import Homepage from './components/homepage/Homepage'
+import Algorithms from './components/algorithms/Algorithms'
 
 //Contexts
 import { AuthProvider } from './context/AuthContext'
@@ -13,7 +16,8 @@ function App() {
         <AuthProvider>
             <LeaderboardProvider>
                 <div className='App'>
-                    <Homepage />
+                    {/* <Homepage /> */}
+                    <Algorithms />
                 </div>
             </LeaderboardProvider>
         </AuthProvider>

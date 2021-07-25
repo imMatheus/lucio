@@ -1,0 +1,49 @@
+.form {
+    // @import 'monaco';
+    @import './question.scss';
+
+    // removing the scrollbar on windows
+    ::-webkit-scrollbar {
+        -webkit-appearance: none;
+        width: 0px;
+    }
+    ::-webkit-scrollbar-thumb {
+        display: none;
+    }
+
+    width: 100vw;
+    display: grid;
+    grid-template-columns: auto auto 1fr;
+    background: var(--main-bg);
+    background-color: green;
+
+    .resizebar {
+        cursor: ew-resize;
+        display: grid;
+        place-items: center;
+        width: 12px;
+        height: 100%;
+        position: sticky;
+        top: 0;
+        left: 0;
+        background-color: var(--resize-bg);
+        background-color: red;
+
+        .dots {
+            height: 50px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-evenly;
+
+            span {
+                display: block;
+                width: 4px;
+                height: 4px;
+                border-radius: 50%;
+                background-color: var(--dots-color);
+            }
+        }
+    }
+}
