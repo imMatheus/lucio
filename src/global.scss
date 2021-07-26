@@ -3,14 +3,14 @@
 
 // variables
 $fontFamily-paragraph: 'Open Sans', Arial, Helvetica, sans-serif;
-$fontFamily-varible: 'Roboto Slab', serif;
+$fontFamily-variable: 'Roboto Slab', serif;
 $fontFamily-base: 'Roboto Mono', monospace;
 
 $fontSize-header: 1.55rem;
-$fontSize-bold: 1.06rem;
-$fontSize-variable: 0.91rem;
+$fontSize-bold: 1.1rem;
+$fontSize-variable: 0.96rem;
 $fontSize-inputs: 0.85rem;
-$fontSize-paragraph: 0.8rem;
+$fontSize-paragraph: 1rem;
 $fontSize-mini: 0.76rem;
 
 $transition-speed: 220ms;
@@ -22,6 +22,9 @@ $color-lightOrange: #e9c46a;
 $color-darkOrange: #f4a261;
 $color-darkBlue: #0a1128;
 $color-fail: #d11534;
+$color-easy: #55b45a;
+$color-medium: orange;
+$color-hard: red;
 
 @mixin wide-screen {
     @media (min-width: 1550px) {
@@ -44,17 +47,17 @@ $color-fail: #d11534;
 }
 
 :root {
-    --main-bg: #282c34;
-    --resize-bg: #161516;
-    --dots-color: #ffffff;
     --bg: #21252b;
+    --main-bg: #282c34;
+    --files-bg: #1d2024;
+    --inputs-bg: #141618;
+    --resize-bg: #161516;
+    --dots-color: #eeeeee;
+    --bold-color: #d4e4f9;
     --text-color: #ffffff;
     --hover-color: #ffffffbd;
-    --bold-color: #d4e4f9;
-    --paragraph-color: #8a9bba;
     --inputs-color: #d4e4f9;
-    --inputs-bg: #141618;
-    --files-bg: #1d2024;
+    --paragraph-color: #8a9bba;
 }
 
 body {

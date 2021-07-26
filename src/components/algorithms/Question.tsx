@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react'
+import React from 'react'
 import AlgorithmProblem from '../../types/AlgorithmProblem'
 import parse from 'html-react-parser'
 
@@ -6,13 +6,11 @@ interface Props {
     problem: AlgorithmProblem
 }
 
-export default function Question({ problem }: Props): ReactElement {
+const Question = React.forwardRef<HTMLInputElement, Props>(({ problem }, ref) => {
     return (
-        <div className='question'>
-            {JSON.stringify(problem)}
-
+        <div className='question' ref={ref}>
             <div className='header'>
-                <div className='title'>'sas'</div>
+                <div className='title'>{problem.problemName}</div>
                 <div className='info'>
                     <div className={`info-div ${'hard'}`}>
                         {/* changing the first letter to uppercase */}
@@ -21,6 +19,12 @@ export default function Question({ problem }: Props): ReactElement {
                 </div>
             </div>
             <div className='content'>
+                {problem.description && (
+                    <div className='content-subpart'>
+                        <div className='bold'>Input format</div>
+                        <p>{parse(problem.description)}</p>
+                    </div>
+                )}
                 {problem.inputFormat && (
                     <div className='content-subpart'>
                         <div className='bold'>Input format</div>
@@ -33,7 +37,6 @@ export default function Question({ problem }: Props): ReactElement {
                         <p>{parse(problem.output)}</p>
                     </div>
                 )}
-
                 {problem.constrains && (
                     <div className='content-subpart'>
                         <div className='bold'>Constrains</div>
@@ -44,7 +47,6 @@ export default function Question({ problem }: Props): ReactElement {
                         </div>
                     </div>
                 )}
-
                 {/* do we have testCase? */}
                 {problem.sampleCases &&
                     // render it
@@ -55,7 +57,7 @@ export default function Question({ problem }: Props): ReactElement {
                                     <div className='bold'>Sample inputs</div>
                                     <div className='inputs'>
                                         {sampleCase.input.map((input) => (
-                                            <div>{parse(input.toString())}</div>
+                                            <div>{parse(input.input.toString())}</div>
                                         ))}
                                     </div>
                                 </div>
@@ -98,4 +100,5 @@ export default function Question({ problem }: Props): ReactElement {
             </div>
         </div>
     )
-}
+})
+export default Question

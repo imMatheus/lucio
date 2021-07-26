@@ -39,7 +39,7 @@ export interface sampleCases {
 export default interface AlgorithmProblem {
     problemName: string
     difficulty: 'easy' | 'medium' | 'hard'
-    problemDescription: string
+    description: string
     constrains: Array<string>
     inputFormat: string
     output: string

@@ -7,7 +7,7 @@ export const problems: typeProblems = {
         problemName: 'Simple Addition',
         difficulty: 'easy',
         output: 'an integer',
-        problemDescription: `given two integers, <span class="variable">a</span> and <span class="variable">b</span>, return the sum of <span class="variable">a</span> + <span class="variable">b</span>`,
+        description: `given two integersintegersintegersintegersintegers integersintegers integersintegers integersintegersintegers  integers integers integers integers integers integers, <span class="variable">a</span> and <span class="variable">b</span>, return the sum of <span class="variable">a</span> + <span class="variable">b</span>`,
         inputFormat: `<span class="variable">a</span> a integer, <span class="variable">b</span> a integer `,
         constrains: [
             '<span class="variable">-Infinity</span> < <span class="variable">a</span> < <span class="variable">Infinity</span>',
@@ -69,7 +69,7 @@ export const problems: typeProblems = {
     PalindromeNumber: {
         problemName: 'Palindrome Number',
         difficulty: 'easy',
-        problemDescription: `
+        description: `
         Given an integer <span class="variable">x</span>,
         return <span class="variable">true</span> if <span class="variable">x</span> is palindrome integer.
         An integer is a palindrome when it reads the same backward as forward.
@@ -131,7 +131,7 @@ export const problems: typeProblems = {
         problemName: 'Multiplication',
         difficulty: 'easy',
         output: 'The product of x * y',
-        problemDescription: `Given three numbers, <span class="variable">X</span>, <span class="variable">Y</span>, return the product of <span class="variable">X</span> * <span class="variable">Y</span> `,
+        description: `Given three numbers, <span class="variable">X</span>, <span class="variable">Y</span>, return the product of <span class="variable">X</span> * <span class="variable">Y</span> `,
         inputFormat: `<span class="variable">X</span> a number, <span class="variable">Y</span> a number`,
         constrains: [
             '<span class="variable">x</span> a number',
@@ -193,7 +193,7 @@ export const problems: typeProblems = {
         problemName: 'Number Of Letters',
         difficulty: 'easy',
         output: '',
-        problemDescription: `given a string, <span class="variable">S</span>, and a single letter, <span class="variable">Letter</span>, return the number of instances that the letter <span class="variable">Letter</span> appears in the string <span class="variable">S</span>`,
+        description: `given a string, <span class="variable">S</span>, and a single letter, <span class="variable">Letter</span>, return the number of instances that the letter <span class="variable">Letter</span> appears in the string <span class="variable">S</span>`,
         inputFormat: `<span class="variable">S</span> a string containing lowercase letters, <span class="variable">Letter</span> a single lowercase letter`,
         constrains: [
             `0 &#8804 <span class="variable">S</span> &#x3c 100000  `,
@@ -254,7 +254,7 @@ export const problems: typeProblems = {
     ScoreTheName: {
         problemName: 'Score The Name',
         difficulty: 'easy',
-        problemDescription: `Given a single name, <span class="variable">n</span>, calculate the alphabetical value for the letters of the name. The alphabetical value of a letter is it"s place in the alphabet.`,
+        description: `Given a single name, <span class="variable">n</span>, calculate the alphabetical value for the letters of the name. The alphabetical value of a letter is it"s place in the alphabet.`,
         inputFormat: `<span class="variable">n</span> a single word containing uppercase letters.`,
         constrains: [
             ' <span class="variable">n</span> < <span class="variable">100</span>',

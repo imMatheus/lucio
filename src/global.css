@@ -7,17 +7,17 @@
 }
 
 :root {
-  --main-bg: #282c34;
-  --resize-bg: #161516;
-  --dots-color: #ffffff;
   --bg: #21252b;
+  --main-bg: #282c34;
+  --files-bg: #1d2024;
+  --inputs-bg: #141618;
+  --resize-bg: #161516;
+  --dots-color: #eeeeee;
+  --bold-color: #d4e4f9;
   --text-color: #ffffff;
   --hover-color: #ffffffbd;
-  --bold-color: #d4e4f9;
-  --paragraph-color: #8a9bba;
   --inputs-color: #d4e4f9;
-  --inputs-bg: #141618;
-  --files-bg: #1d2024;
+  --paragraph-color: #8a9bba;
 }
 
 body {
@@ -241,6 +241,7 @@ body .App .homepage .leaderboard-container .leaderboard-wrapper .row-wrapper .te
   font-weight: 300;
 }
 body .App .form {
+  height: 100vh;
   width: 100vw;
   display: grid;
   grid-template-columns: auto auto 1fr;
@@ -254,7 +255,6 @@ body .App .form .question {
   max-width: 55vw;
   min-width: 22vw;
   background-color: var(--bg);
-  font-family: var(--font-family);
   color: var(--text-color);
   padding: 12px 20px;
 }
@@ -266,25 +266,22 @@ body .App .form .question .content .content-subpart {
   margin: 5px 0 13px 0;
 }
 body .App .form .question .content .content-subpart .bold {
-  font-size: var(--bold-fontsize);
+  font-size: 1.1rem;
   font-weight: 900;
   padding-bottom: 2px;
   color: var(--bold-color);
 }
 body .App .form .question .content .content-subpart p {
-  font-size: var(--paragraph-fontsize);
-  font-family: var(--paragraph-fontfamily);
   color: var(--paragraph-color);
   font-weight: 300;
   line-height: 1.75;
 }
 body .App .form .question .content .content-subpart p span.variable {
-  font-style: italic;
   margin: 0 2px;
   color: var(--bold-color);
   font-weight: 400;
-  font-size: var(--variable-fontsize);
-  font-family: var(--variable-fontfamily);
+  font-size: 0.96rem;
+  font-family: "Roboto Slab", serif;
 }
 body .App .form .question .content .content-subpart p .bulletpoint,
 body .App .form .question .content .content-subpart p .bulletpoint {
@@ -314,10 +311,10 @@ body .App .form .question .content .content-subpart .numberlist li::before {
 body .App .form .question .content .content-subpart .inputs {
   padding: 17px;
   max-width: 550px;
-  margin-top: 15px;
+  margin: 15px 0px;
   background: var(--inputs-bg);
   color: var(--inputs-color);
-  font-size: var(--inputs-fontsize);
+  font-size: 0.85rem;
 }
 body .App .form .question .content .content-subpart .inputs div {
   margin: 5px 0;
@@ -329,11 +326,11 @@ body .App .form .question .content .content-subpart .inputs div.short-line-heigh
 }
 body .App .form .question .header {
   padding: 7px 0;
-  border-bottom: solid 1px var(--paraghrap-color);
+  border-bottom: solid 1px var(--paragraph-color);
 }
 body .App .form .question .header .title {
-  font-weight: var(--bold);
-  font-size: var(--header-fontsize);
+  font-weight: 600;
+  font-size: 1.55rem;
   color: var(--text-color);
   margin-bottom: 10px;
 }
@@ -343,16 +340,15 @@ body .App .form .question .header .info {
   flex-wrap: wrap;
 }
 body .App .form .question .header .info .info-div {
-  cursor: pointer;
   margin-right: 13px;
   padding: 2px 0;
   font-weight: 300;
-  font-size: var(--mini-fontsize);
+  font-size: 0.76rem;
   line-height: 20px;
   display: flex;
   align-items: center;
   justify-content: space-around;
-  transition: color var(--transition-speed);
+  transition: color 220ms;
   color: var(--text-color);
 }
 body .App .form .question .header .info .info-div:hover {
@@ -393,10 +389,10 @@ body .App .form .resizebar {
   top: 0;
   left: 0;
   background-color: var(--resize-bg);
-  background-color: red;
 }
 body .App .form .resizebar .dots {
   height: 50px;
+  max-height: 90%;
   width: 100%;
   display: flex;
   flex-direction: column;

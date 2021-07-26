@@ -6,7 +6,6 @@
     max-width: 55vw;
     min-width: 22vw;
     background-color: var(--bg);
-    font-family: var(--font-family);
     color: var(--text-color);
     padding: 12px 20px;
 
@@ -17,26 +16,23 @@
         .content-subpart {
             margin: 5px 0 13px 0;
             .bold {
-                font-size: var(--bold-fontsize);
+                font-size: $fontSize-bold;
                 font-weight: 900;
                 padding-bottom: 2px;
                 color: var(--bold-color);
             }
             p {
-                font-size: var(--paragraph-fontsize);
-                font-family: var(--paragraph-fontfamily);
                 color: var(--paragraph-color);
                 font-weight: 300;
                 line-height: 1.75;
 
                 span.variable {
-                    font-style: italic;
+                    // font-style: italic;
                     margin: 0 2px;
-                    // word-break: break-all;
                     color: var(--bold-color);
                     font-weight: 400;
-                    font-size: var(--variable-fontsize);
-                    font-family: var(--variable-fontfamily);
+                    font-size: $fontSize-variable;
+                    font-family: $fontFamily-variable;
                 }
                 .bulletpoint,
                 .bulletpoint {
@@ -72,11 +68,10 @@
             .inputs {
                 padding: 17px;
                 max-width: 550px;
-                margin-top: 15px;
+                margin: 15px 0px;
                 background: var(--inputs-bg);
                 color: var(--inputs-color);
-                font-size: var(--inputs-fontsize);
-
+                font-size: $fontSize-inputs;
                 div {
                     margin: 5px 0;
                     word-wrap: break-word;
@@ -92,10 +87,10 @@
 
     .header {
         padding: 7px 0;
-        border-bottom: solid 1px var(--paraghrap-color);
+        border-bottom: solid 1px var(--paragraph-color);
         .title {
-            font-weight: var(--bold);
-            font-size: var(--header-fontsize);
+            font-weight: $fontWeight-bold;
+            font-size: $fontSize-header;
             color: var(--text-color);
             margin-bottom: 10px;
         }
@@ -106,16 +101,15 @@
             flex-wrap: wrap;
 
             & .info-div {
-                cursor: pointer;
                 margin-right: 13px;
                 padding: 2px 0;
                 font-weight: 300;
-                font-size: var(--mini-fontsize);
+                font-size: $fontSize-mini;
                 line-height: 20px;
                 display: flex;
                 align-items: center;
                 justify-content: space-around;
-                transition: color var(--transition-speed);
+                transition: color $transition-speed;
                 color: var(--text-color);
                 &:hover {
                     color: var(--hover-color);
@@ -131,15 +125,15 @@
                     }
                 }
                 &.easy {
-                    color: #55b45a;
+                    color: $color-easy;
                 }
 
                 &.medium {
-                    color: orange;
+                    color: $color-medium;
                 }
 
                 &.hard {
-                    color: red;
+                    color: $color-hard;
                 }
             }
         }
