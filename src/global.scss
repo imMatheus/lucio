@@ -8,9 +8,9 @@ $fontFamily-base: 'Roboto Mono', monospace;
 
 $fontSize-header: 1.55rem;
 $fontSize-bold: 1.1rem;
-$fontSize-variable: 0.96rem;
-$fontSize-inputs: 0.85rem;
-$fontSize-paragraph: 1rem;
+$fontSize-variable: 0.86rem;
+$fontSize-inputs: 0.9rem;
+$fontSize-paragraph: 0.9rem;
 $fontSize-mini: 0.76rem;
 
 $transition-speed: 220ms;
@@ -44,6 +44,10 @@ $color-hard: red;
     margin: 0;
     padding: 0;
     font-family: $fontFamily-base;
+}
+
+p {
+    font-size: $fontSize-paragraph;
 }
 
 :root {

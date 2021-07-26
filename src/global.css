@@ -6,6 +6,10 @@
   font-family: "Roboto Mono", monospace;
 }
 
+p {
+  font-size: 0.9rem;
+}
+
 :root {
   --bg: #21252b;
   --main-bg: #282c34;
@@ -280,7 +284,7 @@ body .App .form .question .content .content-subpart p span.variable {
   margin: 0 2px;
   color: var(--bold-color);
   font-weight: 400;
-  font-size: 0.96rem;
+  font-size: 0.86rem;
   font-family: "Roboto Slab", serif;
 }
 body .App .form .question .content .content-subpart p .bulletpoint,
@@ -314,7 +318,7 @@ body .App .form .question .content .content-subpart .inputs {
   margin: 15px 0px;
   background: var(--inputs-bg);
   color: var(--inputs-color);
-  font-size: 0.85rem;
+  font-size: 0.9rem;
 }
 body .App .form .question .content .content-subpart .inputs div {
   margin: 5px 0;
