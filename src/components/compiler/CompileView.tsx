@@ -51,6 +51,7 @@ export default function CompileView({ testCases }: Props): ReactElement {
     const [currentTestCase, setCurrentTestCase] = useState(testCases[listPointer])
     let correctAnswer = true
     let succeededCases = testCases.length
+    let title = correctAnswer ? 'Nice job' : 'Wrong answer :('
 
     // looping thru the tescases and cheking if one of the cases were incorrect
     testCases?.forEach((element) => {
@@ -61,16 +62,11 @@ export default function CompileView({ testCases }: Props): ReactElement {
             succeededCases--
         }
     })
-    console.log('ppppp')
 
-    console.log(testCases)
-
-    let title = correctAnswer ? 'Nice job' : 'Wrong answer :('
-    const [currentTc, setCurrentTc] = useState<any>(null)
     useEffect(() => {
-        setCurrentTc(listPointer)
+        setCurrentTestCase(testCases[listPointer])
         console.log('re-render')
-    }, [listPointer])
+    }, [listPointer, testCases])
 
     // changing the currentTc to the index of the btn that has been clicked
     const changeCompileViewHandler = (index: number) => {
@@ -80,7 +76,7 @@ export default function CompileView({ testCases }: Props): ReactElement {
     return (
         <div className='compiler-wrapper'>
             <div className='codecompileview'>
-                <div className={'title red'}>{'title'}</div>
+                <div className={correctAnswer ? 'title green' : 'title red'}>{title}</div>
                 <p>{succeededCases + '/' + testCases.length} test cases succeeded</p>
                 <div className='compilecases-wrapper'>
                     <div className='case-list'>

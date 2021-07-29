@@ -2,7 +2,11 @@ import React, { useEffect, useRef } from 'react'
 
 import Editor from '@monaco-editor/react'
 
-const EditorComponent: React.FC = () => {
+interface Props {
+    setCurrentCode: React.Dispatch<React.SetStateAction<string>>
+}
+
+const EditorComponent: React.FC<Props> = ({ setCurrentCode }: Props) => {
     const editorRef = useRef<any>(null)
 
     const wrapperRef = useRef<HTMLDivElement>(null)
@@ -16,28 +20,17 @@ const EditorComponent: React.FC = () => {
         console.log('123')
     }
 
-    if (wrapperRef.current) {
-        wrapperRef.current.addEventListener('resize', () => console.log('gg go next'))
-        console.log('hej')
-        window.onresize = function () {
-            editorRef.current!.layout()
-            console.log('aaa')
-        }
-        wrapperRef.current.onresize = function () {
-            console.log('ooooo')
-        }
+    const handleEditorChange = (code: any) => {
+        setCurrentCode(code)
+        console.log(code)
     }
-
-    const handleEditorChange = () => console.log('change')
 
     return (
         <div className='editor-wrapper' ref={wrapperRef}>
             <Editor
-                height='100%'
-                width='100%'
-                theme='vs-dark'
-                language={'typescript'}
-                onChange={handleEditorChange}
+                theme='vs-light'
+                language={'javascript'}
+                onChange={(value) => handleEditorChange(value)}
                 onMount={handleEditorDidMount}
                 options={{
                     automaticLayout: true,

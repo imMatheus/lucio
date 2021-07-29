@@ -12,8 +12,9 @@ export default function Algorithms({ type }: Props): ReactElement {
     const resizeBarRef = useRef<HTMLInputElement>(null)
     const [testCases, setTestCases] = useState<any>([])
     const [fetchingData, setFetchingData] = useState(false)
-    const [currentCode, setCurrentCode] = useState('console.log("we did it")')
+    const [currentCode, setCurrentCode] = useState('console.log("11")')
     let isDragging = false
+    console.log('currentCode:', currentCode)
 
     const mouseDownHandler = () => (isDragging = true)
 
@@ -48,15 +49,11 @@ export default function Algorithms({ type }: Props): ReactElement {
 
         let cases = [
             { input: ['1'], output: ['11'] },
-            { input: ['2'], output: ['33'] },
-            { input: ['3'], output: ['33'] },
+            { input: ['2'], output: ['11'] },
+            { input: ['3'], output: ['11'] },
         ]
         let dummyArray: any = []
-        // editorialRef.current?.scroll({
-        //     top: 600,
-        //     behavior: 'smooth',
-        // })
-        // compileRef.current?.scrollIntoView()
+
         for (let i = 0; i < cases.length; i++) {
             const currentCase = cases[i]
             const args: Array<string> = currentCase.input
@@ -116,7 +113,7 @@ export default function Algorithms({ type }: Props): ReactElement {
             </div>
             <div className='editor-container'>
                 <div style={{ height: '100vh', display: 'grid', gridTemplateRows: '1fr auto' }}>
-                    <EditorComponent />
+                    <EditorComponent setCurrentCode={setCurrentCode} />
                     <div className='buttons-wrapper'>
                         <button className='testrun-btn' onClick={() => runCodeHandler()}>
                             Run Code
