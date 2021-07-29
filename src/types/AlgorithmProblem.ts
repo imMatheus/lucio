@@ -4,7 +4,6 @@ type Float = 'float'
 type Double = 'double'
 type Char = 'char'
 type StringArray = Array<string>
-type NumberArray = Array<number>
 type IntegerArray = Array<Integer>
 type FloatArray = Array<Float>
 type DoubleArray = Array<Double>
@@ -16,7 +15,6 @@ type InputType =
     | Float
     | Double
     | Char
-    | NumberArray
     | StringArray
     | IntegerArray
     | FloatArray

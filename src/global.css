@@ -255,9 +255,7 @@ body .App .editor-wrapper {
 body .App .compiler-wrapper {
   background: var(--inputs-bg);
   position: relative;
-  font-family: var(--font-family);
   color: var(--paragraph-color);
-  background: rosybrown;
 }
 body .App .compiler-wrapper .title {
   background: var(--bg);
@@ -266,14 +264,14 @@ body .App .compiler-wrapper .title {
   padding: 3px 22px 8px 22px;
 }
 body .App .compiler-wrapper .title.red {
-  color: var(--color-fail);
+  color: #d11534;
 }
 body .App .compiler-wrapper .title.green {
-  color: var(--color-mainGreen);
+  color: #2a9d8f;
 }
 body .App .compiler-wrapper p {
   padding: 10px 22px;
-  font-size: var(--paraghrap-fontsize);
+  font-size: 0.9rem;
   font-weight: 600;
   color: var(--paragraph-color);
 }
@@ -304,10 +302,10 @@ body .App .compiler-wrapper .compilecases-wrapper .case-list ul li svg {
   margin-right: 3px;
 }
 body .App .compiler-wrapper .compilecases-wrapper .case-list ul li.red {
-  color: var(--color-fail);
+  color: #d11534;
 }
 body .App .compiler-wrapper .compilecases-wrapper .case-list ul li.green {
-  color: var(--color-mainGreen);
+  color: #2a9d8f;
 }
 body .App .compiler-wrapper .compilecases-wrapper .case-list ul li.highlight {
   background: var(--bg);
@@ -336,7 +334,7 @@ body .App .compiler-wrapper .compilecases-wrapper .case-content .subpart .output
   margin-top: 7px;
   background: var(--inputs-bg);
   color: var(--inputs-color);
-  font-size: var(--inputs-fontsize);
+  font-size: 0.92rem;
 }
 body .App .compiler-wrapper .compilecases-wrapper .case-content .subpart .output div {
   margin: 4px 0;
@@ -345,24 +343,13 @@ body .App .compiler-wrapper .compilecases-wrapper .case-content .subpart .output
 body .App .compiler-wrapper .compilecases-wrapper .case-content .subpart .output div::before {
   content: "&";
   display: inline-block;
-  color: var(--bold-color);
   font-weight: 100;
   font-size: 0.65rem;
   padding-right: 6px;
   margin-right: 6px;
-  border-right: 1px var(--bold-color);
-  border-style: solid;
+  border-right: solid 1px var(--bold-color);
 }
-body .App .form {
-  height: 100vh;
-  width: 100vw;
-  display: grid;
-  grid-template-columns: auto auto 1fr;
-  background: var(--main-bg);
-  background-color: orange;
-  overflow-x: hidden;
-}
-body .App .form .question {
+body .App .question {
   overflow-y: scroll;
   height: 100%;
   width: 510px;
@@ -372,37 +359,37 @@ body .App .form .question {
   color: var(--text-color);
   padding: 20px;
 }
-body .App .form .question .content {
+body .App .question .content {
   padding-top: 10px;
   max-width: 1000px;
 }
-body .App .form .question .content .content-subpart {
+body .App .question .content .content-subpart {
   margin: 5px 0 13px 0;
 }
-body .App .form .question .content .content-subpart .bold {
+body .App .question .content .content-subpart .bold {
   font-size: 1.1rem;
   font-weight: 900;
   padding-bottom: 2px;
   color: var(--bold-color);
 }
-body .App .form .question .content .content-subpart p {
+body .App .question .content .content-subpart p {
   color: var(--paragraph-color);
   font-weight: 300;
   line-height: 1.75;
 }
-body .App .form .question .content .content-subpart p span.variable {
+body .App .question .content .content-subpart p span.variable {
   margin: 0 2px;
   color: var(--bold-color);
   font-weight: 400;
   font-size: 0.86rem;
   font-family: "Roboto Slab", serif;
 }
-body .App .form .question .content .content-subpart p .bulletpoint,
-body .App .form .question .content .content-subpart p .bulletpoint {
+body .App .question .content .content-subpart p .bulletpoint,
+body .App .question .content .content-subpart p .bulletpoint {
   padding: 4px 0;
 }
-body .App .form .question .content .content-subpart p .bulletpoint::before,
-body .App .form .question .content .content-subpart p .bulletpoint::before {
+body .App .question .content .content-subpart p .bulletpoint::before,
+body .App .question .content .content-subpart p .bulletpoint::before {
   content: "";
   display: inline-block;
   height: 8px;
@@ -412,17 +399,17 @@ body .App .form .question .content .content-subpart p .bulletpoint::before {
   margin-top: 8px;
   background: var(--bold-color);
 }
-body .App .form .question .content .content-subpart p .bulletpoint .numberlist,
-body .App .form .question .content .content-subpart p .bulletpoint .numberlist {
+body .App .question .content .content-subpart p .bulletpoint .numberlist,
+body .App .question .content .content-subpart p .bulletpoint .numberlist {
   padding: 5px 0 5px 35px;
 }
-body .App .form .question .content .content-subpart .numberlist {
+body .App .question .content .content-subpart .numberlist {
   list-style: decimal;
 }
-body .App .form .question .content .content-subpart .numberlist li::before {
+body .App .question .content .content-subpart .numberlist li::before {
   content: none;
 }
-body .App .form .question .content .content-subpart .inputs {
+body .App .question .content .content-subpart .inputs {
   padding: 17px;
   max-width: 550px;
   margin: 15px 0px;
@@ -430,30 +417,30 @@ body .App .form .question .content .content-subpart .inputs {
   color: var(--inputs-color);
   font-size: 0.92rem;
 }
-body .App .form .question .content .content-subpart .inputs div {
+body .App .question .content .content-subpart .inputs div {
   margin: 5px 0;
   word-wrap: break-word;
   white-space: pre;
 }
-body .App .form .question .content .content-subpart .inputs div.short-line-height {
+body .App .question .content .content-subpart .inputs div.short-line-height {
   line-height: 0.8;
 }
-body .App .form .question .header {
+body .App .question .header {
   padding: 7px 0;
   border-bottom: solid 1px var(--paragraph-color);
 }
-body .App .form .question .header .title {
+body .App .question .header .title {
   font-weight: 600;
   font-size: 1.55rem;
   color: var(--text-color);
   margin-bottom: 10px;
 }
-body .App .form .question .header .info {
+body .App .question .header .info {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
 }
-body .App .form .question .header .info .info-div {
+body .App .question .header .info .info-div {
   margin-right: 13px;
   padding: 2px 0;
   font-weight: 300;
@@ -465,26 +452,42 @@ body .App .form .question .header .info .info-div {
   transition: color 220ms;
   color: var(--text-color);
 }
-body .App .form .question .header .info .info-div:hover {
+body .App .question .header .info .info-div:hover {
   color: var(--hover-color);
 }
-body .App .form .question .header .info .info-div svg {
+body .App .question .header .info .info-div svg {
   width: 15px;
   height: 15px;
   margin-right: 6px;
   color: inherit;
 }
-body .App .form .question .header .info .info-div svg:hover {
+body .App .question .header .info .info-div svg:hover {
   fill: var(--hover-color);
 }
-body .App .form .question .header .info .info-div.easy {
+body .App .question .header .info .info-div.easy {
   color: #55b45a;
 }
-body .App .form .question .header .info .info-div.medium {
+body .App .question .header .info .info-div.medium {
   color: orange;
 }
-body .App .form .question .header .info .info-div.hard {
+body .App .question .header .info .info-div.hard {
   color: red;
+}
+body .App .form {
+  height: 100vh;
+  width: 100vw;
+  display: grid;
+  grid-template-columns: auto auto 1fr;
+  background: var(--main-bg);
+  background-color: orange;
+  overflow-x: hidden;
+}
+body .App .form ::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 0px;
+}
+body .App .form ::-webkit-scrollbar-thumb {
+  display: none;
 }
 body .App .form .resizebar {
   cursor: ew-resize;

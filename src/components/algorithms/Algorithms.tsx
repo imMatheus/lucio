@@ -1,4 +1,4 @@
-import React, { ReactElement, useRef } from 'react'
+import React, { ReactElement, useRef, useState } from 'react'
 import EditorComponent from '../editor/Editor'
 import Question from './Question'
 import { problems } from '../../problems/AlgorithmProblems'
@@ -10,15 +10,17 @@ interface Props {
 export default function Algorithms({ type }: Props): ReactElement {
     const questionRef = useRef<HTMLInputElement>(null)
     const resizeBarRef = useRef<HTMLInputElement>(null)
+    const [testCases, setTestCases] = useState<any>([])
+    const [fetchingData, setFetchingData] = useState(false)
+    const [currentCode, setCurrentCode] = useState('console.log("we did it")')
     let isDragging = false
 
-    const mouseDownHandler = () => {
-        isDragging = true
-    }
+    const mouseDownHandler = () => (isDragging = true)
+
     document.addEventListener('mousemove', function (e) {
         // Don't do anything if dragging flag is false
         if (!isDragging || !questionRef.current) {
-            return false
+            return
         }
         // bar width is hard coded as 12 px in scss
         let barWidth = 12
@@ -31,6 +33,74 @@ export default function Algorithms({ type }: Props): ReactElement {
         // Turn off dragging flag when user mouse is up
         isDragging = false
     })
+
+    const test = () => console.log('ööö')
+
+    const runCodeHandler = async (submit?: boolean) => {
+        console.log('1000')
+        // setCurrentCode(editorRef?.current?.getValue())
+        // a sleep function that blocks code from running for 'ms' millisecs
+        function sleep(ms: number) {
+            return new Promise((resolve) => setTimeout(resolve, ms))
+        }
+        setFetchingData(true)
+        console.log(submit)
+
+        let cases = [
+            { input: ['1'], output: ['11'] },
+            { input: ['2'], output: ['33'] },
+            { input: ['3'], output: ['33'] },
+        ]
+        let dummyArray: any = []
+        // editorialRef.current?.scroll({
+        //     top: 600,
+        //     behavior: 'smooth',
+        // })
+        // compileRef.current?.scrollIntoView()
+        for (let i = 0; i < cases.length; i++) {
+            const currentCase = cases[i]
+            const args: Array<string> = currentCase.input
+            const expected: Array<string> = currentCase.output
+
+            // the request that we send to the piston api
+            const requestOptions = {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    language: 'javascript',
+                    source: `${currentCode}`,
+                    stdin: '',
+                    args: [],
+                }),
+            }
+
+            // sending the request
+            await fetch('https://emkc.org/api/v1/piston/execute', requestOptions)
+                .then((response) => response.json())
+                .then((data) => {
+                    dummyArray.push({
+                        correctAnswer: (data.output + '').trim() === (expected + '').trim(),
+                        compileMessage:
+                            (data.output + '').trim() === (expected + '').trim()
+                                ? 'Right answer'
+                                : 'Wrong answer',
+                        inputs: args,
+                        userOutput: [data.output],
+                        expectedOutput: expected,
+                        caseName: i,
+                    })
+                })
+
+            // sleeping for 530ms cuz the api only allows 2 reqs per sec, and 530 just to be on the safe side
+            await sleep(530)
+        }
+
+        setTestCases(dummyArray)
+        setFetchingData(false)
+        console.log(dummyArray)
+
+        return dummyArray
+    }
     return (
         <div className='form'>
             <Question problem={problems['SimpleAddition']} ref={questionRef} />
@@ -48,13 +118,15 @@ export default function Algorithms({ type }: Props): ReactElement {
                 <div style={{ height: '100vh', display: 'grid', gridTemplateRows: '1fr auto' }}>
                     <EditorComponent />
                     <div className='buttons-wrapper'>
-                        <button className='testrun-btn'>Run Code</button>
-                        <button className='submit-btn' disabled={false}>
+                        <button className='testrun-btn' onClick={() => runCodeHandler()}>
+                            Run Code
+                        </button>
+                        <button className='submit-btn' disabled={false} onClick={() => test()}>
                             Submit Code
                         </button>
                     </div>
                 </div>
-                <CompileView testCases='hej' />
+                {testCases.length > 0 && <CompileView testCases={testCases} />}
             </div>
         </div>
     )

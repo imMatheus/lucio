@@ -2,9 +2,8 @@
     background: var(--inputs-bg);
     position: relative;
     $padding-sides: 22px;
-    font-family: var(--font-family);
     color: var(--paragraph-color);
-    background: rosybrown;
+
     .title {
         background: var(--bg);
         font-size: 2rem;
@@ -12,18 +11,18 @@
         padding: 3px $padding-sides 8px $padding-sides;
 
         &.red {
-            color: var(--color-fail);
+            color: $color-fail;
         }
 
         &.green {
-            color: var(--color-mainGreen);
+            color: $color-green;
         }
     }
 
     & p {
         padding: 10px $padding-sides;
-        font-size: var(--paraghrap-fontsize);
-        font-weight: 600;
+        font-size: $fontSize-paragraph;
+        font-weight: $fontWeight-bold;
         color: var(--paragraph-color);
     }
 
@@ -54,11 +53,11 @@
                     }
 
                     &.red {
-                        color: var(--color-fail);
+                        color: $color-fail;
                     }
 
                     &.green {
-                        color: var(--color-mainGreen);
+                        color: $color-green;
                     }
 
                     &.highlight {
@@ -91,7 +90,7 @@
                     margin-top: 7px;
                     background: var(--inputs-bg);
                     color: var(--inputs-color);
-                    font-size: var(--inputs-fontsize);
+                    font-size: $fontSize-inputs;
 
                     & div {
                         margin: 4px 0;
@@ -101,13 +100,11 @@
                             // \0026 is the "and" sign, (&)
                             content: '\0026';
                             display: inline-block;
-                            color: var(--bold-color);
                             font-weight: 100;
                             font-size: 0.65rem;
                             padding-right: 6px;
                             margin-right: 6px;
-                            border-right: 1px var(--bold-color);
-                            border-style: solid;
+                            border-right: solid 1px var(--bold-color);
                         }
                     }
                 }

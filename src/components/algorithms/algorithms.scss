@@ -1,14 +1,13 @@
+@import './question.scss';
 .form {
-    @import './question.scss';
-
     // removing the scrollbar on windows
-    // ::-webkit-scrollbar {
-    //     -webkit-appearance: none;
-    //     width: 0px;
-    // }
-    // ::-webkit-scrollbar-thumb {
-    //     display: none;
-    // }
+    ::-webkit-scrollbar {
+        -webkit-appearance: none;
+        width: 0px;
+    }
+    ::-webkit-scrollbar-thumb {
+        display: none;
+    }
 
     height: 100vh;
     width: 100vw;
