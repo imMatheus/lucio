@@ -2,6 +2,7 @@ import React, { ReactElement, useRef } from 'react'
 import EditorComponent from '../editor/Editor'
 import Question from './Question'
 import { problems } from '../../problems/AlgorithmProblems'
+import CompileView from '../compiler/CompileView'
 interface Props {
     type?: string
 }
@@ -43,7 +44,18 @@ export default function Algorithms({ type }: Props): ReactElement {
                     <span></span>
                 </div>
             </div>
-            <EditorComponent />
+            <div className='editor-container'>
+                <div style={{ height: '100vh', display: 'grid', gridTemplateRows: '1fr auto' }}>
+                    <EditorComponent />
+                    <div className='buttons-wrapper'>
+                        <button className='testrun-btn'>Run Code</button>
+                        <button className='submit-btn' disabled={false}>
+                            Submit Code
+                        </button>
+                    </div>
+                </div>
+                <CompileView testCases='hej' />
+            </div>
         </div>
     )
 }

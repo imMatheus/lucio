@@ -1,22 +1,22 @@
 .form {
-    // @import 'monaco';
     @import './question.scss';
 
     // removing the scrollbar on windows
-    ::-webkit-scrollbar {
-        -webkit-appearance: none;
-        width: 0px;
-    }
-    ::-webkit-scrollbar-thumb {
-        display: none;
-    }
+    // ::-webkit-scrollbar {
+    //     -webkit-appearance: none;
+    //     width: 0px;
+    // }
+    // ::-webkit-scrollbar-thumb {
+    //     display: none;
+    // }
 
     height: 100vh;
     width: 100vw;
     display: grid;
     grid-template-columns: auto auto 1fr;
     background: var(--main-bg);
-    background-color: green;
+    background-color: orange;
+    overflow-x: hidden;
 
     .resizebar {
         cursor: ew-resize;
@@ -44,6 +44,56 @@
                 height: 4px;
                 border-radius: 50%;
                 background-color: var(--dots-color);
+            }
+        }
+    }
+
+    .editor-container {
+        background: green;
+        // width: 100%;
+        height: 100vh;
+        overflow-y: scroll;
+        display: grid;
+        grid-template-rows: 1fr auto;
+
+        .buttons-wrapper {
+            padding: 17px 12px;
+            display: flex;
+            justify-content: flex-end;
+            background: var(--inputs-bg);
+
+            & button {
+                cursor: pointer;
+                padding: 10px 16px;
+                margin: 6px;
+                border-radius: 4px;
+                background: transparent;
+                font-size: $fontSize-paragraph;
+                transition: box-shadow $transition-speed;
+                &.testrun-btn {
+                    border: solid 1px $color-green;
+                    color: $color-green;
+                }
+
+                &.submit-btn {
+                    background: $color-green;
+                    border: none;
+                    color: var(--bold-color);
+                }
+
+                &.submit-btn:disabled,
+                &.testrun-btn:disabled {
+                    opacity: 0.8;
+                }
+
+                &:active,
+                &:hover {
+                    outline: none;
+                }
+
+                &:hover {
+                    box-shadow: 1px 1px 3px 0px $color-green;
+                }
             }
         }
     }

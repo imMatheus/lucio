@@ -21,8 +21,20 @@ const Question = React.forwardRef<HTMLInputElement, Props>(({ problem }, ref) =>
             <div className='content'>
                 {problem.description && (
                     <div className='content-subpart'>
-                        <div className='bold'>Input format</div>
+                        <div className='bold'>Description</div>
                         <p>{parse(problem.description)}</p>
+                    </div>
+                )}
+                {problem.inputFormat && (
+                    <div className='content-subpart'>
+                        <div className='bold'>Input format</div>
+                        <p>{parse(problem.inputFormat)}</p>
+                    </div>
+                )}
+                {problem.inputFormat && (
+                    <div className='content-subpart'>
+                        <div className='bold'>Input format</div>
+                        <p>{parse(problem.inputFormat)}</p>
                     </div>
                 )}
                 {problem.inputFormat && (
@@ -41,8 +53,11 @@ const Question = React.forwardRef<HTMLInputElement, Props>(({ problem }, ref) =>
                     <div className='content-subpart'>
                         <div className='bold'>Constrains</div>
                         <div>
-                            {problem.constrains.map((constrain) => (
-                                <p className='bulletpoint'>{parse(constrain)}</p>
+                            {problem.constrains.map((constrain, index) => (
+                                //  TODO change to uuid
+                                <p className='bulletpoint' key={index}>
+                                    {parse(constrain)}
+                                </p>
                             ))}
                         </div>
                     </div>
@@ -50,14 +65,16 @@ const Question = React.forwardRef<HTMLInputElement, Props>(({ problem }, ref) =>
                 {/* do we have testCase? */}
                 {problem.sampleCases &&
                     // render it
-                    problem.sampleCases.map((sampleCase) => (
-                        <>
+                    problem.sampleCases.map((sampleCase, index) => (
+                        // TODO change to uuid
+                        <div key={index}>
                             {sampleCase.input && (
                                 <div className='content-subpart'>
                                     <div className='bold'>Sample inputs</div>
                                     <div className='inputs'>
-                                        {sampleCase.input.map((input) => (
-                                            <div>{parse(input.input.toString())}</div>
+                                        {sampleCase.input.map((input, index) => (
+                                            // TODO change to uid
+                                            <div key={index}>{parse(input.input.toString())}</div>
                                         ))}
                                     </div>
                                 </div>
@@ -66,8 +83,8 @@ const Question = React.forwardRef<HTMLInputElement, Props>(({ problem }, ref) =>
                                 <div className='content-subpart'>
                                     <div className='bold'>Sample output</div>
                                     <div className='inputs'>
-                                        {sampleCase.output.map((output) => (
-                                            <div>{parse(output.toString())}</div>
+                                        {sampleCase.output.map((output, index) => (
+                                            <div key={index}>{parse(output.toString())}</div>
                                         ))}
                                     </div>
                                 </div>
@@ -83,8 +100,11 @@ const Question = React.forwardRef<HTMLInputElement, Props>(({ problem }, ref) =>
                                             {sampleCase.explanation.explanationOutput && (
                                                 <div className='inputs'>
                                                     {sampleCase.explanation.explanationOutput.map(
-                                                        (output) => (
-                                                            <div className='short-line-height'>
+                                                        (output, index) => (
+                                                            <div
+                                                                className='short-line-height'
+                                                                key={index}
+                                                            >
                                                                 {parse(output.toString())}
                                                             </div>
                                                         )
@@ -95,7 +115,7 @@ const Question = React.forwardRef<HTMLInputElement, Props>(({ problem }, ref) =>
                                     )}
                                 </div>
                             )}
-                        </>
+                        </div>
                     ))}
             </div>
         </div>

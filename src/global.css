@@ -4,6 +4,7 @@
   margin: 0;
   padding: 0;
   font-family: "Roboto Mono", monospace;
+  box-sizing: border-box;
 }
 
 p {
@@ -27,6 +28,9 @@ p {
 body {
   background-color: var(--main-bg);
   scroll-behavior: smooth;
+}
+body .App {
+  overflow: hidden;
 }
 body .App .flex-1-1-auto {
   flex: 1 1 auto;
@@ -244,13 +248,119 @@ body .App .homepage .leaderboard-container .leaderboard-wrapper .row-wrapper .te
   font-size: 1rem;
   font-weight: 300;
 }
+body .App .editor-wrapper {
+  background: linear-gradient(33deg, blue, pink);
+  height: 100%;
+}
+body .App .compiler-wrapper {
+  background: var(--inputs-bg);
+  position: relative;
+  font-family: var(--font-family);
+  color: var(--paragraph-color);
+  background: rosybrown;
+}
+body .App .compiler-wrapper .title {
+  background: var(--bg);
+  font-size: 2rem;
+  font-weight: 300;
+  padding: 3px 22px 8px 22px;
+}
+body .App .compiler-wrapper .title.red {
+  color: var(--color-fail);
+}
+body .App .compiler-wrapper .title.green {
+  color: var(--color-mainGreen);
+}
+body .App .compiler-wrapper p {
+  padding: 10px 22px;
+  font-size: var(--paraghrap-fontsize);
+  font-weight: 600;
+  color: var(--paragraph-color);
+}
+body .App .compiler-wrapper .compilecases-wrapper {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  background: var(--main-bg);
+}
+body .App .compiler-wrapper .compilecases-wrapper .case-list ul {
+  list-style: none;
+}
+body .App .compiler-wrapper .compilecases-wrapper .case-list ul li {
+  cursor: pointer;
+  font-size: 1.1rem;
+  padding: 13px 22px;
+  font-weight: 300;
+  background: var(--main-bg);
+  display: flex;
+  align-items: center;
+  line-height: 30px;
+}
+@media (min-width: 1550px) {
+  body .App .compiler-wrapper .compilecases-wrapper .case-list ul li {
+    font-size: 1.5rem;
+  }
+}
+body .App .compiler-wrapper .compilecases-wrapper .case-list ul li svg {
+  margin-right: 3px;
+}
+body .App .compiler-wrapper .compilecases-wrapper .case-list ul li.red {
+  color: var(--color-fail);
+}
+body .App .compiler-wrapper .compilecases-wrapper .case-list ul li.green {
+  color: var(--color-mainGreen);
+}
+body .App .compiler-wrapper .compilecases-wrapper .case-list ul li.highlight {
+  background: var(--bg);
+}
+body .App .compiler-wrapper .compilecases-wrapper .case-content {
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  background: var(--bg);
+}
+body .App .compiler-wrapper .compilecases-wrapper .case-content .subpart {
+  margin-bottom: 22px;
+}
+body .App .compiler-wrapper .compilecases-wrapper .case-content .subpart h4 {
+  font-size: 1.05rem;
+  font-weight: 400;
+  color: var(--paragraph-color);
+}
+@media (min-width: 1550px) {
+  body .App .compiler-wrapper .compilecases-wrapper .case-content .subpart h4 {
+    font-size: 1.13rem;
+  }
+}
+body .App .compiler-wrapper .compilecases-wrapper .case-content .subpart .output {
+  padding: 12px 15px;
+  margin-top: 7px;
+  background: var(--inputs-bg);
+  color: var(--inputs-color);
+  font-size: var(--inputs-fontsize);
+}
+body .App .compiler-wrapper .compilecases-wrapper .case-content .subpart .output div {
+  margin: 4px 0;
+  word-wrap: break-word;
+}
+body .App .compiler-wrapper .compilecases-wrapper .case-content .subpart .output div::before {
+  content: "&";
+  display: inline-block;
+  color: var(--bold-color);
+  font-weight: 100;
+  font-size: 0.65rem;
+  padding-right: 6px;
+  margin-right: 6px;
+  border-right: 1px var(--bold-color);
+  border-style: solid;
+}
 body .App .form {
   height: 100vh;
   width: 100vw;
   display: grid;
   grid-template-columns: auto auto 1fr;
   background: var(--main-bg);
-  background-color: green;
+  background-color: orange;
+  overflow-x: hidden;
 }
 body .App .form .question {
   overflow-y: scroll;
@@ -260,7 +370,7 @@ body .App .form .question {
   min-width: 22vw;
   background-color: var(--bg);
   color: var(--text-color);
-  padding: 12px 20px;
+  padding: 20px;
 }
 body .App .form .question .content {
   padding-top: 10px;
@@ -318,7 +428,7 @@ body .App .form .question .content .content-subpart .inputs {
   margin: 15px 0px;
   background: var(--inputs-bg);
   color: var(--inputs-color);
-  font-size: 0.9rem;
+  font-size: 0.92rem;
 }
 body .App .form .question .content .content-subpart .inputs div {
   margin: 5px 0;
@@ -376,13 +486,6 @@ body .App .form .question .header .info .info-div.medium {
 body .App .form .question .header .info .info-div.hard {
   color: red;
 }
-body .App .form ::-webkit-scrollbar {
-  -webkit-appearance: none;
-  width: 0px;
-}
-body .App .form ::-webkit-scrollbar-thumb {
-  display: none;
-}
 body .App .form .resizebar {
   cursor: ew-resize;
   display: grid;
@@ -409,6 +512,46 @@ body .App .form .resizebar .dots span {
   height: 4px;
   border-radius: 50%;
   background-color: var(--dots-color);
+}
+body .App .form .editor-container {
+  background: green;
+  height: 100vh;
+  overflow-y: scroll;
+  display: grid;
+  grid-template-rows: 1fr auto;
+}
+body .App .form .editor-container .buttons-wrapper {
+  padding: 17px 12px;
+  display: flex;
+  justify-content: flex-end;
+  background: var(--inputs-bg);
+}
+body .App .form .editor-container .buttons-wrapper button {
+  cursor: pointer;
+  padding: 10px 16px;
+  margin: 6px;
+  border-radius: 4px;
+  background: transparent;
+  font-size: 0.9rem;
+  transition: box-shadow 220ms;
+}
+body .App .form .editor-container .buttons-wrapper button.testrun-btn {
+  border: solid 1px #2a9d8f;
+  color: #2a9d8f;
+}
+body .App .form .editor-container .buttons-wrapper button.submit-btn {
+  background: #2a9d8f;
+  border: none;
+  color: var(--bold-color);
+}
+body .App .form .editor-container .buttons-wrapper button.submit-btn:disabled, body .App .form .editor-container .buttons-wrapper button.testrun-btn:disabled {
+  opacity: 0.8;
+}
+body .App .form .editor-container .buttons-wrapper button:active, body .App .form .editor-container .buttons-wrapper button:hover {
+  outline: none;
+}
+body .App .form .editor-container .buttons-wrapper button:hover {
+  box-shadow: 1px 1px 3px 0px #2a9d8f;
 }
 body .prompUserContainer {
   position: absolute;

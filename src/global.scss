@@ -9,7 +9,7 @@ $fontFamily-base: 'Roboto Mono', monospace;
 $fontSize-header: 1.55rem;
 $fontSize-bold: 1.1rem;
 $fontSize-variable: 0.86rem;
-$fontSize-inputs: 0.9rem;
+$fontSize-inputs: 0.92rem;
 $fontSize-paragraph: 0.9rem;
 $fontSize-mini: 0.76rem;
 
@@ -44,6 +44,7 @@ $color-hard: red;
     margin: 0;
     padding: 0;
     font-family: $fontFamily-base;
+    box-sizing: border-box;
 }
 
 p {
@@ -69,6 +70,7 @@ body {
     scroll-behavior: smooth;
 
     .App {
+        overflow: hidden;
         & .flex-1-1-auto {
             flex: 1 1 auto;
         }
@@ -94,6 +96,8 @@ body {
         }
         // import all the style sheets for the components
         @import './components/homepage/homepage';
+        @import './components/editor/editor.scss';
+        @import './components/compiler/compiler.scss';
         // @import './components/css-arena/cssdashboard';
         // @import './components/icons/logoicon';
         // @import './components/registration/registration.scss';

@@ -7,8 +7,8 @@ export const problems: typeProblems = {
         problemName: 'Simple Addition',
         difficulty: 'easy',
         output: 'an integer',
-        description: `given two integersintegersintegersintegersintegers integersintegers integersintegers integersintegersintegers  integers integers integers integers integers integers, <span class="variable">a</span> and <span class="variable">b</span>, return the sum of <span class="variable">a</span> + <span class="variable">b</span>`,
-        inputFormat: `<span class="variable">a</span> a integer, <span class="variable">b</span> a integer `,
+        description: `given two integers, <span class="variable">a</span> and <span class="variable">b</span>, return the sum of <span class="variable">a</span> + <span class="variable">b</span>`,
+        inputFormat: `<span class="variable">a</span> an integer, <span class="variable">b</span> an integer `,
         constrains: [
             '<span class="variable">-Infinity</span> < <span class="variable">a</span> < <span class="variable">Infinity</span>',
             '<span class="variable">-Infinity</span> < <span class="variable">b</span> < <span class="variable">Infinity</span>',
