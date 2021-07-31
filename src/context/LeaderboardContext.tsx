@@ -1,8 +1,9 @@
 import React, { createContext, useContext, useState, useEffect } from 'react'
 import { fs, db } from '../firebase'
 import { useAuth } from './AuthContext'
+import User from '../types/User'
 import Leaderboard from '../types/Leaderboard'
-const LeaderboardContext = createContext<Array<Leaderboard>>([])
+const LeaderboardContext = createContext<Leaderboard>([])
 
 /**
  * @returns leaderboardContext - the leaderboard
@@ -38,7 +39,6 @@ export const LeaderboardProvider: React.FC = ({ children }) => {
 
     const [leaderboard, setLeaderboard] = useState<Leaderboard | []>([])
 
-    // this is the ejac-3000
     useEffect(() => {
         // subscribe to the db so we can update the leaderboard when the db gets updated
         db.ref().on('value', async (snapshot) => {

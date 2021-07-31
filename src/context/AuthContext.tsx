@@ -1,8 +1,8 @@
-import React, { createContext, useContext, useState, useEffect, useRef } from 'react'
+import React, { createContext, useContext, useState, useEffect } from 'react'
 import firebase from 'firebase/app'
 import { auth, fs } from '../firebase'
 import User from '../types/User'
-const AuthContext = createContext(null)
+const AuthContext = createContext<User | null>(null)
 
 export function useAuth() {
     return useContext(AuthContext)
@@ -13,7 +13,7 @@ export const AuthProvider: React.FC = ({ children }) => {
 
     async function signup(email: string, password: string, displayName: string, imageUrl: string) {
         const usersNamesRef = fs.collection('users').where('displayName', '==', displayName)
-        const doc: firebase.firestore.DocumentData | any = await usersNamesRef.get()
+        const doc: firebase.firestore.DocumentData = await usersNamesRef.get()
         if (doc.exists) {
             // checking if the display name already exist
             const error = { message: 'Display name already exist' }

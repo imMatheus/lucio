@@ -349,6 +349,9 @@ body .App .compiler-wrapper .compilecases-wrapper .case-content .subpart .output
   margin-right: 6px;
   border-right: solid 1px var(--bold-color);
 }
+body .App .classes-wrapper {
+  background: #043518;
+}
 body .App .question {
   overflow-y: scroll;
   height: 100%;

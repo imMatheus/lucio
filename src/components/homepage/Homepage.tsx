@@ -2,6 +2,7 @@ import React, { ReactElement } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 import { useLeaderboard } from '../../context/LeaderboardContext'
 import User from '../../types/User'
+import Leaderboard from '../../types/Leaderboard'
 
 export default function Homepage(): ReactElement {
     const { leaderboard }: any = useLeaderboard()
