@@ -5,7 +5,7 @@ import User from '../../types/User'
 import Leaderboard from '../../types/Leaderboard'
 
 export default function Homepage(): ReactElement {
-    const { leaderboard }: any = useLeaderboard()
+    const { leaderboard } = useLeaderboard()
 
     return (
         <div className='homepage'>

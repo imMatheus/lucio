@@ -3,7 +3,7 @@ import React, { ReactElement } from 'react'
 import ClassCard from './ClassCard'
 import Class from '../../../types/Class'
 export default function MyClasses(): ReactElement {
-    const { userClasses }: any = useClasses()
+    const { userClasses } = useClasses()
     console.log(userClasses)
 
     return (

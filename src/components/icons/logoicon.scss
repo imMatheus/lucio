@@ -1,0 +1,109 @@
+.logo-icon {
+    width: 100%;
+    padding-bottom: 100%;
+
+    display: grid;
+    place-items: center;
+    position: relative;
+    box-sizing: border-box;
+
+    @mixin normalSpin($prefix, $currentRotation, $animationTime) {
+        animation: #{'ani' + $currentRotation} $animationTime 1;
+        $startRotation: $currentRotation + $prefix;
+        @keyframes ani#{$currentRotation} {
+            0% {
+                transform: rotate(#{$startRotation}deg);
+            }
+
+            100% {
+                transform: rotate(0deg);
+            }
+        }
+    }
+
+    @mixin rotateAnimation($prefix, $currentRotation, $animationTime) {
+        animation: #{'ani' + $currentRotation} $animationTime infinite;
+        $startRotation: $currentRotation + $prefix;
+        @keyframes ani#{$currentRotation} {
+            0% {
+                transform: rotate(#{$startRotation}deg);
+            }
+
+            50% {
+                transform: rotate(#{$startRotation * (-1)}deg);
+            }
+            100% {
+                transform: rotate(#{$startRotation}deg);
+            }
+        }
+    }
+
+    .circle-line {
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        position: absolute;
+        border-radius: 50%;
+        border: 3px solid transparent;
+        // changing only the left and  right border to have a border color so
+        // it shows
+        border-left-color: $color-green;
+        border-right-color: $color-green;
+
+        // making the width of each circle to be decreasingly  small
+        @for $i from 1 through 5 {
+            &:nth-child(#{$i}) {
+                left: 10% * ($i - 1);
+                top: 10% * ($i - 1);
+                width: 100% - 20% * ($i - 1);
+                height: 100% - 20% * ($i - 1);
+
+                // @include rotateAnimation(-72, $i * -72, 1100ms);
+
+                @if $i == 4 {
+                    border-color: $color-green;
+                }
+                @if $i == 5 {
+                    border-color: $color-green;
+                    left: 10% * ($i - 1);
+                    top: 10% * ($i - 1);
+                    width: 100% - 20% * ($i - 1);
+                    height: 100% - 20% * ($i - 1);
+                    background-color: $color-green;
+                }
+            }
+        }
+    }
+    &.spin {
+        .circle-line {
+            @for $i from 1 through 5 {
+                &:nth-child(#{$i}) {
+                    // then adding animation the circle as long as it is not the
+                    // 5th circle as it does not to rotate
+                    @if $i != 5 {
+                        // these prefix can be changed as you like
+                        // it just kinda looks good
+                        // @include rotateAnimation(-72, $i * -72, 3000ms);
+                        @include normalSpin(-60, $i * -60, 1800ms);
+                    }
+                }
+            }
+        }
+        &.loader {
+            .circle-line {
+                @for $i from 1 through 5 {
+                    &:nth-child(#{$i}) {
+                        // then adding animation the circle as long as it is not the
+                        // 5th circle as it does not to rotate
+                        @if $i != 5 {
+                            // these prefix can be changed as you like
+                            // it just kinda looks good
+                            // @include rotateAnimation(-72, $i * -72, 3000ms);
+                            @include rotateAnimation(-72, $i * -72, 3300ms);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

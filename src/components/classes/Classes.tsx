@@ -14,7 +14,7 @@ interface Props {
 }
 
 export default function Classes({ re }: Props): ReactElement {
-    const { currentUser }: any = useAuth()
+    const { currentUser } = useAuth()
     const { path } = useRouteMatch()
     console.log(currentUser)
 

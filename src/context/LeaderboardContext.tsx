@@ -3,7 +3,14 @@ import { fs, db } from '../firebase'
 import { useAuth } from './AuthContext'
 import User from '../types/User'
 import Leaderboard from '../types/Leaderboard'
-const LeaderboardContext = createContext<Leaderboard>([])
+
+interface Context {
+    leaderboard: Leaderboard | []
+}
+
+const LeaderboardContext = createContext<Context>({
+    leaderboard: [],
+})
 
 /**
  * @returns leaderboardContext - the leaderboard
@@ -35,7 +42,7 @@ function quickSortBasic(array: any[]): any[] {
 
 export const LeaderboardProvider: React.FC = ({ children }) => {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { currentUser }: any = useAuth()
+    const { currentUser } = useAuth()
 
     const [leaderboard, setLeaderboard] = useState<Leaderboard | []>([])
 
@@ -138,7 +145,7 @@ export const LeaderboardProvider: React.FC = ({ children }) => {
         }
     }
 
-    const value: any = {
+    const value = {
         leaderboard,
     }
     return <LeaderboardContext.Provider value={value}>{children}</LeaderboardContext.Provider>

@@ -3,15 +3,22 @@ import firebase from 'firebase/app'
 import { auth, fs } from '../firebase'
 import Class from '../types/Class'
 import { useAuth } from './AuthContext'
-const ClassContext = createContext<Class[]>([])
+
+interface Context {
+    userClasses: Class[] | []
+}
+
+const ClassContext = createContext<Context>({
+    userClasses: [],
+})
 
 export function useClasses() {
     return useContext(ClassContext)
 }
 
 export const ClassesProvider: React.FC = ({ children }) => {
-    const { currentUser }: any = useAuth()
-    const [userClasses, setUserClasses] = useState<any>([])
+    const { currentUser } = useAuth()
+    const [userClasses, setUserClasses] = useState<Class[] | []>([])
     console.log(currentUser)
 
     useEffect(() => {
@@ -28,15 +35,15 @@ export const ClassesProvider: React.FC = ({ children }) => {
                 let usersClassesIds: string[] = []
                 doc.docs.forEach((doc) => usersClassesIds.push(doc.id)) // returns a array of the current users classes ids
                 if (usersClassesIds.length > 0) {
-                    let dummy = []
-                    for (const classIDE of usersClassesIds) {
+                    let dummy: any = []
+                    for (const classID of usersClassesIds) {
                         let classData = await classesRef
-                            .doc(classIDE)
+                            .doc(classID)
                             .get()
                             .then((doc) => doc.data())
                         if (classData !== undefined) {
                             let studentsIds = await classesRef
-                                .doc(classIDE)
+                                .doc(classID)
                                 .collection('students')
                                 .get()
                                 .then((querySnapshot) => {
@@ -56,7 +63,7 @@ export const ClassesProvider: React.FC = ({ children }) => {
         return () => unsubscribe()
     }, [currentUser])
 
-    const value: any = {
+    const value = {
         userClasses,
     }
     return <ClassContext.Provider value={value}>{children}</ClassContext.Provider>
