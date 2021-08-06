@@ -1,5 +1,6 @@
+import Page404 from 'components/page404/Page404'
 import React, { ReactElement } from 'react'
-import { Switch, Route, useRouteMatch, Redirect } from 'react-router-dom'
+import { BrowserRouter as Router, Switch, Route, useRouteMatch, Redirect } from 'react-router-dom'
 // import Sidebar from './components/Sidebar'
 // import MyClasses from './components/MyClasses'
 // import { useAuth } from '../../context/AuthContext'
@@ -7,45 +8,40 @@ import { useAuth } from '../../context/AuthContext'
 // import Class from './components/Class'
 // import Page404 from '../404page/Page_404'
 import User from '../../types/User'
+import Class from './components/Class'
 import MyClasses from './components/MyClasses'
+import Sidebar from './components/Sidebar'
 
-interface Props {
-    re?: string
-}
-
-export default function Classes({ re }: Props): ReactElement {
+export default function Classes(): ReactElement {
     const { currentUser } = useAuth()
-    const { path } = useRouteMatch()
+    const { path, url } = useRouteMatch()
     console.log(currentUser)
+    console.log('path', path)
+    console.log('url', url)
 
     return (
-        <div>
-            <div className='classes-dashboard'>
-                <Route exact path={`${path}`}>
-                    <MyClasses />
-                </Route>
-                {/* <Sidebar />
+        <Router>
+            <div className='classes-wrapper'>
+                <Sidebar />
                 <div className='content-wrapper'>
                     <Switch>
-                        {!currentUser && <Redirect to='/' />}
-    
-                        <Route exact path={`${path}myclasses/*`}>
+                        {!currentUser && <p>pleas log you ass in </p>}
+
+                        <Route exact path={`${url}`}>
+                            {console.log('oooo')}
+                            <MyClasses />
+                        </Route>
+                        <Route exact path={`${url}/*`}>
+                            {console.log('hello')}
                             <Class />
                         </Route>
-                        <Route exact path={`${path}my`}>
-                            <div className='content-wrapper'>my</div>
-                        </Route>
-                        <Route exact path={`${path}classes`}>
-                            {path}
-                        </Route>
-                        <Route exact path={`${path}abc`}>
-                            abc
-                        </Route>
+
                         <Route>
                             <Page404 />
                         </Route>
-                    </Switch> */}
+                    </Switch>
+                </div>
             </div>
-        </div>
+        </Router>
     )
 }

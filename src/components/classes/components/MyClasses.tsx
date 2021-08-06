@@ -7,8 +7,7 @@ export default function MyClasses(): ReactElement {
     console.log(userClasses)
 
     return (
-        <div>
-            <p>hejhje</p>
+        <div className='myclasses-wrapper'>
             {userClasses ? (
                 userClasses.map((classItem: Class, index: number) => {
                     console.log(classItem)

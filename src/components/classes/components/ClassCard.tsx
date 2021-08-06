@@ -38,7 +38,7 @@ export default function ClassCard({ classData }: Props): ReactElement {
         if (studentsIDs) getStudents()
     }, [studentsIDs])
     const goToClassHandler = (joinLink: string) => {
-        history.push(url + '/' + joinLink)
+        history.push(url + joinLink)
     }
     return (
         <div className='class-card' onClick={() => goToClassHandler(joinLink)}>
