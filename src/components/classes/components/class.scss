@@ -36,7 +36,7 @@
 
             .delete-wrapper {
                 margin-left: auto;
-                color: var(--color-fail);
+                color: $color-fail;
                 width: 35px;
                 height: 35px;
                 position: relative;
@@ -54,7 +54,7 @@
                     border-radius: 50%;
                     position: absolute;
                     inset: 0;
-                    background-color: var(--color-fail);
+                    background-color: $color-fail;
                     content: '';
                     transform: scale(0);
                     transition: transform 420ms cubic-bezier(0.075, 0.82, 0.465, 1);
@@ -64,7 +64,7 @@
                     border-radius: 50%;
                     position: absolute;
                     inset: 0;
-                    background-color: var(--color-fail);
+                    background-color: $color-fail;
                     content: '';
                     opacity: 0;
                     transition: opacity 350ms;

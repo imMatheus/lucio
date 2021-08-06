@@ -8,7 +8,6 @@ import { useHistory } from 'react-router-dom'
 export default function Navbar(): ReactElement {
     const { currentUser, logout } = useAuth()
     const history = useHistory()
-    console.log(currentUser?.score)
 
     const logoutHandler = async () => {
         try {
@@ -38,8 +37,6 @@ export default function Navbar(): ReactElement {
             <div className='navbar-right'>
                 {currentUser ? (
                     <>
-                        {console.log(currentUser?.score)}
-
                         <div className='account'>
                             <div className='info'>
                                 <h2>{currentUser?.displayName}</h2>

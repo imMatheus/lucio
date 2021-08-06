@@ -55,13 +55,12 @@ export default function Signup() {
     const handleSubmit = async (e: any) => {
         e.preventDefault()
         try {
-            if (displayNameRef.current && displayNameRef.current?.value.trim().length < 6) {
-                return setError('Display name must be 6 or more characters long')
+            if (displayNameRef.current!.value.trim().length < 3) {
+                return setError('Display name must be 3 or more characters long')
             }
             if (
-                displayNameRef.current &&
-                displayNameRef.current?.value.trim() !==
-                    filter.clean(displayNameRef.current?.value.trim())
+                displayNameRef.current!.value.trim() !==
+                filter.clean(displayNameRef.current!.value.trim())
             ) {
                 return setError('Please do not use bad words :)')
             }

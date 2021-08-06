@@ -1,16 +1,18 @@
 import React, { useEffect, useRef, useState } from 'react'
 import mj from './mj-crying.jpg'
 import { fs } from '../../../firebase'
-import { useRouteMatch, useHistory, Route, Link, Switch } from 'react-router-dom'
+import { useRouteMatch, useHistory, Route, Link, Switch, useLocation } from 'react-router-dom'
 import { useAuth } from '../../../context/AuthContext'
 import DeleteIcon from '@material-ui/icons/Delete'
 import Page404 from '../../page404/Page404'
 import { default as ClassType } from '../../../types/Class'
 import Student from '../../../types/Student'
+import Homework from './homework/Homework'
 
 export default function Class() {
     const { currentUser } = useAuth()
     const history = useHistory()
+    const { path, url } = useRouteMatch()
 
     const renderCount = useRef(0)
     console.log(++renderCount.current)
@@ -20,12 +22,16 @@ export default function Class() {
     const usersRef = fs.collection('users')
 
     const [classData, setClassData] = useState<any>({})
+    console.log(classData)
+
     const [userIsOwnerOfClass, setUserIsOwnerOfClass] = useState(false)
     const [students, setStudents] = useState<any>([])
     const [emptyRoute, setEmptyRoute] = useState(false)
-    const { path, url } = useRouteMatch()
-    const classLink = url.split('/')[3] // splits at all '/' then takes the third one witch should be the link
+
+    const classLink = url.split('/')[2] // splits at all '/' then takes the third one witch should be the link
     const baseRoute = `${path.replace(/[*]/g, '')}${classLink}`
+
+    console.log('classLink', classLink)
 
     useEffect(() => {
         let unsubscribe: any
@@ -55,7 +61,7 @@ export default function Class() {
                             students.push(doc.data())
                         })
 
-                        console.log('students', students)
+                        // console.log('students', students)
 
                         const s = students.map((s) => s.studentUid) // s is an array of the students uid's
                         if (!s.includes(currentUser?.uid) && !isOwnerOfClass) {
@@ -79,7 +85,7 @@ export default function Class() {
                                 })
                             }
                         }
-                        console.log('studentDummyHolder', studentDummyHolder)
+                        // console.log('studentDummyHolder', studentDummyHolder)
 
                         setUserIsOwnerOfClass(isOwnerOfClass)
                         setClassData({ ...dummyClass, students })
@@ -89,8 +95,66 @@ export default function Class() {
         }
         getClass()
 
-        return () => unsubscribe()
+        return () => unsubscribe && unsubscribe()
     }, [])
+
+    // delete class handler
+    const deleteClassHandler = async () => {
+        if (!window.confirm('Are you sure you want to delete this class?')) return
+        fs.runTransaction(async (transaction) => {
+            console.log(transaction)
+
+            for (const s of classData.students) {
+                await usersRef
+                    .doc(s.studentUid) // go to the user in the users collection
+                    .collection('classes') // go in to the users classes
+                    .doc(classData.classID) // find the current class
+                    .delete() // delete the class from collection
+                    .then(() => console.log('deleted from users classes'))
+                    .catch(() => console.log('shit hit the fan'))
+            }
+            await classesRef
+                .doc(classData.classID) // go to the class document
+                .delete() // delete it from the collection
+                .then(() => {
+                    console.log('Document successfully deleted!')
+                })
+                .catch((error) => {
+                    console.error('Error removing document: ', error)
+                })
+
+            history.push(path.replace(/[*]/g, ''))
+        })
+    }
+
+    // leave class handler
+    const leaveClassHandler = async () => {
+        if (!window.confirm('Are you sure you want to leave?')) return // ask user if they are sure they want to leave
+        fs.runTransaction(async (transaction) => {
+            console.log(transaction)
+
+            await classesRef
+                .doc(classData.classID) // go to the class document
+                .collection('students') // go to the students collection of this class
+                .doc(currentUser?.uid) // find the user in the collection
+                .delete() // delete it from the collection
+                .then(() => {
+                    console.log('Document successfully deleted!')
+                })
+                .catch((error) => {
+                    console.error('Error removing document: ', error)
+                })
+
+            await usersRef
+                .doc(currentUser?.uid) // go to the user in the users collection
+                .collection('classes') // go in to the users classes
+                .doc(classData.classID) // find the current class
+                .delete() // delete the class from collection
+                .then(() => console.log('deleted from users classes'))
+                .catch(() => console.log('shit hit the fan'))
+            history.push(path.replace(/[*]/g, ''))
+        })
+    }
 
     function StudentCard({ profileImage, name, email, studentUid, joinedAt }: any) {
         //TODO change to use transactions
@@ -152,21 +216,26 @@ export default function Class() {
                 <h3>couldn't find the class</h3>
             ) : (
                 <Switch>
+                    {console.log('path', path)}
                     <Route exact path={`${baseRoute}/homework`}>
-                        <Link to={`${baseRoute}`}>to base</Link>
-                        {/* <Homework classLink={classLink} classID={classData.classID} /> */}
+                        <Link to={path}>to base</Link>
+                        <Homework classLink={classLink} classId={classData.classID} />
                     </Route>
                     <Route exact path={baseRoute}>
                         <h3>{classLink}</h3>
                         hej
-                        <h3>{url}</h3>
-                        <h3>{path}</h3>
-                        {/* {userIsOwnerOfClass ? (
-                        <button onClick={deleteClassHandler}>Delete class</button>
-                    ) : (
-                        <button onClick={leaveClassHandler}>Leave class</button>
-                    )} */}
-                        <Link to={`${baseRoute}/homework`}>to homework</Link>
+                        <h3>url = {url}</h3>
+                        <h3>path = {path}</h3>
+                        {userIsOwnerOfClass ? (
+                            <button onClick={deleteClassHandler}>Delete class</button>
+                        ) : (
+                            <button onClick={leaveClassHandler}>Leave class</button>
+                        )}
+                        <Link
+                            to={`${history.location.pathname + history.location.search}/homework`}
+                        >
+                            to homework
+                        </Link>
                         base
                         <div className='students-wrapper'>
                             {students?.map((student: any, index: number) => {

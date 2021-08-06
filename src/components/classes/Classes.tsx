@@ -1,6 +1,13 @@
 import Page404 from 'components/page404/Page404'
 import React, { ReactElement } from 'react'
-import { BrowserRouter as Router, Switch, Route, useRouteMatch, Redirect } from 'react-router-dom'
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    useRouteMatch,
+    Redirect,
+    useLocation,
+} from 'react-router-dom'
 // import Sidebar from './components/Sidebar'
 // import MyClasses from './components/MyClasses'
 // import { useAuth } from '../../context/AuthContext'
@@ -15,9 +22,11 @@ import Sidebar from './components/Sidebar'
 export default function Classes(): ReactElement {
     const { currentUser } = useAuth()
     const { path, url } = useRouteMatch()
-    console.log(currentUser)
+    const location = useLocation()
+    // console.log(currentUser)
     console.log('path', path)
     console.log('url', url)
+    console.log('location', location)
 
     return (
         <Router>
@@ -26,12 +35,11 @@ export default function Classes(): ReactElement {
                 <div className='content-wrapper'>
                     <Switch>
                         {!currentUser && <p>pleas log you ass in </p>}
-
-                        <Route exact path={`${url}`}>
+                        <Route exact path={'/classes/'}>
                             {console.log('oooo')}
                             <MyClasses />
                         </Route>
-                        <Route exact path={`${url}/*`}>
+                        <Route exact path={`${path}*`}>
                             {console.log('hello')}
                             <Class />
                         </Route>

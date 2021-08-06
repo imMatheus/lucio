@@ -19,11 +19,8 @@ export function useClasses() {
 export const ClassesProvider: React.FC = ({ children }) => {
     const { currentUser } = useAuth()
     const [userClasses, setUserClasses] = useState<Class[] | []>([])
-    console.log(currentUser)
 
     useEffect(() => {
-        console.log(currentUser)
-
         if (!currentUser) return
         const classesRef = fs.collection('classes')
         let unsubscribe = fs

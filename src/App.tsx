@@ -44,21 +44,21 @@ function App() {
                                 <PrivateRoute
                                     exact
                                     path='/signup'
-                                    condition={!!currentUser}
+                                    condition={!currentUser}
                                     redirectPath='/'
                                     Component={Signup}
                                 />
                                 <PrivateRoute
                                     exact
                                     path='/login'
-                                    condition={!!currentUser}
+                                    condition={!currentUser}
                                     redirectPath='/'
                                     Component={Login}
                                 />
                                 <PrivateRoute
                                     exact
                                     path='/forgot-password'
-                                    condition={!!currentUser}
+                                    condition={!currentUser}
                                     redirectPath='/'
                                     Component={ForgotPassword}
                                 />
