@@ -682,7 +682,187 @@ body .App .signup-container .card .content .input-container .password-visibility
   width: 30px;
 }
 body .App .classes-wrapper {
-  background: #043518;
+  min-height: 700px;
+  display: flex;
+  background-color: var(--bg);
+}
+body .App .classes-wrapper .sidebar {
+  padding: 18px 0px;
+  min-width: 220px;
+  background-color: var(--files-bg);
+}
+body .App .classes-wrapper .sidebar .option-row {
+  padding: 5px 18px;
+  display: flex;
+  color: var(--dots-color);
+  cursor: cursor;
+  justify-content: space-between;
+}
+body .App .classes-wrapper .sidebar .option-row:hover {
+  opacity: 0.5;
+}
+body .App .classes-wrapper .sidebar .option-row.selected {
+  color: var(--color-mainGreen);
+}
+body .App .classes-wrapper .sidebar .option-row.selected:hover {
+  opacity: 1;
+}
+body .App .classes-wrapper .content-wrapper {
+  width: 100%;
+  height: 100%;
+}
+body .App .classes-wrapper .myclasses-wrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 25%));
+  padding-right: 28px;
+}
+body .App .classes-wrapper .myclasses-wrapper .class-card {
+  background: var(--resize-bg);
+  cursor: pointer;
+  padding: 15px;
+  margin-top: 28px;
+  margin-left: 28px;
+  display: flex;
+  flex-direction: column;
+}
+body .App .classes-wrapper .myclasses-wrapper .class-card .img-wrapper {
+  background-color: blue;
+  width: 170px;
+  height: 170px;
+  margin: 0 auto;
+}
+body .App .classes-wrapper .myclasses-wrapper .class-card .img-wrapper img {
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  background-size: cover;
+}
+body .App .classes-wrapper .myclasses-wrapper .class-card h3 {
+  text-align: center;
+  padding: 12px 2px;
+  font-size: 28px;
+  font-weight: var(--bold);
+  color: var(--bold-color);
+}
+body .App .classes-wrapper .myclasses-wrapper .class-card p {
+  text-align: center;
+  font-size: 14px;
+  color: var(--color-mainGreen);
+  margin-top: auto;
+}
+body .App .classes-wrapper .myclasses-wrapper .class-card .students-profiles-wrapper {
+  transform: translateX(-10px);
+  margin: 12px auto 0 auto;
+  position: relative;
+}
+body .App .classes-wrapper .myclasses-wrapper .class-card .students-profiles-wrapper .profileImg-wrapper {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  left: 0%;
+}
+body .App .classes-wrapper .myclasses-wrapper .class-card .students-profiles-wrapper .profileImg-wrapper:nth-child(1) {
+  width: 20px;
+}
+body .App .classes-wrapper .myclasses-wrapper .class-card .students-profiles-wrapper .profileImg-wrapper:nth-child(2) {
+  width: 40px;
+}
+body .App .classes-wrapper .myclasses-wrapper .class-card .students-profiles-wrapper .profileImg-wrapper:nth-child(3) {
+  width: 60px;
+}
+body .App .classes-wrapper .myclasses-wrapper .class-card .students-profiles-wrapper .profileImg-wrapper:nth-child(4) {
+  width: 80px;
+}
+body .App .classes-wrapper .myclasses-wrapper .class-card .students-profiles-wrapper .profileImg-wrapper:nth-child(5) {
+  width: 100px;
+}
+body .App .classes-wrapper .myclasses-wrapper .class-card .students-profiles-wrapper .profileImg-wrapper:nth-child(6) {
+  width: 120px;
+}
+body .App .classes-wrapper .myclasses-wrapper .class-card .students-profiles-wrapper .profileImg-wrapper:last-child {
+  position: relative;
+}
+body .App .classes-wrapper .myclasses-wrapper .class-card .students-profiles-wrapper .profileImg-wrapper img {
+  border: solid 3px var(--resize-bg);
+  width: 40px;
+  height: 40px;
+  position: relative;
+  left: 100%;
+  transform: translateX(-50%);
+  border-radius: 50%;
+}
+body .App .classes-wrapper .class-wrapper .students-wrapper {
+  background-color: var(--bg);
+  padding: 12px;
+}
+body .App .classes-wrapper .class-wrapper .students-wrapper .student-card-container {
+  background-color: var(--files-bg);
+  display: flex;
+  align-items: center;
+  margin: 5px 0;
+  padding: 16px 30px;
+}
+body .App .classes-wrapper .class-wrapper .students-wrapper .student-card-container .img-wrapper {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 16px;
+}
+body .App .classes-wrapper .class-wrapper .students-wrapper .student-card-container .img-wrapper img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-size: cover;
+  background-position: center;
+}
+body .App .classes-wrapper .class-wrapper .students-wrapper .student-card-container .name-wrapper {
+  color: var(--inputs-color);
+  font-size: 1rem;
+}
+body .App .classes-wrapper .class-wrapper .students-wrapper .student-card-container .name-wrapper .email {
+  font-size: 0.9rem;
+  color: var(--paragraph-color);
+}
+body .App .classes-wrapper .class-wrapper .students-wrapper .student-card-container .delete-wrapper {
+  margin-left: auto;
+  color: #d11534;
+  width: 35px;
+  height: 35px;
+  position: relative;
+  padding: 5px;
+  cursor: pointer;
+}
+body .App .classes-wrapper .class-wrapper .students-wrapper .student-card-container .delete-wrapper:active::after {
+  transform: scale(1);
+  opacity: 0.45;
+}
+body .App .classes-wrapper .class-wrapper .students-wrapper .student-card-container .delete-wrapper::after {
+  border-radius: 50%;
+  position: absolute;
+  inset: 0;
+  background-color: #d11534;
+  content: "";
+  transform: scale(0);
+  transition: transform 420ms cubic-bezier(0.075, 0.82, 0.465, 1);
+}
+body .App .classes-wrapper .class-wrapper .students-wrapper .student-card-container .delete-wrapper::before {
+  border-radius: 50%;
+  position: absolute;
+  inset: 0;
+  background-color: #d11534;
+  content: "";
+  opacity: 0;
+  transition: opacity 350ms;
+}
+body .App .classes-wrapper .class-wrapper .students-wrapper .student-card-container .delete-wrapper:hover::before {
+  opacity: 0.12;
+}
+body .App .classes-wrapper .class-wrapper .students-wrapper .student-card-container .delete-wrapper > svg {
+  height: 100%;
+  position: relative;
+  width: 100%;
+  z-index: 10;
 }
 body .App .question {
   overflow-y: scroll;
@@ -965,6 +1145,18 @@ body .App .navbar-right .account .profileImage {
   border-radius: 50%;
   background-size: cover;
   background-position: center;
+}
+body .App .page404 {
+  display: grid;
+  place-items: center;
+  height: calc(100vh - 94px);
+  position: relative;
+  font-size: 4.3rem;
+  font-family: var(--font-family);
+  background: var(--bg);
+  text-align: center;
+  color: transparent;
+  text-shadow: 0px 0px 0px #e9c46a, 1px 0px 0px #d1bf6f, 2px 0px 0px #b9ba73, 3px 0px 0px #a1b578, 4px 0px 0px #8ab17d, 5px 0px 0px #72ac81, 6px 0px 0px #5aa786, 7px 0px 0px #42a28a, 8px 0px 0px #2a9d8f;
 }
 body .prompUserContainer {
   position: absolute;

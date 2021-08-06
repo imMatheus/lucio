@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
 
 // Components
 import Homepage from './components/homepage/Homepage'
@@ -18,7 +18,8 @@ import { LeaderboardProvider } from './context/LeaderboardContext'
 
 //imports
 import './global.css'
-import PrivateRoute from 'components/routes/PrivateRoute'
+import PrivateRoute from './components/routes/PrivateRoute'
+import Page404 from 'components/page404/Page404'
 
 function App() {
     const { currentUser } = useAuth()
@@ -34,29 +35,37 @@ function App() {
                                 {/* <Algorithms />*/}
 
                                 <Route exact path='/' component={Homepage} />
-                                <Route exact path='/classes' component={Classes} />
+                                <Route exact path='/algorithms/*' component={Algorithms} />
+                                <Route exact path='/classes/*' component={Classes} />
+                                <Route exact path='/classes'>
+                                    <Redirect to='/classes/' />
+                                </Route>
 
                                 <PrivateRoute
                                     exact
                                     path='/signup'
-                                    condition={!!currentUser}
+                                    condition={!currentUser}
                                     redirectPath='/'
                                     Component={Signup}
                                 />
                                 <PrivateRoute
                                     exact
                                     path='/login'
-                                    condition={!!currentUser}
+                                    condition={!currentUser}
                                     redirectPath='/'
                                     Component={Login}
                                 />
                                 <PrivateRoute
                                     exact
                                     path='/forgot-password'
-                                    condition={!!currentUser}
+                                    condition={!currentUser}
                                     redirectPath='/'
                                     Component={ForgotPassword}
                                 />
+
+                                <Route>
+                                    <Page404 />
+                                </Route>
                             </Switch>
                         </div>
                     </Router>
