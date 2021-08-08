@@ -21,8 +21,6 @@ interface SubPartProps {
 }
 
 function Subpart({ header, content, compileMessage }: SubPartProps): ReactElement {
-    console.log(content)
-
     return (
         <div className='subpart'>
             <h4>{header}</h4>
@@ -65,7 +63,6 @@ export default function CompileView({ testCases }: Props): ReactElement {
 
     useEffect(() => {
         setCurrentTestCase(testCases[listPointer])
-        console.log('re-render')
     }, [listPointer, testCases])
 
     // changing the currentTc to the index of the btn that has been clicked
@@ -82,8 +79,6 @@ export default function CompileView({ testCases }: Props): ReactElement {
                     <div className='case-list'>
                         <ul>
                             {testCases?.map((item, index) => {
-                                console.log(item)
-
                                 // I use index to keep track of witch index we should show
                                 // on the right portion
                                 let color = item.correctAnswer ? 'green' : 'red'

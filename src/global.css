@@ -894,6 +894,82 @@ body .App .classes-wrapper .class-wrapper .students-wrapper .student-card-contai
   width: 100%;
   z-index: 10;
 }
+body .App .form {
+  height: calc(100vh - 94px);
+  width: 100vw;
+  display: grid;
+  grid-template-columns: auto auto 1fr;
+  background: var(--main-bg);
+  background-color: orange;
+  overflow-x: hidden;
+}
+body .App .form .resizebar {
+  cursor: ew-resize;
+  display: grid;
+  place-items: center;
+  width: 12px;
+  height: 100%;
+  position: sticky;
+  top: 0;
+  left: 0;
+  background-color: var(--resize-bg);
+}
+body .App .form .resizebar .dots {
+  height: 50px;
+  max-height: 90%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+body .App .form .resizebar .dots span {
+  display: block;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background-color: var(--dots-color);
+}
+body .App .form .editor-container {
+  background: green;
+  height: 100vh;
+  overflow-y: scroll;
+  display: grid;
+  grid-template-rows: 1fr auto;
+}
+body .App .form .editor-container .buttons-wrapper {
+  padding: 17px 12px;
+  display: flex;
+  justify-content: flex-end;
+  background: var(--inputs-bg);
+}
+body .App .form .editor-container .buttons-wrapper button {
+  cursor: pointer;
+  padding: 10px 16px;
+  margin: 6px;
+  border-radius: 4px;
+  background: transparent;
+  font-size: 0.9rem;
+  transition: box-shadow 220ms;
+}
+body .App .form .editor-container .buttons-wrapper button.testrun-btn {
+  border: solid 1px #2a9d8f;
+  color: #2a9d8f;
+}
+body .App .form .editor-container .buttons-wrapper button.submit-btn {
+  background: #2a9d8f;
+  border: none;
+  color: var(--bold-color);
+}
+body .App .form .editor-container .buttons-wrapper button.submit-btn:disabled, body .App .form .editor-container .buttons-wrapper button.testrun-btn:disabled {
+  opacity: 0.8;
+}
+body .App .form .editor-container .buttons-wrapper button:active, body .App .form .editor-container .buttons-wrapper button:hover {
+  outline: none;
+}
+body .App .form .editor-container .buttons-wrapper button:hover {
+  box-shadow: 1px 1px 3px 0px #2a9d8f;
+}
 body .App .question {
   overflow-y: scroll;
   height: 100%;
@@ -1017,89 +1093,6 @@ body .App .question .header .info .info-div.medium {
 }
 body .App .question .header .info .info-div.hard {
   color: red;
-}
-body .App .form {
-  height: 100vh;
-  width: 100vw;
-  display: grid;
-  grid-template-columns: auto auto 1fr;
-  background: var(--main-bg);
-  background-color: orange;
-  overflow-x: hidden;
-}
-body .App .form ::-webkit-scrollbar {
-  -webkit-appearance: none;
-  width: 0px;
-}
-body .App .form ::-webkit-scrollbar-thumb {
-  display: none;
-}
-body .App .form .resizebar {
-  cursor: ew-resize;
-  display: grid;
-  place-items: center;
-  width: 12px;
-  height: 100%;
-  position: sticky;
-  top: 0;
-  left: 0;
-  background-color: var(--resize-bg);
-}
-body .App .form .resizebar .dots {
-  height: 50px;
-  max-height: 90%;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-evenly;
-}
-body .App .form .resizebar .dots span {
-  display: block;
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
-  background-color: var(--dots-color);
-}
-body .App .form .editor-container {
-  background: green;
-  height: 100vh;
-  overflow-y: scroll;
-  display: grid;
-  grid-template-rows: 1fr auto;
-}
-body .App .form .editor-container .buttons-wrapper {
-  padding: 17px 12px;
-  display: flex;
-  justify-content: flex-end;
-  background: var(--inputs-bg);
-}
-body .App .form .editor-container .buttons-wrapper button {
-  cursor: pointer;
-  padding: 10px 16px;
-  margin: 6px;
-  border-radius: 4px;
-  background: transparent;
-  font-size: 0.9rem;
-  transition: box-shadow 220ms;
-}
-body .App .form .editor-container .buttons-wrapper button.testrun-btn {
-  border: solid 1px #2a9d8f;
-  color: #2a9d8f;
-}
-body .App .form .editor-container .buttons-wrapper button.submit-btn {
-  background: #2a9d8f;
-  border: none;
-  color: var(--bold-color);
-}
-body .App .form .editor-container .buttons-wrapper button.submit-btn:disabled, body .App .form .editor-container .buttons-wrapper button.testrun-btn:disabled {
-  opacity: 0.8;
-}
-body .App .form .editor-container .buttons-wrapper button:active, body .App .form .editor-container .buttons-wrapper button:hover {
-  outline: none;
-}
-body .App .form .editor-container .buttons-wrapper button:hover {
-  box-shadow: 1px 1px 3px 0px #2a9d8f;
 }
 body .App .navbar {
   text-decoration: none;

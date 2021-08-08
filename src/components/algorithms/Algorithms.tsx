@@ -1,6 +1,6 @@
 import React, { ReactElement, useRef, useState } from 'react'
 import EditorComponent from '../editor/Editor'
-import Question from './Question'
+import Question from '../question/Question'
 import { problems } from '../../problems/AlgorithmProblems'
 import CompileView from '../compiler/CompileView'
 interface Props {
@@ -34,8 +34,6 @@ export default function Algorithms({ type }: Props): ReactElement {
         // Turn off dragging flag when user mouse is up
         isDragging = false
     })
-
-    const test = () => console.log('ööö')
 
     const runCodeHandler = async (submit?: boolean) => {
         console.log('1000')
@@ -112,13 +110,19 @@ export default function Algorithms({ type }: Props): ReactElement {
                 </div>
             </div>
             <div className='editor-container'>
-                <div style={{ height: '100vh', display: 'grid', gridTemplateRows: '1fr auto' }}>
+                <div
+                    style={{
+                        // height: 'calc(100vh - 94px)',
+                        display: 'grid',
+                        gridTemplateRows: '1fr auto',
+                    }}
+                >
                     <EditorComponent setCurrentCode={setCurrentCode} />
                     <div className='buttons-wrapper'>
                         <button className='testrun-btn' onClick={() => runCodeHandler()}>
                             Run Code
                         </button>
-                        <button className='submit-btn' disabled={false} onClick={() => test()}>
+                        <button className='submit-btn' disabled={false}>
                             Submit Code
                         </button>
                     </div>

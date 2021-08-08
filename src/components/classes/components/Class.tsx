@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import mj from './mj-crying.jpg'
 import { fs } from '../../../firebase'
-import { useRouteMatch, useHistory, Route, Link, Switch } from 'react-router-dom'
+import { useRouteMatch, useHistory, Route, Link, Switch, useParams } from 'react-router-dom'
 import { useAuth } from '../../../context/AuthContext'
 import DeleteIcon from '@material-ui/icons/Delete'
 import Page404 from '../../page404/Page404'
@@ -16,6 +16,7 @@ export default function Class() {
     const { currentUser } = useAuth()
     const history = useHistory()
     const { path, url } = useRouteMatch()
+    const { classLink }: { classLink: string } = useParams()
 
     const renderCount = useRef(0)
     console.log(++renderCount.current)
@@ -27,15 +28,9 @@ export default function Class() {
     const [classData, setClassData] = useState<any>({})
     const [homework, setHomework] = useState<firebase.firestore.DocumentData[]>([])
 
-    console.log(classData)
-
     const [userIsOwnerOfClass, setUserIsOwnerOfClass] = useState(false)
     const [students, setStudents] = useState<any[]>([])
     const [emptyRoute, setEmptyRoute] = useState(false)
-
-    const classLink = url.split('/')[2] // splits at all '/' then takes the third one witch should be the link
-    const baseRoute = `${path.replace(/[*]/g, '')}${classLink}`
-    let date = new Date()
 
     useEffect(() => {
         if (!currentUser) return
@@ -53,7 +48,6 @@ export default function Class() {
                 setHomework(g)
             })
     }, [currentUser, classData.classID])
-    console.log(homework)
 
     useEffect(() => {
         let unsubscribe: any
@@ -79,8 +73,6 @@ export default function Class() {
                         snapshot.forEach((doc) => {
                             students.push(doc.data())
                         })
-
-                        // console.log('students', students)
 
                         const s = students.map((s) => s.studentUid) // s is an array of the students uid's
                         if (!s.includes(currentUser?.uid) && !isOwnerOfClass) {
@@ -121,8 +113,6 @@ export default function Class() {
     const deleteClassHandler = async () => {
         if (!window.confirm('Are you sure you want to delete this class?')) return
         fs.runTransaction(async (transaction) => {
-            console.log(transaction)
-
             for (const s of classData.students) {
                 await usersRef
                     .doc(s.studentUid) // go to the user in the users collection
@@ -236,58 +226,47 @@ export default function Class() {
             {emptyRoute ? (
                 <h3>couldn't find the class</h3>
             ) : (
-                <Switch>
-                    {console.log('path', path)}
-                    <Route exact path={`${baseRoute}/homework`}>
-                        <Link to={path}>to base</Link>
-                        <Homework classLink={classLink} classId={classData.classID} />
-                    </Route>
-                    <Route exact path={baseRoute}>
-                        <h3>{classLink}</h3>
-                        hej
-                        <h3>url = {url}</h3>
-                        <h3>path = {path}</h3>
-                        <h3>className = {classData.className}</h3>
-                        {userIsOwnerOfClass ? (
-                            <button onClick={deleteClassHandler}>Delete class</button>
-                        ) : (
-                            <button onClick={leaveClassHandler}>Leave class</button>
-                        )}
-                        <Link
-                            to={`${history.location.pathname + history.location.search}/homework`}
-                        >
-                            to homework
-                        </Link>
-                        <div className='homework-cards-container'>
-                            {homework?.map((home) => {
-                                return (
-                                    <HomeworkCard
-                                        name={home.homeworkName}
-                                        createdAt={home.createdAt}
-                                    />
-                                )
-                            })}
-                        </div>
-                        <div className='students-wrapper'>
-                            {students?.map((student: any, index: number) => {
-                                //TODO change to uuid
-                                return (
-                                    <StudentCard
-                                        key={uuidv4()}
-                                        name={student.displayName}
-                                        studentUid={student.userUID}
-                                        email={student.email}
-                                        joinedAt={student.joinedAt}
-                                        profileImage={student.profileImage}
-                                    />
-                                )
-                            })}
-                        </div>
-                    </Route>
-                    <Route>
-                        <Page404 />
-                    </Route>
-                </Switch>
+                <div>
+                    <h3>{classLink}</h3>
+                    hej
+                    <h3>url = {url}</h3>
+                    <h3>path = {path}</h3>
+                    <h3>className = {classData.className}</h3>
+                    {userIsOwnerOfClass ? (
+                        <button onClick={deleteClassHandler}>Delete class</button>
+                    ) : (
+                        <button onClick={leaveClassHandler}>Leave class</button>
+                    )}
+                    <Link to={`${history.location.pathname + history.location.search}/homework`}>
+                        to homework
+                    </Link>
+                    <div className='homework-cards-container'>
+                        {homework?.map((home) => {
+                            return (
+                                <HomeworkCard
+                                    key={uuidv4()}
+                                    name={home.homeworkName}
+                                    createdAt={home.createdAt}
+                                />
+                            )
+                        })}
+                    </div>
+                    <div className='students-wrapper'>
+                        {students?.map((student: any) => {
+                            //TODO change to uuid
+                            return (
+                                <StudentCard
+                                    key={uuidv4()}
+                                    name={student.displayName}
+                                    studentUid={student.userUID}
+                                    email={student.email}
+                                    joinedAt={student.joinedAt}
+                                    profileImage={student.profileImage}
+                                />
+                            )
+                        })}
+                    </div>
+                </div>
             )}
         </div>
     )

@@ -10,19 +10,13 @@ const EditorComponent: React.FC<Props> = ({ setCurrentCode }: Props) => {
     const editorRef = useRef<any>(null)
 
     const wrapperRef = useRef<HTMLDivElement>(null)
-    console.log(1)
 
     function handleEditorDidMount(editor: any) {
         editorRef.current = editor
     }
 
-    window.onresize = function () {
-        console.log('123')
-    }
-
     const handleEditorChange = (code: any) => {
         setCurrentCode(code)
-        console.log(code)
     }
 
     return (

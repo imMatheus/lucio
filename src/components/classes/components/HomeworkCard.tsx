@@ -9,8 +9,6 @@ interface Props {
 
 export default function HomeworkCard({ name, createdAt }: Props): ReactElement {
     const date = new Date()
-    console.log(date)
-    console.log(createdAt)
     let y = createdAt.toDate()
     console.log('y', y)
 

@@ -16,16 +16,12 @@ import { useAuth } from '../../context/AuthContext'
 // import Page404 from '../404page/Page_404'
 import User from '../../types/User'
 import Class from './components/Class'
+import Homework from './components/homework/Homework'
+import HomeworkEditor from './components/homework/HomeworkEditor'
 import MyClasses from './components/MyClasses'
 
 export default function Classes(): ReactElement {
     const { currentUser } = useAuth()
-    const { path, url } = useRouteMatch()
-    const location = useLocation()
-    // console.log(currentUser)
-    console.log('path', path)
-    console.log('url', url)
-    console.log('location', location)
 
     return (
         <Router>
@@ -34,14 +30,17 @@ export default function Classes(): ReactElement {
                     <Switch>
                         {!currentUser && <p>pleas log you ass in </p>}
                         <Route exact path={'/classes/'}>
-                            {console.log('oooo')}
                             <MyClasses />
                         </Route>
-                        <Route exact path={`${path}*`}>
-                            {console.log('hello')}
+                        <Route exact path={`/classes/:classLink`}>
                             <Class />
                         </Route>
-
+                        <Route exact path={`/classes/:classLink/homework`}>
+                            <Homework />
+                        </Route>
+                        <Route exact path={`/classes/:classLink/homework/:homeworkLink`}>
+                            <HomeworkEditor />
+                        </Route>
                         <Route>
                             <Page404 />
                         </Route>

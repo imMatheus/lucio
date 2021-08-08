@@ -2,7 +2,7 @@ import firebase from 'firebase/app'
 
 /**
  * @param {CollectionReference} ref - a ref to a firestore collection
- * @return {string} class link - a random generated string of 6 characters, exempla 'djA1k8'
+ * @return {string} class link - a random generated string of 7 characters, exempla 'djAq1k8'
  */
 
 export const generateNewLink = async (
@@ -10,7 +10,6 @@ export const generateNewLink = async (
 ): Promise<string> => {
     const LINK_LENGTH = 7 // length of link
     const alphabet = 'abcdefghijklmnopqrstuvwxyz'
-    console.log(alphabet.length)
 
     const upperCaseAlphabet: string = alphabet // converts it into uppercase
         .split('')
@@ -38,7 +37,6 @@ export const generateNewLink = async (
             .get()
             // eslint-disable-next-line no-loop-func
             .then((snapshot: firebase.firestore.DocumentData) => {
-                console.log(snapshot)
                 if (snapshot.empty) newLink = true
             })
     }

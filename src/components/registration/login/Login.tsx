@@ -34,10 +34,6 @@ export default function Login(): ReactElement {
     const signInWithGoogle = async (e: any) => {
         e.preventDefault()
         try {
-            // const provider = new auth.GoogleAuthProvider()
-            // const provider =  firebase.auth.
-            console.log(firebase)
-
             // await auth.signInWithPopup(provider).catch((error) => {
             //     alert(error.message)
             // })

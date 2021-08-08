@@ -108,9 +108,7 @@ export default function MyClasses(): ReactElement {
             <button onClick={addClassHandler}>Add class</button>
             <button onClick={joinClassHandler}>join class</button>
             {userClasses ? (
-                userClasses.map((classItem: Class, index: number) => {
-                    // console.log(classItem)
-
+                userClasses.map((classItem: Class) => {
                     return (
                         <ClassCard
                             key={uuidv4()} //TODO change index to uuid

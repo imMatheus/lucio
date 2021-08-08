@@ -1,15 +1,14 @@
-@import './question.scss';
 .form {
     // removing the scrollbar on windows
-    ::-webkit-scrollbar {
-        -webkit-appearance: none;
-        width: 0px;
-    }
-    ::-webkit-scrollbar-thumb {
-        display: none;
-    }
+    // ::-webkit-scrollbar {
+    //     -webkit-appearance: none;
+    //     width: 0px;
+    // }
+    // ::-webkit-scrollbar-thumb {
+    //     display: none;
+    // }
 
-    height: 100vh;
+    height: calc(100vh - 94px);
     width: 100vw;
     display: grid;
     grid-template-columns: auto auto 1fr;

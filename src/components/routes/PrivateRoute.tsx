@@ -13,8 +13,6 @@ export default function PrivateRoute({
     condition,
     ...RouteProps
 }: Props): ReactElement {
-    console.log(RouteProps)
-
     return (
         <Route
             {...RouteProps}
