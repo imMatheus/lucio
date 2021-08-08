@@ -686,27 +686,6 @@ body .App .classes-wrapper {
   display: flex;
   background-color: var(--bg);
 }
-body .App .classes-wrapper .sidebar {
-  padding: 18px 0px;
-  min-width: 220px;
-  background-color: var(--files-bg);
-}
-body .App .classes-wrapper .sidebar .option-row {
-  padding: 5px 18px;
-  display: flex;
-  color: var(--dots-color);
-  cursor: cursor;
-  justify-content: space-between;
-}
-body .App .classes-wrapper .sidebar .option-row:hover {
-  opacity: 0.5;
-}
-body .App .classes-wrapper .sidebar .option-row.selected {
-  color: var(--color-mainGreen);
-}
-body .App .classes-wrapper .sidebar .option-row.selected:hover {
-  opacity: 1;
-}
 body .App .classes-wrapper .content-wrapper {
   width: 100%;
   height: 100%;
@@ -792,6 +771,56 @@ body .App .classes-wrapper .myclasses-wrapper .class-card .students-profiles-wra
   transform: translateX(-50%);
   border-radius: 50%;
 }
+body .App .classes-wrapper .class-wrapper {
+  padding: 12px 50px;
+}
+body .App .classes-wrapper .class-wrapper .homework-cards-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  row-gap: 16px;
+  column-gap: 16px;
+}
+body .App .classes-wrapper .class-wrapper .homework-cards-container .homework-card {
+  padding: 16px;
+  border-radius: 8px;
+  border: solid 1px var(--inputs-bg);
+}
+body .App .classes-wrapper .class-wrapper .homework-cards-container .homework-card-content {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  color: rgba(216, 213, 213, 0.836);
+}
+body .App .classes-wrapper .class-wrapper .homework-cards-container .homework-card-content svg {
+  width: 16px;
+  height: 16px;
+  margin-right: 9px;
+  flex-shrink: 0;
+}
+body .App .classes-wrapper .class-wrapper .homework-cards-container .homework-card-content .title {
+  margin-bottom: 20px;
+  font-size: 0.92rem;
+  display: flex;
+  align-items: center;
+  color: #2a9d8f;
+}
+body .App .classes-wrapper .class-wrapper .homework-cards-container .homework-card-content .title svg {
+  color: rgba(216, 213, 213, 0.836);
+  align-self: flex-start;
+  transform: translateY(2px);
+}
+body .App .classes-wrapper .class-wrapper .homework-cards-container .homework-card-content .metadata {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.86rem;
+}
+body .App .classes-wrapper .class-wrapper .homework-cards-container .homework-card-content .metadata > div {
+  display: flex;
+  align-items: center;
+}
+body .App .classes-wrapper .class-wrapper .homework-cards-container .homework-card-content .metadata > div svg {
+  margin-right: 10px;
+}
 body .App .classes-wrapper .class-wrapper .students-wrapper {
   background-color: var(--bg);
   padding: 12px;
@@ -802,6 +831,7 @@ body .App .classes-wrapper .class-wrapper .students-wrapper .student-card-contai
   align-items: center;
   margin: 5px 0;
   padding: 16px 30px;
+  border-radius: 8px;
 }
 body .App .classes-wrapper .class-wrapper .students-wrapper .student-card-container .img-wrapper {
   width: 50px;

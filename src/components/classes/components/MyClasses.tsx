@@ -4,6 +4,7 @@ import { fs } from '../../../firebase'
 import ClassCard from './ClassCard'
 import Class from '../../../types/Class'
 import { useAuth } from '../../../context/AuthContext'
+import { v4 as uuidv4 } from 'uuid'
 import { useHistory, useRouteMatch } from 'react-router-dom'
 import { generateNewLink } from '../../../utils/generateNewLink'
 import { firestore } from 'firebase-admin'
@@ -112,7 +113,7 @@ export default function MyClasses(): ReactElement {
 
                     return (
                         <ClassCard
-                            key={index} //TODO change index to uuid
+                            key={uuidv4()} //TODO change index to uuid
                             classData={classItem}
                         />
                     )

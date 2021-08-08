@@ -1,10 +1,10 @@
-import React, { ReactElement } from 'react'
+import React from 'react'
+import { Link } from 'react-router-dom'
 import { v4 as uuidv4 } from 'uuid'
 import { useLeaderboard } from '../../context/LeaderboardContext'
 import User from '../../types/User'
-import Leaderboard from '../../types/Leaderboard'
 
-export default function Homepage(): ReactElement {
+export default function Homepage() {
     const { leaderboard } = useLeaderboard()
 
     return (
@@ -16,12 +16,12 @@ export default function Homepage(): ReactElement {
                 <div className='content'>
                     <h1>LucioCode</h1>
                     <div className='buttons'>
-                        {/* <Link to='/algorithms/problems'> */}
-                        <div className='outline-btn'>Algorithms</div>
-                        {/* </Link> */}
-                        {/* <Link to='/css/problems'> */}
-                        <div className='outline-btn'>Css Arena</div>
-                        {/* </Link> */}
+                        <Link to='/algorithms/problems'>
+                            <div className='outline-btn'>Algorithms</div>
+                        </Link>
+                        <Link to='/css/problems'>
+                            <div className='outline-btn'>Css Arena</div>
+                        </Link>
                     </div>
                 </div>
             </div>

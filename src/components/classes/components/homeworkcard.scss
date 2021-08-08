@@ -1,0 +1,50 @@
+.homework-cards-container {
+    display: grid;
+    $spacing: 16px;
+    grid-template-columns: 1fr 1fr;
+    row-gap: $spacing;
+    column-gap: $spacing;
+    .homework-card {
+        padding: 16px;
+        border-radius: $borderRadius-soft;
+        border: solid 1px var(--inputs-bg);
+
+        &-content {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            color: rgba(216, 213, 213, 0.836);
+            svg {
+                width: 16px;
+                height: 16px;
+                margin-right: 9px;
+                flex-shrink: 0;
+            }
+            .title {
+                margin-bottom: 20px;
+                font-size: $fontSize-inputs;
+                display: flex;
+                align-items: center;
+                color: $color-green;
+                svg {
+                    color: rgba(216, 213, 213, 0.836);
+                    align-self: flex-start;
+                    transform: translateY(2px);
+                }
+            }
+            .metadata {
+                display: flex;
+                justify-content: space-between;
+                font-size: $fontSize-variable;
+                > div {
+                    display: flex;
+                    align-items: center;
+
+                    svg {
+                        margin-right: 10px;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -17,7 +17,6 @@ import { useAuth } from '../../context/AuthContext'
 import User from '../../types/User'
 import Class from './components/Class'
 import MyClasses from './components/MyClasses'
-import Sidebar from './components/Sidebar'
 
 export default function Classes(): ReactElement {
     const { currentUser } = useAuth()
@@ -31,7 +30,6 @@ export default function Classes(): ReactElement {
     return (
         <Router>
             <div className='classes-wrapper'>
-                <Sidebar />
                 <div className='content-wrapper'>
                     <Switch>
                         {!currentUser && <p>pleas log you ass in </p>}

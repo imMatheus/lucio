@@ -1,4 +1,7 @@
 .class-wrapper {
+    padding: 12px 50px;
+    @import './homeworkcard.scss';
+
     .students-wrapper {
         background-color: var(--bg);
         padding: 12px;
@@ -9,6 +12,7 @@
             align-items: center;
             margin: 5px 0;
             padding: 16px 30px;
+            border-radius: 8px;
 
             .img-wrapper {
                 width: 50px;

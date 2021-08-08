@@ -59,6 +59,7 @@ export const ClassesProvider: React.FC = ({ children }) => {
             })
         return () => unsubscribe()
     }, [currentUser])
+    //TODO @bug when swapping accounts, the classes tend not the get updated
 
     const value = {
         userClasses,

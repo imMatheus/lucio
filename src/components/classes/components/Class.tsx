@@ -1,13 +1,16 @@
 import React, { useEffect, useRef, useState } from 'react'
 import mj from './mj-crying.jpg'
 import { fs } from '../../../firebase'
-import { useRouteMatch, useHistory, Route, Link, Switch, useLocation } from 'react-router-dom'
+import { useRouteMatch, useHistory, Route, Link, Switch } from 'react-router-dom'
 import { useAuth } from '../../../context/AuthContext'
 import DeleteIcon from '@material-ui/icons/Delete'
 import Page404 from '../../page404/Page404'
 import { default as ClassType } from '../../../types/Class'
+import { v4 as uuidv4 } from 'uuid'
 import Student from '../../../types/Student'
 import Homework from './homework/Homework'
+import HomeworkCard from './HomeworkCard'
+import firebase from 'firebase/app'
 
 export default function Class() {
     const { currentUser } = useAuth()
@@ -22,16 +25,35 @@ export default function Class() {
     const usersRef = fs.collection('users')
 
     const [classData, setClassData] = useState<any>({})
+    const [homework, setHomework] = useState<firebase.firestore.DocumentData[]>([])
+
     console.log(classData)
 
     const [userIsOwnerOfClass, setUserIsOwnerOfClass] = useState(false)
-    const [students, setStudents] = useState<any>([])
+    const [students, setStudents] = useState<any[]>([])
     const [emptyRoute, setEmptyRoute] = useState(false)
 
     const classLink = url.split('/')[2] // splits at all '/' then takes the third one witch should be the link
     const baseRoute = `${path.replace(/[*]/g, '')}${classLink}`
+    let date = new Date()
 
-    console.log('classLink', classLink)
+    useEffect(() => {
+        if (!currentUser) return
+
+        // get users classes, will push all id's to usersClassesRef
+        classesRef
+            .doc(classData.classID)
+            .collection('homework')
+            .get()
+            .then((querySnapshot) => {
+                let g: firebase.firestore.DocumentData[] = []
+                querySnapshot.forEach((doc) => {
+                    g.push(doc.data())
+                })
+                setHomework(g)
+            })
+    }, [currentUser, classData.classID])
+    console.log(homework)
 
     useEffect(() => {
         let unsubscribe: any
@@ -49,9 +71,6 @@ export default function Class() {
                     if (dummyClass.ownerUid === currentUser?.uid) isOwnerOfClass = true
                 })
 
-                /**
-                 * @return {Array(String)} students - a list of all the students uid
-                 */
                 await classesRef
                     .doc(dummyClass.classID)
                     .collection('students')
@@ -160,25 +179,27 @@ export default function Class() {
         //TODO change to use transactions
         const removeStudentHandler = async () => {
             if (!window.confirm(`Are you sure you want to kick ${name}?`)) return // ask user if they are sure they want to leave
-            await classesRef
-                .doc(classData.classID) // go to the class document
-                .collection('students') // go to the students collection of this class
-                .doc(studentUid) // find the user in the collection
-                .delete() // delete it from the collection
-                .then(() => {
-                    console.log('Document successfully deleted!')
-                })
-                .catch((error) => {
-                    console.error('Error removing document: ', error)
-                })
+            fs.runTransaction(async (transaction) => {
+                await classesRef
+                    .doc(classData.classID) // go to the class document
+                    .collection('students') // go to the students collection of this class
+                    .doc(studentUid) // find the user in the collection
+                    .delete() // delete it from the collection
+                    .then(() => {
+                        console.log('Document successfully deleted!')
+                    })
+                    .catch((error) => {
+                        console.error('Error removing document: ', error)
+                    })
 
-            await usersRef
-                .doc(studentUid) // go to the user in the users collection
-                .collection('classes') // go in to the users classes
-                .doc(classData.classID) // find the current class
-                .delete() // delete the class from collection
-                .then(() => console.log('deleted from users classes'))
-                .catch(() => console.log('shit hit the fan'))
+                await usersRef
+                    .doc(studentUid) // go to the user in the users collection
+                    .collection('classes') // go in to the users classes
+                    .doc(classData.classID) // find the current class
+                    .delete() // delete the class from collection
+                    .then(() => console.log('deleted from users classes'))
+                    .catch(() => console.log('shit hit the fan'))
+            })
         }
         return (
             <div className='student-card-container'>
@@ -226,6 +247,7 @@ export default function Class() {
                         hej
                         <h3>url = {url}</h3>
                         <h3>path = {path}</h3>
+                        <h3>className = {classData.className}</h3>
                         {userIsOwnerOfClass ? (
                             <button onClick={deleteClassHandler}>Delete class</button>
                         ) : (
@@ -236,13 +258,22 @@ export default function Class() {
                         >
                             to homework
                         </Link>
-                        base
+                        <div className='homework-cards-container'>
+                            {homework?.map((home) => {
+                                return (
+                                    <HomeworkCard
+                                        name={home.homeworkName}
+                                        createdAt={home.createdAt}
+                                    />
+                                )
+                            })}
+                        </div>
                         <div className='students-wrapper'>
                             {students?.map((student: any, index: number) => {
                                 //TODO change to uuid
                                 return (
                                     <StudentCard
-                                        key={index}
+                                        key={uuidv4()}
                                         name={student.displayName}
                                         studentUid={student.userUID}
                                         email={student.email}
