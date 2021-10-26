@@ -1,0 +1,8 @@
+.my {
+    background: pink;
+    @apply text-right;
+
+    & .hej {
+        background: orange;
+    }
+}
