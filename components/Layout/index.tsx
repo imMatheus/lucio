@@ -3,7 +3,7 @@ import Navbar from '../Navbar'
 
 const Layout: React.FC = ({ children }) => {
     return (
-        <section className='bg-gray-700 min-h-screen'>
+        <section className='bg-[#0d1117] min-h-screen flex flex-col'>
             <Navbar />
             {children}
         </section>

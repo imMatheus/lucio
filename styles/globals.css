@@ -42,6 +42,16 @@ p {
     @apply text-sm;
 }
 
+/* Change the white to any color */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 100px #0d1117 inset !important;
+    -webkit-text-fill-color: white !important;
+    color: #fff;
+}
+
 *,
 *::before,
 *::after {

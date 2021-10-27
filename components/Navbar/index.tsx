@@ -1,6 +1,7 @@
 import React, { ReactElement } from 'react'
 import styles from './Navbar.module.scss'
 import { Bell, Plus, ChevronDown } from 'react-feather'
+import Link from 'next/link'
 
 export default function Navbar(): ReactElement {
     return (
@@ -9,8 +10,13 @@ export default function Navbar(): ReactElement {
                 <div className={styles.searchWrapper}>
                     <form action=''></form>
                 </div>
-                <p className={styles.tab}>Pull request</p>
-                <p className={styles.tab}>Issues</p>
+                <Link href='/classes' passHref={true}>
+                    <p className={styles.tab}>Classes</p>
+                </Link>
+                <Link href='/register' passHref={true}>
+                    <p className={styles.tab}>Sign up</p>
+                </Link>
+
                 <p className={styles.tab}>Marketplace</p>
                 <p className={styles.tab}>Explore</p>
             </section>
