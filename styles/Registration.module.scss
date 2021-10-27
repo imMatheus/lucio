@@ -4,8 +4,7 @@ $modal-bg: #0c162d;
     width: 600px;
     max-width: 90vw;
     background-color: $modal-bg;
-
-    @apply mt-14 p-4 rounded-lg;
+    @apply mt-14 p-6 rounded-lg;
 }
 
 .typedText {
