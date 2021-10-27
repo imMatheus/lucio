@@ -17,9 +17,11 @@
         "paths": {
             "@/components/*": ["components/*"],
             "@/utils/*": ["utils/*"],
+            "@/context/*": ["context/*"],
             "@/types/*": ["types/*"],
             "@/hooks/*": ["hooks/*"],
-            "@/firebase/*": ["firebase/*"]
+            "@/firebase/*": ["firebase/*"],
+            "@/styles/*": ["styles/styles/*"]
         }
     },
     "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],

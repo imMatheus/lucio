@@ -1,0 +1,15 @@
+.nav {
+    @apply flex bg-gray-900 text-white py-4 px-8;
+}
+
+.searchWrapper {
+    @apply bg-red-700 py-1 px-2 mr-4;
+}
+
+.tab {
+    @apply font-bold mr-4 hover:opacity-80 transition-colors;
+}
+
+.controlsSpan {
+    @apply flex text-sm mr-4;
+}
