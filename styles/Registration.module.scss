@@ -1,5 +1,5 @@
+@use 'sass:math';
 $modal-bg: #0c162d;
-
 $color-blue: #388659;
 $color-green: #eff2c0;
 $shadow-number: 5;
@@ -12,7 +12,7 @@ $value: ();
         $offset-y *
         $i
         0px
-        mix($color-green, $color-blue, 100% / $shadow-number * ($i));
+        mix($color-green, $color-blue, math.div(100%, $shadow-number) * ($i));
     $value: append($value, $theShadow, comma);
 }
 
