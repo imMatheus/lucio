@@ -7,7 +7,7 @@
 }
 
 .tab {
-    @apply font-bold mr-4 hover:opacity-80 transition-colors;
+    @apply font-bold mr-4 hover:opacity-80 transition-colors cursor-pointer;
 }
 
 .controlsSpan {

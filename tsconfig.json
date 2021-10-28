@@ -20,8 +20,9 @@
             "@/context/*": ["context/*"],
             "@/types/*": ["types/*"],
             "@/hooks/*": ["hooks/*"],
+            "@/styles/*": ["styles/styles/*"],
             "@/firebase/*": ["firebase/*"],
-            "@/styles/*": ["styles/styles/*"]
+            "@/querys/*": ["firebase/querys/*"]
         }
     },
     "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],

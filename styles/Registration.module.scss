@@ -1,18 +1,20 @@
 @use 'sass:math';
-$modal-bg: #0c162d;
-$color-blue: #388659;
-$color-green: #eff2c0;
+@use 'colors';
+// $modal-bg: #0c162d;
+// $color-blue: #388659;
+// $color-green: #eff2c0;
 $shadow-number: 5;
 $offset-x: 8px;
 $offset-y: -8px;
 $value: ();
+
 @for $i from 0 through ($shadow-number) {
     $theShadow: $offset-x *
         $i
         $offset-y *
         $i
         0px
-        mix($color-green, $color-blue, math.div(100%, $shadow-number) * ($i));
+        mix(colors.$color-green, colors.$color-blue, math.div(100%, $shadow-number) * ($i));
     $value: append($value, $theShadow, comma);
 }
 
@@ -24,7 +26,7 @@ $value: ();
     box-shadow: $value;
     animation: shadowFadeIn 1s;
 
-    @apply mt-20 p-6 rounded-lg mx-auto;
+    @apply my-20 p-6 rounded-lg mx-auto;
 }
 
 @media screen and (max-width: 480px) {
@@ -39,24 +41,5 @@ $value: ();
     }
     to {
         box-shadow: $value;
-    }
-}
-
-.blob {
-    width: 70px;
-    height: 70px;
-    border-radius: 20% 10% / 90%;
-    position: absolute;
-    background: #f00;
-    filter: blur(20px);
-    left: 400px;
-    transform: translate(0px, 0px);
-
-    animation: blobMove 5s infinite alternate;
-}
-
-@keyframes blobMove {
-    to {
-        transform: translate(-30px, 30px);
     }
 }

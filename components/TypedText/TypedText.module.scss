@@ -1,7 +1,7 @@
 $modal-bg: #0d1117;
 
 .typedText {
-    --typewriterSpeed: 700ms;
+    --typewriterSpeed: 500ms;
     @apply relative w-max;
 
     line-break: break-all;

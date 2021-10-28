@@ -8,7 +8,7 @@ interface TypedTextProps extends React.HTMLAttributes<HTMLParagraphElement> {
 
 export default function TypedText({ delay = 0, children, ...props }: TypedTextProps) {
     const length = children?.toString().length // length of string
-    const animationTime = 1000 // css animation time is 700ms, added 300ms to wait and stop when its done
+    const animationTime = 750 // css animation time is 500ms, added 250ms to wait and stop when its done
     delay *= animationTime
     const [showBlinker, setShowBlinker] = useState(false)
     const [animationDone, setAnimationDone] = useState(false)

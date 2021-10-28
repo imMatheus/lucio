@@ -5,19 +5,42 @@ import * as EmailValidator from 'email-validator'
 import { passwordStrength } from 'check-password-strength'
 import TypedText from '@/components/TypedText'
 import InputField from '@/components/InputField'
+import * as style from '@dicebear/adventurer-neutral'
+import { createAvatar } from '@dicebear/avatars'
+import { useAuth } from '@/context/AuthContext'
 
 export default function Register(): ReactElement {
+    const { signup } = useAuth()
+    const [email, setEmail] = useState('')
+    const [isValidEmail, setIsValidEmail] = useState(false)
     const [showPassword, setShowPassword] = useState(false)
     const [showPasswordContainer, setShowPasswordContainer] = useState(false)
-    const [showUserNameContainer, setShowUserNameContainer] = useState(false)
-    const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [username, setUsername] = useState('')
-    const [isValidEmail, setIsValidEmail] = useState(false)
+    const [showUserNameContainer, setShowUserNameContainer] = useState(false)
+    const [avatar, setAvatar] = useState('')
 
     useEffect(() => {
         setIsValidEmail(EmailValidator.validate(email))
+        setAvatar(
+            createAvatar(style, {
+                seed: email,
+            })
+        )
     }, [email])
+
+    async function signupHandler() {
+        console.log('aaa')
+
+        try {
+            await signup(email, password, username, avatar)
+        } catch (error) {
+            alert(error)
+        }
+    }
+
+    const buff = new Buffer(avatar)
+    const base64data = buff.toString('base64')
 
     const modalBg = '#0d1117'
 
@@ -29,6 +52,7 @@ export default function Register(): ReactElement {
                 <TypedText className='text-[#627597]' delay={1}>
                     Let´s begin the adventure
                 </TypedText>
+                <img src={`data:image/svg+xml;base64,${base64data}`} alt='' width={100} />
                 <TypedText className='text-[#00cfc8] text-base font-semibold mt-5' delay={2}>
                     Enter your email
                 </TypedText>
@@ -40,7 +64,6 @@ export default function Register(): ReactElement {
                     success={isValidEmail}
                     buttonText='Continue'
                 />
-
                 {showPasswordContainer && (
                     <>
                         <TypedText
@@ -85,7 +108,7 @@ export default function Register(): ReactElement {
                                 <InputField
                                     state={username}
                                     setState={setUsername}
-                                    onClick={() => alert('pinking')}
+                                    onClick={signupHandler}
                                     type='text'
                                     buttonText='Sing up'
                                     success={username.length > 1}
