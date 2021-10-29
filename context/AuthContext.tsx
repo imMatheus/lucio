@@ -112,7 +112,7 @@ export const AuthProvider: React.FC = ({ children }) => {
                     })
                 )
                 const data = response.data()
-                return { ...data, ...user, email: '', profileImage: '', displayName: '' }
+                return { email: '', profileImage: '', displayName: '', ...data, ...user }
             }
             const response = await fetchUser(user)
 
