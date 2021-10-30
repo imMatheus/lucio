@@ -14,5 +14,41 @@
 }
 
 .studentCard {
-    @apply bg-green-700 py-4 px-6 border-b border-blue-700 flex items-center;
+    font-weight: 500;
+    @apply bg-green-700 py-4 text-sm px-6 border-b border-blue-500;
+}
+
+.styledTable {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    // min-width: 400px;
+    width: 100%;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+.styledTable thead tr {
+    background-color: #009879;
+    color: #ffffff;
+    text-align: left;
+}
+.styledTable th,
+.styledTable td {
+    padding: 12px 15px;
+}
+
+.styledTable tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.styledTable tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.styledTable tbody tr:last-of-type {
+    border-bottom: 2px solid #009879;
+}
+.styledTable tbody tr.activeRow {
+    font-weight: bold;
+    color: #009879;
 }
