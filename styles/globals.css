@@ -15,32 +15,32 @@ a {
 }
 
 h1 {
-    font-weight: 700;
-    @apply text-3xl;
+    font-weight: 700 !important;
+    @apply text-3xl !important;
 }
 h2 {
-    font-weight: 700;
-    @apply text-2xl;
+    font-weight: 700 !important;
+    @apply text-2xl !important;
 }
 h3 {
-    font-weight: 600;
-    @apply text-xl;
+    font-weight: 600 !important;
+    @apply text-xl !important;
 }
 h4 {
-    font-weight: 600;
-    @apply text-lg;
+    font-weight: 600 !important;
+    @apply text-lg !important;
 }
 h5 {
-    font-weight: 500;
-    @apply text-lg;
+    font-weight: 500 !important;
+    @apply text-lg !important;
 }
 h6 {
-    font-weight: 500;
-    @apply text-base;
+    font-weight: 500 !important;
+    @apply text-base !important;
 }
 
 p {
-    @apply text-sm;
+    @apply text-sm !important;
 }
 
 /* Change the white to any color */

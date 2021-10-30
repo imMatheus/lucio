@@ -11,15 +11,19 @@ import {
     limit,
     DocumentData,
     DocumentSnapshot,
+    SnapshotOptions,
     QueryDocumentSnapshot,
 } from 'firebase/firestore'
+
 import {
     createUserWithEmailAndPassword,
     User as FirebaseUser,
     signInWithEmailAndPassword,
     sendPasswordResetEmail,
     UserCredential,
+    onAuthStateChanged,
 } from 'firebase/auth'
+
 import { auth, fs } from '@/firebase/index'
 import User, { FirestoreUser } from '@/types/User'
 
@@ -100,26 +104,35 @@ export const AuthProvider: React.FC = ({ children }) => {
     const [currentUser, setCurrentUser] = useState<User | null>(null)
 
     useEffect(() => {
-        const unsubscribe = auth.onAuthStateChanged(async (user) => {
-            const fetchUser = async (user: FirebaseUser | null) => {
-                if (!user) return null
-                // getting the users data from firestore
-                const response = await getDoc(
-                    doc(fs, 'users', user.uid).withConverter({
-                        toFirestore: (data: FirestoreUser) => data,
-                        fromFirestore: (snap: QueryDocumentSnapshot) =>
-                            snap.data() as FirestoreUser,
-                    })
-                )
-                const data = response.data()
-                return { email: '', profileImage: '', displayName: '', ...data, ...user }
-            }
-            const response = await fetchUser(user)
+        const unsubscribe = onAuthStateChanged(auth, async (user) => {
+            if (!user) return setCurrentUser(null)
 
-            setCurrentUser(response)
+            // getting the users data from firestore
+            const response = await getDoc(
+                doc(fs, 'users', user.uid).withConverter({
+                    toFirestore: (data: FirestoreUser) => data,
+                    fromFirestore: (
+                        snap: QueryDocumentSnapshot<FirestoreUser>,
+                        options: SnapshotOptions
+                    ) => snap.data(options),
+                })
+            )
+
+            console.log('response')
+
+            console.log(response.data())
+            console.log(user)
+
+            const data: User = { ...user, ...(response.data() as FirestoreUser) }
+
+            //TODO dix dis
+            setCurrentUser(data)
         })
         return unsubscribe
     }, [])
+    console.log('final user is here ~~~~')
+
+    console.log(currentUser)
 
     const value = {
         currentUser,

@@ -47,8 +47,8 @@ const OptionItem: React.FC<OptionItemProps> = ({
 
 export default function Navbar(): ReactElement {
     const { currentUser } = useAuth()
-    const [extraOpen, setExtraOpen] = useState(true)
-    const [profileOpen, setProfileOpen] = useState(true)
+    const [extraOpen, setExtraOpen] = useState(false)
+    const [profileOpen, setProfileOpen] = useState(false)
     const extraRef = useRef(null)
     const profileRef = useRef(null)
     // useClickOutside(extraRef, () => setExtraOpen((c) => (c ? false:c )))
