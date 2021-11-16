@@ -17,12 +17,11 @@ export default function StudentCard({ image, name }: Props): ReactElement {
         //     studetn card
         // </div>
         <tr className={styles.studentCard}>
-            <td>
-                <span className='rounded-full bg-red-400 w-6 h-6 mr-3 overflow-hidden'>
-                    <SVG src={image} />
-                </span>
+            <td className='flex items-center'>
+                <SVG src={image} className='w-8 h-8 rounded-full overflow-hidden mr-3' />
+                {name}
             </td>
-            <td>impedit modi dolor?</td>
+            <td>10000</td>
             <td>10000</td>
             <td>10000</td>
         </tr>

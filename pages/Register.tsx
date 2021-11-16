@@ -8,6 +8,7 @@ import InputField from '@/components/InputField'
 import * as style from '@dicebear/adventurer-neutral'
 import { createAvatar } from '@dicebear/avatars'
 import { useAuth } from '@/context/AuthContext'
+import Image from 'next/Image'
 
 export default function Register(): ReactElement {
     const { signup } = useAuth()
@@ -52,7 +53,12 @@ export default function Register(): ReactElement {
                 <TypedText className='text-[#627597]' delay={1}>
                     Let´s begin the adventure
                 </TypedText>
-                <img src={`data:image/svg+xml;base64,${base64data}`} alt='' width={100} />
+                <Image
+                    src={`data:image/svg+xml;base64,${base64data}`}
+                    alt=''
+                    width={100}
+                    height={100}
+                />
                 <TypedText className='text-[#00cfc8] text-base font-semibold mt-5' delay={2}>
                     Enter your email
                 </TypedText>
@@ -123,6 +129,8 @@ export default function Register(): ReactElement {
                     The email is not valid or already in use
                 </p>
             )}
+
+            <p className='p-5 text-[#627597] text-center'>{passwordStrength(password).value}</p>
         </section>
     )
 }

@@ -4,6 +4,9 @@ import getClass from '@/firebase/querys/getClass'
 import StudentCard from '@/components/classes/StudentCard'
 import { useAuth } from '@/context/AuthContext'
 import styles from 'styles/Classes.module.scss'
+import faker from 'faker'
+import * as style from '@dicebear/adventurer-neutral'
+import { createAvatar } from '@dicebear/avatars'
 
 // This gets called on every request
 export const getServerSideProps: GetServerSideProps = async (context) => {
@@ -31,8 +34,15 @@ export default function ClassScreen({ classData }: Props): ReactElement {
     console.log(classState)
     console.log(currentUser)
     let x: any[] = []
-    x.length = 40
-    x = x.fill('adam')
+    for (let i = 0; i < 40; i++) {
+        const _name = faker.name.firstName() + ' ' + faker.name.lastName()
+        x.push({
+            image: createAvatar(style, {
+                seed: _name,
+            }),
+            name: _name,
+        })
+    }
     return (
         <div>
             im class
@@ -61,11 +71,11 @@ export default function ClassScreen({ classData }: Props): ReactElement {
                         <td>550</td>
                         <td>550</td>
                     </tr> */}
-                    {x.map((_, index: number) => (
+                    {x.map(({ name, image }, index: number) => (
                         <StudentCard
                             key={index}
-                            image={currentUser?.profileImage || ''}
-                            name={currentUser?.displayName || 'asam'}
+                            name={name || currentUser?.displayName}
+                            image={image || currentUser?.profileImage}
                         />
                     ))}
                 </tbody>
