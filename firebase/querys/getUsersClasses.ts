@@ -4,6 +4,7 @@ import {
     onSnapshot,
     where,
     getDocs,
+    orderBy,
 } from 'firebase/firestore'
 import { fs } from '../index'
 import { getAuth } from 'firebase/auth'
@@ -38,7 +39,7 @@ export function useUsersClasses() {
         if (user) {
             const q = query(
                 collection(fs, 'classes'),
-                where('participantsIds', 'array-contains', user?.uid)
+                where('participantsIds', 'array-contains', user?.uid) //TODO fix orderby
             )
             unsubscribe = onSnapshot(q, (querySnapshot) => {
                 console.log('querySnapshot')

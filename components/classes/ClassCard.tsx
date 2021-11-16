@@ -17,17 +17,17 @@ export default function ClassCard({
     return (
         <Link href={`/classes/${code}`} passHref={true}>
             <div className={styles.classCard}>
-                <div className='mr-3'>
-                    <Image
-                        src='/rock.jpeg'
-                        className='rounded-lg'
-                        alt='me'
-                        layout='intrinsic'
-                        width='100%'
-                        height='100%'
-                    />
-                </div>
-                <div>
+                {/* <div className='mr-3 relative'> */}
+                <Image
+                    src='/rock.jpeg'
+                    className='rounded-lg'
+                    alt='me'
+                    layout='intrinsic'
+                    width='100%'
+                    height='100%'
+                />
+                {/* </div> */}
+                <div className='ml-3'>
                     <h3>{name}</h3>
                     <p>{participantsIds.length} students</p>
                     <p>Class code: {code}</p>

@@ -3,6 +3,7 @@ type ClassType = {
     code: string
     ownerId: string
     participantsIds: string[]
+    createdAt: Date
 }
 
 export default ClassType

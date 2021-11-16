@@ -18,6 +18,7 @@ export default function useCreateClass() {
             ownerId: currentUser.uid,
             participantsIds: [currentUser.uid],
             code: await generateNewLink(collection(fs, 'classes'), 'code'),
+            createdAt: new Date(),
         })
     }
 }
