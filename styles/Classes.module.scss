@@ -1,12 +1,13 @@
 .classesWrapper {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 12px;
+    row-gap: 12px;
 }
 
 .classCard {
     min-width: 450px;
-    flex: 0.5;
+    display: flex;
     border: solid 1px;
     cursor: pointer;
     @apply border-green-500 hover:border-blue-500 p-4 rounded-lg;
