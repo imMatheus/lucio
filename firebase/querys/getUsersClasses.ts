@@ -1,30 +1,60 @@
-import { collection, query, where, getDocs } from 'firebase/firestore'
+import {
+    collection,
+    query,
+    onSnapshot,
+    where,
+    getDocs,
+} from 'firebase/firestore'
 import { fs } from '../index'
 import { getAuth } from 'firebase/auth'
 import ClassType from '@/types/ClassType'
 import { useEffect, useState } from 'react'
 
-export default async function getUsersClasses(): Promise<ClassType[] | null> {
+export default async function getUsersClasses(): Promise<Array<ClassType>> {
     const auth = getAuth()
     const user = auth.currentUser
-    console.log('~~~~~~~~')
-    console.log(auth)
-    console.log(user)
+    if (!user) return []
 
-    // if (!user) return null
-    const querySnapshot = await getDocs(collection(fs, 'classes'))
+    const querySnapshot = await getDocs(
+        query(
+            collection(fs, 'classes'),
+            where('participantsIds', 'array-contains', user.uid)
+        )
+    )
     console.log('got shiit')
 
     const userClasses = querySnapshot.docs.map((doc) => doc.data() as ClassType)
-    return userClasses || null
+    console.log('rteurn value:', userClasses || [])
+
+    return userClasses || []
 }
 
 export function useUsersClasses() {
-    const [usersClasses, setUsersClasses] = useState<ClassType[] | null>(null)
+    const auth = getAuth()
+    const user = auth.currentUser
+    const [usersClasses, setUsersClasses] = useState<ClassType[] | null>([])
     useEffect(() => {
-        const _set = async () => setUsersClasses(await getUsersClasses())
-        _set()
-    }, [])
+        let unsubscribe
+        if (user) {
+            const q = query(
+                collection(fs, 'classes'),
+                where('participantsIds', 'array-contains', user?.uid)
+            )
+            unsubscribe = onSnapshot(q, (querySnapshot) => {
+                console.log('querySnapshot')
+                console.log(querySnapshot)
+
+                setUsersClasses(
+                    querySnapshot.docs.map((doc) => doc.data() as ClassType)
+                )
+            })
+        }
+        return unsubscribe
+    }, [user])
+    if (!user) return []
+
+    console.log('userrrrrrr')
+    console.log(usersClasses)
 
     return usersClasses
 }

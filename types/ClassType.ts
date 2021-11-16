@@ -1,6 +1,8 @@
 type ClassType = {
     name: string
-    classCode: string
+    code: string
+    ownerId: string
+    participantsIds: string[]
 }
 
 export default ClassType

@@ -1,7 +1,6 @@
 .classesWrapper {
     display: flex;
     flex-wrap: wrap;
-    // @apply bg-yellow-500;
     gap: 10px;
 }
 
@@ -10,7 +9,7 @@
     flex: 0.5;
     border: solid 1px;
     cursor: pointer;
-    @apply bg-green-500 border-green-500 hover:border-blue-500 p-4 rounded-lg;
+    @apply border-green-500 hover:border-blue-500 p-4 rounded-lg;
 }
 
 .studentCard {
@@ -23,35 +22,25 @@
     margin: 25px 0;
     font-size: 0.9em;
     font-family: sans-serif;
-    // min-width: 400px;
     width: 100%;
-
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 }
+
 .styledTable thead tr {
     background-color: #009879;
     color: #ffffff;
     text-align: left;
 }
+
 .styledTable th,
 .styledTable td {
     @apply py-3 px-4;
-    // background: linear-gradient(00deg, pink, purple);
 }
-
-// .styledTable tbody tr {
-//     border-bottom: 1px solid #dddddd;
-// }
-
-// .styledTable tbody tr:nth-of-type(even) {
-//     background-color: #f3f3f3;
-// }
 
 .styledTable tbody tr {
-    // .styledTable tbody tr:last-of-type {
     border-bottom: 2px solid #009879;
 }
-// .styledTable tbody tr.activeRow {
-//     font-weight: bold;
-//     color: #009879;
-// }
+
+.chip {
+    @apply bg-blue-200 py-2 px-3 rounded-full text-xs border border-blue-600 text-blue-600;
+}
