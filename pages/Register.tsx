@@ -2,13 +2,12 @@ import React, { ReactElement, useEffect, useState } from 'react'
 import styles from '../styles/Registration.module.scss'
 import { Eye, EyeOff } from 'react-feather'
 import * as EmailValidator from 'email-validator'
-import { passwordStrength } from 'check-password-strength'
 import TypedText from '@/components/TypedText'
 import InputField from '@/components/InputField'
 import * as style from '@dicebear/adventurer-neutral'
 import { createAvatar } from '@dicebear/avatars'
 import { useAuth } from '@/context/AuthContext'
-import Image from 'next/Image'
+import Image from 'next/image'
 import usePasswordStrength from '@/hooks/usePasswordStrength'
 
 export default function Register(): ReactElement {
@@ -51,7 +50,9 @@ export default function Register(): ReactElement {
         <section className='font-mono relative  flex-1'>
             {/* <div className={styles.blob}></div> */}
             <div className={styles.modal}>
-                <TypedText className='text-[#627597]'>Welcome to LucioCode</TypedText>
+                <TypedText className='text-[#627597]'>
+                    Welcome to LucioCode
+                </TypedText>
                 <TypedText className='text-[#627597]' delay={1}>
                     Let´s begin the adventure
                 </TypedText>
@@ -61,7 +62,10 @@ export default function Register(): ReactElement {
                     width={100}
                     height={100}
                 />
-                <TypedText className='text-[#00cfc8] text-base font-semibold mt-5' delay={2}>
+                <TypedText
+                    className='text-[#00cfc8] text-base font-semibold mt-5'
+                    delay={2}
+                >
                     Enter your email
                 </TypedText>
                 <InputField
@@ -86,16 +90,23 @@ export default function Register(): ReactElement {
                             onClick={() => setShowUserNameContainer(true)}
                             buttonText='Continue'
                             type={showPassword ? 'text' : 'password'}
-                            success={PasswordStrength === 'strong' || PasswordStrength === 'medium'}
+                            success={
+                                PasswordStrength === 'strong' ||
+                                PasswordStrength === 'medium'
+                            }
                             RightIcon={
                                 showPassword ? (
                                     <Eye
-                                        onClick={() => setShowPassword((c) => !c)}
+                                        onClick={() =>
+                                            setShowPassword((c) => !c)
+                                        }
                                         className='w-4 cursor-pointer flex-shrink-0'
                                     />
                                 ) : (
                                     <EyeOff
-                                        onClick={() => setShowPassword((c) => !c)}
+                                        onClick={() =>
+                                            setShowPassword((c) => !c)
+                                        }
                                         className='w-4 cursor-pointer flex-shrink-0'
                                     />
                                 )
@@ -130,7 +141,8 @@ export default function Register(): ReactElement {
 
                 <div className='flex items-center'>
                     <div className={styles.chip}></div>
-                    {PasswordStrength === 'medium' || PasswordStrength === 'strong' ? (
+                    {PasswordStrength === 'medium' ||
+                    PasswordStrength === 'strong' ? (
                         <div className={styles.chip}></div>
                     ) : (
                         <div className={styles.emptyChip}></div>
