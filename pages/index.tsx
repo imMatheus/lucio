@@ -6,7 +6,11 @@ import styles from '../styles/Home.module.scss'
 const Home: NextPage = () => {
     return (
         <div className={styles.container}>
-            <p>hello world</p>
+            <div className={styles.wrapper}>
+                <div className={styles.div}></div>
+                <div className={styles.div}></div>
+                <div className={styles.div}></div>
+            </div>
         </div>
     )
 }

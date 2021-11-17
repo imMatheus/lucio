@@ -7,9 +7,11 @@ import getUsersClasses, {
     useUsersClasses,
 } from '@/firebase/querys/getUsersClasses'
 import useCreateClass from '@/firebase/handlers/useCreateClass'
+import { useToast } from '@/context/ToastContext'
 
 export default function Classes(): ReactElement {
     const usersClasses = useUsersClasses()
+    const { setToastMessage } = useToast()
     console.log(usersClasses)
     console.log('---------------------')
     const createClass = useCreateClass()
@@ -20,7 +22,14 @@ export default function Classes(): ReactElement {
             <section className='max-w-7xl mx-auto'>
                 <h1 className='mb-3'>My classes</h1>
                 <div className='flex mb-2 gap-2'>
-                    <button className={styles.chip}>Join class</button>
+                    <button
+                        className={styles.chip}
+                        onClick={() => {
+                            setToastMessage(Math.random() + '')
+                        }}
+                    >
+                        Join class
+                    </button>
                     <button className={styles.chip} onClick={createClass}>
                         Create class
                     </button>

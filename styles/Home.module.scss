@@ -6,3 +6,38 @@
         background: orange;
     }
 }
+
+.wrapper {
+    background: #f00;
+    display: grid;
+    grid-template-areas:
+        'a a b'
+        'a a c';
+    height: 400px;
+    width: 800px;
+    grid-gap: 12px;
+}
+
+@media screen and (max-width: 992px) {
+    .wrapper {
+        grid-template-areas:
+            'a'
+            'b'
+            'c';
+    }
+}
+
+.div {
+    &:nth-child(1) {
+        grid-area: a;
+        background-color: antiquewhite;
+    }
+    &:nth-child(2) {
+        grid-area: b;
+        background-color: yellow;
+    }
+    &:nth-child(3) {
+        grid-area: c;
+        background-color: black;
+    }
+}
