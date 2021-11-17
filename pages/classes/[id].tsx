@@ -34,7 +34,7 @@ export default function ClassScreen({ classData }: Props): ReactElement {
     console.log(classState)
     console.log(currentUser)
     let x: any[] = []
-    for (let i = 0; i < 40; i++) {
+    for (let i = 0; i < 5; i++) {
         const _name = faker.name.firstName() + ' ' + faker.name.lastName()
         x.push({
             image: createAvatar(style, {

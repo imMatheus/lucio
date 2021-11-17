@@ -29,6 +29,23 @@ $value: ();
     @apply my-20 p-6 rounded-lg mx-auto;
 }
 
+.chip {
+    &:nth-child(1) {
+        @apply bg-red-500;
+    }
+    &:nth-child(2) {
+        @apply bg-yellow-500;
+    }
+    &:nth-child(3) {
+        @apply bg-green-500;
+    }
+    @apply w-16 h-3 mr-2 rounded-lg flex-shrink-0;
+}
+
+.emptyChip {
+    @apply w-16 h-3 mr-2 rounded-lg flex-shrink-0 bg-bg600 border border-bg400;
+}
+
 @media screen and (max-width: 480px) {
     .modal {
         box-shadow: none;

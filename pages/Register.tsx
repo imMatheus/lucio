@@ -9,6 +9,7 @@ import * as style from '@dicebear/adventurer-neutral'
 import { createAvatar } from '@dicebear/avatars'
 import { useAuth } from '@/context/AuthContext'
 import Image from 'next/Image'
+import usePasswordStrength from '@/hooks/usePasswordStrength'
 
 export default function Register(): ReactElement {
     const { signup } = useAuth()
@@ -17,6 +18,7 @@ export default function Register(): ReactElement {
     const [showPassword, setShowPassword] = useState(false)
     const [showPasswordContainer, setShowPasswordContainer] = useState(false)
     const [password, setPassword] = useState('')
+    const PasswordStrength = usePasswordStrength(password)
     const [username, setUsername] = useState('')
     const [showUserNameContainer, setShowUserNameContainer] = useState(false)
     const [avatar, setAvatar] = useState('')
@@ -84,10 +86,7 @@ export default function Register(): ReactElement {
                             onClick={() => setShowUserNameContainer(true)}
                             buttonText='Continue'
                             type={showPassword ? 'text' : 'password'}
-                            success={
-                                passwordStrength(password).value === 'Strong' ||
-                                passwordStrength(password).value === 'Medium'
-                            }
+                            success={PasswordStrength === 'strong' || PasswordStrength === 'medium'}
                             RightIcon={
                                 showPassword ? (
                                     <Eye
@@ -123,14 +122,37 @@ export default function Register(): ReactElement {
                         )}
                     </>
                 )}
-            </div>
-            {!isValidEmail && email !== '' && (
-                <p className='p-5 text-[#627597] text-center'>
-                    The email is not valid or already in use
-                </p>
-            )}
+                {!isValidEmail && email !== '' && (
+                    <p className='p-5 text-[#627597] text-center'>
+                        The email is not valid or already in use
+                    </p>
+                )}
 
-            <p className='p-5 text-[#627597] text-center'>{passwordStrength(password).value}</p>
+                <div className='flex items-center'>
+                    <div className={styles.chip}></div>
+                    {PasswordStrength === 'medium' || PasswordStrength === 'strong' ? (
+                        <div className={styles.chip}></div>
+                    ) : (
+                        <div className={styles.emptyChip}></div>
+                    )}
+                    {PasswordStrength === 'strong' ? (
+                        <div className={styles.chip}></div>
+                    ) : (
+                        <div className={styles.emptyChip}></div>
+                    )}
+                    <p
+                        className={`px-3 text-center ${
+                            PasswordStrength === 'weak'
+                                ? 'text-red-500'
+                                : PasswordStrength === 'medium'
+                                ? 'text-yellow-500'
+                                : 'text-green-500'
+                        }`}
+                    >
+                        {PasswordStrength}
+                    </p>
+                </div>
+            </div>
         </section>
     )
 }
