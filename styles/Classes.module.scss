@@ -50,3 +50,8 @@
 .chip {
     @apply bg-blue-200 py-2 px-3 rounded-full text-xs border border-blue-600 text-blue-600;
 }
+
+.option {
+    border-bottom: 2px solid #b3d6cf;
+    @apply px-3 py-1 mr-2;
+}

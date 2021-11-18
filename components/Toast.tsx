@@ -12,5 +12,7 @@ export default function Toast() {
     const { toastMessage, setToastMessage } = useToast()
     useDebounce(() => setToastMessage(null), 1000, [toastMessage])
     if (toastMessage === null || toastMessage === '') return <></>
-    return <div className='p-3 bg-green-300 text-green-700'>{toastMessage}</div>
+    return (
+        <div className='p-3 bg-green-300 text-green-700'>{toastMessage}kr</div>
+    )
 }
