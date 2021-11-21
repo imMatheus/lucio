@@ -4,6 +4,7 @@ type ClassType = {
     ownerId: string
     participantsIds: string[]
     createdAt: Date
+    id: string
 }
 
 export default ClassType

@@ -1,4 +1,4 @@
-import { User as FirebaseUser } from 'firebase/Auth'
+import { User as FirebaseUser } from 'firebase/auth'
 import { DocumentSnapshot, DocumentData } from 'firebase/firestore'
 
 export type FirestoreUser = {

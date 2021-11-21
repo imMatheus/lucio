@@ -1,68 +1,58 @@
 import React, { ReactElement, useEffect, useState } from 'react'
 import { GetServerSideProps } from 'next'
 import getClass from '@/firebase/querys/getClass'
-import StudentCard from '@/components/classes/StudentCard'
 import { useAuth } from '@/context/AuthContext'
 import styles from 'styles/Classes.module.scss'
-import faker from 'faker'
-import * as style from '@dicebear/adventurer-neutral'
-import { createAvatar } from '@dicebear/avatars'
+import ClassType from '@/types/ClassType'
+import { useRouter } from 'next/router'
+import ClassNavbar from '@/components/classes/ClassNavbar'
 
 // This gets called on every request
 export const getServerSideProps: GetServerSideProps = async (context) => {
     const id = context.params?.id
-    let data = null
+    let data: ClassType | null = null
     if (id) {
         data = await getClass(Array.isArray(id) ? id[0] : id)
     }
 
-    return { props: { classData: data } }
+    return { props: { classData: data, id } }
 }
 
 interface Props {
-    classData: any
+    classData: ClassType | null
+    id: string
 }
 
-interface TopBarOptionProps {
-    active?: boolean
-}
+export default function ClassScreen(props: Props): ReactElement {
+    const { classData, id } = props
+    const router = useRouter()
+    const { id: classId } = router.query
+    console.log('router: ', router)
 
-const TopBarOption: React.FC<TopBarOptionProps> = ({ children, active }) => {
-    return <div className={styles.option}>{children}</div>
-}
-
-export default function ClassScreen({ classData }: Props): ReactElement {
-    console.log('classData')
     const { currentUser } = useAuth()
     const [classState, setClassState] = useState(classData)
     useEffect(() => {
         setClassState(classData)
     }, [classData])
 
-    console.log(classState)
-    console.log(currentUser)
-    let x: any[] = []
-    for (let i = 0; i < 5; i++) {
-        const _name = faker.name.firstName() + ' ' + faker.name.lastName()
-        x.push({
-            image: createAvatar(style, {
-                seed: _name,
-            }),
-            name: _name,
-        })
-    }
     return (
         <div className='px-6 py-3'>
             im class
-            <div className='flex border-b'>
-                <TopBarOption>main</TopBarOption>
-                <TopBarOption>about</TopBarOption>
-                <TopBarOption>homework</TopBarOption>
-                <TopBarOption>students</TopBarOption>
-            </div>
+            {classId && <ClassNavbar />}
         </div>
     )
 }
+
+// let x: any[] = []
+// for (let i = 0; i < 5; i++) {
+//     const _name = faker.name.firstName() + ' ' + faker.name.lastName()
+//     x.push({
+//         image: createAvatar(style, {
+//             seed: _name,
+//         }),
+//         name: _name,
+//     })
+// }
 // <table className={styles.styledTable}>
 //     <thead>
 //         <tr>

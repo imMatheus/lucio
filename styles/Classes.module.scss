@@ -53,5 +53,10 @@
 
 .option {
     border-bottom: 2px solid #b3d6cf;
-    @apply px-3 py-1 mr-2;
+    @apply px-3 py-1 mr-3;
+}
+
+.optionActive {
+    @extend .option;
+    border-bottom-color: #e09035;
 }
