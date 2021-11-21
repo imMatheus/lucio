@@ -1,15 +1,17 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState } from 'react'
 import DatePicker from 'react-datepicker'
-import { fs, storage } from '@/firebase/index'
+import { storage } from '@/firebase/index'
 import useCreateHomework from '@/firebase/handlers/useCreateHomework'
 import 'react-datepicker/dist/react-datepicker.css'
 import { useRouter } from 'next/router'
 import useGetClass from '@/firebase/querys/getClass'
 import ClassType from '@/types/ClassType'
 import { useAuth } from '@/context/AuthContext'
-import { ref, uploadBytes, list, getDownloadURL } from 'firebase/storage'
+import { ref, uploadBytes } from 'firebase/storage'
 import useClassData from '@/hooks/useClassData'
 import HomeworkFile from './HomeworkFile'
+import Input from '@/components/Input'
+import Filezone from '@/components/Filezone'
 
 interface CreateHomeworkProps {}
 
@@ -55,11 +57,6 @@ const CreateHomework: React.FC<CreateHomeworkProps> = ({}) => {
 
 	const createHomeworkHandler = async () => {
 		if (id) {
-			console.log('class data 24')
-			console.log(id)
-			// const classData = await getClass(id)
-			console.log(classData)
-
 			if (classData) {
 				await createHomework({
 					classId: classData.id,
@@ -79,21 +76,19 @@ const CreateHomework: React.FC<CreateHomeworkProps> = ({}) => {
 			<div>
 				<button onClick={handleSubmission}>Submit</button>
 			</div>
-			<div className="p-2 bg-blue-500 m-2">
-				<input type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
-			</div>
-			<div className="p-2 bg-blue-500">
-				<input type="text" value={description} onChange={(e) => setDescription(e.target.value)} />
-			</div>
+			<Input state={title} setState={setTitle} />
+			<Input state={description} setState={setDescription} />
 			<div className="p-2 bg-yellow-500">
 				<DatePicker selected={dueDate} showTimeSelect onChange={(date: Date) => setDueDate(date)} />
 				{dueDate.toDateString()}
 				<div></div>
 				{dueDate.toLocaleDateString()}
 			</div>
+
 			<button onClick={createHomeworkHandler} className="rounded-xl bg-green-500 py-1 px-4 mb-3">
 				create homework
 			</button>
+			<Filezone />
 			<HomeworkFile path="classes/9wBsqEkwM2XunXFK6q7I/bg.jpeg" />
 			<HomeworkFile path="classes/9wBsqEkwM2XunXFK6q7I/tailwind.config.js_0.8j6zo06152g" />
 			<HomeworkFile path="classes/9wBsqEkwM2XunXFK6q7I/Safety_Direct_PDF.pdf" />

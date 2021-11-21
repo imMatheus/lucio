@@ -30,32 +30,32 @@ a {
 }
 
 h1 {
-	font-weight: 700 !important;
-	@apply text-3xl !important;
+	font-weight: 700;
+	@apply text-3xl;
 }
 h2 {
-	font-weight: 700 !important;
-	@apply text-2xl !important;
+	font-weight: 700;
+	@apply text-2xl;
 }
 h3 {
-	font-weight: 600 !important;
-	@apply text-xl !important;
+	font-weight: 600;
+	@apply text-xl;
 }
 h4 {
-	font-weight: 600 !important;
-	@apply text-lg !important;
+	font-weight: 600;
+	@apply text-lg;
 }
 h5 {
-	font-weight: 500 !important;
-	@apply text-lg !important;
+	font-weight: 500;
+	@apply text-lg;
 }
 h6 {
-	font-weight: 500 !important;
-	@apply text-base !important;
+	font-weight: 500;
+	@apply text-base;
 }
 
 p {
-	@apply text-sm !important;
+	@apply text-sm;
 }
 
 /* Change the white to any color */
@@ -63,8 +63,8 @@ input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
-	-webkit-box-shadow: 0 0 0 100px #0d1117 inset !important;
-	-webkit-text-fill-color: white !important;
+	-webkit-box-shadow: 0 0 0 100px #0d1117 inset;
+	-webkit-text-fill-color: white;
 	color: #fff;
 }
 
