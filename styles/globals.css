@@ -3,59 +3,59 @@
 @tailwind utilities;
 
 :root {
-    --bg-900: #010409;
-    --bg-800: #0d1117;
-    --bg-700: #161b22;
-    --bg-600: #21262d;
-    --bg-500: #6e768166;
-    --bg-400: #f0f6fc1a;
-    --text-100: #fff;
-    --text-200: #c9d1d9;
-    --text-300: #c6cbd1;
-    --text-400: #979a9c;
-    --text-500: #8b949e;
-    --text-500: #484f58;
+	--bg-900: #010409;
+	--bg-800: #0d1117;
+	--bg-700: #161b22;
+	--bg-600: #21262d;
+	--bg-500: #6e768166;
+	--bg-400: #f0f6fc1a;
+	--text-100: #fff;
+	--text-200: #c9d1d9;
+	--text-300: #c6cbd1;
+	--text-400: #979a9c;
+	--text-500: #8b949e;
+	--text-500: #484f58;
 }
 
 html,
 body {
-    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-        Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-    @apply text-white;
+	font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans,
+		Helvetica Neue, sans-serif;
+	@apply text-white;
 }
 
 a {
-    color: inherit;
-    text-decoration: none;
+	color: inherit;
+	text-decoration: none;
 }
 
 h1 {
-    font-weight: 700 !important;
-    @apply text-3xl !important;
+	font-weight: 700 !important;
+	@apply text-3xl !important;
 }
 h2 {
-    font-weight: 700 !important;
-    @apply text-2xl !important;
+	font-weight: 700 !important;
+	@apply text-2xl !important;
 }
 h3 {
-    font-weight: 600 !important;
-    @apply text-xl !important;
+	font-weight: 600 !important;
+	@apply text-xl !important;
 }
 h4 {
-    font-weight: 600 !important;
-    @apply text-lg !important;
+	font-weight: 600 !important;
+	@apply text-lg !important;
 }
 h5 {
-    font-weight: 500 !important;
-    @apply text-lg !important;
+	font-weight: 500 !important;
+	@apply text-lg !important;
 }
 h6 {
-    font-weight: 500 !important;
-    @apply text-base !important;
+	font-weight: 500 !important;
+	@apply text-base !important;
 }
 
 p {
-    @apply text-sm !important;
+	@apply text-sm !important;
 }
 
 /* Change the white to any color */
@@ -63,15 +63,15 @@ input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
-    -webkit-box-shadow: 0 0 0 100px #0d1117 inset !important;
-    -webkit-text-fill-color: white !important;
-    color: #fff;
+	-webkit-box-shadow: 0 0 0 100px #0d1117 inset !important;
+	-webkit-text-fill-color: white !important;
+	color: #fff;
 }
 
 *,
 *::before,
 *::after {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
 }

@@ -1,46 +1,29 @@
-import React, { ReactElement, useEffect, useState } from 'react'
-import { GetServerSideProps } from 'next'
-import getClass from '@/firebase/querys/getClass'
-import { useAuth } from '@/context/AuthContext'
-import styles from 'styles/Classes.module.scss'
-import ClassType from '@/types/ClassType'
-import { useRouter } from 'next/router'
-import ClassNavbar from '@/components/classes/ClassNavbar'
+import React, { ReactElement, useEffect, useState } from 'react';
+import styles from 'styles/Classes.module.scss';
+import ClassType from '@/types/ClassType';
+import { useRouter } from 'next/router';
+import ClassNavbar from '@/components/classes/ClassNavbar';
+import useClassData from '@/hooks/useClassData';
+import { useAuth } from '@/context/AuthContext';
+import getClass from '@/firebase/querys/getClass';
+import User from '@/types/User';
 
-// This gets called on every request
-export const getServerSideProps: GetServerSideProps = async (context) => {
-    const id = context.params?.id
-    let data: ClassType | null = null
-    if (id) {
-        data = await getClass(Array.isArray(id) ? id[0] : id)
-    }
+export default function ClassScreen(): ReactElement {
+	const router = useRouter();
+	const { id: classId } = router.query;
+	const { currentUser } = useAuth();
+	const classData = useClassData(currentUser, classId);
 
-    return { props: { classData: data, id } }
-}
-
-interface Props {
-    classData: ClassType | null
-    id: string
-}
-
-export default function ClassScreen(props: Props): ReactElement {
-    const { classData, id } = props
-    const router = useRouter()
-    const { id: classId } = router.query
-    console.log('router: ', router)
-
-    const { currentUser } = useAuth()
-    const [classState, setClassState] = useState(classData)
-    useEffect(() => {
-        setClassState(classData)
-    }, [classData])
-
-    return (
-        <div className='px-6 py-3'>
-            im class
-            {classId && <ClassNavbar />}
-        </div>
-    )
+	return (
+		<div className="px-6 py-3">
+			{classId && <ClassNavbar />}
+			im a class
+			<h2>class data</h2>
+			<div>
+				<h4>{classData && JSON.stringify(classData)}</h4>
+			</div>
+		</div>
+	);
 }
 
 // let x: any[] = []
@@ -72,3 +55,18 @@ export default function ClassScreen(props: Props): ReactElement {
 //         ))}
 //     </tbody>
 // </table>
+
+// This gets called on every request
+// export const getServerSideProps: GetServerSideProps = async (context) => {
+// 	const id = context.params?.id;
+// 	let data: ClassType | null = null;
+// 	console.log('inside server side props');
+// 	console.log('gggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg');
+// 	console.log(auth);
+
+// 	if (id) {
+// 		data = await getClass(Array.isArray(id) ? id[0] : id);
+// 	}
+
+// 	return { props: { classData: data, id } };
+// };
