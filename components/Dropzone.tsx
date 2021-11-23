@@ -1,12 +1,21 @@
 import React, { useState } from 'react'
 import styles from 'styles/Dropzone.module.scss'
 import { FilePlus } from 'react-feather'
+import { useToast } from '@/context/ToastContext'
+
+interface FileProps {
+	downloadUrl?: string
+	subtitle?: string
+}
+
 interface DropzoneProps {
-	setFiles: React.Dispatch<React.SetStateAction<any[]>>
+	setFiles: React.Dispatch<React.SetStateAction<Array<File & FileProps>>>
 }
 
 const Dropzone: React.FC<DropzoneProps> = ({ setFiles }) => {
+	const { setToastMessage } = useToast()
 	const [errorMessage, setErrorMessage] = useState('')
+
 	const dragOver = (e: any) => {
 		e.preventDefault()
 	}
@@ -29,17 +38,26 @@ const Dropzone: React.FC<DropzoneProps> = ({ setFiles }) => {
 		return true
 	}
 
-	const handleFiles = (_files: any) => {
-		console.log(_files)
-		let dummy: any[] = []
-		for (let i = 0; i < _files.length; i++) {
-			console.log(_files[i])
-			dummy.push(_files[i])
+	const handleFiles = (_files: FileList) => {
+		if (!_files) return
+		console.log('_files: ', _files)
+		if (_files.length > 1) {
+			const dummy: File[] = []
+			for (let i = 0; i < _files.length; i++) {
+				console.log(_files[i])
+				if (_files[i]?.name) {
+					dummy.push(_files[i])
+				}
+			}
+			setFiles((c) => c.concat(dummy))
+			return
 		}
-		setFiles((c) => c.concat(dummy))
+		if (_files[0]?.name) {
+			setFiles((c) => c.concat(_files[0]))
+		}
 	}
 
-	const fileDrop = (e: any) => {
+	const fileDrop = (e: React.DragEvent<HTMLDivElement>) => {
 		e.preventDefault()
 		const _files = e.dataTransfer.files
 		console.log(_files)
@@ -48,18 +66,24 @@ const Dropzone: React.FC<DropzoneProps> = ({ setFiles }) => {
 		}
 	}
 
-	const changeHandler = (event: any) => {
+	const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
 		const _files = event.target?.files
+		if (!_files) return
+		console.log('_files: ', _files)
 		if (_files.length > 1) {
-			const dummy: any[] = []
+			const dummy: File[] = []
 			for (let i = 0; i < _files.length; i++) {
 				console.log(_files[i])
-				dummy.push(_files[i])
+				if (_files[i]?.name) {
+					dummy.push(_files[i])
+				}
 			}
 			setFiles((c) => c.concat(dummy))
 			return
 		}
-		setFiles((c) => c.concat(event.target?.files[0]))
+		if (_files[0]?.name) {
+			setFiles((c) => c.concat(_files[0]))
+		}
 	}
 
 	return (
@@ -76,7 +100,7 @@ const Dropzone: React.FC<DropzoneProps> = ({ setFiles }) => {
 				id="dropzone"
 				multiple
 				className={styles.input}
-				onChange={changeHandler}
+				onChange={(e) => changeHandler(e)}
 			/>
 			<label htmlFor="dropzone" className={styles.label}></label>
 			<FilePlus size={28} />

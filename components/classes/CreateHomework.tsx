@@ -33,6 +33,7 @@ const CreateHomework: React.FC<CreateHomeworkProps> = ({}) => {
 	console.log('selectedFile')
 	console.log(selectedFile)
 	console.log('files: ', files)
+	console.log('router: ', router)
 
 	const changeHandler = (event: any) => {
 		setFiles((c) => c.concat(event.target?.files[0]))
@@ -72,10 +73,10 @@ const CreateHomework: React.FC<CreateHomeworkProps> = ({}) => {
 
 	return (
 		<div className="text-blue-800">
-			<input type="file" name="file" onChange={changeHandler} />
+			{/* <input type="file" name="file" onChange={changeHandler} />
 			<div>
 				<button onClick={handleSubmission}>Submit</button>
-			</div>
+			</div> */}
 			<Input state={title} setState={setTitle} />
 			<Input state={description} setState={setDescription} />
 			<div className="p-2 bg-yellow-500">
@@ -88,10 +89,10 @@ const CreateHomework: React.FC<CreateHomeworkProps> = ({}) => {
 			<button onClick={createHomeworkHandler} className="rounded-xl bg-green-500 py-1 px-4 mb-3">
 				create homework
 			</button>
-			<Filezone />
-			<HomeworkFile path="classes/9wBsqEkwM2XunXFK6q7I/bg.jpeg" />
+			<Filezone path={`classes/${router.query.id}/homework/${router.query.newHomeworkId}`} />
+			{/* <HomeworkFile path="classes/9wBsqEkwM2XunXFK6q7I/bg.jpeg" />
 			<HomeworkFile path="classes/9wBsqEkwM2XunXFK6q7I/tailwind.config.js_0.8j6zo06152g" />
-			<HomeworkFile path="classes/9wBsqEkwM2XunXFK6q7I/Safety_Direct_PDF.pdf" />
+			<HomeworkFile path="classes/9wBsqEkwM2XunXFK6q7I/Safety_Direct_PDF.pdf" /> */}
 		</div>
 	)
 }
