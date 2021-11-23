@@ -39,27 +39,31 @@ const Dropzone: React.FC<DropzoneProps> = ({ setFiles }) => {
 	}
 
 	const handleFiles = (_files: FileList) => {
-		if (!_files) return
+		if (!_files) return // TODO bug: does not toast after two tries
 		console.log('_files: ', _files)
 		if (_files.length > 1) {
 			const dummy: File[] = []
 			for (let i = 0; i < _files.length; i++) {
 				console.log(_files[i])
-				if (_files[i]?.name) {
+				if (_files[i]?.name && _files[i]?.type) {
 					dummy.push(_files[i])
+				} else {
+					setToastMessage('one of your files does not have a valid name or type')
 				}
 			}
 			setFiles((c) => c.concat(dummy))
 			return
 		}
-		if (_files[0]?.name) {
+		if (_files[0]?.name && _files[0].type) {
 			setFiles((c) => c.concat(_files[0]))
+		} else {
+			setToastMessage('your file does not have a valid name or type')
 		}
 	}
 
 	const fileDrop = (e: React.DragEvent<HTMLDivElement>) => {
 		e.preventDefault()
-		const _files = e.dataTransfer.files
+		const _files = e.dataTransfer?.files
 		console.log(_files)
 		if (_files.length) {
 			handleFiles(_files)
@@ -69,21 +73,8 @@ const Dropzone: React.FC<DropzoneProps> = ({ setFiles }) => {
 	const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
 		const _files = event.target?.files
 		if (!_files) return
-		console.log('_files: ', _files)
-		if (_files.length > 1) {
-			const dummy: File[] = []
-			for (let i = 0; i < _files.length; i++) {
-				console.log(_files[i])
-				if (_files[i]?.name) {
-					dummy.push(_files[i])
-				}
-			}
-			setFiles((c) => c.concat(dummy))
-			return
-		}
-		if (_files[0]?.name) {
-			setFiles((c) => c.concat(_files[0]))
-		}
+		console.log('_files from 72: ', _files)
+		handleFiles(_files)
 	}
 
 	return (
@@ -104,7 +95,7 @@ const Dropzone: React.FC<DropzoneProps> = ({ setFiles }) => {
 			/>
 			<label htmlFor="dropzone" className={styles.label}></label>
 			<FilePlus size={28} />
-			<h3>Drop your files here</h3>
+			<h3>Click or drop your files here</h3>
 		</div>
 	)
 }
