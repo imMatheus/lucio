@@ -19,6 +19,10 @@
 .DS_Store
 *.pem
 
+# firebase
+cors.json
+firestore.rules
+
 # debug
 npm-debug.log*
 yarn-debug.log*
