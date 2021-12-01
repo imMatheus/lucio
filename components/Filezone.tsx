@@ -4,7 +4,7 @@ import { Trash2, Edit2 } from 'react-feather'
 import Dropzone from './Dropzone'
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage'
 import { storage } from '@/firebase/index'
-import Link from 'next/Link'
+import Link from 'next/link'
 interface FilezoneProps {
 	path: string
 }
