@@ -1,14 +1,14 @@
 .sidebar {
 	flex-shrink: 0;
-	background: red;
+	@apply bg-bg900;
 }
 
 .tab {
-	background: green;
 	display: flex;
 	width: 320px;
-	border-bottom: solid 1px blue;
-	@apply py-1 px-3;
+	border-bottom: solid 1px;
+	cursor: pointer;
+	@apply py-1 px-3 border-bg600;
 }
 
 .one-line {
@@ -23,12 +23,11 @@
 	width: 42px;
 	height: 42px;
 	border-radius: 50%;
-	// overflow: hidden;
 	@apply mr-2 relative;
 }
 .name {
 	@extend .one-line;
-	background: pink;
+	@apply text-text100 font-semibold;
 }
 
 .status {
@@ -43,5 +42,5 @@
 
 .message {
 	@extend .one-line;
-	@apply text-sm font-normal text-blue-100;
+	@apply text-sm font-normal text-text200;
 }

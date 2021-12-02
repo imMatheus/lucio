@@ -1,4 +1,41 @@
 .wrapper {
-	background: orange;
 	display: flex;
+	max-height: calc(100vh - 56px);
+	flex: 1;
+}
+
+.chat {
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	position: relative;
+}
+
+.messages {
+	display: flex;
+	flex-direction: column-reverse;
+	position: relative;
+	overflow-y: scroll;
+	@apply px-6 py-2;
+}
+
+.message {
+	background: orange;
+	align-self: flex-end;
+	@apply rounded-md px-4 py-2 mb-2;
+}
+
+.inputArea {
+	width: 100%;
+	position: sticky;
+	bottom: 0;
+	padding: 9px;
+	min-height: 60px;
+	display: flex;
+	@apply bg-bg500;
+}
+
+.sendButton {
+	@apply px-4 py-2 bg-green-300 text-green-700 rounded-full;
 }

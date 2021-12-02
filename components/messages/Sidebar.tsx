@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from 'styles/Messages.module.scss'
+import styles from 'styles/MessagesSidebar.module.scss'
 import SidebarTab from './SidebarTab'
 import faker from 'faker'
 

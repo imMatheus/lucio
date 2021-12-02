@@ -10,12 +10,11 @@ interface SidebarTabProps {
 }
 
 const SidebarTab: React.FC<SidebarTabProps> = ({ date, name, text, image }) => {
-	const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-	const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
-	const dateNow = new Date()
-	const timeDiff = (dateNow.getTime() - date.getTime()) / 1000
-
 	function getDate(): string {
+		const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+		const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+		const dateNow = new Date()
+		const timeDiff = (dateNow.getTime() - date.getTime()) / 1000
 		const day = date.getDate() < 10 ? '0' + date.getDate() : date.getDate()
 
 		// one year
@@ -36,10 +35,10 @@ const SidebarTab: React.FC<SidebarTabProps> = ({ date, name, text, image }) => {
 				<Image src={image} className="rounded-full" alt="me" layout="intrinsic" width="100%" height="100%" />
 				<div className={styles.status} />
 			</div>
-			<div className="flex-1 bg-gray-600">
+			<div className="flex-1">
 				<div className="flex justify-between">
 					<p className={styles.name}>{name}</p>
-					<p className="text-text400 flex-shrink-0">{getDate()}</p>
+					<p className="text-text300 flex-shrink-0">{getDate()}</p>
 				</div>
 				<div className={styles.message}>
 					<p>{text}</p>
