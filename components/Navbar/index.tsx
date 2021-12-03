@@ -62,6 +62,9 @@ export default function Navbar(): ReactElement {
 				<Link href="/messages" passHref={true}>
 					<p className={styles.tab}>Messages</p>
 				</Link>
+				<Link href="/problems" passHref={true}>
+					<p className={styles.tab}>Problems</p>
+				</Link>
 				<p className={styles.tab}>{currentUser?.uid}</p>
 				<p className={styles.tab}>Fris</p>
 			</section>

@@ -14,7 +14,7 @@ module.exports = {
 				bg800: 'var(--bg-800)',
 				bg700: 'var(--bg-700)',
 				bg600: 'var(--bg-600)',
-				bg500: 'var(--bg-300)',
+				bg500: 'var(--bg-500)',
 				bg400: 'var(--bg-400)',
 				text100: 'var(--text-100)',
 				text200: 'var(--text-200)',

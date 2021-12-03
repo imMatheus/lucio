@@ -3,16 +3,16 @@
 @tailwind utilities;
 
 :root {
-	--bg-900: #f8f8f8;
-	--bg-800: #dddddd;
-	--bg-700: #b8b9b9;
-	--bg-600: #b3b3b3;
-	--bg-500: #8b8b8b66;
+	--bg-900: #ffffff;
+	--bg-800: #f2f3f4;
+	--bg-700: #f7f8fa;
+	--bg-600: #c3c7cd;
+	--bg-500: #fafafa;
 	--bg-400: #3b3b3b1a;
-	--text-100: #000000;
+	--text-100: #263238;
 	--text-200: #272727;
 	--text-300: #464646;
-	--text-400: #4e4e4e;
+	--text-400: #212835bf;
 	--text-500: #757575;
 	--text-500: #636363;
 

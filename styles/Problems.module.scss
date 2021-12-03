@@ -1,0 +1,18 @@
+.button {
+	position: relative;
+	cursor: pointer;
+	text-align: left;
+	display: flex;
+	align-items: center;
+	white-space: nowrap;
+	z-index: 4;
+	box-shadow: 0px 0px 0px var(--bg-600);
+	transition: transform 200ms, box-shadow 200ms;
+
+	&:hover {
+		transform: translate(2px, -2px);
+		box-shadow: -2px 2px 0px var(--bg-600);
+	}
+
+	@apply text-sm text-text300 rounded px-3 py-1.5 leading-5 bg-bg800 mr-2;
+}
