@@ -4,12 +4,9 @@ import { ArrowDown } from 'react-feather'
 import { problems } from '../../problems/Algorithms'
 import { fs } from '@/firebase/index'
 import { doc, setDoc, getDocs } from 'firebase/firestore'
-import { GetStaticProps, GetStaticPropsResult } from 'next'
+import { GetServerSideProps, GetStaticPropsResult } from 'next'
 
-interface ProblemsListProps {
-	context: any
-	preview: number
-}
+interface ProblemsListProps {}
 
 // interface ItemProps {}
 
@@ -17,16 +14,20 @@ interface ProblemsListProps {
 // 	return <div>item</div>
 // }
 
-export async function getStaticProps(context: any): Promise<GetStaticPropsResult<ProblemsListProps>> {
-	return {
-		props: { preview: 45, context }
-	}
-}
+// export const getServerSideProps: GetServerSideProps<ProblemsListProps> = async () => {
+// 	const response = await fetch('https://jsonplaceholder.typicode.com/users')
+// 	const data = await response.json()
 
-const ProblemsList: React.FC<ProblemsListProps> = ({ preview, context }) => {
+// 	return {
+// 		props: {
+// 			preview: 45,
+// 			context: data
+// 		}
+// 	}
+// }
+
+const ProblemsList: React.FC<ProblemsListProps> = (props) => {
 	console.log(problems)
-	console.log('preview: ', preview)
-	console.log('context: ', context)
 
 	async function addToFs() {
 		for (const p in problems) {
