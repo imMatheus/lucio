@@ -3,36 +3,25 @@ import Layout from '@/components/Layout'
 import type { AppProps } from 'next/app'
 import { AuthProvider } from '@/context/AuthContext'
 import { ToastProvider } from '@/context/ToastContext'
-import React from 'react'
-
-function withErrorBoundary(WrappedComponent: React.FC) {
-	try {
-		const Component = (
-			<ToastProvider>
-				<WrappedComponent />
-			</ToastProvider>
-		)
-		return Component
-	} catch (error) {
-		console.log('ghjkhghj')
-	}
-}
+import Head from 'next/head'
 
 function MyApp({ Component, pageProps }: AppProps) {
-	const App: React.FC = () => (
+	return (
 		<AuthProvider>
-			<Layout>
-				<Component {...pageProps} />
-			</Layout>
+			<ToastProvider>
+				<Head>
+					<link
+						//href="https://fonts.googleapis.com/css2?family=Inter&display=optional"
+						href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
+						rel="stylesheet"
+					/>
+				</Head>
+				<Layout>
+					<Component {...pageProps} />
+				</Layout>
+			</ToastProvider>
 		</AuthProvider>
 	)
-
-	try {
-		return withErrorBoundary(App)
-	} catch (error) {
-		alert('shit happend')
-		console.log('e: ', error)
-	}
 }
 
 export default MyApp
