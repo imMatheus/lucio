@@ -1,39 +1,39 @@
 .nav {
-    @apply flex bg-gray-900 text-white py-4 px-8;
+	@apply flex bg-bg py-4 px-8 text-sm text-textDimmed border-b border-b-textDimmed;
 }
 
 .searchWrapper {
-    @apply bg-red-700 py-1 px-2 mr-4;
+	@apply bg-red-700 py-1 px-2 mr-4;
 }
 
 .tab {
-    @apply font-bold mr-4 hover:opacity-80 transition-colors cursor-pointer;
+	@apply font-bold mr-4 hover:opacity-80 transition-colors cursor-pointer;
 }
 
 .controlsSpan {
-    @apply flex text-sm mr-4 items-center cursor-pointer relative;
+	@apply flex text-sm mr-4 items-center cursor-pointer relative;
 }
 
 .dropdownTriangle {
-    transform: translate(1px, -1px) rotate(90deg);
-    right: 21px;
-    top: -11px;
-    width: 0;
-    height: 0;
-    border-top: 8px solid transparent;
-    border-bottom: 8px solid transparent;
-    border-right: 8px solid rgb(229, 231, 235);
-    position: absolute;
+	transform: translate(1px, -1px) rotate(90deg);
+	right: 21px;
+	top: -11px;
+	width: 0;
+	height: 0;
+	border-top: 8px solid transparent;
+	border-bottom: 8px solid transparent;
+	border-right: 8px solid rgb(229, 231, 235);
+	position: absolute;
 
-    &::after {
-        content: '';
-        width: 0;
-        height: 0;
-        border-top: 7px solid transparent;
-        border-bottom: 7px solid transparent;
-        border-right: 7px solid rgb(31, 41, 55);
-        position: absolute;
-        top: -7px;
-        left: 1px;
-    }
+	&::after {
+		content: '';
+		width: 0;
+		height: 0;
+		border-top: 7px solid transparent;
+		border-bottom: 7px solid transparent;
+		border-right: 7px solid rgb(31, 41, 55);
+		position: absolute;
+		top: -7px;
+		left: 1px;
+	}
 }

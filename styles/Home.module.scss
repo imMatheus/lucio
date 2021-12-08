@@ -1,0 +1,20 @@
+.hero {
+	text-align: center;
+
+	@apply px-3;
+	p {
+		max-width: 85ch;
+		margin: 0 auto;
+		@apply text-textDimmed text-center text-base;
+	}
+}
+.header {
+	// background-clip: text;
+	// -webkit-background-clip: text;
+	// color: transparent;
+	// color: orange;
+	width: max-content;
+	max-width: 800px;
+	margin: 50px auto 25px auto;
+	position: relative;
+}

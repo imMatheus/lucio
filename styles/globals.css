@@ -3,19 +3,14 @@
 @tailwind utilities;
 
 :root {
-	--bg-900: #ffffff;
-	--bg-800: #f2f3f4;
-	--bg-700: #f7f8fa;
-	--bg-600: #c3c7cd;
-	--bg-500: #fafafa;
-	--bg-400: #f6f7f9;
-	--bg-400: #3b3b3b1a;
-	--text-100: #263238;
-	--text-200: #272727;
-	--text-300: #464646;
-	--text-400: #212835bf;
-	--text-500: #757575;
-	--text-500: #636363;
+	--theme: #2266ff;
+	--theme-dimmed: #005ce6;
+	--bg: #ffffff;
+	--bg-dimmed: #e3e3e3;
+	--bg-darken: #f7f7f8;
+	--text: #000000;
+	--text-dimmed: #646369;
+	--text-light: #7d7c83;
 
 	/* --bg-900: #010409;
 	--bg-800: #0d1117;
@@ -39,12 +34,10 @@
 	box-sizing: border-box;
 }
 
-
 html,
 body {
-	
 	font-family: 'Inter', sans-serif;
-	@apply text-text100;
+	color: var(--text);
 }
 
 a {
@@ -54,11 +47,11 @@ a {
 
 h1 {
 	font-weight: 700;
-	@apply text-3xl;
+	@apply text-5xl;
 }
 h2 {
 	font-weight: 700;
-	@apply text-2xl;
+	@apply text-3xl;
 }
 h3 {
 	font-weight: 600;
@@ -82,13 +75,11 @@ p {
 }
 
 /* Change the white to any color */
-input:-webkit-autofill,
+/* input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
 	-webkit-box-shadow: 0 0 0 100px #0d1117 inset;
 	-webkit-text-fill-color: white;
 	color: #fff;
-}
-
-
+} */

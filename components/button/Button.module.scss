@@ -1,0 +1,24 @@
+.btn {
+	height: 32px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	@apply px-3 text-sm rounded-lg transition-colors;
+}
+
+.btnPrimary {
+	@extend .btn;
+	@apply bg-theme text-white;
+
+	&:hover {
+		@apply bg-themeDimmed;
+	}
+}
+
+.btnDimmed {
+	@extend .btn;
+	@apply bg-transparent text-textDimmed;
+	&:hover {
+		@apply text-text;
+	}
+}
