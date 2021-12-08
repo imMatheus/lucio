@@ -32,33 +32,21 @@ export const problems: typeProblems = {
 		],
 		submitCases: [
 			{
-				input: [
-					{ input: '-981', type: 'integer' },
-					{ input: '-54', type: 'integer' }
-				],
+				input: ['-981', '-54'],
 
-				output: [-1035]
+				output: ['-1035']
 			},
 			{
-				input: [
-					{ input: '69', type: 'integer' },
-					{ input: '69', type: 'integer' }
-				],
-				output: [138]
+				input: ['69', '69'],
+				output: ['138']
 			},
 			{
-				input: [
-					{ input: '12', type: 'integer' },
-					{ input: '12', type: 'integer' }
-				],
-				output: [24]
+				input: ['12', '12'],
+				output: ['24']
 			},
 			{
-				input: [
-					{ input: '35', type: 'integer' },
-					{ input: '-35', type: 'integer' }
-				],
-				output: [0]
+				input: ['35', '-35'],
+				output: ['0']
 			}
 		],
 		inputs: [
@@ -105,23 +93,23 @@ export const problems: typeProblems = {
 		],
 		submitCases: [
 			{
-				input: [{ input: '987', type: 'integer' }],
+				input: ['987'],
 				output: [`false`]
 			},
 			{
-				input: [{ input: '111', type: 'integer' }],
+				input: ['111'],
 				output: [`true`]
 			},
 			{
-				input: [{ input: '1001', type: 'integer' }],
+				input: ['1001'],
 				output: [`true`]
 			},
 			{
-				input: [{ input: '9', type: 'integer' }],
+				input: ['9'],
 				output: [`true`]
 			},
 			{
-				input: [{ input: '123456789', type: 'integer' }],
+				input: ['123456789'],
 				output: [`false`]
 			}
 		],
@@ -153,32 +141,20 @@ export const problems: typeProblems = {
 
 		submitCases: [
 			{
-				input: [
-					{ input: '69', type: 'integer' },
-					{ input: '69', type: 'integer' }
-				],
-				output: [4761]
+				input: ['69', '69'],
+				output: ['4761']
 			},
 			{
-				input: [
-					{ input: '7', type: 'integer' },
-					{ input: '7', type: 'integer' }
-				],
-				output: [0]
+				input: ['7', '7'],
+				output: ['0']
 			},
 			{
-				input: [
-					{ input: '1', type: 'integer' },
-					{ input: '70', type: 'integer' }
-				],
-				output: [70]
+				input: ['1', '70'],
+				output: ['70']
 			},
 			{
-				input: [
-					{ input: '-120', type: 'integer' },
-					{ input: '3', type: 'integer' }
-				],
-				output: [-120]
+				input: ['-120', '3'],
+				output: ['-120']
 			}
 		],
 		inputs: [
@@ -221,25 +197,16 @@ export const problems: typeProblems = {
 		],
 		submitCases: [
 			{
-				input: [
-					{ input: 'e', type: 'string' },
-					{ input: 'egegeahsdfyegdajebcsdfyegdajebcheavcaebuebu', type: 'string' }
-				],
-				output: [10]
+				input: ['e', 'egegeahsdfyegdajebcsdfyegdajebcheavcaebuebu'],
+				output: ['10']
 			},
 			{
-				input: [
-					{ input: 'j', type: 'string' },
-					{ input: 'gdykajcbaksdnscnsacnkasdknnsd', type: 'string' }
-				],
-				output: [10]
+				input: ['j', 'gdykajcbaksdnscnsacnkasdknnsd'],
+				output: ['10']
 			},
 			{
-				input: [
-					{ input: 'm', type: 'string' },
-					{ input: 'memememememememe', type: 'string' }
-				],
-				output: [8]
+				input: ['m', 'memememememememe'],
+				output: ['8']
 			}
 		],
 
@@ -276,18 +243,154 @@ export const problems: typeProblems = {
 		],
 		submitCases: [
 			{
-				input: [{ input: 'MATHEUSMENDESBARATADEALMEIDA', type: 'string' }],
-				output: [244]
+				input: ['MATHEUSMENDESBARATADEALMEIDA'],
+				output: ['244']
 			},
 			{
-				input: [{ input: 'QWQWASZXDESREGG', type: 'string' }],
-				output: [215]
+				input: ['QWQWASZXDESREGG'],
+				output: ['215']
 			},
 			{
-				input: [{ input: 'ZZZZZZZZA', type: 'string' }],
-				output: [209]
+				input: ['ZZZZZZZZA'],
+				output: ['209']
 			}
 		],
 		inputs: [{ input: 'n', type: 'string' }]
+	},
+	CountingValleys: {
+		problemName: 'Counting Valleys',
+		difficulty: 'medium',
+		description: `
+                An avid hiker keeps meticulous records of their hikes. During the last hike that took exactly <span class="variable">steps</span> steps, for every step it was noted if it was an uphill, <span class="variable">U</span> , or a downhill, <span class="variable">D</span> step. Hikes always start and end at sea level, and each step up or down represents a <span class="variable">1</span> unit change in altitude.
+              
+        <div class="bulletpoint">A level.</div>
+        <div class="bulletpoint">A valley is a sequence of consecutive steps below sea level, starting with a step down from sea level and ending with a step up to sea level.</div>
+        Given the sequence of up and down steps during a hike, find and print the number of valleys walked through.
+                 `,
+		constrains: [
+			` <span class="variable">2 < steps < 1000</span>`,
+			`<span class="variable">path[i] = "U"</span> or <span class="variable">path[i] = "D"</span>`
+		],
+		inputFormat: `The first line contains an integer <span class="variable">steps</span>, the number of steps in the hike.
+        The second line contains a single string  <span class="variable">path</span>, of   <span class="variable">steps</span>characters that describe the path.`,
+		// constrains: [`0 < n < 100`],
+		output: `int: The number of valleys traveled.`,
+		sampleCases: [
+			{
+				input: [
+					{ input: '8', type: 'integer' },
+					{ input: `"UDDDUDUU"`, type: 'string' }
+				],
+				output: [1],
+				explanation: {
+					text: `If we represent <span class="variable">_</span> as sea level, a step up as <span class="variable">/</span>, and a step down as <span class="variable">&#92</span>, the hike can be drawn as:`,
+					explanationOutput: [' _/&#92      _', '    &#92    /', '     &#92/&#92/']
+				}
+			},
+			{
+				input: [
+					{ input: '6', type: 'integer' },
+					{ input: `"DUDUDU"`, type: 'string' }
+				],
+				output: ['3']
+			}
+		],
+		submitCases: [
+			{
+				input: ['26', `"DDUDUUUUDDUUDDUDUDUDUDUDDU"`],
+				output: ['2']
+			},
+			{
+				input: ['28', `"DUDUDUDUDUDUDUDUDDUDUDUDDUUU"`],
+				output: ['9']
+			},
+			{
+				input: ['48', `"DUDUDUDUDUDUDUDUDUDUDUDUDUDUDUDUDDUDDUDUDUDUDUUU"`],
+				output: ['17']
+			},
+			{
+				input: ['16', `"UUUUUUUUDDDDDDDD"`],
+				output: ['0']
+			}
+		],
+		inputs: [
+			{ input: 'steps', type: 'integer' },
+			{ input: 'path', type: 'string' }
+		]
+	},
+
+	AlmostSorted: {
+		problemName: 'Almost Sorted',
+		difficulty: 'hard',
+
+		description: `
+        Given an array of integers, determine whether the array
+        can be sorted in ascending order using only one of the following 
+        operations one time.
+        <div class="bulletpoint">Swap two elements.</div>
+        <div class="bulletpoint">Reverse one sub-segment.</div>
+        Determine whether one, both or neither of the operations will complete the task. Output is as follows.
+        <div class="bulletpoint">If the array is already sorted, output <span class="variable">yes</span> on the first line. You do not need to output anything else.</div>
+        <div class="bulletpoint">If you can sort this array using one single operation (from the two permitted operations) then output <span class="variable">yes</span> on the first line and then:
+            <ul class="numberlist">
+                <li>
+                If elements can only be swapped, <span class="variable">d[p]</span> and <span class="variable">d[q]</span>,
+                output <span class="variable">swap p q </span> in the second line.  
+                <span class="variable">p</span> and <span class="variable">q</span> are the indices of the elements to be swapped, 
+                assuming that the array is indexed from <span class="variable">1</span> to <span class="variable">n</span>.
+                </li>
+                <li>
+                If elements can only be reversed, for the segment <span class="variable">d[p...q]</span>, output <span class="variable">reverse p q</span> in the second line. 
+                <span class="variable">p</span> and <span class="variable">q</span> are the indices of the first and last elements 
+                of the subarray to be reversed, assuming that 
+                 the array is indexed <span class="variable">1</span> from <span class="variable">n</span> to . 
+                Here <span class="variable">d[p...q]</span> represents the subarray that begins at index  <span class="variable">p</span> 
+                and ends at index <span class="variable">q</span>, both inclusive.
+                </li>
+            </ul>
+        </div>
+        If an array can be sorted both ways, by using either swap or reverse, choose swap.
+        <div class="bulletpoint">If the array cannot be sorted either way, output no on the first line.</div>
+        `,
+		constrains: [
+			`<span class="variable">2 &#8804 n &#8804 100000 </span>`,
+			`<span class="variable">0 &#8804 arr[i] &#8804 1000000 </span>`,
+			`All <span class="variable">arr[i]</span> are distinct`
+		],
+		inputFormat: `The first line contains a single integer <span class="variable">n</span>, the size of <span class="variable">arr</span>.
+        The next line contains <span class="variable">n</span> space-separated integers <span class="variable">arr[i]</span> where <span class="variable">1 &#8804 i &#8804 n </span>.`,
+		output: `int: the length of the longest subset of <span class="variable">S</span> meeting the criteria`,
+		sampleCases: [
+			{
+				input: [{ input: '[3,1,2]', type: 'integer[]' }],
+				output: ['no'],
+				explanation: {
+					text: `It is impossible to sort by one single operation.`
+				}
+			},
+			{
+				input: [{ input: '[1, 5, 4, 3, 2, 6]', type: 'integer[]' }],
+				output: ['yes reverse 2 5'],
+				explanation: {
+					text: `You can reverse the sub-array <span class="variable">d[2...5]</span> = "5 4 3 2", then the array becomes sorted.`
+				}
+			},
+			{
+				input: [{ input: '[1, 2, 5, 4, 3, 6]', type: 'integer[]' }],
+				output: ['yes swap 3 5']
+			}
+		],
+		submitCases: [
+			// {
+			// 	input: [{ input: 'MATHEUSMENDESBARATADEALMEIDA', type: 'string' }],
+			// 	output: [244]
+			// },
+			{ input: ['[20, 21, 22, 23, 24, 25]'], output: ['yes'] },
+			{ input: ['[10, 14, 12, 9, 24, 25]'], output: ['no'] },
+			{ input: ['[1, 2, 5, 4, 3, 6]'], output: ['yes swap 3 5'] },
+			{ input: ['[1, 5, 4, 3, 2, 6]'], output: ['yes reverse 2 5'] },
+			{ input: ['[80, 82, 84, 86, 88, 87]'], output: ['yes swap 5 6'] }
+		],
+		inputs: [{ input: 'arr', type: 'integer[]' }]
 	}
 }

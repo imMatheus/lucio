@@ -1,28 +1,36 @@
 import React from 'react'
 import type { NextPage } from 'next'
 import ProblemsList from '@/components/problems/ProblemsList'
-import { GetServerSideProps, GetStaticPropsResult } from 'next'
+import { GetServerSideProps, GetStaticPropsResult, GetStaticProps } from 'next'
 import { fs } from '@/firebase/index'
-import { getDocs, collection } from 'firebase/firestore'
+import { getDocs, collection, query, where } from 'firebase/firestore'
+import AlgorithmProblem from '@/types/AlgorithmProblem'
+interface Props {
+	problems: AlgorithmProblem[]
+	// difficulty?: any
+}
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
+export const getServerSideProps: GetServerSideProps<Props> = async (context) => {
 	// collection(db, "cities"),
-	const response = await getDocs(collection(fs, 'problems'))
+	const diff = context.query?.difficulty
+	const response = await getDocs(query(collection(fs, 'problems'), where('difficulty', '==', diff)))
 	console.log('context', context)
 
 	return {
 		props: {
-			preview: 45,
-			context: response.docs.map((doc) => doc.data())
+			problems: response.docs.map((doc) => doc.data() as AlgorithmProblem)
+			// difficulty: diff ?? 'no diff'
 		}
 	}
 }
 
-const index: NextPage = (props) => {
+const index: NextPage<Props> = ({ problems, ...props }) => {
+	console.log('props', props)
+
 	return (
 		<div className="max-w-6xl w-full mx-auto">
 			problems
-			<ProblemsList />
+			<ProblemsList problems={problems} />
 		</div>
 	)
 }

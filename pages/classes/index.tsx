@@ -1,17 +1,17 @@
-import React, { useEffect, ReactElement } from 'react';
-import getUser from '../../firebase/querys/getUser';
-import { useAuth } from '@/context/AuthContext';
-import styles from 'styles/Classes.module.scss';
-import ClassCard from '@/components/classes/ClassCard';
-import getUsersClasses, { useUsersClasses } from '@/firebase/querys/getUsersClasses';
-import useCreateClass from '@/firebase/handlers/useCreateClass';
-import { useToast } from '@/context/ToastContext';
+import React, { useEffect, ReactElement } from 'react'
+import getUser from '../../firebase/querys/getUser'
+import { useAuth } from '@/context/AuthContext'
+import styles from 'styles/Classes.module.scss'
+import ClassCard from '@/components/classes/ClassCard'
+import getUsersClasses, { useUsersClasses } from '@/firebase/querys/getUsersClasses'
+import useCreateClass from '@/firebase/handlers/useCreateClass'
+import { useToast } from '@/context/ToastContext'
 
 export default function Classes(): ReactElement {
-	const usersClasses = useUsersClasses();
-	const { setToastMessage } = useToast();
-	const createClass = useCreateClass();
-	getUsersClasses().then((b) => console.log(b));
+	const usersClasses = useUsersClasses()
+	const { setToastMessage } = useToast()
+	const createClass = useCreateClass()
+	getUsersClasses().then((b) => console.log(b))
 
 	return (
 		<section className="py-8 px-6">
@@ -21,7 +21,8 @@ export default function Classes(): ReactElement {
 					<button
 						className={styles.chip}
 						onClick={() => {
-							setToastMessage(Math.random() + '');
+							setToastMessage(Math.random() + '')
+							throw new Error('hej klarade jag det')
 						}}
 					>
 						Join class
@@ -32,10 +33,10 @@ export default function Classes(): ReactElement {
 				</div>
 				<div className={styles.classesWrapper}>
 					{usersClasses?.map(({ code, name, participantsIds }, index) => {
-						return <ClassCard code={code} name={name} participantsIds={participantsIds} key={index} />;
+						return <ClassCard code={code} name={name} participantsIds={participantsIds} key={index} />
 					})}
 				</div>
 			</section>
 		</section>
-	);
+	)
 }

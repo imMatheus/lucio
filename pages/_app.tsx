@@ -1,22 +1,38 @@
-import '../styles/globals.css';
-import Layout from '@/components/Layout';
-import type { AppProps } from 'next/app';
-import { AuthProvider } from '@/context/AuthContext';
-import { ToastProvider } from '@/context/ToastContext';
-function MyApp({ Component, pageProps }: AppProps) {
+import '../styles/globals.css'
+import Layout from '@/components/Layout'
+import type { AppProps } from 'next/app'
+import { AuthProvider } from '@/context/AuthContext'
+import { ToastProvider } from '@/context/ToastContext'
+import React from 'react'
+
+function withErrorBoundary(WrappedComponent: React.FC) {
 	try {
-		return (
-			<AuthProvider>
-				<ToastProvider>
-					<Layout>
-						<Component {...pageProps} />
-					</Layout>
-				</ToastProvider>
-			</AuthProvider>
-		);
+		const Component = (
+			<ToastProvider>
+				<WrappedComponent />
+			</ToastProvider>
+		)
+		return Component
 	} catch (error) {
-		alert(error);
-		console.log(error);
+		console.log('ghjkhghj')
 	}
 }
-export default MyApp;
+
+function MyApp({ Component, pageProps }: AppProps) {
+	const App: React.FC = () => (
+		<AuthProvider>
+			<Layout>
+				<Component {...pageProps} />
+			</Layout>
+		</AuthProvider>
+	)
+
+	try {
+		return withErrorBoundary(App)
+	} catch (error) {
+		alert('shit happend')
+		console.log('e: ', error)
+	}
+}
+
+export default MyApp

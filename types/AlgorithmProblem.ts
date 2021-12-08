@@ -3,11 +3,17 @@ type Integer = 'integer'
 type Float = 'float'
 type Double = 'double'
 type Char = 'char'
-type StringArray = Array<string>
-type IntegerArray = Array<Integer>
-type FloatArray = Array<Float>
-type DoubleArray = Array<Double>
-type CharArray = Array<Char>
+type StringArray = 'string[]'
+type IntegerArray = 'integer[]'
+type FloatArray = 'float[]'
+type DoubleArray = 'double[]'
+type CharArray = 'char[]'
+
+// type StringArray = Array<string>
+// type IntegerArray = Array<Integer>
+// type FloatArray = Array<Float>
+// type DoubleArray = Array<Double>
+// type CharArray = Array<Char>
 
 type InputType =
 	| String
@@ -26,13 +32,18 @@ interface Input {
 	type: InputType
 }
 
-export interface sampleCases {
+export interface SampleCases {
 	input: Array<Input>
 	output: Array<number | string>
 	explanation?: {
 		text?: string
 		explanationOutput?: Array<string>
 	}
+}
+
+export interface SubmitCases {
+	input: Array<string>
+	output: Array<string>
 }
 
 export default interface AlgorithmProblem {
@@ -42,7 +53,7 @@ export default interface AlgorithmProblem {
 	constrains: Array<string>
 	inputFormat: string
 	output: string
-	sampleCases: Array<sampleCases>
-	submitCases?: Array<sampleCases>
+	sampleCases: Array<SampleCases>
+	submitCases?: Array<SubmitCases>
 	inputs: Array<Input>
 }
