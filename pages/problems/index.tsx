@@ -13,7 +13,7 @@ interface Props {
 export const getServerSideProps: GetServerSideProps<Props> = async (context) => {
 	// collection(db, "cities"),
 	const diff = context.query?.difficulty
-	const response = await getDocs(query(collection(fs, 'problems'), where('difficulty', '==', diff)))
+	const response = await getDocs(query(collection(fs, 'problems'))) //, where('difficulty', '==', diff)))
 	console.log('context', context)
 
 	return {
@@ -28,7 +28,7 @@ const index: NextPage<Props> = ({ problems, ...props }) => {
 	console.log('props', props)
 
 	return (
-		<div className="max-w-6xl w-full mx-auto">
+		<div className="w-maxed w-full mx-auto">
 			problems
 			<ProblemsList problems={problems} />
 		</div>

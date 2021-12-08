@@ -1,6 +1,6 @@
 .sidebar {
 	flex-shrink: 0;
-	@apply bg-bg900;
+	@apply bg-bgDarken;
 }
 
 .tab {
@@ -8,7 +8,7 @@
 	width: 320px;
 	border-bottom: solid 1px;
 	cursor: pointer;
-	@apply py-1 px-3 border-bg600;
+	@apply py-1 px-3 border-bgDarken;
 }
 
 .one-line {
@@ -27,7 +27,7 @@
 }
 .name {
 	@extend .one-line;
-	@apply text-text100 font-semibold;
+	@apply text-text font-semibold;
 }
 
 .status {
@@ -42,5 +42,5 @@
 
 .message {
 	@extend .one-line;
-	@apply text-sm font-normal text-text200;
+	@apply text-sm font-normal text-textDimmed;
 }

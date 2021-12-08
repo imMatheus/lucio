@@ -26,6 +26,12 @@
 	--text-500: #484f58; */
 }
 
+@layer utilities {
+	.w-maxed {
+		max-width: 80rem;
+	}
+}
+
 *,
 *::before,
 *::after {

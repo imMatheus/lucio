@@ -2,37 +2,37 @@ import React from 'react'
 import Link from 'next/link'
 import styles from 'styles/Classes.module.scss'
 import Image from 'next/image'
+import ClassType from '@/types/ClassType'
 
 interface ClassesCardProps {
-    name: string
-    code: string
-    participantsIds: string[]
+	data: ClassType
+	img: string
 }
 
-export default function ClassCard({
-    name,
-    code,
-    participantsIds,
-}: ClassesCardProps) {
-    return (
-        <Link href={`/classes/${code}`} passHref={true}>
-            <div className={styles.classCard}>
-                {/* <div className='mr-3 relative'> */}
-                <Image
-                    src='/rock.jpeg'
-                    className='rounded-lg'
-                    alt='me'
-                    layout='intrinsic'
-                    width='100%'
-                    height='100%'
-                />
-                {/* </div> */}
-                <div className='ml-3'>
-                    <h3>{name}</h3>
-                    <p>{participantsIds.length} students</p>
-                    <p>Class code: {code}</p>
-                </div>
-            </div>
-        </Link>
-    )
+export default function ClassCard({ data: { id, name, code, participantsIds }, img }: ClassesCardProps) {
+	return (
+		<Link href={`/classes/${id}`} passHref={true}>
+			<div className={styles.classCard}>
+				{/* <div className='mr-3 relative'> */}
+				<div className={styles.image}>
+					<Image
+						src={img}
+						className="rounded-md"
+						alt="me"
+						layout="fill"
+						objectFit="cover"
+						width="100px"
+						height="100%"
+					/>
+				</div>
+				{/* </div> */}
+				<div className="ml-3">
+					<h3>{name}</h3>
+					<p>{participantsIds.length} students</p>
+					<p>Class code: {code}</p>
+					<p>Class code: {id}</p>
+				</div>
+			</div>
+		</Link>
+	)
 }

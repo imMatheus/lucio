@@ -38,7 +38,7 @@ const SidebarTab: React.FC<SidebarTabProps> = ({ date, name, text, image }) => {
 			<div className="flex-1">
 				<div className="flex justify-between">
 					<p className={styles.name}>{name}</p>
-					<p className="text-text300 flex-shrink-0">{getDate()}</p>
+					<p className="text-text flex-shrink-0">{getDate()}</p>
 				</div>
 				<div className={styles.message}>
 					<p>{text}</p>

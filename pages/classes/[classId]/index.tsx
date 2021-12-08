@@ -1,18 +1,22 @@
-import React, { ReactElement, useEffect, useState } from 'react';
-import styles from 'styles/Classes.module.scss';
-import ClassType from '@/types/ClassType';
-import { useRouter } from 'next/router';
-import ClassNavbar from '@/components/classes/ClassNavbar';
-import useClassData from '@/hooks/useClassData';
-import { useAuth } from '@/context/AuthContext';
-import getClass from '@/firebase/querys/getClass';
-import User from '@/types/User';
+import React, { ReactElement, useEffect, useState } from 'react'
+import styles from 'styles/Classes.module.scss'
+import ClassType from '@/types/ClassType'
+import { useRouter } from 'next/router'
+import ClassNavbar from '@/components/classes/ClassNavbar'
+import useClassData from '@/hooks/useClassData'
+import { useAuth } from '@/context/AuthContext'
+import getClass from '@/firebase/querys/getClass'
+import User from '@/types/User'
 
 export default function ClassScreen(): ReactElement {
-	const router = useRouter();
-	const { id: classId } = router.query;
-	const { currentUser } = useAuth();
-	const classData = useClassData(currentUser, classId);
+	const router = useRouter()
+	const { classId } = router.query
+	console.log('rrr: ', router)
+	console.log('rrr: ', classId)
+
+	const { currentUser } = useAuth()
+	const [classData, loading] = useClassData(classId)
+	console.log('classData: ', classData)
 
 	return (
 		<div className="px-6 py-3">
@@ -21,9 +25,10 @@ export default function ClassScreen(): ReactElement {
 			<h2>class data</h2>
 			<div>
 				<h4>{classData && JSON.stringify(classData)}</h4>
+				console.log({loading});
 			</div>
 		</div>
-	);
+	)
 }
 
 // let x: any[] = []
