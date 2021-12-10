@@ -8,8 +8,7 @@ const Index: NextPage = () => {
 	return (
 		<div className={styles.wrapper}>
 			<Sidebar />
-			<Chat messages={['hej', 'abc']} />
-			{/* <div className={styles.ff}></div> */}
+			{/* <Chat messages={['hej', 'abc']} /> */}
 		</div>
 	)
 }

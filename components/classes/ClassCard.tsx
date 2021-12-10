@@ -15,15 +15,7 @@ export default function ClassCard({ data: { id, name, code, participantsIds }, i
 			<div className={styles.classCard}>
 				{/* <div className='mr-3 relative'> */}
 				<div className={styles.image}>
-					<Image
-						src={img}
-						className="rounded-md"
-						alt="me"
-						layout="fill"
-						objectFit="cover"
-						width="100px"
-						height="100%"
-					/>
+					<Image src={img} className="rounded-md" alt="me" layout="fill" objectFit="cover" />
 				</div>
 				{/* </div> */}
 				<div className="ml-3">

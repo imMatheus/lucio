@@ -8,6 +8,7 @@ import User from '@/types/User'
 
 export default async function getClassById(id: string): Promise<ClassType | null> {
 	if (!id) return null
+	console.log('id:', id)
 
 	const docRef = doc(fs, 'classes', id)
 	const docSnap = await getDoc(docRef)

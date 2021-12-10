@@ -1,10 +1,14 @@
 import React from 'react'
 import styles from 'styles/Messages.module.scss'
+import MessageType from 'types/Message'
+interface MessageProps {
+	message: MessageType
+}
 
-interface MessageProps {}
+const Message: React.FC<MessageProps> = ({ message }) => {
+	console.log('message', message)
 
-const Message: React.FC<MessageProps> = ({}) => {
-	return <div className={styles.message}>hello im message</div>
+	return <div className={styles.message}>{message.text}</div>
 }
 
 export default Message

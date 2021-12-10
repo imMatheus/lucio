@@ -1,5 +1,6 @@
 .nav {
-	@apply w-maxed flex text-sm text-textDimmed mx-auto;
+	@apply flex text-sm text-textDimmed mx-auto w-maxed;
+	// @apply w-maxed flex text-sm text-textDimmed mx-auto;
 }
 
 .searchWrapper {

@@ -19,8 +19,7 @@ export default function Classes(): ReactElement {
 		<section className="py-8 px-6">
 			{/* <section className="py-8 px-6 bg-red-200"> */}
 			<section className="w-maxed mx-auto">
-				<h1 className="mb-3">My classes</h1>
-				<div className="flex mb-2 gap-2">
+				<div className="flex mb-3 gap-2">
 					<Button
 						dimmed
 						onClick={() => {

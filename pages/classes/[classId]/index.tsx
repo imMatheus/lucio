@@ -7,6 +7,7 @@ import useClassData from '@/hooks/useClassData'
 import { useAuth } from '@/context/AuthContext'
 import getClass from '@/firebase/querys/getClass'
 import User from '@/types/User'
+import Button from '@/components/button'
 
 export default function ClassScreen(): ReactElement {
 	const router = useRouter()
@@ -19,15 +20,21 @@ export default function ClassScreen(): ReactElement {
 	console.log('classData: ', classData)
 
 	return (
-		<div className="px-6 py-3">
-			{classId && <ClassNavbar />}
-			im a class
-			<h2>class data</h2>
-			<div>
-				<h4>{classData && JSON.stringify(classData)}</h4>
-				console.log({loading});
-			</div>
-		</div>
+		<section className="py-8 px-6">
+			<section className="w-maxed mx-auto">
+				<div className="flex mb-3 gap-2">
+					<Button dimmed>Join class</Button>
+					<Button>Create class</Button>
+				</div>
+				{classId && <ClassNavbar />}
+				im a class
+				<h2>class data</h2>
+				<div>
+					<h4>{classData && JSON.stringify(classData)}</h4>
+					console.log({loading});
+				</div>
+			</section>
+		</section>
 	)
 }
 

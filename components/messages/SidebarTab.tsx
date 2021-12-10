@@ -1,15 +1,17 @@
 import React from 'react'
 import styles from 'styles/MessagesSidebar.module.scss'
 import Image from 'next/image'
+import Link from 'next/link'
 
 interface SidebarTabProps {
 	date: Date
 	name: string
 	text: string
 	image: string
+	route: string
 }
 
-const SidebarTab: React.FC<SidebarTabProps> = ({ date, name, text, image }) => {
+const SidebarTab: React.FC<SidebarTabProps> = ({ date, name, text, image, route }) => {
 	function getDate(): string {
 		const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 		const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
@@ -30,21 +32,30 @@ const SidebarTab: React.FC<SidebarTabProps> = ({ date, name, text, image }) => {
 		return days[date.getDay()]
 	}
 	return (
-		<div className={styles.tab}>
-			<div className={styles.tabAvatar}>
-				<Image src={image} className="rounded-full" alt="me" layout="intrinsic" width="100%" height="100%" />
-				<div className={styles.status} />
-			</div>
-			<div className="flex-1">
-				<div className="flex justify-between">
-					<p className={styles.name}>{name}</p>
-					<p className="text-text flex-shrink-0">{getDate()}</p>
+		<Link passHref={true} href={route}>
+			<div className={styles.tab}>
+				<div className={styles.tabAvatar}>
+					<Image
+						src={image}
+						className="rounded-full"
+						alt="me"
+						layout="intrinsic"
+						width="100%"
+						height="100%"
+					/>
+					<div className={styles.status} />
 				</div>
-				<div className={styles.message}>
-					<p>{text}</p>
+				<div className="flex-1">
+					<div className="flex justify-between">
+						<p className={styles.name}>{name}</p>
+						<p className="text-textDimmed flex-shrink-0">{getDate()}</p>
+					</div>
+					<div className={styles.message}>
+						<p>{text}</p>
+					</div>
 				</div>
 			</div>
-		</div>
+		</Link>
 	)
 }
 

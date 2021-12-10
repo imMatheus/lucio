@@ -1,86 +1,24 @@
 import React from 'react'
 import styles from 'styles/Messages.module.scss'
+import ChatHeader from './ChatHeader'
 import InputArea from './InputArea'
 import Message from './Message'
+import MessageType from 'types/Message'
 
 interface ChatProps {
-	messages: any[]
+	messages: MessageType[]
 }
 
-const Chat: React.FC<ChatProps> = ({}) => {
+const Chat: React.FC<ChatProps> = ({ messages }) => {
+	console.log('message', messages)
+
 	return (
 		<div className={styles.chat}>
-			<div className={styles.messages}>
-				<h1>1</h1>
-				<Message />
-				<Message />
-				<Message />
-				<Message />
-				<Message />
-				<Message />
-				<Message />
-				<Message />
-				<Message />
-				<Message />
-				<Message />
-				<Message />
-				<Message />
-				<Message />
-				<Message />
-				<Message />
-				<Message />
-				<Message />
-				<Message />
-				<Message />
-				<Message />
-				<Message />
-				<Message />
-				<Message />
-				<Message />
-				<Message />
-				<Message />
-				<Message />
-				<Message />
-				<Message />
-				<Message />
-				<Message />
-				<Message />
-				<Message />
-				<Message />
-				<Message />
-				<Message />
-				<Message />
-				<Message />
-				<Message />
-				<Message />
-				<Message />
-				<Message />
-				<Message />
-				<Message />
-				<Message />
-				<Message />
-				<Message />
-				<Message />
-				<Message />
-				<Message />
-				<Message />
-				<Message />
-				<Message />
-				<Message />
-				<Message />
-				<Message />
-				<Message />
-				<Message />
-				<Message />
-				<Message />
-				<Message />
-				<Message />
-				<Message />
-				<Message />
-				<Message />
-				<Message />
-				<Message />
-				<h1>2</h1>
+			<ChatHeader name="Hello world!" />
+			<div className={styles.messagesWrapper}>
+				{messages.map((message) => (
+					<Message key={message.id} message={message} />
+				))}
 			</div>
 			<InputArea />
 		</div>

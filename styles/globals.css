@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+	.w-maxed {
+		max-width: 2000px;
+	}
+}
+
 :root {
 	--theme: #2266ff;
 	--theme-dimmed: #005ce6;
@@ -24,12 +30,6 @@
 	--text-400: #979a9c;
 	--text-500: #8b949e;
 	--text-500: #484f58; */
-}
-
-@layer utilities {
-	.w-maxed {
-		max-width: 80rem;
-	}
 }
 
 *,
