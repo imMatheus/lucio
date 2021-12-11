@@ -12,7 +12,7 @@ interface InputAreaProps {}
 const InputArea: React.FC<InputAreaProps> = ({}) => {
 	const [message, setMessage] = useState('')
 	const [loading, setLoading] = useState(false)
-	const inputRef = useRef<HTMLInputElement>(null)
+	const inputRef = useRef<HTMLTextAreaElement>(null)
 	const router = useRouter()
 	const { messageId } = router.query
 	const { currentUser } = useAuth()
@@ -23,8 +23,8 @@ const InputArea: React.FC<InputAreaProps> = ({}) => {
 		setLoading(true)
 		await addDoc(collection(fs, `chats/${messageId}/messages`), {
 			text: message,
-			authorID: currentUser.uid,
-			date: new Date()
+			authorId: currentUser.uid,
+			sentAt: new Date()
 		})
 		setLoading(false)
 		setToastMessage('sent message')
@@ -39,17 +39,23 @@ const InputArea: React.FC<InputAreaProps> = ({}) => {
 					e.preventDefault()
 					sendMessage()
 				}}
+				className={styles.form}
 			>
-				<input
-					type="text"
+				{/* <textarea
+					// rows={}
+					// type="text"
 					ref={inputRef}
 					value={message}
 					onChange={(e) => {
 						setMessage(e.target.value)
 					}}
+					className={styles.inputField}
 					placeholder="Write a new message..."
-				/>
-				<button className={styles.sendButton}>Send {loading ? 'true' : 'false'}</button>
+				/> */}
+				<div className={styles.inputField} contentEditable={true}>
+					start
+				</div>
+				{/* <button className={styles.sendButton}>Send{loading ? 'true' : 'false'}</button> */}
 			</form>
 		</div>
 	)

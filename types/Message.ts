@@ -1,7 +1,7 @@
 type Message = {
 	text: string
 	authorId: string
-	date: Date
+	sentAt: Date
 	id: string
 }
 

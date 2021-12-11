@@ -23,10 +23,20 @@
 	@apply px-6 py-2;
 }
 
-.message {
-	background: orange;
+.messageBase {
+	@apply rounded-md px-4 py-2 mb-2 shadow-lg;
+}
+
+.messageSent {
+	@extend .messageBase;
 	align-self: flex-end;
-	@apply rounded-md px-4 py-2 mb-2;
+	@apply bg-theme text-white;
+}
+
+.messageReceived {
+	@extend .messageBase;
+	align-self: flex-start;
+	@apply bg-bg text-text;
 }
 
 //input area
@@ -34,14 +44,52 @@
 	width: 100%;
 	position: sticky;
 	bottom: 0;
-	padding: 9px;
-	min-height: 60px;
+	// min-height: 60px;
+	// display: flex;
+	@apply py-3 px-6 bg-bgDimmed;
+
+	// .inputWrapper {
+	// flex: 1;
+	// outline: none;
+	// display: flex;
+	// align-items: center;
+	// @apply bg-bg px-4 py-2 rounded-full border border-text;
+	// }
+}
+
+.form {
+	width: 100%;
+	background-color: magenta;
 	display: flex;
-	@apply bg-bgDimmed;
+	height: max-content;
+	max-height: 500px;
+	overflow-y: scroll;
+	// align-items: center;
+	border-radius: 20px;
+	position: relative;
+	@apply max-w-md bg-bg px-4 py-2 border border-text;
+
+	&:focus-within {
+		@apply border-theme;
+	}
+	// @apply rounded-full py-3 p-1 max-w-md;
+}
+.inputField {
+	width: 100%;
+	outline: none;
+	// padding: 13px;
 }
 
 .sendButton {
-	@apply px-4 py-2 bg-green-300 text-green-700 rounded-full;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	// margin-right: 13px;
+	cursor: pointer;
+	background-color: transparent;
+	border: none;
+
+	@apply bg-green-900 text-green-700;
 }
 
 // Chat header

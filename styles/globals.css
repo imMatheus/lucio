@@ -11,6 +11,8 @@
 :root {
 	--theme: #2266ff;
 	--theme-dimmed: #005ce6;
+
+	/* Light theme */
 	--bg: #ffffff;
 	--bg-dimmed: #e3e3e3;
 	--bg-darken: #f7f7f8;
@@ -18,6 +20,15 @@
 	--text-dimmed: #646369;
 	--text-light: #7d7c83;
 
+	/* dark theme */
+	/* --bg: #000000;
+	--bg-dimmed: rgb(28, 28, 28);
+	--bg-darken: rgb(8, 8, 7);
+	--text: rgb(255, 255, 255);
+	--text-dimmed: rgb(155, 156, 150);
+	--text-light: rgb(130, 131, 124); */
+
+	/* Old dark theme */
 	/* --bg-900: #010409;
 	--bg-800: #0d1117;
 	--bg-700: #161b22;
@@ -89,3 +100,8 @@ input:-webkit-autofill:active {
 	-webkit-text-fill-color: white;
 	color: #fff;
 } */
+
+[contentEditable='true']:empty:not(:focus):before {
+	content: attr(data-text);
+	color: rgb(121, 21, 21);
+}

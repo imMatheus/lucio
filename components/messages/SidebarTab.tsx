@@ -2,7 +2,7 @@ import React from 'react'
 import styles from 'styles/MessagesSidebar.module.scss'
 import Image from 'next/image'
 import Link from 'next/link'
-
+import { useRouter } from 'next/router'
 interface SidebarTabProps {
 	date: Date
 	name: string
@@ -12,6 +12,8 @@ interface SidebarTabProps {
 }
 
 const SidebarTab: React.FC<SidebarTabProps> = ({ date, name, text, image, route }) => {
+	const router = useRouter()
+
 	function getDate(): string {
 		const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 		const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
@@ -33,7 +35,7 @@ const SidebarTab: React.FC<SidebarTabProps> = ({ date, name, text, image, route 
 	}
 	return (
 		<Link passHref={true} href={route}>
-			<div className={styles.tab}>
+			<div className={styles.tab + (router.asPath === route ? ' ' + styles.active : '')}>
 				<div className={styles.tabAvatar}>
 					<Image
 						src={image}

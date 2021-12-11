@@ -25,9 +25,9 @@ const Sidebar: React.FC<SidebarProps> = ({}) => {
 	})
 	x.push({
 		image: 'https://avatars.githubusercontent.com/u/77362975?s=400&u=f7fd1ea50dfbb2fbf358819158d09df29ca05bd0&v=4',
-		name: _name + 'hhh hej oå hh ww dddd',
+		name: 'abba',
 		date: new Date('28 November 2021'),
-		id: '/messages/' + _name
+		id: '/messages/' + 'abba'
 	})
 
 	return (

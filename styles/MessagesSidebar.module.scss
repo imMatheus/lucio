@@ -45,3 +45,16 @@
 	@extend .one-line;
 	@apply text-sm font-normal text-textDimmed;
 }
+
+.active {
+	position: relative;
+	&::after {
+		content: '';
+		height: 100%;
+		position: absolute;
+		top: 0;
+		right: 0;
+		width: 2px;
+		@apply bg-theme;
+	}
+}
