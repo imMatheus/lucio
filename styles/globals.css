@@ -16,8 +16,10 @@
 	--bg: #ffffff;
 	--bg-dimmed: #e3e3e3;
 	--bg-darken: #f7f7f8;
-	--text: #000000;
-	--text-dimmed: #646369;
+	--text: #111827;
+	/* --text: #000000; */
+	--text-dimmed: #6b7280;
+	/* --text-dimmed: #646369; */
 	--text-light: #7d7c83;
 
 	/* dark theme */
@@ -101,7 +103,7 @@ input:-webkit-autofill:active {
 	color: #fff;
 } */
 
-[contentEditable='true']:empty:not(:focus):before {
+/* [contentEditable='true']:empty:not(:focus):before {
 	content: attr(data-text);
 	color: rgb(121, 21, 21);
-}
+} */

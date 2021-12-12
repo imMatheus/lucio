@@ -5,7 +5,7 @@ import Head from 'next/head'
 
 const Layout: React.FC = ({ children }) => {
 	return (
-		<section className="bg-bg400 min-h-screen flex flex-col">
+		<section className="bg-bg min-h-screen flex flex-col accent-theme">
 			<Head>
 				<body className="bg-bg" />
 			</Head>

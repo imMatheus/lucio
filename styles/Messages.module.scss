@@ -61,7 +61,7 @@
 	width: 100%;
 	background-color: magenta;
 	display: flex;
-	height: max-content;
+	// height: min-content;
 	max-height: 500px;
 	overflow-y: scroll;
 	// align-items: center;
@@ -77,7 +77,9 @@
 .inputField {
 	width: 100%;
 	outline: none;
-	// padding: 13px;
+	resize: none;
+	white-space: normal;
+	height: 100%;
 }
 
 .sendButton {

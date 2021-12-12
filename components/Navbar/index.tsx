@@ -6,9 +6,11 @@ import { useAuth } from '@/context/AuthContext'
 import SVG from 'react-inlinesvg'
 import useClickOutside from '@/hooks/useClickOutside'
 import Button from '@/components/button'
+import useDarkMode from '@/hooks/useDarkMode'
 
 export default function Navbar(): ReactElement {
 	const { currentUser } = useAuth()
+	// const [darkMode, setDarkMode] = useDarkMode()
 
 	return (
 		<nav className="border-b border-b-textDimmed bg-bg px-8 py-4 ">

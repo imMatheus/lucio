@@ -7,11 +7,11 @@ interface indexProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 
 const index: React.FC<indexProps> = ({ children, dimmed, ...props }) => {
 	return dimmed ? (
-		<button className={styles.btnDimmed} {...props}>
+		<button {...props} className={styles.btnDimmed + (props.className ? ' ' + props.className : '')}>
 			{children}
 		</button>
 	) : (
-		<button className={styles.btnPrimary} {...props}>
+		<button {...props} className={styles.btnPrimary + (props.className ? ' ' + props.className : '')}>
 			{children}
 		</button>
 	)

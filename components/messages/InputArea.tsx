@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import styles from 'styles/Messages.module.scss'
 import { useRouter } from 'next/router'
 import { collection, addDoc } from 'firebase/firestore'
@@ -17,20 +17,50 @@ const InputArea: React.FC<InputAreaProps> = ({}) => {
 	const { messageId } = router.query
 	const { currentUser } = useAuth()
 	const { setToastMessage } = useToast()
+	console.log(currentUser)
 
 	async function sendMessage() {
 		if (!currentUser) return setToastMessage('Could not send message as you are not loged in')
 		setLoading(true)
 		await addDoc(collection(fs, `chats/${messageId}/messages`), {
-			text: message,
+			text: inputRef.current!.value,
 			authorId: currentUser.uid,
 			sentAt: new Date()
 		})
 		setLoading(false)
 		setToastMessage('sent message')
-		setMessage('')
+		// setMessage('')
+		inputRef.current!.value = ''
+		if (inputRef.current) {
+			inputRef.current.style.height = '1px'
+			inputRef.current.style.height = inputRef.current.scrollHeight + 'px'
+		}
 		inputRef.current!.focus()
 	}
+
+	useEffect(() => {
+		inputRef.current!.addEventListener('keydown', (e) => {
+			console.log('e: ', e)
+			if (e.key === 'Enter' && !e.shiftKey) {
+				sendMessage()
+			} else {
+				// setMessage(e.target.value)
+				console.log('abcdefghijklmnop')
+
+				if (inputRef.current) {
+					inputRef.current.style.height = '1px'
+					inputRef.current.style.height = inputRef.current.scrollHeight + 'px'
+				}
+			}
+		})
+
+		return () => {
+			inputRef.current?.removeEventListener('keydown', (e) => {
+				console.log('removed listner: ', e)
+			})
+		}
+	}, [inputRef.current])
+	// }, [inputRef])
 
 	return (
 		<div className={styles.inputArea}>
@@ -41,20 +71,29 @@ const InputArea: React.FC<InputAreaProps> = ({}) => {
 				}}
 				className={styles.form}
 			>
-				{/* <textarea
+				<textarea
 					// rows={}
 					// type="text"
 					ref={inputRef}
-					value={message}
+					// value={message}
 					onChange={(e) => {
-						setMessage(e.target.value)
+						// setMessage(e.target.value)
+						console.log('changed')
+
+						// if (inputRef.current) {
+						// 	inputRef.current.style.height = '1px'
+						// 	inputRef.current.style.height = inputRef.current.scrollHeight + 'px'
+						// }
 					}}
+					rows={1}
 					className={styles.inputField}
 					placeholder="Write a new message..."
-				/> */}
-				<div className={styles.inputField} contentEditable={true}>
+				>
+					{/* <span className="bg-pink-500">{message}</span> */}
+				</textarea>
+				{/* <div className={styles.inputField} contentEditable={true}>
 					start
-				</div>
+				</div> */}
 				{/* <button className={styles.sendButton}>Send{loading ? 'true' : 'false'}</button> */}
 			</form>
 		</div>
