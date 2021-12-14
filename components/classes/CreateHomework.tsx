@@ -23,7 +23,7 @@ const CreateHomework: React.FC<CreateHomeworkProps> = ({}) => {
 	const router = useRouter()
 	const { id: classId } = router.query
 	const { currentUser } = useAuth()
-	const classData = useClassData(currentUser, classId)
+	const [classData, loading] = useClassData(classId)
 	const id = Array.isArray(classId) ? classId[0] : classId
 	const [files, setFiles] = useState<any[]>([])
 	const [selectedFile, setSelectedFile] = useState<any>()

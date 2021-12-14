@@ -8,18 +8,15 @@
 
 .card {
 	color: white;
-	--tw-shadow: 0 4px 6px -1px rgba(255, 255, 255, 0.1), 0 2px 4px -1px rgba(255, 255, 255, 0.06);
-	box-shadow: var(--tw-ring-offset-shadow, 0 0 rgba(255, 255, 255, 0)),
-		var(--tw-ring-shadow, 0 0 rgba(255, 255, 255, 0)), var(--tw-shadow);
 
-	@apply rounded-xl overflow-hidden bg-bg600;
+	@apply rounded-xl overflow-hidden;
 }
 .top {
 	display: grid;
 	grid-template-columns: auto 1fr;
 	column-gap: 0.75rem;
 	align-items: center;
-	@apply bg-bg700;
+	@apply bg-textDimmed;
 }
 
 .top,

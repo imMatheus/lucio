@@ -13,10 +13,12 @@ const Index: NextPage = () => {
 	const router = useRouter()
 	const [loading, setLoading] = useState(false)
 	const { currentUser } = useAuth()
-	const classId = router.query.id
-	const classData = useClassData(currentUser, classId)
+	const classId = router.query.classId
+	const [classData, loadingClassData] = useClassData(classId)
 	const { setToastMessage } = useToast()
 	console.log('router: ', router)
+	console.log('classId: ', classId)
+	console.log('classData: ', classData)
 
 	async function addHomeworkHandler() {
 		if (loading) return setToastMessage('pika')
@@ -29,23 +31,15 @@ const Index: NextPage = () => {
 			// const docRef = doc(collection(fs, `classes/${classId}/homework`))
 			// console.log('docRef.id: ', docRef.id)
 
-			const docRef = await addDoc(collection(fs, `classes/${classData.id}/homework`), {
+			const docRef = await addDoc(collection(fs, `classes/${classData}/homework`), {
 				createdAt: Timestamp.fromDate(new Date()),
 				lastlyUpdatedAt: Timestamp.fromDate(new Date()),
 				title: '',
 				description: '',
 				createdBy: currentUser.uid,
-				files: []
+				files: [],
+				draft: true
 			})
-
-			// await setDoc(docRef, {
-			// 	createdAt: Timestamp.fromDate(new Date()),
-			// 	lastlyUpdatedAt: Timestamp.fromDate(new Date()),
-			// 	title: '',
-			// 	description: '',
-			// 	createdBy: currentUser.uid,
-			// 	files: []
-			// })
 
 			console.log('docRef: ', docRef)
 
@@ -55,7 +49,7 @@ const Index: NextPage = () => {
 			}
 			setToastMessage('Could not create new homework, please try again')
 		} catch (error) {
-			setToastMessage('Could not create new homework, please try again')
+			setToastMessage('Could not create new homework, please try again because something went wrong')
 		}
 	}
 
@@ -72,6 +66,7 @@ const Index: NextPage = () => {
 				</button>
 				{/* </Link> */}
 			</div>
+			{loadingClassData + ''}
 		</div>
 	)
 }

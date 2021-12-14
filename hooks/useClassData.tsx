@@ -3,7 +3,8 @@ import getClass from '@/firebase/querys/getClass'
 import ClassType from '@/types/ClassType'
 import { useAuth } from '@/context/AuthContext'
 import getClassById from '@/firebase/querys/getClassById'
-export default function useClassData(id: string | string[] | undefined) {
+
+export default function useClassData(id: string | string[] | undefined): [ClassType | null, boolean] {
 	const { currentUser } = useAuth()
 	const [state, setState] = useState<ClassType | null>(null)
 	const [loading, setLoading] = useState(false)

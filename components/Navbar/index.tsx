@@ -7,9 +7,10 @@ import SVG from 'react-inlinesvg'
 import useClickOutside from '@/hooks/useClickOutside'
 import Button from '@/components/button'
 import useDarkMode from '@/hooks/useDarkMode'
+import Spinner from '@/components/Spinner'
 
 export default function Navbar(): ReactElement {
-	const { currentUser } = useAuth()
+	const { currentUser, fetchingUser } = useAuth()
 	// const [darkMode, setDarkMode] = useDarkMode()
 
 	return (
@@ -47,10 +48,18 @@ export default function Navbar(): ReactElement {
 					<p className={styles.tab}>{currentUser?.uid}</p>
 					<p className={styles.tab}>Fris</p>
 					<div className="flex items-center border-l border-l-textDimmed">
-						<div className="mx-2">
-							<Button dimmed>Sign in</Button>
-						</div>
-						<Button>Sign up</Button>
+						{fetchingUser ? (
+							<div className="w-8 h-8 mx-2">
+								<Spinner />
+							</div>
+						) : (
+							<>
+								<div className="mx-2">
+									<Button dimmed>Sign in</Button>
+								</div>
+								<Button>Sign up</Button>
+							</>
+						)}
 					</div>
 				</section>
 			</div>

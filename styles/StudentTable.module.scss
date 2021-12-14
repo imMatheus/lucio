@@ -1,5 +1,5 @@
 .skeleton {
-	animation: skeletonFade 900ms infinite ease-in-out;
+	@apply animate-pulse;
 }
 .skeletonText {
 	@extend .skeleton;
@@ -11,12 +11,12 @@
 	@apply bg-textDimmed h-full w-full rounded-full;
 }
 
-@keyframes skeletonFade {
-	0%,
-	100% {
-		@apply opacity-70;
-	}
-	50% {
-		@apply opacity-90;
-	}
-}
+// @keyframes skeletonFade {
+// 	0%,
+// 	100% {
+// 		@apply opacity-70;
+// 	}
+// 	50% {
+// 		@apply opacity-90;
+// 	}
+// }

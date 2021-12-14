@@ -12,6 +12,8 @@ module.exports = {
 
 				theme: 'var(--theme)',
 				themeDimmed: 'var(--theme-dimmed)',
+				themeDark: 'var(--theme-dark)',
+				themeLight: 'var(--theme-light)',
 				bg: 'var(--bg)',
 				bgDimmed: 'var(--bg-dimmed)',
 				bgDarken: 'var(--bg-darken)',

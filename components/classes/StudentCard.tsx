@@ -22,6 +22,7 @@ const SkeletonText = ({ className, min, max }: { className?: string; min?: numbe
 }
 
 export default function StudentCard({ image, name, email, edit, loading }: Props): ReactElement {
+	loading = true
 	return (
 		<tbody className="bg-bg divide-y divide-gray-200">
 			<tr>

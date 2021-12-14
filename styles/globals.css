@@ -11,6 +11,8 @@
 :root {
 	--theme: #2266ff;
 	--theme-dimmed: #005ce6;
+	--theme-dark: #0049b6;
+	--theme-light: #0b61e2b7;
 
 	/* Light theme */
 	--bg: #ffffff;
