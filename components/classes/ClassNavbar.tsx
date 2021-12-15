@@ -23,10 +23,10 @@ const ClassNavbar: React.FC = () => {
 	return (
 		<div>
 			<div className="flex border-b">
-				<TopBarOption link={`/classes/${classId}`}>main</TopBarOption>
+				<TopBarOption link={`/classes/${classId}`}>Class</TopBarOption>
 
-				<TopBarOption link={`/classes/${classId}/homework`}>homework</TopBarOption>
-				<TopBarOption link={`/classes/${classId}/students`}>students</TopBarOption>
+				<TopBarOption link={`/classes/${classId}/homework`}>Homework</TopBarOption>
+				<TopBarOption link={`/classes/${classId}/students`}>Students</TopBarOption>
 			</div>
 		</div>
 	)

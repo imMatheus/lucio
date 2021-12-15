@@ -42,11 +42,10 @@
 }
 
 .option {
-	border-bottom: 2px solid #b3d6cf;
-	@apply px-3 py-1 mr-3;
+	@apply px-3 py-1 mr-3 border-b-2 border-b-text;
 }
 
 .optionActive {
 	@extend .option;
-	border-bottom-color: #e09035;
+	@apply border-b-theme;
 }

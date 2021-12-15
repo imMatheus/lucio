@@ -2,19 +2,15 @@ import React from 'react'
 import styles from './Button.module.scss'
 
 interface indexProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-	dimmed?: boolean
+	variant?: 'primary' | 'dimmed' | 'error' | 'success' | 'warning'
 }
 
-const index: React.FC<indexProps> = ({ children, dimmed, ...props }) => {
-	return dimmed ? (
-		<button {...props} className={styles.btnDimmed + (props.className ? ' ' + props.className : '')}>
-			{children}
-		</button>
-	) : (
-		<button {...props} className={styles.btnPrimary + (props.className ? ' ' + props.className : '')}>
+const Button: React.FC<indexProps> = ({ children, variant = 'primary', ...props }) => {
+	return (
+		<button {...props} className={styles[variant] + (props.className ? ' ' + props.className : '')}>
 			{children}
 		</button>
 	)
 }
 
-export default index
+export default Button

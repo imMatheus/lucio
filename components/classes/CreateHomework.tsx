@@ -21,7 +21,7 @@ const CreateHomework: React.FC<CreateHomeworkProps> = ({}) => {
 	const [dueDate, setDueDate] = useState(new Date())
 	const createHomework = useCreateHomework()
 	const router = useRouter()
-	const { id: classId } = router.query
+	const { classId } = router.query
 	const { currentUser } = useAuth()
 	const [classData, loading] = useClassData(classId)
 	const id = Array.isArray(classId) ? classId[0] : classId
@@ -89,7 +89,7 @@ const CreateHomework: React.FC<CreateHomeworkProps> = ({}) => {
 			<button onClick={createHomeworkHandler} className="rounded-xl bg-green-500 py-1 px-4 mb-3">
 				create homework
 			</button>
-			<Filezone path={`classes/${router.query.id}/homework/${router.query.newHomeworkId}`} />
+			<Filezone path={`classes/${id}/homework/${router.query.newHomeworkId}`} />
 			{/* <HomeworkFile path="classes/9wBsqEkwM2XunXFK6q7I/bg.jpeg" />
 			<HomeworkFile path="classes/9wBsqEkwM2XunXFK6q7I/tailwind.config.js_0.8j6zo06152g" />
 			<HomeworkFile path="classes/9wBsqEkwM2XunXFK6q7I/Safety_Direct_PDF.pdf" /> */}

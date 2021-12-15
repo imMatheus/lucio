@@ -30,9 +30,9 @@ export default function Navbar(): ReactElement {
 							<span>e</span>
 						</h4>
 					</Link>
-					<div className={styles.searchWrapper}>
+					{/* <div className={styles.searchWrapper}>
 						<form action=""></form>
-					</div>
+					</div> */}
 					<Link href="/classes" passHref={true}>
 						<p className={styles.tab}>Classes</p>
 					</Link>
@@ -45,8 +45,6 @@ export default function Navbar(): ReactElement {
 					<Link href="/problems" passHref={true}>
 						<p className={styles.tab}>Problems</p>
 					</Link>
-					<p className={styles.tab}>{currentUser?.uid}</p>
-					<p className={styles.tab}>Fris</p>
 					<div className="flex items-center border-l border-l-textDimmed">
 						{fetchingUser ? (
 							<div className="w-8 h-8 mx-2">
@@ -54,10 +52,14 @@ export default function Navbar(): ReactElement {
 							</div>
 						) : (
 							<>
-								<div className="mx-2">
-									<Button dimmed>Sign in</Button>
-								</div>
-								<Button>Sign up</Button>
+								<Link href="/login" passHref={true}>
+									<div className="mx-2">
+										<Button variant="dimmed">Sign in</Button>
+									</div>
+								</Link>
+								<Link href="/register" passHref={true}>
+									<Button>Sign up</Button>
+								</Link>
 							</>
 						)}
 					</div>

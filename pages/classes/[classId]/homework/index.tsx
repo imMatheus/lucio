@@ -1,13 +1,17 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import type { NextPage } from 'next'
 import { storage } from '@/firebase/index'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { fs } from '@/firebase/index'
-import { collection, doc, setDoc, Timestamp, addDoc } from 'firebase/firestore'
+import { collection, doc, setDoc, Timestamp, addDoc, getDocs } from 'firebase/firestore'
 import { useAuth } from '@/context/AuthContext'
 import useClassData from '@/hooks/useClassData'
 import { useToast } from '@/context/ToastContext'
+import Head from 'next/head'
+import Homework from '@/types/Homework'
+import Button from '@/components/button'
+import HomeworkCard from '@/components/classes/HomeworkCard'
 
 const Index: NextPage = () => {
 	const router = useRouter()
@@ -16,12 +20,26 @@ const Index: NextPage = () => {
 	const classId = router.query.classId
 	const [classData, loadingClassData] = useClassData(classId)
 	const { setToastMessage } = useToast()
+	const [homeworks, setHomeworks] = useState<Homework[]>([])
+
 	console.log('router: ', router)
 	console.log('classId: ', classId)
 	console.log('classData: ', classData)
+	console.log('homeworks: ', homeworks)
+
+	useEffect(() => {
+		getDocs(collection(fs, `classes/${classId}/homework`))
+			.then((res) => {
+				new Error('hej')
+				setHomeworks(res.docs.map((doc) => ({ ...doc.data(), id: doc.id } as Homework)))
+			})
+			.catch((err) => {
+				setToastMessage('Could not load homework')
+			})
+	}, [classId])
 
 	async function addHomeworkHandler() {
-		if (loading) return setToastMessage('pika')
+		if (loading) return setToastMessage('could not add homework cuz it was loading')
 		try {
 			if (!classData) return setToastMessage('Could not find class')
 			setLoading(true)
@@ -31,7 +49,7 @@ const Index: NextPage = () => {
 			// const docRef = doc(collection(fs, `classes/${classId}/homework`))
 			// console.log('docRef.id: ', docRef.id)
 
-			const docRef = await addDoc(collection(fs, `classes/${classData}/homework`), {
+			const docRef = await addDoc(collection(fs, `classes/${classData.id}/homework`), {
 				createdAt: Timestamp.fromDate(new Date()),
 				lastlyUpdatedAt: Timestamp.fromDate(new Date()),
 				title: '',
@@ -55,18 +73,21 @@ const Index: NextPage = () => {
 
 	return (
 		<div className="px-6 py-3">
+			<Head>
+				<title>{classData?.name} | Homework</title>
+				<meta property="og:title" content="My page title" key="title" />
+			</Head>
 			homework
 			<div>
-				{/* <Link href={`/classes/${router.query.id}/homework/add`} passHref={true}> */}
-				<button
-					onClick={addHomeworkHandler}
-					className="rounded-xl bg-green-200 text-green-700 border border-green-400 py-1 px-4"
-				>
-					Link
-				</button>
-				{/* </Link> */}
+				<Button onClick={addHomeworkHandler}>Create new homework</Button>
 			</div>
+			<p>hello</p>
 			{loadingClassData + ''}
+			<div>
+				{homeworks.map((homework) => {
+					return <HomeworkCard key={homework.id} homework={homework} />
+				})}
+			</div>
 		</div>
 	)
 }

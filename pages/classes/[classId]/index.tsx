@@ -8,6 +8,8 @@ import { useAuth } from '@/context/AuthContext'
 import getClass from '@/firebase/querys/getClass'
 import User from '@/types/User'
 import Button from '@/components/button'
+import Head from 'next/head'
+import Alert from '@/components/Alerts'
 
 export default function ClassScreen(): ReactElement {
 	const router = useRouter()
@@ -21,10 +23,17 @@ export default function ClassScreen(): ReactElement {
 
 	return (
 		<section className="py-8 px-6">
+			<Head>
+				<title>{classData?.name}</title>
+				<meta property="og:title" content="My page title" key="title" />
+			</Head>
 			<section className="w-maxed mx-auto">
 				<div className="flex mb-3 gap-2">
-					<Button dimmed>Join class</Button>
+					<Button variant="dimmed">Join class</Button>
 					<Button>Create class</Button>
+					<div className="ml-auto">
+						<Button variant="error">Leave class</Button>
+					</div>
 				</div>
 				{classId && <ClassNavbar />}
 				im a class
