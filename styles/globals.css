@@ -19,9 +19,7 @@
 	--bg-dimmed: #e3e3e3;
 	--bg-darken: #f7f7f8;
 	--text: #111827;
-	/* --text: #000000; */
 	--text-dimmed: #6b7280;
-	/* --text-dimmed: #646369; */
 	--text-light: #7d7c83;
 
 	/* dark theme */
@@ -53,6 +51,15 @@
 	padding: 0;
 	margin: 0;
 	box-sizing: border-box;
+}
+
+.dark-mode {
+	--bg: #000000;
+	--bg-dimmed: rgb(28, 28, 28);
+	--bg-darken: rgb(8, 8, 7);
+	--text: rgb(255, 255, 255);
+	--text-dimmed: rgb(155, 156, 150);
+	--text-light: rgb(130, 131, 124);
 }
 
 html,

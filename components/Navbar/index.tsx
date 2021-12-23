@@ -10,8 +10,9 @@ import useDarkMode from '@/hooks/useDarkMode'
 import Spinner from '@/components/Spinner'
 
 export default function Navbar(): ReactElement {
-	const { currentUser, fetchingUser } = useAuth()
+	const { currentUser, fetchingUser, logout } = useAuth()
 	// const [darkMode, setDarkMode] = useDarkMode()
+	console.log('navbar', currentUser)
 
 	return (
 		<nav className="border-b border-b-textDimmed bg-bg px-8 py-4 ">
@@ -49,6 +50,13 @@ export default function Navbar(): ReactElement {
 						{fetchingUser ? (
 							<div className="w-8 h-8 mx-2">
 								<Spinner />
+							</div>
+						) : currentUser ? (
+							<div>
+								<h2>loged in</h2>
+								<Button onClick={logout} variant="error">
+									Sign out
+								</Button>
 							</div>
 						) : (
 							<>

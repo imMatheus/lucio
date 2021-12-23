@@ -63,11 +63,12 @@ const Filezone: React.FC<FilezoneProps> = ({ path }) => {
 	const [loading, setLoading] = useState(false)
 	console.log('path: ', path)
 
-	const uploadFiles = async (files: Array<File & { downloadUrl?: string }>) => {
+	const uploadFiles = async (files: Array<File & FileProps>) => {
+		if (loading) return
 		setLoading(true)
 		console.log('')
 		for (let i = 0; i < files.length; i++) {
-			const file: { downloadUrl?: string } & File = files[i]
+			const file: File & FileProps = files[i]
 			const storageRef = ref(storage, `${path}/${file.name}`)
 			// const storageRef = ref(storage, `${path}/${Math.random().toString(36)}_${file.name}`)
 

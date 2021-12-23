@@ -72,7 +72,7 @@ const Index: NextPage = () => {
 	}
 
 	return (
-		<div className="px-6 py-3">
+		<section className="px-6 py-3">
 			<Head>
 				<title>{classData?.name} | Homework</title>
 				<meta property="og:title" content="My page title" key="title" />
@@ -88,7 +88,7 @@ const Index: NextPage = () => {
 					return <HomeworkCard key={homework.id} homework={homework} />
 				})}
 			</div>
-		</div>
+		</section>
 	)
 }
 

@@ -33,21 +33,24 @@ async function signup(
 	displayName: string,
 	imageUrl: string | ArrayBuffer
 ): Promise<string | void | unknown> {
-	const usersNamesRef = query(collection(fs, 'users'), where('displayName', '==', displayName), limit(1))
-	const document: DocumentData = await getDocs(usersNamesRef)
-	if (document.exists) {
-		// checking if the display name already exist
-		const error = { message: 'Display name already exist' }
-		return error
-	}
+	// const usersNamesRef = query(collection(fs, 'users'), where('displayName', '==', displayName), limit(1))
+	// const document: DocumentData = await getDocs(usersNamesRef)
+	// if (document.exists) {
+	// 	// checking if the display name already exist
+	// 	const error = { message: 'Display name already exist' }
+	// 	return error
+	// }
 	try {
-		await createUserWithEmailAndPassword(auth, email, password)
-		if (!auth.currentUser) return
-		setDoc(doc(fs, 'users', auth.currentUser.uid), {
-			displayName: displayName,
-			email: email,
-			userUID: auth.currentUser?.uid,
-			profileImage: imageUrl
+		await createUserWithEmailAndPassword(auth, email, password).then(({ user }) => {
+			if (!user) return
+			console.log('rrrr: ', user)
+
+			setDoc(doc(fs, 'users', user.uid), {
+				displayName: displayName,
+				email: email,
+				profileImage: imageUrl,
+				userUID: user?.uid
+			})
 		})
 	} catch (error) {
 		return error
@@ -60,6 +63,7 @@ function login(email: string, password: string): Promise<UserCredential> {
 
 function logout() {
 	sessionStorage.clear()
+
 	return auth.signOut()
 }
 
@@ -73,6 +77,7 @@ async function resetPassword(email: string) {
 
 interface Context {
 	currentUser: User | null
+
 	logout: () => Promise<void>
 	login: (email: string, password: string) => Promise<UserCredential>
 	signup: (email: string, password: string, displayName: string, imageUrl: string | ArrayBuffer) => Promise<unknown>
@@ -99,7 +104,12 @@ export const AuthProvider: React.FC = ({ children }) => {
 
 	useEffect(() => {
 		const unsubscribe = onAuthStateChanged(auth, async (user) => {
-			if (!user) return setCurrentUser(null)
+			if (!user) {
+				setCurrentUser(null)
+				setFetchingUser(false)
+				return
+			}
+
 			setFetchingUser(true)
 			// getting the users data from firestore
 			const response = await getDoc(

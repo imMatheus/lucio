@@ -1,3 +1,5 @@
+import { StorageReference } from 'firebase/storage'
+
 type Homework = {
 	title: string
 	description: string
@@ -5,7 +7,7 @@ type Homework = {
 	createdAt: Date
 	createdBy: string
 	draft: true
-	files: File[]
+	files: File[] | Array<StorageReference & { downloadUrl?: string }>
 	id: string
 }
 
