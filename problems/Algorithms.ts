@@ -1,10 +1,10 @@
 import AlgorithmProblem from 'types/AlgorithmProblem'
 
-type typeProblems = { readonly [name: string]: AlgorithmProblem }
+type typeProblems = AlgorithmProblem[]
 
-export const problems: typeProblems = {
-	SimpleAddition: {
-		problemName: 'Simple Addition',
+export const problems: typeProblems = [
+	{
+		name: 'Simple Addition',
 		difficulty: 'easy',
 		output: 'an integer',
 		description: `given two integers, <span class="variable">a</span> and <span class="variable">b</span>, return the sum of <span class="variable">a</span> + <span class="variable">b</span>`,
@@ -54,8 +54,8 @@ export const problems: typeProblems = {
 			{ input: 'b', type: 'integer' }
 		]
 	},
-	PalindromeNumber: {
-		problemName: 'Palindrome Number',
+	{
+		name: 'Palindrome Number',
 		difficulty: 'easy',
 		description: `
         Given an integer <span class="variable">x</span>,
@@ -115,8 +115,8 @@ export const problems: typeProblems = {
 		],
 		inputs: [{ input: 'x', type: 'integer' }]
 	},
-	Multiplication: {
-		problemName: 'Multiplication',
+	{
+		name: 'Multiplication',
 		difficulty: 'easy',
 		output: 'The product of x * y',
 		description: `Given three numbers, <span class="variable">X</span>, <span class="variable">Y</span>, return the product of <span class="variable">X</span> * <span class="variable">Y</span> `,
@@ -162,8 +162,8 @@ export const problems: typeProblems = {
 			{ input: 'y', type: 'integer' }
 		]
 	},
-	NumberOfLetters: {
-		problemName: 'Number Of Letters',
+	{
+		name: 'Number Of Letters',
 		difficulty: 'easy',
 		output: '',
 		description: `given a string, <span class="variable">S</span>, and a single letter, <span class="variable">Letter</span>, return the number of instances that the letter <span class="variable">Letter</span> appears in the string <span class="variable">S</span>`,
@@ -215,8 +215,8 @@ export const problems: typeProblems = {
 			{ input: 's', type: 'string' }
 		]
 	},
-	ScoreTheName: {
-		problemName: 'Score The Name',
+	{
+		name: 'Score The Name',
 		difficulty: 'easy',
 		description: `Given a single name, <span class="variable">n</span>, calculate the alphabetical value for the letters of the name. The alphabetical value of a letter is it"s place in the alphabet.`,
 		inputFormat: `<span class="variable">n</span> a single word containing uppercase letters.`,
@@ -257,8 +257,8 @@ export const problems: typeProblems = {
 		],
 		inputs: [{ input: 'n', type: 'string' }]
 	},
-	CountingValleys: {
-		problemName: 'Counting Valleys',
+	{
+		name: 'Counting Valleys',
 		difficulty: 'medium',
 		description: `
                 An avid hiker keeps meticulous records of their hikes. During the last hike that took exactly <span class="variable">steps</span> steps, for every step it was noted if it was an uphill, <span class="variable">U</span> , or a downhill, <span class="variable">D</span> step. Hikes always start and end at sea level, and each step up or down represents a <span class="variable">1</span> unit change in altitude.
@@ -319,8 +319,8 @@ export const problems: typeProblems = {
 		]
 	},
 
-	AlmostSorted: {
-		problemName: 'Almost Sorted',
+	{
+		name: 'Almost Sorted',
 		difficulty: 'hard',
 
 		description: `
@@ -393,4 +393,23 @@ export const problems: typeProblems = {
 		],
 		inputs: [{ input: 'arr', type: 'integer[]' }]
 	}
-}
+]
+
+// <div className="bg-green-100 text-green-800 p-5 border border-green-500 cursor-pointer">
+// 				<button
+// 					onClick={async () => {
+// 						console.log('aa')
+
+// 						for (let i = 0; i < _problems.length; i++) {
+// 							const problem = _problems[i]
+// 							console.log('preoblem', i, problem)
+
+// 							await setDoc(doc(fs, 'problems', problem.name.toLowerCase().split(' ').join('-')), {
+// 								problem
+// 							})
+// 						}
+// 					}}
+// 				>
+// 					push it all
+// 				</button>
+// 			</div>

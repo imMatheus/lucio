@@ -1,4 +1,4 @@
-import React, { ReactElement, useRef, useState } from 'react'
+import React, { ReactElement, useRef, useState, useEffect } from 'react'
 import styles from './Navbar.module.scss'
 import { Bell, Plus, ChevronDown, Icon } from 'react-feather'
 import Link from 'next/link'
@@ -11,11 +11,18 @@ import Spinner from '@/components/Spinner'
 
 export default function Navbar(): ReactElement {
 	const { currentUser, fetchingUser, logout } = useAuth()
+	const navbarRef = useRef<HTMLElement>(null)
+
+	useEffect(() => {
+		if (navbarRef.current?.clientHeight) {
+			document.documentElement.style.setProperty('--navbar-height', navbarRef.current.clientHeight + 'px')
+		}
+	}, [navbarRef])
 	// const [darkMode, setDarkMode] = useDarkMode()
 	console.log('navbar', currentUser)
 
 	return (
-		<nav className="border-b border-b-textDimmed bg-bg px-8 py-4 ">
+		<nav className="border-b border-b-textDimmed bg-bg px-8 py-4" ref={navbarRef}>
 			<div className={styles.nav}>
 				<section className="flex flex-1 items-center">
 					<Link href="/" passHref={true}>
@@ -34,42 +41,44 @@ export default function Navbar(): ReactElement {
 					{/* <div className={styles.searchWrapper}>
 						<form action=""></form>
 					</div> */}
-					<Link href="/classes" passHref={true}>
-						<p className={styles.tab}>Classes</p>
-					</Link>
-					<Link href="/register" passHref={true}>
-						<p className={styles.tab}>Sign up</p>
-					</Link>
-					<Link href="/messages" passHref={true}>
-						<p className={styles.tab}>Messages</p>
-					</Link>
-					<Link href="/problems" passHref={true}>
-						<p className={styles.tab}>Problems</p>
-					</Link>
-					<div className="flex items-center border-l border-l-textDimmed">
-						{fetchingUser ? (
-							<div className="w-8 h-8 mx-2">
-								<Spinner />
-							</div>
-						) : currentUser ? (
-							<div>
-								<h2>loged in</h2>
-								<Button onClick={logout} variant="error">
-									Sign out
-								</Button>
-							</div>
-						) : (
-							<>
-								<Link href="/login" passHref={true}>
-									<div className="mx-2">
-										<Button variant="dimmed">Sign in</Button>
-									</div>
-								</Link>
-								<Link href="/register" passHref={true}>
-									<Button>Sign up</Button>
-								</Link>
-							</>
-						)}
+					<div className="hidden md:flex  items-center">
+						<Link href="/classes" passHref={true}>
+							<p className={styles.tab}>Classes</p>
+						</Link>
+						<Link href="/register" passHref={true}>
+							<p className={styles.tab}>Sign up</p>
+						</Link>
+						<Link href="/messages" passHref={true}>
+							<p className={styles.tab}>Messages</p>
+						</Link>
+						<Link href="/problems" passHref={true}>
+							<p className={styles.tab}>Problems</p>
+						</Link>
+						<div className="flex items-center border-l border-l-textDimmed">
+							{fetchingUser ? (
+								<div className="w-8 h-8 mx-2">
+									<Spinner />
+								</div>
+							) : currentUser ? (
+								<div className="flex items-center">
+									<p className="mx-2">loged in</p>
+									<Button onClick={logout} variant="error">
+										Sign out
+									</Button>
+								</div>
+							) : (
+								<>
+									<Link href="/login" passHref={true}>
+										<div className="mx-2">
+											<Button variant="dimmed">Sign in</Button>
+										</div>
+									</Link>
+									<Link href="/register" passHref={true}>
+										<Button>Sign up</Button>
+									</Link>
+								</>
+							)}
+						</div>
 					</div>
 				</section>
 			</div>

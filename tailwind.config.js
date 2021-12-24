@@ -10,10 +10,15 @@ module.exports = {
 				success: '#2da44e',
 				error: '#cf222e',
 
-				theme: 'var(--theme)',
-				themeDimmed: 'var(--theme-dimmed)',
-				themeDark: 'var(--theme-dark)',
-				themeLight: 'var(--theme-light)',
+				// theme: 'var(--theme)',
+				// themeDimmed: 'var(--theme-dimmed)',
+				// themeDark: 'var(--theme-dark)',
+				// themeLight: 'var(--theme-light)',
+				theme: '#2266ff',
+				themeDimmed: '#005ce6',
+				themeDark: '#0049b6',
+				themeLight: '#0b61e2b7',
+				themeWhite: '#83b5ffde',
 				bg: 'var(--bg)',
 				bgDimmed: 'var(--bg-dimmed)',
 				bgDarken: 'var(--bg-darken)',
@@ -26,5 +31,5 @@ module.exports = {
 	variants: {
 		extend: {}
 	},
-	plugins: []
+	plugins: [require('@tailwindcss/typography')]
 }

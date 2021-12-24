@@ -9,12 +9,6 @@ type FloatArray = 'float[]'
 type DoubleArray = 'double[]'
 type CharArray = 'char[]'
 
-// type StringArray = Array<string>
-// type IntegerArray = Array<Integer>
-// type FloatArray = Array<Float>
-// type DoubleArray = Array<Double>
-// type CharArray = Array<Char>
-
 type InputType =
 	| String
 	| Integer
@@ -46,9 +40,11 @@ export interface SubmitCases {
 	output: Array<string>
 }
 
+export type Difficulty = 'easy' | 'medium' | 'hard'
+
 export default interface AlgorithmProblem {
-	problemName: string
-	difficulty: 'easy' | 'medium' | 'hard'
+	name: string
+	difficulty: Difficulty
 	description: string
 	constrains: Array<string>
 	inputFormat: string

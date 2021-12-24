@@ -36,7 +36,6 @@ export default function ClassScreen(): ReactElement {
 					</div>
 				</div>
 				{classId && <ClassNavbar />}
-				im a class
 				<h2>class data</h2>
 				<div>
 					<h4>{classData && JSON.stringify(classData)}</h4>
