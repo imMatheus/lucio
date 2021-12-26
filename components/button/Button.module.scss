@@ -15,6 +15,14 @@
 	}
 }
 
+.white {
+	@extend .btn;
+	@apply bg-white text-black border border-black;
+	&:hover {
+		@apply bg-bgDarken;
+	}
+}
+
 .dimmed {
 	@extend .btn;
 	@apply bg-transparent text-textDimmed;
@@ -36,7 +44,6 @@
 	@apply bg-teal-100  text-teal-900 border border-teal-500;
 	&:hover {
 		filter: brightness(0.95);
-		// @apply bg-teal-200;
 	}
 }
 

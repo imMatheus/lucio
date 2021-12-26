@@ -8,11 +8,12 @@ import useClickOutside from '@/hooks/useClickOutside'
 import Button from '@/components/button'
 import useDarkMode from '@/hooks/useDarkMode'
 import Spinner from '@/components/Spinner'
+import { useModal } from '@/context/ModalContext'
 
 export default function Navbar(): ReactElement {
 	const { currentUser, fetchingUser, logout } = useAuth()
 	const navbarRef = useRef<HTMLElement>(null)
-
+	const { setShowModal } = useModal()
 	useEffect(() => {
 		if (navbarRef.current?.clientHeight) {
 			document.documentElement.style.setProperty('--navbar-height', navbarRef.current.clientHeight + 'px')
@@ -68,11 +69,15 @@ export default function Navbar(): ReactElement {
 								</div>
 							) : (
 								<>
-									<Link href="/login" passHref={true}>
-										<div className="mx-2">
-											<Button variant="dimmed">Sign in</Button>
-										</div>
-									</Link>
+									<div
+										className="mx-2"
+										onClick={() => {
+											setShowModal(true)
+										}}
+									>
+										<Button variant="dimmed">Sign in</Button>
+									</div>
+
 									<Link href="/register" passHref={true}>
 										<Button>Sign up</Button>
 									</Link>

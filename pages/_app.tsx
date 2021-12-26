@@ -3,14 +3,17 @@ import Layout from '@/components/Layout'
 import type { AppProps } from 'next/app'
 import { AuthProvider } from '@/context/AuthContext'
 import { ToastProvider } from '@/context/ToastContext'
+import { ModalProvider } from '@/context/ModalContext'
 
 function MyApp({ Component, pageProps }: AppProps) {
 	return (
 		<AuthProvider>
 			<ToastProvider>
-				<Layout>
-					<Component {...pageProps} />
-				</Layout>
+				<ModalProvider>
+					<Layout>
+						<Component {...pageProps} />
+					</Layout>
+				</ModalProvider>
 			</ToastProvider>
 		</AuthProvider>
 	)
