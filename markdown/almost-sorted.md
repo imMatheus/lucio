@@ -1,4 +1,4 @@
-# Almost Sorted
+# Almost sorted
 
 ### Problem description
 

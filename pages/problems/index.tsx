@@ -1,9 +1,9 @@
 import React from 'react'
 import type { NextPage } from 'next'
 import ProblemsList from '@/components/problems/ProblemsTable'
-import { GetServerSideProps, GetStaticPropsResult, GetStaticProps } from 'next'
+import { GetServerSideProps } from 'next'
 import { fs } from '@/firebase/index'
-import { getDocs, doc, collection, query, setDoc, where } from 'firebase/firestore'
+import { getDocs, collection, query, setDoc, where } from 'firebase/firestore'
 import AlgorithmProblem from '@/types/AlgorithmProblem'
 import { problems as _problems } from '../../problems/Algorithms'
 interface Props {
@@ -12,6 +12,9 @@ interface Props {
 }
 
 export const getServerSideProps: GetServerSideProps<Props> = async (context) => {
+	console.log('req.headers')
+	console.log(context.req.headers.authorization)
+
 	const diff = context.query?.difficulty
 	const response = await getDocs(query(collection(fs, 'problems'))) //, where('difficulty', '==', diff)))
 

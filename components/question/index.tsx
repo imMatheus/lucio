@@ -37,7 +37,7 @@ const Question = React.forwardRef<HTMLElement, QuestionProps>(({ markdown }, ref
 		>
 			<article className="py-10 sm:py-12">
 				<div
-					className="mt-16 px-6 prose dark:prose-invert
+					className="px-6 prose dark:prose-invert
                   prose-headings:text-themeDimmed
                   prose-li:marker:text-themeDark
                      dark:prose-li:marker:text-themeLight

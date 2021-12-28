@@ -21,7 +21,7 @@ export default function Classes(): ReactElement {
 			<section className="w-maxed mx-auto">
 				<div className="flex mb-3 gap-2">
 					<Button
-						dimmed
+						variant="dimmed"
 						onClick={() => {
 							setToastMessage(Math.random() + '')
 							throw new Error('hej klarade jag det')

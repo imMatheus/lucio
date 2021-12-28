@@ -42,13 +42,11 @@ export default function Navbar(): ReactElement {
 					{/* <div className={styles.searchWrapper}>
 						<form action=""></form>
 					</div> */}
-					<div className="hidden md:flex  items-center">
+					<div className="hidden md:flex items-center gap-3">
 						<Link href="/classes" passHref={true}>
 							<p className={styles.tab}>Classes</p>
 						</Link>
-						<Link href="/register" passHref={true}>
-							<p className={styles.tab}>Sign up</p>
-						</Link>
+
 						<Link href="/messages" passHref={true}>
 							<p className={styles.tab}>Messages</p>
 						</Link>
@@ -61,11 +59,14 @@ export default function Navbar(): ReactElement {
 									<Spinner />
 								</div>
 							) : currentUser ? (
-								<div className="flex items-center">
-									<p className="mx-2">loged in</p>
-									<Button onClick={logout} variant="error">
+								<div className="flex items-center ml-3 cursor-pointer">
+									<p className="text-base font-semibold text-text mr-1">@{currentUser.displayName}</p>
+									<span className="rounded-full w-5 h-5 mr-1 overflow-hidden">
+										<SVG src={currentUser.profileImage} />
+									</span>
+									{/* <Button onClick={logout} variant="error">
 										Sign out
-									</Button>
+									</Button> */}
 								</div>
 							) : (
 								<>

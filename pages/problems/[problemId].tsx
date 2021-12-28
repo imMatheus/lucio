@@ -2,13 +2,42 @@ import React, { useEffect, useRef } from 'react'
 import type { NextPage } from 'next'
 import Question from '@/components/question'
 import fs from 'fs'
+import { readdir } from 'fs/promises'
 import path from 'path'
-import { GetServerSideProps } from 'next'
+import { GetServerSideProps, GetStaticProps, GetStaticPaths } from 'next'
 import getConfig from 'next/config'
 const { serverRuntimeConfig } = getConfig()
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
-	const markdown = fs.readFileSync(path.join(serverRuntimeConfig.PROJECT_ROOT, `markdown/almost-sorted.md`), 'utf8')
+interface Props {
+	markdown: string
+}
+
+export const getStaticPaths: GetStaticPaths = async () => {
+	let markdownFiles = await readdir(path.join(serverRuntimeConfig.PROJECT_ROOT, `markdown`))
+	console.log('markdownFiles: ', markdownFiles)
+
+	const paths = markdownFiles.map((file) => ({
+		params: { problemId: file.replaceAll('.md', '') }
+	}))
+
+	console.log('paths: ')
+	console.log(paths)
+
+	return {
+		paths,
+		fallback: false
+	}
+}
+
+export const getStaticProps: GetStaticProps<Props> = async (context) => {
+	// console.log('context', context)
+
+	const markdown = fs.readFileSync(
+		path.join(serverRuntimeConfig.PROJECT_ROOT, `markdown/${context.params?.problemId}.md`),
+		'utf8'
+	)
+
+	console.log(markdown)
 
 	return {
 		props: {
@@ -16,9 +45,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 		}
 	}
 }
-interface Props {
-	markdown: string
-}
+
 const Problem: NextPage<Props> = ({ markdown }) => {
 	const resizeBarRef = useRef<HTMLDivElement>(null)
 	const questionRef = React.createRef<HTMLElement>()
