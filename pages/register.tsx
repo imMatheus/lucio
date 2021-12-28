@@ -33,8 +33,6 @@ export default function Register(): ReactElement {
 	}, [email])
 
 	async function signupHandler() {
-		console.log('aaa')
-
 		try {
 			await signup(email, password, username, avatar)
 		} catch (error) {

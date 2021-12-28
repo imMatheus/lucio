@@ -14,12 +14,8 @@ import Alert from '@/components/Alerts'
 export default function ClassScreen(): ReactElement {
 	const router = useRouter()
 	const { classId } = router.query
-	console.log('rrr: ', router)
-	console.log('rrr: ', classId)
-
 	const { currentUser } = useAuth()
 	const [classData, loading] = useClassData(classId)
-	console.log('classData: ', classData)
 
 	return (
 		<section className="py-8 px-6">

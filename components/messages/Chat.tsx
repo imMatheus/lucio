@@ -10,8 +10,6 @@ interface ChatProps {
 }
 
 const Chat: React.FC<ChatProps> = ({ messages }) => {
-	console.log('message', messages)
-
 	return (
 		<div className={styles.chat}>
 			<ChatHeader name="Hello world!" />

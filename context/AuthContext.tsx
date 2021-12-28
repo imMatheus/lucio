@@ -43,7 +43,6 @@ async function signup(
 	try {
 		await createUserWithEmailAndPassword(auth, email, password).then(({ user }) => {
 			if (!user) return
-			console.log('rrrr: ', user)
 
 			setDoc(doc(fs, 'users', user.uid), {
 				displayName: displayName,
@@ -120,11 +119,6 @@ export const AuthProvider: React.FC = ({ children }) => {
 				})
 			)
 
-			console.log('response')
-
-			console.log(response.data())
-			console.log(user)
-
 			const data: User = { ...user, ...(response.data() as FirestoreUser) }
 
 			//TODO dix dis
@@ -134,9 +128,6 @@ export const AuthProvider: React.FC = ({ children }) => {
 		})
 		return unsubscribe
 	}, [])
-	console.log('final user is here ~~~~')
-
-	console.log(currentUser)
 
 	const value = {
 		currentUser,

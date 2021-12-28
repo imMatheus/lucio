@@ -16,8 +16,6 @@ export default function useClassData(id: string | string[] | undefined): [ClassT
 			if (!id) return console.log('failed on line 15')
 			let response = await getClassById(Array.isArray(id) ? id[0] : id)
 
-			console.log(response)
-
 			setState(response)
 			setLoading(false)
 		}

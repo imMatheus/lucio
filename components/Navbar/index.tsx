@@ -20,7 +20,6 @@ export default function Navbar(): ReactElement {
 		}
 	}, [navbarRef])
 	// const [darkMode, setDarkMode] = useDarkMode()
-	console.log('navbar', currentUser)
 
 	return (
 		<nav className="border-b border-b-textDimmed bg-bg px-8 py-4" ref={navbarRef}>

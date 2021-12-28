@@ -9,9 +9,6 @@ interface MessageProps {
 
 const Message: React.FC<MessageProps> = ({ message }) => {
 	const { currentUser } = useAuth()
-	console.log('message', message.text)
-	console.log('message author', message.authorId)
-	console.log('user', currentUser?.uid)
 
 	return (
 		<div className={currentUser?.uid === message.authorId ? styles.messageSent : styles.messageReceived}>

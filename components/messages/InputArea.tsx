@@ -17,7 +17,6 @@ const InputArea: React.FC<InputAreaProps> = ({}) => {
 	const { messageId } = router.query
 	const { currentUser } = useAuth()
 	const { setToastMessage } = useToast()
-	console.log(currentUser)
 
 	async function sendMessage() {
 		if (!currentUser) return setToastMessage('Could not send message as you are not loged in')
@@ -40,12 +39,10 @@ const InputArea: React.FC<InputAreaProps> = ({}) => {
 
 	useEffect(() => {
 		inputRef.current!.addEventListener('keydown', (e) => {
-			console.log('e: ', e)
 			if (e.key === 'Enter' && !e.shiftKey) {
 				sendMessage()
 			} else {
 				// setMessage(e.target.value)
-				console.log('abcdefghijklmnop')
 
 				if (inputRef.current) {
 					inputRef.current.style.height = '1px'
@@ -55,9 +52,7 @@ const InputArea: React.FC<InputAreaProps> = ({}) => {
 		})
 
 		return () => {
-			inputRef.current?.removeEventListener('keydown', (e) => {
-				console.log('removed listner: ', e)
-			})
+			inputRef.current?.removeEventListener('keydown', (e) => {})
 		}
 	}, [inputRef.current])
 	// }, [inputRef])
@@ -78,8 +73,6 @@ const InputArea: React.FC<InputAreaProps> = ({}) => {
 					// value={message}
 					onChange={(e) => {
 						// setMessage(e.target.value)
-						console.log('changed')
-
 						// if (inputRef.current) {
 						// 	inputRef.current.style.height = '1px'
 						// 	inputRef.current.style.height = inputRef.current.scrollHeight + 'px'

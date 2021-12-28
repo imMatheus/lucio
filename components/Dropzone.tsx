@@ -22,12 +22,10 @@ const Dropzone: React.FC<DropzoneProps> = ({ setFiles }) => {
 
 	const dragEnter = (e: any) => {
 		e.preventDefault()
-		console.log('enter: ', e)
 	}
 
 	const dragLeave = (e: any) => {
 		e.preventDefault()
-		console.log('leave: ', e)
 	}
 
 	const validateFile = (file: any) => {
@@ -40,11 +38,9 @@ const Dropzone: React.FC<DropzoneProps> = ({ setFiles }) => {
 
 	const handleFiles = (_files: FileList) => {
 		if (!_files) return // TODO bug: does not toast after two tries
-		console.log('_files: ', _files)
 		if (_files.length > 1) {
 			const dummy: File[] = []
 			for (let i = 0; i < _files.length; i++) {
-				console.log(_files[i])
 				if (_files[i]?.name && _files[i]?.type) {
 					dummy.push(_files[i])
 				} else {
@@ -64,7 +60,6 @@ const Dropzone: React.FC<DropzoneProps> = ({ setFiles }) => {
 	const fileDrop = (e: React.DragEvent<HTMLDivElement>) => {
 		e.preventDefault()
 		const _files = e.dataTransfer?.files
-		console.log(_files)
 		if (_files.length) {
 			handleFiles(_files)
 		}
@@ -73,7 +68,6 @@ const Dropzone: React.FC<DropzoneProps> = ({ setFiles }) => {
 	const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
 		const _files = event.target?.files
 		if (!_files) return
-		console.log('_files from 72: ', _files)
 		handleFiles(_files)
 	}
 

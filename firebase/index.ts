@@ -16,6 +16,5 @@ const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0
 export const fs = getFirestore(app)
 export const auth = getAuth(app)
 export const storage = getStorage()
-// console.log(auth.currentUser)
 
 export default app

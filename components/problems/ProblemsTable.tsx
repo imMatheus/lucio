@@ -18,9 +18,6 @@ interface ProblemsListProps {
 }
 
 const ProblemTable: React.FC<ProblemsListProps> = ({ problems, loading }) => {
-	console.log('problems: ', problems)
-	console.log(problems.map((problem) => ({ ...problem, name: problem.constrains })))
-
 	return (
 		<div className="flex flex-col">
 			<div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">

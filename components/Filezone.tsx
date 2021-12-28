@@ -61,12 +61,10 @@ function FileCard({ file }: { file: File & FileProps }) {
 const Filezone: React.FC<FilezoneProps> = ({ path }) => {
 	const [files, setFiles] = useState<Array<File & FileProps>>([])
 	const [loading, setLoading] = useState(false)
-	console.log('path: ', path)
 
 	const uploadFiles = async (files: Array<File & FileProps>) => {
 		if (loading) return
 		setLoading(true)
-		console.log('')
 		for (let i = 0; i < files.length; i++) {
 			const file: File & FileProps = files[i]
 			const storageRef = ref(storage, `${path}/${file.name}`)
@@ -74,24 +72,14 @@ const Filezone: React.FC<FilezoneProps> = ({ path }) => {
 
 			const byt = await uploadBytes(storageRef, file)
 
-			console.log('byt: ', byt)
 			files[i].downloadUrl = await getDownloadURL(storageRef)
-			// .then((snapshot) => {
-			// 	console.log('snapshot')
-			// 	console.log(snapshot)
-
-			// 	console.log('Uploaded a blob or file!')
-			// })
 		}
-
-		console.log('final files: ', files)
 
 		setLoading(false)
 	}
 
 	// const
 	useEffect(() => {
-		console.log('files changed: ', files)
 		uploadFiles(files)
 	}, [files])
 
@@ -101,8 +89,6 @@ const Filezone: React.FC<FilezoneProps> = ({ path }) => {
 			<div className={styles.container}>
 				{files &&
 					Array.from(files).map((file, index) => {
-						console.log('file: ', file)
-
 						return <FileCard key={index} file={file} />
 					})}
 

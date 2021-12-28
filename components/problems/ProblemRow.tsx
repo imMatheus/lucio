@@ -10,8 +10,6 @@ interface TableRowProps {
 }
 
 const TableRow: React.FC<TableRowProps> = ({ name, loading, difficulty, index }) => {
-	console.log('name: ', name)
-
 	return (
 		<Link passHref={true} href={`/problems/${name.toLowerCase().split(' ').join('-')}`}>
 			<tr

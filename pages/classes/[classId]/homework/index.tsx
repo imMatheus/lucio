@@ -22,11 +22,6 @@ const Index: NextPage = () => {
 	const { setToastMessage } = useToast()
 	const [homeworks, setHomeworks] = useState<Homework[]>([])
 
-	console.log('router: ', router)
-	console.log('classId: ', classId)
-	console.log('classData: ', classData)
-	console.log('homeworks: ', homeworks)
-
 	useEffect(() => {
 		getDocs(collection(fs, `classes/${classId}/homework`))
 			.then((res) => {
@@ -43,11 +38,9 @@ const Index: NextPage = () => {
 		try {
 			if (!classData) return setToastMessage('Could not find class')
 			setLoading(true)
-			console.log('currentUser: ', currentUser)
 
 			if (!currentUser) return alert('You need to log in before you can create homework')
 			// const docRef = doc(collection(fs, `classes/${classId}/homework`))
-			// console.log('docRef.id: ', docRef.id)
 
 			const docRef = await addDoc(collection(fs, `classes/${classData.id}/homework`), {
 				createdAt: Timestamp.fromDate(new Date()),
@@ -58,8 +51,6 @@ const Index: NextPage = () => {
 				files: [],
 				draft: true
 			})
-
-			console.log('docRef: ', docRef)
 
 			setLoading(false)
 			if (docRef.id) {

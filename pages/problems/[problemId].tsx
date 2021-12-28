@@ -13,15 +13,11 @@ interface Props {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-	let markdownFiles = await readdir(path.join(serverRuntimeConfig.PROJECT_ROOT, `markdown`))
-	console.log('markdownFiles: ', markdownFiles)
+	const markdownFiles = await readdir(path.join(serverRuntimeConfig.PROJECT_ROOT, `markdown`))
 
 	const paths = markdownFiles.map((file) => ({
 		params: { problemId: file.replaceAll('.md', '') }
 	}))
-
-	console.log('paths: ')
-	console.log(paths)
 
 	return {
 		paths,
@@ -30,14 +26,10 @@ export const getStaticPaths: GetStaticPaths = async () => {
 }
 
 export const getStaticProps: GetStaticProps<Props> = async (context) => {
-	// console.log('context', context)
-
 	const markdown = fs.readFileSync(
 		path.join(serverRuntimeConfig.PROJECT_ROOT, `markdown/${context.params?.problemId}.md`),
 		'utf8'
 	)
-
-	console.log(markdown)
 
 	return {
 		props: {
@@ -62,7 +54,6 @@ const Problem: NextPage<Props> = ({ markdown }) => {
 			let barWidth = resizeBarRef.current?.clientWidth || 0
 			//setting width to the mouse x cord or to a min or max value specified in the css
 			var pointerRelativeXpos = e.clientX
-			// console.log('questionRef', questionRef)
 
 			questionRef.current.style.width = pointerRelativeXpos - barWidth + 'px'
 		})
@@ -74,9 +65,7 @@ const Problem: NextPage<Props> = ({ markdown }) => {
 			})
 	}, [resizeBarRef.current])
 
-	useEffect(() => {
-		console.log('red: ', questionRef.current)
-	}, [questionRef.current])
+	useEffect(() => {}, [questionRef.current])
 
 	return (
 		<section className="grid grid-cols-[auto_auto_1fr] h-full-wo-nav">

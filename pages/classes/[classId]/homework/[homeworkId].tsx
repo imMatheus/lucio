@@ -10,29 +10,20 @@ const HomeworkId: NextPage = () => {
 	const router = useRouter()
 	const { homeworkId } = router.query
 	const [homework, setHomework] = useState<Homework>()
-	console.log('homework: ', homework)
 
 	useEffect(() => {
 		const docRef = doc(fs, router.asPath)
 		getDoc(docRef).then((res) => {
-			console.log('---res---')
-			console.log(res.data())
 			if (res.exists()) {
 				setHomework(res.data() as Homework)
 			}
 		})
 		const pathReference = ref(storage, router.asPath)
-		console.log('---pathReference---')
-		console.log(pathReference)
 		listAll(pathReference)
 			.then((res) => {
-				console.log('tsghhjhg: ', res)
-
 				res.items.forEach(async (itemRef) => {
 					// All the items under listRef.
-					console.log('itemRef: ', itemRef)
 					const f = await getDownloadURL(itemRef)
-					console.log(f)
 				})
 				setHomework((c) => ({
 					...(c as Homework),

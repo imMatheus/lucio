@@ -28,12 +28,6 @@ const CreateHomework: React.FC<CreateHomeworkProps> = ({}) => {
 	const [files, setFiles] = useState<any[]>([])
 	const [selectedFile, setSelectedFile] = useState<any>()
 	const [isFilePicked, setIsFilePicked] = useState(false)
-	console.log('class data')
-	console.log(classData)
-	console.log('selectedFile')
-	console.log(selectedFile)
-	console.log('files: ', files)
-	console.log('router: ', router)
 
 	const changeHandler = (event: any) => {
 		setFiles((c) => c.concat(event.target?.files[0]))
@@ -43,17 +37,10 @@ const CreateHomework: React.FC<CreateHomeworkProps> = ({}) => {
 
 	const handleSubmission = () => {
 		// 'file' comes from the Blob or File API
-		console.log('selectedFile')
-		console.log(selectedFile)
 
 		const storageRef = ref(storage, `classes/${classData?.id}/${Math.random().toString(36)}_${selectedFile.name}`)
 
-		uploadBytes(storageRef, selectedFile).then((snapshot) => {
-			console.log('snapshot')
-			console.log(snapshot)
-
-			console.log('Uploaded a blob or file!')
-		})
+		uploadBytes(storageRef, selectedFile).then((snapshot) => {})
 	}
 
 	const createHomeworkHandler = async () => {
@@ -98,42 +85,3 @@ const CreateHomework: React.FC<CreateHomeworkProps> = ({}) => {
 }
 
 export default CreateHomework
-
-// useEffect(() => {
-// 	// const storageRef = ref(storage, 'classes/9wBsqEkwM2XunXFK6q7I/bg.jpeg')
-// 	// const storageRef = ref(storage, 'classes/9wBsqEkwM2XunXFK6q7I/tailwind.config.js_0.8j6zo06152g')
-// 	const storageRef = ref(storage, 'classes/9wBsqEkwM2XunXFK6q7I/Safety_Direct_PDF.pdf')
-// 	getDownloadURL(storageRef)
-// 		.then((url) => {
-// 			// `url` is the download URL for 'images/stars.jpg'
-
-// 			// This can be downloaded directly:
-// 			const xhr = new XMLHttpRequest()
-// 			xhr.responseType = 'blob'
-// 			xhr.onload = async (event) => {
-// 				console.log('event: ', event)
-
-// 				const blob = xhr.response
-// 				console.log('bloooob: ', blob)
-// 				console.log(await blob.text())
-// 				console.log(blob.stream())
-// 			}
-// 			xhr.open('GET', url)
-// 			xhr.send()
-// 			console.log('url: ', url)
-
-// 			// Or inserted into an <img> element
-// 			// const img = document.getElementById('myimg')
-// 			imgRef.current?.setAttribute('src', url)
-// 			// img!.setAttribute('src', url)
-// 		})
-// 		.catch((error) => {
-// 			// Handle any errors
-// 			console.log('error: ', error)
-// 		})
-// 	list(storageRef).then((res) => {
-// 		console.log(res)
-
-// 		console.log('fghsjdkfkjdhsnxkfgjdsamkdfgjnkfj')
-// 	})
-// }, [])
