@@ -45,10 +45,6 @@ export type Difficulty = 'easy' | 'medium' | 'hard'
 export default interface AlgorithmProblem {
 	name: string
 	difficulty: Difficulty
-	description: string
-	constrains: Array<string>
-	inputFormat: string
-	output: string
 	sampleCases: Array<SampleCases>
 	submitCases?: Array<SubmitCases>
 	inputs: Array<Input>

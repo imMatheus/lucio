@@ -6,12 +6,15 @@
 		"dev": "next dev",
 		"build": "next build",
 		"start": "next start",
-		"lint": "next lint"
+		"lint": "next lint",
+		"pBuild": "ncc build ./pushProblemsToFirestore.ts -w -o .",
+		"pRun": "node index.js"
 	},
 	"dependencies": {
 		"@dicebear/adventurer-neutral": "^4.10.0",
 		"@dicebear/avatars": "^4.10.0",
 		"@tailwindcss/typography": "^0.5.0",
+		"@vercel/ncc": "^0.33.1",
 		"email-validator": "^2.0.4",
 		"firebase": "^9.1.3",
 		"firebase-admin": "^10.0.0",
@@ -38,6 +41,7 @@
 		"prettier": "^2.4.1",
 		"pretty-quick": "^3.1.2",
 		"tailwindcss": "^3.0.1",
+		"ts-node": "^10.4.0",
 		"typescript": "4.4.4"
 	}
 }

@@ -14,7 +14,7 @@ const TableRow: React.FC<TableRowProps> = ({ name, loading, difficulty, index })
 		<Link passHref={true} href={`/problems/${name.toLowerCase().split(' ').join('-')}`}>
 			<tr
 				className={`${
-					!(index % 2) ? 'bg-gray-200 dark:bg-gray-700' : 'bg-transparent'
+					!(index % 2) ? 'bg-gray-200/80 dark:bg-gray-700' : 'bg-transparent'
 				} hover:shadow-inner transition-shadow cursor-pointer`}
 			>
 				<td className="px-6 py-4 whitespace-nowrap">
@@ -26,17 +26,11 @@ const TableRow: React.FC<TableRowProps> = ({ name, loading, difficulty, index })
 				<td className="px-6 py-4 whitespace-nowrap">
 					<span className="inline-flex text-sm leading-5 font-semibold">
 						{difficulty === 'easy' ? (
-							<span className="text-green-800 bg-green-100 border-green-700 border px-2 py-0.5 rounded-lg">
-								{difficulty}
-							</span>
+							<span className="text-green-700">{difficulty}</span>
 						) : difficulty === 'medium' ? (
-							<span className="text-yellow-800 bg-yellow-100 border-yellow-700 border px-2 py-0.5 rounded-lg">
-								{difficulty}
-							</span>
+							<span className="text-yellow-700">{difficulty}</span>
 						) : (
-							<span className="text-red-800 bg-red-100 border-red-700 border px-2 py-0.5 rounded-lg">
-								{difficulty}
-							</span>
+							<span className="text-red-700">{difficulty}</span>
 						)}
 					</span>
 				</td>

@@ -6,13 +6,6 @@ export const problems: typeProblems = [
 	{
 		name: 'Simple Addition',
 		difficulty: 'easy',
-		output: 'an integer',
-		description: `given two integers, <span class="variable">a</span> and <span class="variable">b</span>, return the sum of <span class="variable">a</span> + <span class="variable">b</span>`,
-		inputFormat: `<span class="variable">a</span> an integer, <span class="variable">b</span> an integer `,
-		constrains: [
-			'<span class="variable">-Infinity</span> < <span class="variable">a</span> < <span class="variable">Infinity</span>',
-			'<span class="variable">-Infinity</span> < <span class="variable">b</span> < <span class="variable">Infinity</span>'
-		],
 		sampleCases: [
 			{
 				input: [
@@ -57,18 +50,6 @@ export const problems: typeProblems = [
 	{
 		name: 'Palindrome Number',
 		difficulty: 'easy',
-		description: `
-        Given an integer <span class="variable">x</span>,
-        return <span class="variable">true</span> if <span class="variable">x</span> is palindrome integer.
-        An integer is a palindrome when it reads the same backward as forward.
-        For example, <span class="variable">121</span> is palindrome while <span class="variable">123</span> is not.
-        `,
-		inputFormat: `<span class="variable">x</span> a integer`,
-		constrains: [
-			'<span class="variable">-1000</span> <= <span class="variable">x</span> < <span class="variable">1000</span>'
-		],
-		output: '<span class="variable">Boolean:</span> If the number is a palindrome or not',
-
 		sampleCases: [
 			{
 				input: [{ input: '121', type: 'integer' }],
@@ -118,10 +99,6 @@ export const problems: typeProblems = [
 	{
 		name: 'Multiplication',
 		difficulty: 'easy',
-		output: 'The product of x * y',
-		description: `Given three numbers, <span class="variable">X</span>, <span class="variable">Y</span>, return the product of <span class="variable">X</span> * <span class="variable">Y</span> `,
-		inputFormat: `<span class="variable">X</span> a number, <span class="variable">Y</span> a number`,
-		constrains: ['<span class="variable">x</span> a number', '<span class="variable">x</span> a number'],
 		sampleCases: [
 			{
 				input: [
@@ -165,14 +142,6 @@ export const problems: typeProblems = [
 	{
 		name: 'Number Of Letters',
 		difficulty: 'easy',
-		output: '',
-		description: `given a string, <span class="variable">S</span>, and a single letter, <span class="variable">Letter</span>, return the number of instances that the letter <span class="variable">Letter</span> appears in the string <span class="variable">S</span>`,
-		inputFormat: `<span class="variable">S</span> a string containing lowercase letters, <span class="variable">Letter</span> a single lowercase letter`,
-		constrains: [
-			`0 &#8804 <span class="variable">S</span> &#x3c 100000  `,
-			`<span class="variable">S[i]</span> &#x2208 <span class="variable">a-z</span>`,
-			`<span class="variable">Letter</span> &#x2208 <span class="variable">a-z</span>`
-		],
 		sampleCases: [
 			{
 				input: [
@@ -218,13 +187,6 @@ export const problems: typeProblems = [
 	{
 		name: 'Score The Name',
 		difficulty: 'easy',
-		description: `Given a single name, <span class="variable">n</span>, calculate the alphabetical value for the letters of the name. The alphabetical value of a letter is it"s place in the alphabet.`,
-		inputFormat: `<span class="variable">n</span> a single word containing uppercase letters.`,
-		constrains: [
-			' <span class="variable">n</span> < <span class="variable">100</span>',
-			' <span class="variable">n[i]</span> &#x2208 <span class="variable">[A-Z]</span>'
-		],
-		output: `int: The alphabetical value of the given name.`,
 		sampleCases: [
 			{
 				input: [{ input: 'LUCIO', type: 'string' }],
@@ -260,21 +222,6 @@ export const problems: typeProblems = [
 	{
 		name: 'Counting Valleys',
 		difficulty: 'medium',
-		description: `
-                An avid hiker keeps meticulous records of their hikes. During the last hike that took exactly <span class="variable">steps</span> steps, for every step it was noted if it was an uphill, <span class="variable">U</span> , or a downhill, <span class="variable">D</span> step. Hikes always start and end at sea level, and each step up or down represents a <span class="variable">1</span> unit change in altitude.
-              
-        <div class="bulletpoint">A level.</div>
-        <div class="bulletpoint">A valley is a sequence of consecutive steps below sea level, starting with a step down from sea level and ending with a step up to sea level.</div>
-        Given the sequence of up and down steps during a hike, find and print the number of valleys walked through.
-                 `,
-		constrains: [
-			` <span class="variable">2 < steps < 1000</span>`,
-			`<span class="variable">path[i] = "U"</span> or <span class="variable">path[i] = "D"</span>`
-		],
-		inputFormat: `The first line contains an integer <span class="variable">steps</span>, the number of steps in the hike.
-        The second line contains a single string  <span class="variable">path</span>, of   <span class="variable">steps</span>characters that describe the path.`,
-		// constrains: [`0 < n < 100`],
-		output: `int: The number of valleys traveled.`,
 		sampleCases: [
 			{
 				input: [
@@ -322,44 +269,6 @@ export const problems: typeProblems = [
 	{
 		name: 'Almost Sorted',
 		difficulty: 'hard',
-
-		description: `
-        Given an array of integers, determine whether the array
-        can be sorted in ascending order using only one of the following 
-        operations one time.
-        <div class="bulletpoint">Swap two elements.</div>
-        <div class="bulletpoint">Reverse one sub-segment.</div>
-        Determine whether one, both or neither of the operations will complete the task. Output is as follows.
-        <div class="bulletpoint">If the array is already sorted, output <span class="variable">yes</span> on the first line. You do not need to output anything else.</div>
-        <div class="bulletpoint">If you can sort this array using one single operation (from the two permitted operations) then output <span class="variable">yes</span> on the first line and then:
-            <ul class="numberlist">
-                <li>
-                If elements can only be swapped, <span class="variable">d[p]</span> and <span class="variable">d[q]</span>,
-                output <span class="variable">swap p q </span> in the second line.  
-                <span class="variable">p</span> and <span class="variable">q</span> are the indices of the elements to be swapped, 
-                assuming that the array is indexed from <span class="variable">1</span> to <span class="variable">n</span>.
-                </li>
-                <li>
-                If elements can only be reversed, for the segment <span class="variable">d[p...q]</span>, output <span class="variable">reverse p q</span> in the second line. 
-                <span class="variable">p</span> and <span class="variable">q</span> are the indices of the first and last elements 
-                of the subarray to be reversed, assuming that 
-                 the array is indexed <span class="variable">1</span> from <span class="variable">n</span> to . 
-                Here <span class="variable">d[p...q]</span> represents the subarray that begins at index  <span class="variable">p</span> 
-                and ends at index <span class="variable">q</span>, both inclusive.
-                </li>
-            </ul>
-        </div>
-        If an array can be sorted both ways, by using either swap or reverse, choose swap.
-        <div class="bulletpoint">If the array cannot be sorted either way, output no on the first line.</div>
-        `,
-		constrains: [
-			`<span class="variable">2 &#8804 n &#8804 100000 </span>`,
-			`<span class="variable">0 &#8804 arr[i] &#8804 1000000 </span>`,
-			`All <span class="variable">arr[i]</span> are distinct`
-		],
-		inputFormat: `The first line contains a single integer <span class="variable">n</span>, the size of <span class="variable">arr</span>.
-        The next line contains <span class="variable">n</span> space-separated integers <span class="variable">arr[i]</span> where <span class="variable">1 &#8804 i &#8804 n </span>.`,
-		output: `int: the length of the longest subset of <span class="variable">S</span> meeting the criteria`,
 		sampleCases: [
 			{
 				input: [{ input: '[3,1,2]', type: 'integer[]' }],
@@ -394,22 +303,3 @@ export const problems: typeProblems = [
 		inputs: [{ input: 'arr', type: 'integer[]' }]
 	}
 ]
-
-// <div className="bg-green-100 text-green-800 p-5 border border-green-500 cursor-pointer">
-// 				<button
-// 					onClick={async () => {
-// 						console.log('aa')
-
-// 						for (let i = 0; i < _problems.length; i++) {
-// 							const problem = _problems[i]
-// 							console.log('preoblem', i, problem)
-
-// 							await setDoc(doc(fs, 'problems', problem.name.toLowerCase().split(' ').join('-')), {
-// 								problem
-// 							})
-// 						}
-// 					}}
-// 				>
-// 					push it all
-// 				</button>
-// 			</div>

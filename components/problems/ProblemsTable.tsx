@@ -28,7 +28,7 @@ const ProblemTable: React.FC<ProblemsListProps> = ({ problems, loading }) => {
 								<tr>
 									<Column>Name</Column>
 									<Column>Title</Column>
-									<Column>Status</Column>
+									<Column>Difficulty</Column>
 								</tr>
 							</thead>
 							<tbody className="bg-white dark:bg-black divide-y divide-gray-200 dark:divide-gray-700">
