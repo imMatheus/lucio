@@ -1,12 +1,10 @@
 import React, { useRef, useState } from 'react'
-import { useAuth } from '@/context/AuthContext'
 import { useModal } from '@/context/ModalContext'
 import { X, Mail, Lock } from 'react-feather'
 import Button from '@/components/button'
 interface SignInModalProps {}
 
 const SignInModal: React.FC<SignInModalProps> = ({}) => {
-	const { login } = useAuth()
 	const [showPassword, setShowPassword] = useState(false)
 	const emailRef = useRef<HTMLInputElement>(null)
 	const passwordRef = useRef<HTMLInputElement>(null)
@@ -76,9 +74,6 @@ const SignInModal: React.FC<SignInModalProps> = ({}) => {
 								setError('')
 
 								try {
-									const user = await login(emailRef.current.value, passwordRef.current.value)
-
-									if (user) setShowModal(false)
 								} catch (error) {
 									setLoading(false)
 									setError('Could not log you in, make sure you enter valid user information')

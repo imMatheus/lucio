@@ -20,9 +20,7 @@
 			"@/context/*": ["context/*"],
 			"@/types/*": ["types/*"],
 			"@/hooks/*": ["hooks/*"],
-			"styles/*": ["styles/*"],
-			"@/firebase/*": ["firebase/*"],
-			"@/querys/*": ["firebase/querys/*"]
+			"styles/*": ["styles/*"]
 		},
 		"incremental": true
 	},

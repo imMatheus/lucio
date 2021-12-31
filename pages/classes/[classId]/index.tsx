@@ -4,8 +4,6 @@ import ClassType from '@/types/ClassType'
 import { useRouter } from 'next/router'
 import ClassNavbar from '@/components/classes/ClassNavbar'
 import useClassData from '@/hooks/useClassData'
-import { useAuth } from '@/context/AuthContext'
-import getClass from '@/firebase/querys/getClass'
 import User from '@/types/User'
 import Button from '@/components/button'
 import Head from 'next/head'
@@ -14,7 +12,6 @@ import Alert from '@/components/Alerts'
 export default function ClassScreen(): ReactElement {
 	const router = useRouter()
 	const { classId } = router.query
-	const { currentUser } = useAuth()
 	const [classData, loading] = useClassData(classId)
 
 	return (

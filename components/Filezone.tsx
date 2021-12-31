@@ -2,8 +2,6 @@ import React, { useEffect, useState } from 'react'
 import styles from 'styles/Filezone.module.scss'
 import { Trash2, Edit2 } from 'react-feather'
 import Dropzone from './Dropzone'
-import { ref, uploadBytes, getDownloadURL } from 'firebase/storage'
-import { storage } from '@/firebase/index'
 import Link from 'next/link'
 interface FilezoneProps {
 	path: string
@@ -67,12 +65,7 @@ const Filezone: React.FC<FilezoneProps> = ({ path }) => {
 		setLoading(true)
 		for (let i = 0; i < files.length; i++) {
 			const file: File & FileProps = files[i]
-			const storageRef = ref(storage, `${path}/${file.name}`)
 			// const storageRef = ref(storage, `${path}/${Math.random().toString(36)}_${file.name}`)
-
-			const byt = await uploadBytes(storageRef, file)
-
-			files[i].downloadUrl = await getDownloadURL(storageRef)
 		}
 
 		setLoading(false)

@@ -6,13 +6,11 @@ import TypedText from '@/components/TypedText'
 import InputField from '@/components/InputField'
 import * as style from '@dicebear/adventurer-neutral'
 import { createAvatar } from '@dicebear/avatars'
-import { useAuth } from '@/context/AuthContext'
 import Image from 'next/image'
 import usePasswordStrength from '@/hooks/usePasswordStrength'
 import Head from 'next/head'
 
 export default function Register(): ReactElement {
-	const { signup } = useAuth()
 	const [email, setEmail] = useState('')
 	const [isValidEmail, setIsValidEmail] = useState(false)
 	const [showPassword, setShowPassword] = useState(false)
@@ -34,7 +32,7 @@ export default function Register(): ReactElement {
 
 	async function signupHandler() {
 		try {
-			await signup(email, password, username, avatar)
+			// await signup(email, password, username, avatar)
 		} catch (error) {
 			alert(error)
 		}

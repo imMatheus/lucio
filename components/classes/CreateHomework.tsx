@@ -1,13 +1,8 @@
 import React, { useState } from 'react'
 import DatePicker from 'react-datepicker'
-import { storage } from '@/firebase/index'
-import useCreateHomework from '@/firebase/handlers/useCreateHomework'
 import 'react-datepicker/dist/react-datepicker.css'
 import { useRouter } from 'next/router'
-import useGetClass from '@/firebase/querys/getClass'
 import ClassType from '@/types/ClassType'
-import { useAuth } from '@/context/AuthContext'
-import { ref, uploadBytes } from 'firebase/storage'
 import useClassData from '@/hooks/useClassData'
 import HomeworkFile from './HomeworkFile'
 import Input from '@/components/Input'
@@ -19,10 +14,8 @@ const CreateHomework: React.FC<CreateHomeworkProps> = ({}) => {
 	const [title, setTitle] = useState('')
 	const [description, setDescription] = useState('')
 	const [dueDate, setDueDate] = useState(new Date())
-	const createHomework = useCreateHomework()
 	const router = useRouter()
 	const { classId } = router.query
-	const { currentUser } = useAuth()
 	const [classData, loading] = useClassData(classId)
 	const id = Array.isArray(classId) ? classId[0] : classId
 	const [files, setFiles] = useState<any[]>([])
@@ -33,29 +26,6 @@ const CreateHomework: React.FC<CreateHomeworkProps> = ({}) => {
 		setFiles((c) => c.concat(event.target?.files[0]))
 		setSelectedFile(event.target?.files[0])
 		setIsFilePicked(true)
-	}
-
-	const handleSubmission = () => {
-		// 'file' comes from the Blob or File API
-
-		const storageRef = ref(storage, `classes/${classData?.id}/${Math.random().toString(36)}_${selectedFile.name}`)
-
-		uploadBytes(storageRef, selectedFile).then((snapshot) => {})
-	}
-
-	const createHomeworkHandler = async () => {
-		if (id) {
-			if (classData) {
-				await createHomework({
-					classId: classData.id,
-					title,
-					description,
-					files
-				})
-			}
-		} else {
-			console.log('faaaaaillleeeed')
-		}
 	}
 
 	return (
@@ -73,9 +43,6 @@ const CreateHomework: React.FC<CreateHomeworkProps> = ({}) => {
 				{dueDate.toLocaleDateString()}
 			</div>
 
-			<button onClick={createHomeworkHandler} className="rounded-xl bg-green-500 py-1 px-4 mb-3">
-				create homework
-			</button>
 			<Filezone path={`classes/${id}/homework/${router.query.newHomeworkId}`} />
 			{/* <HomeworkFile path="classes/9wBsqEkwM2XunXFK6q7I/bg.jpeg" />
 			<HomeworkFile path="classes/9wBsqEkwM2XunXFK6q7I/tailwind.config.js_0.8j6zo06152g" />

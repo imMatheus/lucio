@@ -2,7 +2,6 @@ import React, { ReactElement, useRef, useState, useEffect } from 'react'
 import styles from './Navbar.module.scss'
 import { Bell, Plus, ChevronDown, Icon } from 'react-feather'
 import Link from 'next/link'
-import { useAuth } from '@/context/AuthContext'
 import SVG from 'react-inlinesvg'
 import useClickOutside from '@/hooks/useClickOutside'
 import Button from '@/components/button'
@@ -11,7 +10,6 @@ import Spinner from '@/components/Spinner'
 import { useModal } from '@/context/ModalContext'
 
 export default function Navbar(): ReactElement {
-	const { currentUser, fetchingUser, logout } = useAuth()
 	const navbarRef = useRef<HTMLElement>(null)
 	const { setShowModal } = useModal()
 	useEffect(() => {
@@ -53,36 +51,26 @@ export default function Navbar(): ReactElement {
 							<p className={styles.tab}>Problems</p>
 						</Link>
 						<div className="flex items-center border-l border-l-textDimmed">
-							{fetchingUser ? (
-								<div className="w-8 h-8 mx-2">
-									<Spinner />
-								</div>
-							) : currentUser ? (
-								<div className="flex items-center ml-3 cursor-pointer">
-									<p className="text-base font-semibold text-text mr-1">@{currentUser.displayName}</p>
-									<span className="rounded-full w-5 h-5 mr-1 overflow-hidden">
-										<SVG src={currentUser.profileImage} />
-									</span>
-									{/* <Button onClick={logout} variant="error">
-										Sign out
-									</Button> */}
-								</div>
-							) : (
-								<>
-									<div
-										className="mx-2"
-										onClick={() => {
-											setShowModal(true)
-										}}
-									>
-										<Button variant="dimmed">Sign in</Button>
-									</div>
+							<div className="w-8 h-8 mx-2">
+								<Spinner />
+							</div>
 
-									<Link href="/register" passHref={true}>
-										<Button>Sign up</Button>
-									</Link>
-								</>
-							)}
+							<div className="flex items-center ml-3 cursor-pointer"></div>
+
+							<>
+								<div
+									className="mx-2"
+									onClick={() => {
+										setShowModal(true)
+									}}
+								>
+									<Button variant="dimmed">Sign in</Button>
+								</div>
+
+								<Link href="/register" passHref={true}>
+									<Button>Sign up</Button>
+								</Link>
+							</>
 						</div>
 					</div>
 				</section>
