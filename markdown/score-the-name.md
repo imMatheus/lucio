@@ -1,3 +1,33 @@
+---
+name: 'Score the name'
+difficulty: 'easy'
+sampleCases: [
+	{
+		input: [{ input: 'LUCIO', type: 'string' }],
+		output: [60]
+	},
+	{
+		input: [{ input: 'ABBA', type: 'string' }],
+		output: [6]
+	}
+]
+submitCases: [
+	{
+		input: ['MATHEUSMENDESBARATADEALMEIDA'],
+		output: ['244']
+	},
+	{
+		input: ['QWQWASZXDESREGG'],
+		output: ['215']
+	},
+	{
+		input: ['ZZZZZZZZA'],
+		output: ['209']
+	}
+]
+inputs: [{ input: 'n', type: 'string' }]
+---
+
 # Score the name
 
 ### Problem description

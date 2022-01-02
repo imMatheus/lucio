@@ -2,9 +2,8 @@ import React, { useRef, useState } from 'react'
 import { useModal } from '@/context/ModalContext'
 import { X, Mail, Lock } from 'react-feather'
 import Button from '@/components/button'
-interface SignInModalProps {}
 
-const SignInModal: React.FC<SignInModalProps> = ({}) => {
+const SignInModal: React.FC = () => {
 	const [showPassword, setShowPassword] = useState(false)
 	const emailRef = useRef<HTMLInputElement>(null)
 	const passwordRef = useRef<HTMLInputElement>(null)

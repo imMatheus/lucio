@@ -20,6 +20,7 @@
 			"@/context/*": ["context/*"],
 			"@/types/*": ["types/*"],
 			"@/hooks/*": ["hooks/*"],
+			"@models/*": ["models/*"],
 			"styles/*": ["styles/*"]
 		},
 		"incremental": true

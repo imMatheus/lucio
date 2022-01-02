@@ -1,19 +1,19 @@
 import AlgorithmProblem from 'types/AlgorithmProblem'
+import { Difficulty } from '@/types/AlgorithmProblem'
 
 type typeProblems = AlgorithmProblem[]
 
 export const problems: typeProblems = [
 	{
 		name: 'Simple Addition',
-		difficulty: 'easy',
+		difficulty: Difficulty.easy,
 		sampleCases: [
 			{
 				input: [
 					{ input: '9', type: 'integer' },
 					{ input: '6', type: 'integer' }
 				],
-				output: [15],
-				explanation: { text: `9 + 6 = 15` }
+				output: [15]
 			},
 			{
 				input: [
@@ -57,19 +57,11 @@ export const problems: typeProblems = [
 			},
 			{
 				input: [{ input: '69', type: 'integer' }],
-				output: [`false`],
-				explanation: {
-					text: `From left to right, it reads <span class="variable">69</span>.
-                From right to left, it becomes <span class="variable">96</span>. Therefore it is not a palindrome.`
-				}
+				output: [`false`]
 			},
 			{
 				input: [{ input: '-919', type: 'integer' }],
-				output: [`false`],
-				explanation: {
-					text: `From left to right, it reads <span class="variable">-919</span>.
-                From right to left, it becomes <span class="variable">919-</span>. Therefore it is not a palindrome.`
-				}
+				output: [`false`]
 			}
 		],
 		submitCases: [
@@ -148,20 +140,14 @@ export const problems: typeProblems = [
 					{ input: 'l', type: 'string' },
 					{ input: 'helloworld', type: 'string' }
 				],
-				output: [3],
-				explanation: {
-					text: `In the string <span class="variable">"helloworld"</span> the letter <span class="variable">l</span> appears 3 times`
-				}
+				output: [3]
 			},
 			{
 				input: [
 					{ input: 'n', type: 'string' },
 					{ input: 'drillmasher', type: 'string' }
 				],
-				output: [0],
-				explanation: {
-					text: `In the string <span class="variable">"drillmasher"</span> the letter <span class="variable">n</span> doesn't appears, so we return 0`
-				}
+				output: [0]
 			}
 		],
 		submitCases: [
@@ -190,17 +176,11 @@ export const problems: typeProblems = [
 		sampleCases: [
 			{
 				input: [{ input: 'LUCIO', type: 'string' }],
-				output: [60],
-				explanation: {
-					text: `The alphabetical value of each letter in the name, Lucio, is <span class="variable">12 + 21 + 3 + 9 + 15 = 60</span>`
-				}
+				output: [60]
 			},
 			{
 				input: [{ input: 'ABBA', type: 'string' }],
-				output: [6],
-				explanation: {
-					text: `The alphabetical value of each letter in the name, ABBA, is <span class="variable">1 + 2 + 2 + 1 = 6</span>`
-				}
+				output: [6]
 			}
 		],
 		submitCases: [
@@ -228,11 +208,7 @@ export const problems: typeProblems = [
 					{ input: '8', type: 'integer' },
 					{ input: `"UDDDUDUU"`, type: 'string' }
 				],
-				output: [1],
-				explanation: {
-					text: `If we represent <span class="variable">_</span> as sea level, a step up as <span class="variable">/</span>, and a step down as <span class="variable">&#92</span>, the hike can be drawn as:`,
-					explanationOutput: [' _/&#92      _', '    &#92    /', '     &#92/&#92/']
-				}
+				output: [1]
 			},
 			{
 				input: [
@@ -265,24 +241,17 @@ export const problems: typeProblems = [
 			{ input: 'path', type: 'string' }
 		]
 	},
-
 	{
 		name: 'Almost Sorted',
 		difficulty: 'hard',
 		sampleCases: [
 			{
 				input: [{ input: '[3,1,2]', type: 'integer[]' }],
-				output: ['no'],
-				explanation: {
-					text: `It is impossible to sort by one single operation.`
-				}
+				output: ['no']
 			},
 			{
 				input: [{ input: '[1, 5, 4, 3, 2, 6]', type: 'integer[]' }],
-				output: ['yes reverse 2 5'],
-				explanation: {
-					text: `You can reverse the sub-array <span class="variable">d[2...5]</span> = "5 4 3 2", then the array becomes sorted.`
-				}
+				output: ['yes reverse 2 5']
 			},
 			{
 				input: [{ input: '[1, 2, 5, 4, 3, 6]', type: 'integer[]' }],
@@ -290,10 +259,6 @@ export const problems: typeProblems = [
 			}
 		],
 		submitCases: [
-			// {
-			// 	input: [{ input: 'MATHEUSMENDESBARATADEALMEIDA', type: 'string' }],
-			// 	output: [244]
-			// },
 			{ input: ['[20, 21, 22, 23, 24, 25]'], output: ['yes'] },
 			{ input: ['[10, 14, 12, 9, 24, 25]'], output: ['no'] },
 			{ input: ['[1, 2, 5, 4, 3, 6]'], output: ['yes swap 3 5'] },
