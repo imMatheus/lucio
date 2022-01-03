@@ -5,42 +5,34 @@ import { GetServerSideProps } from 'next'
 import AlgorithmProblem from '@/types/AlgorithmProblem'
 import { problems as _problems } from '../../problems/Algorithms'
 import getConfig from 'next/config'
-const { serverRuntimeConfig } = getConfig()
-import { readdir } from 'fs/promises'
-import path from 'path'
-import fs from 'fs'
-import matter from 'gray-matter'
 
 interface Props {
 	problems: AlgorithmProblem[]
 	// difficulty?: any
 }
 
-export const getServerSideProps: GetServerSideProps<Props> = async (context) => {
-	console.log('req.headers')
-	console.log(context.req.headers.authorization)
-	const markdownFiles = await readdir(path.join(serverRuntimeConfig.PROJECT_ROOT, `markdown`))
-	const diff = context.query?.difficulty
-	console.log('markdownFiles')
-	// console.log(markdownFiles)
-	const markdown = fs.readFileSync(path.join(serverRuntimeConfig.PROJECT_ROOT, `markdown/simple-addition.md`), 'utf8')
-	const all = matter(markdown)
-	console.log(all)
+export const getServerSideProps: GetServerSideProps = async (context) => {
+	const response = await fetch('http://localhost:3000/api/problems?difficulty=easy')
+	const data = await response.json()
+	const problems: AlgorithmProblem[] = data.map((prob: any) => prob as AlgorithmProblem)
+	console.log(problems)
 
 	return {
 		props: {
-			problems: []
+			problems: problems
 		}
 	}
 }
 
 const Problems: NextPage<Props> = ({ problems, ...props }) => {
 	console.log('props', props)
+	console.log(problems)
 
 	return (
 		<div className="w-maxed w-full mx-auto border border-red-500 p-2 sm:p-5">
 			problems
 			<ProblemsList problems={problems} loading={false} />
+			{JSON.stringify(problems)}
 		</div>
 	)
 }

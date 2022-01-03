@@ -17,7 +17,7 @@ type Data = {
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
 	await run()
 	const markdownFiles = await readdir(path.join(serverRuntimeConfig.PROJECT_ROOT, `markdown`))
-	const response: any = []
+	const response: string[] = []
 
 	markdownFiles.forEach(function (filename) {
 		const res = fs.readFileSync(
@@ -25,12 +25,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 			'utf-8'
 		)
 		response.push(res)
-		console.log(res)
 	})
 
-	console.log(path.join(serverRuntimeConfig.PROJECT_ROOT, 'markdown/'))
-
-	console.log(response)
 	const problems = response.map((res: any) => {
 		const { content: markdown, data } = matter(res)
 		return {
@@ -39,6 +35,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 		}
 	})
 
-	await Problem.insertMany(problems)
+	// await Problem.insertMany(problems)
 	res.status(200).json(problems)
 }

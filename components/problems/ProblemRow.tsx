@@ -11,10 +11,10 @@ interface TableRowProps {
 
 const TableRow: React.FC<TableRowProps> = ({ name, loading, difficulty, index }) => {
 	return (
-		<Link passHref={true} href={`/problems/${name.toLowerCase().split(' ').join('-')}`}>
+		<Link passHref={true} href={`/problems/${name}`}>
 			<tr
 				className={`${
-					!(index % 2) ? 'bg-gray-200/80 dark:bg-gray-700' : 'bg-transparent'
+					!(index % 2) ? 'bg-neutral-200/80 dark:bg-neutral-800' : 'bg-transparent'
 				} hover:shadow-inner transition-shadow cursor-pointer`}
 			>
 				<td className="px-6 py-4 whitespace-nowrap">

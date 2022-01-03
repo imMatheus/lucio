@@ -22,14 +22,14 @@ const ProblemTable: React.FC<ProblemsListProps> = ({ problems, loading }) => {
 				<div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
 					<div className="shadow dark:shadow-gray-700 overflow-hidden border-b border-gray-200 dark:border-gray-700 sm:rounded-lg">
 						<table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
-							<thead className="bg-gray-50 dark:bg-gray-800">
+							<thead className="bg-neutral-50 dark:bg-neutral-800">
 								<tr>
 									<Column>Name</Column>
 									<Column>Title</Column>
 									<Column>Difficulty</Column>
 								</tr>
 							</thead>
-							<tbody className="bg-white dark:bg-black divide-y divide-gray-200 dark:divide-gray-700">
+							<tbody className="bg-white dark:bg-neutral-900 divide-y divide-gray-200 dark:divide-neutral-600">
 								{problems.map(({ difficulty, name }, index) => (
 									<ProblemRow
 										key={name}
