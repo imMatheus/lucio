@@ -9,6 +9,12 @@ module.exports = {
 				secondary: '#eff2c0',
 				success: '#2da44e',
 				error: '#cf222e',
+				olive: '#00af9b',
+				mustard: '#ffb800',
+				ketchup: '#ff2d55',
+				oliveDark: '#00b8a3',
+				mustardDark: '#ffc01e',
+				ketchupDark: '#ff375f',
 
 				// theme: 'var(--theme)',
 				// themeDimmed: 'var(--theme-dimmed)',

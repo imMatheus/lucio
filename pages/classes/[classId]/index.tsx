@@ -4,7 +4,6 @@ import ClassType from '@/types/ClassType'
 import { useRouter } from 'next/router'
 import ClassNavbar from '@/components/classes/ClassNavbar'
 import useClassData from '@/hooks/useClassData'
-import User from '@/types/User'
 import Button from '@/components/button'
 import Head from 'next/head'
 import Alert from '@/components/Alerts'
@@ -32,7 +31,6 @@ export default function ClassScreen(): ReactElement {
 				<h2>class data</h2>
 				<div>
 					<h4>{classData && JSON.stringify(classData)}</h4>
-					console.log({loading});
 				</div>
 			</section>
 		</section>

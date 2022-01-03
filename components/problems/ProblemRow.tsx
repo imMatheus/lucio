@@ -15,10 +15,12 @@ const TableRow: React.FC<TableRowProps> = ({ name, loading, difficulty, index })
 			<tr
 				className={`${
 					!(index % 2) ? 'bg-neutral-200/80 dark:bg-neutral-800' : 'bg-transparent'
-				} hover:shadow-inner transition-shadow cursor-pointer`}
+				} transition-shadow cursor-pointer group`}
 			>
 				<td className="px-6 py-4 whitespace-nowrap">
-					<div className="text-base text-gray-900 dark:text-gray-100 font-semibold">{name}</div>
+					<div className="text-base text-gray-900 dark:text-gray-100 font-semibold group-hover:text-theme transition-colors">
+						{name}
+					</div>
 				</td>
 				<td className="px-6 py-4 whitespace-nowrap">
 					<div className="text-sm text-gray-900 dark:text-gray-100">47.5%</div>
@@ -26,11 +28,11 @@ const TableRow: React.FC<TableRowProps> = ({ name, loading, difficulty, index })
 				<td className="px-6 py-4 whitespace-nowrap">
 					<span className="inline-flex text-sm leading-5 font-semibold">
 						{difficulty === 'easy' ? (
-							<span className="text-green-700">{difficulty}</span>
+							<span className="text-[#00b8a3]">{difficulty}</span>
 						) : difficulty === 'medium' ? (
-							<span className="text-yellow-700">{difficulty}</span>
+							<span className="text-[#ffc01e]">{difficulty}</span>
 						) : (
-							<span className="text-red-700">{difficulty}</span>
+							<span className="text-[#ff375f]">{difficulty}</span>
 						)}
 					</span>
 				</td>
