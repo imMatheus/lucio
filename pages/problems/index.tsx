@@ -42,6 +42,7 @@ const Problems: NextPage<Props> = ({ problems, ...props }) => {
 		const baseURL = '/problems'
 		type Params = 'difficulty' | 'status'
 		const props: Params[] = ['difficulty', 'status']
+		// takes care of changing url for querying
 		const values: { [key in Params]: string } = {
 			difficulty: difficulty,
 			status: status
@@ -54,7 +55,6 @@ const Problems: NextPage<Props> = ({ problems, ...props }) => {
 				return ''
 			})
 			.filter((str) => str !== '')
-		console.log('res', res)
 		if (res.length > 0) {
 			const params = res.join('&')
 			router.push(`${baseURL}?${params}`)
@@ -63,7 +63,6 @@ const Problems: NextPage<Props> = ({ problems, ...props }) => {
 		}
 	}, [difficulty, status])
 
-	// setDifficulty(Difficulty.easy)
 	return (
 		<div className="w-maxed w-full mx-auto border border-red-500 p-2 sm:p-5">
 			problems

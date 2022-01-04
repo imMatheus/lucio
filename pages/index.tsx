@@ -8,7 +8,7 @@ const Home: NextPage = () => {
 		<div>
 			<section className={styles.hero}>
 				<div className={styles.header}>
-					<h1 className="text-center font-extrabold text-7xl text-text">Lucio Code</h1>
+					<h1 className="text-center font-extrabold text-8xl text-text mb-3">Lucio Code</h1>
 				</div>
 				<p>Teaching code made easier, faster and more enjoyable</p>
 			</section>

@@ -9,15 +9,22 @@ import useDarkMode from '@/hooks/useDarkMode'
 import Spinner from '@/components/Spinner'
 import { useModal } from '@/context/ModalContext'
 import SignInModal from '@/components/modals/SignInModal'
+import { useUser } from '@auth0/nextjs-auth0'
+
 export default function Navbar(): ReactElement {
 	const navbarRef = useRef<HTMLElement>(null)
 	const { setShowModal, setModal } = useModal()
+	const { user, error, isLoading } = useUser()
+	console.log('user')
+	console.log(user)
+
 	useEffect(() => {
+		// the --navbar-height variable represents the height of the navbar
+		// its used for when you want a component to take up the entire screen
 		if (navbarRef.current?.clientHeight) {
 			document.documentElement.style.setProperty('--navbar-height', navbarRef.current.clientHeight + 'px')
 		}
 	}, [navbarRef])
-	// const [darkMode, setDarkMode] = useDarkMode()
 
 	return (
 		<nav className="border-b border-b-textDimmed bg-bg px-8 py-4" ref={navbarRef}>
@@ -50,6 +57,13 @@ export default function Navbar(): ReactElement {
 						<Link href="/problems" passHref={true}>
 							<p className={styles.tab}>Problems</p>
 						</Link>
+						<Link href="/api/auth/login" passHref={true}>
+							<p className={styles.tab}>login to auth0</p>
+						</Link>
+
+						<Link href="/api/auth/logout" passHref={true}>
+							<p className="text-red-800 bg-red-100 py-1 px-2 rounded-md">logout from auth0</p>
+						</Link>
 						<div className="flex items-center border-l border-l-textDimmed">
 							<div className="w-8 h-8 mx-2">
 								<Spinner />
@@ -77,9 +91,11 @@ export default function Navbar(): ReactElement {
 									<Button variant="dimmed">Markdown</Button>
 								</div>
 
-								<Link href="/register" passHref={true}>
-									<Button>Sign up</Button>
-								</Link>
+								<Button>
+									<Link href="/register" passHref={true}>
+										Sign up
+									</Link>
+								</Button>
 							</>
 						</div>
 					</div>

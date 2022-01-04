@@ -9,6 +9,7 @@
 		"lint": "next lint"
 	},
 	"dependencies": {
+		"@auth0/nextjs-auth0": "^1.6.2",
 		"@dicebear/adventurer-neutral": "^4.10.0",
 		"@dicebear/avatars": "^4.10.0",
 		"@tailwindcss/typography": "^0.5.0",
@@ -27,6 +28,7 @@
 		"sass": "^1.43.3"
 	},
 	"devDependencies": {
+		"@types/auth0": "^2.34.9",
 		"@types/faker": "^5.5.9",
 		"@types/marked": "^4.0.1",
 		"@types/mongoose": "^5.11.97",

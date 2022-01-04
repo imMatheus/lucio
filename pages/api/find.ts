@@ -1,6 +1,6 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { Problem } from '@models/Problem'
+import { User } from '@models/User'
 import { run } from '@/utils/mongodb'
 import getConfig from 'next/config'
 const { serverRuntimeConfig } = getConfig()
@@ -17,6 +17,6 @@ type Data = {
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
 	await run()
 
-	const response = await Problem.find()
+	const response = await User.find()
 	res.status(200).json({ response })
 }
