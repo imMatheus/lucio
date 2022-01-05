@@ -38,9 +38,9 @@ const Question = React.forwardRef<HTMLElement, QuestionProps>(({ markdown }, ref
 			<article className="py-10 sm:py-12">
 				<div
 					className="px-6 prose dark:prose-invert
-                  prose-headings:text-themeDimmed
-                  prose-li:marker:text-themeDark
-                     dark:prose-li:marker:text-themeLight
+                  prose-headings:text-theme-800
+                  prose-li:marker:text-theme-1000
+                     dark:prose-li:marker:text-theme-300
                   prose-strong:text-theme sm:prose-sm md:prose-base lg:prose-lg"
 					ref={divRef}
 				></div>

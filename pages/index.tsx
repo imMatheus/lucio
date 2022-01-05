@@ -1,18 +1,31 @@
 import type { NextPage } from 'next'
 import Navbar from '@/components/Navbar'
 
-import styles from 'styles/Home.module.scss'
+// import styles from '../styles/home.module.scss'
 
 const Home: NextPage = () => {
 	return (
 		<div>
-			<section className={styles.hero}>
-				<div className={styles.header}>
+			<section>
+				{/* <section className={styles.hero}> */}
+				<div className="bg-pink-800">
 					<h1 className="text-center font-extrabold text-8xl text-text mb-3">Lucio Code</h1>
 				</div>
 				<p>Teaching code made easier, faster and more enjoyable</p>
 			</section>
-			<div className={styles.ss}></div>
+			<div>
+				<div className="h-12 bg-theme-50"></div>
+				<div className="h-12 bg-theme-100"></div>
+				<div className="h-12 bg-theme-200"></div>
+				<div className="h-12 bg-theme-300"></div>
+				<div className="h-12 bg-theme-400"></div>
+				<div className="h-12 bg-theme-500"></div>
+				<div className="h-12 bg-theme-600"></div>
+				<div className="h-12 bg-theme-700"></div>
+				<div className="h-12 bg-theme-800"></div>
+				<div className="h-12 bg-theme-900"></div>
+				<div className="h-12 bg-theme-1000"></div>
+			</div>
 		</div>
 	)
 }

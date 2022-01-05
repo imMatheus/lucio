@@ -1,10 +1,8 @@
 import React from 'react'
-import styles from './Spinner.module.scss'
+import styles from '../../styles/Spinner.module.scss'
 
-interface indexProps {}
-
-const index: React.FC<indexProps> = ({}) => {
+const Spinner: React.FC = () => {
 	return <div className={styles.spinner}></div>
 }
 
-export default index
+export default Spinner

@@ -48,8 +48,8 @@ export default function Register(): ReactElement {
 			</Head>
 			{/* <div className={styles.blob}></div> */}
 			<div className={styles.modal}>
-				<TypedText className="text-themeDimmed">Welcome to LucioCode</TypedText>
-				<TypedText className="text-themeDimmed" delay={1}>
+				<TypedText className="text-theme-700">Welcome to LucioCode</TypedText>
+				<TypedText className="text-theme-700" delay={1}>
 					Let´s begin the adventure
 				</TypedText>
 				<Image src={`data:image/svg+xml;base64,${base64data}`} alt="" width={100} height={100} />

@@ -28,7 +28,7 @@ export default function StudentCard({ image, name, email, edit, loading }: Props
 			<tr>
 				{edit && (
 					<td className="px-6 py-4">
-						<input type="checkbox" className="w-5 h-5 rounded focus:ring-themeDimmed" />
+						<input type="checkbox" className="w-5 h-5 rounded focus:ring-theme-800" />
 					</td>
 				)}
 				<td className="px-6 py-4 whitespace-nowrap">
@@ -65,7 +65,7 @@ export default function StudentCard({ image, name, email, edit, loading }: Props
 					{loading ? <SkeletonText min={4} max={8} /> : 'Admin'}
 				</td>
 				<td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-					<a href="#" className="text-theme hover:text-themeDimmed">
+					<a href="#" className="text-theme hover:text-theme-800">
 						Edit
 					</a>
 				</td>

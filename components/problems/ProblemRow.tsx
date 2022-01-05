@@ -1,7 +1,7 @@
 import { Difficulty } from '@/types/AlgorithmProblem'
 import Link from 'next/link'
 import React from 'react'
-
+import { capitalizeFirstLetter } from '@/utils/capitalizeFirstLetter'
 interface TableRowProps {
 	name: string
 	loading: boolean
@@ -28,11 +28,11 @@ const TableRow: React.FC<TableRowProps> = ({ name, loading, difficulty, index })
 				<td className="px-6 py-4 whitespace-nowrap">
 					<span className="inline-flex text-sm leading-5 font-semibold">
 						{difficulty === 'easy' ? (
-							<span className="text-[#00b8a3]">{difficulty}</span>
+							<span className="text-olive">{capitalizeFirstLetter(difficulty)}</span>
 						) : difficulty === 'medium' ? (
-							<span className="text-[#ffc01e]">{difficulty}</span>
+							<span className="text-mustard">{capitalizeFirstLetter(difficulty)}</span>
 						) : (
-							<span className="text-[#ff375f]">{difficulty}</span>
+							<span className="text-ketchup">{capitalizeFirstLetter(difficulty)}</span>
 						)}
 					</span>
 				</td>
