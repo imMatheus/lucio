@@ -1,26 +1,13 @@
-import { Schema, model, models } from 'mongoose'
+import { Schema, model, Model, models } from 'mongoose'
 
-interface UserInterface {
-	tenant: string
-	connection: string
+export interface UserInterface {
 	email: string
 	password: string
-	debug: boolean
-	email_verified: boolean
+	// email_verified: boolean
 }
 
 const schema = new Schema<UserInterface>(
 	{
-		tenant: {
-			type: String,
-			required: true,
-			enum: ['luciocode']
-		},
-		connection: {
-			type: String,
-			required: true,
-			enum: ['MongoDB']
-		},
 		email: {
 			type: String,
 			required: true,
@@ -30,19 +17,14 @@ const schema = new Schema<UserInterface>(
 		password: {
 			type: String,
 			required: true
-		},
-		debug: {
-			type: Boolean,
-			required: true,
-			default: false
-		},
-		email_verified: {
-			type: Boolean,
-			required: true,
-			default: false
 		}
+		// email_verified: {
+		// 	type: Boolean,
+		// 	required: true,
+		// 	default: false
+		// }
 	},
 	{ timestamps: true }
 )
 
-export const User = models['User'] || model<UserInterface>('User', schema)
+export const User: Model<UserInterface> = models['User'] || model<UserInterface>('User', schema)
