@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react'
-import styles from 'styles/Messages.module.scss'
+import styles from './messages.module.scss'
 import { useRouter } from 'next/router'
 import { useToast } from '@/context/ToastContext'
 import Message from 'types/Message'

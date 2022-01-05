@@ -1,0 +1,27 @@
+.alert {
+	@apply p-4 my-2 text-sm rounded-lg transition-colors;
+}
+
+.primary {
+	@extend .alert;
+	@apply bg-theme text-white;
+
+	&:hover {
+		@apply bg-theme-800;
+	}
+}
+
+.error {
+	@extend .alert;
+	@apply bg-red-100 text-red-700 border border-red-400;
+}
+
+.success {
+	@extend .alert;
+	@apply bg-teal-100  text-teal-900 border border-teal-500;
+}
+
+.warning {
+	@extend .alert;
+	@apply bg-orange-100 border border-orange-500 text-orange-700;
+}

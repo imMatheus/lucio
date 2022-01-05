@@ -1,0 +1,57 @@
+@use 'sass:math';
+// @use 'colors';
+// $modal-bg: #0c162d;
+// $color-blue: #388659;
+// $color-green: #eff2c0;
+$shadow-number: 6;
+$offset-x: 8px;
+$offset-y: -8px;
+$value: ();
+
+@for $i from 0 through ($shadow-number) {
+	$theShadow: $offset-x * $i $offset-y * $i 0px mix(colors.$theme, colors.$bg, math.div(100%, $shadow-number) * ($i));
+	$value: append($value, $theShadow, comma);
+}
+
+.modal {
+	width: 600px;
+	max-width: 90vw;
+	position: relative;
+	border-width: 1px;
+	box-shadow: $value;
+	animation: shadowFadeIn 1s;
+
+	@apply my-20 p-6 rounded-lg mx-auto bg-bg;
+}
+
+.chip {
+	&:nth-child(1) {
+		@apply bg-red-500;
+	}
+	&:nth-child(2) {
+		@apply bg-yellow-500;
+	}
+	&:nth-child(3) {
+		@apply bg-green-500;
+	}
+	@apply w-16 h-3 mr-2 rounded-lg flex-shrink-0;
+}
+
+.emptyChip {
+	@apply w-16 h-3 mr-2 rounded-lg flex-shrink-0 bg-bgDimmed border border-bgDarken;
+}
+
+@media screen and (max-width: 480px) {
+	.modal {
+		box-shadow: none;
+	}
+}
+
+@keyframes shadowFadeIn {
+	from {
+		box-shadow: none;
+	}
+	to {
+		box-shadow: $value;
+	}
+}

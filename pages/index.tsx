@@ -1,7 +1,7 @@
 import type { NextPage } from 'next'
 import Navbar from '@/components/Navbar'
 
-// import styles from '../styles/home.module.scss'
+import styles from 'styles/home.module.scss'
 
 const Home: NextPage = () => {
 	return (

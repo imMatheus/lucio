@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from 'styles/MessagesSidebar.module.scss'
+import styles from './sidebar.module.scss'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'

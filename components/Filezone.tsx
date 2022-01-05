@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import styles from 'styles/Filezone.module.scss'
+import styles from 'styles/filezone.module.scss'
 import { Trash2, Edit2 } from 'react-feather'
 import Dropzone from './Dropzone'
 import Link from 'next/link'

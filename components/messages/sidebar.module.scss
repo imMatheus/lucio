@@ -1,0 +1,60 @@
+.sidebar {
+	flex-shrink: 0;
+	overflow-y: scroll;
+	@apply bg-bg;
+}
+
+.tab {
+	display: flex;
+	width: 320px;
+	border-bottom: solid 1px;
+	cursor: pointer;
+	@apply py-2 px-3 border-bgDarken;
+}
+
+.one-line {
+	display: -webkit-box;
+	-webkit-line-clamp: 1;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.tabAvatar {
+	width: 42px;
+	height: 42px;
+	border-radius: 50%;
+	@apply mr-2 relative;
+}
+.name {
+	@extend .one-line;
+	@apply text-text font-semibold;
+}
+
+.status {
+	background: red;
+	position: absolute;
+	bottom: 2px;
+	right: 2px;
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+}
+
+.message {
+	@extend .one-line;
+	@apply text-sm font-normal text-textDimmed;
+}
+
+.active {
+	position: relative;
+	&::after {
+		content: '';
+		height: 100%;
+		position: absolute;
+		top: 0;
+		right: 0;
+		width: 2px;
+		@apply bg-theme;
+	}
+}

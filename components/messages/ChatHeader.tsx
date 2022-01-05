@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from 'styles/Messages.module.scss'
+import styles from './messages.module.scss'
 import { ArrowLeft } from 'react-feather'
 import { useRouter } from 'next/router'
 interface ChatHeaderProps {

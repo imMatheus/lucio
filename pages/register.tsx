@@ -1,5 +1,5 @@
 import React, { ReactElement, useEffect, useState } from 'react'
-import styles from '../styles/Registration.module.scss'
+import styles from 'styles/registration.module.scss'
 import { Eye, EyeOff } from 'react-feather'
 import * as EmailValidator from 'email-validator'
 import TypedText from '@/components/TypedText'
