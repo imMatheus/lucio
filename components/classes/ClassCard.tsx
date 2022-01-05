@@ -1,6 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
-import styles from './classes.module.scss'
+import styles from '../../styles/classes.module.scss'
 import Image from 'next/image'
 import ClassType from '@/types/ClassType'
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from './messages.module.scss'
+import styles from '../../styles/messages.module.scss'
 import ChatHeader from './ChatHeader'
 import InputArea from './InputArea'
 import Message from './Message'

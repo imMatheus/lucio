@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from './sidebar.module.scss'
+import styles from '../../styles/sidebar.module.scss'
 import SidebarTab from './SidebarTab'
 import faker from 'faker'
 

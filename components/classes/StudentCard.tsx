@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react'
-import styles from './studenttable.module.scss'
+import styles from '../../styles/studenstable.module.scss'
 import Image from 'next/image'
 import SVG from 'react-inlinesvg'
 
