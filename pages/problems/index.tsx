@@ -4,11 +4,10 @@ import ProblemsTable from '@/components/problems/ProblemsTable'
 import { GetServerSideProps } from 'next'
 import AlgorithmProblem, { Difficulty } from '@/types/AlgorithmProblem'
 import { problems as _problems } from '../../problems/Algorithms'
-import getConfig from 'next/config'
 import Dropdown from '@/components/problems/Dropdown'
 import { useRouter } from 'next/router'
 import { X } from 'react-feather'
-
+import QueryChip from '@/components/problems/QueryChip'
 interface Props {
 	problems: AlgorithmProblem[]
 	// difficulty?: any
@@ -64,7 +63,7 @@ const Problems: NextPage<Props> = ({ problems, ...props }) => {
 	}, [difficulty, status])
 
 	return (
-		<div className="w-maxed w-full mx-auto border border-red-500 p-2 sm:p-5">
+		<div className="w-maxed w-full mx-auto my-4 p-4">
 			problems
 			<div className="my-2 flex gap-2">
 				<Dropdown title="Difficulty">
@@ -91,32 +90,8 @@ const Problems: NextPage<Props> = ({ problems, ...props }) => {
 				</Dropdown>
 			</div>
 			<div className="flex gap-2 my-3">
-				{difficulty && (
-					<div className="px-2 py-1.5 text-xs bg-neutral-200 text-neutral-800 dark:bg-neutral-700 dark:text-neutral-100 rounded-md flex items-center">
-						<span>{difficulty}</span>
-						<div
-							className="cursor-pointer rounded-full bg-neutral-400/70 hover:bg-neutral-400 dark:bg-neutral-500/70 dark:hover:bg-neutral-500 w-4 h-4 ml-1.5 flex justify-center items-center transition-colors"
-							onClick={() => {
-								setDifficulty('')
-							}}
-						>
-							<X className="w-3" />
-						</div>
-					</div>
-				)}
-				{status && (
-					<div className="px-2 py-1.5 text-xs bg-neutral-200 text-neutral-800 dark:bg-neutral-700 dark:text-neutral-100 rounded-md flex items-center">
-						<span>{status}</span>
-						<div
-							className="cursor-pointer rounded-full bg-neutral-400/70 hover:bg-neutral-400 dark:bg-neutral-500/70 dark:hover:bg-neutral-500 w-4 h-4 ml-1.5 flex justify-center items-center transition-colors"
-							onClick={() => {
-								setStatus('')
-							}}
-						>
-							<X className="w-3" />
-						</div>
-					</div>
-				)}
+				{difficulty && <QueryChip title={difficulty} onClick={() => setDifficulty('')} />}
+				{status && <QueryChip title={status} onClick={() => setStatus('')} />}
 			</div>
 			<ProblemsTable problems={problems} loading={false} />
 		</div>

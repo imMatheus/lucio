@@ -5,27 +5,27 @@ import { User } from '@models/User'
 import bcrypt from 'bcrypt'
 import { run } from '@/utils/mongodb'
 
+// CredentialsProvider({
+// 	name: 'Credentials',
+// 	credentials: {
+// 		username: { label: 'Username', type: 'text', placeholder: 'jsmith' },
+// 		password: { label: 'Password', type: 'password' }
+// 	},
+// 	async authorize(credentials: any) {
+// 		const email = credentials.email
+// 		const password = credentials.password
+// 		await run()
+
+// 		const user = await User.findOne({ email })
+// 		console.log('tryig to log in ', user)
+
+// 		if (user) return loginUser({ password, user })
+
+// 		return registerUser({ email, password })
+// 	}
+// }),
 export default NextAuth({
 	providers: [
-		CredentialsProvider({
-			name: 'Credentials',
-			credentials: {
-				username: { label: 'Username', type: 'text', placeholder: 'jsmith' },
-				password: { label: 'Password', type: 'password' }
-			},
-			async authorize(credentials: any) {
-				const email = credentials.email
-				const password = credentials.password
-				await run()
-
-				const user = await User.findOne({ email })
-				console.log('tryig to log in ', user)
-
-				if (user) return loginUser({ password, user })
-
-				return registerUser({ email, password })
-			}
-		}),
 		GithubProvider({
 			clientId: process.env.GITHUB_ID,
 			clientSecret: process.env.GITHUB_SECRET

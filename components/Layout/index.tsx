@@ -7,10 +7,10 @@ import MarkdownModal from '@/components/modals/MarkdownModal'
 const Layout: React.FC = ({ children }) => {
 	const { showModal, modal } = useModal()
 	return (
-		<section className="bg-bg min-h-screen flex flex-col accent-theme">
+		<section className="bg-neutral-100 dark:bg-neutral-900 min-h-screen flex flex-col accent-theme">
 			{/* <section className="bg-bg min-h-screen flex flex-col accent-theme dark:dark-mode"> */}
 			<Head>
-				<body className="bg-bg" />
+				<body className="bg-neutral-100 dark:bg-neutral-900" />
 			</Head>
 			<Toast />
 			<Navbar />

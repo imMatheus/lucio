@@ -79,13 +79,13 @@ const Problem: NextPage<Props> = ({ markdown }) => {
 			<Question ref={questionRef} markdown={markdown} />
 			<div
 				ref={resizeBarRef}
-				className="w-2 h-full bg-neutral-200 dark:bg-neutral-600 cursor-ew-resize flex flex-col justify-center items-center gap-1"
+				className="w-2 h-full bg-neutral-200 dark:bg-neutral-700/70 cursor-ew-resize flex flex-col justify-center items-center gap-1"
 				onMouseDown={mouseDownHandler}
 			>
-				<div className="w-0.5 h-0.5 rounded-full bg-neutral-500 dark:bg-neutral-800"></div>
-				<div className="w-0.5 h-0.5 rounded-full bg-neutral-500 dark:bg-neutral-800"></div>
-				<div className="w-0.5 h-0.5 rounded-full bg-neutral-500 dark:bg-neutral-800"></div>
-				<div className="w-0.5 h-0.5 rounded-full bg-neutral-500 dark:bg-neutral-800"></div>
+				<div className="w-0.5 h-0.5 rounded-full bg-neutral-500 dark:bg-neutral-200"></div>
+				<div className="w-0.5 h-0.5 rounded-full bg-neutral-500 dark:bg-neutral-200"></div>
+				<div className="w-0.5 h-0.5 rounded-full bg-neutral-500 dark:bg-neutral-200"></div>
+				<div className="w-0.5 h-0.5 rounded-full bg-neutral-500 dark:bg-neutral-200"></div>
 			</div>
 		</section>
 	)

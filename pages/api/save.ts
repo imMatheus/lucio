@@ -35,6 +35,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 		}
 	})
 
-	// await Problem.insertMany(problems)
-	res.status(200).json(problems)
+	// try {
+	const _prop = await Problem.insertMany(problems)
+	res.status(200).json(_prop)
+	// } catch (error) {
+	// res.status(200).json(error)
+	// }
 }

@@ -16,7 +16,7 @@ const Dropdown: React.FC<DropdownProps> = ({ title, children }) => {
 	return (
 		<div
 			ref={divRef}
-			className="relative px-2 py-1 bg-neutral-200 text-neutral-700 dark:text-neutral-100 dark:bg-neutral-700 rounded-md flex-shrink-0 flex items-center"
+			className="cursor-pointer relative px-2 py-1 bg-neutral-200 text-neutral-700 dark:text-neutral-100 dark:bg-neutral-700 rounded-md flex-shrink-0 flex items-center"
 			onClick={() => {
 				setOpen((c) => !c)
 			}}
