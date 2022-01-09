@@ -1,7 +1,6 @@
 import React from 'react'
 import Navbar from '@/components/Navbar'
 import Toast from '@/components/Toast'
-import Head from 'next/head'
 import { useModal } from '@/context/ModalContext'
 import MarkdownModal from '@/components/modals/MarkdownModal'
 const Layout: React.FC = ({ children }) => {
@@ -9,9 +8,7 @@ const Layout: React.FC = ({ children }) => {
 	return (
 		<section className="bg-neutral-100 dark:bg-neutral-900 min-h-screen flex flex-col accent-theme">
 			{/* <section className="bg-bg min-h-screen flex flex-col accent-theme dark:dark-mode"> */}
-			<Head>
-				<body className="bg-neutral-100 dark:bg-neutral-900" />
-			</Head>
+
 			<Toast />
 			<Navbar />
 			<div className="prose dark:prose-invert max-w-none">{children}</div>

@@ -5,7 +5,6 @@ import { useRouter } from 'next/router'
 import useClassData from '@/hooks/useClassData'
 import { useToast } from '@/context/ToastContext'
 import Head from 'next/head'
-import Homework from '@/types/Homework'
 import Button from '@/components/button'
 import HomeworkCard from '@/components/classes/HomeworkCard'
 
@@ -15,7 +14,6 @@ const Index: NextPage = () => {
 	const classId = router.query.classId
 	const [classData, loadingClassData] = useClassData(classId)
 	const { setToastMessage } = useToast()
-	const [homeworks, setHomeworks] = useState<Homework[]>([])
 
 	async function addHomeworkHandler() {
 		if (loading) return setToastMessage('could not add homework cuz it was loading')
@@ -55,11 +53,7 @@ const Index: NextPage = () => {
 			</div>
 			<p>hello</p>
 			{loadingClassData + ''}
-			<div>
-				{homeworks.map((homework) => {
-					return <HomeworkCard key={homework.id} homework={homework} />
-				})}
-			</div>
+			<div>{/* <HomeworkCard key={homework.id} homework={homework} /> */}</div>
 		</section>
 	)
 }

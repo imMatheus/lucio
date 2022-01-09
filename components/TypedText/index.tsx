@@ -13,8 +13,6 @@ export default function TypedText({ delay = 0, children, ...props }: TypedTextPr
 	const [showBlinker, setShowBlinker] = useState(false)
 	const [animationDone, setAnimationDone] = useState(false)
 
-	console.log(styles)
-
 	useTimeout(() => {
 		setShowBlinker(true) // show the text and blinker
 	}, delay)

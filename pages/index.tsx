@@ -13,6 +13,69 @@ const Home: NextPage = () => {
 					Teaching code made easier, faster and more enjoyable
 				</p>
 			</section>
+
+			<div className="hidden grid-cols-5">
+				<div className="w-full">
+					<div className="bg-gray-50 w-full h-[10vh]"></div>
+					<div className="bg-gray-100 w-full h-[10vh]"></div>
+					<div className="bg-gray-200 w-full h-[10vh]"></div>
+					<div className="bg-gray-300 w-full h-[10vh]"></div>
+					<div className="bg-gray-400 w-full h-[10vh]"></div>
+					<div className="bg-gray-500 w-full h-[10vh]"></div>
+					<div className="bg-gray-600 w-full h-[10vh]"></div>
+					<div className="bg-gray-700 w-full h-[10vh]"></div>
+					<div className="bg-gray-800 w-full h-[10vh]"></div>
+					<div className="bg-gray-900 w-full h-[10vh]"></div>
+				</div>
+				<div className="w-full">
+					<div className="bg-slate-50 w-full h-[10vh]"></div>
+					<div className="bg-slate-100 w-full h-[10vh]"></div>
+					<div className="bg-slate-200 w-full h-[10vh]"></div>
+					<div className="bg-slate-300 w-full h-[10vh]"></div>
+					<div className="bg-slate-400 w-full h-[10vh]"></div>
+					<div className="bg-slate-500 w-full h-[10vh]"></div>
+					<div className="bg-slate-600 w-full h-[10vh]"></div>
+					<div className="bg-slate-700 w-full h-[10vh]"></div>
+					<div className="bg-slate-800 w-full h-[10vh]"></div>
+					<div className="bg-slate-900 w-full h-[10vh]"></div>
+				</div>
+				<div className="w-full">
+					<div className="bg-zinc-50 w-full h-[10vh]"></div>
+					<div className="bg-zinc-100 w-full h-[10vh]"></div>
+					<div className="bg-zinc-200 w-full h-[10vh]"></div>
+					<div className="bg-zinc-300 w-full h-[10vh]"></div>
+					<div className="bg-zinc-400 w-full h-[10vh]"></div>
+					<div className="bg-zinc-500 w-full h-[10vh]"></div>
+					<div className="bg-zinc-600 w-full h-[10vh]"></div>
+					<div className="bg-zinc-700 w-full h-[10vh]"></div>
+					<div className="bg-zinc-800 w-full h-[10vh]"></div>
+					<div className="bg-zinc-900 w-full h-[10vh]"></div>
+				</div>
+				<div className="w-full">
+					<div className="bg-neutral-50 w-full h-[10vh]"></div>
+					<div className="bg-neutral-100 w-full h-[10vh]"></div>
+					<div className="bg-neutral-200 w-full h-[10vh]"></div>
+					<div className="bg-neutral-300 w-full h-[10vh]"></div>
+					<div className="bg-neutral-400 w-full h-[10vh]"></div>
+					<div className="bg-neutral-500 w-full h-[10vh]"></div>
+					<div className="bg-neutral-600 w-full h-[10vh]"></div>
+					<div className="bg-neutral-700 w-full h-[10vh]"></div>
+					<div className="bg-neutral-800 w-full h-[10vh]"></div>
+					<div className="bg-neutral-900 w-full h-[10vh]"></div>
+				</div>
+				<div className="w-full">
+					<div className="bg-stone-50 w-full h-[10vh]"></div>
+					<div className="bg-stone-100 w-full h-[10vh]"></div>
+					<div className="bg-stone-200 w-full h-[10vh]"></div>
+					<div className="bg-stone-300 w-full h-[10vh]"></div>
+					<div className="bg-stone-400 w-full h-[10vh]"></div>
+					<div className="bg-stone-500 w-full h-[10vh]"></div>
+					<div className="bg-stone-600 w-full h-[10vh]"></div>
+					<div className="bg-stone-700 w-full h-[10vh]"></div>
+					<div className="bg-stone-800 w-full h-[10vh]"></div>
+					<div className="bg-stone-900 w-full h-[10vh]"></div>
+				</div>
+			</div>
 		</main>
 	)
 }

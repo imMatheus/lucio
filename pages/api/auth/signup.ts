@@ -12,6 +12,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 
 	const { password, username, email } = req.body
 	const hashed = bcrypt.hashSync(password, 10)
+
 	const sign = {
 		password: hashed,
 		username,
@@ -20,6 +21,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 
 	const token = jwt.sign(sign, 'I1NiIsInR5cCI6IkpXVCJ9')
 	const user = await User.create(sign)
+	console.log(user)
 
 	res.status(200).json({ token, user })
 }
