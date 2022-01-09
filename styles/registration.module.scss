@@ -1,5 +1,5 @@
 @use 'sass:math';
-// @use 'colors';
+@use 'colors';
 // $modal-bg: #0c162d;
 // $color-blue: #388659;
 // $color-green: #eff2c0;
@@ -21,25 +21,25 @@ $value: ();
 	box-shadow: $value;
 	animation: shadowFadeIn 1s;
 
-	@apply my-20 p-6 rounded-lg mx-auto bg-bg;
+	/* @apply my-20 p-6 rounded-lg mx-auto bg-bg; */
 }
 
 .chip {
 	&:nth-child(1) {
-		@apply bg-red-500;
+		/* @apply bg-red-500; */
 	}
 	&:nth-child(2) {
-		@apply bg-yellow-500;
+		/* @apply bg-yellow-500; */
 	}
 	&:nth-child(3) {
-		@apply bg-green-500;
+		/* @apply bg-green-500; */
 	}
-	@apply w-16 h-3 mr-2 rounded-lg flex-shrink-0;
+	/* @apply w-16 h-3 mr-2 rounded-lg flex-shrink-0; */
 }
 
-.emptyChip {
-	@apply w-16 h-3 mr-2 rounded-lg flex-shrink-0 bg-bgDimmed border border-bgDarken;
-}
+/* .emptyChip {
+	@apply w-16 h-3 mr-2 rounded-lg flex-shrink-0 bg-theme-50 border border-theme-500;
+} */
 
 @media screen and (max-width: 480px) {
 	.modal {

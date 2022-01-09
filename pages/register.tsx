@@ -9,6 +9,7 @@ import { createAvatar } from '@dicebear/avatars'
 import Image from 'next/image'
 import usePasswordStrength from '@/hooks/usePasswordStrength'
 import Head from 'next/head'
+import axios from 'axios'
 
 export default function Register(): ReactElement {
 	const [email, setEmail] = useState('')
@@ -32,7 +33,14 @@ export default function Register(): ReactElement {
 
 	async function signupHandler() {
 		try {
-			// await signup(email, password, username, avatar)
+			const res: any = await axios.post('http://localhost:3000/api/auth/signup', {
+				password,
+				email,
+				username
+			})
+			console.log(res)
+
+			localStorage.setItem('token', res.data.token)
 		} catch (error) {
 			alert(error)
 		}
@@ -50,7 +58,7 @@ export default function Register(): ReactElement {
 			<div className={styles.modal}>
 				<TypedText className="text-theme-700">Welcome to LucioCode</TypedText>
 				<TypedText className="text-theme-700" delay={1}>
-					Let´s begin the adventure
+					Let us begin the adventure
 				</TypedText>
 				<Image src={`data:image/svg+xml;base64,${base64data}`} alt="" width={100} height={100} />
 				<TypedText className="text-theme text-base font-semibold mt-5" delay={2}>
@@ -112,30 +120,30 @@ export default function Register(): ReactElement {
 					<p className="p-5 text-[#627597] text-center">The email is not valid or already in use</p>
 				)}
 
-				<div className="flex items-center">
+				{/* <div className="flex items-center"> */}
+				{/* <div className={styles.chip}></div>
+				{PasswordStrength === 'medium' || PasswordStrength === 'strong' ? (
 					<div className={styles.chip}></div>
-					{PasswordStrength === 'medium' || PasswordStrength === 'strong' ? (
-						<div className={styles.chip}></div>
-					) : (
-						<div className={styles.emptyChip}></div>
-					)}
-					{PasswordStrength === 'strong' ? (
-						<div className={styles.chip}></div>
-					) : (
-						<div className={styles.emptyChip}></div>
-					)}
-					<p
-						className={`px-3 text-center ${
-							PasswordStrength === 'weak'
-								? 'text-red-500'
-								: PasswordStrength === 'medium'
-								? 'text-yellow-500'
-								: 'text-green-500'
-						}`}
-					>
-						{PasswordStrength}
-					</p>
-				</div>
+				) : (
+					<div className={styles.emptyChip}></div>
+				)}
+				{PasswordStrength === 'strong' ? (
+					<div className={styles.chip}></div>
+				) : (
+					<div className={styles.emptyChip}></div>
+				)}
+				<p
+					className={`px-3 text-center ${
+						PasswordStrength === 'weak'
+							? 'text-red-500'
+							: PasswordStrength === 'medium'
+							? 'text-yellow-500'
+							: 'text-green-500'
+					}`}
+				>
+					{PasswordStrength}
+				</p>
+				</div> */}
 			</div>
 		</section>
 	)

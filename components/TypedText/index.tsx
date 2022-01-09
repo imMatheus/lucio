@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import useTimeout from '@/hooks/useTimeout'
-import styles from '../../styles/typedtext.module.scss'
+import styles from 'styles/typedtext.module.scss'
 
 interface TypedTextProps extends React.HTMLAttributes<HTMLParagraphElement> {
 	delay?: number
@@ -13,6 +13,8 @@ export default function TypedText({ delay = 0, children, ...props }: TypedTextPr
 	const [showBlinker, setShowBlinker] = useState(false)
 	const [animationDone, setAnimationDone] = useState(false)
 
+	console.log(styles)
+
 	useTimeout(() => {
 		setShowBlinker(true) // show the text and blinker
 	}, delay)
@@ -21,7 +23,6 @@ export default function TypedText({ delay = 0, children, ...props }: TypedTextPr
 		setShowBlinker(false) // remove the blinker
 		setAnimationDone(true) // will make the text appear
 	}, delay + animationTime)
-
 	return animationDone || showBlinker ? (
 		<p className={props.className + ' ' + styles.typedText}>
 			<span

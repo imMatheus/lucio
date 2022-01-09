@@ -2,8 +2,8 @@
 
 .typedText {
 	--typewriterSpeed: 500ms;
-	@apply relative w-max;
-
+	// @apply relative w-max;
+	background: red;
 	line-break: break-all;
 	background-color: colors.$bg;
 	.before,

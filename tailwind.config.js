@@ -1,7 +1,7 @@
 module.exports = {
 	mode: 'jit',
 	purge: ['./pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}', './styles/**/*.{css,scss,sass}'],
-	darkMode: false, // or 'media' or 'class'
+	darkMode: 'media', // or 'media' or 'class'
 	theme: {
 		extend: {
 			colors: {
@@ -29,14 +29,14 @@ module.exports = {
 				'theme-700': '#1C53D1',
 				'theme-800': '#194AB9',
 				'theme-900': '#1641A2',
-				'theme-1000': '#143B93',
+				'theme-1000': '#143B93'
 
-				bg: 'var(--bg)',
-				bgDimmed: 'var(--bg-dimmed)',
-				bgDarken: 'var(--bg-darken)',
-				text: 'var(--text)',
-				textDimmed: 'var(--text-dimmed)',
-				textLight: 'var(--text-light)'
+				// bg: 'var(--bg)',
+				// bgDimmed: 'var(--bg-dimmed)',
+				// bgDarken: 'var(--bg-darken)',
+				// text: 'var(--text)',
+				// textDimmed: 'var(--text-dimmed)',
+				// textLight: 'var(--text-light)'
 			}
 		}
 	},
