@@ -38,9 +38,10 @@ export default function Register(): ReactElement {
 				email,
 				username
 			})
-			console.log(res)
+			console.log('res: ', res)
+			// to set cookie in users browser
 
-			localStorage.setItem('token', res.data.token)
+			// localStorage.setItem('token', res.data.token)
 		} catch (error) {
 			alert(error)
 		}
