@@ -28,12 +28,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 	}
 
 	const token = jwt.sign(sign, process.env.JWT_SIGN_SALT)
-	console.log('token: ', token)
 
 	const cookies = new Cookies(req, res)
 	// Set a cookie
-	cookies.set('pp', 'tokensadasd', {
-		maxAge: 60, // 1 min
+	cookies.set('jwt', token, {
+		maxAge: 1000 * 60 * 60 * 24 * 120, // 120 days
 		httpOnly: true // true by default
 	})
 
