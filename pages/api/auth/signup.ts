@@ -21,10 +21,22 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 	const hashed = bcrypt.hashSync(password, 10) // hash password
 
 	// value to be signed as jwt token
-	const sign = {
+	const userData = {
 		password: hashed,
 		username,
 		email
+	}
+
+	const user = await User.create(userData)
+
+	if (!user || !user._id) {
+		res.status(500).json({ message: 'Invalid user name' })
+		return
+	}
+
+	// value to be signed as jwt token
+	const sign = {
+		_id: user._id
 	}
 
 	const token = jwt.sign(sign, process.env.JWT_SIGN_SALT)
@@ -35,8 +47,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 		maxAge: 1000 * 60 * 60 * 24 * 120, // 120 days
 		httpOnly: true // true by default
 	})
-
-	const user: UserInterface = await User.create(sign)
 
 	res.status(200).json({ token, user })
 }

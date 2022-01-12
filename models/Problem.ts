@@ -17,19 +17,20 @@ const schema: Schema<ProblemInterface> = new Schema(
 			trim: true,
 			enum: Object.values(Difficulty)
 		},
-		markdown: String,
+		markdown: { type: String, required: true },
 		sampleCases: [
 			{
 				input: [
 					{
-						input: { type: String, trim: true },
-						inputType: { type: String, enum: Object.values(InputEnum) }
+						input: { type: String, trim: true, required: true },
+						inputType: { type: String, enum: Object.values(InputEnum), required: true }
 					}
 				],
 				output: [
 					{
 						type: String,
-						trim: true
+						trim: true,
+						required: true
 					}
 				]
 			}
@@ -39,23 +40,27 @@ const schema: Schema<ProblemInterface> = new Schema(
 				input: [
 					{
 						type: String,
-						trim: true
+						trim: true,
+						required: true
 					}
 				],
 				output: [
 					{
 						type: String,
-						trim: true
+						trim: true,
+						required: true
 					}
 				]
 			}
 		],
 		inputs: [
 			{
-				input: String,
+				input: { String, required: true },
+
 				inputType: {
 					type: String,
-					enum: Object.values(InputEnum)
+					enum: Object.values(InputEnum),
+					required: true
 				}
 			}
 		]

@@ -1,5 +1,5 @@
 .btn {
-	height: 32px;
+	min-height: 32px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -18,16 +18,17 @@
 .white {
 	@extend .btn;
 	@apply bg-white text-black border border-black;
+
 	&:hover {
-		@apply bg-bgDarken;
+		@apply bg-black/60;
 	}
 }
 
 .dimmed {
 	@extend .btn;
-	@apply bg-transparent text-textDimmed;
+	@apply bg-transparent;
 	&:hover {
-		@apply text-text bg-bgDarken;
+		@apply text-neutral-300 bg-neutral-500;
 	}
 }
 

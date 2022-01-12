@@ -10,6 +10,7 @@ import Image from 'next/image'
 import usePasswordStrength from '@/hooks/usePasswordStrength'
 import Head from 'next/head'
 import axios from 'axios'
+import { useAuth } from '@/context/AuthContext'
 
 export default function Register(): ReactElement {
 	const [email, setEmail] = useState('')
@@ -21,6 +22,7 @@ export default function Register(): ReactElement {
 	const [username, setUsername] = useState('')
 	const [showUserNameContainer, setShowUserNameContainer] = useState(false)
 	const [avatar, setAvatar] = useState('')
+	const { signup } = useAuth()
 
 	useEffect(() => {
 		setIsValidEmail(EmailValidator.validate(email))
@@ -32,19 +34,9 @@ export default function Register(): ReactElement {
 	}, [email])
 
 	async function signupHandler() {
-		try {
-			const res: any = await axios.post('http://localhost:3000/api/auth/signup', {
-				password,
-				email,
-				username
-			})
-			console.log('res: ', res)
-			// to set cookie in users browser
-
-			// localStorage.setItem('token', res.data.token)
-		} catch (error) {
-			alert(error)
-		}
+		const res = await signup(email, password, username)
+		console.log('res from await')
+		console.log(res)
 	}
 
 	const buff = new Buffer(avatar)

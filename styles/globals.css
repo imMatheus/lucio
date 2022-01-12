@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer utilities {
+/* @layer utilities {
 	.w-maxed {
 		max-width: 2000px;
 	}
@@ -12,10 +12,10 @@
 	.h-full-wo-nav {
 		height: calc(100vh - var(--navbar-height));
 	}
-}
+} */
 
 html,
 body {
 	font-family: 'Inter', sans-serif;
-	color: var(--text);
+	/* color: ; */
 }

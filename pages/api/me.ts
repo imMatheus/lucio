@@ -1,22 +1,36 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { getCookieParser } from 'next/dist/server/api-utils'
-import cookie from 'cookie'
 import { User, UserInterface } from '@models/User'
-import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 import Cookies from 'cookies'
+import { run } from '@/utils/mongodb'
 
 type Data = {}
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-	const cookies = new Cookies(req, res)
-	// Set a cookie
-	const x = cookies.set('pp', 'tokensadasd', {
-		maxAge: 60, // 1 min
-		httpOnly: true // true by default
-	})
+	if (!process.env.JWT_SIGN_SALT) {
+		res.status(500).json({ user: null, message: 'Internal server error' })
+		return
+	}
 
-	res.status(200).json({ shee: x })
+	// connect to mongo
+	await run()
+
+	const cookies = new Cookies(req, res)
+
+	// get token from the users cookie
+	const token = cookies.get('jwt')
+	if (!token) {
+		res.status(200).json({ user: null })
+		return
+	}
+
+	try {
+		const cookie: any = jwt.verify(token, process.env.JWT_SIGN_SALT)
+		const user = await User.findById(cookie._id)
+		res.status(200).json({ user, token })
+	} catch (error) {
+		res.status(400).json({ message: 'Could not find user' })
+	}
 }
 // res.setHeader(
 // 	'Set-Cookie',

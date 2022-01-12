@@ -1,21 +1,22 @@
 import React, { createContext, useContext, useEffect, useState } from 'react'
 import { User, UserInterface } from '@models/User'
+import axios from 'axios'
 
 type IUser = UserInterface | null
 
 interface Context {
 	currentUser: IUser
 	fetchingUser: boolean
-	signup: () => void
-	login: () => void
+	signup: (email: string, password: string, username: string) => Promise<void>
+	login: (email: string, password: string) => Promise<void>
 	logout: () => void
 }
 
 const AuthContext = createContext<Context>({
 	currentUser: null,
 	fetchingUser: true,
-	signup: () => {},
-	login: () => {},
+	signup: async () => {},
+	login: async () => {},
 	logout: () => {}
 })
 
@@ -27,9 +28,24 @@ export const AuthProvider: React.FC = ({ children }) => {
 	const [currentUser, setCurrentUser] = useState<IUser>(null)
 	const [fetchingUser, setFetchingUser] = useState(true)
 
-	const signup = () => {}
+	const signup = async (email: string, password: string, username: string) => {
+		try {
+			const res: any = await axios.post('/api/auth/signup', {
+				password,
+				email,
+				username
+			})
+			console.log('res: ', res)
+			// localStorage.setItem('token', res.data.token)
+		} catch (error) {
+			alert(error)
+			console.log('shit happened on line 44')
 
-	const login = () => {}
+			console.error(error)
+		}
+	}
+
+	const login = async (email: string, password: string) => {}
 
 	const logout = () => {}
 

@@ -18,5 +18,5 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 	await run()
 
 	const response = await User.find()
-	res.status(200).json({ response })
+	res.status(200).json({ l: response.length, response })
 }

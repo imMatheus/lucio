@@ -38,14 +38,19 @@
 }
 
 .chip {
+	display: block;
 	@apply bg-blue-200 py-2 px-3 rounded-full text-xs border border-blue-600 text-blue-600;
 }
 
 .option {
-	@apply px-3 py-1 mr-3 border-b-2 border-b-text;
+	display: block;
+
+	@apply px-3 py-1 mr-3 border-b-2;
 }
 
 .optionActive {
+	display: block;
+
 	@extend .option;
 	@apply border-b-theme;
 }

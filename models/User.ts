@@ -3,6 +3,7 @@ import { Schema, model, Model, models } from 'mongoose'
 export interface UserInterface {
 	email: string
 	password: string
+	provider: string
 	email_verified: boolean
 	username: string
 }
@@ -13,13 +14,24 @@ const schema = new Schema<UserInterface>(
 			type: String,
 			required: true,
 			unique: true,
-			trim: true
+			trim: true,
+			lowercase: true,
+			immutable: true
+		},
+		provider: {
+			type: String,
+			trim: true,
+			default: 'luciocode',
+			immutable: true,
+			enum: ['luciocode', 'github', 'google']
 		},
 		username: {
 			type: String,
 			required: true,
 			unique: true,
-			trim: true
+			immutable: true,
+			trim: true,
+			minlength: 2
 		},
 		password: {
 			type: String,
