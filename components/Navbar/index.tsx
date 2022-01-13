@@ -18,7 +18,8 @@ export default function Navbar(): ReactElement {
 		// the --navbar-height variable represents the height of the navbar
 		// its used for when you want a component to take up the entire screen
 		if (navbarRef.current?.clientHeight) {
-			document.documentElement.style.setProperty('--navbar-height', navbarRef.current.clientHeight + 'px')
+			document.documentElement.style.setProperty('--navbar-height', '65px')
+			// document.documentElement.style.setProperty('--navbar-height', navbarRef.current.clientHeight + 'px')
 		}
 	}, [navbarRef])
 	return (

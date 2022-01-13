@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* @layer utilities {
+@layer utilities {
 	.w-maxed {
 		max-width: 2000px;
 	}
@@ -12,7 +12,13 @@
 	.h-full-wo-nav {
 		height: calc(100vh - var(--navbar-height));
 	}
-} */
+	.min-h-full-wo-nav {
+		min-height: calc(100vh - var(--navbar-height));
+	}
+	.max-h-full-wo-nav {
+		max-height: calc(100vh - var(--navbar-height));
+	}
+}
 
 html,
 body {

@@ -1,28 +1,44 @@
 import React from 'react'
 import Link from 'next/link'
-import styles from '../../styles/classes.module.scss'
+import styles from 'styles/classes.module.scss'
 import Image from 'next/image'
 import ClassType from '@/types/ClassType'
+// import { style } from '@dicebear/avatars/dist/utils'
 
 interface ClassesCardProps {
 	data: ClassType
-	img: string
+	colors: [String, String]
 }
 
-export default function ClassCard({ data: { id, name, code, participantsIds }, img }: ClassesCardProps) {
+/* <div
+	className={`bg-gradient-to-br from-lime-500 bg-opacity-60 backdrop-blur-xl to-purple-400 text-white rounded-2xl px-4 md:px-5`} */
+
+// ></div>
+
+export default function ClassCard({ data: { _id, name, code, participants }, colors }: ClassesCardProps) {
+	console.log(colors)
+
 	return (
-		<Link href={`/classes/${id}`} passHref={true}>
-			<div className={styles.classCard}>
-				{/* <div className='mr-3 relative'> */}
-				<div className={styles.image}>
-					<Image src={img} className="rounded-md" alt="me" layout="fill" objectFit="cover" />
-				</div>
-				{/* </div> */}
-				<div className="ml-3">
-					<h3>{name}</h3>
-					<p>{participantsIds.length} students</p>
-					<p>Class code: {code}</p>
-					<p>Class code: {id}</p>
+		<Link href={`/classes/${_id}`} passHref={true}>
+			<div
+				className={`h-80 transition-colors bg-gradient-to-br shadow-lg text-white overflow-hidden rounded-2xl p-0 m-0 cursor-pointer`}
+				style={{ backgroundImage: `linear-gradient(to bottom right, ${colors[1]},${colors[0]}` }}
+				// className={`bg-gradient-to-br from-[#301A4B] to-[#6DB1BF] shadow-md text-white overflow-hidden rounded-2xl p-0 m-0`}
+			>
+				{/* <div className={styles.glass}> */}
+				<div className={`transition bg-black/10 hover:bg-black/20 p-4 md:py-5 w-full h-full`}>
+					<p className="text-xs font-normal text-neutral-50 uppercase m-0">Programing</p>
+					<p className="font-black font-serif m-0 mt-2 md:mt-4 text-white text-4xl pr-0 md:pr-12 lg:pr-16">
+						CS 50, intro to comp-sci
+					</p>
+					<p className="font-medium font-serif text-sm lg:text-base">24 students | 3 tests</p>
+					<p className="text-xs text-white/80 font-serif">
+						temporibus voluptatibus porro sit repellendus minus quod consectetur ipsam, voluptatum iure
+						laboriosam libero totam maxime.
+					</p>
+					{/* <p>Class code: {code}</p>
+					<p>{participants.length} students</p>
+					<p className="m-0">Class code: {_id}</p> */}
 				</div>
 			</div>
 		</Link>

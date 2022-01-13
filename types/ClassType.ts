@@ -1,11 +1,12 @@
 type ClassType = {
 	name: string
 	code: string
-	ownerId: string
-	participantsIds: string[]
+	owner: string
+	participants: string[]
 	createdAt: Date
-	id: string
-	draft: true
+	updatedAt: Date
+	_id: string
+	__v: number
 }
 
 export default ClassType
