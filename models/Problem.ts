@@ -1,4 +1,4 @@
-import { Schema, model, models, Document } from 'mongoose'
+import { Schema, model, models } from 'mongoose'
 import ProblemInterface, { Difficulty, InputEnum } from '@/types/AlgorithmProblem'
 
 const schema: Schema<ProblemInterface> = new Schema(
@@ -9,7 +9,7 @@ const schema: Schema<ProblemInterface> = new Schema(
 			trim: true,
 			unique: true,
 			minlength: 1,
-			maxLength: 100
+			maxLength: 60
 		},
 		difficulty: {
 			type: String,
@@ -23,7 +23,7 @@ const schema: Schema<ProblemInterface> = new Schema(
 				input: [
 					{
 						input: { type: String, trim: true, required: true },
-						inputType: { type: String, enum: Object.values(InputEnum), required: true }
+						type: { type: String, enum: Object.values(InputEnum), required: true }
 					}
 				],
 				output: [
@@ -55,9 +55,8 @@ const schema: Schema<ProblemInterface> = new Schema(
 		],
 		inputs: [
 			{
-				input: { String, required: true },
-
-				inputType: {
+				input: { type: String, required: true },
+				type: {
 					type: String,
 					enum: Object.values(InputEnum),
 					required: true

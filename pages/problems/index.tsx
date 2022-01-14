@@ -8,6 +8,7 @@ import Dropdown from '@/components/problems/Dropdown'
 import { useRouter } from 'next/router'
 import { X } from 'react-feather'
 import QueryChip from '@/components/problems/QueryChip'
+import axios from 'axios'
 interface Props {
 	problems: AlgorithmProblem[]
 	// difficulty?: any
@@ -16,8 +17,14 @@ interface Props {
 export const getServerSideProps: GetServerSideProps = async (context) => {
 	const url = context.resolvedUrl
 
+	// const response: any[] = await axios.get('http://localhost:3000/api/problems')
 	const response = await fetch('http://localhost:3000/api' + url)
+	console.log('response')
+	console.log(response)
+	console.log(url)
 	const data = await response.json()
+	console.log(data)
+
 	const problems: AlgorithmProblem[] = data.map((prob: any) => prob as AlgorithmProblem)
 
 	return {

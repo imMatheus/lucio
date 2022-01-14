@@ -4,6 +4,7 @@
 	"private": true,
 	"scripts": {
 		"dev": "next dev",
+		"reset": "rm -r .next && rm -r node_modules && yarn && yarn dev",
 		"build": "next build",
 		"start": "next start",
 		"lint": "next lint"
@@ -11,6 +12,7 @@
 	"dependencies": {
 		"@dicebear/adventurer-neutral": "^4.10.0",
 		"@dicebear/avatars": "^4.10.0",
+		"@tailwindcss/forms": "^0.4.0",
 		"@tailwindcss/typography": "^0.5.0",
 		"axios": "^0.24.0",
 		"bcrypt": "^5.0.1",

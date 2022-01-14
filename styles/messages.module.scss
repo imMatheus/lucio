@@ -10,7 +10,7 @@
 	flex-direction: column;
 	width: 100%;
 	position: relative;
-	@apply bg-bgDarken;
+	@apply bg-black;
 }
 
 .messagesWrapper {
@@ -35,7 +35,7 @@
 .messageReceived {
 	@extend .messageBase;
 	align-self: flex-start;
-	@apply bg-bg text-text;
+	@apply bg-pink-700 text-blue-600;
 }
 
 //input area
@@ -45,7 +45,7 @@
 	bottom: 0;
 	// min-height: 60px;
 	// display: flex;
-	@apply py-3 px-6 bg-bgDimmed;
+	@apply py-3 px-6 bg-red-500;
 
 	// .inputWrapper {
 	// flex: 1;
@@ -66,7 +66,7 @@
 	// align-items: center;
 	border-radius: 20px;
 	position: relative;
-	@apply max-w-md bg-bg px-4 py-2 border border-text;
+	@apply max-w-md bg-emerald-500 px-4 py-2 border border-orange-600;
 
 	&:focus-within {
 		@apply border-theme;
@@ -99,5 +99,5 @@
 	display: flex;
 	align-items: center;
 
-	@apply py-3 px-4 bg-bg shadow-sm;
+	@apply py-3 px-4 bg-yellow-400 shadow-sm;
 }

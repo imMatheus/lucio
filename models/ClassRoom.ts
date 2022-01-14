@@ -1,9 +1,12 @@
-import { Schema, model, Model, models, ObjectId, SchemaTypes } from 'mongoose'
+import { Schema, model, Model, models } from 'mongoose'
+import { PrivacyEnum } from '@/types/ClassType'
 
 export interface ClassRoomInterface {
 	name: string
 	owner: string
 	code: string
+	privacy: PrivacyEnum
+	theme: [String, String]
 	participants: [
 		{
 			_id: string
@@ -28,10 +31,17 @@ const schema = new Schema<ClassRoomInterface>(
 			trim: true,
 			immutable: true
 		},
+		theme: [{ type: String, default: '#2266ff', trim: true }],
+		privacy: {
+			type: String,
+			default: PrivacyEnum.Public,
+			trim: true,
+			enum: Object.values(PrivacyEnum)
+		},
 		participants: [
 			{
 				_id: {
-					type: SchemaTypes.ObjectId,
+					type: Schema.Types.ObjectId,
 					ref: 'User',
 					required: true,
 					immutable: true

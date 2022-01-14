@@ -1,9 +1,8 @@
 /**
- * @return {string} class link - a random generated string of 6 characters, example 'djA1k8'
+ * @return {string} class link - a random generated string of 7 characters, example 'djA1k81'
  */
 
-export const generateNewLink = (): string => {
-	const LINK_LENGTH = 7 // length of link
+export const generateNewLink = (LINK_LENGTH = 7): string => {
 	const alphabet = 'abcdefghijklmnopqrstuvwxyz'
 	const upperCaseAlphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 

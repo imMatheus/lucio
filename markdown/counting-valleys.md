@@ -7,7 +7,7 @@ sampleCases: [
 			{ input: '8', type: 'integer' },
 			{ input: '"UDDDUDUU"', type: 'string' }
 		],
-		output: [1]
+		output: ['1']
 	},
 	{
 		input: [
