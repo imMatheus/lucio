@@ -1,7 +1,7 @@
-import { Schema, model, Model, models } from 'mongoose'
+import { Schema, model, Model, models, Document } from 'mongoose'
 import { PrivacyEnum } from '@/types/ClassType'
 
-export interface ClassRoomInterface {
+export interface ClassRoomInterface extends Document {
 	name: string
 	owner: string
 	code: string
@@ -23,7 +23,8 @@ const schema = new Schema<ClassRoomInterface>(
 			required: true,
 			trim: true
 		},
-		owner: { type: String, immutable: true, required: true },
+		// @ts-ignore
+		owner: { type: Schema.Types.ObjectId, ref: 'User', immutable: true, required: true },
 		code: {
 			type: String,
 			required: true,

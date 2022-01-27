@@ -5,8 +5,7 @@ import { User, UserInterface } from '@models/User'
 import bcrypt from 'bcrypt'
 import cookie from 'cookie'
 import Cookies from 'cookies'
-
-type Data = {}
+import { Data } from '@/returns/api/signup'
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<Data>) {
 	if (!process.env.JWT_SIGN_SALT) {
@@ -30,16 +29,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 	const user = await User.create(userData)
 
 	if (!user || !user._id) {
-		res.status(500).json({ message: 'Invalid user name' })
+		res.status(400).json({ token: null, user: null, message: 'Invalid user name' })
 		return
 	}
 
-	// value to be signed as jwt token
-	const sign = {
-		_id: user._id
-	}
-
-	const token = jwt.sign(sign, process.env.JWT_SIGN_SALT)
+	const token = jwt.sign(user, process.env.JWT_SIGN_SALT)
 
 	const cookies = new Cookies(req, res)
 	// Set a cookie
@@ -48,5 +42,5 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 		httpOnly: true // true by default
 	})
 
-	res.status(200).json({ token, user })
+	res.status(200).json({ token, user, message: null })
 }

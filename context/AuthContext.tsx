@@ -1,6 +1,11 @@
 import React, { createContext, useContext, useEffect, useState } from 'react'
 import { User, UserInterface } from '@models/User'
 import axios from 'axios'
+import { Data as meData } from '@/returns/api/me'
+import { Data as logoutData } from '@/returns/api/logout'
+import { Data as loginData } from '@/returns/api/login'
+import Cookies from 'cookies'
+import { useToast } from './ToastContext'
 
 type IUser = UserInterface | null
 
@@ -9,7 +14,7 @@ interface Context {
 	fetchingUser: boolean
 	signup: (email: string, password: string, username: string) => Promise<void>
 	login: (email: string, password: string) => Promise<void>
-	logout: () => void
+	logout: () => Promise<void>
 }
 
 const AuthContext = createContext<Context>({
@@ -17,7 +22,7 @@ const AuthContext = createContext<Context>({
 	fetchingUser: true,
 	signup: async () => {},
 	login: async () => {},
-	logout: () => {}
+	logout: async () => {}
 })
 
 export function useAuth() {
@@ -27,6 +32,19 @@ export function useAuth() {
 export const AuthProvider: React.FC = ({ children }) => {
 	const [currentUser, setCurrentUser] = useState<IUser>(null)
 	const [fetchingUser, setFetchingUser] = useState(true)
+	const { setToastMessage } = useToast()
+
+	const fetchUser = async () => {
+		setFetchingUser(true)
+		console.log('shiiiii')
+
+		const { data }: { data: meData } = await axios.get('/api/me')
+		if (!data || !data.user || !data.token) return setCurrentUser(null)
+
+		setCurrentUser(data.user)
+		setFetchingUser(false)
+		console.log('res', data)
+	}
 
 	const signup = async (email: string, password: string, username: string) => {
 		try {
@@ -45,26 +63,31 @@ export const AuthProvider: React.FC = ({ children }) => {
 		}
 	}
 
-	const login = async (email: string, password: string) => {}
+	const login = async (email: string, password: string) => {
+		const { data }: { data: loginData } = await axios.post('/api/auth/login', {
+			email,
+			password
+		})
 
-	const logout = () => {}
+		if (data.success) await fetchUser()
+
+		console.log('sheeeee')
+
+		console.log(data)
+	}
+
+	const logout = async () => {
+		const { data }: { data: logoutData } = await axios.get('/api/auth/logout')
+		if (data.success) return setCurrentUser(null)
+
+		setToastMessage('Could not logout')
+	}
 
 	useEffect(() => {
-		console.log('shiiiii')
-		function storageEventHandler() {
-			console.log('hi from storageEventHandler')
-			console.log(localStorage.getItem('name'))
+		async function init() {
+			await fetchUser()
 		}
-		window.addEventListener('storage', (e) => {
-			console.log('e')
-			console.log(e)
-		})
-		window.onstorage = () => {
-			// When local storage changes, dump the list to
-			// the console.
-			console.log('hej hej')
-			// console.log(JSON.parse(window.localStorage.getItem('token')));
-		}
+		init()
 		return () => {}
 	}, [])
 

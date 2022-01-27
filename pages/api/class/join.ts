@@ -20,7 +20,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 		// get token from the users cookie
 		const token = cookies.get('jwt')
 		if (!token) {
-			res.status(400).json({ message: 'The user is not loged in' })
+			res.status(401).json({ message: 'The user is not loged in' })
 			return
 		}
 
@@ -28,7 +28,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 		const cookie: any = jwt.verify(token, process.env.JWT_SIGN_SALT)
 		const userId = cookie._id
 		if (!userId) {
-			res.status(400).json({ message: 'The user is not loged in' })
+			res.status(401).json({ message: 'The user is not loged in' })
 			return
 		}
 		const classRoom = await ClassRoom.updateOne(

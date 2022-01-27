@@ -19,6 +19,7 @@
 			"@/utils/*": ["utils/*"],
 			"@/context/*": ["context/*"],
 			"@/types/*": ["types/*"],
+			"@/returns/*": ["types/returns/*"],
 			"@/hooks/*": ["hooks/*"],
 			"@models/*": ["models/*"],
 			"styles/*": ["styles/*"]

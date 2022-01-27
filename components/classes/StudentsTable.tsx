@@ -21,7 +21,7 @@ const StudentsTable: React.FC<StudentsTableProps> = ({ children }) => {
 	const [edit, setEdit] = useState(false)
 	useEffect(() => {
 		setStudents(
-			Array.from({ length: 40 }, () => ({
+			Array.from({ length: 5 }, () => ({
 				image: createAvatar(style, {
 					seed: faker.name.firstName() + ' ' + faker.name.lastName()
 				}),
@@ -31,11 +31,11 @@ const StudentsTable: React.FC<StudentsTableProps> = ({ children }) => {
 		)
 		setTimeout(() => {
 			setLoading(false)
-		}, 2200)
+		}, 1700)
 	}, [])
 
 	return (
-		<div className="flex flex-col bg-red-100">
+		<div className="flex flex-col">
 			<div className="flex my-2">
 				<Button className="mr-2">Invite student</Button>
 				<Button onClick={() => setEdit((c) => !c)}>Edit</Button>
@@ -43,8 +43,8 @@ const StudentsTable: React.FC<StudentsTableProps> = ({ children }) => {
 			</div>
 			<div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
 				<div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-					<div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
-						<table className="min-w-full divide-y divide-gray-200">
+					<div className="shadow overflow-hidden border-b border-neutral-200 sm:rounded-lg">
+						<table className="min-w-full divide-y divide-neutral-200">
 							<thead className="bg-neutral-100">
 								<tr>
 									{edit && <Column>Edit</Column>}

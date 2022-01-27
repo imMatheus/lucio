@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react'
-import styles from '../../styles/studenstable.module.scss'
+import styles from '../../styles/studentstable.module.scss'
 import Image from 'next/image'
 import SVG from 'react-inlinesvg'
 
@@ -22,9 +22,8 @@ const SkeletonText = ({ className, min, max }: { className?: string; min?: numbe
 }
 
 export default function StudentCard({ image, name, email, edit, loading }: Props): ReactElement {
-	loading = true
 	return (
-		<tbody className="bg-bg divide-y divide-gray-200">
+		<tbody className="bg-bg divide-y divide-neutral-200">
 			<tr>
 				{edit && (
 					<td className="px-6 py-4">

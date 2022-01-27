@@ -1,6 +1,6 @@
-import { Schema, model, Model, models } from 'mongoose'
+import { Schema, model, Model, models, Document } from 'mongoose'
 
-export interface UserInterface {
+export interface UserInterface extends Document {
 	email: string
 	password: string
 	provider: string

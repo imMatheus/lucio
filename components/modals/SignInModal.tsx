@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react'
 import { useModal } from '@/context/ModalContext'
 import { X, Mail, Lock } from 'react-feather'
 import Button from '@/components/button'
-
+import { useAuth } from '@/context/AuthContext'
 const SignInModal: React.FC = () => {
 	const [showPassword, setShowPassword] = useState(false)
 	const emailRef = useRef<HTMLInputElement>(null)
@@ -10,6 +10,7 @@ const SignInModal: React.FC = () => {
 	const [error, setError] = useState('')
 	const { setShowModal } = useModal()
 	const [loading, setLoading] = useState(false)
+	const { login } = useAuth()
 
 	return (
 		<div
@@ -50,7 +51,7 @@ const SignInModal: React.FC = () => {
 							ref={passwordRef}
 							type={showPassword ? 'text' : 'password'}
 							placeholder="Password..."
-							className="peer w-full pl-11 pr-2 bg-transparent outline-none border-none"
+							className="peer w-full pl-11 pr-2 bg-transparent outline-none focus:outline-none border-none focus:border-none"
 						/>
 						<Lock className="text-gray-300 bg-transparent absolute left-3 top-1/2 -translate-y-1/2 group-focus-within:text-theme" />
 						<Button
@@ -73,6 +74,9 @@ const SignInModal: React.FC = () => {
 								setError('')
 
 								try {
+									const res = await login(emailRef.current.value, passwordRef.current.value)
+									console.log('absbvafad')
+									console.log(res)
 								} catch (error) {
 									setLoading(false)
 									setError('Could not log you in, make sure you enter valid user information')

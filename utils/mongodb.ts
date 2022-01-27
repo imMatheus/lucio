@@ -14,7 +14,7 @@ export async function run(): Promise<void> {
 			bufferCommands: false
 		}
 
-		console.log('connect')
+		console.log('connecting')
 		await mongoose.connect(MONGODB_URI, opts)
 		console.log('connected')
 	}

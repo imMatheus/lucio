@@ -9,10 +9,12 @@ import Spinner from '@/components/Spinner'
 import { useModal } from '@/context/ModalContext'
 import SignInModal from '@/components/modals/SignInModal'
 import NavLink from './NavLink'
+import { useAuth } from '@/context/AuthContext'
 
 export default function Navbar(): ReactElement {
 	const navbarRef = useRef<HTMLElement>(null)
 	const { setShowModal, setModal } = useModal()
+	const { fetchingUser, currentUser, logout } = useAuth()
 
 	useEffect(() => {
 		// the --navbar-height variable represents the height of the navbar
@@ -41,15 +43,19 @@ export default function Navbar(): ReactElement {
 							<NavLink href="/problems">Problems</NavLink>
 							<NavLink href="/api/auth/login">login</NavLink>
 
-							<Link href="/api/auth/logout" passHref={true}>
-								<p className="text-red-800 bg-red-100 py-1 px-2 rounded-md">logout from auth0</p>
-							</Link>
+							<p
+								onClick={async () => await logout()}
+								className="text-red-800 bg-red-100 py-1 px-2 rounded-md"
+							>
+								logout
+							</p>
 							<div className="flex items-center border-l border-l-textDimmed">
-								<div className="w-8 h-8 mx-2">
-									<Spinner />
-								</div>
-
-								<div className="flex items-center ml-3 cursor-pointer"></div>
+								{fetchingUser && (
+									<div className="w-8 h-8 mx-2">
+										<Spinner />
+									</div>
+								)}
+								{currentUser && <p className="text-2xl text-white">{currentUser.username}</p>}
 
 								<>
 									<div

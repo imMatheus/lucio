@@ -9,6 +9,7 @@ import { useRouter } from 'next/router'
 const Students: NextPage = () => {
 	const router = useRouter()
 	const classId = router.query.classId
+	console.log(444444)
 
 	const [classData, loadingClassData] = useClassData(classId)
 
@@ -16,7 +17,7 @@ const Students: NextPage = () => {
 		<div className="px-6 py-3">
 			<Head>
 				<title>{classData?.name} | Students</title>
-				<meta property="og:title" content="My page title" key="title" />
+				<meta property="og:title" content={`${classData?.name} | Students`} key="title" />
 			</Head>
 			<ClassNavbar />
 			students
