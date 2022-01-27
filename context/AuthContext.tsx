@@ -4,6 +4,7 @@ import axios from 'axios'
 import { Data as meData } from '@/returns/api/me'
 import { Data as logoutData } from '@/returns/api/logout'
 import { Data as loginData } from '@/returns/api/login'
+import { Data as signupData } from '@/returns/api/signup'
 import Cookies from 'cookies'
 import { useToast } from './ToastContext'
 
@@ -39,21 +40,25 @@ export const AuthProvider: React.FC = ({ children }) => {
 		console.log('shiiiii')
 
 		const { data }: { data: meData } = await axios.get('/api/me')
+		setFetchingUser(false)
 		if (!data || !data.user || !data.token) return setCurrentUser(null)
 
 		setCurrentUser(data.user)
-		setFetchingUser(false)
 		console.log('res', data)
 	}
 
 	const signup = async (email: string, password: string, username: string) => {
 		try {
-			const res: any = await axios.post('/api/auth/signup', {
+			const { data }: { data: signupData } = await axios.post('/api/auth/signup', {
 				password,
 				email,
 				username
 			})
-			console.log('res: ', res)
+			console.log('res: ', data)
+
+			if (data.user) {
+				await fetchUser()
+			}
 			// localStorage.setItem('token', res.data.token)
 		} catch (error) {
 			alert(error)
@@ -78,7 +83,10 @@ export const AuthProvider: React.FC = ({ children }) => {
 
 	const logout = async () => {
 		const { data }: { data: logoutData } = await axios.get('/api/auth/logout')
-		if (data.success) return setCurrentUser(null)
+		if (data.success) {
+			await fetchUser()
+			return
+		}
 
 		setToastMessage('Could not logout')
 	}

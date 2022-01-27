@@ -7,7 +7,11 @@
 		"reset": "rm -r .next && rm -r node_modules && yarn && yarn dev",
 		"build": "next build",
 		"start": "next start",
-		"lint": "next lint"
+		"info": "next info",
+		"lint": "next lint --dir context hooks types utils",
+		"count": "git ls-files --exclude-standard -- ':!:**/*.[pjs][npv]g' ':!:**/*.jpeg' ':!:yarn.lock' ':!:package-lock.json' | xargs wc -l",
+		"count-all": "git ls-files | xargs wc -l",
+		"count-files": "git ls-files | wc -l"
 	},
 	"dependencies": {
 		"@dicebear/adventurer-neutral": "^4.10.0",
