@@ -17,10 +17,10 @@
 
 .white {
 	@extend .btn;
-	@apply bg-white text-black border border-black;
+	@apply bg-white text-black border border-black col-span-full;
 
 	&:hover {
-		@apply bg-black/60;
+		@apply dark:bg-black/60;
 	}
 }
 
@@ -28,7 +28,7 @@
 	@extend .btn;
 	@apply bg-transparent;
 	&:hover {
-		@apply text-neutral-300 bg-neutral-500;
+		@apply text-neutral-300 bg-neutral-100;
 	}
 }
 

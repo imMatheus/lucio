@@ -1,7 +1,11 @@
 const path = require('path')
 
+const withBundleAnalyzer = require('@next/bundle-analyzer')({
+	enabled: process.env.ANALYZE === 'true'
+})
+
 /** @type {import('next').NextConfig} */
-module.exports = {
+module.exports = withBundleAnalyzer({
 	swcMinify: true,
 	reactStrictMode: true,
 	sassOptions: {
@@ -13,4 +17,4 @@ module.exports = {
 	images: {
 		domains: ['avatars.githubusercontent.com']
 	}
-}
+})

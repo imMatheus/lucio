@@ -5,7 +5,7 @@ const Home: NextPage = () => {
 		<main>
 			<section className="p-5 xl:p-16">
 				<div className="max-w-7xl mx-auto">
-					<h1 className="text-center font-extrabold text-neutral-800 dark:text-neutral-100 text-6xl xl:text-9xl text-text mb-3">
+					<h1 className="text-center font-extrabold text-neutral-800 dark:text-neutral-100 text-6xl xl:text-9xl mb-3">
 						LucioCode
 					</h1>
 				</div>

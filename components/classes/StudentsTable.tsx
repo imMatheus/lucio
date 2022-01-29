@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import StudentCard from './StudentCard'
 import Button from '@/components/button'
-import faker from 'faker'
 import { createAvatar } from '@dicebear/avatars'
 import * as style from '@dicebear/adventurer-neutral'
 
@@ -19,20 +18,6 @@ const StudentsTable: React.FC<StudentsTableProps> = ({ children }) => {
 	const [students, setStudents] = useState<any[]>([])
 	const [loading, setLoading] = useState(true)
 	const [edit, setEdit] = useState(false)
-	useEffect(() => {
-		setStudents(
-			Array.from({ length: 5 }, () => ({
-				image: createAvatar(style, {
-					seed: faker.name.firstName() + ' ' + faker.name.lastName()
-				}),
-				name: faker.name.firstName() + ' ' + faker.name.lastName(),
-				email: faker.internet.email()
-			}))
-		)
-		setTimeout(() => {
-			setLoading(false)
-		}, 1700)
-	}, [])
 
 	return (
 		<div className="flex flex-col">

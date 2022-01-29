@@ -1,6 +1,5 @@
 .nav {
-	@apply flex text-sm text-textDimmed mx-auto;
-	// @apply w-maxed flex text-sm text-textDimmed mx-auto;
+	@apply flex text-sm text-teal-500 mx-auto;
 }
 
 .searchWrapper {
@@ -8,7 +7,7 @@
 }
 
 .logo {
-	@apply text-3xl font-extrabold text-text mr-auto cursor-pointer;
+	@apply text-3xl font-extrabold text-sky-500 mr-auto cursor-pointer;
 
 	span {
 		margin: 0rem;
@@ -36,12 +35,12 @@
 	}
 
 	100% {
-		@apply text-text ml-1;
+		@apply text-amber-500 ml-1;
 	}
 }
 
 .tab {
-	@apply font-bold hover:text-text transition-colors cursor-pointer;
+	@apply font-bold hover:text-green-400 transition-colors cursor-pointer;
 }
 
 .controlsSpan {

@@ -25,15 +25,12 @@ export default function Navbar(): ReactElement {
 		}
 	}, [navbarRef])
 	return (
-		<nav
-			className="border-b border-b-neutral-400 bg-bg px-8 py-4 bg-neutral-100 dark:bg-neutral-800"
-			ref={navbarRef}
-		>
+		<nav className="border-b border-b-neutral-400 px-8 py-4 bg-neutral-100 dark:bg-neutral-800" ref={navbarRef}>
 			<div className="w-maxed mx-auto">
-				<div className="flex text-sm text-textDimmed mx-auto">
+				<div className="flex text-sm mx-auto">
 					<section className="flex flex-1 items-center">
 						<Link href="/" passHref={true}>
-							<h4 className="text-2xl font-bold 2xl:text-4xl 2xl:font-extrabold text-neutral-700 dark:text-neutral-50 text-text mr-auto cursor-pointer">
+							<h4 className="text-2xl font-bold 2xl:text-4xl 2xl:font-extrabold text-neutral-700 dark:text-neutral-50 mr-auto cursor-pointer">
 								Luciocode
 							</h4>
 						</Link>
@@ -49,7 +46,7 @@ export default function Navbar(): ReactElement {
 							>
 								logout
 							</p>
-							<div className="flex items-center border-l border-l-textDimmed">
+							<div className="flex items-center border-l border-l-red-800">
 								{fetchingUser && (
 									<div className="w-8 h-8 mx-2">
 										<Spinner />

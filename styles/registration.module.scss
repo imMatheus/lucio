@@ -21,7 +21,7 @@ $value: ();
 	box-shadow: $value;
 	animation: shadowFadeIn 1s;
 
-	/* @apply my-20 p-6 rounded-lg mx-auto bg-bg; */
+	/* @apply my-20 p-6 rounded-lg mx-auto; */
 }
 
 .chip {

@@ -45,7 +45,7 @@ export default function Register(): ReactElement {
 	return (
 		<section className="font-mono relative flex-1">
 			<Head>
-				<body className="bg-bgDimmed" />
+				<body className="bg-red-500" />
 			</Head>
 			{/* <div className={styles.blob}></div> */}
 			<div className={styles.modal}>

@@ -28,7 +28,7 @@ function FileCard({ file }: { file: File & FileProps }) {
 				<div className={styles.icon}></div>
 				<div className={styles.text}>
 					<p className="text-base font-medium">{name}</p>
-					<p className="text-xs text-text400">{type}</p>
+					<p className="text-xs">{type}</p>
 				</div>
 			</div>
 			<div className={styles.bottom}>

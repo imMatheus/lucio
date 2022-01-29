@@ -23,7 +23,7 @@ const SkeletonText = ({ className, min, max }: { className?: string; min?: numbe
 
 export default function StudentCard({ image, name, email, edit, loading }: Props): ReactElement {
 	return (
-		<tbody className="bg-bg divide-y divide-neutral-200">
+		<tbody className="divide-y divide-neutral-200">
 			<tr>
 				{edit && (
 					<td className="px-6 py-4">
@@ -41,26 +41,22 @@ export default function StudentCard({ image, name, email, edit, loading }: Props
 							)}
 						</div>
 						<div className="ml-4">
-							<div className="text-sm font-medium text-text">
+							<div className="text-sm font-medium">
 								{loading ? <SkeletonText className="mb-1" min={9} max={13} /> : name}
 							</div>
-							<div className="text-sm text-textDimmed">
-								{loading ? <SkeletonText min={9} max={15} /> : email}
-							</div>
+							<div className="text-sm">{loading ? <SkeletonText min={9} max={15} /> : email}</div>
 						</div>
 					</div>
 				</td>
 				<td className="px-6 py-4 whitespace-nowrap">
-					<div className="text-sm text-textDimmed">
-						{loading ? <SkeletonText min={3} max={7} /> : '12/13'}
-					</div>
+					<div className="text-sm">{loading ? <SkeletonText min={3} max={7} /> : '12/13'}</div>
 				</td>
 				<td className="px-6 py-4 whitespace-nowrap">
 					<span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
 						Active
 					</span>
 				</td>
-				<td className="px-6 py-4 whitespace-nowrap text-sm text-textDimmed">
+				<td className="px-6 py-4 whitespace-nowrap text-sm">
 					{loading ? <SkeletonText min={4} max={8} /> : 'Admin'}
 				</td>
 				<td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
