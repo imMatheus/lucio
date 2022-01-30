@@ -6,7 +6,7 @@ import ClassNavbar from '@/components/classes/ClassNavbar'
 import useClassData from '@/hooks/useClassData'
 import Button from '@/components/button'
 import Head from 'next/head'
-import Alert from '@/components/Alerts'
+import Alert from '@/components/alertsa'
 
 export default function ClassScreen(): ReactElement {
 	const router = useRouter()

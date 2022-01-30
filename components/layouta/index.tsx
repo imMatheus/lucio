@@ -1,5 +1,5 @@
 import React from 'react'
-import Navbar from '@/components/Navbar'
+import Navbar from '@/components/navbara'
 import Toast from '@/components/Toast'
 import { useModal } from '@/context/ModalContext'
 import MarkdownModal from '@/components/modals/MarkdownModal'
