@@ -1,5 +1,5 @@
 import '../styles/globals.css'
-import Layout from '@/components/layouta'
+import Layout from '@/components/layout'
 import type { AppProps } from 'next/app'
 import { ToastProvider } from '@/context/ToastContext'
 import { ModalProvider } from '@/context/ModalContext'

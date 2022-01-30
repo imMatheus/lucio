@@ -6,9 +6,9 @@ import { GetServerSideProps, GetStaticPropsResult } from 'next'
 import AlgorithmProblem from '@/types/AlgorithmProblem'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
-import Column from '@/components/tablea/TableColumn'
+import Column from '@/components/table/TableColumn'
 import ProblemRow from './ProblemRow'
-import index from '../spinnera'
+import index from '../spinner'
 
 interface ProblemsListProps {
 	problems: AlgorithmProblem[]
