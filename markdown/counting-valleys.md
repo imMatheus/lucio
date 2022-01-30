@@ -1,3 +1,46 @@
+---
+name: 'Counting valleys'
+difficulty: 'medium'
+sampleCases: [
+	{
+		input: [
+			{ input: '8', type: 'integer' },
+			{ input: '"UDDDUDUU"', type: 'string' }
+		],
+		output: ['1']
+	},
+	{
+		input: [
+			{ input: '6', type: 'integer' },
+			{ input: '"DUDUDU"', type: 'string' }
+		],
+		output: ['3']
+	}
+]
+submitCases: [
+	{
+		input: ['26', '"DDUDUUUUDDUUDDUDUDUDUDUDDU"'],
+		output: ['2']
+	},
+	{
+		input: ['28', '"DUDUDUDUDUDUDUDUDDUDUDUDDUUU"'],
+		output: ['9']
+	},
+	{
+		input: ['48','"DUDUDUDUDUDUDUDUDUDUDUDUDUDUDUDUDDUDDUDUDUDUDUUU"'],
+		output: ['17']
+	},
+	{
+		input: ['16', '"UUUUUUUUDDDDDDDD"'],
+		output: ['0']
+	}
+]
+inputs: [
+	{ input: 'steps', type: 'integer' },
+	{ input: 'path', type: 'string' }
+]
+---
+
 # Counting valleys
 
 ### Problem description

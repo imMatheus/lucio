@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import styles from 'styles/Dropzone.module.scss'
+import styles from 'styles/dropzone.module.scss'
 import { FilePlus } from 'react-feather'
 import { useToast } from '@/context/ToastContext'
 

@@ -1,3 +1,46 @@
+---
+name: 'Multiplication'
+difficulty: 'easy'
+sampleCases: [
+	{
+		input: [
+			{ input: '10', type: 'integer' },
+			{ input: '10', type: 'integer' }
+		],
+		output: [100]
+	},
+	{
+		input: [
+			{ input: '5', type: 'integer' },
+			{ input: '3', type: 'integer' }
+		],
+		output: ['15']
+	}
+]
+submitCases: [
+	{
+		input: ['69', '69'],
+		output: ['4761']
+	},
+	{
+		input: ['7', '7'],
+		output: ['0']
+	},
+	{
+		input: ['1', '70'],
+		output: ['70']
+	},
+	{
+		input: ['-120', '3'],
+		output: ['-120']
+	}
+]
+inputs: [
+	{ input: 'x', type: 'integer' },
+	{ input: 'y', type: 'integer' }
+]
+---
+
 # Multiplication
 
 ### Problem description

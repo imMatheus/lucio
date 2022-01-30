@@ -2,15 +2,13 @@ import React from 'react'
 import styles from 'styles/Problems.module.scss'
 import { ArrowDown } from 'react-feather'
 import { problems as _problems } from '../../problems/Algorithms'
-import { fs } from '@/firebase/index'
-import { doc, setDoc, getDocs, query } from 'firebase/firestore'
 import { GetServerSideProps, GetStaticPropsResult } from 'next'
 import AlgorithmProblem from '@/types/AlgorithmProblem'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
-import Column from '@/components/Table/TableColumn'
+import Column from '@/components/table/TableColumn'
 import ProblemRow from './ProblemRow'
-import index from '../Spinner'
+import index from '../spinner'
 
 interface ProblemsListProps {
 	problems: AlgorithmProblem[]
@@ -22,16 +20,18 @@ const ProblemTable: React.FC<ProblemsListProps> = ({ problems, loading }) => {
 		<div className="flex flex-col">
 			<div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
 				<div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-					<div className="shadow dark:shadow-gray-700 overflow-hidden border-b border-gray-200 dark:border-gray-700 sm:rounded-lg">
+					<div className="shadow-md dark:shadow-neutral-800 overflow-hidden border-b border-neutral-200 dark:border-neutral-700 sm:rounded-lg bg-neutral-200 dark:bg-neutral-700">
 						<table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
-							<thead className="bg-gray-50 dark:bg-gray-800">
+							<thead className="bg-neutral-50 dark:bg-neutral-800">
 								<tr>
+									<Column>Status</Column>
 									<Column>Name</Column>
-									<Column>Title</Column>
+									<Column>Acceptens</Column>
+									<Column>Submitions</Column>
 									<Column>Difficulty</Column>
 								</tr>
 							</thead>
-							<tbody className="bg-white dark:bg-black divide-y divide-gray-200 dark:divide-gray-700">
+							<tbody className="bg-white dark:bg-neutral-900 divide-y divide-gray-200 dark:divide-neutral-600">
 								{problems.map(({ difficulty, name }, index) => (
 									<ProblemRow
 										key={name}

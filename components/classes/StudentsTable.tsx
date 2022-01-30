@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import StudentCard from './StudentCard'
 import Button from '@/components/button'
-import faker from 'faker'
 import { createAvatar } from '@dicebear/avatars'
 import * as style from '@dicebear/adventurer-neutral'
 
@@ -19,23 +18,9 @@ const StudentsTable: React.FC<StudentsTableProps> = ({ children }) => {
 	const [students, setStudents] = useState<any[]>([])
 	const [loading, setLoading] = useState(true)
 	const [edit, setEdit] = useState(false)
-	useEffect(() => {
-		setStudents(
-			Array.from({ length: 40 }, () => ({
-				image: createAvatar(style, {
-					seed: faker.name.firstName() + ' ' + faker.name.lastName()
-				}),
-				name: faker.name.firstName() + ' ' + faker.name.lastName(),
-				email: faker.internet.email()
-			}))
-		)
-		setTimeout(() => {
-			setLoading(false)
-		}, 2200)
-	}, [])
 
 	return (
-		<div className="flex flex-col bg-red-100">
+		<div className="flex flex-col">
 			<div className="flex my-2">
 				<Button className="mr-2">Invite student</Button>
 				<Button onClick={() => setEdit((c) => !c)}>Edit</Button>
@@ -43,9 +28,9 @@ const StudentsTable: React.FC<StudentsTableProps> = ({ children }) => {
 			</div>
 			<div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
 				<div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-					<div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
-						<table className="min-w-full divide-y divide-gray-200">
-							<thead className="bg-gray-50">
+					<div className="shadow overflow-hidden border-b border-neutral-200 sm:rounded-lg">
+						<table className="min-w-full divide-y divide-neutral-200">
+							<thead className="bg-neutral-100">
 								<tr>
 									{edit && <Column>Edit</Column>}
 									<Column>Name</Column>

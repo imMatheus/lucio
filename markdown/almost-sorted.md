@@ -1,3 +1,30 @@
+---
+name: 'Almost sorted'
+difficulty: 'hard'
+sampleCases: [
+	{
+		input: [{ input: '[3,1,2]', type: 'integer[]' }],
+		output: ['no']
+	},
+	{
+		input: [{ input: '[1, 5, 4, 3, 2, 6]', type: 'integer[]' }],
+		output: ['yes reverse 2 5']
+	},
+	{
+		input: [{ input: '[1, 2, 5, 4, 3, 6]', type: 'integer[]' }],
+		output: ['yes swap 3 5']
+	}
+]
+submitCases: [
+	{ input: ['[20, 21, 22, 23, 24, 25]'], output: ['yes'] },
+	{ input: ['[10, 14, 12, 9, 24, 25]'], output: ['no'] },
+	{ input: ['[1, 2, 5, 4, 3, 6]'], output: ['yes swap 3 5'] },
+	{ input: ['[1, 5, 4, 3, 2, 6]'], output: ['yes reverse 2 5'] },
+	{ input: ['[80, 82, 84, 86, 88, 87]'], output: ['yes swap 5 6'] }
+]
+inputs: [{ input: 'arr', type: 'integer[]' }]
+---
+
 # Almost sorted
 
 ### Problem description

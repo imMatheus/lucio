@@ -1,26 +1,26 @@
 import AlgorithmProblem from 'types/AlgorithmProblem'
+import { Difficulty, InputEnum } from '@/types/AlgorithmProblem'
 
 type typeProblems = AlgorithmProblem[]
 
-export const problems: typeProblems = [
+export const problems = [
 	{
 		name: 'Simple Addition',
-		difficulty: 'easy',
+		difficulty: Difficulty.easy,
 		sampleCases: [
 			{
 				input: [
-					{ input: '9', type: 'integer' },
-					{ input: '6', type: 'integer' }
+					{ input: '9', inputType: InputEnum.Integer },
+					{ input: '6', inputType: InputEnum.Integer }
 				],
-				output: [15],
-				explanation: { text: `9 + 6 = 15` }
+				output: ['15']
 			},
 			{
 				input: [
-					{ input: '108', type: 'integer' },
-					{ input: '12', type: 'integer' }
+					{ input: '108', inputType: InputEnum.Integer },
+					{ input: '12', inputType: InputEnum.Integer }
 				],
-				output: [120]
+				output: ['120']
 			}
 		],
 		submitCases: [
@@ -43,33 +43,25 @@ export const problems: typeProblems = [
 			}
 		],
 		inputs: [
-			{ input: 'a', type: 'integer' },
-			{ input: 'b', type: 'integer' }
+			{ input: 'a', inputType: InputEnum.Integer },
+			{ input: 'b', inputType: InputEnum.Integer }
 		]
 	},
 	{
 		name: 'Palindrome Number',
-		difficulty: 'easy',
+		difficulty: Difficulty.easy,
 		sampleCases: [
 			{
-				input: [{ input: '121', type: 'integer' }],
+				input: [{ input: '121', inputType: InputEnum.Integer }],
 				output: [`true`]
 			},
 			{
-				input: [{ input: '69', type: 'integer' }],
-				output: [`false`],
-				explanation: {
-					text: `From left to right, it reads <span class="variable">69</span>.
-                From right to left, it becomes <span class="variable">96</span>. Therefore it is not a palindrome.`
-				}
+				input: [{ input: '69', inputType: InputEnum.Integer }],
+				output: [`false`]
 			},
 			{
-				input: [{ input: '-919', type: 'integer' }],
-				output: [`false`],
-				explanation: {
-					text: `From left to right, it reads <span class="variable">-919</span>.
-                From right to left, it becomes <span class="variable">919-</span>. Therefore it is not a palindrome.`
-				}
+				input: [{ input: '-919', inputType: InputEnum.Integer }],
+				output: [`false`]
 			}
 		],
 		submitCases: [
@@ -94,23 +86,23 @@ export const problems: typeProblems = [
 				output: [`false`]
 			}
 		],
-		inputs: [{ input: 'x', type: 'integer' }]
+		inputs: [{ input: 'x', inputType: InputEnum.Integer }]
 	},
 	{
 		name: 'Multiplication',
-		difficulty: 'easy',
+		difficulty: Difficulty.easy,
 		sampleCases: [
 			{
 				input: [
-					{ input: '10', type: 'integer' },
-					{ input: '10', type: 'integer' }
+					{ input: '10', inputType: InputEnum.Integer },
+					{ input: '10', inputType: InputEnum.Integer }
 				],
 				output: [100]
 			},
 			{
 				input: [
-					{ input: '5', type: 'integer' },
-					{ input: '3', type: 'integer' }
+					{ input: '5', inputType: InputEnum.Integer },
+					{ input: '3', inputType: InputEnum.Integer }
 				],
 				output: [`15`]
 			}
@@ -135,33 +127,27 @@ export const problems: typeProblems = [
 			}
 		],
 		inputs: [
-			{ input: 'x', type: 'integer' },
-			{ input: 'y', type: 'integer' }
+			{ input: 'x', inputType: InputEnum.Integer },
+			{ input: 'y', inputType: InputEnum.Integer }
 		]
 	},
 	{
 		name: 'Number Of Letters',
-		difficulty: 'easy',
+		difficulty: Difficulty.easy,
 		sampleCases: [
 			{
 				input: [
-					{ input: 'l', type: 'string' },
-					{ input: 'helloworld', type: 'string' }
+					{ input: 'l', inputType: 'string' },
+					{ input: 'helloworld', inputType: 'string' }
 				],
-				output: [3],
-				explanation: {
-					text: `In the string <span class="variable">"helloworld"</span> the letter <span class="variable">l</span> appears 3 times`
-				}
+				output: [3]
 			},
 			{
 				input: [
-					{ input: 'n', type: 'string' },
-					{ input: 'drillmasher', type: 'string' }
+					{ input: 'n', inputType: 'string' },
+					{ input: 'drillmasher', inputType: 'string' }
 				],
-				output: [0],
-				explanation: {
-					text: `In the string <span class="variable">"drillmasher"</span> the letter <span class="variable">n</span> doesn't appears, so we return 0`
-				}
+				output: [0]
 			}
 		],
 		submitCases: [
@@ -180,27 +166,21 @@ export const problems: typeProblems = [
 		],
 
 		inputs: [
-			{ input: 'letter', type: 'string' },
-			{ input: 's', type: 'string' }
+			{ input: 'letter', inputType: 'string' },
+			{ input: 's', inputType: 'string' }
 		]
 	},
 	{
 		name: 'Score The Name',
-		difficulty: 'easy',
+		difficulty: Difficulty.easy,
 		sampleCases: [
 			{
-				input: [{ input: 'LUCIO', type: 'string' }],
-				output: [60],
-				explanation: {
-					text: `The alphabetical value of each letter in the name, Lucio, is <span class="variable">12 + 21 + 3 + 9 + 15 = 60</span>`
-				}
+				input: [{ input: 'LUCIO', inputType: 'string' }],
+				output: [60]
 			},
 			{
-				input: [{ input: 'ABBA', type: 'string' }],
-				output: [6],
-				explanation: {
-					text: `The alphabetical value of each letter in the name, ABBA, is <span class="variable">1 + 2 + 2 + 1 = 6</span>`
-				}
+				input: [{ input: 'ABBA', inputType: 'string' }],
+				output: [6]
 			}
 		],
 		submitCases: [
@@ -217,27 +197,23 @@ export const problems: typeProblems = [
 				output: ['209']
 			}
 		],
-		inputs: [{ input: 'n', type: 'string' }]
+		inputs: [{ input: 'n', inputType: 'string' }]
 	},
 	{
 		name: 'Counting Valleys',
-		difficulty: 'medium',
+		difficulty: Difficulty.medium,
 		sampleCases: [
 			{
 				input: [
-					{ input: '8', type: 'integer' },
-					{ input: `"UDDDUDUU"`, type: 'string' }
+					{ input: '8', inputType: InputEnum.Integer },
+					{ input: `"UDDDUDUU"`, inputType: 'string' }
 				],
-				output: [1],
-				explanation: {
-					text: `If we represent <span class="variable">_</span> as sea level, a step up as <span class="variable">/</span>, and a step down as <span class="variable">&#92</span>, the hike can be drawn as:`,
-					explanationOutput: [' _/&#92      _', '    &#92    /', '     &#92/&#92/']
-				}
+				output: [1]
 			},
 			{
 				input: [
-					{ input: '6', type: 'integer' },
-					{ input: `"DUDUDU"`, type: 'string' }
+					{ input: '6', inputType: InputEnum.Integer },
+					{ input: `"DUDUDU"`, inputType: 'string' }
 				],
 				output: ['3']
 			}
@@ -261,45 +237,34 @@ export const problems: typeProblems = [
 			}
 		],
 		inputs: [
-			{ input: 'steps', type: 'integer' },
-			{ input: 'path', type: 'string' }
+			{ input: 'steps', inputType: InputEnum.Integer },
+			{ input: 'path', inputType: 'string' }
 		]
 	},
-
 	{
 		name: 'Almost Sorted',
-		difficulty: 'hard',
+		difficulty: Difficulty.medium,
 		sampleCases: [
 			{
-				input: [{ input: '[3,1,2]', type: 'integer[]' }],
-				output: ['no'],
-				explanation: {
-					text: `It is impossible to sort by one single operation.`
-				}
+				input: [{ input: '[3,1,2]', inputType: 'integer[]' }],
+				output: ['no']
 			},
 			{
-				input: [{ input: '[1, 5, 4, 3, 2, 6]', type: 'integer[]' }],
-				output: ['yes reverse 2 5'],
-				explanation: {
-					text: `You can reverse the sub-array <span class="variable">d[2...5]</span> = "5 4 3 2", then the array becomes sorted.`
-				}
+				input: [{ input: '[1, 5, 4, 3, 2, 6]', inputType: 'integer[]' }],
+				output: ['yes reverse 2 5']
 			},
 			{
-				input: [{ input: '[1, 2, 5, 4, 3, 6]', type: 'integer[]' }],
+				input: [{ input: '[1, 2, 5, 4, 3, 6]', inputType: 'integer[]' }],
 				output: ['yes swap 3 5']
 			}
 		],
 		submitCases: [
-			// {
-			// 	input: [{ input: 'MATHEUSMENDESBARATADEALMEIDA', type: 'string' }],
-			// 	output: [244]
-			// },
 			{ input: ['[20, 21, 22, 23, 24, 25]'], output: ['yes'] },
 			{ input: ['[10, 14, 12, 9, 24, 25]'], output: ['no'] },
 			{ input: ['[1, 2, 5, 4, 3, 6]'], output: ['yes swap 3 5'] },
 			{ input: ['[1, 5, 4, 3, 2, 6]'], output: ['yes reverse 2 5'] },
 			{ input: ['[80, 82, 84, 86, 88, 87]'], output: ['yes swap 5 6'] }
 		],
-		inputs: [{ input: 'arr', type: 'integer[]' }]
+		inputs: [{ input: 'arr', inputType: 'integer[]' }]
 	}
 ]

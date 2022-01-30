@@ -1,9 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react'
-import styles from 'styles/Messages.module.scss'
+import styles from '../../styles/messages.module.scss'
 import { useRouter } from 'next/router'
-import { collection, addDoc } from 'firebase/firestore'
-import { useAuth } from '@/context/AuthContext'
-import { fs } from '@/firebase/index'
 import { useToast } from '@/context/ToastContext'
 import Message from 'types/Message'
 
@@ -15,17 +12,9 @@ const InputArea: React.FC<InputAreaProps> = ({}) => {
 	const inputRef = useRef<HTMLTextAreaElement>(null)
 	const router = useRouter()
 	const { messageId } = router.query
-	const { currentUser } = useAuth()
 	const { setToastMessage } = useToast()
 
 	async function sendMessage() {
-		if (!currentUser) return setToastMessage('Could not send message as you are not loged in')
-		setLoading(true)
-		await addDoc(collection(fs, `chats/${messageId}/messages`), {
-			text: inputRef.current!.value,
-			authorId: currentUser.uid,
-			sentAt: new Date()
-		})
 		setLoading(false)
 		setToastMessage('sent message')
 		// setMessage('')

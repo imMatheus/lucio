@@ -1,3 +1,42 @@
+---
+name: 'Number of letters'
+difficulty: 'easy'
+sampleCases: [
+	{
+		input: [
+			{ input: 'l', type: 'string' },
+			{ input: 'helloworld', type: 'string' }
+		],
+		output: [3]
+	},
+	{
+		input: [
+			{ input: 'n', type: 'string' },
+			{ input: 'drillmasher', type: 'string' }
+		],
+		output: [0]
+	}
+]
+submitCases: [
+	{
+		input: ['e', 'egegeahsdfyegdajebcsdfyegdajebcheavcaebuebu'],
+		output: ['10']
+	},
+	{
+		input: ['j', 'gdykajcbaksdnscnsacnkasdknnsd'],
+		output: ['10']
+	},
+	{
+		input: ['m', 'memememememememe'],
+		output: ['8']
+	}
+]
+inputs: [
+	{ input: 'letter', type: 'string' },
+	{ input: 's', type: 'string' }
+]
+---
+
 # Number of letters
 
 ### Problem description

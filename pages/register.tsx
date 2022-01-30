@@ -1,18 +1,18 @@
 import React, { ReactElement, useEffect, useState } from 'react'
-import styles from '../styles/Registration.module.scss'
+import styles from 'styles/registration.module.scss'
 import { Eye, EyeOff } from 'react-feather'
 import * as EmailValidator from 'email-validator'
 import TypedText from '@/components/TypedText'
-import InputField from '@/components/InputField'
+import InputField from '@/components/input/index'
 import * as style from '@dicebear/adventurer-neutral'
 import { createAvatar } from '@dicebear/avatars'
-import { useAuth } from '@/context/AuthContext'
 import Image from 'next/image'
 import usePasswordStrength from '@/hooks/usePasswordStrength'
 import Head from 'next/head'
+import axios from 'axios'
+import { useAuth } from '@/context/AuthContext'
 
 export default function Register(): ReactElement {
-	const { signup } = useAuth()
 	const [email, setEmail] = useState('')
 	const [isValidEmail, setIsValidEmail] = useState(false)
 	const [showPassword, setShowPassword] = useState(false)
@@ -22,6 +22,7 @@ export default function Register(): ReactElement {
 	const [username, setUsername] = useState('')
 	const [showUserNameContainer, setShowUserNameContainer] = useState(false)
 	const [avatar, setAvatar] = useState('')
+	const { signup } = useAuth()
 
 	useEffect(() => {
 		setIsValidEmail(EmailValidator.validate(email))
@@ -33,11 +34,9 @@ export default function Register(): ReactElement {
 	}, [email])
 
 	async function signupHandler() {
-		try {
-			await signup(email, password, username, avatar)
-		} catch (error) {
-			alert(error)
-		}
+		const res = await signup(email, password, username)
+		console.log('res from await')
+		console.log(res)
 	}
 
 	const buff = new Buffer(avatar)
@@ -46,13 +45,13 @@ export default function Register(): ReactElement {
 	return (
 		<section className="font-mono relative flex-1">
 			<Head>
-				<body className="bg-bgDimmed" />
+				<body className="bg-red-500" />
 			</Head>
 			{/* <div className={styles.blob}></div> */}
 			<div className={styles.modal}>
-				<TypedText className="text-themeDimmed">Welcome to LucioCode</TypedText>
-				<TypedText className="text-themeDimmed" delay={1}>
-					Let´s begin the adventure
+				<TypedText className="text-theme-700">Welcome to LucioCode</TypedText>
+				<TypedText className="text-theme-700" delay={1}>
+					Let us begin the adventure
 				</TypedText>
 				<Image src={`data:image/svg+xml;base64,${base64data}`} alt="" width={100} height={100} />
 				<TypedText className="text-theme text-base font-semibold mt-5" delay={2}>
@@ -114,30 +113,30 @@ export default function Register(): ReactElement {
 					<p className="p-5 text-[#627597] text-center">The email is not valid or already in use</p>
 				)}
 
-				<div className="flex items-center">
+				{/* <div className="flex items-center"> */}
+				{/* <div className={styles.chip}></div>
+				{PasswordStrength === 'medium' || PasswordStrength === 'strong' ? (
 					<div className={styles.chip}></div>
-					{PasswordStrength === 'medium' || PasswordStrength === 'strong' ? (
-						<div className={styles.chip}></div>
-					) : (
-						<div className={styles.emptyChip}></div>
-					)}
-					{PasswordStrength === 'strong' ? (
-						<div className={styles.chip}></div>
-					) : (
-						<div className={styles.emptyChip}></div>
-					)}
-					<p
-						className={`px-3 text-center ${
-							PasswordStrength === 'weak'
-								? 'text-red-500'
-								: PasswordStrength === 'medium'
-								? 'text-yellow-500'
-								: 'text-green-500'
-						}`}
-					>
-						{PasswordStrength}
-					</p>
-				</div>
+				) : (
+					<div className={styles.emptyChip}></div>
+				)}
+				{PasswordStrength === 'strong' ? (
+					<div className={styles.chip}></div>
+				) : (
+					<div className={styles.emptyChip}></div>
+				)}
+				<p
+					className={`px-3 text-center ${
+						PasswordStrength === 'weak'
+							? 'text-red-500'
+							: PasswordStrength === 'medium'
+							? 'text-yellow-500'
+							: 'text-green-500'
+					}`}
+				>
+					{PasswordStrength}
+				</p>
+				</div> */}
 			</div>
 		</section>
 	)

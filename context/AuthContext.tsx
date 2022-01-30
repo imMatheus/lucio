@@ -1,96 +1,29 @@
-import React, { createContext, useContext, useState, useEffect } from 'react'
-import firebase from 'firebase/app'
-import {
-	where,
-	query,
-	getDocs,
-	doc,
-	getDoc,
-	setDoc,
-	collection,
-	limit,
-	DocumentData,
-	DocumentSnapshot,
-	SnapshotOptions,
-	QueryDocumentSnapshot
-} from 'firebase/firestore'
+import React, { createContext, useContext, useEffect, useState } from 'react'
+import { User, UserInterface } from '@models/User'
+import axios from 'axios'
+import { Data as meData } from '@/returns/api/me'
+import { Data as logoutData } from '@/returns/api/logout'
+import { Data as loginData } from '@/returns/api/login'
+import { Data as signupData } from '@/returns/api/signup'
+import Cookies from 'cookies'
+import { useToast } from './ToastContext'
 
-import {
-	createUserWithEmailAndPassword,
-	User as FirebaseUser,
-	signInWithEmailAndPassword,
-	sendPasswordResetEmail,
-	UserCredential,
-	onAuthStateChanged
-} from 'firebase/auth'
-
-import { auth, fs } from '@/firebase/index'
-import User, { FirestoreUser } from '@/types/User'
-
-async function signup(
-	email: string,
-	password: string,
-	displayName: string,
-	imageUrl: string | ArrayBuffer
-): Promise<string | void | unknown> {
-	// const usersNamesRef = query(collection(fs, 'users'), where('displayName', '==', displayName), limit(1))
-	// const document: DocumentData = await getDocs(usersNamesRef)
-	// if (document.exists) {
-	// 	// checking if the display name already exist
-	// 	const error = { message: 'Display name already exist' }
-	// 	return error
-	// }
-	try {
-		await createUserWithEmailAndPassword(auth, email, password).then(({ user }) => {
-			if (!user) return
-
-			setDoc(doc(fs, 'users', user.uid), {
-				displayName: displayName,
-				email: email,
-				profileImage: imageUrl,
-				userUID: user?.uid
-			})
-		})
-	} catch (error) {
-		return error
-	}
-}
-
-function login(email: string, password: string): Promise<UserCredential> {
-	return signInWithEmailAndPassword(auth, email, password)
-}
-
-function logout() {
-	sessionStorage.clear()
-
-	return auth.signOut()
-}
-
-async function resetPassword(email: string) {
-	try {
-		await sendPasswordResetEmail(auth, email)
-	} catch (error: any) {
-		return error.message
-	}
-}
+type IUser = UserInterface | null
 
 interface Context {
-	currentUser: User | null
-
-	logout: () => Promise<void>
-	login: (email: string, password: string) => Promise<UserCredential>
-	signup: (email: string, password: string, displayName: string, imageUrl: string | ArrayBuffer) => Promise<unknown>
-	resetPassword: (email: string) => Promise<unknown>
+	currentUser: IUser
 	fetchingUser: boolean
+	signup: (email: string, password: string, username: string) => Promise<void>
+	login: (email: string, password: string) => Promise<void>
+	logout: () => Promise<void>
 }
 
 const AuthContext = createContext<Context>({
 	currentUser: null,
-	logout,
-	login,
-	signup,
-	resetPassword,
-	fetchingUser: true
+	fetchingUser: true,
+	signup: async () => {},
+	login: async () => {},
+	logout: async () => {}
 })
 
 export function useAuth() {
@@ -98,44 +31,81 @@ export function useAuth() {
 }
 
 export const AuthProvider: React.FC = ({ children }) => {
-	const [currentUser, setCurrentUser] = useState<User | null>(null)
+	const [currentUser, setCurrentUser] = useState<IUser>(null)
 	const [fetchingUser, setFetchingUser] = useState(true)
+	const { setToastMessage } = useToast()
+
+	const fetchUser = async () => {
+		setFetchingUser(true)
+		console.log('shiiiii')
+
+		const { data }: { data: meData } = await axios.get('/api/auth/me')
+		setFetchingUser(false)
+		if (!data || !data.user || !data.token) return setCurrentUser(null)
+
+		setCurrentUser(data.user)
+		console.log('res', data)
+	}
+
+	console.log('currentUser: ', currentUser)
+
+	const signup = async (email: string, password: string, username: string) => {
+		try {
+			const { data }: { data: signupData } = await axios.post('/api/auth/signup', {
+				password,
+				email,
+				username
+			})
+			console.log('res: ', data)
+
+			if (data.user) {
+				await fetchUser()
+			}
+		} catch (error) {
+			alert(error)
+			console.log('shit happened on line 44')
+
+			console.error(error)
+		}
+	}
+
+	const login = async (email: string, password: string) => {
+		const { data }: { data: loginData } = await axios.post('/api/auth/login', {
+			email,
+			password
+		})
+
+		if (data.success) await fetchUser()
+
+		console.log('sheeeee')
+
+		console.log(data)
+	}
+
+	const logout = async () => {
+		const { data }: { data: logoutData } = await axios.get('/api/auth/logout')
+		if (data.success) {
+			await fetchUser()
+			return
+		}
+
+		setToastMessage('Could not logout')
+	}
 
 	useEffect(() => {
-		const unsubscribe = onAuthStateChanged(auth, async (user) => {
-			if (!user) {
-				setCurrentUser(null)
-				setFetchingUser(false)
-				return
-			}
-
-			setFetchingUser(true)
-			// getting the users data from firestore
-			const response = await getDoc(
-				doc(fs, 'users', user.uid).withConverter({
-					toFirestore: (data: FirestoreUser) => data,
-					fromFirestore: (snap: QueryDocumentSnapshot<FirestoreUser>, options: SnapshotOptions) =>
-						snap.data(options)
-				})
-			)
-
-			const data: User = { ...user, ...(response.data() as FirestoreUser) }
-
-			//TODO dix dis
-
-			setFetchingUser(false)
-			setCurrentUser(data)
-		})
-		return unsubscribe
+		async function init() {
+			await fetchUser()
+		}
+		init()
+		return () => {}
 	}, [])
 
 	const value = {
 		currentUser,
-		logout,
-		login,
+		fetchingUser,
 		signup,
-		resetPassword,
-		fetchingUser
+		login,
+		logout
 	}
 	return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
 }

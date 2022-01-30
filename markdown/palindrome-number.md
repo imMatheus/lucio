@@ -1,3 +1,45 @@
+---
+name: 'Palindrome number'
+difficulty: 'easy'
+sampleCases: [
+	{
+		input: [{ input: '121', type: 'integer' }],
+		output: ['true']
+	},
+	{
+		input: [{ input: '69', type: 'integer' }],
+		output: ['false']
+	},
+	{
+		input: [{ input: '-919', type: 'integer' }],
+		output: ['false']
+	}
+]
+submitCases: [
+	{
+		input: ['987'],
+		output: ['false']
+	},
+	{
+		input: ['111'],
+		output: ['true']
+	},
+	{
+		input: ['1001'],
+		output: ['true']
+	},
+	{
+		input: ['9'],
+		output: ['true']
+	},
+	{
+		input: ['123456789'],
+		output: ['false']
+	}
+]
+inputs: [{ input: 'x', type: 'integer' }]
+---
+
 # Palindrome number
 
 ### Problem description

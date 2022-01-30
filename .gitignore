@@ -19,9 +19,8 @@
 .DS_Store
 *.pem
 
-# firebase
-cors.json
-firestore.rules
+/.vscode
+
 
 # debug
 npm-debug.log*

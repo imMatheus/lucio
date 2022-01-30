@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from 'styles/MessagesSidebar.module.scss'
+import styles from '../../styles/sidebar.module.scss'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
@@ -50,7 +50,7 @@ const SidebarTab: React.FC<SidebarTabProps> = ({ date, name, text, image, route 
 				<div className="flex-1">
 					<div className="flex justify-between">
 						<p className={styles.name}>{name}</p>
-						<p className="text-textDimmed flex-shrink-0">{getDate()}</p>
+						<p className="flex-shrink-0">{getDate()}</p>
 					</div>
 					<div className={styles.message}>
 						<p>{text}</p>

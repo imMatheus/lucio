@@ -1,11 +1,19 @@
+export enum PrivacyEnum {
+	Public = 'public',
+	Invite = 'invite',
+	Closed = 'closed'
+}
+
 type ClassType = {
 	name: string
 	code: string
-	ownerId: string
-	participantsIds: string[]
+	owner: string
+	theme: [String, String]
+	participants: string[]
 	createdAt: Date
-	id: string
-	draft: true
+	updatedAt: Date
+	_id: string
+	__v: number
 }
 
 export default ClassType

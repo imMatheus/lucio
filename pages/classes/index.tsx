@@ -1,42 +1,90 @@
-import React, { useEffect, ReactElement } from 'react'
-import getUser from '../../firebase/querys/getUser'
-import { useAuth } from '@/context/AuthContext'
-import styles from 'styles/Classes.module.scss'
+import React, { useEffect, ReactElement, useState } from 'react'
+// import styles from 'styles/Classes.module.scss'
 import ClassCard from '@/components/classes/ClassCard'
-import getUsersClasses, { useUsersClasses } from '@/firebase/querys/getUsersClasses'
-import useCreateClass from '@/firebase/handlers/useCreateClass'
 import { useToast } from '@/context/ToastContext'
 import Button from '@/components/button'
+import { GetServerSideProps } from 'next'
+import axios from 'axios'
+import type { NextPage } from 'next'
+import Cookies from 'cookies'
+import ClassType from '@/types/ClassType'
+import NoClasses from '@/components/classes/NoClasses'
+import Link from 'next/link'
+interface Props {
+	classes: ClassType[]
+}
 
-export default function Classes(): ReactElement {
-	const usersClasses = useUsersClasses()
-	const { setToastMessage } = useToast()
-	const createClass = useCreateClass()
-	getUsersClasses().then((b) => console.log(b))
-	const images = ['/basket.jpeg', '/rock.jpeg', '/juan.jpeg']
+export const getServerSideProps: GetServerSideProps<Props> = async ({ req, res }) => {
+	const cookies = new Cookies(req, res)
+
+	// get token from the users cookie
+	const token = cookies.get('jwt')
+	if (!token) {
+		return {
+			props: { classes: [] }
+		}
+	}
+	const classes = await axios.get('http://localhost:3000/api/class/mine', {
+		headers: {
+			token
+		}
+	})
+	console.log('classes 34 data')
+	console.log(classes.data)
+
+	return {
+		props: { classes: classes.data }
+	}
+}
+
+const Classes: NextPage<Props> = ({ classes }) => {
+	console.log('classes')
+	console.log(classes)
+	const [colors, setColors] = useState<[String, String]>(['#F4F1BB', '#ED6A5A'])
+	console.log('asas')
+	console.log(colors)
+
+	// https://dribbble.com/shots/14653202-Coursebook-Your-Education-Platform
 
 	return (
-		<section className="py-8 px-6">
-			{/* <section className="py-8 px-6 bg-red-200"> */}
-			<section className="w-maxed mx-auto">
+		<section className="">
+			<main className="py-8 px-6 w-maxed mx-auto relative min-h-full-wo-nav">
 				<div className="flex mb-3 gap-2">
+					<Link href="/classes/create" passHref={true}>
+						<Button>Create class</Button>
+					</Link>
+
 					<Button
 						variant="dimmed"
-						onClick={() => {
-							setToastMessage(Math.random() + '')
-							throw new Error('hej klarade jag det')
+						onClick={async () => {
+							const code = prompt('Whats the code?')
+							const res: any = await axios.post('/api/class/join', {
+								code
+							})
+							console.log('res')
+							console.log(res)
 						}}
 					>
 						Join class
 					</Button>
-					<Button onClick={createClass}>Create class</Button>
 				</div>
-				<div className={styles.classesWrapper}>
-					{usersClasses?.map((data, i) => {
-						return <ClassCard data={data} key={data.id} img={images[i]} />
-					})}
-				</div>
-			</section>
+				{/* <div className={styles.classesWrapper}></div> */}
+				{/* {JSON.stringify(classes)} */}
+
+				{classes?.length > 0 ? (
+					<div className="grid gap-3 md:gap-4 lg:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
+						{classes?.map((classRoom) => (
+							<>
+								<ClassCard data={classRoom} key={classRoom._id} />
+							</>
+						))}
+					</div>
+				) : (
+					<NoClasses />
+				)}
+			</main>
 		</section>
 	)
 }
+
+export default Classes

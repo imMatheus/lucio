@@ -19,10 +19,10 @@
 			"@/utils/*": ["utils/*"],
 			"@/context/*": ["context/*"],
 			"@/types/*": ["types/*"],
+			"@/returns/*": ["types/returns/*"],
 			"@/hooks/*": ["hooks/*"],
-			"styles/*": ["styles/*"],
-			"@/firebase/*": ["firebase/*"],
-			"@/querys/*": ["firebase/querys/*"]
+			"@models/*": ["models/*"],
+			"styles/*": ["styles/*"]
 		},
 		"incremental": true
 	},

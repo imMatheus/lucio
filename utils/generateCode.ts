@@ -1,29 +1,20 @@
-import {
-    CollectionReference,
-    DocumentData,
-    getDocs,
-    where,
-    query,
-} from 'firebase/firestore'
-
 /**
- * @return {string} class link - a random generated string of 6 characters, exempla 'djA1k8'
+ * @return {string} class link - a random generated string of 7 characters, example 'djA1k81'
  */
 
-export const generateNewLink = (): string => {
-    const LINK_LENGTH = 7 // length of link
-    const alphabet = 'abcdefghijklmnopqrstuvwxyz'
-    const upperCaseAlphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+export const generateNewLink = (LINK_LENGTH = 7): string => {
+	const alphabet = 'abcdefghijklmnopqrstuvwxyz'
+	const upperCaseAlphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 
-    const numbers = '0123456789'
-    const characters = alphabet + upperCaseAlphabet + numbers // combine all of them into one string
+	const numbers = '0123456789'
+	const characters = alphabet + upperCaseAlphabet + numbers // combine all of them into one string
 
-    let link = ''
+	let link = ''
 
-    // if we failed 3 times we increment the link length with +1
-    for (let i = 0; i < LINK_LENGTH; i++) {
-        const n = Math.floor(Math.random() * characters.length)
-        link += characters[n]
-    }
-    return link
+	// if we failed 3 times we increment the link length with +1
+	for (let i = 0; i < LINK_LENGTH; i++) {
+		const n = Math.floor(Math.random() * characters.length)
+		link += characters[n]
+	}
+	return link
 }

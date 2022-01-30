@@ -1,38 +1,38 @@
-type String = 'string'
-type Integer = 'integer'
-type Float = 'float'
-type Double = 'double'
-type Char = 'char'
-type StringArray = 'string[]'
-type IntegerArray = 'integer[]'
-type FloatArray = 'float[]'
-type DoubleArray = 'double[]'
-type CharArray = 'char[]'
+import { Document } from 'mongoose'
 
-type InputType =
-	| String
-	| Integer
-	| Float
-	| Double
-	| Char
-	| StringArray
-	| IntegerArray
-	| FloatArray
-	| DoubleArray
-	| CharArray
+export enum InputEnum {
+	String = 'string',
+	Integer = 'integer',
+	Float = 'float',
+	Double = 'double',
+	Char = 'char',
+	StringArray = 'string[]',
+	IntegerArray = 'integer[]',
+	FloatArray = 'float[]',
+	DoubleArray = 'double[]',
+	CharArray = 'char[]'
+}
+
+// type InputType =
+// 	| String
+// 	| Integer
+// 	| Float
+// 	| Double
+// 	| Char
+// 	| StringArray
+// 	| IntegerArray
+// 	| FloatArray
+// 	| DoubleArray
+// 	| CharArray
 
 interface Input {
 	input: string
-	type: InputType
+	inputType: InputEnum
 }
 
 export interface SampleCases {
 	input: Array<Input>
-	output: Array<number | string>
-	explanation?: {
-		text?: string
-		explanationOutput?: Array<string>
-	}
+	output: Array<string>
 }
 
 export interface SubmitCases {
@@ -40,10 +40,15 @@ export interface SubmitCases {
 	output: Array<string>
 }
 
-export type Difficulty = 'easy' | 'medium' | 'hard'
+export enum Difficulty {
+	easy = 'easy',
+	medium = 'medium',
+	hard = 'hard'
+}
 
 export default interface AlgorithmProblem {
 	name: string
+	markdown: string
 	difficulty: Difficulty
 	sampleCases: Array<SampleCases>
 	submitCases?: Array<SubmitCases>

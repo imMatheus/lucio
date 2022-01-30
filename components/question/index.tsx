@@ -32,16 +32,25 @@ const Question = React.forwardRef<HTMLElement, QuestionProps>(({ markdown }, ref
 
 	return (
 		<main
-			className=" dark:bg-slate-900 min-w-[max(20vw,_200px)] lg:max-w-[60vw] max-w-[40vw] h-full overflow-scroll"
+			className="bg-neutral-100 dark:bg-neutral-900 min-w-[max(20vw,_200px)] lg:max-w-[60vw] max-w-[40vw] h-full overflow-scroll"
 			ref={ref}
 		>
 			<article className="py-10 sm:py-12">
 				<div
-					className="px-6 prose dark:prose-invert
-                  prose-headings:text-themeDimmed
-                  prose-li:marker:text-themeDark
-                     dark:prose-li:marker:text-themeLight
-                  prose-strong:text-theme sm:prose-sm md:prose-base lg:prose-lg"
+					className="px-6 prose prose-neutral dark:prose-invert
+					prose-headings:text-theme-800
+					prose-li:marker:text-theme-1000
+					dark:prose-li:marker:text-theme-300
+					prose-strong:text-theme-500
+					prose-strong:bg-theme-100/20
+					dark:prose-strong:text-theme-500
+					dark:prose-strong:bg-theme-200/10
+					prose-strong:py-1
+					prose-strong:px-2
+					prose-strong:rounded-lg
+					max-w-none
+					prose-img:max-w-[min(48rem,_100%)]
+					sm:prose-sm md:prose-base lg:prose-lg"
 					ref={divRef}
 				></div>
 			</article>
