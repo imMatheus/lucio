@@ -21,7 +21,7 @@ const Create: NextPage = () => {
 	const [privacy, setPrivacy] = useState(PrivacyEnum.Public)
 
 	async function createClassRoom() {
-		const res = await axios.post('http://localhost:3000/api/class/create', {
+		const res = await axios.post('http://localhost:3000/api/classes/create', {
 			name,
 			privacy,
 			theme: colors

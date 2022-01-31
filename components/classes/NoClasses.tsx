@@ -17,7 +17,7 @@ const NoClasses: React.FC<NoClassesProps> = ({}) => {
 				<Button
 					onClick={async () => {
 						const code = prompt('Whats the code?')
-						const res: any = await axios.post('/api/class/join', {
+						const res: any = await axios.post('/api/classes/join', {
 							code
 						})
 						console.log('res')

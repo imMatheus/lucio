@@ -9,7 +9,7 @@ export default function useClassData(id: string | string[] | undefined): [ClassT
 		console.log(1111)
 
 		async function getStudents() {
-			const res = await axios.get(`http://localhost:3000/api/class/${id}/students`)
+			const res = await axios.get(`http://localhost:3000/classes/${id}/students`)
 			console.log('fghjksdsdsdsd')
 			console.log(res)
 		}

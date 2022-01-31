@@ -24,7 +24,7 @@ export const getServerSideProps: GetServerSideProps<Props> = async ({ req, res }
 			props: { classes: [] }
 		}
 	}
-	const classes = await axios.get('http://localhost:3000/api/class/mine', {
+	const classes = await axios.get('http://localhost:3000/classes/mine', {
 		headers: {
 			token
 		}
@@ -58,7 +58,7 @@ const Classes: NextPage<Props> = ({ classes }) => {
 						variant="dimmed"
 						onClick={async () => {
 							const code = prompt('Whats the code?')
-							const res: any = await axios.post('/api/class/join', {
+							const res: any = await axios.post('/api/classes/join', {
 								code
 							})
 							console.log('res')
