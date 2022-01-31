@@ -7,7 +7,7 @@ import Button from '@/components/button'
 import axios from 'axios'
 import { useRouter } from 'next/router'
 interface CreateProps {
-	iColors: [String, String]
+	iColors: [string, string]
 }
 
 function arrayEquals(a: any[], b: any[]) {
@@ -17,7 +17,7 @@ function arrayEquals(a: any[], b: any[]) {
 const Create: NextPage = () => {
 	const router = useRouter()
 	const [name, setName] = useState('')
-	const [colors, setColors] = useState<[String, String]>(['#2266ff', '#2266ff'])
+	const [colors, setColors] = useState<[string, string]>(['#2266ff', '#2266ff'])
 	const [privacy, setPrivacy] = useState(PrivacyEnum.Public)
 
 	async function createClassRoom() {

@@ -3,6 +3,7 @@ import Link from 'next/link'
 import styles from 'styles/classes.module.scss'
 import Image from 'next/image'
 import ClassType from '@/types/ClassType'
+import { validateThemeColors } from 'utils/validateClassThemeColors'
 // import { style } from '@dicebear/avatars/dist/utils'
 
 interface ClassesCardProps {
@@ -15,6 +16,8 @@ interface ClassesCardProps {
 // ></div>
 
 export default function ClassCard({ data: { _id, name, code, participants, theme } }: ClassesCardProps) {
+	theme = validateThemeColors(theme)
+
 	return (
 		<Link href={`/classes/${_id}`} passHref={true}>
 			<div

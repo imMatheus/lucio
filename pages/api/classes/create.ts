@@ -5,7 +5,7 @@ import { generateNewLink } from 'utils/generateCode'
 import { PrivacyEnum } from '@/types/ClassType'
 import Cookie from 'cookie'
 import jwt from 'jsonwebtoken'
-import validateClassThemeColors from '@/utils/validateClassThemeColors'
+import { validateThemeColors } from '@/utils/validateClassThemeColors'
 
 type Data = {}
 
@@ -28,15 +28,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 		return
 	}
 
-	console.log(1, validateClassThemeColors(undefined))
-	console.log(2, validateClassThemeColors(''))
-	console.log(3, validateClassThemeColors('#445566'))
-	console.log(4, validateClassThemeColors('445566'))
-	console.log(5, validateClassThemeColors(['332244', '121212']))
-	console.log(6, validateClassThemeColors('456'))
-	console.log(6, validateClassThemeColors('#456'))
+	console.log(1, validateThemeColors(undefined))
+	console.log(2, validateThemeColors(''))
+	console.log(3, validateThemeColors('#445566'))
+	console.log(4, validateThemeColors('445566'))
+	console.log(5, validateThemeColors(['332244', '121212']))
+	console.log(6, validateThemeColors('456'))
+	console.log(6, validateThemeColors('#456'))
 
-	let theme = validateClassThemeColors(req.body.theme)
+	let theme = validateThemeColors(req.body.theme)
 
 	// check that privacy is a what we expect
 	if (!privacy) {

@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { run } from '@/utils/mongodb'
 import { ClassRoom } from '@models/ClassRoom'
-type Data = {}
+import { Data } from '@/types/returns/api/classes/index'
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<Data>) {
 	await run()
@@ -14,13 +14,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 	// no classId
 	if (!classId || classId === 'undefined') {
 		console.log(69)
-		res.status(400).json({ hje: 'bad request' })
+		res.status(400).json({ class: null })
 		return
 	}
+
 	const id = Array.isArray(classId) ? classId[0] : classId
-	const response = await ClassRoom.findById(id, { participants: 1 }).populate('participants')
+	const response = await ClassRoom.findById(id).populate('participants._id')
 	console.log('response')
 	console.log(response)
+	if (!response) return res.status(400).json({ class: null })
 
-	res.status(200).json({ hje: 'på dig', response })
+	res.status(200).json({ class: response })
 }

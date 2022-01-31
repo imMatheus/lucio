@@ -1,4 +1,4 @@
-export default function validate(colors: any) {
+export function validateThemeColors(colors: any): [string, string] {
 	// TODO great unit tests for this logic
 
 	// undefine

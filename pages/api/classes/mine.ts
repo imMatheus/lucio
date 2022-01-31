@@ -7,7 +7,7 @@ import jwt from 'jsonwebtoken'
 type Data = {}
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<Data>) {
-	console.log(1)
+	console.log(10000000)
 
 	if (!process.env.JWT_SIGN_SALT) {
 		res.status(500).json({ message: 'Internal server error' })
@@ -15,12 +15,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 	}
 
 	await run()
-	console.log(2)
+	console.log(20000)
 
 	try {
 		const token: any = req.headers.token
 
-		console.log(3)
+		console.log(300000)
 		console.log(token)
 
 		if (!token) {
@@ -30,11 +30,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 
 		// decode the jwt
 		const cookie: any = jwt.verify(token, process.env.JWT_SIGN_SALT)
-		console.log(4)
+		console.log(4000)
 		console.log(cookie)
 
 		const userId = cookie._id
-		console.log(5)
+		console.log(5000)
 		console.log(userId)
 
 		if (!userId) {
@@ -42,13 +42,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 			return
 		}
 
-		console.log(6)
+		console.log(6000)
 
 		const classRooms: ClassRoomInterface[] = await ClassRoom.find({
 			'participants._id': userId
-		}).populate('participants')
-		console.log(7)
-		console.log(classRooms[0])
+		})
+		console.log(7000)
+		console.log(classRooms)
 
 		console.log('horaaaa')
 		// console.log(classRooms)

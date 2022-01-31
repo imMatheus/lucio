@@ -16,19 +16,23 @@ interface Props {
 
 export const getServerSideProps: GetServerSideProps<Props> = async ({ req, res }) => {
 	const cookies = new Cookies(req, res)
+	console.log('hhhhhhhhhhhhh')
 
 	// get token from the users cookie
 	const token = cookies.get('jwt')
+	console.log('token', token)
+
 	if (!token) {
 		return {
 			props: { classes: [] }
 		}
 	}
-	const classes = await axios.get('http://localhost:3000/classes/mine', {
+	const classes = await axios.get('http://localhost:3000/api/classes/mine', {
 		headers: {
 			token
 		}
 	})
+
 	console.log('classes 34 data')
 	console.log(classes.data)
 
@@ -40,9 +44,6 @@ export const getServerSideProps: GetServerSideProps<Props> = async ({ req, res }
 const Classes: NextPage<Props> = ({ classes }) => {
 	console.log('classes')
 	console.log(classes)
-	const [colors, setColors] = useState<[String, String]>(['#F4F1BB', '#ED6A5A'])
-	console.log('asas')
-	console.log(colors)
 
 	// https://dribbble.com/shots/14653202-Coursebook-Your-Education-Platform
 
@@ -68,15 +69,12 @@ const Classes: NextPage<Props> = ({ classes }) => {
 						Join class
 					</Button>
 				</div>
-				{/* <div className={styles.classesWrapper}></div> */}
-				{/* {JSON.stringify(classes)} */}
+				{JSON.stringify(classes)}
 
 				{classes?.length > 0 ? (
 					<div className="grid gap-3 md:gap-4 lg:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
 						{classes?.map((classRoom) => (
-							<>
-								<ClassCard data={classRoom} key={classRoom._id} />
-							</>
+							<ClassCard data={classRoom} key={classRoom._id} />
 						))}
 					</div>
 				) : (

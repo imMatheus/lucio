@@ -12,6 +12,7 @@ const Students: NextPage = () => {
 	console.log(444444)
 
 	const [classData, loadingClassData] = useClassData(classId)
+	console.log(classData)
 
 	return (
 		<div className="px-6 py-3">
@@ -22,6 +23,7 @@ const Students: NextPage = () => {
 			<ClassNavbar />
 			students
 			<StudentsTable />
+			<h2 className="text-2xl"> {JSON.stringify(classData)}</h2>
 		</div>
 	)
 }

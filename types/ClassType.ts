@@ -8,7 +8,7 @@ type ClassType = {
 	name: string
 	code: string
 	owner: string
-	theme: [String, String]
+	theme: [string, string]
 	participants: string[]
 	createdAt: Date
 	updatedAt: Date
