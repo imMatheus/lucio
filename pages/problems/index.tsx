@@ -9,27 +9,26 @@ import { useRouter } from 'next/router'
 import { X } from 'react-feather'
 import QueryChip from '@/components/problems/QueryChip'
 import axios from 'axios'
+import { Data } from '@/types/returns/api/problems'
+
 interface Props {
 	problems: AlgorithmProblem[]
-	// difficulty?: any
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
 	const url = context.resolvedUrl
 
 	// const response: any[] = await axios.get('http://localhost:3000/api/problems')
-	const response = await fetch('http://localhost:3000/api' + url)
+	const { data }: { data: Data } = await axios.get('http://localhost:3000/api' + url)
 	console.log('response')
-	console.log(response)
 	console.log(url)
-	const data = await response.json()
-	console.log(data)
+	console.log(data.problems)
 
-	const problems: AlgorithmProblem[] = data.map((prob: any) => prob as AlgorithmProblem)
+	// const problems: AlgorithmProblem[] = data.map((prob: any) => prob as AlgorithmProblem)
 
 	return {
 		props: {
-			problems: problems
+			problems: data.problems
 		}
 	}
 }
