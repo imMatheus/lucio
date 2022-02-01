@@ -13,7 +13,7 @@ interface DropzoneProps {
 }
 
 const Dropzone: React.FC<DropzoneProps> = ({ setFiles }) => {
-	const { setToastMessage } = useToast()
+	const { setToast } = useToast()
 	const [errorMessage, setErrorMessage] = useState('')
 
 	const dragOver = (e: any) => {
@@ -44,7 +44,7 @@ const Dropzone: React.FC<DropzoneProps> = ({ setFiles }) => {
 				if (_files[i]?.name && _files[i]?.type) {
 					dummy.push(_files[i])
 				} else {
-					setToastMessage('one of your files does not have a valid name or type')
+					setToast({ message: 'One of your files does not have a valid name or type', type: 'error' })
 				}
 			}
 			setFiles((c) => c.concat(dummy))
@@ -53,7 +53,7 @@ const Dropzone: React.FC<DropzoneProps> = ({ setFiles }) => {
 		if (_files[0]?.name && _files[0].type) {
 			setFiles((c) => c.concat(_files[0]))
 		} else {
-			setToastMessage('your file does not have a valid name or type')
+			setToast({ message: 'Your file does not have a valid name or type', type: 'error' })
 		}
 	}
 

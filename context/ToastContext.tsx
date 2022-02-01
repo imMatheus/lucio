@@ -22,7 +22,10 @@ export function useToast() {
 }
 
 export const ToastProvider: React.FC = ({ children }) => {
-	const [toast, setToast] = useState<Toast>({ message: 'hello world', type: 'info' })
+	const [toast, setToast] = useState<Toast>({
+		message: "Big news! We're excited to announce a brand new product.",
+		type: 'info'
+	})
 
 	const value = {
 		toast,

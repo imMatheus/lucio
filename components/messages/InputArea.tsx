@@ -12,11 +12,11 @@ const InputArea: React.FC<InputAreaProps> = ({}) => {
 	const inputRef = useRef<HTMLTextAreaElement>(null)
 	const router = useRouter()
 	const { messageId } = router.query
-	const { setToastMessage } = useToast()
+	const { setToast } = useToast()
 
 	async function sendMessage() {
 		setLoading(false)
-		setToastMessage('sent message')
+		setToast({ message: 'Sent message', type: 'success' })
 		// setMessage('')
 		inputRef.current!.value = ''
 		if (inputRef.current) {

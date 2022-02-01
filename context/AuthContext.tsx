@@ -33,7 +33,7 @@ export function useAuth() {
 export const AuthProvider: React.FC = ({ children }) => {
 	const [currentUser, setCurrentUser] = useState<IUser>(null)
 	const [fetchingUser, setFetchingUser] = useState(true)
-	const { setToastMessage } = useToast()
+	const { setToast } = useToast()
 
 	const fetchUser = async () => {
 		setFetchingUser(true)
@@ -89,7 +89,7 @@ export const AuthProvider: React.FC = ({ children }) => {
 			return
 		}
 
-		setToastMessage('Could not logout')
+		setToast({ message: 'Could not logout', type: 'error' })
 	}
 
 	useEffect(() => {

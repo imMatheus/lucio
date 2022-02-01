@@ -9,7 +9,7 @@ const Info: React.FC = () => {
 	const { toast, setToast } = useToast()
 
 	return (
-		<div className="bg-theme-600">
+		<div className="bg-theme-600 sticky top-0 z-50">
 			<Wrapper>
 				<div className="w-0 flex-1 flex items-center">
 					<span className="flex p-2 rounded-lg bg-theme-800">
@@ -42,7 +42,7 @@ const Info: React.FC = () => {
 				<div className="order-2 flex-shrink-0 sm:order-3 sm:ml-3">
 					<button
 						type="button"
-						onClick={() => setToast({ message: 'lorem 5555', type: 'error' })}
+						onClick={() => setToast({ message: 'Could not create class, please try again', type: 'error' })}
 						className="-mr-1 flex p-2 rounded-md transition-colors hover:bg-theme-500 focus:outline-none focus:ring-2 focus:ring-white sm:-mr-2"
 					>
 						<span className="sr-only">Dismiss</span>

@@ -9,7 +9,7 @@ const Warning: React.FC = () => {
 	const { toast, setToast } = useToast()
 
 	return (
-		<div className="bg-amber-600">
+		<div className="bg-amber-600 sticky top-0 z-50">
 			<Wrapper>
 				<div className="w-0 flex-1 flex items-center">
 					<span className="flex p-2 rounded-lg bg-amber-800">
@@ -28,7 +28,7 @@ const Warning: React.FC = () => {
 				<div className="order-2 flex-shrink-0 sm:order-3 sm:ml-3">
 					<button
 						type="button"
-						onClick={() => setToast({ message: 'lorem 54', type: 'success' })}
+						onClick={() => setToast({ message: 'Successfully created class', type: 'success' })}
 						className="-mr-1 flex p-2 rounded-md transition-colors hover:bg-amber-500 focus:outline-none focus:ring-2 focus:ring-white sm:-mr-2"
 					>
 						<span className="sr-only">Dismiss</span>

@@ -9,7 +9,7 @@ const Success: React.FC = () => {
 	const { toast, setToast } = useToast()
 
 	return (
-		<div className="bg-green-600">
+		<div className="bg-green-600 sticky top-0 z-50">
 			<Wrapper>
 				<div className="w-0 flex-1 flex items-center">
 					<span className="flex p-2 rounded-lg bg-green-800">

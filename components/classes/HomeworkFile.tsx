@@ -6,7 +6,7 @@ interface HomeworkFileProps {
 
 const HomeworkFile: React.FC<HomeworkFileProps> = ({ path }) => {
 	const [link, setLink] = useState('')
-	const { setToastMessage } = useToast()
+	const { setToast } = useToast()
 
 	return (
 		<a href={link}>
