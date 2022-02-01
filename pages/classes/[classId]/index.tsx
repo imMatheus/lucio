@@ -29,9 +29,7 @@ export default function ClassScreen(): ReactElement {
 					</div>
 				</div>
 				<h2>class data</h2>
-				<div>
-					<h4>{classData && JSON.stringify(classData)}</h4>
-				</div>
+				<div>{/* <h4>{classData && JSON.stringify(classData)}</h4> */}</div>
 			</section>
 		</section>
 	)

@@ -48,8 +48,8 @@ const Classes: NextPage<Props> = ({ classes }) => {
 	// https://dribbble.com/shots/14653202-Coursebook-Your-Education-Platform
 
 	return (
-		<section className="">
-			<main className="py-8 px-6 w-maxed mx-auto relative min-h-full-wo-nav">
+		<section className="py-8 px-6">
+			<main className="w-maxed mx-auto relative min-h-full-wo-nav">
 				<div className="flex mb-3 gap-2">
 					<Link href="/classes/create" passHref={true}>
 						<Button>Create class</Button>

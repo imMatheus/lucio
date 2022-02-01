@@ -4,7 +4,7 @@ import Image from 'next/image'
 import SVG from 'react-inlinesvg'
 
 interface Props {
-	image: string
+	// image: string
 	name: string
 	email: string
 	loading: boolean
@@ -21,7 +21,7 @@ const SkeletonText = ({ className, min, max }: { className?: string; min?: numbe
 	return <div className={_class}>{str}</div>
 }
 
-export default function StudentCard({ image, name, email, edit, loading }: Props): ReactElement {
+export default function StudentCard({ name, email, edit, loading }: Props): ReactElement {
 	return (
 		<tbody className="divide-y divide-neutral-200">
 			<tr>
@@ -33,12 +33,12 @@ export default function StudentCard({ image, name, email, edit, loading }: Props
 				<td className="px-6 py-4 whitespace-nowrap">
 					<div className="flex items-center">
 						<div className="flex-shrink-0 h-10 w-10 relative rounded-full">
-							{loading ? (
-								<div className={styles.skeletonImage}></div>
-							) : (
-								<SVG className="h-full w-full rounded-full" src={image} />
-								// <Image className="h-full w-full rounded-full" layout="fill" src="/rock.jpeg" alt="" />
-							)}
+							{/* {true ? ( */}
+							<div className={styles.skeletonImage}></div>
+							{/* // ) : (
+							// 	// <SVG className="h-full w-full rounded-full" src={image} />
+							// 	// <Image className="h-full w-full rounded-full" layout="fill" src="/rock.jpeg" alt="" />
+							// )} */}
 						</div>
 						<div className="ml-4">
 							<div className="text-sm font-medium">

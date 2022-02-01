@@ -25,7 +25,7 @@ const Students: NextPage = () => {
 			<ClassNavbar />
 			students
 			<StudentsTable />
-			<h2 className="text-2xl"> {JSON.stringify(classData)}</h2>
+			{/* <h2 className="text-2xl"> {JSON.stringify(classData)}</h2> */}
 		</section>
 	)
 }

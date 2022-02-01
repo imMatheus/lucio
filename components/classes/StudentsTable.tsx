@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import StudentCard from './StudentCard'
 import Button from '@/components/button'
-import { createAvatar } from '@dicebear/avatars'
-import * as style from '@dicebear/adventurer-neutral'
+import { useRouter } from 'next/router'
+import axios from 'axios'
+import { Data, Participants } from '@/types/returns/api/classes/participants'
 
 interface StudentsTableProps {}
 
@@ -14,20 +15,42 @@ const Column: React.FC = ({ children }) => {
 	)
 }
 
-const StudentsTable: React.FC<StudentsTableProps> = ({ children }) => {
-	const [students, setStudents] = useState<any[]>([])
+const StudentsTable: React.FC<StudentsTableProps> = ({}) => {
+	const [students, setStudents] = useState<Participants>([])
 	const [loading, setLoading] = useState(true)
 	const [edit, setEdit] = useState(false)
+	const router = useRouter()
+
+	useEffect(() => {
+		const { classId } = router.query
+		if (classId) {
+			const getParticipants = async () => {
+				const id = Array.isArray(classId) ? classId[0] : classId
+				const { data }: { data: Data } = await axios.get(`/api/classes/${id}/participants`)
+				console.log('rrrr')
+				console.log(router)
+				console.log('res')
+				console.log(data.participants)
+				if (data?.participants && data?.participants[0]) {
+					console.log(';;;;;;;;;;;;;;;;;;;;')
+
+					console.log(data.participants[0].userId.email)
+					setStudents(data.participants)
+				}
+			}
+			getParticipants()
+		}
+	}, [router])
 
 	return (
-		<div className="flex flex-col">
-			<div className="flex my-2">
-				<Button className="mr-2">Invite student</Button>
+		<div>
+			<div className="flex my-2 gap-2">
+				<Button className="">Invite student</Button>
 				<Button onClick={() => setEdit((c) => !c)}>Edit</Button>
 				{edit + ''}
 			</div>
-			<div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-				<div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+			<div className="">
+				<div className="py-2 align-middle inline-block w-full">
 					<div className="shadow overflow-hidden border-b border-neutral-200 sm:rounded-lg">
 						<table className="min-w-full divide-y divide-neutral-200">
 							<thead className="bg-neutral-100">
@@ -42,13 +65,12 @@ const StudentsTable: React.FC<StudentsTableProps> = ({ children }) => {
 									</th>
 								</tr>
 							</thead>
-							{students.map(({ name, email, image }) => {
+							{students.map(({ userId: { email, username } }) => {
 								return (
 									<StudentCard
-										key={name}
-										name={name}
+										key={username}
+										name={username}
 										email={email}
-										image={image}
 										loading={loading}
 										edit={edit}
 									/>
