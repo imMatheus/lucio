@@ -6,7 +6,7 @@ import MarkdownModal from '@/components/modals/MarkdownModal'
 const Layout: React.FC = ({ children }) => {
 	const { showModal, modal } = useModal()
 	return (
-		<main className="bg-neutral-100 dark:bg-neutral-900 min-h-screen flex flex-col accent-theme">
+		<main className="bg-gray-100 dark:bg-gray-900 min-h-screen flex flex-col accent-theme">
 			{/* <section className="min-h-screen flex flex-col accent-theme dark:dark-mode"> */}
 
 			<Toast />

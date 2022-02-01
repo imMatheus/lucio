@@ -25,7 +25,7 @@ export default function ClassCard({ data: { _id, name, code, participants, theme
 				style={{ backgroundImage: `linear-gradient(to bottom right, ${theme[0]},${theme[1]}` }}
 			>
 				<div className={`transition bg-black/10 hover:bg-black/20 p-4 md:py-5 w-full h-full`}>
-					<p className="text-xs font-normal text-neutral-50 uppercase m-0 py-1 px-2 bg-neutral-100/10 w-max rounded-lg">
+					<p className="text-xs font-normal text-gray-50 uppercase m-0 py-1 px-2 bg-gray-100/10 w-max rounded-lg">
 						Programing
 					</p>
 					<p className="font-black [white-space:_unset] [display:_-webkit-box] overflow-hidden break-words text-ellipsis [-webkit-box-orient:_vertical] [-webkit-line-clamp:_5] font-serif m-0 mt-2 md:mt-4 text-white text-3xl pr-0 md:pr-12 lg:pr-16">

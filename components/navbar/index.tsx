@@ -27,14 +27,14 @@ export default function Navbar(): ReactElement {
 
 	return (
 		<nav
-			className="border-b border-b-neutral-400 px-3 sm:px-6 lg:px-8 py-4 bg-neutral-100 dark:bg-neutral-800"
+			className="border-b border-b-neutral-400 px-3 sm:px-6 lg:px-8 py-4 bg-gray-100 dark:bg-gray-800"
 			ref={navbarRef}
 		>
 			<div className="w-maxed mx-auto">
 				<div className="flex text-sm mx-auto">
 					<section className="flex flex-1 items-center">
 						<Link href="/" passHref={true}>
-							<h4 className="text-2xl font-bold 2xl:text-4xl 2xl:font-extrabold text-neutral-700 dark:text-neutral-50 mr-auto cursor-pointer">
+							<h4 className="text-2xl font-bold 2xl:text-4xl 2xl:font-extrabold text-gray-700 dark:text-gray-50 mr-auto cursor-pointer">
 								Luciocode
 							</h4>
 						</Link>

@@ -44,10 +44,10 @@ export default function StudentCard({ user, role, joinedAt, edit, loading }: Pro
 							// )} */}
 						</div>
 						<div className="ml-4">
-							<div className="text-sm font-medium text-neutral-900 dark:text-ketchup">
+							<div className="text-sm font-medium text-gray-900 dark:text-ketchup">
 								{loading ? <SkeletonText className="mb-1" min={9} max={13} /> : user.username}
 							</div>
-							<div className="text-sm text-neutral-500">
+							<div className="text-sm text-gray-500">
 								{loading ? <SkeletonText min={9} max={15} /> : user.email}
 							</div>
 						</div>
@@ -55,10 +55,10 @@ export default function StudentCard({ user, role, joinedAt, edit, loading }: Pro
 				</td>
 				<td className="px-6 py-4 whitespace-nowrap">
 					{/* <div className="text-sm text-gray-900">Regional Paradigm Technician</div> */}
-					<div className="text-sm text-neutral-500">{convertDate(joinedAt)}</div>
+					<div className="text-sm text-gray-500">{convertDate(joinedAt)}</div>
 				</td>
 				<td className="px-6 py-4 whitespace-nowrap">
-					<div className="text-sm text-neutral-500">{convertDate(joinedAt)}</div>
+					<div className="text-sm text-gray-500">{convertDate(joinedAt)}</div>
 				</td>
 				<td className="px-6 py-4 whitespace-nowrap items-center">
 					<StatusChip status="dnd" />

@@ -28,7 +28,7 @@
 	@extend .btn;
 	@apply bg-transparent;
 	&:hover {
-		@apply text-neutral-300 bg-neutral-100;
+		@apply text-gray-300 bg-gray-100;
 	}
 }
 

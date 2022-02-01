@@ -56,13 +56,13 @@ const Create: NextPage = () => {
 	console.log(PrivacyEnum)
 
 	return (
-		<div className="p-4 md:p-6 min-h-full-wo-nav bg-neutral-200/40 dark:bg-neutral-900">
+		<div className="p-4 md:p-6 min-h-full-wo-nav bg-gray-200/40 dark:bg-gray-900">
 			<h2>Create a class</h2>
 
 			<div className="">
 				<label
 					htmlFor="first-name"
-					className="mb-2 block text-sm lg:text-base font-bold text-neutral-900 dark:text-neutral-50"
+					className="mb-2 block text-sm lg:text-base font-bold text-gray-900 dark:text-gray-50"
 				>
 					Class name
 				</label>
@@ -78,7 +78,7 @@ const Create: NextPage = () => {
 			</div>
 
 			<div className="my-3 md:py-4">
-				<p className="m-0 text-lg font-black text-neutral-900 dark:text-neutral-50">Theme</p>
+				<p className="m-0 text-lg font-black text-gray-900 dark:text-gray-50">Theme</p>
 				<div className="flex gap-2 my-2 flex-wrap max-w-3xl">
 					<Color iColors={['#2266ff', '#2266ff']} />
 					<Color iColors={['#A71D31', '#A71D31']} />
@@ -109,7 +109,7 @@ const Create: NextPage = () => {
 
 			<div className="my-3 md:py-4">
 				<form>
-					<p className="m-0 mb-2 text-lg font-black text-neutral-900 dark:text-neutral-50">Privacy</p>
+					<p className="m-0 mb-2 text-lg font-black text-gray-900 dark:text-gray-50">Privacy</p>
 					<div className="space-y-3">
 						<PrivacyOption
 							Icon={BookOpen}
@@ -118,8 +118,8 @@ const Create: NextPage = () => {
 							setPrivacy={setPrivacy}
 							privacy={privacy}
 						>
-							<span className="text-neutral-900 dark:text-neutral-50 font-semibold"> Public: </span>{' '}
-							anyone with the class code can join
+							<span className="text-gray-900 dark:text-gray-50 font-semibold"> Public: </span> anyone with
+							the class code can join
 						</PrivacyOption>
 						<PrivacyOption
 							Icon={Inbox}
@@ -128,7 +128,7 @@ const Create: NextPage = () => {
 							setPrivacy={setPrivacy}
 							privacy={privacy}
 						>
-							<span className="text-neutral-900 dark:text-neutral-50 font-semibold"> Invite: </span>
+							<span className="text-gray-900 dark:text-gray-50 font-semibold"> Invite: </span>
 							anyone with the class code ca send an invite to join
 						</PrivacyOption>
 						<PrivacyOption
@@ -138,8 +138,8 @@ const Create: NextPage = () => {
 							setPrivacy={setPrivacy}
 							privacy={privacy}
 						>
-							<span className="text-neutral-900 dark:text-neutral-50 font-semibold"> Closed: </span>no-one
-							can join or request to join
+							<span className="text-gray-900 dark:text-gray-50 font-semibold"> Closed: </span>no-one can
+							join or request to join
 						</PrivacyOption>
 					</div>
 				</form>

@@ -5,11 +5,11 @@ const Home: NextPage = () => {
 		<div>
 			<section className="p-5 xl:p-16">
 				<div className="max-w-7xl mx-auto">
-					<h1 className="text-center font-extrabold text-neutral-800 dark:text-neutral-100 text-6xl xl:text-8xl mb-3">
+					<h1 className="text-center font-extrabold text-gray-800 dark:text-gray-100 text-6xl xl:text-8xl mb-3">
 						LucioCode
 					</h1>
 				</div>
-				<p className="text-center text-neutral-700 dark:text-neutral-300">
+				<p className="text-center text-gray-700 dark:text-gray-300">
 					Teaching code made easier, faster and more enjoyable
 				</p>
 			</section>
@@ -73,16 +73,16 @@ const Home: NextPage = () => {
 					<div className="bg-zinc-900 w-full h-[10vh]"></div>
 				</div>
 				<div className="w-full">
-					<div className="bg-neutral-50 w-full h-[10vh]"></div>
-					<div className="bg-neutral-100 w-full h-[10vh]"></div>
-					<div className="bg-neutral-200 w-full h-[10vh]"></div>
-					<div className="bg-neutral-300 w-full h-[10vh]"></div>
-					<div className="bg-neutral-400 w-full h-[10vh]"></div>
-					<div className="bg-neutral-500 w-full h-[10vh]"></div>
-					<div className="bg-neutral-600 w-full h-[10vh]"></div>
-					<div className="bg-neutral-700 w-full h-[10vh]"></div>
-					<div className="bg-neutral-800 w-full h-[10vh]"></div>
-					<div className="bg-neutral-900 w-full h-[10vh]"></div>
+					<div className="bg-gray-50 w-full h-[10vh]"></div>
+					<div className="bg-gray-100 w-full h-[10vh]"></div>
+					<div className="bg-gray-200 w-full h-[10vh]"></div>
+					<div className="bg-gray-300 w-full h-[10vh]"></div>
+					<div className="bg-gray-400 w-full h-[10vh]"></div>
+					<div className="bg-gray-500 w-full h-[10vh]"></div>
+					<div className="bg-gray-600 w-full h-[10vh]"></div>
+					<div className="bg-gray-700 w-full h-[10vh]"></div>
+					<div className="bg-gray-800 w-full h-[10vh]"></div>
+					<div className="bg-gray-900 w-full h-[10vh]"></div>
 				</div>
 				<div className="w-full">
 					<div className="bg-stone-50 w-full h-[10vh]"></div>

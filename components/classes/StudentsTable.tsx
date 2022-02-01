@@ -9,7 +9,7 @@ interface StudentsTableProps {}
 
 const Column: React.FC = ({ children }) => {
 	return (
-		<th scope="col" className="px-6 py-3 text-left text-xs font-medium text-neutral-500 uppercase tracking-wider">
+		<th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
 			{children}
 		</th>
 	)
@@ -56,7 +56,7 @@ const StudentsTable: React.FC<StudentsTableProps> = ({}) => {
 				<div className="py-2 align-middle inline-block w-full">
 					<div className="shadow overflow-hidden border-b border-neutral-200 sm:rounded-lg">
 						<table className="min-w-full divide-y my-0 divide-neutral-200">
-							<thead className="bg-neutral-100">
+							<thead className="bg-gray-100">
 								<tr>
 									{edit && <Column>Edit</Column>}
 									<Column>Name</Column>

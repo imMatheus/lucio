@@ -31,7 +31,7 @@ const Section: React.FC<{ markdown: string }> = ({ markdown }) => {
 		}
 	}, [markdown])
 	return (
-		<div className="bg-neutral-200/50 border-b px-4 border-b-neutral-400 mb-1 prose flex justify-between items-center prose-headings:m-0">
+		<div className="bg-gray-200/50 border-b px-4 border-b-neutral-400 mb-1 prose flex justify-between items-center prose-headings:m-0">
 			<div>
 				<p className="text-black text-base font-semibold">{markdown}</p>
 			</div>
@@ -51,7 +51,7 @@ const SignInModal: React.FC = () => {
 			aria-modal="true"
 		>
 			<div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
-				<div className="fixed inset-0 bg-neutral-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
+				<div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
 
 				<span className="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">
 					&#8203;
@@ -59,7 +59,7 @@ const SignInModal: React.FC = () => {
 
 				<div className="p-4 pb-6 max-h-[95vh]  inline-block align-bottom bg-white rounded-lg text-left overflow-x-hidden overflow-y-scroll shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full prose">
 					<div
-						className="absolute top-2 left-2 cursor-pointer p-1 hover:bg-neutral-100 transition-colors rounded-full"
+						className="absolute top-2 left-2 cursor-pointer p-1 hover:bg-gray-100 transition-colors rounded-full"
 						onClick={() => {
 							setShowModal(false)
 						}}
