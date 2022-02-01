@@ -36,7 +36,7 @@ const SignInModal: React.FC = () => {
 						<X className="text-black" />
 					</div>
 					<h2 className="text-center m-0 mb-2 text-4xl">hello</h2>
-					<p className="text-center">sign into your Luciocode account</p>
+					<p className="text-center">sign into your Luciocode account &#127825;</p>
 					<div className="relative mb-6">
 						<input
 							ref={emailRef}

@@ -2,16 +2,37 @@ import type { NextPage } from 'next'
 
 const Home: NextPage = () => {
 	return (
-		<main>
+		<div>
 			<section className="p-5 xl:p-16">
 				<div className="max-w-7xl mx-auto">
-					<h1 className="text-center font-extrabold text-neutral-800 dark:text-neutral-100 text-6xl xl:text-9xl mb-3">
+					<h1 className="text-center font-extrabold text-neutral-800 dark:text-neutral-100 text-6xl xl:text-8xl mb-3">
 						LucioCode
 					</h1>
 				</div>
-				<p className="text-center font-extrabold text-neutral-700 dark:text-neutral-200">
+				<p className="text-center text-neutral-700 dark:text-neutral-300">
 					Teaching code made easier, faster and more enjoyable
 				</p>
+			</section>
+
+			<section className="h-96 lg:h-[52rem] bg-red-500 grid grid-cols-2">
+				<div className="bg-teal-900 p-3 lg:p-6">
+					<h2 className="text-8xl font-black font-serif text-teal-200 mb-4">In app messages</h2>
+					<p className="text-sm lg:text-base text-teal-100">
+						Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cum aperiam nemo inventore illum
+						obcaecati, magnam quasi placeat beatae, suscipit ad consectetur nisi.
+					</p>
+				</div>
+				<div className="bg-rose-900 text-rose-200 p-3 lg:p-6">
+					<h2 className="text-7xl font-black font-serif">User friendly</h2>
+				</div>
+				<div className="bg-sky-900 text-sky-200 p-3 lg:p-6">
+					<h2 className="text-7xl font-black font-serif">Over 1000 free problems</h2>
+				</div>
+				<div className="bg-amber-900 text-amber-200 p-3 lg:p-6">
+					<h2 className="text-7xl font-black font-serif">
+						Lorem ipsum dolor sit amet consectetur, adipisicing elit. Excepturi, rerum.{' '}
+					</h2>
+				</div>
 			</section>
 
 			<div className="grid grid-cols-5">
@@ -76,7 +97,7 @@ const Home: NextPage = () => {
 					<div className="bg-stone-900 w-full h-[10vh]"></div>
 				</div>
 			</div>
-		</main>
+		</div>
 	)
 }
 
