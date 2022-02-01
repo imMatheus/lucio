@@ -19,22 +19,22 @@ const TableRow: React.FC<TableRowProps> = ({ name, loading, difficulty, index })
 				} transition-shadow cursor-pointer group`}
 			>
 				<td className="relative whitespace-nowrap w-10">
-					<div className="text-sm text-gray-900 dark:text-gray-100 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+					<div className="text-sm text-neutral-900 dark:text-neutral-100 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
 						<div className="w-5 h-[3px] bg-neutral-400 dark:bg-neutral-500/80" />
 						{/* <Activity className="w-5 h-5 text-mustard dark:text-mustardDark" /> */}
 						{/* <Check className="w-5 h-5 text-olive dark:text-oliveDark" /> */}
 					</div>
 				</td>
 				<td className="px-6 py-4 whitespace-nowrap">
-					<div className="text-base text-gray-900 dark:text-gray-100 font-semibold group-hover:text-theme transition-colors">
+					<div className="text-base text-neutral-900 dark:text-neutral-100 font-semibold group-hover:text-theme transition-colors">
 						{name}
 					</div>
 				</td>
 				<td className="px-6 py-4 whitespace-nowrap">
-					<div className="text-sm text-gray-900 dark:text-gray-100">47.5%</div>
+					<div className="text-sm text-neutral-900 dark:text-neutral-100">47.5%</div>
 				</td>
 				<td className="px-6 py-4 whitespace-nowrap">
-					<div className="text-sm text-gray-900 dark:text-gray-100">34.6k</div>
+					<div className="text-sm text-neutral-900 dark:text-neutral-100">34.6k</div>
 				</td>
 				<td className="px-6 py-4 whitespace-nowrap">
 					<span className="inline-flex text-sm leading-5 font-semibold">

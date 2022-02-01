@@ -14,7 +14,7 @@ const Home: NextPage = () => {
 				</p>
 			</section>
 
-			<div className="hidden grid-cols-5">
+			<div className="grid grid-cols-5">
 				<div className="w-full">
 					<div className="bg-gray-50 w-full h-[10vh]"></div>
 					<div className="bg-gray-100 w-full h-[10vh]"></div>
