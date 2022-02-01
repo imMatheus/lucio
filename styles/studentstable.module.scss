@@ -1,12 +1,13 @@
 .skeleton {
 	@apply animate-pulse;
 }
+
 .skeletonText {
 	@extend .skeleton;
-	@apply bg-gray-400 w-max rounded-lg text-transparent text-xs;
+	@apply bg-neutral-400 w-max rounded-lg text-transparent text-xs;
 }
 
 .skeletonImage {
 	@extend .skeleton;
-	@apply bg-gray-400 h-full w-full rounded-full;
+	@apply bg-neutral-400 h-full w-full rounded-full;
 }

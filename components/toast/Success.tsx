@@ -28,7 +28,7 @@ const Success: React.FC = () => {
 				<div className="order-2 flex-shrink-0 sm:order-3 sm:ml-3">
 					<button
 						type="button"
-						onClick={() => setToast({ message: 'lorem 54', type: 'info' })}
+						onClick={() => setToast({ message: '', type: 'success' })}
 						className="-mr-1 flex p-2 rounded-md transition-colors hover:bg-green-500 focus:outline-none focus:ring-2 focus:ring-white sm:-mr-2"
 					>
 						<span className="sr-only">Dismiss</span>

@@ -33,7 +33,7 @@ export default function StudentCard({ user, role, joinedAt, edit, loading }: Pro
 				)}
 				<td className="px-6 py-4 whitespace-nowrap">
 					<div className="flex items-center">
-						<div className="flex-shrink-0 h-10 w-10 relative rounded-full">
+						<div className="flex-shrink-0 h-10 w-10">
 							{/* {true ? ( */}
 							<div className={styles.skeletonImage}></div>
 							{/* // ) : (
@@ -42,10 +42,12 @@ export default function StudentCard({ user, role, joinedAt, edit, loading }: Pro
 							// )} */}
 						</div>
 						<div className="ml-4">
-							<div className="text-sm font-medium">
+							<div className="text-sm font-medium text-neutral-900 dark:text-ketchup">
 								{loading ? <SkeletonText className="mb-1" min={9} max={13} /> : user.username}
 							</div>
-							<div className="text-sm">{loading ? <SkeletonText min={9} max={15} /> : user.email}</div>
+							<div className="text-sm text-neutral-600">
+								{loading ? <SkeletonText min={9} max={15} /> : user.email}
+							</div>
 						</div>
 					</div>
 				</td>
