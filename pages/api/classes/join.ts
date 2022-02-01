@@ -35,9 +35,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 			{
 				code,
 				// make sure the user does not try to join a class they are already in
-				'participants._id': { $ne: userId }
+				'participants.userId': { $ne: userId }
 			},
-			{ $push: { participants: { _id: userId } } }
+			{ $push: { participants: { userId: userId } } }
 		)
 		console.log('classrom')
 		console.log(classRoom)

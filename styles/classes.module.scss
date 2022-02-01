@@ -55,13 +55,10 @@
 
 .option {
 	display: block;
-
-	@apply px-3 py-1 mr-3 border-b-2;
+	@apply px-3 py-1 mr-3 border-b-2 cursor-pointer;
 }
 
 .optionActive {
-	display: block;
-
 	@extend .option;
 	@apply border-b-theme;
 }

@@ -24,6 +24,7 @@ export default function Navbar(): ReactElement {
 			// document.documentElement.style.setProperty('--navbar-height', navbarRef.current.clientHeight + 'px')
 		}
 	}, [navbarRef])
+
 	return (
 		<nav className="border-b border-b-neutral-400 px-8 py-4 bg-neutral-100 dark:bg-neutral-800" ref={navbarRef}>
 			<div className="w-maxed mx-auto">
@@ -42,7 +43,7 @@ export default function Navbar(): ReactElement {
 
 							<p
 								onClick={async () => await logout()}
-								className="text-red-800 bg-red-100 py-1 px-2 rounded-md"
+								className="text-red-800 bg-red-100 py-1 px-2 rounded-md cursor-pointer"
 							>
 								logout
 							</p>
@@ -52,7 +53,7 @@ export default function Navbar(): ReactElement {
 										<Spinner />
 									</div>
 								)}
-								{currentUser && <p className="text-2xl text-white">{currentUser.username}</p>}
+								{currentUser && <p className="text-xl mx-2">{currentUser.username}</p>}
 
 								<>
 									<div

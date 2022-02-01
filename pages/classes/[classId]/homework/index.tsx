@@ -7,6 +7,7 @@ import { useToast } from '@/context/ToastContext'
 import Head from 'next/head'
 import Button from '@/components/button'
 import HomeworkCard from '@/components/classes/HomeworkCard'
+import ClassNavbar from '@/components/classes/ClassNavbar'
 
 const Index: NextPage = () => {
 	const router = useRouter()
@@ -42,11 +43,12 @@ const Index: NextPage = () => {
 	}
 
 	return (
-		<section className="px-6 py-3">
+		<section className="py-8 px-6">
 			<Head>
 				<title>{classData?.name} | Homework</title>
 				<meta property="og:title" content="My page title" key="title" />
 			</Head>
+			{classId && <ClassNavbar />}
 			homework
 			<div>
 				<Button onClick={addHomeworkHandler}>Create new homework</Button>

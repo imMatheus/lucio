@@ -20,14 +20,14 @@ export default function ClassScreen(): ReactElement {
 				<meta property="og:title" content="My page title" key="title" />
 			</Head>
 			<section className="w-maxed mx-auto">
-				<div className="flex mb-3 gap-2">
+				{classId && <ClassNavbar />}
+				<div className="flex my-3 gap-2">
 					<Button variant="dimmed">Join class</Button>
 					<Button>Create class</Button>
 					<div className="ml-auto">
 						<Button variant="error">Leave class</Button>
 					</div>
 				</div>
-				{classId && <ClassNavbar />}
 				<h2>class data</h2>
 				<div>
 					<h4>{classData && JSON.stringify(classData)}</h4>

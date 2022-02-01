@@ -6,10 +6,10 @@ export interface ClassRoomInterface extends Document {
 	owner: string
 	code: string
 	privacy: PrivacyEnum
-	theme: [String, String]
+	theme: [string, string]
 	participants: [
 		{
-			_id: string
+			userId: string
 			joinedAt: Date
 			role: 'student' | 'admin'
 		}
@@ -41,7 +41,7 @@ const schema = new Schema<ClassRoomInterface>(
 		},
 		participants: [
 			{
-				_id: {
+				userId: {
 					type: Schema.Types.ObjectId,
 					ref: 'User',
 					required: true,

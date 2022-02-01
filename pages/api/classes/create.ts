@@ -62,7 +62,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 		privacy,
 		owner: cookie._id,
 		theme,
-		participants: [{ _id: cookie._id, role: 'admin', joinedAt: new Date() }]
+		participants: [{ userId: cookie._id, role: 'admin', joinedAt: new Date() }]
 		// {
 		// 	_id: '61ddf68c447aa738270d7fdf',
 		// 	joinedAt: new Date(),

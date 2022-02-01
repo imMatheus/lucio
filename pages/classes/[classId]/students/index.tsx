@@ -10,12 +10,14 @@ const Students: NextPage = () => {
 	const router = useRouter()
 	const classId = router.query.classId
 	console.log(444444)
+	console.log(classId)
 
 	const [classData, loadingClassData] = useClassData(classId)
-	console.log(classData)
+	console.log('asasasasasassa------classData')
+	console.log(classData?.participants[0])
 
 	return (
-		<div className="px-6 py-3">
+		<section className="py-8 px-6">
 			<Head>
 				<title>{classData?.name} | Students</title>
 				<meta property="og:title" content={`${classData?.name} | Students`} key="title" />
@@ -24,7 +26,7 @@ const Students: NextPage = () => {
 			students
 			<StudentsTable />
 			<h2 className="text-2xl"> {JSON.stringify(classData)}</h2>
-		</div>
+		</section>
 	)
 }
 
