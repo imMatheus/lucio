@@ -44,7 +44,7 @@ export default function StudentCard({ user, role, joinedAt, edit, loading }: Pro
 							// )} */}
 						</div>
 						<div className="ml-4">
-							<div className="text-sm font-medium text-gray-900 dark:text-ketchup">
+							<div className="text-sm font-medium text-gray-900 dark:text-gray-100">
 								{loading ? <SkeletonText className="mb-1" min={9} max={13} /> : user.username}
 							</div>
 							<div className="text-sm text-gray-500">
