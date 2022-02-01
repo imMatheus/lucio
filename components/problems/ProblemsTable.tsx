@@ -20,8 +20,8 @@ const ProblemTable: React.FC<ProblemsListProps> = ({ problems, loading }) => {
 		<div className="flex flex-col">
 			<div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
 				<div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-					<div className="shadow-md dark:shadow-neutral-800 overflow-hidden border-b border-neutral-200 dark:border-neutral-700 sm:rounded-lg bg-gray-200 dark:bg-gray-700">
-						<table className="min-w-full divide-y divide-neutral-200 dark:divide-neutral-700">
+					<div className="shadow-md dark:shadow-gray-800 overflow-hidden border-b border-gray-200 dark:border-gray-700 sm:rounded-lg bg-gray-200 dark:bg-gray-700">
+						<table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
 							<thead className="bg-gray-50 dark:bg-gray-800">
 								<tr>
 									<Column>Status</Column>
@@ -31,7 +31,7 @@ const ProblemTable: React.FC<ProblemsListProps> = ({ problems, loading }) => {
 									<Column>Difficulty</Column>
 								</tr>
 							</thead>
-							<tbody className="bg-white dark:bg-gray-900 divide-y divide-neutral-200 dark:divide-neutral-600">
+							<tbody className="bg-white dark:bg-gray-900 divide-y divide-gray-200 dark:divide-gray-600">
 								{problems.map(({ difficulty, name }, index) => (
 									<ProblemRow
 										key={name}

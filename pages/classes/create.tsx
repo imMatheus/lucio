@@ -28,6 +28,7 @@ const Create: NextPage = () => {
 		})
 		console.log('this is the shiii')
 
+		console.log(res)
 		console.log(res.status)
 		if (res.status === 200) router.push('/classes')
 	}
@@ -35,21 +36,13 @@ const Create: NextPage = () => {
 	const Color: React.FC<CreateProps> = ({ iColors }) => {
 		return (
 			<div
-				className={`w-12 h-12 md:w-14 md:h-14 rounded-full flex overflow-hidden cursor-pointer border-2 ${
-					arrayEquals(iColors, colors)
-						? 'border-black bg-black dark:border-white dark:bg-white'
-						: 'border-white bg-white dark:border-black dark:bg-black'
+				className={`w-12 h-12 md:w-14 md:h-14 rounded-full flex overflow-hidden border-transparent cursor-pointer border-2 ${
+					arrayEquals(iColors, colors) ? 'border-black bg-black dark:border-white dark:bg-white' : ''
 				}`}
 				onClick={() => setColors([...iColors])}
 			>
-				{/* @ts-ignore */}
 				<div className="h-full w-full" style={{ background: iColors[0] }}></div>
-				{iColors[0] !== iColors[1] && (
-					<>
-						{/* @ts-ignore */}
-						<div className="h-full w-full" style={{ background: iColors[1] }}></div>
-					</>
-				)}
+				{iColors[0] !== iColors[1] && <div className="h-full w-full" style={{ background: iColors[1] }}></div>}
 			</div>
 		)
 	}
@@ -73,7 +66,7 @@ const Create: NextPage = () => {
 					onChange={(e) => setName(e.target.value)}
 					id="first-name"
 					autoComplete="given-name"
-					className="mt-1 bg-transparent focus:ring-theme-500 focus:border-theme-500 block w-full sm:max-w-lg lg:max-w-lg 2xl:max-w-5xl shadow-sm sm:text-sm border-neutral-300 dark:border-neutral-600/70 rounded-md"
+					className="mt-1 bg-transparent focus:ring-theme-500 focus:border-theme-500 block w-full sm:max-w-lg lg:max-w-lg 2xl:max-w-5xl shadow-sm sm:text-sm border-gray-300 dark:border-gray-600/70 rounded-md"
 				/>
 			</div>
 
@@ -118,8 +111,8 @@ const Create: NextPage = () => {
 							setPrivacy={setPrivacy}
 							privacy={privacy}
 						>
-							<span className="text-gray-900 dark:text-gray-50 font-semibold"> Public: </span> anyone with
-							the class code can join
+							<span className="text-gray-900 dark:text-gray-50 font-semibold"> Public: </span> Anyone with
+							the class code can join the class
 						</PrivacyOption>
 						<PrivacyOption
 							Icon={Inbox}
@@ -129,7 +122,7 @@ const Create: NextPage = () => {
 							privacy={privacy}
 						>
 							<span className="text-gray-900 dark:text-gray-50 font-semibold"> Invite: </span>
-							anyone with the class code ca send an invite to join
+							Anyone with the class code can send an invite to join the class
 						</PrivacyOption>
 						<PrivacyOption
 							Icon={Lock}
@@ -138,8 +131,8 @@ const Create: NextPage = () => {
 							setPrivacy={setPrivacy}
 							privacy={privacy}
 						>
-							<span className="text-gray-900 dark:text-gray-50 font-semibold"> Closed: </span>no-one can
-							join or request to join
+							<span className="text-gray-900 dark:text-gray-50 font-semibold"> Closed: </span>No-one can
+							join or request to join the class
 						</PrivacyOption>
 					</div>
 				</form>

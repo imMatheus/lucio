@@ -39,7 +39,7 @@ export default function InputField({
 			}}
 		>
 			{focused ? (
-				<ArrowRight className="mr-2 w-5 text-secondary flex-shrink-0" />
+				<ArrowRight className="mr-2 w-5 text-gray-900 dark:text-gray-100 flex-shrink-0" />
 			) : success ? (
 				<Check className="mr-2 w-5 text-success flex-shrink-0" />
 			) : (

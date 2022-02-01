@@ -32,7 +32,9 @@ export default function ClassCard({ data: { _id, name, code, participants, theme
 						{/* <p className="font-black overflow-hidden break-all text-ellipsis font-serif m-0 mt-2 md:mt-4 text-white text-4xl pr-0 md:pr-12"> */}
 						{name}
 					</p>
-					<p className="font-medium font-serif text-sm lg:text-base">24 students | 3 tests</p>
+					<p className="font-medium font-serif text-sm lg:text-base">
+						{participants.length || 1} {participants.length > 1 ? 'students' : 'student'} | 3 tests
+					</p>
 				</div>
 			</div>
 		</Link>

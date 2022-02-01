@@ -26,7 +26,7 @@ const SkeletonText = ({ className, min, max }: { className?: string; min?: numbe
 
 export default function StudentCard({ user, role, joinedAt, edit, loading }: Props): ReactElement {
 	return (
-		<tbody className="divide-y m-none divide-neutral-200">
+		<tbody className="divide-y m-none divide-gray-200">
 			<tr>
 				{edit && (
 					<td className="px-6 py-4">

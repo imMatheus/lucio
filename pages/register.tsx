@@ -43,9 +43,10 @@ export default function Register(): ReactElement {
 	const base64data = buff.toString('base64')
 
 	return (
-		<section className="font-mono relative flex-1">
+		<section className="relative min-h-full-wo-nav flex items-center">
 			<Head>
-				<body className="bg-red-500" />
+				<title>Sign up | LucioCode</title>
+				<meta property="og:title" content="Sign up to LucioCode" key="title" />
 			</Head>
 			{/* <div className={styles.blob}></div> */}
 			<div className={styles.modal}>
@@ -53,8 +54,8 @@ export default function Register(): ReactElement {
 				<TypedText className="text-theme-700" delay={1}>
 					Let us begin the adventure
 				</TypedText>
-				<Image src={`data:image/svg+xml;base64,${base64data}`} alt="" width={100} height={100} />
-				<TypedText className="text-theme text-base font-semibold mt-5" delay={2}>
+				{/* <Image src={`data:image/svg+xml;base64,${base64data}`} alt="" width={100} height={100} /> */}
+				<TypedText className="text-theme text-base font-semibold mt-5 mb-2" delay={2}>
 					Enter your email
 				</TypedText>
 				<InputField

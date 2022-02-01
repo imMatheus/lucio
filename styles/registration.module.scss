@@ -1,16 +1,27 @@
 @use 'sass:math';
 @use 'colors';
-// $modal-bg: #0c162d;
-// $color-blue: #388659;
-// $color-green: #eff2c0;
-$shadow-number: 6;
+$shadow-number: 8;
 $offset-x: 8px;
 $offset-y: -8px;
+$shadow-number2: 12;
+$offset-x2: 6px;
+$offset-y2: -6px;
 $value: ();
+$value2: ();
 
 @for $i from 0 through ($shadow-number) {
 	$theShadow: $offset-x * $i $offset-y * $i 0px mix(colors.$theme, colors.$bg, math.div(100%, $shadow-number) * ($i));
 	$value: append($value, $theShadow, comma);
+}
+
+@for $i from 0 through ($shadow-number2) {
+	$theShadow: $offset-x2 *
+		$i
+		$offset-y2 *
+		$i
+		0px
+		mix(colors.$theme, colors.$bg, math.div(100%, $shadow-number2) * ($i));
+	$value2: append($value2, $theShadow, comma);
 }
 
 .modal {
@@ -21,7 +32,11 @@ $value: ();
 	box-shadow: $value;
 	animation: shadowFadeIn 1s;
 
-	/* @apply my-20 p-6 rounded-lg mx-auto; */
+	&:hover {
+		box-shadow: $value2;
+	}
+
+	@apply p-6 transition-shadow rounded-lg mx-auto border border-theme bg-gray-100 dark:bg-gray-900;
 }
 
 .chip {
@@ -37,13 +52,9 @@ $value: ();
 	/* @apply w-16 h-3 mr-2 rounded-lg flex-shrink-0; */
 }
 
-/* .emptyChip {
-	@apply w-16 h-3 mr-2 rounded-lg flex-shrink-0 bg-theme-50 border border-theme-500;
-} */
-
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 600px) {
 	.modal {
-		box-shadow: none;
+		box-shadow: none !important;
 	}
 }
 

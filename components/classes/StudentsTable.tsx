@@ -54,8 +54,8 @@ const StudentsTable: React.FC<StudentsTableProps> = ({}) => {
 			</div>
 			<div className="">
 				<div className="py-2 align-middle inline-block w-full">
-					<div className="shadow overflow-hidden border-b border-neutral-200 sm:rounded-lg">
-						<table className="min-w-full divide-y my-0 divide-neutral-200">
+					<div className="shadow overflow-hidden border-b overflow-x-scroll border-gray-200 sm:rounded-lg">
+						<table className="min-w-full divide-y my-0 divide-gray-200">
 							<thead className="bg-gray-100">
 								<tr>
 									{edit && <Column>Edit</Column>}

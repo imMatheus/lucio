@@ -31,7 +31,7 @@ const Section: React.FC<{ markdown: string }> = ({ markdown }) => {
 		}
 	}, [markdown])
 	return (
-		<div className="bg-gray-200/50 border-b px-4 border-b-neutral-400 mb-1 prose flex justify-between items-center prose-headings:m-0">
+		<div className="bg-gray-200/50 border-b px-4 border-b-gray-400 mb-1 prose flex justify-between items-center prose-headings:m-0">
 			<div>
 				<p className="text-black text-base font-semibold">{markdown}</p>
 			</div>

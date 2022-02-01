@@ -2,10 +2,10 @@
 
 .typedText {
 	--typewriterSpeed: 500ms;
-	// @apply relative w-max;
-	background: red;
+	position: relative;
+	@apply bg-gray-100 dark:bg-gray-900;
 	line-break: break-all;
-	background-color: colors.$bg;
+
 	.before,
 	.after {
 		content: '';
@@ -17,14 +17,14 @@
 	}
 
 	> .before {
-		background: colors.$bg;
 		animation: typewriter var(--typewriterSpeed) forwards;
+		@apply bg-gray-100 dark:bg-gray-900;
 	}
 
 	> .after {
 		width: 0.125em;
-		background: black;
 		animation: typewriter var(--typewriterSpeed) forwards, blink 750ms infinite;
+		@apply bg-gray-900 dark:bg-gray-100;
 	}
 }
 
