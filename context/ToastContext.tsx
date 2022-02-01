@@ -1,27 +1,32 @@
 import React, { createContext, useContext, useState } from 'react'
 
+export type ToastType = 'info' | 'warning' | 'success' | 'error'
+
+interface Toast {
+	message: string | null
+	type: ToastType
+}
+
 interface Context {
-    toastMessage: string | null
-    setToastMessage: React.Dispatch<React.SetStateAction<string | null>>
+	toast: Toast
+	setToast: React.Dispatch<React.SetStateAction<Toast>>
 }
 
 const ToastContext = createContext<Context>({
-    toastMessage: null,
-    setToastMessage: () => null,
+	toast: { message: null, type: 'info' },
+	setToast: () => null
 })
 
 export function useToast() {
-    return useContext(ToastContext)
+	return useContext(ToastContext)
 }
 
 export const ToastProvider: React.FC = ({ children }) => {
-    const [toastMessage, setToastMessage] = useState<string | null>(null)
+	const [toast, setToast] = useState<Toast>({ message: 'hello world', type: 'info' })
 
-    const value = {
-        toastMessage,
-        setToastMessage,
-    }
-    return (
-        <ToastContext.Provider value={value}>{children}</ToastContext.Provider>
-    )
+	const value = {
+		toast,
+		setToast
+	}
+	return <ToastContext.Provider value={value}>{children}</ToastContext.Provider>
 }

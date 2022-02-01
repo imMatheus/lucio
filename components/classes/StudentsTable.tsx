@@ -26,6 +26,7 @@ const StudentsTable: React.FC<StudentsTableProps> = ({}) => {
 		if (classId) {
 			const getParticipants = async () => {
 				const id = Array.isArray(classId) ? classId[0] : classId
+				setLoading(true)
 				const { data }: { data: Data } = await axios.get(`/api/classes/${id}/participants`)
 				console.log('rrrr')
 				console.log(router)
@@ -37,6 +38,7 @@ const StudentsTable: React.FC<StudentsTableProps> = ({}) => {
 					console.log(data.participants[0].userId.email)
 					setStudents(data.participants)
 				}
+				setLoading(false)
 			}
 			getParticipants()
 		}
@@ -48,16 +50,18 @@ const StudentsTable: React.FC<StudentsTableProps> = ({}) => {
 				<Button className="">Invite student</Button>
 				<Button onClick={() => setEdit((c) => !c)}>Edit</Button>
 				{edit + ''}
+				<span className="bg-teal-800 px-2 rounded-md">{loading + ''}</span>
 			</div>
 			<div className="">
 				<div className="py-2 align-middle inline-block w-full">
 					<div className="shadow overflow-hidden border-b border-neutral-200 sm:rounded-lg">
-						<table className="min-w-full divide-y divide-neutral-200">
+						<table className="min-w-full divide-y my-0 divide-neutral-200">
 							<thead className="bg-neutral-100">
 								<tr>
 									{edit && <Column>Edit</Column>}
 									<Column>Name</Column>
 									<Column>Completed homework</Column>
+									<Column>Joined at</Column>
 									<Column>Status</Column>
 									<Column>Role</Column>
 									<th scope="col" className="relative px-6 py-3">
@@ -65,14 +69,15 @@ const StudentsTable: React.FC<StudentsTableProps> = ({}) => {
 									</th>
 								</tr>
 							</thead>
-							{students.map(({ userId: { email, username } }) => {
+							{students.map(({ userId, role, joinedAt }) => {
 								return (
 									<StudentCard
-										key={username}
-										name={username}
-										email={email}
+										key={userId._id}
+										user={userId}
 										loading={loading}
 										edit={edit}
+										role={role}
+										joinedAt={joinedAt}
 									/>
 								)
 							})}

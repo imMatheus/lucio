@@ -1,6 +1,6 @@
 import React from 'react'
 import Navbar from '@/components/navbar'
-import Toast from '@/components/Toast'
+import Toast from '@/components/toast'
 import { useModal } from '@/context/ModalContext'
 import MarkdownModal from '@/components/modals/MarkdownModal'
 const Layout: React.FC = ({ children }) => {

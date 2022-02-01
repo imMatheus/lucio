@@ -14,12 +14,12 @@ const Index: NextPage = () => {
 	const [loading, setLoading] = useState(false)
 	const classId = router.query.classId
 	const [classData, loadingClassData] = useClassData(classId)
-	const { setToastMessage } = useToast()
+	const { setToast } = useToast()
 
 	async function addHomeworkHandler() {
-		if (loading) return setToastMessage('could not add homework cuz it was loading')
+		if (loading) return setToast({ message: 'could not add homework cuz it was loading', type: 'error' })
 		try {
-			if (!classData) return setToastMessage('Could not find class')
+			if (!classData) return setToast({ message: 'could not find class', type: 'error' })
 			setLoading(true)
 
 			// const docRef = doc(collection(fs, `classes/${classId}/homework`))
@@ -36,14 +36,17 @@ const Index: NextPage = () => {
 			// if (docRef.id) {
 			// 	return router.push(`/classes/${classData.id}/homework/add/${docRef.id}`)
 			// }
-			setToastMessage('Could not create new homework, please try again')
+			setToast({ message: 'Could not create new homework, please try again', type: 'error' })
 		} catch (error) {
-			setToastMessage('Could not create new homework, please try again because something went wrong')
+			setToast({
+				message: 'Could not create new homework, please try again because something went wrong',
+				type: 'error'
+			})
 		}
 	}
 
 	return (
-		<section className="py-8 px-6">
+		<section className="py-8 px-3 sm:px-6 lg:px-8">
 			<Head>
 				<title>{classData?.name} | Homework</title>
 				<meta property="og:title" content="My page title" key="title" />

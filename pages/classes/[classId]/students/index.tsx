@@ -17,7 +17,7 @@ const Students: NextPage = () => {
 	console.log(classData?.participants[0])
 
 	return (
-		<section className="py-8 px-6">
+		<section className="py-8 px-3 sm:px-6 lg:px-8">
 			<Head>
 				<title>{classData?.name} | Students</title>
 				<meta property="og:title" content={`${classData?.name} | Students`} key="title" />

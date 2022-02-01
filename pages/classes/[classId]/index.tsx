@@ -14,7 +14,7 @@ export default function ClassScreen(): ReactElement {
 	const [classData, loading] = useClassData(classId)
 
 	return (
-		<section className="py-8 px-6">
+		<section className="py-8 px-3 sm:px-6 lg:px-8">
 			<Head>
 				<title>{classData?.name}</title>
 				<meta property="og:title" content="My page title" key="title" />

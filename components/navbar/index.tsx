@@ -26,7 +26,10 @@ export default function Navbar(): ReactElement {
 	}, [navbarRef])
 
 	return (
-		<nav className="border-b border-b-neutral-400 px-8 py-4 bg-neutral-100 dark:bg-neutral-800" ref={navbarRef}>
+		<nav
+			className="border-b border-b-neutral-400 px-3 sm:px-6 lg:px-8 py-4 bg-neutral-100 dark:bg-neutral-800"
+			ref={navbarRef}
+		>
 			<div className="w-maxed mx-auto">
 				<div className="flex text-sm mx-auto">
 					<section className="flex flex-1 items-center">
