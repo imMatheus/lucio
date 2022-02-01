@@ -1,0 +1,21 @@
+.chip {
+	@apply px-2 py-0.5 inline-flex text-xs font-semibold rounded-full;
+}
+
+.active,
+.inactive,
+.dnd {
+	@extend .chip;
+}
+
+.active {
+	@apply bg-green-100 text-green-800;
+}
+
+.inactive {
+	@apply bg-red-100 text-red-800;
+}
+
+.dnd {
+	@apply bg-amber-100 text-amber-800;
+}

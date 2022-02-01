@@ -9,10 +9,11 @@ type Data = {
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
 	await run()
+	console.log(req.query)
 
 	const problems = await Problem.find()
-	console.log('problems')
-	console.log(problems)
+	// console.log('problems')
+	// console.log(problems)
 
 	// const problems = await Problem.find({ ...req.query })
 

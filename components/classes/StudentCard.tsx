@@ -3,6 +3,8 @@ import styles from '../../styles/studentstable.module.scss'
 import Image from 'next/image'
 import SVG from 'react-inlinesvg'
 import { UserInterface } from '@models/User'
+import { capitalizeFirstLetter, convertDate } from '@/utils/index'
+import StatusChip from './statuschip'
 
 interface Props {
 	user: UserInterface
@@ -45,26 +47,24 @@ export default function StudentCard({ user, role, joinedAt, edit, loading }: Pro
 							<div className="text-sm font-medium text-neutral-900 dark:text-ketchup">
 								{loading ? <SkeletonText className="mb-1" min={9} max={13} /> : user.username}
 							</div>
-							<div className="text-sm text-neutral-600">
+							<div className="text-sm text-neutral-500">
 								{loading ? <SkeletonText min={9} max={15} /> : user.email}
 							</div>
 						</div>
 					</div>
 				</td>
-				<td className="px-6 whitespace-nowrap">
-					hej
-					{/* <div className="text-sm">{loading ? <SkeletonText min={3} max={7} /> : '12/13'}</div> */}
+				<td className="px-6 py-4 whitespace-nowrap">
+					{/* <div className="text-sm text-gray-900">Regional Paradigm Technician</div> */}
+					<div className="text-sm text-neutral-500">{convertDate(joinedAt)}</div>
 				</td>
 				<td className="px-6 py-4 whitespace-nowrap">
-					<div className="text-sm">{loading ? <SkeletonText min={3} max={7} /> : joinedAt}</div>
+					<div className="text-sm text-neutral-500">{convertDate(joinedAt)}</div>
 				</td>
-				<td className="px-6 py-4 whitespace-nowrap">
-					<span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-						Active
-					</span>
+				<td className="px-6 py-4 whitespace-nowrap items-center">
+					<StatusChip status="dnd" />
 				</td>
 				<td className="px-6 py-4 whitespace-nowrap text-sm">
-					{loading ? <SkeletonText min={4} max={8} /> : role}
+					{loading ? <SkeletonText min={4} max={8} /> : capitalizeFirstLetter(role)}
 				</td>
 				<td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
 					<a href="#" className="text-theme hover:text-theme-800">

@@ -1,4 +1,5 @@
 export { capitalizeFirstLetter } from './capitalizeFirstLetter'
-export { validateThemeColors } from './validateClassThemeColors'
-export { run } from './mongodb'
+export { convertDate } from './convertDate'
 export { generateNewLink } from './generateCode'
+export { run } from './mongodb'
+export { validateThemeColors } from './validateClassThemeColors'
