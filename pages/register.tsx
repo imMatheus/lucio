@@ -18,11 +18,8 @@ import { useRouter } from 'next/router'
 export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
 	const cookies = new Cookies(req, res)
 
-	console.log('hhhhhhhhhhhhh')
-
 	// get token from the users cookie
 	const token = cookies.get('jwt')
-	console.log('token', token)
 
 	if (!token) {
 		return {
@@ -41,8 +38,6 @@ export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
 			token
 		}
 	})
-	console.log('*************************')
-	console.log(data)
 
 	if (data.user) {
 		res.statusCode = 302
@@ -75,8 +70,6 @@ export default function Register(): ReactElement {
 
 	async function signupHandler() {
 		const res = await signup(email, password, username)
-		console.log('res from await')
-		console.log(res)
 	}
 
 	const buff = new Buffer(avatar)

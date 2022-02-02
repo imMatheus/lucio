@@ -12,9 +12,7 @@ export async function run(): Promise<void> {
 		bufferCommands: false
 	}
 
-	console.log('connecting')
 	await mongoose.connect(process.env.MONGODB_URI, opts)
-	console.log('connected')
 }
 
 run().catch((err) => console.error(err))

@@ -47,9 +47,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 		await classRoom.updateOne({ $push: { participants: { userId: userId } } })
 		await classRoom.save()
 
-		console.log('classrom')
-		console.log(classRoom)
-
 		res.status(200).json({ message: null, classRoom })
 	} catch (error) {
 		res.status(400).json({ message: 'Could not find class or the user is not signed in', classRoom: null })

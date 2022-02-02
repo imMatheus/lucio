@@ -9,7 +9,6 @@ import { Data } from '@/returns/api/signup'
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<Data>) {
 	if (!process.env.JWT_SIGN_SALT) {
-		console.log(2)
 		res.status(500).json({ token: null, user: null, message: 'Internal server error' })
 		return
 	}
@@ -30,7 +29,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 		const user = await User.create(userData)
 
 		if (!user || !user._id) {
-			console.log(7)
 			res.status(400).json({ token: null, user: null, message: 'Invalid user name' })
 
 			return

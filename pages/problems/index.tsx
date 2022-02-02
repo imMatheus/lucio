@@ -20,9 +20,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
 	// const response: any[] = await axios.get('http://localhost:3000/api/problems')
 	const { data }: { data: Data } = await axios.get('http://localhost:3000/api' + url)
-	console.log('response')
-	console.log(url)
-	console.log(data.problems)
 
 	// const problems: AlgorithmProblem[] = data.map((prob: any) => prob as AlgorithmProblem)
 

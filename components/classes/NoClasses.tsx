@@ -25,8 +25,6 @@ const NoClasses: React.FC<NoClassesProps> = ({}) => {
 						const { data }: { data: Data } = await axios.post('/api/classes/join', {
 							code
 						})
-						console.log('-__________________________________')
-						console.log(data)
 						if (data.classRoom) {
 							router.push(`/classes/${data.classRoom._id}`)
 						}

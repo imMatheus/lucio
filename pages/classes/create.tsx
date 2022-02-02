@@ -26,10 +26,6 @@ const Create: NextPage = () => {
 			privacy,
 			theme: colors
 		})
-		console.log('this is the shiii')
-
-		console.log(res)
-		console.log(res.status)
 		if (res.status === 200) router.push('/classes')
 	}
 
@@ -46,7 +42,6 @@ const Create: NextPage = () => {
 			</div>
 		)
 	}
-	console.log(PrivacyEnum)
 
 	return (
 		<div className="p-4 md:p-6 min-h-full-wo-nav bg-gray-200/40 dark:bg-gray-900">

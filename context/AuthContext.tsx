@@ -37,17 +37,13 @@ export const AuthProvider: React.FC = ({ children }) => {
 
 	const fetchUser = async () => {
 		setFetchingUser(true)
-		console.log('shiiiii')
 
 		const { data }: { data: meData } = await axios.get('/api/auth/me')
 		setFetchingUser(false)
 		if (!data || !data.user || !data.token) return setCurrentUser(null)
 
 		setCurrentUser(data.user)
-		console.log('res', data)
 	}
-
-	console.log('currentUser: ', currentUser)
 
 	const signup = async (email: string, password: string, username: string) => {
 		try {
@@ -56,14 +52,12 @@ export const AuthProvider: React.FC = ({ children }) => {
 				email,
 				username
 			})
-			console.log('res: ', data)
 
 			if (data.user) {
 				await fetchUser()
 			}
 		} catch (error) {
 			alert(error)
-			console.log('shit happened on line 44')
 
 			console.error(error)
 		}
@@ -76,10 +70,6 @@ export const AuthProvider: React.FC = ({ children }) => {
 		})
 
 		if (data.success) await fetchUser()
-
-		console.log('sheeeee')
-
-		console.log(data)
 	}
 
 	const logout = async () => {

@@ -9,12 +9,8 @@ import { useRouter } from 'next/router'
 const Students: NextPage = () => {
 	const router = useRouter()
 	const classId = router.query.classId
-	console.log(444444)
-	console.log(classId)
 
 	const [classData, loadingClassData] = useClassData(classId)
-	console.log('asasasasasassa------classData')
-	console.log(classData?.participants[0])
 
 	return (
 		<section className="py-8 px-3 sm:px-6 lg:px-8">

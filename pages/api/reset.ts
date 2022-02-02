@@ -11,11 +11,6 @@ type Data = {
 }
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<Data>) {
-	console.log('req')
-	console.log(req)
-	console.log('res')
-	console.log(res)
-
 	// const t1 =
 	// 	'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtZW5kZXMiOiJtYXRoZXVzIiwiaWF0IjoxNjQxNjkyMTQ2fQ.fjtNwo2qY9sJILp4CLbuPSiXzotj18hpr7KBgIPWAsc'
 	// const t2 =

@@ -68,10 +68,6 @@ export default function ClassScreen(): ReactElement {
 // This gets called on every request
 // export const getServerSideProps: GetServerSideProps = async (context) => {
 // 	const id = context.params?.id;
-// 	let data: ClassType | null = null;
-// 	console.log('inside server side props');
-// 	console.log('gggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg');
-// 	console.log(auth);
 
 // 	if (id) {
 // 		data = await getClass(Array.isArray(id) ? id[0] : id);

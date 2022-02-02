@@ -75,7 +75,6 @@ const SignInModal: React.FC = () => {
 
 								try {
 									const res = await login(emailRef.current.value, passwordRef.current.value)
-									console.log('absbvafad')
 									console.log(res)
 								} catch (error) {
 									setLoading(false)

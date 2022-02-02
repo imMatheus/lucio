@@ -18,11 +18,9 @@ interface Props {
 
 export const getServerSideProps: GetServerSideProps<Props> = async ({ req, res }) => {
 	const cookies = new Cookies(req, res)
-	console.log('hhhhhhhhhhhhh')
 
 	// get token from the users cookie
 	const token = cookies.get('jwt')
-	console.log('token', token)
 
 	if (!token) {
 		return {
@@ -36,17 +34,12 @@ export const getServerSideProps: GetServerSideProps<Props> = async ({ req, res }
 		}
 	})
 
-	console.log('classes 34 data')
-	console.log(classes.data)
-
 	return {
 		props: { classes: classes.data }
 	}
 }
 
 const Classes: NextPage<Props> = ({ classes }) => {
-	console.log('classes')
-	console.log(classes)
 	const router = useRouter()
 
 	// https://dribbble.com/shots/14653202-Coursebook-Your-Education-Platform
@@ -68,8 +61,6 @@ const Classes: NextPage<Props> = ({ classes }) => {
 							const { data }: { data: Data } = await axios.post('/api/classes/join', {
 								code
 							})
-							console.log('-__________________________________')
-							console.log(data)
 							if (data.classRoom) {
 								router.push(`/classes/${data.classRoom._id}`)
 							}
