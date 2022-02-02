@@ -54,10 +54,10 @@
 }
 
 .option {
-	@apply px-3 py-2 border-b-2 border-b-transparent cursor-pointer;
+	@apply px-3 py-2 border-b-2 transition-colors border-b-transparent hover:border-b-gray-200 dark:hover:border-b-gray-700;
 }
 
 .optionActive {
 	@extend .option;
-	@apply border-b-theme;
+	@apply border-b-theme hover:border-b-theme;
 }
