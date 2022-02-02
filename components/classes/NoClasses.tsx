@@ -12,7 +12,9 @@ const NoClasses: React.FC<NoClassesProps> = ({}) => {
 			<p className="text-sm md:text-base m-0">You can join a class or you can create a class</p>
 			<div className="flex justify-center gap-3 md:gap-4 my-3">
 				<Link href="/classes/create" passHref={true}>
-					<Button>Create class</Button>
+					<a>
+						<Button>Create class</Button>
+					</a>
 				</Link>
 				<Button
 					onClick={async () => {

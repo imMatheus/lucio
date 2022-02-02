@@ -35,28 +35,30 @@ const SidebarTab: React.FC<SidebarTabProps> = ({ date, name, text, image, route 
 	}
 	return (
 		<Link passHref={true} href={route}>
-			<div className={styles.tab + (router.asPath === route ? ' ' + styles.active : '')}>
-				<div className={styles.tabAvatar}>
-					<Image
-						src={image}
-						className="rounded-full"
-						alt="me"
-						layout="intrinsic"
-						width="100%"
-						height="100%"
-					/>
-					<div className={styles.status} />
-				</div>
-				<div className="flex-1">
-					<div className="flex justify-between">
-						<p className={styles.name}>{name}</p>
-						<p className="flex-shrink-0">{getDate()}</p>
+			<a>
+				<div className={styles.tab + (router.asPath === route ? ' ' + styles.active : '')}>
+					<div className={styles.tabAvatar}>
+						<Image
+							src={image}
+							className="rounded-full"
+							alt="me"
+							layout="intrinsic"
+							width="100%"
+							height="100%"
+						/>
+						<div className={styles.status} />
 					</div>
-					<div className={styles.message}>
-						<p>{text}</p>
+					<div className="flex-1">
+						<div className="flex justify-between">
+							<p className={styles.name}>{name}</p>
+							<p className="flex-shrink-0">{getDate()}</p>
+						</div>
+						<div className={styles.message}>
+							<p>{text}</p>
+						</div>
 					</div>
 				</div>
-			</div>
+			</a>
 		</Link>
 	)
 }

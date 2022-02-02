@@ -11,7 +11,9 @@ const TopBarOption: React.FC<TopBarOptionProps> = ({ children, link }) => {
 	const active = router.asPath === link
 	return (
 		<Link href={link} passHref={true}>
-			<div className={active ? styles.optionActive : styles.option}>{children}</div>
+			<a>
+				<div className={active ? styles.optionActive : styles.option}>{children}</div>
+			</a>
 		</Link>
 	)
 }
@@ -22,9 +24,8 @@ const ClassNavbar: React.FC = () => {
 
 	return (
 		<div>
-			<div className="flex border-b">
+			<div className="flex border-b gap-3">
 				<TopBarOption link={`/classes/${classId}`}>Class</TopBarOption>
-
 				<TopBarOption link={`/classes/${classId}/homework`}>Homework</TopBarOption>
 				<TopBarOption link={`/classes/${classId}/students`}>Students</TopBarOption>
 			</div>

@@ -27,6 +27,7 @@ export const getServerSideProps: GetServerSideProps<Props> = async ({ req, res }
 			props: { classes: [] }
 		}
 	}
+
 	const classes = await axios.get('http://localhost:3000/api/classes/mine', {
 		headers: {
 			token
@@ -49,10 +50,12 @@ const Classes: NextPage<Props> = ({ classes }) => {
 
 	return (
 		<section className="py-8 px-3 sm:px-6 lg:px-8">
-			<main className="w-maxed mx-auto relative min-h-full-wo-nav">
+			<main className="w-maxed mx-auto relative">
 				<div className="flex mb-3 gap-2">
 					<Link href="/classes/create" passHref={true}>
-						<Button>Create class</Button>
+						<a>
+							<Button>Create class</Button>
+						</a>
 					</Link>
 
 					<Button

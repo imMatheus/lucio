@@ -34,9 +34,11 @@ export default function Navbar(): ReactElement {
 				<div className="flex text-sm mx-auto">
 					<section className="flex flex-1 items-center">
 						<Link href="/" passHref={true}>
-							<h4 className="text-2xl font-bold 2xl:text-4xl 2xl:font-extrabold text-gray-700 dark:text-gray-50 mr-auto cursor-pointer">
-								Luciocode
-							</h4>
+							<a className="mr-auto">
+								<h4 className="text-2xl font-bold 2xl:text-4xl 2xl:font-extrabold text-gray-700 dark:text-gray-50 cursor-pointer">
+									Luciocode
+								</h4>
+							</a>
 						</Link>
 						<div className="hidden md:flex items-center gap-3">
 							<NavLink href="/classes">Classes</NavLink>

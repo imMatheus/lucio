@@ -27,11 +27,11 @@ const Registration: React.FC = ({}) => {
 				Markdown
 			</Button>
 
-			<Button>
-				<Link href="/register" passHref={true}>
-					Sign up
-				</Link>
-			</Button>
+			<Link href="/register" passHref={true}>
+				<a>
+					<Button>Sign up</Button>
+				</a>
+			</Link>
 		</div>
 	)
 }
