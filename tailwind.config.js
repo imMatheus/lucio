@@ -26,11 +26,16 @@ module.exports = {
 				'theme-300': '#6C99FF',
 				'theme-400': '#3B77FF',
 				'theme-500': '#2266ff',
-				'theme-600': '#1F5DE8',
-				'theme-700': '#1C53D1',
-				'theme-800': '#194AB9',
-				'theme-900': '#1641A2',
-				'theme-1000': '#143B93'
+				'theme-600': '#1D57D9',
+				'theme-700': '#1947B3',
+				'theme-800': '#14388D',
+				'theme-900': '#102866',
+				'theme-1000': '#0B1940'
+				// 'theme-600': '#1F5DE8',
+				// 'theme-700': '#1C53D1',
+				// 'theme-800': '#194AB9',
+				// 'theme-900': '#1641A2',
+				// 'theme-1000': '#143B93'
 
 				// bg: 'var(--bg)',
 				// bgDimmed: 'var(--bg-dimmed)',

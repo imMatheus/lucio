@@ -53,9 +53,7 @@ const Index: NextPage = () => {
 			</Head>
 			{classId && <ClassNavbar />}
 			homework
-			<div>
-				<Button onClick={addHomeworkHandler}>Create new homework</Button>
-			</div>
+			<Button onClick={addHomeworkHandler}>Create new homework</Button>
 			<p>hello</p>
 			{loadingClassData + ''}
 			<div>{/* <HomeworkCard key={homework.id} homework={homework} /> */}</div>

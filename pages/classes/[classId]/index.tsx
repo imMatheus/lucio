@@ -21,13 +21,6 @@ export default function ClassScreen(): ReactElement {
 			</Head>
 			<section className="w-maxed mx-auto">
 				{classId && <ClassNavbar />}
-				<div className="flex my-3 gap-2">
-					<Button variant="dimmed">Join class</Button>
-					<Button>Create class</Button>
-					<div className="ml-auto">
-						<Button variant="error">Leave class</Button>
-					</div>
-				</div>
 				<h2>class data</h2>
 				<div>{/* <h4>{classData && JSON.stringify(classData)}</h4> */}</div>
 			</section>

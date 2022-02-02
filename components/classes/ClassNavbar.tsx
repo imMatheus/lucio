@@ -23,12 +23,10 @@ const ClassNavbar: React.FC = () => {
 	const { classId } = router.query
 
 	return (
-		<div>
-			<div className="flex border-b gap-3">
-				<TopBarOption link={`/classes/${classId}`}>Class</TopBarOption>
-				<TopBarOption link={`/classes/${classId}/homework`}>Homework</TopBarOption>
-				<TopBarOption link={`/classes/${classId}/students`}>Students</TopBarOption>
-			</div>
+		<div className="flex border-b border-gray-300 dark:border-gray-800 gap-3">
+			<TopBarOption link={`/classes/${classId}`}>Class</TopBarOption>
+			<TopBarOption link={`/classes/${classId}/homework`}>Homework</TopBarOption>
+			<TopBarOption link={`/classes/${classId}/students`}>Students</TopBarOption>
 		</div>
 	)
 }

@@ -67,7 +67,6 @@ const Problems: NextPage<Props> = ({ problems, ...props }) => {
 
 	return (
 		<div className="w-maxed w-full mx-auto my-4 p-4">
-			problems
 			<div className="my-2 flex gap-2">
 				<Dropdown title="Difficulty">
 					<div className="mb-1 text-olive dark:text-oliveDark" onClick={() => setDifficulty(Difficulty.easy)}>

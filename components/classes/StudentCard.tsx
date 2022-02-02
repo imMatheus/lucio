@@ -53,7 +53,6 @@ export default function StudentCard({ user, role, joinedAt, edit, loading }: Pro
 					</div>
 				</td>
 				<td className="px-6 py-4 whitespace-nowrap">
-					{/* <div className="text-sm text-gray-900">Regional Paradigm Technician</div> */}
 					<div className="text-sm text-gray-500">
 						{loading ? <SkeletonText min={6} max={10} /> : convertDate(joinedAt)}
 					</div>
@@ -67,7 +66,13 @@ export default function StudentCard({ user, role, joinedAt, edit, loading }: Pro
 					<StatusChip status="dnd" loading={true} />
 				</td>
 				<td className="px-6 py-4 whitespace-nowrap text-sm">
-					{loading ? <SkeletonText min={4} max={8} /> : capitalizeFirstLetter(role)}
+					{loading ? (
+						<SkeletonText min={4} max={8} />
+					) : role.toLowerCase() === 'admin' ? (
+						<div className="bg-theme-50 text-black w-max p-1 rounded-md">{capitalizeFirstLetter(role)}</div>
+					) : (
+						capitalizeFirstLetter(role)
+					)}
 				</td>
 				<td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
 					<a href="#" className="text-theme hover:text-theme-800">

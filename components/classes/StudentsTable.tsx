@@ -38,7 +38,7 @@ const StudentsTable: React.FC<StudentsTableProps> = ({}) => {
 	}, [router])
 
 	return (
-		<div>
+		<section className="mt-6 mb-2">
 			<div className="flex my-2 gap-2">
 				<Button className="">Invite student</Button>
 				<Button onClick={() => setEdit((c) => !c)}>Edit</Button>
@@ -76,7 +76,7 @@ const StudentsTable: React.FC<StudentsTableProps> = ({}) => {
 					</table>
 				</div>
 			</div>
-		</div>
+		</section>
 	)
 }
 
