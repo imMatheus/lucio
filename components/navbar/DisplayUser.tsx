@@ -18,7 +18,7 @@ const DisplayUser: React.FC<DisplayUserProps> = ({}) => {
 				// <p className="text-xl mx-2">{currentUser.username}</p>
 				<div className="flex gap-2">
 					<div className="text-right">
-						<p className="text-sm text-gray-100">{currentUser.username}</p>
+						<p className="text-sm text-gray-900 dark:text-gray-100">{currentUser.username}</p>
 						<p className="text-sm text-gray-500">{currentUser.email}</p>
 					</div>
 					<div className="w-10 h-10 relative cursor-pointer">

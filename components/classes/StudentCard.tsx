@@ -15,7 +15,6 @@ interface Props {
 }
 
 const SkeletonText = ({ className, min, max }: { className?: string; min?: number; max?: number }) => {
-	const whiteSpace = '&nbsp;'
 	const _max = max || 14
 	const _min = min || 6
 	const width = Math.floor(Math.random() * (_max - _min + 1)) + _min
@@ -45,23 +44,27 @@ export default function StudentCard({ user, role, joinedAt, edit, loading }: Pro
 						</div>
 						<div className="ml-4">
 							<div className="text-sm font-medium text-gray-900 dark:text-gray-100">
-								{loading ? <SkeletonText className="mb-1" min={9} max={13} /> : user.username}
+								{loading ? <SkeletonText className="mb-1" min={8} max={15} /> : user.username}
 							</div>
 							<div className="text-sm text-gray-500">
-								{loading ? <SkeletonText min={9} max={15} /> : user.email}
+								{loading ? <SkeletonText min={12} max={22} /> : user.email}
 							</div>
 						</div>
 					</div>
 				</td>
 				<td className="px-6 py-4 whitespace-nowrap">
 					{/* <div className="text-sm text-gray-900">Regional Paradigm Technician</div> */}
-					<div className="text-sm text-gray-500">{convertDate(joinedAt)}</div>
+					<div className="text-sm text-gray-500">
+						{loading ? <SkeletonText min={6} max={10} /> : convertDate(joinedAt)}
+					</div>
 				</td>
 				<td className="px-6 py-4 whitespace-nowrap">
-					<div className="text-sm text-gray-500">{convertDate(joinedAt)}</div>
+					<div className="text-sm text-gray-500">
+						{loading ? <SkeletonText min={6} max={10} /> : convertDate(joinedAt)}
+					</div>
 				</td>
 				<td className="px-6 py-4 whitespace-nowrap items-center">
-					<StatusChip status="dnd" />
+					<StatusChip status="dnd" loading={true} />
 				</td>
 				<td className="px-6 py-4 whitespace-nowrap text-sm">
 					{loading ? <SkeletonText min={4} max={8} /> : capitalizeFirstLetter(role)}

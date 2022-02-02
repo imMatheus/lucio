@@ -4,7 +4,7 @@
 
 .skeletonText {
 	@extend .skeleton;
-	@apply bg-gray-400 w-max rounded-lg text-transparent text-xs;
+	@apply bg-gray-400 w-max rounded-lg text-transparent leading-3 text-xs;
 }
 
 .skeletonImage {
