@@ -11,28 +11,28 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 		return
 	}
 
-	// connect to mongo
-	await run()
-
-	const cookies = new Cookies(req, res)
-	if (req.headers.token) {
-		const token = req.headers.token
-
-		const cookie: any = jwt.verify(Array.isArray(token) ? token[0] : token, process.env.JWT_SIGN_SALT)
-		const user = await User.findById(cookie._id)
-		res.status(200).json({ user, token: 'asd', message: null })
-		return
-	}
-
-	// get token from the users cookie
-	const token = cookies.get('jwt')
-
-	if (!token) {
-		res.status(200).json({ user: null, token: null, message: 'User is not signed in' })
-		return
-	}
-
 	try {
+		// connect to mongo
+		await run()
+
+		const cookies = new Cookies(req, res)
+		if (req.headers.token) {
+			const token = req.headers.token
+
+			const cookie: any = jwt.verify(Array.isArray(token) ? token[0] : token, process.env.JWT_SIGN_SALT)
+			const user = await User.findById(cookie._id)
+			res.status(200).json({ user, token: 'asd', message: null })
+			return
+		}
+
+		// get token from the users cookie
+		const token = cookies.get('jwt')
+
+		if (!token) {
+			res.status(200).json({ user: null, token: null, message: 'User is not signed in' })
+			return
+		}
+
 		const cookie: any = jwt.verify(token, process.env.JWT_SIGN_SALT)
 		const user = await User.findById(cookie._id)
 		res.status(200).json({ user, token, message: null })
