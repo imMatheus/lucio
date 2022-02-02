@@ -79,7 +79,7 @@ const Classes: NextPage<Props> = ({ classes }) => {
 				) : (
 					<NoClasses />
 				)}
-				{JSON.stringify(classes)}
+				{/* {JSON.stringify(classes)} */}
 			</main>
 		</section>
 	)

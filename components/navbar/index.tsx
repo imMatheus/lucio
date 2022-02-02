@@ -10,6 +10,7 @@ import { useModal } from '@/context/ModalContext'
 import SignInModal from '@/components/modals/SignInModal'
 import NavLink from './NavLink'
 import { useAuth } from '@/context/AuthContext'
+import DisplayUser from './DisplayUser'
 
 export default function Navbar(): ReactElement {
 	const navbarRef = useRef<HTMLElement>(null)
@@ -47,41 +48,7 @@ export default function Navbar(): ReactElement {
 							<Button variant="error" onClick={async () => await logout()}>
 								Logout
 							</Button>
-							<div className="flex items-center border-l border-l-gray-400 dark:border-l-gray-600">
-								{fetchingUser && (
-									<div className="w-8 h-8 mx-2">
-										<Spinner />
-									</div>
-								)}
-								{currentUser && <p className="text-xl mx-2">{currentUser.username}</p>}
-
-								<div className="flex gap-2">
-									<Button
-										onClick={() => {
-											setShowModal(true)
-											setModal('sign-in')
-										}}
-										variant="dimmed"
-									>
-										Sign in
-									</Button>
-									<Button
-										onClick={() => {
-											setShowModal(true)
-											setModal('markdown')
-										}}
-										variant="dimmed"
-									>
-										Markdown
-									</Button>
-
-									<Button>
-										<Link href="/register" passHref={true}>
-											Sign up
-										</Link>
-									</Button>
-								</div>
-							</div>
+							<DisplayUser />
 						</div>
 					</section>
 				</div>

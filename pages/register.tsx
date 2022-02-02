@@ -9,8 +9,48 @@ import { createAvatar } from '@dicebear/avatars'
 import Image from 'next/image'
 import usePasswordStrength from '@/hooks/usePasswordStrength'
 import Head from 'next/head'
-import axios from 'axios'
 import { useAuth } from '@/context/AuthContext'
+import { GetServerSideProps } from 'next'
+import axios from 'axios'
+import Cookies from 'cookies'
+import { useRouter } from 'next/router'
+
+export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
+	const cookies = new Cookies(req, res)
+
+	console.log('hhhhhhhhhhhhh')
+
+	// get token from the users cookie
+	const token = cookies.get('jwt')
+	console.log('token', token)
+
+	if (!token) {
+		return {
+			props: {}
+		}
+	}
+
+	// {
+	// 	headers: {
+	// 		token
+	// 	}
+	// }
+
+	const { data } = await axios.get('http://localhost:3000/api/auth/me', {
+		headers: {
+			token
+		}
+	})
+	console.log('*************************')
+	console.log(data)
+
+	if (data.user) {
+		res.statusCode = 302
+		res.setHeader('Location', `/`) // Replace <link> with your url link
+		return { props: {} }
+	}
+	return { props: {} }
+}
 
 export default function Register(): ReactElement {
 	const [email, setEmail] = useState('')
