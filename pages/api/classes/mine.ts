@@ -38,7 +38,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 		console.log(userId)
 
 		if (!userId) {
-			res.status(400).json({ message: 'The user is not loged in' })
+			res.status(400).json({ message: 'The user is not signed in' })
 			return
 		}
 

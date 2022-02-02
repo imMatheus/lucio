@@ -10,6 +10,8 @@ import Cookies from 'cookies'
 import ClassType from '@/types/ClassType'
 import NoClasses from '@/components/classes/NoClasses'
 import Link from 'next/link'
+import { Data } from '@/types/returns/api/classes/join'
+import { useRouter } from 'next/router'
 interface Props {
 	classes: ClassType[]
 }
@@ -45,6 +47,7 @@ export const getServerSideProps: GetServerSideProps<Props> = async ({ req, res }
 const Classes: NextPage<Props> = ({ classes }) => {
 	console.log('classes')
 	console.log(classes)
+	const router = useRouter()
 
 	// https://dribbble.com/shots/14653202-Coursebook-Your-Education-Platform
 
@@ -62,11 +65,14 @@ const Classes: NextPage<Props> = ({ classes }) => {
 						variant="dimmed"
 						onClick={async () => {
 							const code = prompt('Whats the code?')
-							const res: any = await axios.post('/api/classes/join', {
+							const { data }: { data: Data } = await axios.post('/api/classes/join', {
 								code
 							})
-							console.log('res')
-							console.log(res)
+							console.log('-__________________________________')
+							console.log(data)
+							if (data.classRoom) {
+								router.push(`/classes/${data.classRoom._id}`)
+							}
 						}}
 					>
 						Join class
