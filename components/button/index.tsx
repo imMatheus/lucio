@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from '../../styles/Button.module.scss'
+import styles from '../../styles/button.module.scss'
 
 interface indexProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 	variant?: 'primary' | 'white' | 'dimmed' | 'error' | 'success' | 'warning'

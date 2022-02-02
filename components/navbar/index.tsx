@@ -42,15 +42,12 @@ export default function Navbar(): ReactElement {
 							<NavLink href="/classes">Classes</NavLink>
 							<NavLink href="/messages">Messages</NavLink>
 							<NavLink href="/problems">Problems</NavLink>
-							<NavLink href="/api/auth/login">login</NavLink>
 
-							<p
-								onClick={async () => await logout()}
-								className="text-red-800 bg-red-100 py-1 px-2 rounded-md cursor-pointer"
-							>
-								logout
-							</p>
-							<div className="flex items-center border-l border-l-red-800">
+							{/* <p className="text-red-800 bg-red-100 py-1 px-2 rounded-md cursor-pointer">logout</p> */}
+							<Button variant="error" onClick={async () => await logout()}>
+								Logout
+							</Button>
+							<div className="flex items-center border-l border-l-gray-400 dark:border-l-gray-600">
 								{fetchingUser && (
 									<div className="w-8 h-8 mx-2">
 										<Spinner />
@@ -58,32 +55,32 @@ export default function Navbar(): ReactElement {
 								)}
 								{currentUser && <p className="text-xl mx-2">{currentUser.username}</p>}
 
-								<>
-									<div
-										className="mx-2"
+								<div className="flex gap-2">
+									<Button
 										onClick={() => {
 											setShowModal(true)
 											setModal('sign-in')
 										}}
+										variant="dimmed"
 									>
-										<Button variant="dimmed">Sign in</Button>
-									</div>
-									<div
-										className="mx-2"
+										Sign in
+									</Button>
+									<Button
 										onClick={() => {
 											setShowModal(true)
 											setModal('markdown')
 										}}
+										variant="dimmed"
 									>
-										<Button variant="dimmed">Markdown</Button>
-									</div>
+										Markdown
+									</Button>
 
 									<Button>
 										<Link href="/register" passHref={true}>
 											Sign up
 										</Link>
 									</Button>
-								</>
+								</div>
 							</div>
 						</div>
 					</section>
