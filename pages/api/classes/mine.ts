@@ -12,9 +12,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 		return
 	}
 
-	await run()
-
 	try {
+		await run()
 		const token: any = req.headers.token
 
 		if (!token) {
@@ -39,8 +38,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 		// res.status(200).json([])
 		res.status(200).json(classRooms)
 	} catch (error) {
-		console.log(error)
-
 		res.status(400).json({ message: 'Could not find classes or the user is not signed in' })
 	}
 }

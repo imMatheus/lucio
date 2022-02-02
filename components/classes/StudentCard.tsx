@@ -1,11 +1,10 @@
 import React, { ReactElement } from 'react'
 import styles from '../../styles/studentstable.module.scss'
-import Image from 'next/image'
 import SVG from 'react-inlinesvg'
 import { UserInterface } from '@models/User'
 import { capitalizeFirstLetter, convertDate } from '@/utils/index'
 import StatusChip from './statuschip'
-
+import Image from 'next/image'
 interface Props {
 	user: UserInterface
 	role: 'student' | 'admin'
@@ -34,9 +33,16 @@ export default function StudentCard({ user, role, joinedAt, edit, loading }: Pro
 				)}
 				<td className="px-6 py-4 whitespace-nowrap">
 					<div className="flex items-center">
-						<div className="flex-shrink-0 h-10 w-10">
+						<div className="flex-shrink-0 h-10 w-10 relative">
 							{/* {true ? ( */}
 							<div className={styles.skeletonImage}></div>
+							<Image
+								src="/dino.jpeg"
+								className="rounded-full"
+								objectFit="cover"
+								layout="fill"
+								alt="profile img"
+							/>
 							{/* // ) : (
 							// 	// <SVG className="h-full w-full rounded-full" src={image} />
 							// 	// <Image className="h-full w-full rounded-full" layout="fill" src="/rock.jpeg" alt="" />
@@ -69,7 +75,7 @@ export default function StudentCard({ user, role, joinedAt, edit, loading }: Pro
 					{loading ? (
 						<SkeletonText min={4} max={8} />
 					) : role.toLowerCase() === 'admin' ? (
-						<div className="bg-theme-50 text-black w-max p-1 rounded-md">{capitalizeFirstLetter(role)}</div>
+						<div className="text-theme-300 font-bold">{capitalizeFirstLetter(role)}</div>
 					) : (
 						capitalizeFirstLetter(role)
 					)}

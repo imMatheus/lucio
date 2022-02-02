@@ -7,6 +7,28 @@ import useClassData from '@/hooks/useClassData'
 import Button from '@/components/button'
 import Head from 'next/head'
 import Alert from '@/components/alerts'
+import { userHasAccessToClass } from '@/utils/userHasAccessToClass'
+import { GetServerSideProps } from 'next'
+import Cookies from 'cookies'
+
+export const getServerSideProps: GetServerSideProps = async ({ req, res, query }) => {
+	const { classId } = query
+	const cookies = new Cookies(req, res)
+
+	// get token from the users cookie
+	const token = cookies.get('jwt')
+
+	const resp = await userHasAccessToClass(classId, token)
+
+	if (!resp) {
+		res.statusCode = 302
+		res.setHeader('Location', `/classes`)
+	}
+
+	return {
+		props: {}
+	}
+}
 
 export default function ClassScreen(): ReactElement {
 	const router = useRouter()

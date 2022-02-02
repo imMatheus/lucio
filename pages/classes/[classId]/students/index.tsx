@@ -5,6 +5,28 @@ import StudentsTable from '@/components/classes/StudentsTable'
 import Head from 'next/head'
 import useClassData from '@/hooks/useClassData'
 import { useRouter } from 'next/router'
+import { userHasAccessToClass } from '@/utils/userHasAccessToClass'
+import { GetServerSideProps } from 'next'
+import Cookies from 'cookies'
+
+export const getServerSideProps: GetServerSideProps = async ({ req, res, query }) => {
+	const { classId } = query
+	const cookies = new Cookies(req, res)
+
+	// get token from the users cookie
+	const token = cookies.get('jwt')
+
+	const resp = await userHasAccessToClass(classId, token)
+
+	if (!resp) {
+		res.statusCode = 302
+		res.setHeader('Location', `/classes`)
+	}
+
+	return {
+		props: {}
+	}
+}
 
 const Students: NextPage = () => {
 	const router = useRouter()
