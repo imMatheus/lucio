@@ -44,6 +44,7 @@ export default function Navbar(): ReactElement {
 							<NavLink href="/classes">Classes</NavLink>
 							<NavLink href="/messages">Messages</NavLink>
 							<NavLink href="/problems">Problems</NavLink>
+							<NavLink href="/css">Css</NavLink>
 
 							{/* <p className="text-red-800 bg-red-100 py-1 px-2 rounded-md cursor-pointer">logout</p> */}
 							<Button variant="error" onClick={async () => await logout()}>

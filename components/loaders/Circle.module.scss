@@ -1,0 +1,11 @@
+.bar {
+	transform-origin: left center;
+	transform: rotate(00deg);
+	transition: all 600ms;
+
+	&:hover {
+		transform: rotate(360deg);
+	}
+
+	@apply w-1/2 h-full absolute right-0 top-0 bg-indigo-600/50;
+}
