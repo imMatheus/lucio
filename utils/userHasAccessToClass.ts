@@ -20,9 +20,10 @@ export async function userHasAccessToClass(
 		console.log(3)
 		const id = Array.isArray(str) ? str[0] : str
 
-		const { data }: { data: Data } = await axios.get(`http://localhost:3000/api/classes/${id}/access`, {
+		const res = await fetch(`http://localhost:3000/api/classes/${id}/access`, {
 			headers: { token }
 		})
+		const data: Data = await res.json()
 		console.log(4)
 		console.log(data)
 

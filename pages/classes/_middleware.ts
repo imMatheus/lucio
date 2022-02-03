@@ -1,53 +1,45 @@
 import type { NextFetchEvent, NextRequest } from 'next/server'
+import { NextResponse } from 'next/server'
 import { userHasAccessToClass } from '@/utils/userHasAccessToClass'
-import axios from 'axios'
+import { Data } from '@/types/returns/api/me'
 
 // https://github.com/vercel/examples/blob/main/edge-functions/hostname-rewrites/pages/_middleware.ts
 
 export default function middleware(req: NextRequest, ev: NextFetchEvent) {
-	async function init() {
-		console.log(':::::::::::::::::::::::::::::::::::::::::::')
-		const res = await axios.get('http://localhost:3000/api/auth/me')
-		console.log(res)
+	async function checkIfUserIsSingedIn() {
+		try {
+			const res = await fetch('http://localhost:3000/api/auth/me', {
+				headers: {
+					token: req.cookies.jwt
+				}
+			})
 
-		if (req.page.name?.startsWith('/classes/[classId]') && req.page.params && req.page.params.classId) {
-			console.log('inside')
-			// console.log(req.nextUrl.searchParams)
-			// console.log(req.nextUrl.search)
-			// console.log(req.headers)
+			const data: Data = await res.json()
 
-			const { pathname } = req.nextUrl
-
-			const classId = req.page.params.classId
-			console.log(pathname)
-
-			const resp = await userHasAccessToClass(classId, req.cookies.jwt)
-			console.log(resp)
+			// user is not signed in
+			if (!data.user) {
+				return NextResponse.redirect('/')
+			}
+			return true
+		} catch (error) {
+			console.log(error)
+			return NextResponse.redirect('/')
 		}
 	}
-	init()
 
-	// const { classId } = query
-	// const cookies = new Cookies(req, res)
+	async function init() {
+		const signedIn = await checkIfUserIsSingedIn()
+		if (typeof signedIn !== 'boolean') return signedIn
 
-	// // get token from the users cookie
-	// const token = cookies.get('jwt')
+		// only check if we are in a class, that is that were ot at all the classes screen
+		if (req.page.name?.startsWith('/classes/[classId]') && req.page.params && req.page.params.classId) {
+			const classId = req.page.params.classId
 
-	// if (!resp) {
-	// 	res.statusCode = 302
-	// 	res.setHeader('Location', `/classes`)
-	// }
-
-	// if (pathname.startsWith(`/_sites`)) {
-	// 	return new Response(null, { status: 404 })
-	// }
-
-	// if (
-	// 	!pathname.includes('.') && // exclude all files in the public folder
-	// 	!pathname.startsWith('/api') // exclude all API routes
-	// ) {
-	// 	// rewrite to the current hostname under the pages/sites folder
-	// 	// the main logic component will happen in pages/sites/[site]/index.tsx
-	// 	return NextResponse.rewrite(`/_sites/${currentHost}${pathname}`)
-	// }
+			// true if user has access or false if they dont have access
+			const resp = await userHasAccessToClass(classId, req.cookies.jwt)
+			if (!resp) return NextResponse.redirect('/')
+		}
+		return NextResponse.next()
+	}
+	return init()
 }

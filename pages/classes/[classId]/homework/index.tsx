@@ -8,28 +8,6 @@ import Head from 'next/head'
 import Button from '@/components/button'
 import HomeworkCard from '@/components/classes/HomeworkCard'
 import ClassNavbar from '@/components/classes/ClassNavbar'
-import { GetServerSideProps } from 'next'
-import { userHasAccessToClass } from '@/utils/userHasAccessToClass'
-import Cookies from 'cookies'
-
-export const getServerSideProps: GetServerSideProps = async ({ req, res, query }) => {
-	const { classId } = query
-	const cookies = new Cookies(req, res)
-
-	// get token from the users cookie
-	const token = cookies.get('jwt')
-
-	const resp = await userHasAccessToClass(classId, token)
-
-	if (!resp) {
-		res.statusCode = 302
-		res.setHeader('Location', `/classes`)
-	}
-
-	return {
-		props: {}
-	}
-}
 
 const Index: NextPage = () => {
 	const router = useRouter()
