@@ -40,6 +40,7 @@ const Problems: NextPage<Props> = ({ problems, ...props }) => {
 	const [difficulty, setDifficulty] = useState<Difficulty | ''>(qDifficulty)
 	const [status, setStatus] = useState<Status>(qStatus)
 
+	// changing the url when the a param is changed
 	useEffect(() => {
 		const baseURL = '/problems'
 		type Params = 'difficulty' | 'status'
@@ -83,10 +84,10 @@ const Problems: NextPage<Props> = ({ problems, ...props }) => {
 					</div>
 				</Dropdown>
 				<Dropdown title="Status">
-					<div className="mb-1" onClick={() => setStatus('done')}>
+					<div className="" onClick={() => setStatus('done')}>
 						Done
 					</div>
-					<div className="mb-1" onClick={() => setStatus('tried')}>
+					<div className="" onClick={() => setStatus('tried')}>
 						tried
 					</div>
 				</Dropdown>
