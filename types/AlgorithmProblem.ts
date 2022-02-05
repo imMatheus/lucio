@@ -46,7 +46,7 @@ export enum Difficulty {
 	hard = 'hard'
 }
 
-export default interface AlgorithmProblem {
+export default interface AlgorithmProblem extends Document {
 	name: string
 	markdown: string
 	difficulty: Difficulty

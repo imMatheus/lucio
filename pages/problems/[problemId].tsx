@@ -14,8 +14,9 @@ interface Props {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-	const response = await fetch('http://localhost:3000/api/problems?difficulty=easy')
+	const response = await fetch('http://localhost:3000/api/problems')
 	const data = await response.json()
+	console.log(data)
 
 	const problems: AlgorithmProblem[] = data.map((prob: any) => prob as AlgorithmProblem)
 	const paths = problems.map((problem) => ({
