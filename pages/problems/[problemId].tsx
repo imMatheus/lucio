@@ -18,7 +18,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 	const data = await response.json()
 	console.log(data)
 
-	const problems: AlgorithmProblem[] = data.map((prob: any) => prob as AlgorithmProblem)
+	const problems: AlgorithmProblem[] = data.problems.map((prob: any) => prob as AlgorithmProblem)
 	const paths = problems.map((problem) => ({
 		params: { problemId: problem.name }
 	}))
@@ -55,37 +55,37 @@ const Problem: NextPage<Props> = ({ markdown }) => {
 		setIsDragging(true)
 	}
 
-	// useEffect(() => {
-	// 	if (!resizeBarRef) return
-	// 	document.addEventListener('mousemove', function (e) {
-	// 		if (!isDragging || !questionRef?.current) return
+	useEffect(() => {
+		if (!resizeBarRef) return
+		document.addEventListener('mousemove', function (e) {
+			if (!isDragging || !questionRef?.current) return
 
-	// 		let barWidth = resizeBarRef.current?.clientWidth || 0
-	// 		//setting width to the mouse x cord or to a min or max value specified in the css
-	// 		var pointerRelativeXpos = e.clientX
+			let barWidth = resizeBarRef.current?.clientWidth || 0
+			//setting width to the mouse x cord or to a min or max value specified in the css
+			var pointerRelativeXpos = e.clientX
 
-	// 		questionRef.current.style.width = pointerRelativeXpos - barWidth + 'px'
-	// 	})
+			questionRef.current.style.width = pointerRelativeXpos - barWidth + 'px'
+		})
 
-	// 	document &&
-	// 		document.addEventListener('mouseup', function (e) {
-	// 			// Turn off dragging flag when user mouse is up
-	// 			setIsDragging(false)
-	// 		})
-	// }, [resizeBarRef.current, mouseDownHandler, document])
+		document &&
+			document.addEventListener('mouseup', function (e) {
+				// Turn off dragging flag when user mouse is up
+				setIsDragging(false)
+			})
+	}, [resizeBarRef.current, mouseDownHandler])
 
 	return (
 		<section className="grid grid-cols-[auto_auto_1fr] h-full-wo-nav">
 			<Question ref={questionRef} markdown={markdown} />
 			<div
 				ref={resizeBarRef}
-				className="w-2 h-full bg-gray-200 dark:bg-gray-700/70 cursor-ew-resize flex flex-col justify-center items-center gap-1"
+				className="w-2 h-full bg-gray-300 dark:bg-gray-700 cursor-ew-resize flex flex-col justify-center items-center gap-1"
 				onMouseDown={mouseDownHandler}
 			>
-				<div className="w-0.5 h-0.5 rounded-full bg-gray-500 dark:bg-gray-200"></div>
-				<div className="w-0.5 h-0.5 rounded-full bg-gray-500 dark:bg-gray-200"></div>
-				<div className="w-0.5 h-0.5 rounded-full bg-gray-500 dark:bg-gray-200"></div>
-				<div className="w-0.5 h-0.5 rounded-full bg-gray-500 dark:bg-gray-200"></div>
+				<div className="w-0.5 h-0.5 rounded-full bg-gray-600 dark:bg-gray-200"></div>
+				<div className="w-0.5 h-0.5 rounded-full bg-gray-600 dark:bg-gray-200"></div>
+				<div className="w-0.5 h-0.5 rounded-full bg-gray-600 dark:bg-gray-200"></div>
+				<div className="w-0.5 h-0.5 rounded-full bg-gray-600 dark:bg-gray-200"></div>
 			</div>
 		</section>
 	)

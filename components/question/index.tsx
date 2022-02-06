@@ -38,15 +38,18 @@ const Question = React.forwardRef<HTMLElement, QuestionProps>(({ markdown }, ref
 			<article className="py-10 sm:py-12">
 				<div
 					className="px-6 prose prose-neutral dark:prose-invert
-					prose-headings:text-theme-800
+					prose-headings:text-gray-900
+					dark:prose-headings:text-theme-50
 					prose-li:marker:text-theme-1000
-					dark:prose-li:marker:text-theme-300
-					prose-strong:text-theme-500
-					prose-strong:bg-theme-100/20
-					dark:prose-strong:text-theme-500
-					dark:prose-strong:bg-theme-200/10
-					prose-strong:py-1
+					dark:prose-li:marker:text-gray-100
+					prose-strong:text-gray-900
+					prose-strong:bg-gray-900/10
+					dark:prose-strong:text-gray-50
+					dark:prose-strong:bg-gray-600/10
+					prose-strong:py-0.5
 					prose-strong:px-2
+					text-gray-800
+					dark:text-gray-200
 					prose-strong:rounded-lg
 					max-w-none
 					prose-img:max-w-[min(48rem,_100%)]

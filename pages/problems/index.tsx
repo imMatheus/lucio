@@ -64,7 +64,7 @@ const Problems: NextPage<Props> = ({ problems, ...props }) => {
 		} else {
 			router.push(baseURL)
 		}
-	}, [difficulty, status])
+	}, [difficulty, status, router])
 
 	return (
 		<div className="w-maxed w-full mx-auto my-4 p-4">
