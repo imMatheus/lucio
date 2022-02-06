@@ -55,24 +55,24 @@ const Problem: NextPage<Props> = ({ markdown }) => {
 		setIsDragging(true)
 	}
 
-	useEffect(() => {
-		if (!resizeBarRef) return
-		document.addEventListener('mousemove', function (e) {
-			if (!isDragging || !questionRef?.current) return
+	// useEffect(() => {
+	// 	if (!resizeBarRef) return
+	// 	document.addEventListener('mousemove', function (e) {
+	// 		if (!isDragging || !questionRef?.current) return
 
-			let barWidth = resizeBarRef.current?.clientWidth || 0
-			//setting width to the mouse x cord or to a min or max value specified in the css
-			var pointerRelativeXpos = e.clientX
+	// 		let barWidth = resizeBarRef.current?.clientWidth || 0
+	// 		//setting width to the mouse x cord or to a min or max value specified in the css
+	// 		var pointerRelativeXpos = e.clientX
 
-			questionRef.current.style.width = pointerRelativeXpos - barWidth + 'px'
-		})
+	// 		questionRef.current.style.width = pointerRelativeXpos - barWidth + 'px'
+	// 	})
 
-		document &&
-			document.addEventListener('mouseup', function (e) {
-				// Turn off dragging flag when user mouse is up
-				setIsDragging(false)
-			})
-	}, [resizeBarRef.current])
+	// 	document &&
+	// 		document.addEventListener('mouseup', function (e) {
+	// 			// Turn off dragging flag when user mouse is up
+	// 			setIsDragging(false)
+	// 		})
+	// }, [resizeBarRef.current, mouseDownHandler, document])
 
 	return (
 		<section className="grid grid-cols-[auto_auto_1fr] h-full-wo-nav">

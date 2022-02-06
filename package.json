@@ -9,7 +9,7 @@
 		"build": "next build",
 		"start": "next start",
 		"info": "next info",
-		"lint": "next lint --dir context hooks types utils",
+		"lint": "next lint",
 		"count": "git ls-files --exclude-standard -- ':!:**/*.[pjs][npv]g' ':!:**/*.jpeg' ':!:yarn.lock' ':!:package-lock.json' | xargs wc -l",
 		"count-all": "git ls-files | xargs wc -l",
 		"count-files": "git ls-files | wc -l"
