@@ -8,7 +8,7 @@ import AlgorithmProblem from '@/types/AlgorithmProblem'
 import { GetServerSideProps, GetStaticProps, GetStaticPaths } from 'next'
 import getConfig from 'next/config'
 const { serverRuntimeConfig } = getConfig()
-
+import Monaco from '@/components/monaco'
 interface Props {
 	markdown: string
 }
@@ -86,6 +86,9 @@ const Problem: NextPage<Props> = ({ markdown }) => {
 				<div className="w-0.5 h-0.5 rounded-full bg-gray-600 dark:bg-gray-200"></div>
 				<div className="w-0.5 h-0.5 rounded-full bg-gray-600 dark:bg-gray-200"></div>
 				<div className="w-0.5 h-0.5 rounded-full bg-gray-600 dark:bg-gray-200"></div>
+			</div>
+			<div className="bg-red-500 p-0">
+				<Monaco />
 			</div>
 		</section>
 	)
