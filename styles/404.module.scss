@@ -1,0 +1,25 @@
+$rotation: -8;
+$offset-xl: 8px;
+$offset-sm: 2px;
+
+.text {
+	transform: skew(#{$rotation}deg) rotate(#{$rotation}deg);
+	font-family: 'Sarpanch', sans-serif;
+	color: #1d9099;
+	margin: 0 20px;
+	text-align: center;
+	text-shadow: $offset-xl $offset-xl 0 #e79c10, -$offset-xl -$offset-xl 0 #d53a33;
+	@apply font-serif;
+}
+
+.h2 {
+	@extend .text;
+	@apply text-5xl md:text-7xl lg:text-9xl xl:text-10xl 2xl:text-13xl font-black mb-8;
+}
+
+.h3 {
+	@extend .text;
+	text-shadow: $offset-sm $offset-sm 0 #e79c10, -$offset-sm -$offset-sm 0 #d53a33;
+
+	@apply text-5xl font-black;
+}

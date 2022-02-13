@@ -3,11 +3,13 @@ import React from 'react'
 import Spinner from '@/components/spinner'
 import Registration from './Registration'
 import Image from 'next/image'
+import Link from 'next/link'
 
 interface DisplayUserProps {}
 
 const DisplayUser: React.FC<DisplayUserProps> = ({}) => {
-	const { fetchingUser, currentUser, logout } = useAuth()
+	const { fetchingUser, currentUser } = useAuth()
+
 	return (
 		<div className="flex items-center pl-3 border-l border-l-gray-400 dark:border-l-gray-600">
 			{fetchingUser ? (
@@ -21,13 +23,16 @@ const DisplayUser: React.FC<DisplayUserProps> = ({}) => {
 						<p className="text-sm text-gray-900 dark:text-gray-100">{currentUser.username}</p>
 						<p className="text-sm text-gray-500">{currentUser.email}</p>
 					</div>
-					<div className="w-10 h-10 relative cursor-pointer">
-						<div className="w-full h-full bg-gray-500 animate-pulse rounded-full"></div>
-						<Image src="/rock.jpeg" className="rounded-full" layout="fill" alt="rock" />
-						{/* <div className="absolute -bottom-1 -right-1 w-5 h-5 rounded-full bg-red-600 text-white text-xs flex justify-center items-center">
-							3
-						</div> */}
-					</div>
+
+					<Link href="/profile" passHref={true}>
+						<a className="w-10 h-10 relative cursor-pointer">
+							<div className="w-full h-full bg-gray-500 animate-pulse rounded-full"></div>
+							<Image src="/rock.jpeg" className="rounded-full" layout="fill" alt="rock" />
+							{/* <div className="absolute -bottom-1 -right-1 w-4 h-4 rounded-full bg-red-500 text-white text-xs flex justify-center items-center">
+								3
+							</div> */}
+						</a>
+					</Link>
 				</div>
 			) : (
 				<Registration />

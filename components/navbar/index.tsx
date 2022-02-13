@@ -27,7 +27,7 @@ export default function Navbar(): ReactElement {
 
 	return (
 		<nav
-			className="border-b border-b-gray-400 px-3 sm:px-6 lg:px-8 py-4 bg-gray-100 dark:bg-gray-800"
+			className="px-3 sm:px-6 lg:px-8 py-4 bg-gray-100 dark:bg-gray-800 border-b border-b-gray-400 dark:border-b-gray-500 "
 			ref={navbarRef}
 		>
 			<div className="w-maxed mx-auto">

@@ -4,6 +4,12 @@ module.exports = {
 	darkMode: 'media', // or 'media' or 'class'
 	theme: {
 		extend: {
+			fontSize: {
+				'10xl': ['9.5rem', '1'],
+				'11xl': ['11rem', '1'],
+				'12xl': ['13rem', '1'],
+				'13xl': ['15rem', '1']
+			},
 			colors: {
 				success: '#2da44e',
 				error: '#cf222e',
