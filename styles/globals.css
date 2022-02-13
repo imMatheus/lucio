@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+:root{
+--navbar-height:73px:
+}
+
 @layer utilities {
 	.w-maxed {
 		max-width: 2000px;

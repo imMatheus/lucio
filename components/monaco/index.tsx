@@ -1,59 +1,73 @@
-import React from 'react'
+import React, { useEffect, useLayoutEffect, useRef } from 'react'
 
 import Editor, { Monaco, EditorProps } from '@monaco-editor/react'
+import { editor } from 'monaco-editor'
 
-interface indexProps {}
+interface Props {
+	handleEditorDidMount: (editor: editor.IStandaloneCodeEditor) => void
+}
 
-const index: React.FC<indexProps> = ({}) => {
-	const options = {
-		// scrolling: true,
-		inherit: true,
-		automaticLayout: true,
-		scrollBeyondLastLine: true,
-		minimap: {
-			enabled: false
-		},
-		scrollbar: {
-			alwaysConsumeMouseWheel: true
-		},
-		fontSize: 16,
-		// cursorStyle: 'block',
-		wordWrap: 'on',
-		// wordWrap: 'wordWrapColumn',
-		// wordWrapColumn: 90,
-		// Set this to false to not auto word wrap minified files
-		wordWrapMinified: true,
-		// try "same", "indent" or "none"
-		wrappingIndent: 'same'
-	}
+const MonacoEditor = React.forwardRef<editor.IStandaloneCodeEditor | null, Props>(({ handleEditorDidMount }, ref) => {
+	const wrapperRef = useRef<HTMLDivElement>(null)
+
 	function handleEditorValidation(markers: any) {
-		// model markers
 		markers.forEach((marker: any) => console.log('onValidate:', marker.message))
 	}
+
+	function handleEditorChange() {
+		console.log('changed')
+	}
+
+	// useLayoutEffect(() => {
+	// 	window.onresize = function () {
+	// 		console.log('xxx')
+
+	// 		if (editorRef.current) {
+	// 			console.log('ddd')
+
+	// 		}
+	// 	}
+	// }, [editorRef.current])
+
+	useLayoutEffect(() => {
+		console.log('::::::::::::::::')
+
+		function updateSize() {
+			if (ref) {
+				console.log('ddd')
+				// editorRef.current.layout()
+
+				console.log(ref)
+			}
+		}
+		window.addEventListener('resize', updateSize)
+		updateSize()
+		return () => window.removeEventListener('resize', updateSize)
+	}, [ref])
+
 	return (
-		<div className="bg-blue-500 h-full">
-			<h2 className="bg-red-500 text-xl">hej</h2>
+		<div className="max-h-full-wo-nav w-full relative">
 			<Editor
+				onChange={handleEditorChange}
+				onMount={(editor) => handleEditorDidMount(editor)}
+				height={'100%'}
+				className="max-h-full-wo-nav h-full-wo-nav"
 				defaultLanguage="typescript"
 				theme="vs-dark"
 				options={{
-					// scrolling: true,
-					inherit: true,
-					automaticLayout: true,
 					scrollBeyondLastLine: true,
 					minimap: {
 						enabled: false
 					},
 					scrollbar: {
-						alwaysConsumeMouseWheel: true
+						alwaysConsumeMouseWheel: false
 					},
 					fontSize: 16,
 					// cursorStyle: 'block',
 					wordWrap: 'on',
 					// wordWrap: 'wordWrapColumn',
 					// wordWrapColumn: 90,
-					// Set this to false to not auto word wrap minified files
-					wordWrapMinified: true,
+
 					// try "same", "indent" or "none"
 					wrappingIndent: 'same'
 				}}
@@ -62,6 +76,8 @@ const index: React.FC<indexProps> = ({}) => {
 			/>
 		</div>
 	)
-}
+})
 
-export default index
+MonacoEditor.displayName = 'monaco-editor'
+
+export default MonacoEditor

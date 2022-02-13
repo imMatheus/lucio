@@ -31,10 +31,7 @@ const Question = React.forwardRef<HTMLElement, QuestionProps>(({ markdown }, ref
 	}, [markdown])
 
 	return (
-		<main
-			className="bg-gray-100 dark:bg-gray-900 min-w-[max(20vw,_200px)] lg:max-w-[60vw] max-w-[40vw] h-full overflow-scroll"
-			ref={ref}
-		>
+		<main className="bg-gray-100 dark:bg-gray-900 w-full h-full overflow-scroll" ref={ref}>
 			<article className="py-10 sm:py-12">
 				<div
 					className="px-6 prose prose-neutral dark:prose-invert
