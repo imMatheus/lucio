@@ -6,6 +6,7 @@ import ClassNavbar from '@/components/classes/ClassNavbar'
 import useClassData from '@/hooks/useClassData'
 import Button from '@/components/button'
 import Head from 'next/head'
+import Welcome from '@/components/classes/WelcomeCard'
 
 export default function ClassScreen(): ReactElement {
 	const router = useRouter()
@@ -21,7 +22,10 @@ export default function ClassScreen(): ReactElement {
 			<section className="w-maxed mx-auto">
 				{classId && <ClassNavbar />}
 				<h2>class data</h2>
-				<div>{/* <h4>{classData && JSON.stringify(classData)}</h4> */}</div>
+				{classData && <Welcome colors={classData.theme} />}
+				{/* <div>
+					<h4>{classData && JSON.stringify(classData)}</h4>
+				</div> */}
 			</section>
 		</section>
 	)
