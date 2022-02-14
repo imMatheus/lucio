@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 :root{
---navbar-height:73px:
+--navbar-height: 73px:
 }
 
 @layer utilities {
@@ -28,4 +28,5 @@ html,
 body {
 	font-family: 'Inter', sans-serif;
 	/* color: ; */
+	
 }
