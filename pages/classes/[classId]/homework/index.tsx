@@ -12,7 +12,7 @@ import ClassNavbar from '@/components/classes/ClassNavbar'
 const Index: NextPage = () => {
 	const router = useRouter()
 	const [loading, setLoading] = useState(false)
-	const classId = router.query.classId
+	const { classId } = router.query
 	const [classData, loadingClassData] = useClassData(classId)
 	const { setToast } = useToast()
 
@@ -53,7 +53,13 @@ const Index: NextPage = () => {
 			</Head>
 			{classId && <ClassNavbar />}
 			homework
-			<Button onClick={addHomeworkHandler}>Create new homework</Button>
+			{classData && (
+				<Link href={`classes/${classData.id}/homework/create`} passHref={true}>
+					<a>
+						<Button>Create new homework</Button>
+					</a>
+				</Link>
+			)}
 			<p>hello</p>
 			{loadingClassData + ''}
 			<div>{/* <HomeworkCard key={homework.id} homework={homework} /> */}</div>

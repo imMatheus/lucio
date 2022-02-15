@@ -45,28 +45,33 @@ const Create: NextPage = () => {
 
 	return (
 		<div className="p-4 md:p-6 min-h-full-wo-nav bg-gray-200/40 dark:bg-gray-900">
-			<h2>Create a class</h2>
+			<div
+				className="w-max text-hollow"
+				style={{ backgroundImage: `linear-gradient(45deg, ${colors[0]}, ${colors[1]}` }}
+			>
+				<h2 className="mb-4 md:mb-6 text-2xl md:text-5xl font-black">Create a class</h2>
+			</div>
 
 			<div className="">
 				<label
-					htmlFor="first-name"
-					className="mb-2 block text-sm lg:text-base font-bold text-gray-900 dark:text-gray-50"
+					htmlFor="name"
+					className="mb-2 block text-base lg:text-lg font-semibold text-gray-900 dark:text-gray-50"
 				>
 					Class name
 				</label>
 				<input
 					type="text"
-					name="first-name"
+					name="name"
 					value={name}
 					onChange={(e) => setName(e.target.value)}
-					id="first-name"
+					id="name"
 					autoComplete="given-name"
 					className="mt-1 bg-transparent focus:ring-theme-500 focus:border-theme-500 block w-full sm:max-w-lg lg:max-w-lg 2xl:max-w-5xl shadow-sm sm:text-sm border-gray-300 dark:border-gray-600/70 rounded-md"
 				/>
 			</div>
 
 			<div className="my-3 md:py-4">
-				<p className="m-0 text-lg font-black text-gray-900 dark:text-gray-50">Theme</p>
+				<p className="m-0 text-base lg:text-lg font-semibold text-gray-900 dark:text-gray-50">Theme</p>
 				<div className="flex gap-2 my-2 flex-wrap max-w-3xl">
 					<Color iColors={['#2266ff', '#2266ff']} />
 					<Color iColors={['#A71D31', '#A71D31']} />
