@@ -8,6 +8,7 @@ import Head from 'next/head'
 import Button from '@/components/button'
 import HomeworkCard from '@/components/classes/HomeworkCard'
 import ClassNavbar from '@/components/classes/ClassNavbar'
+import axios from 'axios'
 
 const Index: NextPage = () => {
 	const router = useRouter()
@@ -15,12 +16,19 @@ const Index: NextPage = () => {
 	const { classId } = router.query
 	const [classData, loadingClassData] = useClassData(classId)
 	const { setToast } = useToast()
+	console.log(classData)
+	console.log('pippiiii')
+	console.log(router.query)
+	console.log(router)
 
-	async function addHomeworkHandler() {
+	async function createHomeworkHandler() {
 		if (loading) return setToast({ message: 'could not add homework cuz it was loading', type: 'warning' })
 		try {
 			if (!classData) return setToast({ message: 'could not find class', type: 'warning' })
 			setLoading(true)
+			// const res = await axios.post('/api/classes/homework/create')
+			// console.log(res)
+			console.log('aappapaa')
 
 			// const docRef = doc(collection(fs, `classes/${classId}/homework`))
 
@@ -38,6 +46,9 @@ const Index: NextPage = () => {
 			// }
 			setToast({ message: 'Could not create new homework, please try again', type: 'error' })
 		} catch (error) {
+			console.log(error)
+			setLoading(false)
+
 			setToast({
 				message: 'Could not create new homework, please try again because something went wrong',
 				type: 'error'
@@ -54,7 +65,7 @@ const Index: NextPage = () => {
 			{classId && <ClassNavbar />}
 			homework
 			{classData && (
-				<Link href={`classes/${classData.id}/homework/create`} passHref={true}>
+				<Link href={`/classes/${classData._id}/homework/create`} passHref={true}>
 					<a>
 						<Button>Create new homework</Button>
 					</a>
@@ -62,6 +73,7 @@ const Index: NextPage = () => {
 			)}
 			<p>hello</p>
 			{loadingClassData + ''}
+			<h2>{JSON.stringify(classData?._id)}</h2>
 			<div>{/* <HomeworkCard key={homework.id} homework={homework} /> */}</div>
 		</section>
 	)

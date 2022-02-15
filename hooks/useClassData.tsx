@@ -10,12 +10,12 @@ export default function useClassData(id: string | string[] | undefined): [ClassR
 	const classId = Array.isArray(id) ? id[0] : id
 
 	useEffect(() => {
-		async function getStudents() {
+		async function getClass() {
 			if (!classId) return setState(null)
 			const { data }: { data: Data } = await axios.get(`http://localhost:3000/api/classes/${classId}`)
 			setState(data.class)
 		}
-		getStudents()
+		getClass()
 	}, [id])
 	return [state, loading]
 }
