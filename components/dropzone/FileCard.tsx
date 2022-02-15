@@ -14,6 +14,12 @@ const FileCard: React.FC<FileCardProps> = ({ file }) => {
 	}
 	console.log(file)
 
+	/**
+	 *
+	 * @returns the universal type from a file type
+	 * @example getType('image/jpeg') // 'image'
+	 * getType('video/mp4') // 'video'
+	 */
 	function getType(type: string): string {
 		return type.split('/')[0].toLowerCase() || ''
 	}
