@@ -24,6 +24,28 @@
 	}
 }
 
+.text-line-base {
+	overflow-wrap: break-word;
+	text-overflow: ellipsis;
+	white-space: unset;
+	display: -webkit-box;
+	overflow: hidden;
+	-webkit-box-orient: vertical;
+}
+
+.text-one-line {
+	@extend .text-line-base;
+	-webkit-line-clamp: 1;
+}
+.text-two-line {
+	@extend .text-line-base;
+	-webkit-line-clamp: 2;
+}
+.text-three-line {
+	@extend .text-line-base;
+	-webkit-line-clamp: 3;
+}
+
 .text-hollow {
 	/* Use the text as a mask for the background. */
 	/* This will show the gradient as a text color rather than element bg. */
