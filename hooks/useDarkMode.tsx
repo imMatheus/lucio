@@ -11,22 +11,13 @@ export default function useDarkMode() {
 	// See if user has set a browser or OS preference for dark mode.
 	// The usePrefersDarkMode hook composes a useMedia hook (see code below).
 	const prefersDarkMode = usePrefersDarkMode()
-	console.log('state: ', state)
-	// If state is defined use it, otherwise fallback to prefersDarkMode.
 
 	// This allows user to override OS level setting on our website.
 	// Fire off effect that add/removes dark mode class
 	useEffect(
 		() => {
 			if (!window) return
-			console.log('__________________________________-')
-			console.log(state)
-			console.log(prefersDarkMode)
-			console.log('__________________________________-')
-
 			const enabled = state === 'system' ? (prefersDarkMode ? 'dark' : 'light') : state
-			console.log('oooo: ', enabled)
-			console.log(state)
 
 			const className = 'dark'
 			const element = window!.document?.body
