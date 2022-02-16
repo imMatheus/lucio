@@ -12,7 +12,8 @@
 		"lint": "next lint",
 		"count": "git ls-files --exclude-standard -- ':!:**/*.[pjs][npv]g' ':!:**/*.jpeg' ':!:**/*.webp' ':!:yarn.lock' ':!:package-lock.json' | xargs wc -l",
 		"count-all": "git ls-files | xargs wc -l",
-		"count-files": "git ls-files | wc -l"
+		"count-files": "git ls-files | wc -l",
+		"prettier-check": "npx prettier --check ."
 	},
 	"dependencies": {
 		"@dicebear/adventurer-neutral": "^4.10.0",
