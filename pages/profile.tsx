@@ -16,6 +16,21 @@ const Profile: NextPage = () => {
 			<section className="my-3">
 				<h2 className="text-2xl font-bold mb-2">Themes</h2>
 
+				<div className="my-3">
+					<label htmlFor="about" className="block text-sm font-medium text-gray-700 dark:text-gray-200">
+						About
+					</label>
+					<div className="mt-1">
+						<textarea
+							id="about"
+							name="about"
+							rows={3}
+							className="dark:bg-black max-w-2xl min-h-[3rem] shadow-sm focus:ring-theme-500 focus:border-theme-500 mt-1 block w-full sm:text-sm border border-gray-300 dark:border-gray-700 rounded-md"
+							placeholder="you@example.com"
+						></textarea>
+					</div>
+				</div>
+
 				<form className="grid grid-cols-2 lg:flex gap-3 lg:gap-5 lg:flex-wrap">
 					<ThemeCard
 						id="theme_dark"
@@ -52,7 +67,7 @@ const Profile: NextPage = () => {
 					</ThemeCard>
 				</form>
 			</section>
-			<Button>Logout</Button>
+			<Button variant="error">Logout</Button>
 		</main>
 	)
 }

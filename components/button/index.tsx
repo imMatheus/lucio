@@ -2,7 +2,7 @@ import React from 'react'
 import styles from '../../styles/button.module.scss'
 
 interface indexProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-	variant?: 'primary' | 'white' | 'dimmed' | 'error' | 'success' | 'warning'
+	variant?: 'primary' | 'white' | 'black' | 'dimmed' | 'error' | 'success' | 'warning'
 }
 
 const Button: React.FC<indexProps> = ({ children, variant = 'primary', ...props }) => {
