@@ -1,4 +1,4 @@
-import React, { ReactElement, useRef, useState, useEffect } from 'react'
+import React, { ReactElement, useRef, useState, useEffect, useLayoutEffect } from 'react'
 import { Bell, Plus, ChevronDown, Icon } from 'react-feather'
 import Link from 'next/link'
 import SVG from 'react-inlinesvg'
@@ -17,13 +17,16 @@ export default function Navbar(): ReactElement {
 	const { setShowModal, setModal } = useModal()
 	const { fetchingUser, currentUser, logout } = useAuth()
 
-	useEffect(() => {
+	useLayoutEffect(() => {
 		// the --navbar-height variable represents the height of the navbar
 		// its used for when you want a component to take up the entire screen
-		if (navbarRef.current?.clientHeight) {
+		if (navbarRef.current?.clientHeight && window) {
 			document.documentElement.style.setProperty('--navbar-height', navbarRef.current.clientHeight + 'px')
+			window.onresize = () => {
+				document.documentElement.style.setProperty('--navbar-height', navbarRef.current?.clientHeight + 'px')
+			}
 		}
-	}, [navbarRef, navbarRef.current])
+	}, [navbarRef, navbarRef.current, navbarRef.current?.clientHeight])
 
 	return (
 		<nav
@@ -40,6 +43,7 @@ export default function Navbar(): ReactElement {
 								</h4>
 							</a>
 						</Link>
+						<Button onClick={() => console.log(navbarRef.current?.clientHeight)}>check it </Button>
 						<div className="hidden md:flex items-center gap-3">
 							<NavLink href="/classes">Classes</NavLink>
 							<NavLink href="/messages">Messages</NavLink>
