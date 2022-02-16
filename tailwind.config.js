@@ -20,11 +20,6 @@ module.exports = {
 				mustardDark: '#ffc01e',
 				ketchupDark: '#ff375f',
 
-				// theme: 'var(--theme)',
-				// themeDimmed: 'var(--theme-dimmed)',
-				// themeDark: 'var(--theme-dark)',
-				// themeLight: 'var(--theme-light)',
-				// ##E6EEFF,
 				theme: '#2266ff',
 				'theme-50': '#E6EEFF',
 				'theme-100': '#CEDDFF',
@@ -37,18 +32,6 @@ module.exports = {
 				'theme-800': '#14388D',
 				'theme-900': '#102866',
 				'theme-1000': '#0B1940'
-				// 'theme-600': '#1F5DE8',
-				// 'theme-700': '#1C53D1',
-				// 'theme-800': '#194AB9',
-				// 'theme-900': '#1641A2',
-				// 'theme-1000': '#143B93'
-
-				// bg: 'var(--bg)',
-				// bgDimmed: 'var(--bg-dimmed)',
-				// bgDarken: 'var(--bg-darken)',
-				// text: 'var(--text)',
-				// textDimmed: 'var(--text-dimmed)',
-				// textLight: 'var(--text-light)'
 			}
 		}
 	},
