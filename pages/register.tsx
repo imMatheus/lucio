@@ -76,7 +76,7 @@ export default function Register(): ReactElement {
 	const base64data = buff.toString('base64')
 
 	return (
-		<section className="relative min-h-full-wo-nav flex items-center">
+		<section className="min-h-full-wo-nav relative flex items-center">
 			<Head>
 				<title>Sign up | LucioCode</title>
 				<meta property="og:title" content="Sign up to LucioCode" key="title" />
@@ -88,7 +88,7 @@ export default function Register(): ReactElement {
 					Let us begin the adventure
 				</TypedText>
 				{/* <Image src={`data:image/svg+xml;base64,${base64data}`} alt="" width={100} height={100} /> */}
-				<TypedText className="text-theme text-base font-semibold mt-5 mb-2" delay={2}>
+				<TypedText className="mt-5 mb-2 text-base font-semibold text-theme" delay={2}>
 					Enter your email
 				</TypedText>
 				<InputField
@@ -101,7 +101,7 @@ export default function Register(): ReactElement {
 				/>
 				{showPasswordContainer && (
 					<>
-						<TypedText className="text-theme text-base font-semibold mt-5" delay={0}>
+						<TypedText className="mt-5 text-base font-semibold text-theme" delay={0}>
 							Create a password
 						</TypedText>
 						<InputField
@@ -115,12 +115,12 @@ export default function Register(): ReactElement {
 								showPassword ? (
 									<Eye
 										onClick={() => setShowPassword((c) => !c)}
-										className="w-4 cursor-pointer flex-shrink-0"
+										className="w-4 flex-shrink-0 cursor-pointer"
 									/>
 								) : (
 									<EyeOff
 										onClick={() => setShowPassword((c) => !c)}
-										className="w-4 cursor-pointer flex-shrink-0"
+										className="w-4 flex-shrink-0 cursor-pointer"
 									/>
 								)
 							}
@@ -128,7 +128,7 @@ export default function Register(): ReactElement {
 
 						{showUserNameContainer && (
 							<>
-								<TypedText className="text-[#00cfc8] text-base font-semibold mt-5" delay={0}>
+								<TypedText className="mt-5 text-base font-semibold text-[#00cfc8]" delay={0}>
 									Enter a username
 								</TypedText>
 								<InputField
@@ -144,7 +144,7 @@ export default function Register(): ReactElement {
 					</>
 				)}
 				{!isValidEmail && email !== '' && (
-					<p className="p-5 text-[#627597] text-center">The email is not valid or already in use</p>
+					<p className="p-5 text-center text-[#627597]">The email is not valid or already in use</p>
 				)}
 
 				{/* <div className="flex items-center"> */}

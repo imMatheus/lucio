@@ -25,22 +25,22 @@ const FileCard: React.FC<FileCardProps> = ({ file }) => {
 	}
 
 	return (
-		<div className="flex items-center bg-gray-200 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 p-3 rounded-md">
-			<div className="mr-2 flex-shrink-0 w-5 h-5">
+		<div className="flex items-center rounded-md border border-gray-300 bg-gray-200 p-3 dark:border-gray-700 dark:bg-gray-800">
+			<div className="mr-2 h-5 w-5 flex-shrink-0">
 				{getType(file.type) === 'image' ? (
-					<ImageIcon className="w-full h-full text-indigo-500" />
+					<ImageIcon className="h-full w-full text-indigo-500" />
 				) : getType(file.type) === 'text' ? (
-					<File className="w-full h-full text-lime-500" />
+					<File className="h-full w-full text-lime-500" />
 				) : getType(file.type) === 'application' ? (
-					<FileText className="w-full h-full text-sky-500" />
+					<FileText className="h-full w-full text-sky-500" />
 				) : getType(file.type) === 'video' ? (
-					<Video className="w-full h-full text-rose-500" />
+					<Video className="h-full w-full text-rose-500" />
 				) : (
-					<Headphones className="w-full h-full text-amber-500" />
+					<Headphones className="h-full w-full text-amber-500" />
 				)}
 			</div>
 			<p className="text-one-line">{file.name}</p>
-			<span className="flex-shrink-0 ml-2 text-gray-500 dark:text-gray-400 text-sm">
+			<span className="ml-2 flex-shrink-0 text-sm text-gray-500 dark:text-gray-400">
 				{getFileSize(file.size)}
 			</span>
 		</div>

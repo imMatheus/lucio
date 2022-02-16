@@ -9,7 +9,7 @@ interface StudentsTableProps {}
 
 const Column: React.FC = ({ children }) => {
 	return (
-		<th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
+		<th scope="col" className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-400">
 			{children}
 		</th>
 	)
@@ -39,15 +39,15 @@ const StudentsTable: React.FC<StudentsTableProps> = ({}) => {
 
 	return (
 		<section className="mt-6 mb-2">
-			<div className="flex my-2 gap-2">
+			<div className="my-2 flex gap-2">
 				<Button className="">Invite student</Button>
 				<Button onClick={() => setEdit((c) => !c)}>Edit</Button>
 				{edit + ''}
-				<span className="bg-teal-800 px-2 rounded-md">{loading + ''}</span>
+				<span className="rounded-md bg-teal-800 px-2">{loading + ''}</span>
 			</div>
-			<div className="py-2 align-middle inline-block w-full">
-				<div className="shadow overflow-hidden border-b overflow-x-scroll border-gray-200 dark:border-gray-800 rounded-t-lg">
-					<table className="min-w-full divide-y my-0 divide-gray-200 dark:divide-gray-800">
+			<div className="inline-block w-full py-2 align-middle">
+				<div className="overflow-hidden overflow-x-scroll rounded-t-lg border-b border-gray-200 shadow dark:border-gray-800">
+					<table className="my-0 min-w-full divide-y divide-gray-200 dark:divide-gray-800">
 						<thead className="bg-gray-100 dark:bg-gray-800">
 							<tr>
 								{edit && <Column>Edit</Column>}

@@ -10,10 +10,10 @@ const NoClasses: React.FC<NoClassesProps> = ({}) => {
 	const router = useRouter()
 
 	return (
-		<div className="p-3 md:p-16 text-center">
-			<h1 className="text-2xl md:text-4xl lg:text-6xl mb-3">Seems like you dont have any classes :\</h1>
-			<p className="text-sm md:text-base m-0">You can join a class or you can create a class</p>
-			<div className="flex justify-center gap-3 md:gap-4 my-3">
+		<div className="p-3 text-center md:p-16">
+			<h1 className="mb-3 text-2xl md:text-4xl lg:text-6xl">Seems like you dont have any classes :\</h1>
+			<p className="m-0 text-sm md:text-base">You can join a class or you can create a class</p>
+			<div className="my-3 flex justify-center gap-3 md:gap-4">
 				<Link href="/classes/create" passHref={true}>
 					{/* <a> */}
 					<Button>Create class</Button>

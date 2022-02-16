@@ -10,16 +10,16 @@ const WelcomeCard: React.FC<WelcomeCardProps> = ({ colors }) => {
 	if (!show) return null
 	return (
 		<div
-			className="p-8 my-2 rounded-xl relative"
+			className="relative my-2 rounded-xl p-8"
 			style={{ backgroundImage: `linear-gradient(45deg, ${colors[0]}, ${colors[1]}` }}
 		>
-			<h2 className="text-4xl lg:text-5xl font-black mb-1 md:mb-2 break-words">Welcome, Adam</h2>
+			<h2 className="mb-1 break-words text-4xl font-black md:mb-2 lg:text-5xl">Welcome, Adam</h2>
 			<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quasi dolores delectus iste!</p>
 			<div
 				onClick={() => setShow(false)}
-				className="absolute cursor-pointer w-7 h-7 top-3 right-3 transition-colors bg-gray-800 hover:bg-gray-900 rounded-full flex items-center justify-center"
+				className="absolute top-3 right-3 flex h-7 w-7 cursor-pointer items-center justify-center rounded-full bg-gray-800 transition-colors hover:bg-gray-900"
 			>
-				<X className="w-5 h-5" />
+				<X className="h-5 w-5" />
 			</div>
 		</div>
 	)

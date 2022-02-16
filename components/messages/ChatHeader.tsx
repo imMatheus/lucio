@@ -11,7 +11,7 @@ const ChatHeader: React.FC<ChatHeaderProps> = ({ name }) => {
 	return (
 		<div className={styles.chatHeader}>
 			<div
-				className="w-6 h-6 rounded-full mr-3 p-1 bg-theme cursor-pointer hover:bg-themeDimmed"
+				className="hover:bg-themeDimmed mr-3 h-6 w-6 cursor-pointer rounded-full bg-theme p-1"
 				onClick={() => router.back()}
 			>
 				<ArrowLeft size={'100%'} className="text-white" />

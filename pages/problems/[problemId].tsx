@@ -99,20 +99,20 @@ const Problem: NextPage<Props> = ({ markdown }) => {
 	}, [editorRef, editorRef.current])
 
 	return (
-		<section className="grid grid-cols-[1fr_auto_auto] h-full-wo-nav w-screen">
+		<section className="h-full-wo-nav grid w-screen grid-cols-[1fr_auto_auto]">
 			<Question ref={questionRef} markdown={markdown} />
 			<div
 				ref={resizeBarRef}
-				className="w-2 h-full bg-gray-300 dark:bg-gray-700 cursor-ew-resize flex flex-col justify-center items-center gap-1"
+				className="flex h-full w-2 cursor-ew-resize flex-col items-center justify-center gap-1 bg-gray-300 dark:bg-gray-700"
 				onMouseDown={mouseDownHandler}
 			>
-				<div className="w-0.5 h-0.5 rounded-full bg-gray-600 dark:bg-gray-200"></div>
-				<div className="w-0.5 h-0.5 rounded-full bg-gray-600 dark:bg-gray-200"></div>
-				<div className="w-0.5 h-0.5 rounded-full bg-gray-600 dark:bg-gray-200"></div>
-				<div className="w-0.5 h-0.5 rounded-full bg-gray-600 dark:bg-gray-200"></div>
+				<div className="h-0.5 w-0.5 rounded-full bg-gray-600 dark:bg-gray-200"></div>
+				<div className="h-0.5 w-0.5 rounded-full bg-gray-600 dark:bg-gray-200"></div>
+				<div className="h-0.5 w-0.5 rounded-full bg-gray-600 dark:bg-gray-200"></div>
+				<div className="h-0.5 w-0.5 rounded-full bg-gray-600 dark:bg-gray-200"></div>
 			</div>
 			<div
-				className="bg-red-500 w-full relative min-w-[max(30vw,_250px)] lg:max-w-[80vw] max-w-[65vw]"
+				className="relative w-full min-w-[max(30vw,_250px)] max-w-[65vw] bg-red-500 lg:max-w-[80vw]"
 				ref={editorWrapperRef}
 			>
 				<Monaco ref={editorRef} handleEditorDidMount={handleEditorDidMount} />

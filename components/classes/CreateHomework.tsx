@@ -36,7 +36,7 @@ const CreateHomework: React.FC<CreateHomeworkProps> = ({}) => {
 			</div> */}
 			<Input state={title} setState={setTitle} />
 			<Input state={description} setState={setDescription} />
-			<div className="p-2 bg-yellow-500">
+			<div className="bg-yellow-500 p-2">
 				<DatePicker selected={dueDate} showTimeSelect onChange={(date: Date) => setDueDate(date)} />
 				{dueDate.toDateString()}
 				<div></div>

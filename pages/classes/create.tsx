@@ -32,7 +32,7 @@ const Create: NextPage = () => {
 	const Color: React.FC<CreateProps> = ({ iColors }) => {
 		return (
 			<div
-				className={`w-12 h-12 md:w-14 md:h-14 rounded-full flex overflow-hidden border-transparent cursor-pointer border-2 ${
+				className={`flex h-12 w-12 cursor-pointer overflow-hidden rounded-full border-2 border-transparent md:h-14 md:w-14 ${
 					arrayEquals(iColors, colors) ? 'border-black bg-black dark:border-white dark:bg-white' : ''
 				}`}
 				onClick={() => setColors([...iColors])}
@@ -44,18 +44,18 @@ const Create: NextPage = () => {
 	}
 
 	return (
-		<div className="p-4 md:p-6 min-h-full-wo-nav bg-gray-200/40 dark:bg-gray-900">
+		<div className="min-h-full-wo-nav bg-gray-200/40 p-4 dark:bg-gray-900 md:p-6">
 			<div
-				className="w-max text-hollow"
+				className="text-hollow w-max"
 				style={{ backgroundImage: `linear-gradient(45deg, ${colors[0]}, ${colors[1]}` }}
 			>
-				<h2 className="mb-4 md:mb-6 text-2xl md:text-5xl font-black">Create a class</h2>
+				<h2 className="mb-4 text-2xl font-black md:mb-6 md:text-5xl">Create a class</h2>
 			</div>
 
 			<div className="">
 				<label
 					htmlFor="name"
-					className="mb-2 block text-base lg:text-lg font-semibold text-gray-900 dark:text-gray-50"
+					className="mb-2 block text-base font-semibold text-gray-900 dark:text-gray-50 lg:text-lg"
 				>
 					Class name
 				</label>
@@ -66,13 +66,13 @@ const Create: NextPage = () => {
 					onChange={(e) => setName(e.target.value)}
 					id="name"
 					autoComplete="given-name"
-					className="mt-1 bg-transparent focus:ring-theme-500 focus:border-theme-500 block w-full sm:max-w-lg lg:max-w-lg 2xl:max-w-5xl shadow-sm sm:text-sm border-gray-300 dark:border-gray-600/70 rounded-md"
+					className="mt-1 block w-full rounded-md border-gray-300 bg-transparent shadow-sm focus:border-theme-500 focus:ring-theme-500 dark:border-gray-600/70 sm:max-w-lg sm:text-sm lg:max-w-lg 2xl:max-w-5xl"
 				/>
 			</div>
 
 			<div className="my-3 md:py-4">
-				<p className="m-0 text-base lg:text-lg font-semibold text-gray-900 dark:text-gray-50">Theme</p>
-				<div className="flex gap-2 my-2 flex-wrap max-w-3xl">
+				<p className="m-0 text-base font-semibold text-gray-900 dark:text-gray-50 lg:text-lg">Theme</p>
+				<div className="my-2 flex max-w-3xl flex-wrap gap-2">
 					<Color iColors={['#2266ff', '#2266ff']} />
 					<Color iColors={['#A71D31', '#A71D31']} />
 					<Color iColors={['#FF9B42', '#FF9B42']} />
@@ -111,7 +111,7 @@ const Create: NextPage = () => {
 							setPrivacy={setPrivacy}
 							privacy={privacy}
 						>
-							<span className="text-gray-900 dark:text-gray-50 font-semibold"> Public: </span> Anyone with
+							<span className="font-semibold text-gray-900 dark:text-gray-50"> Public: </span> Anyone with
 							the class code can join the class
 						</PrivacyOption>
 						<PrivacyOption
@@ -121,7 +121,7 @@ const Create: NextPage = () => {
 							setPrivacy={setPrivacy}
 							privacy={privacy}
 						>
-							<span className="text-gray-900 dark:text-gray-50 font-semibold"> Invite: </span>
+							<span className="font-semibold text-gray-900 dark:text-gray-50"> Invite: </span>
 							Anyone with the class code can send an invite to join the class
 						</PrivacyOption>
 						<PrivacyOption
@@ -131,7 +131,7 @@ const Create: NextPage = () => {
 							setPrivacy={setPrivacy}
 							privacy={privacy}
 						>
-							<span className="text-gray-900 dark:text-gray-50 font-semibold"> Closed: </span>No-one can
+							<span className="font-semibold text-gray-900 dark:text-gray-50"> Closed: </span>No-one can
 							join or request to join the class
 						</PrivacyOption>
 					</div>

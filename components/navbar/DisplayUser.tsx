@@ -11,9 +11,9 @@ const DisplayUser: React.FC<DisplayUserProps> = ({}) => {
 	const { fetchingUser, currentUser } = useAuth()
 
 	return (
-		<div className="flex items-center pl-3 border-l border-l-gray-400 dark:border-l-gray-600">
+		<div className="flex items-center border-l border-l-gray-400 pl-3 dark:border-l-gray-600">
 			{fetchingUser ? (
-				<div className="w-8 h-8 mx-2">
+				<div className="mx-2 h-8 w-8">
 					<Spinner />
 				</div>
 			) : currentUser ? (
@@ -25,8 +25,8 @@ const DisplayUser: React.FC<DisplayUserProps> = ({}) => {
 					</div>
 
 					<Link href="/profile" passHref={true}>
-						<a className="w-10 h-10 relative cursor-pointer">
-							<div className="w-full h-full bg-gray-500 animate-pulse rounded-full"></div>
+						<a className="relative h-10 w-10 cursor-pointer">
+							<div className="h-full w-full animate-pulse rounded-full bg-gray-500"></div>
 							<Image src="/rock.jpeg" className="rounded-full" layout="fill" alt="rock" />
 							{/* <div className="absolute -bottom-1 -right-1 w-4 h-4 rounded-full bg-red-500 text-white text-xs flex justify-center items-center">
 								3

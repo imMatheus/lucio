@@ -31,9 +31,9 @@ const Section: React.FC<{ markdown: string }> = ({ markdown }) => {
 		}
 	}, [markdown])
 	return (
-		<div className="bg-gray-200/50 border-b px-4 border-b-gray-400 mb-1 prose flex justify-between items-center prose-headings:m-0">
+		<div className="prose mb-1 flex items-center justify-between border-b border-b-gray-400 bg-gray-200/50 px-4 prose-headings:m-0">
 			<div>
-				<p className="text-black text-base font-semibold">{markdown}</p>
+				<p className="text-base font-semibold text-black">{markdown}</p>
 			</div>
 			<div ref={divRef}></div>
 		</div>
@@ -45,28 +45,28 @@ const SignInModal: React.FC = () => {
 
 	return (
 		<div
-			className="fixed z-10 inset-0 overflow-y-auto"
+			className="fixed inset-0 z-10 overflow-y-auto"
 			aria-labelledby="modal-title"
 			role="dialog"
 			aria-modal="true"
 		>
-			<div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+			<div className="flex min-h-screen items-end justify-center px-4 pt-4 pb-20 text-center sm:block sm:p-0">
 				<div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
 
-				<span className="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">
+				<span className="hidden sm:inline-block sm:h-screen sm:align-middle" aria-hidden="true">
 					&#8203;
 				</span>
 
-				<div className="p-4 pb-6 max-h-[95vh]  inline-block align-bottom bg-white rounded-lg text-left overflow-x-hidden overflow-y-scroll shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full prose">
+				<div className="prose inline-block max-h-[95vh]  transform overflow-x-hidden overflow-y-scroll rounded-lg bg-white p-4 pb-6 text-left align-bottom shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:align-middle">
 					<div
-						className="absolute top-2 left-2 cursor-pointer p-1 hover:bg-gray-100 transition-colors rounded-full"
+						className="absolute top-2 left-2 cursor-pointer rounded-full p-1 transition-colors hover:bg-gray-100"
 						onClick={() => {
 							setShowModal(false)
 						}}
 					>
 						<X className="text-black" />
 					</div>
-					<h2 className="text-center m-0 mb-2 text-4xl">Markdown</h2>
+					<h2 className="m-0 mb-2 text-center text-4xl">Markdown</h2>
 					<p className="text-center">sign into your Luciocode markdown</p>
 					<Section markdown="# h1" />
 					<Section markdown="## h2" />

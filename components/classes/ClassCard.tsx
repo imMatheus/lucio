@@ -22,19 +22,19 @@ export default function ClassCard({ data: { _id, name, code, participants, theme
 		<Link href={`/classes/${_id}`} passHref={true}>
 			<a>
 				<div
-					className={`relative transition-colors bg-gradient-to-br shadow-lg text-white overflow-hidden rounded-2xl cursor-pointer`}
+					className={`relative cursor-pointer overflow-hidden rounded-2xl bg-gradient-to-br text-white shadow-lg transition-colors`}
 					style={{ backgroundImage: `linear-gradient(to bottom right, ${theme[0]},${theme[1]}` }}
 				>
 					<div
-						className={`transition bg-black/10 hover:bg-black/20 p-4 md:py-5 w-full min-h-[200px] lg:h-80`}
+						className={`min-h-[200px] w-full bg-black/10 p-4 transition hover:bg-black/20 md:py-5 lg:h-80`}
 					>
-						<p className="text-xs font-normal text-gray-50 uppercase m-0 py-1 px-2 bg-gray-100/10 w-max rounded-lg">
+						<p className="m-0 w-max rounded-lg bg-gray-100/10 py-1 px-2 text-xs font-normal uppercase text-gray-50">
 							Programing
 						</p>
-						<p className="font-black [white-space:_unset] [display:_-webkit-box] overflow-hidden break-words text-ellipsis [-webkit-box-orient:_vertical] [-webkit-line-clamp:_2] lg:[-webkit-line-clamp:_5] font-serif m-0 mt-2 md:mt-4 text-white text-3xl pr-0 md:pr-3 lg:pr-5">
+						<p className="m-0 mt-2 overflow-hidden text-ellipsis break-words pr-0 font-serif text-3xl font-black text-white [white-space:_unset] [display:_-webkit-box] [-webkit-box-orient:_vertical] [-webkit-line-clamp:_2] md:mt-4 md:pr-3 lg:pr-5 lg:[-webkit-line-clamp:_5]">
 							{name}
 						</p>
-						<p className="font-medium font-serif text-sm lg:text-base">
+						<p className="font-serif text-sm font-medium lg:text-base">
 							{participants.length || 1} {participants.length > 1 ? 'students' : 'student'} | 3 tests
 						</p>
 					</div>

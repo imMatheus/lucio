@@ -7,10 +7,10 @@ const Circle: React.FC<circleProps> = ({}) => {
 	const pr = 50
 
 	return (
-		<div className="w-12 h-12 relative">
-			<div className="w-full h-full absolute border-2 border-green-800 rounded-full"></div>
+		<div className="relative h-12 w-12">
+			<div className="absolute h-full w-full rounded-full border-2 border-green-800"></div>
 			<div className={styles.bar}></div>
-			<div className="w-1/2 h-full absolute left-0 top-0 bg-cyan-600"></div>
+			<div className="absolute left-0 top-0 h-full w-1/2 bg-cyan-600"></div>
 		</div>
 	)
 }

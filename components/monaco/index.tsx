@@ -46,7 +46,7 @@ const MonacoEditor = React.forwardRef<editor.IStandaloneCodeEditor | null, Props
 	}, [ref])
 
 	return (
-		<div className="max-h-full-wo-nav w-full relative">
+		<div className="max-h-full-wo-nav relative w-full">
 			<Editor
 				onChange={handleEditorChange}
 				onMount={(editor) => handleEditorDidMount(editor)}

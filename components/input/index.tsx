@@ -32,18 +32,18 @@ export default function InputField({
 
 	return (
 		<form
-			className={`flex items-center mb-5`}
+			className={`mb-5 flex items-center`}
 			onSubmit={(e) => {
 				e.preventDefault()
 				success ? onClick() : undefined
 			}}
 		>
 			{focused ? (
-				<ArrowRight className="mr-2 w-5 text-gray-900 dark:text-gray-100 flex-shrink-0" />
+				<ArrowRight className="mr-2 w-5 flex-shrink-0 text-gray-900 dark:text-gray-100" />
 			) : success ? (
-				<Check className="mr-2 w-5 text-success flex-shrink-0" />
+				<Check className="mr-2 w-5 flex-shrink-0 text-success" />
 			) : (
-				<X className="mr-2 w-5 text-error flex-shrink-0" />
+				<X className="mr-2 w-5 flex-shrink-0 text-error" />
 			)}
 			<input
 				value={state}
@@ -54,7 +54,7 @@ export default function InputField({
 				type={type}
 				onFocus={() => setFocused(true)}
 				onBlur={() => setFocused(false)}
-				className="flex-1 outline-none self-stretch bg-transparent pr-2"
+				className="flex-1 self-stretch bg-transparent pr-2 outline-none"
 			/>
 			{showActionsButtons && RightIcon}
 			<button
@@ -64,7 +64,7 @@ export default function InputField({
 				type="submit"
 				disabled={!success}
 				style={{ visibility: showActionsButtons ? 'visible' : 'hidden' }}
-				className={'bg-transparent border-[1px] rounded-md py-1 px-3 ml-3 text-sm ' + colors}
+				className={'ml-3 rounded-md border-[1px] bg-transparent py-1 px-3 text-sm ' + colors}
 			>
 				{buttonText}
 			</button>

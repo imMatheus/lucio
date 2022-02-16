@@ -3,7 +3,7 @@
 	grid-template-columns: 1fr;
 	column-gap: 12px;
 	row-gap: 12px;
-	@apply lg:grid-cols-3 md:grid-cols-2;
+	@apply md:grid-cols-2 lg:grid-cols-3;
 }
 
 .classCard {
@@ -14,12 +14,12 @@
 	//     0 4px 6px -2px rgba(0, 0, 0, 0.05);
 	// box-shadow: var(--tw-ring-offset-shadow, 0 0 rgba(255, 255, 255, 0)),
 	//     var(--tw-ring-shadow, 0 0 rgba(255, 255, 255, 0)), var(--tw-shadow);
-	@apply p-4 rounded-lg shadow-sm border;
+	@apply rounded-lg border p-4 shadow-sm;
 }
 
 .studentCard {
 	font-weight: 600;
-	@apply text-sm border-b border-blue-500;
+	@apply border-b border-blue-500 text-sm;
 }
 
 .image {
@@ -50,11 +50,11 @@
 
 .chip {
 	display: block;
-	@apply bg-blue-200 py-2 px-3 rounded-full text-xs border border-blue-600 text-blue-600;
+	@apply rounded-full border border-blue-600 bg-blue-200 py-2 px-3 text-xs text-blue-600;
 }
 
 .option {
-	@apply px-3 py-2 border-b-2 transition-colors border-b-transparent hover:border-b-gray-200 dark:hover:border-b-gray-700;
+	@apply border-b-2 border-b-transparent px-3 py-2 transition-colors hover:border-b-gray-200 dark:hover:border-b-gray-700;
 }
 
 .optionActive {

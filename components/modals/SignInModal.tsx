@@ -14,49 +14,49 @@ const SignInModal: React.FC = () => {
 
 	return (
 		<div
-			className="fixed z-10 inset-0 overflow-y-auto"
+			className="fixed inset-0 z-10 overflow-y-auto"
 			aria-labelledby="modal-title"
 			role="dialog"
 			aria-modal="true"
 		>
-			<div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+			<div className="flex min-h-screen items-end justify-center px-4 pt-4 pb-20 text-center sm:block sm:p-0">
 				<div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
 
-				<span className="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">
+				<span className="hidden sm:inline-block sm:h-screen sm:align-middle" aria-hidden="true">
 					&#8203;
 				</span>
 
-				<div className="p-4 pb-6 inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full prose">
+				<div className="prose inline-block transform overflow-hidden rounded-lg bg-white p-4 pb-6 text-left align-bottom shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:align-middle">
 					<div
-						className="absolute top-2 left-2 cursor-pointer p-1 hover:bg-gray-100 transition-colors rounded-full"
+						className="absolute top-2 left-2 cursor-pointer rounded-full p-1 transition-colors hover:bg-gray-100"
 						onClick={() => {
 							setShowModal(false)
 						}}
 					>
 						<X className="text-black" />
 					</div>
-					<h2 className="text-center m-0 mb-2 text-4xl">hello</h2>
+					<h2 className="m-0 mb-2 text-center text-4xl">hello</h2>
 					<p className="text-center">sign into your Luciocode account</p>
 					<div className="relative mb-6">
 						<input
 							ref={emailRef}
 							type="text"
 							placeholder="Email..."
-							className="peer w-full outline-none pl-11 h-11 border border-gray-300 rounded-lg focus-within:border-theme"
+							className="peer h-11 w-full rounded-lg border border-gray-300 pl-11 outline-none focus-within:border-theme"
 						/>
-						<Mail className="text-gray-300 absolute left-3 top-1/2 -translate-y-1/2 peer-focus-within:text-theme" />
+						<Mail className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-300 peer-focus-within:text-theme" />
 					</div>
-					<div className="relative mb-6 flex items-center h-11 border border-gray-300 rounded-lg group focus-within:border-theme ">
+					<div className="group relative mb-6 flex h-11 items-center rounded-lg border border-gray-300 focus-within:border-theme ">
 						<input
 							ref={passwordRef}
 							type={showPassword ? 'text' : 'password'}
 							placeholder="Password..."
-							className="peer w-full pl-11 pr-2 bg-transparent outline-none focus:outline-none border-none focus:border-none"
+							className="peer w-full border-none bg-transparent pl-11 pr-2 outline-none focus:border-none focus:outline-none"
 						/>
-						<Lock className="text-gray-300 bg-transparent absolute left-3 top-1/2 -translate-y-1/2 group-focus-within:text-theme" />
+						<Lock className="absolute left-3 top-1/2 -translate-y-1/2 bg-transparent text-gray-300 group-focus-within:text-theme" />
 						<Button
 							variant="white"
-							className="flex-shrink-0 mr-2"
+							className="mr-2 flex-shrink-0"
 							onClick={() => {
 								setShowPassword((c) => !c)
 							}}
@@ -64,10 +64,10 @@ const SignInModal: React.FC = () => {
 							{showPassword ? 'Hide' : 'Show'}
 						</Button>
 					</div>
-					{error && <p className="text-error text-sm">{error}</p>}
+					{error && <p className="text-sm text-error">{error}</p>}
 					<Button
 						disabled={loading}
-						className="w-full !text-base !h-10"
+						className="!h-10 w-full !text-base"
 						onClick={async () => {
 							if (!loading && emailRef.current && passwordRef.current) {
 								setLoading(true)

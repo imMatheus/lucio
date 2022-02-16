@@ -24,16 +24,16 @@ const SkeletonText = ({ className, min, max }: { className?: string; min?: numbe
 
 export default function StudentCard({ user, role, joinedAt, edit, loading }: Props): ReactElement {
 	return (
-		<tbody className="divide-y m-none divide-gray-200">
+		<tbody className="m-none divide-y divide-gray-200">
 			<tr>
 				{edit && (
 					<td className="px-6 py-4">
-						<input type="checkbox" className="w-5 h-5 rounded focus:ring-theme-800" />
+						<input type="checkbox" className="h-5 w-5 rounded focus:ring-theme-800" />
 					</td>
 				)}
-				<td className="px-6 py-4 whitespace-nowrap">
+				<td className="whitespace-nowrap px-6 py-4">
 					<div className="flex items-center">
-						<div className="flex-shrink-0 h-10 w-10 relative">
+						<div className="relative h-10 w-10 flex-shrink-0">
 							{/* {true ? ( */}
 							<div className={styles.skeletonImage}></div>
 							<Image
@@ -58,29 +58,29 @@ export default function StudentCard({ user, role, joinedAt, edit, loading }: Pro
 						</div>
 					</div>
 				</td>
-				<td className="px-6 py-4 whitespace-nowrap">
+				<td className="whitespace-nowrap px-6 py-4">
 					<div className="text-sm text-gray-500">
 						{loading ? <SkeletonText min={6} max={10} /> : convertDate(joinedAt)}
 					</div>
 				</td>
-				<td className="px-6 py-4 whitespace-nowrap">
+				<td className="whitespace-nowrap px-6 py-4">
 					<div className="text-sm text-gray-500">
 						{loading ? <SkeletonText min={6} max={10} /> : convertDate(joinedAt)}
 					</div>
 				</td>
-				<td className="px-6 py-4 whitespace-nowrap items-center">
+				<td className="items-center whitespace-nowrap px-6 py-4">
 					<StatusChip status="dnd" loading={true} />
 				</td>
-				<td className="px-6 py-4 whitespace-nowrap text-sm">
+				<td className="whitespace-nowrap px-6 py-4 text-sm">
 					{loading ? (
 						<SkeletonText min={4} max={8} />
 					) : role.toLowerCase() === 'admin' ? (
-						<div className="text-theme-300 font-bold">{capitalizeFirstLetter(role)}</div>
+						<div className="font-bold text-theme-300">{capitalizeFirstLetter(role)}</div>
 					) : (
 						capitalizeFirstLetter(role)
 					)}
 				</td>
-				<td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+				<td className="whitespace-nowrap px-6 py-4 text-right text-sm font-medium">
 					<a href="#" className="text-theme hover:text-theme-800">
 						Edit
 					</a>

@@ -95,7 +95,7 @@ const Dropzone: React.FC<DropzoneProps> = ({ setFiles }) => {
 				onChange={(e) => changeHandler(e)}
 			/>
 			<label htmlFor="dropzone" className={styles.label}></label>
-			<FilePlus className="w-6 h-6 lg:w-7 lg:h-7 mb-1" />
+			<FilePlus className="mb-1 h-6 w-6 lg:h-7 lg:w-7" />
 			<h3>Click or drop your files here</h3>
 		</div>
 	)

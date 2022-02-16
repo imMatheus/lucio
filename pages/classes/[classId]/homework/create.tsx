@@ -30,16 +30,16 @@ const NoSsr = () => {
 	return (
 		<main className="p-6 md:p-8">
 			<Link href={`/classes/${classId}/homework`} passHref={true}>
-				<a className="mb-2 w-8 h-8 transition-colors hover:bg-gray-200/80 dark:hover:bg-gray-800/80 rounded-full flex justify-center items-center">
-					<ArrowLeft className="w-5 h-5" />
+				<a className="mb-2 flex h-8 w-8 items-center justify-center rounded-full transition-colors hover:bg-gray-200/80 dark:hover:bg-gray-800/80">
+					<ArrowLeft className="h-5 w-5" />
 				</a>
 			</Link>
 
-			<h2 className="text-3xl md:text-4xl mb-2 font-bold">Create you class</h2>
-			<h3 className="text-2xl mb-2 font-bold">
+			<h2 className="mb-2 text-3xl font-bold md:text-4xl">Create you class</h2>
+			<h3 className="mb-2 text-2xl font-bold">
 				Files
 				{files.length >= 1 && (
-					<span className="text-gray-600 dark:text-gray-400 text-base font-normal">
+					<span className="text-base font-normal text-gray-600 dark:text-gray-400">
 						{' '}
 						- {files.length} added
 					</span>

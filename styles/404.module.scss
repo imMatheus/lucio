@@ -14,7 +14,7 @@ $offset-sm: 2px;
 
 .h2 {
 	@extend .text;
-	@apply text-5xl md:text-7xl lg:text-9xl xl:text-10xl 2xl:text-13xl font-black mb-8;
+	@apply mb-8 text-5xl font-black md:text-7xl lg:text-9xl xl:text-10xl 2xl:text-13xl;
 }
 
 .h3 {

@@ -1,13 +1,13 @@
 .nav {
-	@apply flex text-sm text-teal-500 mx-auto;
+	@apply mx-auto flex text-sm text-teal-500;
 }
 
 .searchWrapper {
-	@apply bg-red-700 py-1 px-2 mr-3  ml-auto;
+	@apply mr-3 ml-auto bg-red-700 py-1  px-2;
 }
 
 .logo {
-	@apply text-3xl font-extrabold text-sky-500 mr-auto cursor-pointer;
+	@apply mr-auto cursor-pointer text-3xl font-extrabold text-sky-500;
 
 	span {
 		margin: 0rem;
@@ -31,20 +31,20 @@
 @keyframes logoSwitcher {
 	0%,
 	50% {
-		@apply text-theme mr-1;
+		@apply mr-1 text-theme;
 	}
 
 	100% {
-		@apply text-amber-500 ml-1;
+		@apply ml-1 text-amber-500;
 	}
 }
 
 .tab {
-	@apply font-bold hover:text-green-400 transition-colors cursor-pointer;
+	@apply cursor-pointer font-bold transition-colors hover:text-green-400;
 }
 
 .controlsSpan {
-	@apply flex text-sm mr-3 items-center cursor-pointer relative;
+	@apply relative mr-3 flex cursor-pointer items-center text-sm;
 }
 
 // .dropdownTriangle {

@@ -9,17 +9,17 @@ interface ThemeCardProps {
 const ThemeCard: React.FC<ThemeCardProps> = ({ id, label, onClick, checked, children }) => {
 	return (
 		<div
-			className={`rounded-md relative border bg-gray-200 dark:bg-gray-800 ${
+			className={`relative rounded-md border bg-gray-200 dark:bg-gray-800 ${
 				checked ? 'border-theme-400' : 'border-black dark:border-gray-700'
 			} overflow-hidden`}
 		>
-			<div className="w-full lg:w-72 aspect-video p-2 relative">{children}</div>
-			<div className="flex gap-2 items-center px-3 py-2 text-sm">
+			<div className="relative aspect-video w-full p-2 lg:w-72">{children}</div>
+			<div className="flex items-center gap-2 px-3 py-2 text-sm">
 				<input type="radio" className="text-theme-500" name="theme" id={id} defaultChecked={checked} />
 				{/* TODO add arial labels */}
 				<label
 					htmlFor={id}
-					className="absolute inset-0 bg-transparent cursor-pointer"
+					className="absolute inset-0 cursor-pointer bg-transparent"
 					onClick={onClick}
 				></label>
 				{label}

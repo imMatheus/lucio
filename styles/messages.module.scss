@@ -23,7 +23,7 @@
 }
 
 .messageBase {
-	@apply rounded-md px-4 py-2 mb-2 shadow-lg;
+	@apply mb-2 rounded-md px-4 py-2 shadow-lg;
 }
 
 .messageSent {
@@ -45,7 +45,7 @@
 	bottom: 0;
 	// min-height: 60px;
 	// display: flex;
-	@apply py-3 px-6 bg-red-500;
+	@apply bg-red-500 py-3 px-6;
 
 	// .inputWrapper {
 	// flex: 1;
@@ -66,7 +66,7 @@
 	// align-items: center;
 	border-radius: 20px;
 	position: relative;
-	@apply max-w-md bg-emerald-500 px-4 py-2 border border-orange-600;
+	@apply max-w-md border border-orange-600 bg-emerald-500 px-4 py-2;
 
 	&:focus-within {
 		@apply border-theme;
@@ -99,5 +99,5 @@
 	display: flex;
 	align-items: center;
 
-	@apply py-3 px-4 bg-yellow-400 shadow-sm;
+	@apply bg-yellow-400 py-3 px-4 shadow-sm;
 }

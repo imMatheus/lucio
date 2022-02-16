@@ -21,12 +21,12 @@ const PrivacyOption: React.FC<PrivacyOptionProps> = ({ Icon, id, value, privacy,
 				value={value}
 				checked={privacy === value}
 				onChange={() => setPrivacy(value)}
-				className="w-4 h-4 lg:w-5 lg:h-5 shadow-md border border-gray-500/60 focus:ring-0 !ring-0 focus:ring-transparent !outline-0 text-theme-600"
+				className="h-4 w-4 border border-gray-500/60 text-theme-600 shadow-md !outline-0 !ring-0 focus:ring-0 focus:ring-transparent lg:h-5 lg:w-5"
 			/>
 
 			<label htmlFor={id} className="ml-3 flex items-center" onClick={() => setPrivacy(value)}>
-				<Icon className="w-5 h-5 flex-shrink-0 text-gray-900 dark:text-gray-200/80" />
-				<p className="break-words m-0 ml-2 text-sm lg:text-base text-gray-900 dark:text-gray-200/80 pt-0.5">
+				<Icon className="h-5 w-5 flex-shrink-0 text-gray-900 dark:text-gray-200/80" />
+				<p className="m-0 ml-2 break-words pt-0.5 text-sm text-gray-900 dark:text-gray-200/80 lg:text-base">
 					{children}
 				</p>
 			</label>

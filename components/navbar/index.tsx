@@ -30,20 +30,20 @@ export default function Navbar(): ReactElement {
 
 	return (
 		<nav
-			className="px-3 sm:px-6 lg:px-8 py-4 bg-gray-100 dark:bg-gray-800 border-b border-b-gray-400 dark:border-b-gray-500 "
+			className="border-b border-b-gray-400 bg-gray-100 px-3 py-4 dark:border-b-gray-500 dark:bg-gray-800 sm:px-6 lg:px-8 "
 			ref={navbarRef}
 		>
 			<div className="w-maxed mx-auto">
-				<div className="flex text-sm mx-auto">
+				<div className="mx-auto flex text-sm">
 					<section className="flex flex-1 items-center">
 						<Link href="/" passHref={true}>
 							<a className="mr-auto">
-								<h4 className="text-2xl md:text-3xl font-bold 2xl:text-4xl 2xl:font-extrabold text-gray-900 dark:text-gray-50 cursor-pointer">
+								<h4 className="cursor-pointer text-2xl font-bold text-gray-900 dark:text-gray-50 md:text-3xl 2xl:text-4xl 2xl:font-extrabold">
 									Luciocode
 								</h4>
 							</a>
 						</Link>
-						<div className="hidden md:flex items-center gap-3">
+						<div className="hidden items-center gap-3 md:flex">
 							<NavLink href="/classes">Classes</NavLink>
 							<NavLink href="/messages">Messages</NavLink>
 							<NavLink href="/problems">Problems</NavLink>

@@ -46,8 +46,8 @@ const Classes: NextPage<Props> = ({ classes }) => {
 
 	return (
 		<section className="py-8 px-3 sm:px-6 lg:px-8">
-			<main className="w-maxed mx-auto relative">
-				<div className="flex mb-3 gap-2">
+			<main className="w-maxed relative mx-auto">
+				<div className="mb-3 flex gap-2">
 					<Link href="/classes/create" passHref={true}>
 						<a>
 							<Button>Create class</Button>
@@ -71,7 +71,7 @@ const Classes: NextPage<Props> = ({ classes }) => {
 				</div>
 
 				{classes?.length > 0 ? (
-					<div className="grid gap-3 md:gap-4 lg:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
+					<div className="grid grid-cols-1 gap-3 sm:grid-cols-2 md:gap-4 lg:grid-cols-3 lg:gap-6 xl:grid-cols-4 2xl:grid-cols-5">
 						{classes?.map((classRoom) => (
 							<ClassCard data={classRoom} key={classRoom._id} />
 						))}

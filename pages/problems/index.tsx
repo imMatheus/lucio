@@ -67,7 +67,7 @@ const Problems: NextPage<Props> = ({ problems, ...props }) => {
 	}, [difficulty, status, router])
 
 	return (
-		<div className="w-maxed w-full mx-auto my-4 p-4">
+		<div className="w-maxed mx-auto my-4 w-full p-4">
 			<div className="my-2 flex gap-2">
 				<Dropdown title="Difficulty">
 					<div className="mb-1 text-olive dark:text-oliveDark" onClick={() => setDifficulty(Difficulty.easy)}>
@@ -92,7 +92,7 @@ const Problems: NextPage<Props> = ({ problems, ...props }) => {
 					</div>
 				</Dropdown>
 			</div>
-			<div className="flex gap-2 my-3">
+			<div className="my-3 flex gap-2">
 				{difficulty && <QueryChip title={difficulty} onClick={() => setDifficulty('')} />}
 				{status && <QueryChip title={status} onClick={() => setStatus('')} />}
 			</div>

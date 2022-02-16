@@ -10,7 +10,7 @@ const HomeworkFile: React.FC<HomeworkFileProps> = ({ path }) => {
 
 	return (
 		<a href={link}>
-			<div className="p-4 bg-red-300 rounded-2xl">{path} no path i think</div>
+			<div className="rounded-2xl bg-red-300 p-4">{path} no path i think</div>
 		</a>
 	)
 }
