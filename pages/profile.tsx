@@ -11,10 +11,10 @@ const Profile: NextPage = () => {
 	const [darkMode, setDarkMode] = useDarkMode()
 
 	return (
-		<main className="max-w-7xl mx-auto p-4 md:p-8">
+		<main className="mx-auto max-w-7xl p-4 md:p-8">
 			Profile
 			<section className="my-5 max-w-2xl">
-				<h2 className="text-lg md:text-xl lg:text-2xl font-bold mb-2">Personal info</h2>
+				<h2 className="mb-2 text-lg font-bold md:text-xl lg:text-2xl">Personal info</h2>
 
 				<div className="mb-3">
 					<label
@@ -29,7 +29,7 @@ const Profile: NextPage = () => {
 						placeholder="you@example.com"
 						id="email-address"
 						autoComplete="email"
-						className="dark:bg-black mt-1 focus:ring-theme-500 focus:border-theme-500 block w-full shadow-sm sm:text-sm border-gray-300 dark:border-gray-700 rounded-md"
+						className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-theme-500 focus:ring-theme-500 dark:border-gray-700 dark:bg-black sm:text-sm"
 					/>
 				</div>
 				<div className="mb-3">
@@ -41,15 +41,15 @@ const Profile: NextPage = () => {
 							id="bio"
 							name="bio"
 							rows={4}
-							className="dark:bg-black min-h-[3rem] max-h-[30rem] shadow-sm focus:ring-theme-500 focus:border-theme-500 mt-1 block w-full sm:text-sm border border-gray-300 dark:border-gray-700 rounded-md"
+							className="mt-1 block max-h-[30rem] min-h-[3rem] w-full rounded-md border border-gray-300 shadow-sm focus:border-theme-500 focus:ring-theme-500 dark:border-gray-700 dark:bg-black sm:text-sm"
 							placeholder="Tell people about yourself"
 						></textarea>
 					</div>
 				</div>
 			</section>
 			<section className="my-5">
-				<h2 className="text-lg md:text-xl lg:text-2xl font-bold mb-2">Themes</h2>
-				<form className="grid grid-cols-2 lg:flex gap-3 lg:gap-5 lg:flex-wrap">
+				<h2 className="mb-2 text-lg font-bold md:text-xl lg:text-2xl">Themes</h2>
+				<form className="grid grid-cols-2 gap-3 lg:flex lg:flex-wrap lg:gap-5">
 					<ThemeCard
 						id="theme_dark"
 						label="Dark"
@@ -73,7 +73,7 @@ const Profile: NextPage = () => {
 						checked={darkMode === 'system'}
 					>
 						<Image src="/theme_light.svg" layout="fill" alt="theme light" objectFit="cover" />
-						<div className="absolute w-full h-full inset-0 left-1/2">
+						<div className="absolute inset-0 left-1/2 h-full w-full">
 							<Image
 								src="/theme_dark.svg"
 								layout="fill"
@@ -86,7 +86,7 @@ const Profile: NextPage = () => {
 				</form>
 			</section>
 			<section className="my-5">
-				<h2 className="text-lg md:text-xl lg:text-2xl font-bold mb-2">Actions</h2>
+				<h2 className="mb-2 text-lg font-bold md:text-xl lg:text-2xl">Actions</h2>
 				<div className="flex gap-2">
 					<Button variant="warning">Change password</Button>
 					<Button variant="error" onClick={async () => await logout()}>
