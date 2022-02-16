@@ -4,9 +4,11 @@ import { useAuth } from '@/context/AuthContext'
 import Button from '@/components/button'
 import Image from 'next/image'
 import ThemeCard from '@/components/profile/ThemeCard'
+import useDarkMode from '@/hooks/useDarkMode'
 
 const Profile: NextPage = () => {
 	const { fetchingUser, currentUser, logout } = useAuth()
+	const [darkMode, setDarkMode] = useDarkMode()
 
 	return (
 		<main className="max-w-7xl mx-auto p-4 md:p-8">
@@ -15,13 +17,28 @@ const Profile: NextPage = () => {
 				<h2 className="text-2xl font-bold mb-2">Themes</h2>
 
 				<form className="grid grid-cols-2 lg:flex gap-3 lg:gap-5 lg:flex-wrap">
-					<ThemeCard id="theme_dark" label="Dark">
+					<ThemeCard
+						id="theme_dark"
+						label="Dark"
+						onClick={() => setDarkMode('dark')}
+						checked={darkMode === 'dark'}
+					>
 						<Image src="/theme_dark.svg" layout="fill" alt="theme dark" objectFit="cover" />
 					</ThemeCard>
-					<ThemeCard id="theme_light" label="Light">
+					<ThemeCard
+						id="theme_light"
+						label="Light"
+						onClick={() => setDarkMode('light')}
+						checked={darkMode === 'light'}
+					>
 						<Image src="/theme_light.svg" layout="fill" alt="theme light" objectFit="cover" />
 					</ThemeCard>
-					<ThemeCard id="theme_system" label="System">
+					<ThemeCard
+						id="theme_system"
+						label="System"
+						onClick={() => setDarkMode('system')}
+						checked={darkMode === 'system'}
+					>
 						<Image src="/theme_light.svg" layout="fill" alt="theme light" objectFit="cover" />
 						<div className="absolute w-full h-full inset-0 left-1/2">
 							<Image

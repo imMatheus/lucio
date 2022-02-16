@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react'
 // Hook
 export default function useMedia<T>(queries: string[], values: T[], defaultValue: T) {
 	// Array containing a media query list for each query
-	const mediaQueryLists = queries?.map((q) => window?.matchMedia(q))
+	const mediaQueryLists = typeof window !== 'undefined' ? queries?.map((q) => window?.matchMedia(q)) : []
 	// Function that gets value based on matching media query
 	const getValue = () => {
 		// Get index of first media query that matches
