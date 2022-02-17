@@ -13,6 +13,7 @@
 		"count": "git ls-files --exclude-standard -- ':!:**/*.[pjs][npv]g' ':!:**/*.jpeg' ':!:**/*.webp' ':!:yarn.lock' ':!:package-lock.json' | xargs wc -l",
 		"count-all": "git ls-files | xargs wc -l",
 		"count-files": "git ls-files | wc -l",
+		"prettier-write": "npx prettier --write .",
 		"prettier-check": "npx prettier --check ."
 	},
 	"dependencies": {
