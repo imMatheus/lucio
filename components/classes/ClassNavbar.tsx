@@ -8,7 +8,10 @@ interface TopBarOptionProps {
 
 const TopBarOption: React.FC<TopBarOptionProps> = ({ children, link }) => {
 	const router = useRouter()
-	const active = router.asPath === link
+	console.log(router)
+	console.log(router.asPath)
+
+	const active = router.asPath.startsWith(link)
 	return (
 		<Link href={link} passHref={true}>
 			<a>
