@@ -6,13 +6,12 @@ import useDarkMode from '@/hooks/useDarkMode'
 
 const Layout: React.FC = ({ children }) => {
 	const { showModal, modal } = useModal()
-	const [theme] = useDarkMode()
 
 	return (
 		<div className="min-h-screen bg-gray-100 text-gray-900 accent-theme dark:bg-gray-900 dark:text-gray-100">
 			<Toast />
 			<Navbar />
-			<div className="">{children}</div>
+			{children}
 			{showModal && modal}
 		</div>
 	)
