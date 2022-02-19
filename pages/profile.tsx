@@ -81,11 +81,19 @@ const Profile: NextPage = () => {
 			</section>
 			<section className="my-5">
 				<h2 className="mb-2 text-lg font-bold md:text-xl lg:text-2xl">Actions</h2>
-				<div className="flex gap-2">
+				<div className="flex flex-wrap items-center gap-3">
 					<Button variant="warning">Change password</Button>
 					<Button variant="error" onClick={async () => await logout()}>
 						Logout
 					</Button>
+					<div className="w-full"></div>
+					<button className="btn-shadow">Create a class</button>
+					<button className="btn-shadow-1">Change password</button>
+					<button className="btn-shadow-2">Logout</button>
+					<button className="btn-shadow-3">Create</button>
+					<button className="btn-shadow-4">Make a class to help students</button>
+					<button className="btn-shadow-5">Lorem ipsum dolor sit amet.</button>
+					<button className="btn-shadow-6">Lorem, ipsum dolor.</button>
 				</div>
 			</section>
 		</main>

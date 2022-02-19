@@ -22,6 +22,10 @@ export default function ClassScreen(): ReactElement {
 				<ClassNavbar />
 				<h2>class data</h2>
 
+				<button className="btn-shadow">Create a class</button>
+				<button className="btn-shadow-1">Create a class</button>
+				<button className="btn-shadow-2">Create a class</button>
+
 				{classData && <Welcome colors={classData.theme} />}
 				{/* <div>
 					<h4>{classData && JSON.stringify(classData)}</h4>
