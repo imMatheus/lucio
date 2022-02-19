@@ -1,6 +1,5 @@
 import React, { ReactElement } from 'react'
-import styles from '../../styles/studentstable.module.scss'
-import SVG from 'react-inlinesvg'
+import styles from './studentstable.module.scss'
 import { UserInterface } from '@models/User'
 import { capitalizeFirstLetter, convertDate } from '@/utils/index'
 import StatusChip from './statuschip'

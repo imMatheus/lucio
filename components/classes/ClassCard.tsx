@@ -1,6 +1,5 @@
 import React from 'react'
 import Link from 'next/link'
-import styles from 'styles/classes.module.scss'
 import Image from 'next/image'
 import ClassType from '@/types/ClassType'
 import { validateThemeColors } from 'utils/validateClassThemeColors'
@@ -31,7 +30,7 @@ export default function ClassCard({ data: { _id, name, code, participants, theme
 						<p className="m-0 w-max rounded-lg bg-gray-100/10 py-1 px-2 text-xs font-normal uppercase text-gray-50">
 							Programing
 						</p>
-						<p className="m-0 mt-2 overflow-hidden text-ellipsis break-words pr-0 font-serif text-3xl font-black text-white [white-space:_unset] [display:_-webkit-box] [-webkit-box-orient:_vertical] [-webkit-line-clamp:_2] md:mt-4 md:pr-3 lg:pr-5 lg:[-webkit-line-clamp:_5]">
+						<p className="text-two-line lg:text-five-line m-0 mt-2 overflow-hidden text-ellipsis break-words pr-0 font-serif text-3xl font-black text-white md:mt-4 md:pr-3 lg:pr-5">
 							{name}
 						</p>
 						<p className="font-serif text-sm font-medium lg:text-base">

@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from '../../styles/alert.module.scss'
+import styles from './alert.module.scss'
 
 interface indexProps extends React.HTMLAttributes<HTMLDivElement> {
 	variant?: 'primary' | 'error' | 'success' | 'warning'

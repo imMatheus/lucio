@@ -6,7 +6,7 @@ import ClassType from '@/types/ClassType'
 import useClassData from '@/hooks/useClassData'
 import HomeworkFile from './HomeworkFile'
 import Input from '@/components/Input'
-import Filezone from '@/components/Filezone'
+import Filezone from '@/components/filezone'
 
 interface CreateHomeworkProps {}
 

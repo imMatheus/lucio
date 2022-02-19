@@ -1,5 +1,4 @@
 import React, { useEffect, ReactElement, useState } from 'react'
-// import styles from 'styles/Classes.module.scss'
 import ClassCard from '@/components/classes/ClassCard'
 import { useToast } from '@/context/ToastContext'
 import Button from '@/components/button'

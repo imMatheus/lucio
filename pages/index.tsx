@@ -3,7 +3,7 @@ import type { NextPage } from 'next'
 const Home: NextPage = () => {
 	return (
 		<div>
-			<section className="p-5 xl:p-16">
+			<section className="bg-[#020207] p-5 xl:p-16">
 				<div className="mx-auto max-w-7xl">
 					<h1 className="mb-3 text-center text-6xl font-extrabold text-gray-800 dark:text-gray-100 xl:text-8xl">
 						LucioCode

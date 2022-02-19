@@ -1,21 +1,10 @@
 import React, { ReactElement, useRef, useState, useEffect, useLayoutEffect } from 'react'
-import { Bell, Plus, ChevronDown, Icon } from 'react-feather'
 import Link from 'next/link'
-import SVG from 'react-inlinesvg'
-import useClickOutside from '@/hooks/useClickOutside'
-import Button from '@/components/button'
-import useDarkMode from '@/hooks/useDarkMode'
-import Spinner from '@/components/spinner'
-import { useModal } from '@/context/ModalContext'
-import SignInModal from '@/components/modals/SignInModal'
 import NavLink from './NavLink'
-import { useAuth } from '@/context/AuthContext'
 import DisplayUser from './DisplayUser'
 
 export default function Navbar(): ReactElement {
 	const navbarRef = useRef<HTMLElement>(null)
-	const { setShowModal, setModal } = useModal()
-	const { fetchingUser, currentUser, logout } = useAuth()
 
 	useLayoutEffect(() => {
 		// the --navbar-height variable represents the height of the navbar

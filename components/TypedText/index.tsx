@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import useTimeout from '@/hooks/useTimeout'
-import styles from 'styles/typedtext.module.scss'
+import styles from './typedtext.module.scss'
 
 interface TypedTextProps extends React.HTMLAttributes<HTMLParagraphElement> {
 	delay?: number

@@ -22,28 +22,36 @@
 	.max-h-full-wo-nav {
 		max-height: calc(100vh - var(--navbar-height));
 	}
-}
 
-.text-line-base {
-	overflow-wrap: break-word;
-	text-overflow: ellipsis;
-	white-space: unset;
-	display: -webkit-box;
-	overflow: hidden;
-	-webkit-box-orient: vertical;
-}
+	.text-line-base {
+		overflow-wrap: break-word;
+		text-overflow: ellipsis;
+		white-space: unset;
+		display: -webkit-box;
+		overflow: hidden;
+		-webkit-box-orient: vertical;
+	}
 
-.text-one-line {
-	@extend .text-line-base;
-	-webkit-line-clamp: 1;
-}
-.text-two-line {
-	@extend .text-line-base;
-	-webkit-line-clamp: 2;
-}
-.text-three-line {
-	@extend .text-line-base;
-	-webkit-line-clamp: 3;
+	.text-one-line {
+		@extend .text-line-base;
+		-webkit-line-clamp: 1;
+	}
+	.text-two-line {
+		@extend .text-line-base;
+		-webkit-line-clamp: 2;
+	}
+	.text-three-line {
+		@extend .text-line-base;
+		-webkit-line-clamp: 3;
+	}
+	.text-four-line {
+		@extend .text-line-base;
+		-webkit-line-clamp: 4;
+	}
+	.text-five-line {
+		@extend .text-line-base;
+		-webkit-line-clamp: 5;
+	}
 }
 
 .text-hollow {
@@ -54,10 +62,6 @@
 	-webkit-text-fill-color: transparent;
 	-moz-background-clip: text;
 	-moz-text-fill-color: transparent;
-}
-
-.text-outline {
-	text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
 }
 
 html,

@@ -1,6 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
-import styles from '../../styles/classes.module.scss'
+import styles from './classes.module.scss'
 import { useRouter } from 'next/router'
 interface TopBarOptionProps {
 	link: string

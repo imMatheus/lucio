@@ -1,5 +1,4 @@
 import React, { ReactElement, useEffect, useState } from 'react'
-import styles from 'styles/Classes.module.scss'
 import ClassType from '@/types/ClassType'
 import { useRouter } from 'next/router'
 import ClassNavbar from '@/components/classes/ClassNavbar'
