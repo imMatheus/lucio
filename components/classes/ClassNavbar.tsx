@@ -1,26 +1,6 @@
 import React from 'react'
-import Link from 'next/link'
-import styles from './classes.module.scss'
 import { useRouter } from 'next/router'
-interface TopBarOptionProps {
-	link: string
-}
-
-const TopBarOption: React.FC<TopBarOptionProps> = ({ children, link }) => {
-	const router = useRouter()
-	const path = router.asPath
-	const active = path === link || path.startsWith(link + '?')
-
-	return (
-		<Link href={link} passHref={true}>
-			<a>
-				<div className={(active ? styles.optionActive : styles.option) + ' dark:hover:border-b-gray-600'}>
-					{children}
-				</div>
-			</a>
-		</Link>
-	)
-}
+import ClassNavbarOption from './ClassNavbarOption'
 
 const ClassNavbar: React.FC = () => {
 	const router = useRouter()
@@ -28,9 +8,10 @@ const ClassNavbar: React.FC = () => {
 
 	return (
 		<div className="flex border-b border-gray-300 dark:border-gray-800">
-			<TopBarOption link={`/classes/${classId}`}>Class</TopBarOption>
-			<TopBarOption link={`/classes/${classId}/homework`}>Homework</TopBarOption>
-			<TopBarOption link={`/classes/${classId}/students`}>Students</TopBarOption>
+			<ClassNavbarOption link={`/classes/${classId}`}>Class</ClassNavbarOption>
+			<ClassNavbarOption link={`/classes/${classId}/homework`}>Homework</ClassNavbarOption>
+			<ClassNavbarOption link={`/classes/${classId}/students`}>Students</ClassNavbarOption>
+			<div className="dark:hover:border-b-orange-500"></div>
 		</div>
 	)
 }

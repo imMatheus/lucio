@@ -51,12 +51,3 @@
 	display: block;
 	@apply rounded-full border border-blue-600 bg-blue-200 py-2 px-3 text-xs text-blue-600;
 }
-
-.option {
-	@apply border-b-2 border-b-transparent px-3 py-2 transition-colors;
-}
-
-.optionActive {
-	@extend .option;
-	@apply border-b-theme hover:border-b-theme;
-}

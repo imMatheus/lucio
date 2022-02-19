@@ -19,8 +19,9 @@ export default function ClassScreen(): ReactElement {
 				<meta property="og:title" content="My page title" key="title" />
 			</Head>
 			<section className="w-maxed mx-auto">
-				{classId && <ClassNavbar />}
+				<ClassNavbar />
 				<h2>class data</h2>
+
 				{classData && <Welcome colors={classData.theme} />}
 				{/* <div>
 					<h4>{classData && JSON.stringify(classData)}</h4>

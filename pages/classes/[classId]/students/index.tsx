@@ -18,7 +18,7 @@ const Students: NextPage = () => {
 				<title>{classData?.name} | Students</title>
 				<meta property="og:title" content={`${classData?.name} | Students`} key="title" />
 			</Head>
-			{classId && <ClassNavbar />}
+			<ClassNavbar />
 			<StudentsTable />
 			{/* <h2 className="text-2xl"> {JSON.stringify(classData)}</h2> */}
 		</section>

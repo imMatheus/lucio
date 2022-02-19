@@ -62,7 +62,7 @@ const Index: NextPage = () => {
 				<title>{classData?.name} | Homework</title>
 				<meta property="og:title" content="My page title" key="title" />
 			</Head>
-			{classId && <ClassNavbar />}
+			<ClassNavbar />
 			homework
 			{classData && (
 				<Link href={`/classes/${classData._id}/homework/create`} passHref={true}>
