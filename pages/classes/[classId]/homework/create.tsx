@@ -14,18 +14,23 @@ const NoSsr = () => {
 	const router = useRouter()
 	const { classId } = router.query
 	console.log(router.query)
+	const [showQuill, setShowQuill] = useState(false)
 	console.log('-___-')
 	const [text, setText] = useState('hello world!')
 	const [files, setFiles] = useState<FileProps[]>([])
+
 	function handeChange(text: string) {
 		setText(text)
 	}
 
 	useEffect(() => {
 		console.log('opoooasasas')
-
 		console.log(files)
 	}, [files])
+
+	useEffect(() => {
+		setShowQuill(true)
+	}, [])
 
 	return (
 		<main className="p-6 md:p-8">
@@ -45,7 +50,7 @@ const NoSsr = () => {
 					</span>
 				)}
 			</h3>
-			{/* <ReactQuill value={'.text'} /> */}
+			{showQuill && <ReactQuill value={'.text'} />}
 			{/* <ReactQuill value={text} onChange={handeChange} /> */}
 			<FileCardWrapper>
 				{files.map((file) => (
