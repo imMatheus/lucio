@@ -8,14 +8,15 @@ interface TopBarOptionProps {
 
 const TopBarOption: React.FC<TopBarOptionProps> = ({ children, link }) => {
 	const router = useRouter()
-	console.log(router)
-	console.log(router.asPath)
+	const path = router.asPath
+	const active = path === link || path.startsWith(link + '?')
 
-	const active = router.asPath.startsWith(link)
 	return (
 		<Link href={link} passHref={true}>
 			<a>
-				<div className={active ? styles.optionActive : styles.option}>{children}</div>
+				<div className={(active ? styles.optionActive : styles.option) + ' dark:hover:border-b-gray-600'}>
+					{children}
+				</div>
 			</a>
 		</Link>
 	)
@@ -26,7 +27,7 @@ const ClassNavbar: React.FC = () => {
 	const { classId } = router.query
 
 	return (
-		<div className="flex gap-3 border-b border-gray-300 dark:border-gray-800">
+		<div className="flex border-b border-gray-300 dark:border-gray-800">
 			<TopBarOption link={`/classes/${classId}`}>Class</TopBarOption>
 			<TopBarOption link={`/classes/${classId}/homework`}>Homework</TopBarOption>
 			<TopBarOption link={`/classes/${classId}/students`}>Students</TopBarOption>
