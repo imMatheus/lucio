@@ -4,47 +4,28 @@ import { useAuth } from '@/context/AuthContext'
 import Button from '@/components/button'
 import Image from 'next/image'
 import ThemeCard from '@/components/profile/ThemeCard'
+import Input from '@/components/profile/Input'
 import useDarkMode from '@/hooks/useDarkMode'
 
 const Profile: NextPage = () => {
 	const { fetchingUser, currentUser, logout } = useAuth()
 	const [darkMode, setDarkMode] = useDarkMode()
+	console.log(darkMode)
 
 	return (
-		<main className="mx-auto max-w-7xl p-4 md:p-8">
-			Profile
+		<main className="mx-auto max-w-7xl p-4 md:px-8">
 			<section className="my-5 max-w-2xl">
 				<h2 className="mb-2 text-lg font-bold md:text-xl lg:text-2xl">Personal info</h2>
 
-				<div className="mb-3">
-					<label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-200">
-						Name
-					</label>
-					<input
-						type="text"
-						name="name"
-						placeholder="Joe Doe"
-						id="name"
-						autoComplete="name"
-						className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-theme-500 focus:ring-theme-500 dark:border-gray-700 dark:bg-black sm:text-sm"
-					/>
-				</div>
-				<div className="mb-3">
-					<label
-						htmlFor="email-address"
-						className="block text-sm font-medium text-gray-700 dark:text-gray-200"
-					>
-						Email address
-					</label>
-					<input
-						type="email"
-						name="email-address"
-						placeholder="you@example.com"
-						id="email-address"
-						autoComplete="email"
-						className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-theme-500 focus:ring-theme-500 dark:border-gray-700 dark:bg-black sm:text-sm"
-					/>
-				</div>
+				<Input type="text" label="Name" placeholder="Joe doe" id="name" autoComplete="name" />
+				<Input
+					type="email"
+					label="Email address"
+					placeholder="you@example.com"
+					id="email-address"
+					autoComplete="email"
+				/>
+
 				<div className="mb-3">
 					<label htmlFor="bio" className="block text-sm font-medium text-gray-700 dark:text-gray-200">
 						Bio
