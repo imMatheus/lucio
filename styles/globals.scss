@@ -53,7 +53,7 @@
 		-webkit-line-clamp: 5;
 	}
 	.btn-shadow {
-		@apply rounded-lg border border-indigo-500 bg-gray-900 px-2.5 py-1 font-mono text-sm  text-indigo-500 shadow-indigo-500;
+		@apply rounded-lg border border-indigo-500 bg-gray-900 px-2.5 py-1 font-inter text-sm text-indigo-500 shadow-indigo-500;
 		box-shadow: -3px 3px 0px var(--tw-shadow-color);
 		transition: all 150ms;
 		&:hover {
@@ -83,6 +83,10 @@
 	.btn-shadow-6 {
 		@extend .btn-shadow;
 		@apply border-purple-500 text-purple-500 shadow-purple-500;
+	}
+	.btn-shadow-7 {
+		@extend .btn-shadow;
+		@apply border-gray-200 text-gray-200 shadow-gray-200;
 	}
 }
 

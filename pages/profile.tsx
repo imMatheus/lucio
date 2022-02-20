@@ -91,9 +91,10 @@ const Profile: NextPage = () => {
 					<button className="btn-shadow-1">Change password</button>
 					<button className="btn-shadow-2">Logout</button>
 					<button className="btn-shadow-3">Create</button>
-					<button className="btn-shadow-4">Make a class to help students</button>
+					<button className="btn-shadow-4">Dolor sit amet.</button>
 					<button className="btn-shadow-5">Lorem ipsum dolor sit amet.</button>
 					<button className="btn-shadow-6">Lorem, ipsum dolor.</button>
+					<button className="btn-shadow-7">Leave class</button>
 				</div>
 			</section>
 		</main>

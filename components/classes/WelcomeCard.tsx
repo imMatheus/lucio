@@ -10,7 +10,7 @@ const WelcomeCard: React.FC<WelcomeCardProps> = ({ colors }) => {
 	if (!show) return null
 	return (
 		<div
-			className="relative my-2 rounded-xl p-8"
+			className="relative my-2 rounded-xl p-8 text-gray-100"
 			style={{ backgroundImage: `linear-gradient(45deg, ${colors[0]}, ${colors[1]}` }}
 		>
 			<h2 className="mb-1 break-words text-4xl font-black md:mb-2 lg:text-5xl">Welcome, Adam</h2>

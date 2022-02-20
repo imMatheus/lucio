@@ -10,6 +10,9 @@ module.exports = {
 				'12xl': ['13rem', '1'],
 				'13xl': ['15rem', '1']
 			},
+			fontFamily: {
+				inter: ["'Inter'", 'sans-serif']
+			},
 			colors: {
 				success: '#2da44e',
 				error: '#cf222e',

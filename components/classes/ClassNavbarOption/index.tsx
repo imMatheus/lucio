@@ -18,7 +18,7 @@ const Index: React.FC<IndexProps> = ({ children, link }) => {
 				className={`border-b-2 border-b-transparent px-3 py-1 transition-colors ${
 					active
 						? 'border-b-theme hover:border-b-theme'
-						: 'hover:border-b-gray-400 dark:hover:border-b-gray-700'
+						: 'hover:border-b-gray-300 dark:hover:border-b-gray-700'
 				}`}
 			>
 				{children}

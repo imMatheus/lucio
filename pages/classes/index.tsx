@@ -49,7 +49,7 @@ const Classes: NextPage<Props> = ({ classes }) => {
 				<div className="mb-3 flex gap-2">
 					<Link href="/classes/create" passHref={true}>
 						<a>
-							<Button>Create class</Button>
+							<Button>Create a class</Button>
 						</a>
 					</Link>
 
