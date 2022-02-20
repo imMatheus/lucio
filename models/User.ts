@@ -6,6 +6,7 @@ export interface UserInterface extends Document {
 	provider: string
 	email_verified: boolean
 	username: string
+	bio: string
 }
 
 const schema = new Schema<UserInterface>(
@@ -32,6 +33,9 @@ const schema = new Schema<UserInterface>(
 			immutable: true,
 			trim: true,
 			minlength: 2
+		},
+		bio: {
+			type: String
 		},
 		password: {
 			type: String,

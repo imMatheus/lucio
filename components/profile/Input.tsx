@@ -6,15 +6,17 @@ interface InputProps {
 	placeholder: string
 	type: React.HTMLInputTypeAttribute
 	autoComplete: string
+	defaultValue: string
 }
 
-const Input: React.FC<InputProps> = ({ id, label, placeholder, type, autoComplete }) => {
+const Input: React.FC<InputProps> = ({ id, label, defaultValue, placeholder, type, autoComplete }) => {
 	return (
 		<div className="mb-3">
 			<label htmlFor={id} className="block text-sm font-medium text-gray-700 dark:text-gray-200">
 				{label}
 			</label>
 			<input
+				defaultValue={defaultValue}
 				type={type}
 				name="name"
 				placeholder={placeholder}

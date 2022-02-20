@@ -11,14 +11,25 @@ const Profile: NextPage = () => {
 	const { fetchingUser, currentUser, logout } = useAuth()
 	const [darkMode, setDarkMode] = useDarkMode()
 	console.log(darkMode)
+	console.log(currentUser)
+
+	if (!currentUser) return null
 
 	return (
 		<main className="mx-auto max-w-7xl p-4 md:px-8">
 			<section className="my-5 max-w-2xl">
 				<h2 className="mb-2 text-lg font-bold md:text-xl lg:text-2xl">Personal info</h2>
 
-				<Input type="text" label="Name" placeholder="Joe doe" id="name" autoComplete="name" />
 				<Input
+					type="text"
+					label="Name"
+					placeholder="Joe doe"
+					id="name"
+					autoComplete="name"
+					defaultValue={currentUser.username}
+				/>
+				<Input
+					defaultValue={currentUser.email}
 					type="email"
 					label="Email address"
 					placeholder="you@example.com"
