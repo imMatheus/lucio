@@ -8,6 +8,8 @@ import axios from 'axios'
 import { useRouter } from 'next/router'
 import { arrayEquals } from '@/utils/arrayEquals'
 import { Data } from '@/types/returns/api/classes/create'
+import ColorSelector from '@/components/classes/colorselector'
+
 interface CreateProps {
 	iColors: [string, string]
 }
@@ -74,32 +76,8 @@ const Create: NextPage = () => {
 
 			<div className="my-3 md:py-4">
 				<p className="m-0 text-base font-semibold text-gray-900 dark:text-gray-50 lg:text-lg">Theme</p>
-				<div className="my-2 flex max-w-3xl flex-wrap gap-2">
-					<Color iColors={['#2266ff', '#2266ff']} />
-					<Color iColors={['#A71D31', '#A71D31']} />
-					<Color iColors={['#FF9B42', '#FF9B42']} />
-					<Color iColors={['#00916e', '#00916e']} />
-					<Color iColors={['#dd9787', '#dd9787']} />
-					<Color iColors={['#f7567c', '#f7567c']} />
-					<Color iColors={['#3d2c2e', '#3d2c2e']} />
-					<Color iColors={['#606c38', '#606c38']} />
-					<Color iColors={['#ED6A5A', '#F4F1BB']} />
-					<Color iColors={['#071E22', '#1D7874']} />
-					<Color iColors={['#3a0ca3', '#4895ef']} />
-					<Color iColors={['#F75C03', '#2274A5']} />
-					<Color iColors={['#14213d', '#fca311']} />
-					<Color iColors={['#0aefff', '#deff0a']} />
-					<Color iColors={['#00916e', '#ffcf00']} />
-					<Color iColors={['#301A4B', '#6DB1BF']} />
-					<Color iColors={['#F7B2AD', '#333232']} />
-					<Color iColors={['#93B7BE', '#F1FFFA']} />
-					<Color iColors={['#93A8AC', '#424B54']} />
-					<Color iColors={['#EDAE49', '#D1495B']} />
-					<Color iColors={['#1d3958', '#ab2836']} />
-					<Color iColors={['#160f29', '#368f8b']} />
-					<Color iColors={['#000000', '#502F4C']} />
-					<Color iColors={['#F18805', '#F0A202']} />
-				</div>
+
+				<ColorSelector currentColors={colors} setColors={setColors} />
 			</div>
 
 			<div className="my-3 md:py-4">
