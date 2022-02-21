@@ -6,12 +6,10 @@ import PrivacyOption from '@/components/classes/PrivacyOption'
 import Button from '@/components/button'
 import axios from 'axios'
 import { useRouter } from 'next/router'
+import { arrayEquals } from '@/utils/arrayEquals'
+import { Data } from '@/types/returns/api/classes/create'
 interface CreateProps {
 	iColors: [string, string]
-}
-
-function arrayEquals(a: any[], b: any[]) {
-	return Array.isArray(a) && Array.isArray(b) && a.length === b.length && a.every((val, index) => val === b[index])
 }
 
 const Create: NextPage = () => {
@@ -26,6 +24,11 @@ const Create: NextPage = () => {
 			privacy,
 			theme: colors
 		})
+		const { data }: { data: Data } = res
+		console.log('created class')
+
+		console.log(data)
+
 		if (res.status === 200) router.push('/classes')
 	}
 

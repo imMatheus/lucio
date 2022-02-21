@@ -6,12 +6,11 @@ import { PrivacyEnum } from '@/types/ClassType'
 import Cookie from 'cookie'
 import jwt from 'jsonwebtoken'
 import { validateThemeColors } from '@/utils/validateClassThemeColors'
-
-type Data = {}
+import { Data } from '@/types/returns/api/classes/create'
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<Data>) {
 	if (!process.env.JWT_SIGN_SALT) {
-		res.status(500).json({ message: 'Internal server error' })
+		res.status(500).json({ message: 'Internal server error', class: null })
 		return
 	}
 
@@ -20,7 +19,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 
 	// check that we have a good name
 	if (!name || typeof name !== 'string') {
-		res.status(400).json({ message: 'Incorrect value for name' })
+		res.status(400).json({ message: 'Incorrect value for name', class: null })
 
 		return
 	}
@@ -29,7 +28,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 
 	// check that privacy is a what we expect
 	if (!privacy) {
-		res.status(400).json({ message: 'Incorrect value for privacy' })
+		res.status(400).json({ message: 'Incorrect value for privacy', class: null })
 		return
 	}
 	const token = Cookie.parse(req.headers.cookie || '')
@@ -51,5 +50,5 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 		participants: [{ userId: cookie._id, role: 'admin', joinedAt: new Date() }]
 	})
 
-	res.status(200).json({ classRoom })
+	res.status(200).json({ class: classRoom, message: null })
 }
