@@ -53,11 +53,12 @@
 		-webkit-line-clamp: 5;
 	}
 	.btn-shadow {
-		@apply rounded-lg border border-indigo-500 bg-gray-900 px-2.5 py-1 font-inter text-sm text-indigo-500 shadow-indigo-500;
-		box-shadow: -3px 3px 0px var(--tw-shadow-color);
-		transition: all 150ms;
+		@apply rounded-lg border-2 border-indigo-500 bg-gray-100 px-2.5 py-1 font-inter text-sm text-indigo-500 shadow-indigo-500 transition-shadow dark:bg-gray-900;
+		$offset: 3px;
+		box-shadow: calc(-1 * $offset) $offset 0px var(--tw-shadow-color);
+
 		&:hover {
-			box-shadow: 3px -3px 0px var(--tw-shadow-color);
+			box-shadow: $offset calc(-1 * $offset) 0px var(--tw-shadow-color);
 		}
 	}
 	.btn-shadow-1 {
@@ -70,7 +71,7 @@
 	}
 	.btn-shadow-3 {
 		@extend .btn-shadow;
-		@apply border-lime-500 text-lime-500 shadow-lime-500;
+		@apply border-lime-600 text-lime-600 shadow-lime-600;
 	}
 	.btn-shadow-4 {
 		@extend .btn-shadow;
@@ -86,22 +87,22 @@
 	}
 	.btn-shadow-7 {
 		@extend .btn-shadow;
-		@apply border-gray-200 text-gray-200 shadow-gray-200;
+		@apply border-gray-800 text-gray-800 shadow-gray-800 dark:border-gray-200 dark:text-gray-200 dark:shadow-gray-200;
 	}
-}
 
-.text-hollow {
-	/* Use the text as a mask for the background. */
-	/* This will show the gradient as a text color rather than element bg. */
-	-webkit-background-clip: text;
-	background-clip: text;
-	-webkit-text-fill-color: transparent;
-	-moz-background-clip: text;
-	-moz-text-fill-color: transparent;
+	.text-hollow {
+		/* Use the text as a mask for the background. */
+		/* This will show the gradient as a text color rather than element bg. */
+		-webkit-background-clip: text;
+		background-clip: text;
+		-webkit-text-fill-color: transparent;
+		-moz-background-clip: text;
+		-moz-text-fill-color: transparent;
+	}
 }
 
 html,
 body {
 	font-family: 'Inter', sans-serif;
-	/* color: ; */
+	@apply text-gray-900 dark:text-gray-100;
 }

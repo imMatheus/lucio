@@ -2,7 +2,7 @@ import React from 'react'
 import type { NextPage } from 'next'
 import Circle from '@/components/loaders/Circle'
 
-const index: NextPage = () => {
+const Index: NextPage = () => {
 	return (
 		<div className="bg-red-100 p-10">
 			<Circle />
@@ -23,4 +23,4 @@ const index: NextPage = () => {
 	)
 }
 
-export default index
+export default Index
