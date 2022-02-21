@@ -9,6 +9,7 @@ import dynamic from 'next/dynamic'
 import Dropzone, { FileProps } from '@/components/dropzone'
 import FileCard from '@/components/dropzone/FileCard'
 import FileCardWrapper from '@/components/dropzone/FileCardWrapper'
+import PaddingContainer from '@/components/classes/PaddingContainer'
 
 const NoSsr = () => {
 	const router = useRouter()
@@ -33,7 +34,7 @@ const NoSsr = () => {
 	}, [])
 
 	return (
-		<main className="p-6 md:p-8">
+		<PaddingContainer>
 			<Link href={`/classes/${classId}/homework`} passHref={true}>
 				<a className="mb-2 flex h-8 w-8 items-center justify-center rounded-full transition-colors hover:bg-gray-200/80 dark:hover:bg-gray-800/80">
 					<ArrowLeft className="h-5 w-5" />
@@ -50,7 +51,7 @@ const NoSsr = () => {
 					</span>
 				)}
 			</h3>
-			{showQuill && <ReactQuill value={'.text'} />}
+			{/* {showQuill && <ReactQuill value={'.text'} />} */}
 			{/* <ReactQuill value={text} onChange={handeChange} /> */}
 			<FileCardWrapper>
 				{files.map((file) => (
@@ -58,7 +59,7 @@ const NoSsr = () => {
 				))}
 			</FileCardWrapper>
 			<Dropzone setFiles={setFiles} />
-		</main>
+		</PaddingContainer>
 	)
 }
 

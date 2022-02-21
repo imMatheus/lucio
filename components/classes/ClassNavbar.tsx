@@ -11,7 +11,7 @@ const ClassNavbar: React.FC = () => {
 			<ClassNavbarOption link={`/classes/${classId}`}>Class</ClassNavbarOption>
 			<ClassNavbarOption link={`/classes/${classId}/homework`}>Homework</ClassNavbarOption>
 			<ClassNavbarOption link={`/classes/${classId}/students`}>Students</ClassNavbarOption>
-			<div className="dark:hover:border-b-orange-500"></div>
+			<ClassNavbarOption link={`/classes/${classId}/settings`}>Settings</ClassNavbarOption>
 		</div>
 	)
 }
