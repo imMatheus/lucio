@@ -25,11 +25,10 @@ const Create: NextPage = () => {
 			theme: colors
 		})
 		const { data }: { data: Data } = res
-		console.log('created class')
 
-		console.log(data)
+		if (res.status === 200 && data.class && data.class._id) return router.push(`/classes/${data.class._id}`)
 
-		if (res.status === 200) router.push('/classes')
+		router.push('/classes')
 	}
 
 	const Color: React.FC<CreateProps> = ({ iColors }) => {
