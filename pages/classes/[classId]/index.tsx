@@ -6,6 +6,7 @@ import useClassData from '@/hooks/useClassData'
 import Button from '@/components/button'
 import Head from 'next/head'
 import Welcome from '@/components/classes/WelcomeCard'
+import PaddingContainer from '@/components/classes/PaddingContainer'
 
 export default function ClassScreen(): ReactElement {
 	const router = useRouter()
@@ -13,24 +14,19 @@ export default function ClassScreen(): ReactElement {
 	const [classData, loading] = useClassData(classId)
 
 	return (
-		<section className="py-8 px-3 sm:px-6 lg:px-8">
+		<PaddingContainer>
 			<Head>
 				<title>{classData?.name}</title>
 				<meta property="og:title" content="My page title" key="title" />
 			</Head>
 			<section className="w-maxed mx-auto">
 				<ClassNavbar />
-				<h2>class data</h2>
-
-				<button className="btn-shadow">Create a class</button>
-				<button className="btn-shadow-1">Create a class</button>
-				<button className="btn-shadow-2">Create a class</button>
 
 				{classData && <Welcome colors={classData.theme} />}
 				{/* <div>
 					<h4>{classData && JSON.stringify(classData)}</h4>
 				</div> */}
 			</section>
-		</section>
+		</PaddingContainer>
 	)
 }

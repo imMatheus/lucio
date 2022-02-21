@@ -9,6 +9,7 @@ import Button from '@/components/button'
 import HomeworkCard from '@/components/classes/HomeworkCard'
 import ClassNavbar from '@/components/classes/ClassNavbar'
 import axios from 'axios'
+import PaddingContainer from '@/components/classes/PaddingContainer'
 
 const Index: NextPage = () => {
 	const router = useRouter()
@@ -57,7 +58,7 @@ const Index: NextPage = () => {
 	}
 
 	return (
-		<section className="py-8 px-3 sm:px-6 lg:px-8">
+		<PaddingContainer>
 			<Head>
 				<title>{classData?.name} | Homework</title>
 				<meta property="og:title" content="My page title" key="title" />
@@ -75,7 +76,7 @@ const Index: NextPage = () => {
 			{loadingClassData + ''}
 			<h2>{JSON.stringify(classData?._id)}</h2>
 			<div>{/* <HomeworkCard key={homework.id} homework={homework} /> */}</div>
-		</section>
+		</PaddingContainer>
 	)
 }
 

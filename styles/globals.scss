@@ -87,7 +87,7 @@
 	}
 	.btn-shadow-7 {
 		@extend .btn-shadow;
-		@apply border-gray-800 text-gray-800 shadow-gray-800 dark:border-gray-200 dark:text-gray-200 dark:shadow-gray-200;
+		@apply border-gray-800 text-gray-800 shadow-gray-800 dark:border-gray-300 dark:text-gray-300 dark:shadow-gray-400;
 	}
 
 	.text-hollow {
