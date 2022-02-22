@@ -2,8 +2,8 @@ import type { NextPage } from 'next'
 
 const Home: NextPage = () => {
 	return (
-		<div className="bg-red-500">
-			<header className="bg-white p-5 dark:bg-[#020207] xl:p-16">
+		<div className="">
+			<header className="p-5 xl:p-16">
 				<div className="mx-auto max-w-7xl">
 					<h1 className="mb-3 text-center font-grotesk text-6xl font-extrabold text-gray-800 dark:text-gray-100 xl:text-8xl">
 						LucioCode
