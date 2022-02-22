@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef, useState } from 'react'
 import type { NextPage } from 'next'
 import { useAuth } from '@/context/AuthContext'
 import Button from '@/components/button'
@@ -6,12 +6,21 @@ import Image from 'next/image'
 import ThemeCard from '@/components/profile/ThemeCard'
 import Input from '@/components/profile/Input'
 import useDarkMode from '@/hooks/useDarkMode'
+import { useToast } from '@/context/ToastContext'
 
 const Profile: NextPage = () => {
-	const { fetchingUser, currentUser, logout } = useAuth()
+	const { currentUser, logout, updateUser } = useAuth()
+	const { setToast } = useToast()
 	const [darkMode, setDarkMode] = useDarkMode()
-	console.log(darkMode)
+	const [loading, setLoading] = useState(false)
+	const nameInputRef = useRef<HTMLInputElement>(null)
+	const [nameError, setNameError] = useState('')
+	const emailInputRef = useRef<HTMLInputElement>(null)
+	const [bioError, setBioError] = useState('')
+	const bioInputRef = useRef<HTMLTextAreaElement>(null)
+
 	console.log(currentUser)
+	console.log('Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam.'.length)
 
 	if (!currentUser) return null
 
@@ -21,19 +30,23 @@ const Profile: NextPage = () => {
 				<h2 className="mb-2 text-lg font-bold md:text-xl lg:text-2xl">Personal info</h2>
 
 				<Input
+					ref={nameInputRef}
 					type="text"
 					label="Name"
 					placeholder="Joe doe"
 					id="name"
 					autoComplete="name"
-					defaultValue={currentUser.username}
+					maxLength={15}
+					defaultValue={currentUser.name}
 				/>
 				<Input
+					ref={emailInputRef}
 					defaultValue={currentUser.email}
 					type="email"
 					label="Email address"
 					placeholder="you@example.com"
 					id="email-address"
+					maxLength={50}
 					autoComplete="email"
 				/>
 
@@ -43,26 +56,67 @@ const Profile: NextPage = () => {
 					</label>
 					<div className="mt-1">
 						<textarea
+							ref={bioInputRef}
 							id="bio"
 							name="bio"
 							rows={4}
-							className="mt-1 block max-h-[30rem] min-h-[3rem] w-full rounded-md border border-gray-300 shadow-sm focus:border-theme-500 focus:ring-theme-500 dark:border-gray-700 dark:bg-black sm:text-sm"
+							maxLength={1000}
+							defaultValue={currentUser.bio}
+							className="mt-1 block max-h-80 min-h-[3rem] w-full rounded-md border border-gray-300 shadow-sm focus:border-theme-500 focus:ring-theme-500 dark:border-gray-700 dark:bg-black sm:text-sm"
 							placeholder="Tell people about yourself"
 						></textarea>
 					</div>
 				</div>
 			</section>
+
+			<button
+				className="btn-shadow-3"
+				onClick={async () => {
+					try {
+						if (nameInputRef.current && bioInputRef.current) {
+							setLoading(true)
+
+							const { message, errorType } = await updateUser({
+								name: nameInputRef.current.value,
+								bio: bioInputRef.current.value
+							})
+
+							// success
+							if (!message) {
+								setToast({ message: 'Successfully updated profile', type: 'success' })
+								setLoading(false)
+								return
+							}
+
+							// it was not an error with the name or bio, something else went wrong
+							if (!errorType) {
+								setToast({ message: message, type: 'error' })
+							}
+							if (errorType === 'name') {
+								setNameError(message)
+								setBioError('')
+								nameInputRef.current.focus()
+							}
+							if (errorType === 'bio') {
+								setBioError(message)
+								setNameError('')
+								bioInputRef.current.focus()
+							}
+						}
+					} catch (error) {
+						setToast({ message: 'Could not update profile', type: 'error' })
+					}
+					setLoading(false)
+				}}
+			>
+				Update profile
+			</button>
+
+			<span className={`inline-block h-3 w-3 bg-red-600 ${loading && 'animate-spin'}`}></span>
+
 			<section className="my-5">
 				<h2 className="mb-2 text-lg font-bold md:text-xl lg:text-2xl">Themes</h2>
 				<form className="grid grid-cols-2 gap-3 lg:flex lg:flex-wrap lg:gap-5">
-					<ThemeCard
-						id="theme_dark"
-						label="Dark"
-						onClick={() => setDarkMode('dark')}
-						checked={darkMode === 'dark'}
-					>
-						<Image src="/theme_dark.svg" layout="fill" alt="theme dark" objectFit="cover" />
-					</ThemeCard>
 					<ThemeCard
 						id="theme_light"
 						label="Light"
@@ -70,6 +124,14 @@ const Profile: NextPage = () => {
 						checked={darkMode === 'light'}
 					>
 						<Image src="/theme_light.svg" layout="fill" alt="theme light" objectFit="cover" />
+					</ThemeCard>
+					<ThemeCard
+						id="theme_dark"
+						label="Dark"
+						onClick={() => setDarkMode('dark')}
+						checked={darkMode === 'dark'}
+					>
+						<Image src="/theme_dark.svg" layout="fill" alt="theme dark" objectFit="cover" />
 					</ThemeCard>
 					<ThemeCard
 						id="theme_system"
@@ -93,19 +155,11 @@ const Profile: NextPage = () => {
 			<section className="my-5">
 				<h2 className="mb-2 text-lg font-bold md:text-xl lg:text-2xl">Actions</h2>
 				<div className="flex flex-wrap items-center gap-3">
-					<Button variant="warning">Change password</Button>
-					<Button variant="error" onClick={async () => await logout()}>
+					<button className="btn-shadow-3">Update profile</button>
+					<button className="btn-shadow-2">Change password</button>
+					<button className="btn-shadow-1" onClick={async () => await logout()}>
 						Logout
-					</Button>
-					<div className="w-full"></div>
-					<button className="btn-shadow">Create a class</button>
-					<button className="btn-shadow-1">Change password</button>
-					<button className="btn-shadow-2">Logout</button>
-					<button className="btn-shadow-3">Create</button>
-					<button className="btn-shadow-4">Dolor sit amet.</button>
-					<button className="btn-shadow-5">Lorem ipsum dolor sit amet.</button>
-					<button className="btn-shadow-6">Lorem, ipsum dolor.</button>
-					<button className="btn-shadow-7">Leave class</button>
+					</button>
 				</div>
 			</section>
 		</main>

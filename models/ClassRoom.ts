@@ -1,5 +1,6 @@
 import { Schema, model, Model, models, Document } from 'mongoose'
 import { PrivacyEnum } from '@/types/ClassType'
+import { colors } from '@/constants/colors'
 
 export interface ClassRoomInterface extends Document {
 	name: string
@@ -32,7 +33,7 @@ const schema = new Schema<ClassRoomInterface>(
 			trim: true,
 			immutable: true
 		},
-		theme: [{ type: String, default: '#2266ff', trim: true }],
+		theme: [{ type: String, default: colors.theme, trim: true }],
 		privacy: {
 			type: String,
 			default: PrivacyEnum.Public,

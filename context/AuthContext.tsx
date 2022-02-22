@@ -7,15 +7,22 @@ import { Data as loginData } from '@/returns/api/login'
 import { Data as signupData } from '@/returns/api/signup'
 import Cookies from 'cookies'
 import { useToast } from './ToastContext'
+import { Data as updateData } from '@/api/auth/update'
 
 type IUser = UserInterface | null
+
+export interface UpdateUserProps {
+	name?: string
+	bio?: string
+}
 
 interface Context {
 	currentUser: IUser
 	fetchingUser: boolean
-	signup: (email: string, password: string, username: string) => Promise<void>
+	signup: (email: string, password: string, name: string) => Promise<void>
 	login: (email: string, password: string) => Promise<void>
 	logout: () => Promise<void>
+	updateUser: ({ name, bio }: UpdateUserProps) => Promise<updateData>
 }
 
 const AuthContext = createContext<Context>({
@@ -23,7 +30,8 @@ const AuthContext = createContext<Context>({
 	fetchingUser: true,
 	signup: async () => {},
 	login: async () => {},
-	logout: async () => {}
+	logout: async () => {},
+	updateUser: async () => ({ errorType: null, message: null })
 })
 
 export function useAuth() {
@@ -45,12 +53,12 @@ export const AuthProvider: React.FC = ({ children }) => {
 		setCurrentUser(data.user)
 	}
 
-	const signup = async (email: string, password: string, username: string) => {
+	const signup = async (email: string, password: string, name: string) => {
 		try {
 			const { data }: { data: signupData } = await axios.post('/api/auth/signup', {
 				password,
 				email,
-				username
+				name
 			})
 
 			if (data.user) {
@@ -82,6 +90,23 @@ export const AuthProvider: React.FC = ({ children }) => {
 		setToast({ message: 'Could not logout', type: 'error' })
 	}
 
+	const updateUser = async ({ name, bio }: UpdateUserProps): Promise<updateData> => {
+		const { data }: { data: updateData } = await axios.put('/api/auth/update', { name, bio })
+
+		console.log(data)
+		console.log(name, bio)
+
+		console.log('97777777')
+
+		if (data.message === null) {
+			await fetchUser()
+		}
+
+		return data
+
+		// setToast({ message: 'Could not logout', type: 'error' })
+	}
+
 	useEffect(() => {
 		async function init() {
 			await fetchUser()
@@ -95,7 +120,8 @@ export const AuthProvider: React.FC = ({ children }) => {
 		fetchingUser,
 		signup,
 		login,
-		logout
+		logout,
+		updateUser
 	}
 	return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
 }

@@ -3,7 +3,7 @@
 .typedText {
 	--typewriterSpeed: 500ms;
 	position: relative;
-	@apply bg-gray-100 dark:bg-gray-900;
+	@apply dark:bg-gray-900;
 	line-break: break-all;
 
 	.before,
@@ -24,7 +24,7 @@
 	> .after {
 		width: 0.125em;
 		animation: typewriter var(--typewriterSpeed) forwards, blink 750ms infinite;
-		@apply bg-gray-900 dark:bg-gray-100;
+		@apply bg-gray-100 dark:bg-gray-900;
 	}
 }
 

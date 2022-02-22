@@ -16,13 +16,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 	// connect to mongo
 	await run()
 	try {
-		const { password, username, email } = req.body
+		const { password, name, email } = req.body
 		const hashed = bcrypt.hashSync(password, 10) // hash password
 
 		// value to be signed as jwt token
 		const userData = {
 			password: hashed,
-			username,
+			name,
 			email
 		}
 

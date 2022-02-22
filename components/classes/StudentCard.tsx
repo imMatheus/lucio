@@ -49,7 +49,7 @@ export default function StudentCard({ user, role, joinedAt, edit, loading }: Pro
 						</div>
 						<div className="ml-4">
 							<div className="text-sm font-medium text-gray-900 dark:text-gray-100">
-								{loading ? <SkeletonText className="mb-1" min={8} max={15} /> : user.username}
+								{loading ? <SkeletonText className="mb-1" min={8} max={15} /> : user.name}
 							</div>
 							<div className="text-sm text-gray-500">
 								{loading ? <SkeletonText min={12} max={22} /> : user.email}

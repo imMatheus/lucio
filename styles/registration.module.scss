@@ -36,7 +36,7 @@ $value2: ();
 		box-shadow: $value2;
 	}
 
-	@apply mx-auto rounded-lg border border-theme bg-gray-100 p-6 transition-shadow dark:bg-gray-900;
+	@apply mx-auto rounded-lg border border-theme p-6 transition-shadow dark:bg-gray-900;
 }
 
 .chip {
@@ -52,6 +52,7 @@ $value2: ();
 	/* @apply w-16 h-3 mr-2 rounded-lg flex-shrink-0; */
 }
 
+// remove box shadow for mobile performance
 @media screen and (max-width: 600px) {
 	.modal {
 		box-shadow: none !important;

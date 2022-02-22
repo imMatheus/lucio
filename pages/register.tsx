@@ -54,8 +54,8 @@ export default function Register(): ReactElement {
 	const [showPasswordContainer, setShowPasswordContainer] = useState(false)
 	const [password, setPassword] = useState('')
 	const PasswordStrength = usePasswordStrength(password)
-	const [username, setUsername] = useState('')
-	const [showUserNameContainer, setShowUserNameContainer] = useState(false)
+	const [name, setName] = useState('')
+	const [showNameContainer, setShowNameContainer] = useState(false)
 	const [avatar, setAvatar] = useState('')
 	const { signup } = useAuth()
 
@@ -69,7 +69,7 @@ export default function Register(): ReactElement {
 	}, [email])
 
 	async function signupHandler() {
-		const res = await signup(email, password, username)
+		const res = await signup(email, password, name)
 	}
 
 	const buff = new Buffer(avatar)
@@ -85,7 +85,7 @@ export default function Register(): ReactElement {
 			<div className={styles.modal}>
 				<TypedText className="text-theme-700">Welcome to LucioCode</TypedText>
 				<TypedText className="text-theme-700" delay={1}>
-					Let us begin the adventure
+					<span className="bg-red-500">Let us begin the adventure</span>
 				</TypedText>
 				{/* <Image src={`data:image/svg+xml;base64,${base64data}`} alt="" width={100} height={100} /> */}
 				<TypedText className="mt-5 mb-2 text-base font-semibold text-theme" delay={2}>
@@ -107,7 +107,7 @@ export default function Register(): ReactElement {
 						<InputField
 							state={password}
 							setState={setPassword}
-							onClick={() => setShowUserNameContainer(true)}
+							onClick={() => setShowNameContainer(true)}
 							buttonText="Continue"
 							type={showPassword ? 'text' : 'password'}
 							success={PasswordStrength === 'strong' || PasswordStrength === 'medium'}
@@ -126,18 +126,18 @@ export default function Register(): ReactElement {
 							}
 						/>
 
-						{showUserNameContainer && (
+						{showNameContainer && (
 							<>
 								<TypedText className="mt-5 text-base font-semibold text-[#00cfc8]" delay={0}>
-									Enter a username
+									Enter a name
 								</TypedText>
 								<InputField
-									state={username}
-									setState={setUsername}
+									state={name}
+									setState={setName}
 									onClick={signupHandler}
 									type="text"
 									buttonText="Sing up"
-									success={username.length > 1}
+									success={name.length > 1}
 								/>
 							</>
 						)}

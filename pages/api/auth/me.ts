@@ -15,7 +15,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 		// connect to mongo
 		await run()
 
-		const cookies = new Cookies(req, res)
 		if (req.headers.token) {
 			const _token = req.headers.token
 			const token = Array.isArray(_token) ? _token[0] : _token
@@ -26,6 +25,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 		}
 
 		// get token from the users cookie
+		const cookies = new Cookies(req, res)
 		const token = cookies.get('jwt')
 
 		if (!token) {
