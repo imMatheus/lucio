@@ -40,8 +40,26 @@ export const getServerSideProps: GetServerSideProps<Props> = async ({ req, res }
 
 const Classes: NextPage<Props> = ({ classes }) => {
 	const router = useRouter()
+	const { setToast } = useToast()
 
 	// https://dribbble.com/shots/14653202-Coursebook-Your-Education-Platform
+
+	async function joinClassHandler() {
+		const code = prompt('Whats the code?')
+		if (!code) return
+
+		try {
+			const { data }: { data: Data } = await axios.post('/api/classes/join', {
+				code
+			})
+
+			if (data.classRoom) {
+				router.push(`/classes/${data.classRoom._id}`)
+			}
+		} catch (error) {
+			setToast({ message: 'Could not find class', type: 'error' })
+		}
+	}
 
 	return (
 		<section className="py-8 px-3 sm:px-6 lg:px-8">
@@ -53,18 +71,7 @@ const Classes: NextPage<Props> = ({ classes }) => {
 						</a>
 					</Link>
 
-					<Button
-						variant="dimmed"
-						onClick={async () => {
-							const code = prompt('Whats the code?')
-							const { data }: { data: Data } = await axios.post('/api/classes/join', {
-								code
-							})
-							if (data.classRoom) {
-								router.push(`/classes/${data.classRoom._id}`)
-							}
-						}}
-					>
+					<Button variant="dimmed" onClick={joinClassHandler}>
 						Join class
 					</Button>
 				</div>

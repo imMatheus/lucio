@@ -24,6 +24,44 @@ const Profile: NextPage = () => {
 
 	if (!currentUser) return null
 
+	async function updateProfileHandler() {
+		try {
+			if (nameInputRef.current && bioInputRef.current) {
+				setLoading(true)
+
+				const { message, errorType } = await updateUser({
+					name: nameInputRef.current.value,
+					bio: bioInputRef.current.value
+				})
+
+				// success
+				if (!message) {
+					setToast({ message: 'Successfully updated profile', type: 'success' })
+					setLoading(false)
+					return
+				}
+
+				// it was not an error with the name or bio, something else went wrong
+				if (!errorType) {
+					setToast({ message: message, type: 'error' })
+				}
+				if (errorType === 'name') {
+					setNameError(message)
+					setBioError('')
+					nameInputRef.current.focus()
+				}
+				if (errorType === 'bio') {
+					setBioError(message)
+					setNameError('')
+					bioInputRef.current.focus()
+				}
+			}
+		} catch (error) {
+			setToast({ message: 'Could not update profile', type: 'error' })
+		}
+		setLoading(false)
+	}
+
 	return (
 		<main className="mx-auto max-w-7xl p-4 md:px-8">
 			<section className="my-5 max-w-2xl">
@@ -69,48 +107,18 @@ const Profile: NextPage = () => {
 				</div>
 			</section>
 
-			<button
-				className="btn-shadow-3"
-				onClick={async () => {
-					try {
-						if (nameInputRef.current && bioInputRef.current) {
-							setLoading(true)
-
-							const { message, errorType } = await updateUser({
-								name: nameInputRef.current.value,
-								bio: bioInputRef.current.value
-							})
-
-							// success
-							if (!message) {
-								setToast({ message: 'Successfully updated profile', type: 'success' })
-								setLoading(false)
-								return
-							}
-
-							// it was not an error with the name or bio, something else went wrong
-							if (!errorType) {
-								setToast({ message: message, type: 'error' })
-							}
-							if (errorType === 'name') {
-								setNameError(message)
-								setBioError('')
-								nameInputRef.current.focus()
-							}
-							if (errorType === 'bio') {
-								setBioError(message)
-								setNameError('')
-								bioInputRef.current.focus()
-							}
-						}
-					} catch (error) {
-						setToast({ message: 'Could not update profile', type: 'error' })
-					}
-					setLoading(false)
-				}}
-			>
-				Update profile
-			</button>
+			<section className="my-5">
+				<h2 className="mb-2 text-lg font-bold md:text-xl lg:text-2xl">Actions</h2>
+				<div className="flex flex-wrap items-center gap-3">
+					<button className="btn-shadow-3" onClick={updateProfileHandler}>
+						Update profile
+					</button>
+					<button className="btn-shadow-2">Change password</button>
+					<button className="btn-shadow-1" onClick={async () => await logout()}>
+						Logout
+					</button>
+				</div>
+			</section>
 
 			<section className="my-5">
 				<h2 className="mb-2 text-lg font-bold md:text-xl lg:text-2xl">Themes</h2>
@@ -149,16 +157,6 @@ const Profile: NextPage = () => {
 						</div>
 					</ThemeCard>
 				</form>
-			</section>
-			<section className="my-5">
-				<h2 className="mb-2 text-lg font-bold md:text-xl lg:text-2xl">Actions</h2>
-				<div className="flex flex-wrap items-center gap-3">
-					<button className="btn-shadow-3">Update profile</button>
-					<button className="btn-shadow-2">Change password</button>
-					<button className="btn-shadow-1" onClick={async () => await logout()}>
-						Logout
-					</button>
-				</div>
 			</section>
 		</main>
 	)

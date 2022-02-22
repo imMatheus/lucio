@@ -5,7 +5,7 @@ import Card from '@/components/home/Card'
 
 const Home: NextPage = () => {
 	return (
-		<div className="">
+		<div className="selection:bg-theme-100 selection:text-theme-900">
 			<header className="px-5 py-12 lg:px-14 lg:py-24 xl:py-32">
 				<div className="mx-auto max-w-7xl">
 					<h1 className="mb-3 text-center font-grotesk text-6xl font-extrabold text-gray-800 dark:text-gray-100 xl:text-8xl">
@@ -54,7 +54,7 @@ const Home: NextPage = () => {
 				</div>
 			</section>
 
-			<section className="bg-secondary-500 p-12 md:p-24">
+			<section className="bg-secondary-500 p-12 text-gray-100 md:p-24">
 				<div className="mx-auto grid max-w-7xl gap-4 md:grid-cols-2 md:gap-12">
 					<h2 className="text-3xl font-semibold md:text-4xl">
 						With the Right Software, Great Things Can Happen
