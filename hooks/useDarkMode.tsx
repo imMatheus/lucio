@@ -7,7 +7,7 @@ export type themes = 'dark' | 'light' | 'system'
 export default function useDarkMode() {
 	// Use our useLocalStorage hook to persist state through a page refresh.
 	// Read the recipe for this hook to learn more: usehooks.com/useLocalStorage
-	const [state, setState] = useLocalStorage<themes>('dark-mode-enabled', 'dark')
+	const [state, setState] = useLocalStorage<themes>('dark-mode-enabled', 'light')
 	// See if user has set a browser or OS preference for dark mode.
 	// The usePrefersDarkMode hook composes a useMedia hook (see code below).
 	const prefersDarkMode = usePrefersDarkMode()

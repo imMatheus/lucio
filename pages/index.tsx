@@ -1,9 +1,12 @@
 import type { NextPage } from 'next'
+import React from 'react'
+import Image from 'next/image'
+import Card from '@/components/home/Card'
 
 const Home: NextPage = () => {
 	return (
-		<div>
-			<section className="bg-white p-5 dark:bg-[#020207] xl:p-16">
+		<div className="selection:bg-theme-100 selection:text-theme-900">
+			<header className="px-5 py-12 lg:px-14 lg:py-24 xl:py-32">
 				<div className="mx-auto max-w-7xl">
 					<h1 className="mb-3 text-center font-grotesk text-6xl font-extrabold text-gray-800 dark:text-gray-100 xl:text-8xl">
 						LucioCode
@@ -12,171 +15,57 @@ const Home: NextPage = () => {
 				<p className="text-center text-gray-700 dark:text-gray-300">
 					Teaching code made easier, faster and more enjoyable
 				</p>
-			</section>
+			</header>
 
-			<section className="grid h-96 grid-cols-2 bg-red-500 lg:h-[52rem]">
-				<div className="bg-teal-900 p-3 lg:p-6">
-					<h2 className="mb-4 font-serif text-8xl font-black text-teal-200">In app messages</h2>
-					<p className="text-sm text-teal-100 lg:text-base">
-						Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cum aperiam nemo inventore illum
-						obcaecati, magnam quasi placeat beatae, suscipit ad consectetur nisi.
+			<section className="bg-theme-200 p-12 text-gray-900 md:p-24">
+				<div className="mx-auto grid max-w-7xl gap-4 md:grid-cols-2 md:gap-12">
+					<h2 className="text-3xl font-semibold md:text-4xl">
+						With the Right Software, Great Things Can Happen
+					</h2>
+					<p className="text-sm md:text-base">
+						Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reiciendis accusamus autem libero
+						incidunt sed aliquam dolore, doloremque saepe esse officiis aperiam consequatur excepturi dolor
+						porro.
 					</p>
 				</div>
-				<div className="bg-rose-900 p-3 text-rose-200 lg:p-6">
-					<h2 className="font-serif text-7xl font-black">User friendly</h2>
-				</div>
-				<div className="bg-sky-900 p-3 text-sky-200 lg:p-6">
-					<h2 className="font-serif text-7xl font-black">Over 1000 free problems</h2>
-				</div>
-				<div className="bg-amber-900 p-3 text-amber-200 lg:p-6">
-					<h2 className="font-serif text-7xl font-black">
-						Lorem ipsum dolor sit amet consectetur, adipisicing elit. Excepturi, rerum.{' '}
-					</h2>
+			</section>
+
+			<section className="p-12 md:p-24">
+				<div className="mx-auto max-w-7xl">
+					<h2 className="mb-8 text-3xl font-semibold md:mb-12 md:text-4xl">What we bring to the game</h2>
+					<div className="grid grid-cols-1 gap-10 md:grid-cols-2 md:gap-20 lg:grid-cols-3 xl:grid-cols-4">
+						<Card src="/dashboard.png" title="Analize classes" alt="juan">
+							Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem, corrupti possimus placeat
+							unde cumque pariatur omnis incidunt, commodi consequatur, in ab magnam.
+						</Card>
+						<Card src="/messages.png" title="Realtime chats" alt="juan">
+							Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut iusto et itaque perferendis
+							architecto quibusdam autem!
+						</Card>
+						<Card src="/dashboard.png" title="Workflows That Work" alt="juan">
+							Lorem ipsum dolor sit, amet consectetur adipisicing elit. Totam assumenda recusandae ex.
+							Excepturi fuga, at rem commodi eos reiciendis ut blanditiis possimus!
+						</Card>
+
+						<Card src="/checklist.png" title="1000+ coding problems" alt="juan">
+							Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem, corrupti possimus placeat.{' '}
+						</Card>
+					</div>
 				</div>
 			</section>
 
-			<div className="grid grid-cols-5">
-				<div className="w-full">
-					<div className="h-[10vh] w-full bg-gray-50"></div>
-					<div className="h-[10vh] w-full bg-gray-100"></div>
-					<div className="h-[10vh] w-full bg-gray-200"></div>
-					<div className="h-[10vh] w-full bg-gray-300"></div>
-					<div className="h-[10vh] w-full bg-gray-400"></div>
-					<div className="h-[10vh] w-full bg-gray-500"></div>
-					<div className="h-[10vh] w-full bg-gray-600"></div>
-					<div className="h-[10vh] w-full bg-gray-700"></div>
-					<div className="h-[10vh] w-full bg-gray-800"></div>
-					<div className="h-[10vh] w-full bg-gray-900"></div>
+			<section className="bg-secondary-500 p-12 text-gray-100 md:p-24">
+				<div className="mx-auto grid max-w-7xl gap-4 md:grid-cols-2 md:gap-12">
+					<h2 className="text-3xl font-semibold md:text-4xl">
+						With the Right Software, Great Things Can Happen
+					</h2>
+					<p className="text-sm md:text-base">
+						Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reiciendis accusamus autem libero
+						incidunt sed aliquam dolore, doloremque saepe esse officiis aperiam consequatur excepturi dolor
+						porro.
+					</p>
 				</div>
-
-				<div className="w-full">
-					<div className="h-[10vh] w-full bg-zinc-50"></div>
-					<div className="h-[10vh] w-full bg-zinc-100"></div>
-					<div className="h-[10vh] w-full bg-zinc-200"></div>
-					<div className="h-[10vh] w-full bg-zinc-300"></div>
-					<div className="h-[10vh] w-full bg-zinc-400"></div>
-					<div className="h-[10vh] w-full bg-zinc-500"></div>
-					<div className="h-[10vh] w-full bg-zinc-600"></div>
-					<div className="h-[10vh] w-full bg-zinc-700"></div>
-					<div className="h-[10vh] w-full bg-zinc-800"></div>
-					<div className="h-[10vh] w-full bg-zinc-900"></div>
-				</div>
-				<div className="w-full">
-					<div className="h-[10vh] w-full bg-slate-50"></div>
-					<div className="h-[10vh] w-full bg-slate-100"></div>
-					<div className="h-[10vh] w-full bg-slate-200"></div>
-					<div className="h-[10vh] w-full bg-slate-300"></div>
-					<div className="h-[10vh] w-full bg-slate-400"></div>
-					<div className="h-[10vh] w-full bg-slate-500"></div>
-					<div className="h-[10vh] w-full bg-slate-600"></div>
-					<div className="h-[10vh] w-full bg-slate-700"></div>
-					<div className="h-[10vh] w-full bg-slate-800"></div>
-					<div className="h-[10vh] w-full bg-slate-900"></div>
-				</div>
-				<div className="w-full">
-					<div className="h-[10vh] w-full bg-neutral-50"></div>
-					<div className="h-[10vh] w-full bg-neutral-100"></div>
-					<div className="h-[10vh] w-full bg-neutral-200"></div>
-					<div className="h-[10vh] w-full bg-neutral-300"></div>
-					<div className="h-[10vh] w-full bg-neutral-400"></div>
-					<div className="h-[10vh] w-full bg-neutral-500"></div>
-					<div className="h-[10vh] w-full bg-neutral-600"></div>
-					<div className="h-[10vh] w-full bg-neutral-700"></div>
-					<div className="h-[10vh] w-full bg-neutral-800"></div>
-					<div className="h-[10vh] w-full bg-neutral-900"></div>
-				</div>
-				<div className="w-full">
-					<div className="h-[10vh] w-full bg-stone-50"></div>
-					<div className="h-[10vh] w-full bg-stone-100"></div>
-					<div className="h-[10vh] w-full bg-stone-200"></div>
-					<div className="h-[10vh] w-full bg-stone-300"></div>
-					<div className="h-[10vh] w-full bg-stone-400"></div>
-					<div className="h-[10vh] w-full bg-stone-500"></div>
-					<div className="h-[10vh] w-full bg-stone-600"></div>
-					<div className="h-[10vh] w-full bg-stone-700"></div>
-					<div className="h-[10vh] w-full bg-stone-800"></div>
-					<div className="h-[10vh] w-full bg-stone-900"></div>
-				</div>
-			</div>
-			<div className="grid grid-cols-5">
-				<div className="w-full">
-					<div className="h-[10vh] w-full bg-teal-50"></div>
-					<div className="h-[10vh] w-full bg-teal-100"></div>
-					<div className="h-[10vh] w-full bg-teal-200"></div>
-					<div className="h-[10vh] w-full bg-teal-300"></div>
-					<div className="h-[10vh] w-full bg-teal-400"></div>
-					<div className="h-[10vh] w-full bg-teal-500"></div>
-					<div className="h-[10vh] w-full bg-teal-600"></div>
-					<div className="h-[10vh] w-full bg-teal-700"></div>
-					<div className="h-[10vh] w-full bg-teal-800"></div>
-					<div className="h-[10vh] w-full bg-teal-900"></div>
-				</div>
-
-				<div className="w-full">
-					<div className="h-[10vh] w-full bg-cyan-50"></div>
-					<div className="h-[10vh] w-full bg-cyan-100"></div>
-					<div className="h-[10vh] w-full bg-cyan-200"></div>
-					<div className="h-[10vh] w-full bg-cyan-300"></div>
-					<div className="h-[10vh] w-full bg-cyan-400"></div>
-					<div className="h-[10vh] w-full bg-cyan-500"></div>
-					<div className="h-[10vh] w-full bg-cyan-600"></div>
-					<div className="h-[10vh] w-full bg-cyan-700"></div>
-					<div className="h-[10vh] w-full bg-cyan-800"></div>
-					<div className="h-[10vh] w-full bg-cyan-900"></div>
-				</div>
-				<div className="w-full">
-					<div className="h-[10vh] w-full bg-sky-50"></div>
-					<div className="h-[10vh] w-full bg-sky-100"></div>
-					<div className="h-[10vh] w-full bg-sky-200"></div>
-					<div className="h-[10vh] w-full bg-sky-300"></div>
-					<div className="h-[10vh] w-full bg-sky-400"></div>
-					<div className="h-[10vh] w-full bg-sky-500"></div>
-					<div className="h-[10vh] w-full bg-sky-600"></div>
-					<div className="h-[10vh] w-full bg-sky-700"></div>
-					<div className="h-[10vh] w-full bg-sky-800"></div>
-					<div className="h-[10vh] w-full bg-sky-900"></div>
-				</div>
-				<div className="w-full">
-					<div className="h-[10vh] w-full bg-blue-50"></div>
-					<div className="h-[10vh] w-full bg-blue-100"></div>
-					<div className="h-[10vh] w-full bg-blue-200"></div>
-					<div className="h-[10vh] w-full bg-blue-300"></div>
-					<div className="h-[10vh] w-full bg-blue-400"></div>
-					<div className="h-[10vh] w-full bg-blue-500"></div>
-					<div className="h-[10vh] w-full bg-blue-600"></div>
-					<div className="h-[10vh] w-full bg-blue-700"></div>
-					<div className="h-[10vh] w-full bg-blue-800"></div>
-					<div className="h-[10vh] w-full bg-blue-900"></div>
-				</div>
-
-				<div className="w-full">
-					<div className="h-[10vh] w-full bg-theme-50"></div>
-					<div className="h-[10vh] w-full bg-theme-100"></div>
-					<div className="h-[10vh] w-full bg-theme-200"></div>
-					<div className="h-[10vh] w-full bg-theme-300"></div>
-					<div className="h-[10vh] w-full bg-theme-400"></div>
-					<div className="h-[10vh] w-full bg-theme-500"></div>
-					<div className="h-[10vh] w-full bg-theme-600"></div>
-					<div className="h-[10vh] w-full bg-theme-700"></div>
-					<div className="h-[10vh] w-full bg-theme-800"></div>
-					<div className="h-[10vh] w-full bg-theme-900"></div>
-				</div>
-			</div>
-			<div className="flex w-full">
-				<div className="h-[100vh] w-full bg-white"></div>
-				<div className="h-[100vh] w-full bg-theme-50"></div>
-				<div className="h-[100vh] w-full bg-theme-100"></div>
-				<div className="h-[100vh] w-full bg-theme-200"></div>
-				<div className="h-[100vh] w-full bg-theme-300"></div>
-				<div className="h-[100vh] w-full bg-theme-400"></div>
-				<div className="h-[100vh] w-full bg-theme-500"></div>
-				<div className="h-[100vh] w-full bg-theme-600"></div>
-				<div className="h-[100vh] w-full bg-theme-700"></div>
-				<div className="h-[100vh] w-full bg-theme-800"></div>
-				<div className="h-[100vh] w-full bg-theme-900"></div>
-				<div className="h-[100vh] w-full bg-theme-1000"></div>
-				<div className="h-[100vh] w-full bg-black"></div>
-			</div>
+			</section>
 		</div>
 	)
 }

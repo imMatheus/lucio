@@ -8,6 +8,7 @@ import { Data as signupData } from '@/returns/api/signup'
 import Cookies from 'cookies'
 import { useToast } from './ToastContext'
 import { Data as updateData } from '@/api/auth/update'
+import { useRouter } from 'next/router'
 
 type IUser = UserInterface | null
 
@@ -41,6 +42,7 @@ export function useAuth() {
 export const AuthProvider: React.FC = ({ children }) => {
 	const [currentUser, setCurrentUser] = useState<IUser>(null)
 	const [fetchingUser, setFetchingUser] = useState(true)
+	const router = useRouter()
 	const { setToast } = useToast()
 
 	const fetchUser = async () => {
@@ -63,10 +65,17 @@ export const AuthProvider: React.FC = ({ children }) => {
 
 			if (data.user) {
 				await fetchUser()
+				const { redirect_url } = router.query
+				console.log('ass')
+				console.log(router.query)
+				console.log(redirect_url)
+				if (redirect_url && typeof redirect_url === 'string') {
+					router.replace(redirect_url)
+				} else {
+					router.replace('/classes')
+				}
 			}
 		} catch (error) {
-			alert(error)
-
 			console.error(error)
 		}
 	}
@@ -82,12 +91,30 @@ export const AuthProvider: React.FC = ({ children }) => {
 
 	const logout = async () => {
 		const { data }: { data: logoutData } = await axios.get('/api/auth/logout')
+
 		if (data.success) {
 			await fetchUser()
-			return
+			router.replace('/register')
+		} else {
+			setToast({ message: 'Could not logout', type: 'error' })
+		}
+	}
+
+	const updateUser = async ({ name, bio }: UpdateUserProps): Promise<updateData> => {
+		const { data }: { data: updateData } = await axios.put('/api/auth/update', { name, bio })
+
+		console.log(data)
+		console.log(name, bio)
+
+		console.log('97777777')
+
+		if (data.message === null) {
+			await fetchUser()
 		}
 
-		setToast({ message: 'Could not logout', type: 'error' })
+		return data
+
+		// setToast({ message: 'Could not logout', type: 'error' })
 	}
 
 	const updateUser = async ({ name, bio }: UpdateUserProps): Promise<updateData> => {
