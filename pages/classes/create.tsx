@@ -12,7 +12,6 @@ import ColorSelector from '@/components/classes/colorselector'
 
 import { colors as Colors } from '@/constants/colors'
 
-
 const Create: NextPage = () => {
 	const router = useRouter()
 	const [name, setName] = useState('')
@@ -26,10 +25,9 @@ const Create: NextPage = () => {
 			theme: colors
 		})
 		const { data }: { data: Data } = res
-if (res.status === 200 && data.class && data.class._id) return router.push(`/classes/${data.class._id}`)
+		if (res.status === 200 && data.class && data.class._id) return router.push(`/classes/${data.class._id}`)
 
 		router.push('/classes')
-	}
 	}
 
 	return (
