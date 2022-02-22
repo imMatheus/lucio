@@ -5,7 +5,7 @@ export interface UserInterface extends Document {
 	password: string
 	provider: string
 	email_verified: boolean
-	username: string
+	name: string
 	bio: string
 }
 
@@ -17,7 +17,8 @@ const schema = new Schema<UserInterface>(
 			unique: true,
 			trim: true,
 			lowercase: true,
-			immutable: true
+			immutable: true,
+			maxLength: 50
 		},
 		provider: {
 			type: String,
@@ -26,16 +27,18 @@ const schema = new Schema<UserInterface>(
 			immutable: true,
 			enum: ['luciocode', 'github', 'google']
 		},
-		username: {
+		name: {
 			type: String,
 			required: true,
 			unique: true,
-			immutable: true,
 			trim: true,
-			minlength: 2
+			minlength: 2,
+			maxLength: 50
 		},
 		bio: {
-			type: String
+			type: String,
+			maxLength: 1000,
+			trim: true
 		},
 		password: {
 			type: String,

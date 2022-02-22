@@ -11,7 +11,8 @@ module.exports = {
 				'13xl': ['15rem', '1']
 			},
 			fontFamily: {
-				inter: ["'Inter'", 'sans-serif']
+				inter: ["'Inter'", 'sans-serif'],
+				grotesk: ["'Space Grotesk'", 'sans-serif']
 			},
 			colors: {
 				success: '#2da44e',
