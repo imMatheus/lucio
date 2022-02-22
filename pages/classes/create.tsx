@@ -9,15 +9,12 @@ import { useRouter } from 'next/router'
 import { arrayEquals } from '@/utils/arrayEquals'
 import { Data } from '@/types/returns/api/classes/create'
 import ColorSelector from '@/components/classes/colorselector'
-
-interface CreateProps {
-	iColors: [string, string]
-}
+import { colors as Colors } from '@/constants/colors'
 
 const Create: NextPage = () => {
 	const router = useRouter()
 	const [name, setName] = useState('')
-	const [colors, setColors] = useState<[string, string]>(['#2266ff', '#2266ff'])
+	const [colors, setColors] = useState<[string, string]>([Colors.theme, Colors.theme])
 	const [privacy, setPrivacy] = useState(PrivacyEnum.Public)
 
 	async function createClassRoom() {
@@ -33,20 +30,6 @@ const Create: NextPage = () => {
 		router.push('/classes')
 	}
 
-	const Color: React.FC<CreateProps> = ({ iColors }) => {
-		return (
-			<div
-				className={`flex h-12 w-12 cursor-pointer overflow-hidden rounded-full border-2 border-transparent md:h-14 md:w-14 ${
-					arrayEquals(iColors, colors) ? 'border-black bg-black dark:border-white dark:bg-white' : ''
-				}`}
-				onClick={() => setColors([...iColors])}
-			>
-				<div className="h-full w-full" style={{ background: iColors[0] }}></div>
-				{iColors[0] !== iColors[1] && <div className="h-full w-full" style={{ background: iColors[1] }}></div>}
-			</div>
-		)
-	}
-
 	return (
 		<div className="min-h-full-wo-nav bg-gray-200/40 p-4 dark:bg-gray-900 md:p-6">
 			<div
@@ -56,27 +39,24 @@ const Create: NextPage = () => {
 				<h2 className="mb-4 text-2xl font-black md:mb-6 md:text-5xl">Create a class</h2>
 			</div>
 
-			<div className="">
-				<label
-					htmlFor="name"
-					className="mb-2 block text-base font-semibold text-gray-900 dark:text-gray-50 lg:text-lg"
-				>
-					Class name
-				</label>
-				<input
-					type="text"
-					name="name"
-					value={name}
-					onChange={(e) => setName(e.target.value)}
-					id="name"
-					autoComplete="given-name"
-					className="mt-1 block w-full rounded-md border-gray-300 bg-transparent shadow-sm focus:border-theme-500 focus:ring-theme-500 dark:border-gray-600/70 sm:max-w-lg sm:text-sm lg:max-w-lg 2xl:max-w-5xl"
-				/>
-			</div>
+			<label
+				htmlFor="name"
+				className="mb-2 block text-base font-semibold text-gray-900 dark:text-gray-50 lg:text-lg"
+			>
+				Class name
+			</label>
+			<input
+				type="text"
+				name="name"
+				value={name}
+				onChange={(e) => setName(e.target.value)}
+				id="name"
+				autoComplete="given-name"
+				className="mt-1 block w-full rounded-md border-gray-300 bg-transparent shadow-sm focus:border-theme-500 focus:ring-theme-500 dark:border-gray-600/70 sm:max-w-lg sm:text-sm lg:max-w-lg 2xl:max-w-5xl"
+			/>
 
-			<div className="my-3 md:py-4">
+			<div className="my-3 md:my-4">
 				<p className="m-0 text-base font-semibold text-gray-900 dark:text-gray-50 lg:text-lg">Theme</p>
-
 				<ColorSelector currentColors={colors} setColors={setColors} />
 			</div>
 

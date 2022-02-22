@@ -18,6 +18,7 @@
 			"@/components/*": ["components/*"],
 			"@/utils/*": ["utils/*"],
 			"@/context/*": ["context/*"],
+			"@/constants/*": ["constants/*"],
 			"@/types/*": ["types/*"],
 			"@/returns/*": ["types/returns/*"],
 			"@/hooks/*": ["hooks/*"],

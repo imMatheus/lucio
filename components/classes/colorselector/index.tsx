@@ -1,6 +1,7 @@
 import React from 'react'
 import { arrayEquals } from '@/utils/arrayEquals'
 import Color from './Color'
+import { colors } from '@/constants/colors'
 
 interface Props {
 	currentColors: [string, string]
@@ -10,7 +11,7 @@ interface Props {
 const Index: React.FC<Props> = ({ currentColors, setColors }) => {
 	return (
 		<div className="my-2 flex max-w-3xl flex-wrap gap-2">
-			<Color colors={['#2266ff', '#2266ff']} currentColors={currentColors} setColors={setColors} />
+			<Color colors={[colors.theme, colors.theme]} currentColors={currentColors} setColors={setColors} />
 			<Color colors={['#A71D31', '#A71D31']} currentColors={currentColors} setColors={setColors} />
 			<Color colors={['#FF9B42', '#FF9B42']} currentColors={currentColors} setColors={setColors} />
 			<Color colors={['#00916e', '#00916e']} currentColors={currentColors} setColors={setColors} />
