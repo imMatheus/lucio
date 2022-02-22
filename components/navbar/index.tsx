@@ -40,15 +40,15 @@ export default function Navbar(): ReactElement {
 									<div className="bg-indigo-700"></div>
 								</div> */}
 								<div className="mr-1 grid h-8 w-8 rotate-45 grid-cols-4 gap-[0px] overflow-hidden rounded-full bg-[#000]">
-									<div className="bg-[#b7094c]"></div>
+									{/* <div className="bg-[#b7094c]"></div>
 									<div className="bg-[#892b64]"></div>
 									<div className="bg-[#5c4d7d]"></div>
-									<div className="bg-[#2e6f95]"></div>
+									<div className="bg-[#2e6f95]"></div> */}
 
-									{/* <div className="bg-theme-400"></div>
+									<div className="bg-theme-300"></div>
 									<div className="bg-theme-500"></div>
-									<div className="bg-theme-600"></div>
-									<div className="bg-theme-700"></div> */}
+									<div className="bg-theme-700"></div>
+									<div className="bg-theme-900"></div>
 									{/* 
 									<div className="bg-sky-400"></div>
 									<div className="bg-sky-500"></div>

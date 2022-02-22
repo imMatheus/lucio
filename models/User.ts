@@ -30,7 +30,6 @@ const schema = new Schema<UserInterface>(
 		name: {
 			type: String,
 			required: true,
-			unique: true,
 			trim: true,
 			minlength: 2,
 			maxLength: 50

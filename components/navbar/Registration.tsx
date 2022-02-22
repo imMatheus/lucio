@@ -17,19 +17,9 @@ const Registration: React.FC = ({}) => {
 			>
 				Sign in
 			</Button>
-			<Button
-				onClick={() => {
-					setShowModal(true)
-					setModal('markdown')
-				}}
-				variant="dimmed"
-			>
-				Markdown
-			</Button>
-
 			<Link href="/register" passHref={true}>
 				<a>
-					<Button>Sign up</Button>
+					<Button>Create an account</Button>
 				</a>
 			</Link>
 		</div>

@@ -70,6 +70,7 @@ export default function Register(): ReactElement {
 
 	async function signupHandler() {
 		const res = await signup(email, password, name)
+		console.log(res)
 	}
 
 	const buff = new Buffer(avatar)

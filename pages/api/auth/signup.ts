@@ -45,6 +45,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 
 		res.status(200).json({ token, user, message: null })
 	} catch (error) {
-		res.status(400).json({ token: null, user: null, message: 'hej på dig' })
+		console.log(error)
+		res.status(400).json({ token: null, user: null, message: 'Could not create user' })
 	}
 }

@@ -1,9 +1,12 @@
 import type { NextPage } from 'next'
+import React from 'react'
+import Image from 'next/image'
+import Card from '@/components/home/Card'
 
 const Home: NextPage = () => {
 	return (
 		<div className="">
-			<header className="p-5 xl:p-16">
+			<header className="px-5 py-12 lg:px-14 lg:py-24 xl:py-32">
 				<div className="mx-auto max-w-7xl">
 					<h1 className="mb-3 text-center font-grotesk text-6xl font-extrabold text-gray-800 dark:text-gray-100 xl:text-8xl">
 						LucioCode
@@ -13,6 +16,56 @@ const Home: NextPage = () => {
 					Teaching code made easier, faster and more enjoyable
 				</p>
 			</header>
+
+			<section className="bg-theme-200 p-12 text-gray-900 md:p-24">
+				<div className="mx-auto grid max-w-7xl gap-4 md:grid-cols-2 md:gap-12">
+					<h2 className="text-3xl font-semibold md:text-4xl">
+						With the Right Software, Great Things Can Happen
+					</h2>
+					<p className="text-sm md:text-base">
+						Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reiciendis accusamus autem libero
+						incidunt sed aliquam dolore, doloremque saepe esse officiis aperiam consequatur excepturi dolor
+						porro.
+					</p>
+				</div>
+			</section>
+
+			<section className="p-12 md:p-24">
+				<div className="mx-auto max-w-7xl">
+					<h2 className="mb-8 text-3xl font-semibold md:mb-12 md:text-4xl">What we bring to the game</h2>
+					<div className="grid grid-cols-1 gap-10 md:grid-cols-2 md:gap-20 lg:grid-cols-3 xl:grid-cols-4">
+						<Card src="/dashboard.png" title="Analize classes" alt="juan">
+							Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem, corrupti possimus placeat
+							unde cumque pariatur omnis incidunt, commodi consequatur, in ab magnam.
+						</Card>
+						<Card src="/messages.png" title="Realtime chats" alt="juan">
+							Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut iusto et itaque perferendis
+							architecto quibusdam autem!
+						</Card>
+						<Card src="/dashboard.png" title="Workflows That Work" alt="juan">
+							Lorem ipsum dolor sit, amet consectetur adipisicing elit. Totam assumenda recusandae ex.
+							Excepturi fuga, at rem commodi eos reiciendis ut blanditiis possimus!
+						</Card>
+
+						<Card src="/checklist.png" title="1000+ coding problems" alt="juan">
+							Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem, corrupti possimus placeat.{' '}
+						</Card>
+					</div>
+				</div>
+			</section>
+
+			<section className="bg-secondary-500 p-12 md:p-24">
+				<div className="mx-auto grid max-w-7xl gap-4 md:grid-cols-2 md:gap-12">
+					<h2 className="text-3xl font-semibold md:text-4xl">
+						With the Right Software, Great Things Can Happen
+					</h2>
+					<p className="text-sm md:text-base">
+						Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reiciendis accusamus autem libero
+						incidunt sed aliquam dolore, doloremque saepe esse officiis aperiam consequatur excepturi dolor
+						porro.
+					</p>
+				</div>
+			</section>
 		</div>
 	)
 }
