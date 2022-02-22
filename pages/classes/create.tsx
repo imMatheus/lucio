@@ -30,6 +30,7 @@ const Create: NextPage = () => {
 		router.push('/classes')
 	}
 
+
 	return (
 		<div className="min-h-full-wo-nav bg-gray-200/40 p-4 dark:bg-gray-900 md:p-6">
 			<div

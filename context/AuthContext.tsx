@@ -117,6 +117,23 @@ export const AuthProvider: React.FC = ({ children }) => {
 		// setToast({ message: 'Could not logout', type: 'error' })
 	}
 
+	const updateUser = async ({ name, bio }: UpdateUserProps): Promise<updateData> => {
+		const { data }: { data: updateData } = await axios.put('/api/auth/update', { name, bio })
+
+		console.log(data)
+		console.log(name, bio)
+
+		console.log('97777777')
+
+		if (data.message === null) {
+			await fetchUser()
+		}
+
+		return data
+
+		// setToast({ message: 'Could not logout', type: 'error' })
+	}
+
 	useEffect(() => {
 		async function init() {
 			await fetchUser()
