@@ -39,11 +39,21 @@ export default function Navbar(): ReactElement {
 									<div className="bg-indigo-600"></div>
 									<div className="bg-indigo-700"></div>
 								</div> */}
-								<div className="mr-1 grid h-7 w-7 rotate-45 grid-cols-4 overflow-hidden rounded-full">
+								<div className="mr-1 grid h-8 w-8 rotate-45 grid-cols-4 gap-[0px] overflow-hidden rounded-full bg-[#000]">
+									<div className="bg-[#b7094c]"></div>
+									<div className="bg-[#892b64]"></div>
+									<div className="bg-[#5c4d7d]"></div>
+									<div className="bg-[#2e6f95]"></div>
+
+									{/* <div className="bg-theme-400"></div>
+									<div className="bg-theme-500"></div>
+									<div className="bg-theme-600"></div>
+									<div className="bg-theme-700"></div> */}
+									{/* 
 									<div className="bg-sky-400"></div>
 									<div className="bg-sky-500"></div>
 									<div className="bg-sky-600"></div>
-									<div className="bg-sky-700"></div>
+									<div className="bg-sky-700"></div> */}
 
 									{/* <div className="bg-lime-400"></div>
 									<div className="bg-lime-500"></div>
@@ -56,7 +66,7 @@ export default function Navbar(): ReactElement {
 									<div className="bg-lime-700"></div> */}
 								</div>
 								<h4 className="cursor-pointer text-2xl font-bold text-gray-900 dark:text-gray-50 md:text-3xl 2xl:text-4xl 2xl:font-extrabold">
-									Lucio
+									Luciocode
 								</h4>
 							</a>
 						</Link>

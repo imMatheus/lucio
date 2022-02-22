@@ -112,8 +112,6 @@ const Profile: NextPage = () => {
 				Update profile
 			</button>
 
-			<span className={`inline-block h-3 w-3 bg-red-600 ${loading && 'animate-spin'}`}></span>
-
 			<section className="my-5">
 				<h2 className="mb-2 text-lg font-bold md:text-xl lg:text-2xl">Themes</h2>
 				<form className="grid grid-cols-2 gap-3 lg:flex lg:flex-wrap lg:gap-5">
