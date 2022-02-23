@@ -39,13 +39,16 @@ const Profile: NextPage = () => {
 	async function updateProfileHandler() {
 		try {
 			if (nameInputRef.current && bioInputRef.current && locationInputRef.current && schoolInputRef.current) {
+
 				setLoading(true)
 
 				const { message, errorType } = await updateUser({
 					name: nameInputRef.current.value,
+
 					bio: bioInputRef.current.value,
 					location: locationInputRef.current.value,
 					school: schoolInputRef.current.value
+
 				})
 
 				// success
