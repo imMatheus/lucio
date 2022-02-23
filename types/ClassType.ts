@@ -10,6 +10,7 @@ type ClassType = {
 	owner: string
 	theme: [string, string]
 	members: string[]
+	privacy: PrivacyEnum
 	createdAt: Date
 	updatedAt: Date
 	_id: string

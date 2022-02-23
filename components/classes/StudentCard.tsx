@@ -33,48 +33,43 @@ export default function StudentCard({ user, role, joinedAt, edit, loading }: Pro
 				<td className="whitespace-nowrap px-6 py-4">
 					<div className="flex items-center">
 						<div className="relative h-10 w-10 flex-shrink-0">
-							{/* {true ? ( */}
 							<div className={styles.skeletonImage}></div>
 							<Image
-								src="/dino.jpeg"
+								src="/rock.jpeg"
 								className="rounded-full"
 								objectFit="cover"
 								layout="fill"
 								alt="profile img"
 							/>
-							{/* // ) : (
-							// 	// <SVG className="h-full w-full rounded-full" src={image} />
-							// 	// <Image className="h-full w-full rounded-full" layout="fill" src="/rock.jpeg" alt="" />
-							// )} */}
 						</div>
 						<div className="ml-4">
 							<div className="text-sm font-medium text-gray-900 dark:text-gray-100">
 								{loading ? <SkeletonText className="mb-1" min={8} max={15} /> : user.name}
 							</div>
-							<div className="text-sm text-gray-500">
+							<div className="text-sm text-gray-500 dark:text-gray-400">
 								{loading ? <SkeletonText min={12} max={22} /> : user.email}
 							</div>
 						</div>
 					</div>
 				</td>
 				<td className="whitespace-nowrap px-6 py-4">
-					<div className="text-sm text-gray-500">
+					<div className="text-sm text-gray-600 dark:text-gray-300">
 						{loading ? <SkeletonText min={6} max={10} /> : convertDate(joinedAt)}
 					</div>
 				</td>
 				<td className="whitespace-nowrap px-6 py-4">
-					<div className="text-sm text-gray-500">
+					<div className="text-sm text-gray-600 dark:text-gray-300">
 						{loading ? <SkeletonText min={6} max={10} /> : convertDate(joinedAt)}
 					</div>
 				</td>
 				<td className="items-center whitespace-nowrap px-6 py-4">
-					<StatusChip status="dnd" loading={true} />
+					<StatusChip status="active" loading={true} />
 				</td>
-				<td className="whitespace-nowrap px-6 py-4 text-sm">
+				<td className="whitespace-nowrap px-6 py-4 text-sm text-gray-600 dark:text-gray-300">
 					{loading ? (
 						<SkeletonText min={4} max={8} />
 					) : role.toLowerCase() === 'admin' ? (
-						<div className="font-bold text-theme-300">{capitalizeFirstLetter(role)}</div>
+						<div className="font-black text-gray-900 dark:text-gray-100">{capitalizeFirstLetter(role)}</div>
 					) : (
 						capitalizeFirstLetter(role)
 					)}

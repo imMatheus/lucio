@@ -7,25 +7,58 @@
 }
 
 .logo {
-	@apply mr-auto cursor-pointer text-3xl font-extrabold text-sky-500;
+	@apply relative mr-2 flex h-8 w-8 items-center justify-center transition-transform;
 
-	span {
-		margin: 0rem;
-		@apply transition-all;
+	> div {
+		@apply absolute rounded-full transition-all;
 	}
 
-	span:nth-child(2n-1) {
-		@apply text-theme;
-	}
-
-	&:hover {
-		span:nth-child(2n-1) {
-			animation: logoSwitcher 400ms infinite ease-in-out;
-		}
-		span:nth-child(2n) {
-			animation: logoSwitcher 400ms infinite -200ms ease-in-out;
+	$offset: 17%;
+	@for $i from 1 through 4 {
+		> div:nth-child(#{$i}) {
+			width: calc(100% - ($offset * ($i - 1)));
+			height: calc(100% - ($offset * ($i - 1)));
 		}
 	}
+	> div:nth-child(1) {
+		// background: #f94144;
+		@apply bg-theme-300;
+		// background: #3a86ff;
+	}
+	> div:nth-child(2) {
+		border-top-right-radius: 0px;
+		// background: #f8961e;
+		// background: #8338ec;
+		@apply bg-theme-500;
+	}
+	> div:nth-child(3) {
+		border-bottom-right-radius: 0px;
+		// background: #90be6d;
+		// background: #ff006e;
+		@apply bg-theme-700;
+	}
+	> div:nth-child(4) {
+		border-bottom-left-radius: 0px;
+		// background: #277da1;
+		@apply bg-theme-900;
+		// background: #fb5607;
+	}
+	// &:hover {
+	transform: rotate(90deg);
+	> div {
+		@apply rounded-tl-none;
+	}
+
+	> div:nth-child(2) {
+		border-top-right-radius: 9999px;
+	}
+	> div:nth-child(3) {
+		border-bottom-right-radius: 9999px;
+	}
+	> div:nth-child(4) {
+		border-bottom-left-radius: 9999px;
+	}
+	// }
 }
 
 @keyframes logoSwitcher {
