@@ -23,7 +23,7 @@ module.exports = {
 				mustardDark: '#ffc01e',
 				ketchup: '#ff2d55',
 				ketchupDark: '#ff375f',
-        
+
 				brown: {
 					50: '#fdf8f6',
 					100: '#f2e8e5',
@@ -36,7 +36,7 @@ module.exports = {
 					800: '#846358',
 					900: '#43302b'
 				},
-        
+
 				// indigo
 				// theme: '#8236ec',
 				// 'theme-50': '#f6f1fe',
