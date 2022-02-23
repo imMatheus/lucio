@@ -1,7 +1,7 @@
 import { ClassRoomInterface } from '@models/ClassRoom'
 import { UserInterface } from '@models/User'
 
-export type Participants = {
+export type Members = {
 	userId: UserInterface
 	joinedAt: Date
 	role: 'student' | 'admin'
@@ -9,5 +9,5 @@ export type Participants = {
 
 export type Data = {
 	message: string | null
-	participants: Participants | null
+	members: Members | null
 }

@@ -14,7 +14,7 @@ interface ClassesCardProps {
 
 // ></div>
 
-export default function ClassCard({ data: { _id, name, code, participants, theme } }: ClassesCardProps) {
+export default function ClassCard({ data: { _id, name, code, members, theme } }: ClassesCardProps) {
 	theme = validateThemeColors(theme)
 
 	return (
@@ -34,7 +34,7 @@ export default function ClassCard({ data: { _id, name, code, participants, theme
 							{name}
 						</p>
 						<p className="font-serif text-sm font-medium lg:text-base">
-							{participants.length || 1} {participants.length > 1 ? 'students' : 'student'} | 3 tests
+							{members.length || 1} {members.length > 1 ? 'member' : 'members'} | 3 tests
 						</p>
 					</div>
 				</div>

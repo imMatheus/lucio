@@ -25,7 +25,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 
 		const cookie: any = jwt.verify(Array.isArray(token) ? token[0] : token, process.env.JWT_SIGN_SALT)
 
-		const classRoom = await ClassRoom.findOne({ _id: classId, 'participants.userId': { $eq: cookie._id } })
+		const classRoom = await ClassRoom.findOne({ _id: classId, 'members.userId': { $eq: cookie._id } })
 		if (!classRoom) {
 			res.status(400).json({ access: false })
 			return
