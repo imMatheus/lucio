@@ -35,6 +35,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 
 		const cookie: any = jwt.verify(token, process.env.JWT_SIGN_SALT)
 		const user = await User.findById(cookie._id)
+
 		res.status(200).json({ user, token, message: null })
 	} catch (error) {
 		console.log(error)
