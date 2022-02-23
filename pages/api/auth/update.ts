@@ -6,7 +6,7 @@ import { User } from '@models/User'
 import Cookies from 'cookies'
 
 export type Data = {
-	errorType: 'name' | 'bio' | null
+	errorType: 'name' | 'bio' | 'location' | 'school' | null
 	message: string | null
 }
 
@@ -18,14 +18,20 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 
 	if (req.method !== 'PUT') return res.status(400).send({ message: 'Invalid method', errorType: null })
 
-	const { name, bio }: UpdateUserProps = req.body
+	const { name, bio, location, school }: UpdateUserProps = req.body
 
 	// checking for validite of the props
-	if (name && (name.length < 2 || name.length > 50))
-		return res.status(400).send({ message: 'Name must be between 2 and 50 characters', errorType: 'name' })
+	if (!name || name.length < 2 || name.length > 40)
+		return res.status(400).send({ message: 'Name must be between 2 and 40 characters', errorType: 'name' })
 
 	if (bio && bio.length > 1000)
 		return res.status(400).send({ message: 'Bio must be less then 1000 characters', errorType: 'bio' })
+
+	if (location && location.length > 50)
+		return res.status(400).send({ message: 'Location must be less then 50 characters', errorType: 'location' })
+
+	if (school && school.length > 50)
+		return res.status(400).send({ message: 'School name must be less then 50 characters', errorType: 'school' })
 
 	try {
 		// connect to mongo
@@ -45,7 +51,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 
 		if (user) {
 			if (name) user.name = name
-			if (bio) user.bio = bio
+			user.bio = bio
+			user.location = location
+			user.school = school
 
 			await user.save()
 			res.status(200).json({ message: null, errorType: null })

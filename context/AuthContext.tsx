@@ -15,6 +15,8 @@ type IUser = UserInterface | null
 export interface UpdateUserProps {
 	name?: string
 	bio?: string
+	location?: string
+	school?: string
 }
 
 interface Context {
@@ -46,12 +48,18 @@ export const AuthProvider: React.FC = ({ children }) => {
 	const { setToast } = useToast()
 
 	const fetchUser = async () => {
+		console.log('abcc')
+
 		setFetchingUser(true)
 
 		const { data }: { data: meData } = await axios.get('/api/auth/me')
+		console.log('23')
+		console.log(data)
+
 		setFetchingUser(false)
 		if (!data || !data.user || !data.token) return setCurrentUser(null)
 
+		console.log('45')
 		setCurrentUser(data.user)
 	}
 
@@ -98,32 +106,12 @@ export const AuthProvider: React.FC = ({ children }) => {
 		} else {
 			setToast({ message: 'Could not logout', type: 'error' })
 		}
+
 	}
 
-	const updateUser = async ({ name, bio }: UpdateUserProps): Promise<updateData> => {
-		const { data }: { data: updateData } = await axios.put('/api/auth/update', { name, bio })
-
-		console.log(data)
-		console.log(name, bio)
-
-		console.log('97777777')
-
-		if (data.message === null) {
-			await fetchUser()
-		}
-
-		return data
-
-		// setToast({ message: 'Could not logout', type: 'error' })
-	}
-
-	const updateUser = async ({ name, bio }: UpdateUserProps): Promise<updateData> => {
-		const { data }: { data: updateData } = await axios.put('/api/auth/update', { name, bio })
-
-		console.log(data)
-		console.log(name, bio)
-
-		console.log('97777777')
+	const updateUser = async (props: UpdateUserProps): Promise<updateData> => {
+		const { data }: { data: updateData } = await axios.put('/api/auth/update', { ...props })
+		console.log(props)
 
 		if (data.message === null) {
 			await fetchUser()

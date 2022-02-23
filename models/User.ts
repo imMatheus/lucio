@@ -6,7 +6,9 @@ export interface UserInterface extends Document {
 	provider: string
 	email_verified: boolean
 	name: string
-	bio: string
+	bio?: string
+	location?: string
+	school?: string
 }
 
 const schema = new Schema<UserInterface>(
@@ -32,11 +34,21 @@ const schema = new Schema<UserInterface>(
 			required: true,
 			trim: true,
 			minlength: 2,
-			maxLength: 50
+			maxLength: 40
 		},
 		bio: {
 			type: String,
 			maxLength: 1000,
+			trim: true
+		},
+		location: {
+			type: String,
+			maxLength: 50,
+			trim: true
+		},
+		school: {
+			type: String,
+			maxLength: 50,
 			trim: true
 		},
 		password: {

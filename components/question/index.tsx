@@ -31,7 +31,7 @@ const Question = React.forwardRef<HTMLElement, QuestionProps>(({ markdown }, ref
 	}, [markdown])
 
 	return (
-		<main className="h-full w-full overflow-scroll bg-gray-100 dark:bg-gray-900" ref={ref}>
+		<section className="h-full w-full overflow-scroll bg-gray-100 dark:bg-gray-900" ref={ref}>
 			<article className="py-10 sm:py-12">
 				<div
 					className="prose prose-neutral max-w-none px-6
@@ -39,8 +39,8 @@ const Question = React.forwardRef<HTMLElement, QuestionProps>(({ markdown }, ref
 					prose-headings:text-gray-900
 					prose-strong:rounded-lg
 					prose-strong:bg-gray-900/10
-					prose-strong:py-0.5
 					prose-strong:px-2
+					prose-strong:py-0.5
 					prose-strong:text-gray-900
 					prose-li:marker:text-theme-1000
 					prose-img:max-w-[min(48rem,_100%)]
@@ -50,11 +50,11 @@ const Question = React.forwardRef<HTMLElement, QuestionProps>(({ markdown }, ref
 					dark:prose-strong:bg-gray-600/10
 					dark:prose-strong:text-gray-50
 					dark:prose-li:marker:text-gray-100
-					sm:prose-sm md:prose-base lg:prose-lg"
+					"
 					ref={divRef}
 				></div>
 			</article>
-		</main>
+		</section>
 	)
 })
 Question.displayName = 'Question'

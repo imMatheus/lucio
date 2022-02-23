@@ -20,6 +20,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 			const token = Array.isArray(_token) ? _token[0] : _token
 			const cookie: any = jwt.verify(token, process.env.JWT_SIGN_SALT)
 			const user = await User.findById(cookie._id)
+			console.log(user)
 			res.status(200).json({ user, token, message: null })
 			return
 		}
@@ -35,6 +36,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 
 		const cookie: any = jwt.verify(token, process.env.JWT_SIGN_SALT)
 		const user = await User.findById(cookie._id)
+		console.log(user)
+
 		res.status(200).json({ user, token, message: null })
 	} catch (error) {
 		console.log(error)

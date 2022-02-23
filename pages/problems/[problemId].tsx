@@ -10,6 +10,8 @@ import getConfig from 'next/config'
 const { serverRuntimeConfig } = getConfig()
 import Monaco from '@/components/monaco'
 import { editor } from 'monaco-editor'
+import Editor, { EditorProps } from '@monaco-editor/react'
+
 interface Props {
 	markdown: string
 }
@@ -51,7 +53,6 @@ const Problem: NextPage<Props> = ({ markdown }) => {
 	const resizeBarRef = useRef<HTMLDivElement>(null)
 	const editorWrapperRef = useRef<HTMLDivElement>(null)
 	const questionRef = React.createRef<HTMLElement>()
-	const editorRef = React.useRef<editor.IStandaloneCodeEditor | null>(null)
 	const [isDragging, setIsDragging] = useState(false)
 
 	const mouseDownHandler = () => {
@@ -71,8 +72,6 @@ const Problem: NextPage<Props> = ({ markdown }) => {
 			editorWrapperRef.current.style.width = windowWidth - pointerRelativeXpos - barWidth + 'px'
 			console.log('****************************************************************')
 
-			console.log(editorRef.current)
-
 			// editorRef.current?.layout()
 		})
 
@@ -83,23 +82,23 @@ const Problem: NextPage<Props> = ({ markdown }) => {
 			})
 	}, [resizeBarRef.current, mouseDownHandler])
 
-	function handleEditorDidMount(editor: editor.IStandaloneCodeEditor) {
-		console.log('mount')
-		console.log(editor)
+	// function handleEditorDidMount(editor: editor.IStandaloneCodeEditor) {
+	// 	console.log('mount')
+	// 	console.log(editor)
 
-		// console.log(editor.layout)
-		if (editorRef) {
-			editorRef.current = editor
-		}
-	}
+	// 	// console.log(editor.layout)
+	// 	if (editorRef) {
+	// 		editorRef.current = editor
+	// 	}
+	// }
 
-	useEffect(() => {
-		console.log('abc')
-		console.log(editorRef.current)
-	}, [editorRef, editorRef.current])
+	// useEffect(() => {
+	// 	console.log('abc')
+	// 	console.log(editorRef.current)
+	// }, [editorRef, editorRef.current])
 
 	return (
-		<section className="h-full-wo-nav grid w-screen grid-cols-[1fr_auto_auto]">
+		<main className="h-full-wo-nav grid w-screen grid-cols-[1fr_auto_auto]">
 			<Question ref={questionRef} markdown={markdown} />
 			<div
 				ref={resizeBarRef}
@@ -115,9 +114,16 @@ const Problem: NextPage<Props> = ({ markdown }) => {
 				className="relative w-full min-w-[max(30vw,_250px)] max-w-[65vw] bg-red-500 lg:max-w-[80vw]"
 				ref={editorWrapperRef}
 			>
-				<Monaco ref={editorRef} handleEditorDidMount={handleEditorDidMount} />
+				{/* <Editor
+					height={'100%'}
+					className="max-h-full-wo-nav h-full-wo-nav"
+					defaultValue="// let's write some broken code 😈"
+				/> */}
+				<Monaco />
+				{/* <Monaco handleEditorDidMount={handleEditorDidMount} /> */}
+				{/* <Monaco ref={editorRef} handleEditorDidMount={handleEditorDidMount} /> */}
 			</div>
-		</section>
+		</main>
 	)
 }
 

@@ -36,7 +36,7 @@ module.exports = {
 					800: '#846358',
 					900: '#43302b'
 				},
-        
+
 				// indigo
 				// theme: '#8236ec',
 				// 'theme-50': '#f6f1fe',
