@@ -1,5 +1,5 @@
 import React, { useEffect, ReactElement, useState } from 'react'
-import ClassCard from '@/components/classes/ClassCard'
+import ClassCard from '@/components/classes/classcard/index'
 import { useToast } from '@/context/ToastContext'
 import Button from '@/components/button'
 import { GetServerSideProps } from 'next'

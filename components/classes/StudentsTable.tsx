@@ -9,7 +9,10 @@ interface StudentsTableProps {}
 
 const Column: React.FC = ({ children }) => {
 	return (
-		<th scope="col" className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-400">
+		<th
+			scope="col"
+			className="px-6 py-3 text-left text-xs font-normal uppercase tracking-wider text-gray-800 dark:text-gray-100"
+		>
 			{children}
 		</th>
 	)
@@ -46,9 +49,9 @@ const StudentsTable: React.FC<StudentsTableProps> = ({}) => {
 				<span className="rounded-md bg-teal-800 px-2">{loading + ''}</span>
 			</div>
 			<div className="inline-block w-full py-2 align-middle">
-				<div className="overflow-hidden overflow-x-scroll rounded-t-lg border-b border-gray-200 shadow dark:border-gray-800">
+				<div className="overflow-hidden overflow-x-scroll rounded-lg border border-b border-gray-400/30 dark:border-gray-800">
 					<table className="my-0 min-w-full divide-y divide-gray-200 dark:divide-gray-800">
-						<thead className="bg-gray-100 dark:bg-gray-800">
+						<thead className="rounded-t-lg bg-gray-200 dark:bg-gray-800">
 							<tr>
 								{edit && <Column>Edit</Column>}
 								<Column>Name</Column>

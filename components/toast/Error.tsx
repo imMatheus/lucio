@@ -17,14 +17,6 @@ const Error: React.FC = () => {
 					</span>
 					<Text smallText="We announced a new product!">{toast.message}</Text>
 				</div>
-				<div className="order-3 mt-2 hidden w-full flex-shrink-0 sm:order-2 sm:mt-0 sm:w-auto md:block">
-					<a
-						href="#"
-						className="flex items-center justify-center rounded-md border border-transparent bg-white px-4 py-2 text-sm font-medium text-red-600 shadow-sm hover:bg-red-50"
-					>
-						Learn more
-					</a>
-				</div>
 				<div className="order-2 flex-shrink-0 sm:order-3 sm:ml-3">
 					<button
 						type="button"

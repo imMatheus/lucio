@@ -6,13 +6,13 @@ import Card from '@/components/home/Card'
 const Home: NextPage = () => {
 	return (
 		<div className="selection:bg-theme-100 selection:text-theme-900">
-			<header className="px-5 py-12 lg:px-14 lg:py-24 xl:py-32">
-				<div className="mx-auto max-w-7xl">
+			<header className="relative px-5 py-12 lg:px-14 lg:py-24 xl:py-32">
+				<div className="relative z-10 mx-auto max-w-7xl">
 					<h1 className="mb-3 text-center font-grotesk text-6xl font-extrabold text-gray-800 dark:text-gray-100 xl:text-8xl">
 						LucioCode
 					</h1>
 				</div>
-				<p className="text-center text-gray-700 dark:text-gray-300">
+				<p className="relative z-10 text-center text-gray-700 dark:text-gray-300">
 					Teaching code made easier, faster and more enjoyable
 				</p>
 			</header>
@@ -42,7 +42,7 @@ const Home: NextPage = () => {
 							Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut iusto et itaque perferendis
 							architecto quibusdam autem!
 						</Card>
-						<Card src="/dashboard.png" title="Workflows That Work" alt="juan">
+						<Card src="/dashboard.png" title="Exam environment" alt="juan">
 							Lorem ipsum dolor sit, amet consectetur adipisicing elit. Totam assumenda recusandae ex.
 							Excepturi fuga, at rem commodi eos reiciendis ut blanditiis possimus!
 						</Card>
