@@ -8,7 +8,7 @@ export interface ClassRoomInterface extends Document {
 	code: string
 	privacy: PrivacyEnum
 	theme: [string, string]
-	participants: [
+	members: [
 		{
 			userId: string
 			joinedAt: Date
@@ -40,7 +40,7 @@ const schema = new Schema<ClassRoomInterface>(
 			trim: true,
 			enum: Object.values(PrivacyEnum)
 		},
-		participants: [
+		members: [
 			{
 				userId: {
 					type: Schema.Types.ObjectId,

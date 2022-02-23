@@ -7,7 +7,7 @@ import useClassData from '@/hooks/useClassData'
 import { useRouter } from 'next/router'
 import PaddingContainer from '@/components/classes/PaddingContainer'
 
-const Students: NextPage = () => {
+const Members: NextPage = () => {
 	const router = useRouter()
 	const classId = router.query.classId
 
@@ -16,7 +16,7 @@ const Students: NextPage = () => {
 	return (
 		<PaddingContainer>
 			<Head>
-				<title>{classData?.name} | Students</title>
+				<title>{classData?.name} | Members</title>
 				<meta property="og:title" content={`${classData?.name} | Students`} key="title" />
 			</Head>
 			<ClassNavbar />
@@ -26,4 +26,4 @@ const Students: NextPage = () => {
 	)
 }
 
-export default Students
+export default Members

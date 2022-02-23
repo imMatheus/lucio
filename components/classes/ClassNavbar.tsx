@@ -10,7 +10,7 @@ const ClassNavbar: React.FC = () => {
 		<div className="flex border-b border-gray-300 dark:border-gray-800">
 			<ClassNavbarOption link={`/classes/${classId}`}>Class</ClassNavbarOption>
 			<ClassNavbarOption link={`/classes/${classId}/homework`}>Homework</ClassNavbarOption>
-			<ClassNavbarOption link={`/classes/${classId}/students`}>Students</ClassNavbarOption>
+			<ClassNavbarOption link={`/classes/${classId}/members`}>Members</ClassNavbarOption>
 			<ClassNavbarOption link={`/classes/${classId}/settings`}>Settings</ClassNavbarOption>
 		</div>
 	)

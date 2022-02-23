@@ -47,7 +47,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 		privacy,
 		owner: cookie._id,
 		theme,
-		participants: [{ userId: cookie._id, role: 'admin', joinedAt: new Date() }]
+		members: [{ userId: cookie._id, role: 'admin', joinedAt: new Date() }]
 	})
 
 	res.status(200).json({ class: classRoom, message: null })

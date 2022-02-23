@@ -32,7 +32,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 		}
 
 		const classRooms: ClassRoomInterface[] = await ClassRoom.find({
-			'participants.userId': userId
+			'members.userId': userId
 		})
 
 		// res.status(200).json([])

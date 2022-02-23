@@ -106,7 +106,6 @@ export const AuthProvider: React.FC = ({ children }) => {
 		} else {
 			setToast({ message: 'Could not logout', type: 'error' })
 		}
-
 	}
 
 	const updateUser = async (props: UpdateUserProps): Promise<updateData> => {

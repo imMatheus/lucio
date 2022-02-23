@@ -9,7 +9,7 @@ type ClassType = {
 	code: string
 	owner: string
 	theme: [string, string]
-	participants: string[]
+	members: string[]
 	createdAt: Date
 	updatedAt: Date
 	_id: string

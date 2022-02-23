@@ -35,7 +35,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 		const classRoom = await ClassRoom.findOne({
 			code,
 			// make sure user is not already in class
-			'participants.userId': { $ne: userId }
+			'members.userId': { $ne: userId }
 		})
 
 		if (!classRoom) {
@@ -44,7 +44,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 		}
 
 		// update and save
-		await classRoom.updateOne({ $push: { participants: { userId: userId } } })
+		await classRoom.updateOne({ $push: { members: { userId: userId } } })
 		await classRoom.save()
 
 		res.status(200).json({ message: null, classRoom })

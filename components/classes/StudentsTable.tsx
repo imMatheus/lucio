@@ -3,7 +3,7 @@ import StudentCard from './StudentCard'
 import Button from '@/components/button'
 import { useRouter } from 'next/router'
 import axios from 'axios'
-import { Data, Participants } from '@/types/returns/api/classes/participants'
+import { Data, Members } from '@/types/returns/api/classes/members'
 
 interface StudentsTableProps {}
 
@@ -16,7 +16,7 @@ const Column: React.FC = ({ children }) => {
 }
 
 const StudentsTable: React.FC<StudentsTableProps> = ({}) => {
-	const [students, setStudents] = useState<Participants>([])
+	const [members, setMembers] = useState<Members>([])
 	const [loading, setLoading] = useState(true)
 	const [edit, setEdit] = useState(false)
 	const router = useRouter()
@@ -24,16 +24,16 @@ const StudentsTable: React.FC<StudentsTableProps> = ({}) => {
 	useEffect(() => {
 		const { classId } = router.query
 		if (classId) {
-			const getParticipants = async () => {
+			const getMembers = async () => {
 				const id = Array.isArray(classId) ? classId[0] : classId
 				setLoading(true)
-				const { data }: { data: Data } = await axios.get(`/api/classes/${id}/participants`)
-				if (data?.participants && data?.participants[0]) {
-					setStudents(data.participants)
+				const { data }: { data: Data } = await axios.get(`/api/classes/${id}/members`)
+				if (data?.members && data?.members[0]) {
+					setMembers(data.members)
 				}
 				setLoading(false)
 			}
-			getParticipants()
+			getMembers()
 		}
 	}, [router])
 
@@ -61,7 +61,7 @@ const StudentsTable: React.FC<StudentsTableProps> = ({}) => {
 								</th>
 							</tr>
 						</thead>
-						{students.map(({ userId, role, joinedAt }) => {
+						{members.map(({ userId, role, joinedAt }) => {
 							return (
 								<StudentCard
 									key={userId._id}
