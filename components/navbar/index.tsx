@@ -49,8 +49,8 @@ export default function Navbar(): ReactElement {
 									<div className="bg-theme-500"></div>
 									<div className="bg-theme-700"></div>
 									<div className="bg-theme-900"></div>
-									{/* 
-									<div className="bg-sky-400"></div>
+
+									{/* <div className="bg-sky-400"></div>
 									<div className="bg-sky-500"></div>
 									<div className="bg-sky-600"></div>
 									<div className="bg-sky-700"></div> */}
@@ -58,9 +58,9 @@ export default function Navbar(): ReactElement {
 									{/* <div className="bg-lime-400"></div>
 									<div className="bg-lime-500"></div>
 									<div className="bg-lime-600"></div>
-									<div className="bg-lime-700"></div>
+							<div className="bg-lime-700"></div>*/}
 
-									<div className="bg-lime-400"></div>
+									{/* <div className="bg-lime-400"></div>
 									<div className="bg-lime-500"></div>
 									<div className="bg-lime-600"></div>
 									<div className="bg-lime-700"></div> */}
@@ -74,7 +74,6 @@ export default function Navbar(): ReactElement {
 							<NavLink href="/classes">Classes</NavLink>
 							<NavLink href="/messages">Messages</NavLink>
 							<NavLink href="/problems">Problems</NavLink>
-							<NavLink href="/css">Css</NavLink>
 							<DisplayUser />
 						</div>
 					</section>
