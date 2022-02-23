@@ -15,6 +15,8 @@ type IUser = UserInterface | null
 export interface UpdateUserProps {
 	name?: string
 	bio?: string
+	location?: string
+	school?: string
 }
 
 interface Context {
@@ -106,13 +108,9 @@ export const AuthProvider: React.FC = ({ children }) => {
 		}
 	}
 
-	const updateUser = async ({ name, bio }: UpdateUserProps): Promise<updateData> => {
-		const { data }: { data: updateData } = await axios.put('/api/auth/update', { name, bio })
-
-		console.log(data)
-		console.log(name, bio)
-
-		console.log('97777777')
+	const updateUser = async (props: UpdateUserProps): Promise<updateData> => {
+		const { data }: { data: updateData } = await axios.put('/api/auth/update', { ...props })
+		console.log(props)
 
 		if (data.message === null) {
 			await fetchUser()

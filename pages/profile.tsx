@@ -13,9 +13,21 @@ const Profile: NextPage = () => {
 	const { setToast } = useToast()
 	const [darkMode, setDarkMode] = useDarkMode()
 	const [loading, setLoading] = useState(false)
+
+	// state for form
+	// name
 	const nameInputRef = useRef<HTMLInputElement>(null)
 	const [nameError, setNameError] = useState('')
-	const emailInputRef = useRef<HTMLInputElement>(null)
+
+	//location
+	const locationInputRef = useRef<HTMLInputElement>(null)
+	const [locationError, setLocationError] = useState('')
+
+	//school
+	const schoolInputRef = useRef<HTMLInputElement>(null)
+	const [schoolError, setSchoolError] = useState('')
+
+	// bio
 	const [bioError, setBioError] = useState('')
 	const bioInputRef = useRef<HTMLTextAreaElement>(null)
 
@@ -26,12 +38,14 @@ const Profile: NextPage = () => {
 
 	async function updateProfileHandler() {
 		try {
-			if (nameInputRef.current && bioInputRef.current) {
+			if (nameInputRef.current && bioInputRef.current && locationInputRef.current && schoolInputRef.current) {
 				setLoading(true)
 
 				const { message, errorType } = await updateUser({
 					name: nameInputRef.current.value,
-					bio: bioInputRef.current.value
+					bio: bioInputRef.current.value,
+					location: locationInputRef.current.value,
+					school: schoolInputRef.current.value
 				})
 
 				// success
@@ -65,7 +79,10 @@ const Profile: NextPage = () => {
 	return (
 		<main className="mx-auto max-w-7xl p-4 md:px-8">
 			<section className="my-5 max-w-2xl">
-				<h2 className="mb-2 text-lg font-bold md:text-xl lg:text-2xl">Personal info</h2>
+				<h2 className="mb-2 text-lg font-bold md:text-xl lg:text-2xl">
+					Personal info{' '}
+					<span className="text-sm font-light text-gray-500 xl:text-base">- {currentUser.email}</span>
+				</h2>
 
 				<Input
 					ref={nameInputRef}
@@ -74,19 +91,31 @@ const Profile: NextPage = () => {
 					placeholder="Joe doe"
 					id="name"
 					autoComplete="name"
-					maxLength={15}
+					maxLength={40}
 					defaultValue={currentUser.name}
 				/>
-				<Input
-					ref={emailInputRef}
-					defaultValue={currentUser.email}
-					type="email"
-					label="Email address"
-					placeholder="you@example.com"
-					id="email-address"
-					maxLength={50}
-					autoComplete="email"
-				/>
+				<div className="grid md:grid-cols-2 md:gap-3">
+					<Input
+						ref={locationInputRef}
+						type="text"
+						label="Location"
+						placeholder="United States of America..."
+						id="location"
+						autoComplete="location"
+						maxLength={50}
+						defaultValue={currentUser.location}
+					/>
+					<Input
+						ref={schoolInputRef}
+						type="text"
+						label="School"
+						placeholder="Harvard..."
+						id="school"
+						autoComplete="school"
+						maxLength={50}
+						defaultValue={currentUser.school}
+					/>
+				</div>
 
 				<div className="mb-3">
 					<label htmlFor="bio" className="block text-sm font-medium text-gray-700 dark:text-gray-200">

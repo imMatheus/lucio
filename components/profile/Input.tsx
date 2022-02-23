@@ -6,7 +6,7 @@ interface InputProps {
 	placeholder: string
 	type: React.HTMLInputTypeAttribute
 	autoComplete: string
-	defaultValue: string
+	defaultValue?: string
 	maxLength: number
 }
 
