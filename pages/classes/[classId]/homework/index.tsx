@@ -7,7 +7,7 @@ import { useToast } from '@/context/ToastContext'
 import Head from 'next/head'
 import Button from '@/components/button'
 import HomeworkCard from '@/components/classes/HomeworkCard'
-import ClassNavbar from '@/components/classes/ClassNavbar'
+import ClassNavbar from '@/components/classes/classnavbar/index'
 import axios from 'axios'
 import PaddingContainer from '@/components/classes/PaddingContainer'
 

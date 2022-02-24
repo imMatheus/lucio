@@ -13,7 +13,6 @@ interface ClassesCardProps {
 
 export default function ClassCard({ data: { _id, name, code, members, theme, privacy } }: ClassesCardProps) {
 	theme = validateThemeColors(theme)
-	console.log(validateThemeColors(['#123FF0']))
 
 	return (
 		<Link href={`/classes/${_id}`} passHref={true}>

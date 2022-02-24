@@ -1,6 +1,6 @@
 import React from 'react'
 import { useRouter } from 'next/router'
-import ClassNavbarOption from './ClassNavbarOption'
+import ClassNavbarOption from './tab'
 
 const ClassNavbar: React.FC = () => {
 	const router = useRouter()

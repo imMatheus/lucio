@@ -1,6 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
-import styles from './navbaroptions.module.scss'
+import styles from './tab.module.scss'
 import { useRouter } from 'next/router'
 
 interface IndexProps {

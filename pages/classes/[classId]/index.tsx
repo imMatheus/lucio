@@ -1,7 +1,7 @@
 import React, { ReactElement, useEffect, useState } from 'react'
 import ClassType from '@/types/ClassType'
 import { useRouter } from 'next/router'
-import ClassNavbar from '@/components/classes/ClassNavbar'
+import ClassNavbar from '@/components/classes/classnavbar/index'
 import useClassData from '@/hooks/useClassData'
 import Button from '@/components/button'
 import Head from 'next/head'

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import type { NextPage } from 'next'
-import ClassNavbar from '@/components/classes/ClassNavbar'
+import ClassNavbar from '@/components/classes/classnavbar/index'
 import PaddingContainer from '@/components/classes/PaddingContainer'
 import ColorSelector from '@/components/classes/colorselector'
 import useClassData from '@/hooks/useClassData'
