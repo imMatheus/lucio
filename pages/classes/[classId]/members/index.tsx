@@ -1,6 +1,6 @@
 import React from 'react'
 import type { NextPage } from 'next'
-import ClassNavbar from '@/components/classes/ClassNavbar'
+import ClassNavbar from '@/components/classes/classnavbar/index'
 import StudentsTable from '@/components/classes/StudentsTable'
 import Head from 'next/head'
 import useClassData from '@/hooks/useClassData'
