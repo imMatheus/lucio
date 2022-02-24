@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { run } from '@/utils/mongodb'
-import { ClassRoom, ClassRoomInterface } from '@models/ClassRoom'
+import { ClassRoom, ClassRoomInterface } from '@/models/ClassRoom'
 import Cookies from 'cookies'
 import jwt from 'jsonwebtoken'
 

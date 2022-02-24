@@ -1,6 +1,6 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { Problem } from '@models/Problem'
+import { Problem } from '@/models/Problem'
 import { run } from '@/utils/mongodb'
 import getConfig from 'next/config'
 const { serverRuntimeConfig } = getConfig()

@@ -3,7 +3,7 @@ import jwt from 'jsonwebtoken'
 import { Data } from '@/returns/api/login'
 import bcrypt from 'bcrypt'
 import EmailValidator from 'email-validator'
-import { User } from '@models/User'
+import { User } from '@/models/User'
 import Cookies from 'cookies'
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<Data>) {

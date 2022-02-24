@@ -2,6 +2,9 @@ import React, { useEffect, useLayoutEffect, useRef } from 'react'
 
 import Editor from '@monaco-editor/react'
 import { editor } from 'monaco-editor'
+import Button from '@/components/button'
+import Loader from './Loader'
+import TestCases from './TestCases'
 
 interface Props {
 	// handleEditorDidMount: (editor: editor.IStandaloneCodeEditor) => void
@@ -22,7 +25,7 @@ const MonacoEditor: React.FC<Props> = () => {
 					height={'100%'}
 					// className=""
 					defaultLanguage="typescript"
-					// theme="vs-dark"
+					theme="vs-dark"
 					options={{
 						scrollBeyondLastLine: true,
 						minimap: {
@@ -43,12 +46,13 @@ const MonacoEditor: React.FC<Props> = () => {
 					defaultValue="// let's write some broken code 😈"
 					onValidate={(markers) => handleEditorValidation(markers)}
 				/>
-				<div className="flex justify-end gap-4 border-y border-y-gray-400 bg-theme-900 p-6 dark:border-y-gray-500 dark:bg-theme-800">
-					<button className="btn-shadow-3">Run code</button>
-					<button className="btn-shadow-4">Submit</button>
+				<div className="flex flex-wrap justify-end gap-4 border-y border-y-gray-400 bg-gray-200 p-6 dark:border-y-gray-500 dark:bg-gray-800">
+					<Button variant="primary">Run code</Button>
+					<Button variant="success">Submit</Button>
 				</div>
 			</div>
-			<div className="bg-amber-900 p-10">Hello world</div>
+			<TestCases />
+			<Loader />
 		</div>
 	)
 }

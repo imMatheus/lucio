@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { User } from '@models/User'
+import { User } from '@/models/User'
 import jwt from 'jsonwebtoken'
 import Cookies from 'cookies'
 import { run } from '@/utils/mongodb'

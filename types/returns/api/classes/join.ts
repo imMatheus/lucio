@@ -1,4 +1,4 @@
-import { ClassRoomInterface } from '@models/ClassRoom'
+import { ClassRoomInterface } from '@/models/ClassRoom'
 
 export type Data = {
 	message: string | null

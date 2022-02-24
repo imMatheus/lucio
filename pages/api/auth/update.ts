@@ -2,7 +2,7 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 import { run } from '@/utils/mongodb'
 import { UpdateUserProps } from '@/context/AuthContext'
 import jwt from 'jsonwebtoken'
-import { User } from '@models/User'
+import { User } from '@/models/User'
 import Cookies from 'cookies'
 
 export type Data = {

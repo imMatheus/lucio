@@ -23,7 +23,7 @@
 			"@/types/*": ["types/*"],
 			"@/returns/*": ["types/returns/*"],
 			"@/hooks/*": ["hooks/*"],
-			"@models/*": ["models/*"],
+			"@/models/*": ["models/*"],
 			"styles/*": ["styles/*"]
 		},
 		"incremental": true

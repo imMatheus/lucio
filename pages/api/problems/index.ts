@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { Problem } from '@models/Problem'
+import { Problem } from '@/models/Problem'
 import { run } from '@/utils/mongodb'
 import getConfig from 'next/config'
 import { Data } from '@/types/returns/api/problems'
