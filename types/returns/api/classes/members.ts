@@ -1,5 +1,5 @@
-import { ClassRoomInterface } from '@models/ClassRoom'
-import { UserInterface } from '@models/User'
+import { ClassRoomInterface } from '@/models/ClassRoom'
+import { UserInterface } from '@/models/User'
 
 export type Members = {
 	userId: UserInterface

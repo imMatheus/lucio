@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react'
 import styles from './studentstable.module.scss'
-import { UserInterface } from '@models/User'
+import { UserInterface } from '@/models/User'
 import { capitalizeFirstLetter, convertDate } from '@/utils/index'
 import StatusChip from './statuschip'
 import Image from 'next/image'

@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useEffect, useState } from 'react'
-import { User, UserInterface } from '@models/User'
+import { User, UserInterface } from '@/models/User'
 import axios from 'axios'
 import { Data as meData } from '@/returns/api/me'
 import { Data as logoutData } from '@/returns/api/logout'

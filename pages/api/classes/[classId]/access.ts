@@ -3,7 +3,7 @@ import { Data } from '@/types/returns/api/classes/access'
 import { run } from '@/utils/mongodb'
 import Cookies from 'cookies'
 import jwt from 'jsonwebtoken'
-import { ClassRoom } from '@models/ClassRoom'
+import { ClassRoom } from '@/models/ClassRoom'
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<Data>) {
 	if (!process.env.JWT_SIGN_SALT) {

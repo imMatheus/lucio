@@ -2,7 +2,7 @@ import React from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import ClassType from '@/types/ClassType'
-import { validateThemeColors } from '@/utils/validateClassThemeColors'
+import { validateThemeColors } from '@/utils/validateThemeColors'
 // import { style } from '@dicebear/avatars/dist/utils'
 import { MapPin, Link as LinkIcon, Code, Book, Inbox, Lock } from 'react-feather'
 import Chip from './Chip'
@@ -13,6 +13,7 @@ interface ClassesCardProps {
 
 export default function ClassCard({ data: { _id, name, code, members, theme, privacy } }: ClassesCardProps) {
 	theme = validateThemeColors(theme)
+	console.log(validateThemeColors(['#123FF0']))
 
 	return (
 		<Link href={`/classes/${_id}`} passHref={true}>

@@ -1,4 +1,4 @@
-import { UserInterface } from '@models/User'
+import { UserInterface } from '@/models/User'
 
 export type Data = {
 	user: UserInterface | null

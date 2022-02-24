@@ -1,11 +1,11 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { run } from '@/utils/mongodb'
-import { ClassRoom } from '@models/ClassRoom'
+import { ClassRoom } from '@/models/ClassRoom'
 import { generateNewLink } from 'utils/generateCode'
 import { PrivacyEnum } from '@/types/ClassType'
 import Cookie from 'cookie'
 import jwt from 'jsonwebtoken'
-import { validateThemeColors } from '@/utils/validateClassThemeColors'
+import { validateThemeColors } from '@/utils/validateThemeColors'
 import { Data } from '@/types/returns/api/classes/create'
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<Data>) {

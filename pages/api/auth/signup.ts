@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import jwt from 'jsonwebtoken'
 import { run } from '@/utils/mongodb'
-import { User, UserInterface } from '@models/User'
+import { User, UserInterface } from '@/models/User'
 import bcrypt from 'bcrypt'
 import cookie from 'cookie'
 import Cookies from 'cookies'

@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { run } from '@/utils/mongodb'
-import { ClassRoom } from '@models/ClassRoom'
+import { ClassRoom } from '@/models/ClassRoom'
 import { Data } from '@/types/returns/api/classes/index'
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<Data>) {
