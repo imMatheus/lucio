@@ -6,28 +6,25 @@ import Button from '@/components/button'
 import Loader from './Loader'
 import TestCases from './TestCases'
 
-interface Props {
-	// handleEditorDidMount: (editor: editor.IStandaloneCodeEditor) => void
-}
-
-const MonacoEditor: React.FC<Props> = () => {
-	// const MonacoEditor = React.forwardRef<editor.IStandaloneCodeEditor | null, Props>(({ handleEditorDidMount }, ref) => {
-	// const wrapperRef = useRef<HTMLDivElement>(null)
-
+const MonacoEditor = React.forwardRef<HTMLDivElement>(({}, ref) => {
 	function handleEditorValidation(markers: any) {
 		markers.forEach((marker: any) => console.log('onValidate:', marker.message))
 	}
 
 	return (
-		<div className="max-h-full-wo-nav h-full-wo-nav relative w-full overflow-y-scroll bg-blue-500">
-			<div className="max-h-full-wo-nav h-full-wo-nav relative grid grid-rows-[1fr_auto] bg-rose-600">
+		<div className="max-h-full-wo-nav h-full-wo-nav relative w-full overflow-y-scroll bg-red-500">
+			<div
+				ref={ref}
+				className="grid h-full w-full min-w-[max(30vw,_250px)] max-w-[65vw] grid-cols-1 grid-rows-[1fr_auto] overflow-y-scroll lg:max-w-[80vw]"
+			>
 				<Editor
 					height={'100%'}
-					// className=""
+					// className="!w-full"
 					defaultLanguage="typescript"
 					theme="vs-dark"
 					options={{
 						scrollBeyondLastLine: true,
+						automaticLayout: true,
 						minimap: {
 							enabled: false
 						},
@@ -46,17 +43,19 @@ const MonacoEditor: React.FC<Props> = () => {
 					defaultValue="// let's write some broken code 😈"
 					onValidate={(markers) => handleEditorValidation(markers)}
 				/>
-				<div className="flex flex-wrap justify-end gap-4 border-y border-y-gray-400 bg-gray-200 p-6 dark:border-y-gray-500 dark:bg-gray-800">
+
+				<div className="flex max-w-full flex-wrap justify-end gap-4 border-y border-y-gray-700 bg-gray-200 p-6 dark:border-y-gray-500 dark:bg-gray-800">
 					<Button variant="primary">Run code</Button>
 					<Button variant="success">Submit</Button>
 				</div>
 			</div>
+
 			<TestCases />
 			<Loader />
 		</div>
 	)
-}
+})
 
-// MonacoEditor.displayName = 'monaco-editor'
+MonacoEditor.displayName = 'monaco-editor'
 
 export default MonacoEditor
