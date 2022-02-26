@@ -52,6 +52,7 @@ export const getStaticProps: GetStaticProps<Props> = async (context) => {
 const Problem: NextPage<Props> = ({ markdown }) => {
 	const resizeBarRef = useRef<HTMLDivElement>(null)
 	const editorWrapperRef = useRef<HTMLDivElement>(null)
+	const monacoRef = useRef<HTMLDivElement>(null)
 	const questionRef = React.createRef<HTMLElement>()
 	const [isDragging, setIsDragging] = useState(false)
 
@@ -63,6 +64,7 @@ const Problem: NextPage<Props> = ({ markdown }) => {
 		if (!resizeBarRef) return
 		document.addEventListener('mousemove', function (e) {
 			if (!isDragging || !questionRef?.current || !editorWrapperRef.current) return
+			// if (!isDragging || !questionRef?.current || !editorWrapperRef.current || !monacoRef.current) return
 
 			let barWidth = resizeBarRef.current?.clientWidth || 0
 			//setting width to the mouse x cord or to a min or max value specified in the css
@@ -70,9 +72,6 @@ const Problem: NextPage<Props> = ({ markdown }) => {
 			const windowWidth = window.innerWidth
 
 			editorWrapperRef.current.style.width = windowWidth - pointerRelativeXpos - barWidth + 'px'
-			console.log('****************************************************************')
-
-			// editorRef.current?.layout()
 		})
 
 		document &&
@@ -81,21 +80,6 @@ const Problem: NextPage<Props> = ({ markdown }) => {
 				setIsDragging(false)
 			})
 	}, [resizeBarRef.current, mouseDownHandler])
-
-	// function handleEditorDidMount(editor: editor.IStandaloneCodeEditor) {
-	// 	console.log('mount')
-	// 	console.log(editor)
-
-	// 	// console.log(editor.layout)
-	// 	if (editorRef) {
-	// 		editorRef.current = editor
-	// 	}
-	// }
-
-	// useEffect(() => {
-	// 	console.log('abc')
-	// 	console.log(editorRef.current)
-	// }, [editorRef, editorRef.current])
 
 	return (
 		<main className="h-full-wo-nav grid w-screen grid-cols-[1fr_auto_auto]">
@@ -110,19 +94,7 @@ const Problem: NextPage<Props> = ({ markdown }) => {
 				<div className="h-0.5 w-0.5 rounded-full bg-gray-600 dark:bg-gray-200"></div>
 				<div className="h-0.5 w-0.5 rounded-full bg-gray-600 dark:bg-gray-200"></div>
 			</div>
-			<div
-				className="relative w-full min-w-[max(30vw,_250px)] max-w-[65vw] bg-red-500 lg:max-w-[80vw]"
-				ref={editorWrapperRef}
-			>
-				{/* <Editor
-					height={'100%'}
-					className="max-h-full-wo-nav h-full-wo-nav"
-					defaultValue="// let's write some broken code 😈"
-				/> */}
-				<Monaco />
-				{/* <Monaco handleEditorDidMount={handleEditorDidMount} /> */}
-				{/* <Monaco ref={editorRef} handleEditorDidMount={handleEditorDidMount} /> */}
-			</div>
+			<Monaco ref={editorWrapperRef} />
 		</main>
 	)
 }

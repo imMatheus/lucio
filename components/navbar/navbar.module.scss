@@ -22,14 +22,15 @@
 	}
 	> div:nth-child(1) {
 		// background: #f94144;
-		@apply bg-theme-300;
+		@apply bg-theme-500;
+		// @apply bg-theme-300;
 		// background: #3a86ff;
 	}
 	> div:nth-child(2) {
 		border-top-right-radius: 0px;
 		// background: #f8961e;
 		// background: #8338ec;
-		@apply bg-theme-500;
+		@apply bg-theme-600;
 	}
 	> div:nth-child(3) {
 		border-bottom-right-radius: 0px;
@@ -40,7 +41,7 @@
 	> div:nth-child(4) {
 		border-bottom-left-radius: 0px;
 		// background: #277da1;
-		@apply bg-theme-900;
+		@apply bg-theme-800;
 		// background: #fb5607;
 	}
 	// &:hover {
