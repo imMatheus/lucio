@@ -65,7 +65,6 @@ export default function Navbar(): ReactElement {
 						</Link>
 						<div className="hidden items-center gap-3 md:flex">
 							<NavLink href="/classes">Classes</NavLink>
-							<NavLink href="/messages">Messages</NavLink>
 							<NavLink href="/problems">Problems</NavLink>
 							<DisplayUser />
 						</div>

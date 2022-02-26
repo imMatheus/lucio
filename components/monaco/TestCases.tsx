@@ -1,28 +1,31 @@
 import React from 'react'
+import TestCaseEntry from './TestCaseEntry'
 
 interface TestCasesProps {}
 
 const TestCases: React.FC<TestCasesProps> = ({}) => {
 	return (
-		<section className="border-b border-black bg-gray-100 dark:bg-gray-900">
-			<h2 className="px-5 py-3 text-2xl font-semibold text-ketchup dark:text-ketchupDark">Wrong answer</h2>
-			<p className="bg-gray-200 px-5 py-2 text-base text-gray-700 dark:bg-gray-800 dark:text-gray-400">
+		<section className="border-b border-gray-900 bg-gray-100 dark:border-gray-100 dark:bg-gray-900">
+			<h2 className="p-5 text-2xl font-semibold text-ketchup dark:text-ketchupDark">Wrong answer</h2>
+			<p className="bg-gray-300 px-5 py-2 text-base text-gray-800 dark:border-y dark:border-gray-600 dark:bg-gray-900 dark:text-gray-400">
 				1/2 test cases failed
 			</p>
-			<div className="grid grid-cols-[auto_1fr] bg-gray-300">
-				<ul className="bg-yellow-300">
-					<li className="bg-success p-5">Hello world</li>
-					<li className="bg-success p-5">Hello world</li>
-					<li className="bg-success p-5">Hello world</li>
+			<div className="grid grid-cols-[auto_1fr]">
+				<ul className="bg-gray-200 dark:bg-gray-800">
+					<TestCaseEntry success={true}>Did not succed</TestCaseEntry>
+					<TestCaseEntry success={false} selected>
+						Hellow world
+					</TestCaseEntry>
+					<TestCaseEntry success={true}>Abc 12345 ff 90</TestCaseEntry>
 				</ul>
 				<div
-					className="prose prose-gray max-w-none bg-gray-900 p-5
-					text-gray-800 prose-headings:text-gray-900 
-					prose-strong:rounded-lg prose-strong:bg-gray-900/10 prose-strong:px-2 
-					prose-strong:py-0.5 prose-strong:text-gray-900 
-					prose-li:marker:text-theme-1000 prose-img:max-w-[min(48rem,_100%)] dark:text-gray-200 
-					dark:prose-headings:text-gray-100 dark:prose-strong:bg-gray-600/10 
-					dark:prose-strong:text-gray-50 dark:prose-li:marker:text-gray-100"
+					className="prose prose-gray max-w-none p-5 text-gray-800 
+					prose-headings:text-gray-900 prose-strong:rounded-lg 
+					prose-strong:bg-gray-900/10 prose-strong:px-2 prose-strong:py-0.5 
+					prose-strong:text-gray-900 prose-li:marker:text-theme-1000 
+					prose-img:max-w-[min(48rem,_100%)] dark:text-gray-200 dark:prose-headings:text-gray-100 
+					dark:prose-strong:bg-gray-600/10 dark:prose-strong:text-gray-50 
+					dark:prose-li:marker:text-gray-100"
 				>
 					<h4>Sample outputs</h4>
 					<pre>
@@ -38,6 +41,14 @@ const TestCases: React.FC<TestCasesProps> = ({}) => {
 					<h4>Sample outputs</h4>
 					<pre>
 						<code className="language-bash">1 2 3</code>
+					</pre>
+					<h4>Sample outputs</h4>
+					<pre>
+						<code className="language-bash">
+							1 <br />
+							2 <br />
+							3 <br />
+						</code>
 					</pre>
 				</div>
 			</div>
