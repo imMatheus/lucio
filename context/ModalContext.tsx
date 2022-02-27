@@ -1,8 +1,9 @@
 import React, { createContext, useContext, useState } from 'react'
 import SignInModal from '@/components/modals/SignInModal'
 import MarkdownModal from '@/components/modals/MarkdownModal'
+import EditorSettingsModal from '@/components/modals/EditorSettingsModal'
 
-type Modals = 'sign-in' | 'markdown'
+type Modals = 'sign-in' | 'markdown' | 'editor'
 interface Context {
 	showModal: boolean
 	setShowModal: React.Dispatch<React.SetStateAction<boolean>>
@@ -27,7 +28,8 @@ export const ModalProvider: React.FC = ({ children }) => {
 
 	const modals: { [key in Modals]: JSX.Element } = {
 		markdown: <MarkdownModal />,
-		'sign-in': <SignInModal />
+		'sign-in': <SignInModal />,
+		editor: <EditorSettingsModal />
 	}
 
 	const value = {

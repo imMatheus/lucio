@@ -10,8 +10,8 @@ const Registration: React.FC = ({}) => {
 		<div className="flex gap-2">
 			<Button
 				onClick={() => {
-					setShowModal(true)
 					setModal('sign-in')
+					setShowModal(true)
 				}}
 				variant="dimmed"
 			>

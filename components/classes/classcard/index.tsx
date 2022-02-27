@@ -28,7 +28,7 @@ export default function ClassCard({ data: { _id, name, code, members, theme, pri
 							{name}
 						</p>
 						<p className="font-serif text-sm font-medium">
-							{members.length || 1} {members.length > 1 ? 'members' : 'member'} | 3 tests
+							{members.length || 1} {members.length > 1 ? 'members' : 'member'}
 						</p>
 						<div className="mt-auto flex flex-wrap gap-1">
 							<Chip Icon={MapPin}>Harvard</Chip>
