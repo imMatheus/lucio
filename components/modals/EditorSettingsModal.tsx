@@ -33,13 +33,13 @@ const EditorSettingsModal: React.FC = () => {
 					>
 						<X className="text-black dark:text-gray-100" />
 					</div>
-					<h2 className="m-0 mb-2 text-center text-4xl">Editor settings</h2>
-					<p className="text-center">Modify your editor preferences</p>
+					<h2 className="m-0 mb-2 text-center text-2xl md:text-4xl">Editor settings</h2>
+					<p className="text-center text-xs md:text-sm">Modify your editor preferences</p>
 
 					<div className="mb-5 flex items-end">
 						<div className="mr-auto pr-2">
-							<h4 className="m-0 -mb-1 text-lg">Font size</h4>
-							<p className="m-0 text-sm text-gray-800 dark:text-gray-300">
+							<h4 className="m-0 -mb-1 text-base md:text-lg">Font size</h4>
+							<p className="m-0 text-xs text-gray-800 dark:text-gray-300 md:text-sm">
 								Determines the size of the text inside your editor
 							</p>
 						</div>
@@ -66,8 +66,8 @@ const EditorSettingsModal: React.FC = () => {
 
 					<div className="mb-5 flex items-end">
 						<div className="mr-auto pr-2">
-							<h4 className="m-0 -mb-1 text-lg">Show line number</h4>
-							<p className="m-0 text-sm text-gray-800 dark:text-gray-300">
+							<h4 className="m-0 -mb-1 text-base md:text-lg">Show line number</h4>
+							<p className="m-0 text-xs text-gray-800 dark:text-gray-300 md:text-sm">
 								Line numbers will be displayed on the left of your code
 							</p>
 						</div>
@@ -75,10 +75,10 @@ const EditorSettingsModal: React.FC = () => {
 							checked={editorSettings.showLineNumber}
 							onChange={(val) => setEditorSettings({ ...editorSettings, showLineNumber: val })}
 							className={`${
-								editorSettings.showLineNumber ? 'bg-theme-900' : 'bg-theme-400'
+								editorSettings.showLineNumber ? 'bg-theme-800' : 'bg-theme-200'
 							} relative inline-flex h-6 w-12 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2  focus-visible:ring-white focus-visible:ring-opacity-75`}
 						>
-							<span className="sr-only">Use setting</span>
+							<span className="sr-only">Use line numbers</span>
 							<span
 								aria-hidden="true"
 								className={`${editorSettings.showLineNumber ? 'translate-x-6' : 'translate-x-0'}
@@ -89,8 +89,8 @@ const EditorSettingsModal: React.FC = () => {
 
 					<div className="mb-5 flex items-end">
 						<div className="mr-auto pr-2">
-							<h4 className="m-0 -mb-1 text-lg">Show minimap</h4>
-							<p className="m-0 text-sm text-gray-800 dark:text-gray-300">
+							<h4 className="m-0 -mb-1 text-base md:text-lg">Show minimap</h4>
+							<p className="m-0 text-xs text-gray-800 dark:text-gray-300 md:text-sm">
 								Minimap will be displayed on the right of your code
 							</p>
 						</div>
@@ -98,10 +98,10 @@ const EditorSettingsModal: React.FC = () => {
 							checked={editorSettings.minimap}
 							onChange={(val) => setEditorSettings({ ...editorSettings, minimap: val })}
 							className={`${
-								editorSettings.minimap ? 'bg-theme-900' : 'bg-theme-400'
+								editorSettings.minimap ? 'bg-theme-800' : 'bg-theme-200'
 							} relative inline-flex h-6 w-12 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2  focus-visible:ring-white focus-visible:ring-opacity-75`}
 						>
-							<span className="sr-only">Use setting</span>
+							<span className="sr-only">Use minimap</span>
 							<span
 								aria-hidden="true"
 								className={`${editorSettings.minimap ? 'translate-x-6' : 'translate-x-0'}
@@ -112,8 +112,8 @@ const EditorSettingsModal: React.FC = () => {
 
 					<div className="mb-5 flex items-end">
 						<div className="mr-auto pr-2">
-							<h4 className="m-0 -mb-1 text-lg">Cursor style</h4>
-							<p className="m-0 text-sm text-gray-800 dark:text-gray-300">
+							<h4 className="m-0 -mb-1 text-base md:text-lg">Cursor style</h4>
+							<p className="m-0 text-xs text-gray-800 dark:text-gray-300 md:text-sm">
 								Change the style of the cursor
 							</p>
 						</div>
