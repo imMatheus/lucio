@@ -31,7 +31,10 @@ const Question = React.forwardRef<HTMLElement, QuestionProps>(({ markdown }, ref
 	}, [markdown])
 
 	return (
-		<section className="h-full w-full overflow-scroll bg-gray-100 dark:bg-gray-900" ref={ref}>
+		<section
+			className="w-full overflow-scroll border-b border-b-gray-900 bg-gray-100 dark:border-b-gray-100 dark:bg-gray-900 md:h-full md:border-0"
+			ref={ref}
+		>
 			<article className="py-10 sm:py-12">
 				<div
 					className={`prose prose-gray max-w-none px-6 text-gray-800 

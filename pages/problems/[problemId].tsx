@@ -70,6 +70,7 @@ const Problem: NextPage<Props> = ({ markdown }) => {
 			//setting width to the mouse x cord or to a min or max value specified in the css
 			const pointerRelativeXpos = e.clientX
 			const windowWidth = window.innerWidth
+			console.log(window.innerWidth)
 
 			editorWrapperRef.current.style.width = windowWidth - pointerRelativeXpos - barWidth + 'px'
 		})
@@ -82,11 +83,11 @@ const Problem: NextPage<Props> = ({ markdown }) => {
 	}, [resizeBarRef.current, mouseDownHandler])
 
 	return (
-		<main className="h-full-wo-nav grid w-screen grid-cols-[1fr_auto_auto]">
+		<main className="md:h-full-wo-nav w-screen md:grid md:grid-cols-[1fr_auto_auto]">
 			<Question ref={questionRef} markdown={markdown} />
 			<div
 				ref={resizeBarRef}
-				className="flex h-full w-2 cursor-ew-resize flex-col items-center justify-center gap-1 bg-gray-300 dark:bg-gray-700"
+				className="hidden h-full w-2 cursor-ew-resize flex-col items-center justify-center gap-1 bg-gray-300 dark:bg-gray-700 md:flex"
 				onMouseDown={mouseDownHandler}
 			>
 				<div className="h-0.5 w-0.5 rounded-full bg-gray-600 dark:bg-gray-200"></div>

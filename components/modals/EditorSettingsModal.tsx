@@ -16,7 +16,7 @@ const EditorSettingsModal: React.FC = () => {
 			role="dialog"
 			aria-modal="true"
 		>
-			<div className="flex min-h-screen items-end justify-center px-4 pt-4 pb-20 text-center sm:block sm:p-0">
+			<div className="flex min-h-screen items-center justify-center p-4 text-center sm:block sm:p-0">
 				{/* A dark overlay */}
 				<div className="fixed inset-0 bg-gray-500/75 transition-opacity" aria-hidden="true"></div>
 

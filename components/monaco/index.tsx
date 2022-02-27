@@ -17,10 +17,10 @@ const MonacoEditor = React.forwardRef<HTMLDivElement>(({}, ref) => {
 	}
 
 	return (
-		<div className="max-h-full-wo-nav h-full-wo-nav relative w-full overflow-y-scroll">
+		<div className="md:max-h-full-wo-nav md:h-full-wo-nav relative w-screen overflow-y-scroll md:w-full">
 			<div
 				ref={ref}
-				className="grid h-full w-full min-w-[max(30vw,_250px)] max-w-[65vw] grid-cols-1 grid-rows-[auto_1fr_auto] overflow-y-scroll lg:max-w-[80vw]"
+				className="h-full-wo-nav grid min-w-[100vw] max-w-[100vw] grid-cols-1 grid-rows-[auto_1fr_auto] overflow-y-scroll md:h-full md:min-w-[350px] md:max-w-[65vw] lg:max-w-[80vw]"
 			>
 				<Options />
 
