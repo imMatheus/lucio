@@ -13,6 +13,7 @@ export interface Settings {
 	cursorStyle: CursorStyle
 	language: Language
 	theme: Theme
+	zenMode: boolean
 }
 
 // if no settings have been changed by the user, this will be their settings
@@ -22,7 +23,8 @@ const defaultSettings: Settings = {
 	minimap: true,
 	cursorStyle: 'line',
 	language: 'javascript',
-	theme: 'light'
+	theme: 'light',
+	zenMode: false
 }
 
 interface Context {
