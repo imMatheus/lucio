@@ -5,18 +5,18 @@ interface TestCasesProps {}
 
 const TestCases: React.FC<TestCasesProps> = ({}) => {
 	return (
-		<section className="border-b border-gray-900 bg-gray-100 dark:border-gray-100 dark:bg-gray-900">
+		<section className="bg-gray-00 w-full border-b border-gray-900 bg-gray-100 p-1 dark:border-gray-100 dark:bg-gray-900">
 			<h2 className="p-5 text-2xl font-semibold text-ketchup dark:text-ketchupDark">Wrong answer</h2>
 			<p className="bg-gray-300 px-5 py-2 text-base text-gray-800 dark:border-y dark:border-gray-600 dark:bg-gray-900 dark:text-gray-400">
 				1/2 test cases failed
 			</p>
 			<div className="grid grid-cols-[auto_1fr]">
 				<ul className="bg-gray-200 dark:bg-gray-800">
-					<TestCaseEntry success={true}>Did not succed</TestCaseEntry>
+					<TestCaseEntry success={true}>Test case 1</TestCaseEntry>
 					<TestCaseEntry success={false} selected>
-						Hellow world
+						Test case 2
 					</TestCaseEntry>
-					<TestCaseEntry success={true}>Abc 12345 ff 90</TestCaseEntry>
+					<TestCaseEntry success={true}>Test case 3</TestCaseEntry>
 				</ul>
 				<div
 					className="prose prose-gray max-w-none p-5 text-gray-800 

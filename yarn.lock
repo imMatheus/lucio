@@ -2413,6 +2413,11 @@ fast-levenshtein@^2.0.6, fast-levenshtein@~2.0.6:
   resolved "https://registry.npmjs.org/fast-levenshtein/-/fast-levenshtein-2.0.6.tgz"
   integrity sha1-PYpcZog6FqMMqGQ+hR8Zuqd5eRc=
 
+fast-plist@^0.1.2:
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/fast-plist/-/fast-plist-0.1.2.tgz#a45aff345196006d406ca6cdcd05f69051ef35b8"
+  integrity sha1-pFr/NFGWAG1AbKbNzQX2kFHvNbg=
+
 fastq@^1.6.0:
   version "1.13.0"
   resolved "https://registry.npmjs.org/fastq/-/fastq-1.13.0.tgz"
@@ -3868,6 +3873,13 @@ monaco-editor@^0.32.1:
   version "0.32.1"
   resolved "https://registry.yarnpkg.com/monaco-editor/-/monaco-editor-0.32.1.tgz#75a9bba379a923fd8e9ce99cddcab3a4e7657615"
   integrity sha512-LUt2wsUvQmEi2tfTOK+tjAPvt7eQ+K5C4rZPr6SeuyzjAuAHrIvlUloTcOiGjZW3fn3a/jFQCONrEJbNOaCqbA==
+
+monaco-themes@^0.4.0:
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/monaco-themes/-/monaco-themes-0.4.0.tgz#4bcb0584efdf6586a5edb76287e7e51457f591cd"
+  integrity sha512-AJL7Sk3j1DrQo94RqaYBr+IrGNP/2f5drFkKXKyjNZHYY/j+2Pv+O4+WETYkrTj9m1Zm2K3YRuGP/I3+5rHPxw==
+  dependencies:
+    fast-plist "^0.1.2"
 
 mongodb-connection-string-url@^2.3.2:
   version "2.4.1"
