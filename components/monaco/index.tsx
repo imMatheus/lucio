@@ -27,11 +27,9 @@ const MonacoEditor = React.forwardRef<HTMLDivElement>(({}, ref) => {
 
 		if (monaco) {
 			// https://editor.bitwiser.in/
-			monaco.editor.defineTheme('dracula', themes.dracula)
-			monaco.editor.defineTheme('monokai', themes.monokai)
-			monaco.editor.defineTheme('hallowsEve', themes.hallowsEve)
-			monaco.editor.defineTheme('cobalt', themes.cobalt)
-
+			for (const [key, value] of Object.entries(themes)) {
+				monaco.editor.defineTheme(key, value)
+			}
 			monaco.editor.setTheme(editorSettings.theme)
 		}
 	}, [monaco])

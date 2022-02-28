@@ -4,7 +4,7 @@ import useLocalStorage from '@/hooks/useLocalStorage'
 export type FontSize = 10 | 12 | 14 | 16 | 18 | 20
 export type CursorStyle = 'line' | 'block' | 'underline' | 'line-thin' | 'block-outline' | 'underline-thin'
 export type Language = 'javascript' | 'typescript' | 'python' | 'cpp' | 'java' | 'go'
-export type Theme = 'light' | 'vs-dark' | 'hc-black' | 'dracula' | 'monokai' | 'hallowsEve' | 'cobalt'
+export type Theme = 'light' | 'vs-dark' | 'hc-black' | 'dracula' | 'monokai' | 'hallowsEve' | 'cobalt' | 'pastel'
 
 export interface Settings {
 	fontSize: FontSize

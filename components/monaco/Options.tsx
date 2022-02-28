@@ -49,6 +49,7 @@ const Options: React.FC = () => {
 				<option value="monokai">Monokai</option>
 				<option value="hallowsEve">Hallows eve</option>
 				<option value="cobalt">Cobalt</option>
+				<option value="pastel">Pastel</option>
 			</Select>
 
 			<Settings
