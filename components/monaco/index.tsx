@@ -9,10 +9,12 @@ import Options from './Options'
 import useLocalStorage from '@/hooks/useLocalStorage'
 import { useEditorSettings } from '@/context/EditorSettingsContext'
 import themes from './themes'
+import { generator } from '@/utils/editor/startingcode'
 
 const MonacoEditor = React.forwardRef<HTMLDivElement>(({}, ref) => {
 	const { editorSettings, setEditorSettings } = useEditorSettings()
 	const monaco = useMonaco()
+	const [code, setCode] = useState('')
 
 	function handleEditorValidation(markers: any) {
 		markers.forEach((marker: any) => console.log('onValidate:', marker.message))
@@ -34,6 +36,10 @@ const MonacoEditor = React.forwardRef<HTMLDivElement>(({}, ref) => {
 		}
 	}, [monaco])
 
+	useEffect(() => {
+		setCode(generator[editorSettings.language]('adam'))
+	}, [editorSettings.language])
+
 	return (
 		<div className="md:max-h-full-wo-nav md:h-full-wo-nav relative w-screen overflow-y-scroll md:w-full">
 			<div
@@ -47,6 +53,8 @@ const MonacoEditor = React.forwardRef<HTMLDivElement>(({}, ref) => {
 					// defaultLanguage={language}
 					language={editorSettings.language}
 					// theme={'monokai'}
+					value={code}
+					onChange={(val) => setCode(val || '')}
 					theme={editorSettings.theme}
 					options={{
 						scrollBeyondLastLine: true,
