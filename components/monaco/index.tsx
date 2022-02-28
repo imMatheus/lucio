@@ -1,5 +1,5 @@
 import React, { useEffect, useLayoutEffect, useRef, useState } from 'react'
-import Editor from '@monaco-editor/react'
+import Editor, { useMonaco } from '@monaco-editor/react'
 import { editor } from 'monaco-editor'
 import Button from '@/components/button'
 import Loader from './Loader'
@@ -8,19 +8,37 @@ import { Italic, Sun } from 'react-feather'
 import Options from './Options'
 import useLocalStorage from '@/hooks/useLocalStorage'
 import { useEditorSettings } from '@/context/EditorSettingsContext'
+import themes from './themes'
 
 const MonacoEditor = React.forwardRef<HTMLDivElement>(({}, ref) => {
 	const { editorSettings, setEditorSettings } = useEditorSettings()
+	const monaco = useMonaco()
 
 	function handleEditorValidation(markers: any) {
 		markers.forEach((marker: any) => console.log('onValidate:', marker.message))
 	}
 
+	useEffect(() => {
+		console.log('monacoooo')
+
+		console.log(monaco)
+
+		if (monaco) {
+			// https://editor.bitwiser.in/
+			monaco.editor.defineTheme('dracula', themes.dracula)
+			monaco.editor.defineTheme('monokai', themes.monokai)
+			monaco.editor.defineTheme('hallowsEve', themes.hallowsEve)
+			monaco.editor.defineTheme('cobalt', themes.cobalt)
+
+			monaco.editor.setTheme(editorSettings.theme)
+		}
+	}, [monaco])
+
 	return (
 		<div className="md:max-h-full-wo-nav md:h-full-wo-nav relative w-screen overflow-y-scroll md:w-full">
 			<div
 				ref={ref}
-				className="h-full-wo-nav grid min-w-[100vw] max-w-[100vw] grid-cols-1 grid-rows-[auto_1fr_auto] overflow-y-scroll md:h-full md:min-w-[350px] md:max-w-[65vw] lg:max-w-[80vw]"
+				className="h-full-wo-nav grid min-w-[100vw] max-w-[100vw] grid-cols-1 grid-rows-[auto_1fr_auto] overflow-y-scroll md:h-full md:w-[60vw] md:min-w-[350px] md:max-w-[65vw] lg:max-w-[80vw]"
 			>
 				<Options />
 
@@ -28,6 +46,7 @@ const MonacoEditor = React.forwardRef<HTMLDivElement>(({}, ref) => {
 					height={'100%'}
 					// defaultLanguage={language}
 					language={editorSettings.language}
+					// theme={'monokai'}
 					theme={editorSettings.theme}
 					options={{
 						scrollBeyondLastLine: true,

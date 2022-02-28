@@ -1,4 +1,4 @@
-import React, { ReactElement, useRef, useState, useEffect, useLayoutEffect } from 'react'
+import React, { ReactElement, useRef, useEffect } from 'react'
 import Link from 'next/link'
 import NavLink from './NavLink'
 import DisplayUser from './DisplayUser'
@@ -7,7 +7,7 @@ import styles from './navbar.module.scss'
 export default function Navbar(): ReactElement {
 	const navbarRef = useRef<HTMLElement>(null)
 
-	useLayoutEffect(() => {
+	useEffect(() => {
 		// the --navbar-height variable represents the height of the navbar
 		// its used for when you want a component to take up the entire screen
 		if (navbarRef.current?.clientHeight && window) {

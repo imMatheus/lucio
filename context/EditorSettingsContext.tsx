@@ -3,8 +3,8 @@ import useLocalStorage from '@/hooks/useLocalStorage'
 
 export type FontSize = 10 | 12 | 14 | 16 | 18 | 20
 export type CursorStyle = 'line' | 'block' | 'underline' | 'line-thin' | 'block-outline' | 'underline-thin'
-export type Language = 'javascript' | 'typescript' | 'python' | 'cpp'
-export type Theme = 'light' | 'vs-dark' | 'hc-black'
+export type Language = 'javascript' | 'typescript' | 'python' | 'cpp' | 'java' | 'go'
+export type Theme = 'light' | 'vs-dark' | 'hc-black' | 'dracula' | 'monokai' | 'hallowsEve' | 'cobalt'
 
 export interface Settings {
 	fontSize: FontSize
@@ -15,10 +15,11 @@ export interface Settings {
 	theme: Theme
 }
 
+// if no settings have been changed by the user, this will be their settings
 const defaultSettings: Settings = {
 	fontSize: 16,
 	showLineNumber: true,
-	minimap: false,
+	minimap: true,
 	cursorStyle: 'line',
 	language: 'javascript',
 	theme: 'light'
@@ -39,6 +40,7 @@ export function useEditorSettings() {
 }
 
 export const EditorSettingsProvider: React.FC = ({ children }) => {
+	// works just like useState, but will be cached in local storage
 	const [settings, setSettings] = useLocalStorage('editor-settings', defaultSettings)
 
 	const value = {
