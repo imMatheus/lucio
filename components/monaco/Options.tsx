@@ -62,7 +62,7 @@ const Options: React.FC = () => {
 				}}
 			/>
 			<div className="ml-3 flex items-center gap-2">
-				<p className="text-sm">Zen mode - {editorSettings.zenMode + ''}</p>
+				<p className="text-sm">Zen mode - </p>
 				<Switch
 					checked={editorSettings.zenMode}
 					onChange={(val) => {

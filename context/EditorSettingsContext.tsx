@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from 'react'
+import React, { createContext, useContext, useEffect, useState } from 'react'
 import useLocalStorage from '@/hooks/useLocalStorage'
 
 export type FontSize = 10 | 12 | 14 | 16 | 18 | 20
@@ -44,6 +44,10 @@ export function useEditorSettings() {
 export const EditorSettingsProvider: React.FC = ({ children }) => {
 	// works just like useState, but will be cached in local storage
 	const [settings, setSettings] = useLocalStorage('editor-settings', defaultSettings)
+
+	useEffect(() => {
+		setSettings({ ...settings, zenMode: false })
+	}, [])
 
 	const value = {
 		editorSettings: settings,

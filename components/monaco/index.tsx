@@ -40,9 +40,16 @@ const MonacoEditor = React.forwardRef<HTMLDivElement, Props>(({ problem }, ref) 
 	// }, [editorSettings.language])
 
 	return (
-		<div className="md:max-h-full-wo-nav md:h-full-wo-nav w-screen overflow-y-scroll md:w-full">
+		<div className="md:max-h-full-wo-nav md:h-full-wo-nav h-screen w-screen overflow-y-scroll md:w-full">
 			{editorSettings.zenMode && (
-				<div className="rounded-4 absolute bottom-2 right-2 z-50 bg-red-500 p-3">hej</div>
+				<button
+					className="rounded-4 fixed bottom-7 right-7 z-50 rounded-md border border-gray-200 bg-gray-900 px-3 py-1.5 font-light text-gray-100"
+					onClick={() => {
+						setEditorSettings({ ...editorSettings, zenMode: false })
+					}}
+				>
+					Click to disable zen mode
+				</button>
 			)}
 			<div
 				ref={ref}
@@ -69,7 +76,7 @@ const MonacoEditor = React.forwardRef<HTMLDivElement, Props>(({ problem }, ref) 
 					onChange={(val) => setCode(val || '')}
 					theme={editorSettings.theme}
 					options={{
-						scrollBeyondLastLine: true,
+						scrollBeyondLastLine: false,
 						automaticLayout: true,
 						minimap: {
 							enabled: editorSettings.minimap
