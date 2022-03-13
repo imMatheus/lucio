@@ -27,6 +27,7 @@ export default function middleware(req: NextRequest, ev: NextFetchEvent) {
 		}
 	}
 
+	// test
 	async function init() {
 		const signedIn = await checkIfUserIsSingedIn()
 		if (typeof signedIn !== 'boolean') return signedIn
