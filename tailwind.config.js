@@ -25,6 +25,12 @@ module.exports = {
 				ketchup: '#ff2d55',
 				ketchupDark: '#ff375f',
 
+				blurple: '#5865f2',
+				apple: '#57f287',
+				bee: '#fee75c',
+				fuchsia: '#eb459e',
+				carnelian: '#ed4245',
+
 				brown: {
 					50: '#fdf8f6',
 					100: '#f2e8e5',
