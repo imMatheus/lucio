@@ -35,9 +35,9 @@ const MonacoEditor = React.forwardRef<HTMLDivElement, Props>(({ problem }, ref) 
 		}
 	}, [monaco])
 
-	// useEffect(() => {
-	// 	setCode(generator[editorSettings.language]('adam'))
-	// }, [editorSettings.language])
+	useEffect(() => {
+		setCode(generator[editorSettings.language]('adam'))
+	}, [editorSettings.language])
 
 	return (
 		<div className="md:max-h-full-wo-nav md:h-full-wo-nav h-screen w-screen overflow-y-scroll md:w-full">
@@ -53,7 +53,7 @@ const MonacoEditor = React.forwardRef<HTMLDivElement, Props>(({ problem }, ref) 
 			)}
 			<div
 				ref={ref}
-				className="h-full-wo-nav grid min-w-[100vw] max-w-[100vw] grid-cols-1 grid-rows-[auto_1fr_auto] overflow-y-scroll md:h-full md:w-[60vw] md:min-w-[350px] md:max-w-[65vw] lg:max-w-[80vw]"
+				className="h-full-wo-nav grid min-w-[100vw] max-w-[100vw] grid-cols-1 grid-rows-[auto_1fr_auto] overflow-y-scroll md:w-[60vw] md:min-w-[350px] md:max-w-[65vw] lg:max-w-[80vw]"
 			>
 				<Options />
 
