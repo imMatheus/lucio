@@ -3,7 +3,7 @@ import { useModal } from '@/context/ModalContext'
 import { useEditorSettings, FontSize, CursorStyle } from '@/context/EditorSettingsContext'
 import { X, Type, MousePointer } from 'react-feather'
 import Select from '@/components/form/Select'
-import { Switch } from '@headlessui/react'
+import Switch from '@/components/form/Switch'
 
 const EditorSettingsModal: React.FC = () => {
 	const { setShowModal } = useModal()
@@ -74,17 +74,8 @@ const EditorSettingsModal: React.FC = () => {
 						<Switch
 							checked={editorSettings.showLineNumber}
 							onChange={(val) => setEditorSettings({ ...editorSettings, showLineNumber: val })}
-							className={`${
-								editorSettings.showLineNumber ? 'bg-theme-800' : 'bg-theme-200'
-							} relative inline-flex h-6 w-12 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2  focus-visible:ring-white focus-visible:ring-opacity-75`}
-						>
-							<span className="sr-only">Use line numbers</span>
-							<span
-								aria-hidden="true"
-								className={`${editorSettings.showLineNumber ? 'translate-x-6' : 'translate-x-0'}
-            pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow-lg ring-0 transition duration-200 ease-in-out`}
-							/>
-						</Switch>
+							srText="Use line numbers"
+						/>
 					</div>
 
 					<div className="mb-5 flex items-end">
@@ -97,17 +88,8 @@ const EditorSettingsModal: React.FC = () => {
 						<Switch
 							checked={editorSettings.minimap}
 							onChange={(val) => setEditorSettings({ ...editorSettings, minimap: val })}
-							className={`${
-								editorSettings.minimap ? 'bg-theme-800' : 'bg-theme-200'
-							} relative inline-flex h-6 w-12 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2  focus-visible:ring-white focus-visible:ring-opacity-75`}
-						>
-							<span className="sr-only">Use minimap</span>
-							<span
-								aria-hidden="true"
-								className={`${editorSettings.minimap ? 'translate-x-6' : 'translate-x-0'}
-            pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow-lg ring-0 transition duration-200 ease-in-out`}
-							/>
-						</Switch>
+							srText="Use minimap"
+						/>
 					</div>
 
 					<div className="mb-5 flex items-end">

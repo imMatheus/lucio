@@ -1,7 +1,7 @@
 import { Schema, model, models, Model } from 'mongoose'
-import ProblemInterface, { Difficulty, InputEnum } from '@/types/AlgorithmProblem'
+import AlgorithmProblem, { Difficulty, InputEnum } from '@/types/AlgorithmProblem'
 
-const schema = new Schema<ProblemInterface>(
+const schema = new Schema<AlgorithmProblem>(
 	{
 		name: {
 			type: String,
@@ -67,4 +67,4 @@ const schema = new Schema<ProblemInterface>(
 	{ timestamps: true }
 )
 
-export const Problem: Model<ProblemInterface> = models['Problem'] || model<ProblemInterface>('Problem', schema)
+export const Problem: Model<AlgorithmProblem> = models['Problem'] || model<AlgorithmProblem>('Problem', schema)

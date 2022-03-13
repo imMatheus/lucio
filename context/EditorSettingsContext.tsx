@@ -1,10 +1,10 @@
-import React, { createContext, useContext, useState } from 'react'
+import React, { createContext, useContext, useEffect, useState } from 'react'
 import useLocalStorage from '@/hooks/useLocalStorage'
 
 export type FontSize = 10 | 12 | 14 | 16 | 18 | 20
 export type CursorStyle = 'line' | 'block' | 'underline' | 'line-thin' | 'block-outline' | 'underline-thin'
 export type Language = 'javascript' | 'typescript' | 'python' | 'cpp' | 'java' | 'go'
-export type Theme = 'light' | 'vs-dark' | 'hc-black' | 'dracula' | 'monokai' | 'hallowsEve' | 'cobalt'
+export type Theme = 'light' | 'vs-dark' | 'hc-black' | 'dracula' | 'monokai' | 'hallowsEve' | 'cobalt' | 'pastel'
 
 export interface Settings {
 	fontSize: FontSize
@@ -13,6 +13,7 @@ export interface Settings {
 	cursorStyle: CursorStyle
 	language: Language
 	theme: Theme
+	zenMode: boolean
 }
 
 // if no settings have been changed by the user, this will be their settings
@@ -22,7 +23,8 @@ const defaultSettings: Settings = {
 	minimap: true,
 	cursorStyle: 'line',
 	language: 'javascript',
-	theme: 'light'
+	theme: 'light',
+	zenMode: false
 }
 
 interface Context {
@@ -42,6 +44,10 @@ export function useEditorSettings() {
 export const EditorSettingsProvider: React.FC = ({ children }) => {
 	// works just like useState, but will be cached in local storage
 	const [settings, setSettings] = useLocalStorage('editor-settings', defaultSettings)
+
+	useEffect(() => {
+		setSettings({ ...settings, zenMode: false })
+	}, [])
 
 	const value = {
 		editorSettings: settings,

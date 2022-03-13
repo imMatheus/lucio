@@ -11,17 +11,17 @@ const { serverRuntimeConfig } = getConfig()
 import Monaco from '@/components/monaco'
 import { editor } from 'monaco-editor'
 import Editor, { EditorProps } from '@monaco-editor/react'
+import { Data } from '@/api/problems/[problemName]'
 
 interface Props {
-	markdown: string
+	problem: Data
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
 	const response = await fetch('http://localhost:3000/api/problems')
 	const data = await response.json()
-	console.log(data)
 
-	const problems: AlgorithmProblem[] = data.problems.map((prob: any) => prob as AlgorithmProblem)
+	const problems: AlgorithmProblem[] = data.problems.map((problem: any) => problem as AlgorithmProblem)
 	const paths = problems.map((problem) => ({
 		params: { problemId: problem.name }
 	}))
@@ -36,20 +36,21 @@ export const getStaticProps: GetStaticProps<Props> = async (context) => {
 	if (!context.params)
 		return {
 			props: {
-				markdown: '**404 /:**'
+				problem: null
 			}
 		}
+
 	const response = await fetch(`http://localhost:3000/api/problems/${context.params.problemId}`)
-	const data = await response.json()
+	const data: Data = await response.json()
 
 	return {
 		props: {
-			markdown: data.markdown
+			problem: data
 		}
 	}
 }
 
-const Problem: NextPage<Props> = ({ markdown }) => {
+const Problem: NextPage<Props> = ({ problem }) => {
 	const resizeBarRef = useRef<HTMLDivElement>(null)
 	const editorWrapperRef = useRef<HTMLDivElement>(null)
 	const monacoRef = useRef<HTMLDivElement>(null)
@@ -84,7 +85,7 @@ const Problem: NextPage<Props> = ({ markdown }) => {
 
 	return (
 		<main className="md:h-full-wo-nav w-screen md:grid md:grid-cols-[1fr_auto_auto]">
-			<Question ref={questionRef} markdown={markdown} />
+			<Question ref={questionRef} markdown={problem?.markdown || ''} />
 			<div
 				ref={resizeBarRef}
 				className="hidden h-full w-2 cursor-ew-resize flex-col items-center justify-center gap-1 bg-gray-300 dark:bg-gray-700 md:flex"
@@ -95,7 +96,7 @@ const Problem: NextPage<Props> = ({ markdown }) => {
 				<div className="h-0.5 w-0.5 rounded-full bg-gray-600 dark:bg-gray-200"></div>
 				<div className="h-0.5 w-0.5 rounded-full bg-gray-600 dark:bg-gray-200"></div>
 			</div>
-			<Monaco ref={editorWrapperRef} />
+			<Monaco ref={editorWrapperRef} problem={problem} />
 		</main>
 	)
 }
