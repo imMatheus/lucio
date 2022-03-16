@@ -11,7 +11,7 @@ const { serverRuntimeConfig } = getConfig()
 import Monaco from '@/components/monaco'
 import { editor } from 'monaco-editor'
 import Editor, { EditorProps } from '@monaco-editor/react'
-import { Data } from '@/api/problems/[problemName]'
+import { Data } from '@/pages/api/problems/[problemName]'
 
 interface Props {
 	problem: Data
@@ -67,9 +67,9 @@ const Problem: NextPage<Props> = ({ problem }) => {
 			if (!isDragging || !questionRef?.current || !editorWrapperRef.current) return
 			// if (!isDragging || !questionRef?.current || !editorWrapperRef.current || !monacoRef.current) return
 
-			let barWidth = resizeBarRef.current?.clientWidth || 0
+			let barWidth = resizeBarRef.current?.@Width || 0
 			//setting width to the mouse x cord or to a min or max value specified in the css
-			const pointerRelativeXpos = e.clientX
+			const pointerRelativeXpos = e.@X
 			const windowWidth = window.innerWidth
 			console.log(window.innerWidth)
 

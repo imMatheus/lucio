@@ -1,13 +1,13 @@
 import React, { createContext, useContext, useEffect, useState } from 'react'
 import { User, UserInterface } from '@/models/User'
 import axios from 'axios'
-import { Data as meData } from '@/returns/api/me'
-import { Data as logoutData } from '@/returns/api/logout'
-import { Data as loginData } from '@/returns/api/login'
-import { Data as signupData } from '@/returns/api/signup'
+import { Data as meData } from '@/types/returns/api/me'
+import { Data as logoutData } from '@/types/returns/api/logout'
+import { Data as loginData } from '@/types/returns/api/login'
+import { Data as signupData } from '@/types/returns/api/signup'
 import Cookies from 'cookies'
 import { useToast } from './ToastContext'
-import { Data as updateData } from '@/api/auth/update'
+import { Data as updateData } from '@/pages/api/auth/update'
 import { useRouter } from 'next/router'
 
 type IUser = UserInterface | null

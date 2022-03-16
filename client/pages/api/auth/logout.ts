@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { Data } from '@/returns/api/logout'
+import { Data } from '@/types/returns/api/logout'
 import Cookies from 'cookies'
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<Data>) {

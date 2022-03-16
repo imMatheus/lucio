@@ -10,7 +10,7 @@ import useLocalStorage from '@/hooks/useLocalStorage'
 import { useEditorSettings } from '@/context/EditorSettingsContext'
 import themes from './themes'
 import { generator } from '@/utils/editor/startingcode'
-import { Data } from '@/api/problems/[problemName]'
+import { Data } from '@/pages/api/problems/[problemName]'
 
 interface Props {
 	problem: Data

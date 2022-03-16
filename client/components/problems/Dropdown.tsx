@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react'
 import { ArrowDown } from 'react-feather'
-import useClickOutside from 'hooks/useClickOutside'
+import useClickOutside from '@/hooks/useClickOutside'
 interface DropdownProps {
 	title: string
 }

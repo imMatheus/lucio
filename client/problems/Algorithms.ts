@@ -1,4 +1,4 @@
-import AlgorithmProblem from 'types/AlgorithmProblem'
+import AlgorithmProblem from '@/types/AlgorithmProblem'
 import { Difficulty, InputEnum } from '@/types/AlgorithmProblem'
 
 type typeProblems = AlgorithmProblem[]

@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { run } from '@/utils/mongodb'
 import { ClassRoom } from '@/models/ClassRoom'
-import { generateNewLink } from 'utils/generateCode'
+import { generateNewLink } from '@/utils/generateCode'
 import { PrivacyEnum } from '@/types/ClassType'
 import Cookie from 'cookie'
 import jwt from 'jsonwebtoken'

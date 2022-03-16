@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import ClassType from '@/types/ClassType'
 import axios from 'axios'
-import { Data } from 'types/returns/api/classes/index'
+import { Data } from '@/types/returns/api/classes/index'
 import { ClassRoomInterface } from '@/models/ClassRoom'
 
 export default function useClassData(id: string | string[] | undefined): [ClassRoomInterface | null, boolean] {

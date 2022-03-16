@@ -3,7 +3,7 @@ import { User } from '@/models/User'
 import jwt from 'jsonwebtoken'
 import Cookies from 'cookies'
 import { run } from '@/utils/mongodb'
-import { Data } from '@/returns/api/me'
+import { Data } from '@/types/returns/api/me'
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<Data>) {
 	if (!process.env.JWT_SIGN_SALT) {

@@ -5,7 +5,7 @@ import { User, UserInterface } from '@/models/User'
 import bcrypt from 'bcrypt'
 import cookie from 'cookie'
 import Cookies from 'cookies'
-import { Data } from '@/returns/api/signup'
+import { Data } from '@/types/returns/api/signup'
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<Data>) {
 	if (!process.env.JWT_SIGN_SALT) {

@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import jwt from 'jsonwebtoken'
-import { Data } from '@/returns/api/login'
+import { Data } from '@/types/returns/api/login'
 import bcrypt from 'bcrypt'
 import EmailValidator from 'email-validator'
 import { User } from '@/models/User'
