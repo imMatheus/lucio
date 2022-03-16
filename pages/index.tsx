@@ -25,7 +25,7 @@ const Home: NextPage = () => {
 					<p className="text-sm md:text-base">
 						Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reiciendis accusamus autem libero
 						incidunt sed aliquam dolore, doloremque saepe esse officiis aperiam consequatur excepturi dolor
-						porro.
+						porro. Test
 					</p>
 				</div>
 			</section>
