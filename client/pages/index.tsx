@@ -1,9 +1,34 @@
 import type { NextPage } from 'next'
-import React from 'react'
+import React, { useEffect } from 'react'
 import Image from 'next/image'
 import Card from '@/components/home/Card'
+import axios from 'axios'
+import { useQuery, gql } from 'urql'
 
 const Home: NextPage = () => {
+	const TodosQuery = gql`
+		query {
+			cats {
+				id
+				name
+			}
+		}
+	`
+
+	const [result, reexecuteQuery] = useQuery({
+		query: TodosQuery
+	})
+
+	const { data, fetching, error } = result
+	console.log('data', data)
+	console.log(fetching)
+
+	// const data = await axios.get('http://localhost:4000/author')
+	// console.log('data')
+	// console.log(data)
+
+	console.log('___----___')
+
 	return (
 		<div className="selection:bg-theme-100 selection:text-theme-900">
 			<header className="relative px-5 py-12 lg:px-14 lg:py-24 xl:py-32">

@@ -1,0 +1,56 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Author {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+type Cat {
+  id: ID!
+
+  """Name of cat"""
+  name: String!
+
+  """Age of cat"""
+  age: Int!
+
+  """Breed of cat"""
+  breed: String!
+}
+
+type Query {
+  authors: [Author!]!
+  author(id: Int!): Author!
+  cats: [Cat!]!
+}
+
+type Mutation {
+  createAuthor(createAuthorInput: CreateAuthorInput!): Author!
+  updateAuthor(updateAuthorInput: UpdateAuthorInput!): Author!
+  removeAuthor(id: Int!): Author!
+  createCat(input: CreateCatInput!): Cat!
+}
+
+input CreateAuthorInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+input UpdateAuthorInput {
+  """Example field (placeholder)"""
+  exampleField: Int
+  id: Int!
+}
+
+input CreateCatInput {
+  """Name of cat"""
+  name: String!
+
+  """Age of cat"""
+  age: Int!
+
+  """Breed of cat"""
+  breed: String!
+}
