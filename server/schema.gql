@@ -2,6 +2,34 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+interface Input {
+  input: String!
+  inputType: InputEnum!
+}
+
+enum InputEnum {
+  String
+  Integer
+  Float
+  Double
+  Char
+  StringArray
+  IntegerArray
+  FloatArray
+  DoubleArray
+  CharArray
+}
+
+interface SampleCase {
+  inputs: Input!
+  outputs: [String!]!
+}
+
+interface SubmitCase {
+  inputs: [String!]!
+  outputs: [String!]!
+}
+
 type Author {
   """Example field (placeholder)"""
   exampleField: Int!
@@ -20,10 +48,28 @@ type Cat {
   breed: String!
 }
 
+type Problem {
+  id: ID!
+  name: String!
+  markdown: String!
+  difficulty: Difficulty!
+  sampleCases: [SampleCase!]!
+  submitCases: [SubmitCase!]!
+  inputs: [Input!]!
+}
+
+enum Difficulty {
+  easy
+  medium
+  hard
+}
+
 type Query {
   authors: [Author!]!
   author(id: Int!): Author!
   cats: [Cat!]!
+  problems: [Problem!]!
+  problem(id: Int!): Problem!
 }
 
 type Mutation {
@@ -31,6 +77,9 @@ type Mutation {
   updateAuthor(updateAuthorInput: UpdateAuthorInput!): Author!
   removeAuthor(id: Int!): Author!
   createCat(input: CreateCatInput!): Cat!
+  createProblem(createProblemInput: CreateProblemInput!): Problem!
+  updateProblem(updateProblemInput: UpdateProblemInput!): Problem!
+  removeProblem(id: Int!): Problem!
 }
 
 input CreateAuthorInput {
@@ -53,4 +102,15 @@ input CreateCatInput {
 
   """Breed of cat"""
   breed: String!
+}
+
+input CreateProblemInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+input UpdateProblemInput {
+  """Example field (placeholder)"""
+  exampleField: Int
+  id: Int!
 }
