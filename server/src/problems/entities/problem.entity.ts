@@ -3,7 +3,6 @@ import {
   InterfaceType,
   Field,
   registerEnumType,
-  Int,
   ID,
 } from '@nestjs/graphql';
 import { InputEnum, InputType, Difficulty } from '@Types/problem';

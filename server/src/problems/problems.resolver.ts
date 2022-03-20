@@ -9,7 +9,9 @@ export class ProblemsResolver {
   constructor(private readonly problemsService: ProblemsService) {}
 
   @Mutation(() => Problem)
-  createProblem(@Args('createProblemInput') createProblemInput: CreateProblemInput) {
+  createProblem(
+    @Args('createProblemInput') createProblemInput: CreateProblemInput,
+  ) {
     return this.problemsService.create(createProblemInput);
   }
 
@@ -24,8 +26,13 @@ export class ProblemsResolver {
   }
 
   @Mutation(() => Problem)
-  updateProblem(@Args('updateProblemInput') updateProblemInput: UpdateProblemInput) {
-    return this.problemsService.update(updateProblemInput.id, updateProblemInput);
+  updateProblem(
+    @Args('updateProblemInput') updateProblemInput: UpdateProblemInput,
+  ) {
+    return this.problemsService.update(
+      updateProblemInput.id,
+      updateProblemInput,
+    );
   }
 
   @Mutation(() => Problem)
