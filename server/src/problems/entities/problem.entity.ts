@@ -61,9 +61,9 @@ export class Problem {
   @Field(() => [SampleCase])
   sampleCases: SampleCase[];
 
-  @Field(() => [SubmitCase])
-  submitCases: SubmitCase[];
+  // @Field(() => [SubmitCase])
+  // submitCases: SubmitCase[];
 
-  @Field(() => [Input])
-  inputs: Input[];
+  // @Field(() => [Input])
+  // inputs: Input[];
 }

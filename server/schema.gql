@@ -25,11 +25,6 @@ interface SampleCase {
   outputs: [String!]!
 }
 
-interface SubmitCase {
-  inputs: [String!]!
-  outputs: [String!]!
-}
-
 type Author {
   """Example field (placeholder)"""
   exampleField: Int!
@@ -54,8 +49,6 @@ type Problem {
   markdown: String!
   difficulty: Difficulty!
   sampleCases: [SampleCase!]!
-  submitCases: [SubmitCase!]!
-  inputs: [Input!]!
 }
 
 enum Difficulty {

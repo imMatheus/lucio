@@ -7,7 +7,6 @@ import {
   SubmitCase,
   InputEnum,
 } from '@Types/problem';
-export type ProblemDocument = Problem & Document;
 
 @Schema()
 export class Problem {
@@ -32,60 +31,64 @@ export class Problem {
   @Prop({ required: true, type: String })
   markdown: string;
 
-  @Prop([
-    {
-      input: [
-        {
-          input: { type: String, trim: true, required: true },
-          type: {
+  @Prop({
+    type: [
+      {
+        input: [
+          {
+            input: { type: String, trim: true, required: true },
+            type: {
+              type: String,
+              enum: Object.values(InputEnum),
+              required: true,
+            },
+          },
+        ],
+        output: [
+          {
             type: String,
-            enum: Object.values(InputEnum),
+            trim: true,
             required: true,
           },
-        },
-      ],
-      output: [
-        {
-          type: String,
-          trim: true,
-          required: true,
-        },
-      ],
-    },
-  ])
+        ],
+      },
+    ],
+  })
   sampleCases: SampleCase;
 
-  @Prop(() => [
-    {
-      input: [
-        {
-          type: String,
-          trim: true,
-          required: true,
-        },
-      ],
-      output: [
-        {
-          type: String,
-          trim: true,
-          required: true,
-        },
-      ],
-    },
-  ])
-  submitCases: SubmitCase[];
+  // @Prop(() => [
+  //   {
+  //     input: [
+  //       {
+  //         type: String,
+  //         trim: true,
+  //         required: true,
+  //       },
+  //     ],
+  //     output: [
+  //       {
+  //         type: String,
+  //         trim: true,
+  //         required: true,
+  //       },
+  //     ],
+  //   },
+  // ])
+  // submitCases: SubmitCase[];
 
-  @Prop([
-    {
-      input: { type: String, required: true },
-      type: {
-        type: String,
-        enum: Object.values(InputEnum),
-        required: true,
-      },
-    },
-  ])
-  inputs: InputType[];
+  // @Prop([
+  //   {
+  //     input: { type: String, required: true },
+  //     type: {
+  //       type: String,
+  //       enum: Object.values(InputEnum),
+  //       required: true,
+  //     },
+  //   },
+  // ])
+  // inputs: InputType[];
 }
+
+export type ProblemDocument = Problem & Document;
 
 export const ProblemSchema = SchemaFactory.createForClass(Problem);
