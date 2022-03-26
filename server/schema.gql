@@ -25,24 +25,6 @@ interface SampleCase {
   outputs: [String!]!
 }
 
-type Author {
-  """Example field (placeholder)"""
-  exampleField: Int!
-}
-
-type Cat {
-  id: ID!
-
-  """Name of cat"""
-  name: String!
-
-  """Age of cat"""
-  age: Int!
-
-  """Breed of cat"""
-  breed: String!
-}
-
 type Problem {
   id: ID!
   name: String!
@@ -58,22 +40,12 @@ enum Difficulty {
 }
 
 type User {
-  id: ID!
-  name: String!
-  email: String!
-  provider: String!
-  bio: String
-  location: String
-  school: String
   createdAt: String!
   updatedAt: String!
   email_verified: Boolean!
 }
 
 type Query {
-  authors: [Author!]!
-  author(id: Int!): Author!
-  cats: [Cat!]!
   problems: [Problem!]!
   problem(id: Int!): Problem!
   users: [User!]!
@@ -81,38 +53,12 @@ type Query {
 }
 
 type Mutation {
-  createAuthor(createAuthorInput: CreateAuthorInput!): Author!
-  updateAuthor(updateAuthorInput: UpdateAuthorInput!): Author!
-  removeAuthor(id: Int!): Author!
-  createCat(input: CreateCatInput!): Cat!
   createProblem(createProblemInput: CreateProblemInput!): Problem!
   updateProblem(updateProblemInput: UpdateProblemInput!): Problem!
   removeProblem(id: Int!): Problem!
   createUser(createUserInput: CreateUserInput!): User!
   updateUser(updateUserInput: UpdateUserInput!): User!
   removeUser(id: Int!): User!
-}
-
-input CreateAuthorInput {
-  """Example field (placeholder)"""
-  exampleField: Int!
-}
-
-input UpdateAuthorInput {
-  """Example field (placeholder)"""
-  exampleField: Int
-  id: Int!
-}
-
-input CreateCatInput {
-  """Name of cat"""
-  name: String!
-
-  """Age of cat"""
-  age: Int!
-
-  """Breed of cat"""
-  breed: String!
 }
 
 input CreateProblemInput {
@@ -127,14 +73,9 @@ input UpdateProblemInput {
 }
 
 input CreateUserInput {
-  name: String!
-  email: String!
   password: String!
 }
 
 input UpdateUserInput {
-  name: String
-  email: String
-  password: String
   id: ID!
 }

@@ -4,8 +4,6 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { join } from 'path';
-import { AuthorsModule } from './authors/authors.module';
-import { CatsModule } from './cats/cats.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigModule } from '@nestjs/config';
 import { ProblemsModule } from './problems/problems.module';
@@ -27,8 +25,6 @@ import { UsersModule } from './users/users.module';
     }),
     // env variabel from .env.local file
     MongooseModule.forRoot(process.env.MONGODB_URI),
-    AuthorsModule,
-    CatsModule,
     ProblemsModule,
     UsersModule,
   ],

@@ -1,28 +1,18 @@
-import { ObjectType, Field, ID, DateScalarMode } from '@nestjs/graphql';
-
+import {
+  ObjectType,
+  Field,
+  ID,
+  DateScalarMode,
+  IntersectionType,
+} from '@nestjs/graphql';
+import { IsAlphanumeric, IsEmail, MinLength, MaxLength } from 'class-validator';
+import { BaseUserType } from './baseUser.entity';
+import { AdditionalUserInfoType } from './additionalUserInfo.entity';
 @ObjectType()
-export class User {
-  @Field(() => ID)
-  id: string;
-
-  @Field()
-  name: string;
-
-  @Field()
-  email: string;
-
-  @Field()
-  provider: string;
-
-  @Field((type) => String, { nullable: true })
-  bio: string;
-
-  @Field((type) => String, { nullable: true })
-  location: string;
-
-  @Field((type) => String, { nullable: true })
-  school: string;
-
+export class User extends IntersectionType(
+  BaseUserType,
+  AdditionalUserInfoType,
+) {
   @Field()
   createdAt: DateScalarMode;
 
