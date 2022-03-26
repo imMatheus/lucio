@@ -40,6 +40,7 @@ enum Difficulty {
 }
 
 type User {
+  id: ID!
   name: String!
   email: String!
   provider: String!
@@ -81,6 +82,9 @@ input UpdateProblemInput {
 input CreateUserInput {
   name: String!
   email: String!
+  bio: String
+  location: String
+  school: String
   password: String!
 }
 

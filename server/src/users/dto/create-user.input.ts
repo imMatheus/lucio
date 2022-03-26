@@ -1,18 +1,18 @@
 import {
   InputType,
   Field,
-  PartialType,
-  OmitType,
   IntersectionType,
+  PartialType,
 } from '@nestjs/graphql';
-import { IsAlphanumeric, IsEmail, MinLength, MaxLength } from 'class-validator';
-import { User } from '../entities/user.entity';
+import { MinLength } from 'class-validator';
 import { BaseUserInput } from '../entities/baseUser.entity';
 import { AdditionalUserInfoInput } from '../entities/additionalUserInfo.entity';
-// IntersectionType(
-// PartialType(AdditionalUserInfo),
+
 @InputType()
-export class CreateUserInput extends BaseUserInput {
+export class CreateUserInput extends IntersectionType(
+  BaseUserInput,
+  PartialType(AdditionalUserInfoInput),
+) {
   @Field()
   @MinLength(6)
   password: string;

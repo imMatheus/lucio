@@ -1,10 +1,4 @@
-import {
-  InputType,
-  ObjectType,
-  Field,
-  ID,
-  DateScalarMode,
-} from '@nestjs/graphql';
+import { InputType, ObjectType, Field, ID } from '@nestjs/graphql';
 import { IsAlphanumeric, IsEmail, MinLength, MaxLength } from 'class-validator';
 
 // for mutations
@@ -24,6 +18,9 @@ export class BaseUserInput {
 // for resolvers
 @ObjectType()
 export class BaseUserType {
+  @Field(() => ID)
+  id: string;
+
   @Field()
   name: string;
 

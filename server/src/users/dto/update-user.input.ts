@@ -17,12 +17,3 @@ export class UpdateUserInput extends IntersectionType(
   @Field(() => ID)
   id: string;
 }
-
-// @InputType()
-// export class UpdateUserInput extends IntersectionType(
-//   PartialType(OmitType(BaseUserInput, ['email'] as const)),
-//   PartialType(AdditionalUserInfoInput),
-// ) {
-//   @Field(() => ID)
-//   id: string;
-// }

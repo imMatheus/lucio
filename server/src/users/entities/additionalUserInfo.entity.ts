@@ -1,31 +1,25 @@
-import {
-  InputType,
-  ObjectType,
-  Field,
-  ID,
-  DateScalarMode,
-} from '@nestjs/graphql';
-import { IsAlphanumeric, IsEmail, MinLength, MaxLength } from 'class-validator';
+import { InputType, ObjectType, Field } from '@nestjs/graphql';
+import { MinLength, MaxLength, IsString } from 'class-validator';
 
 // for mutations
 @InputType()
 export class AdditionalUserInfoInput {
-  @Field((type) => String, { nullable: true })
+  @Field(() => String, { nullable: true })
   @MinLength(2)
   @MaxLength(30)
-  @IsAlphanumeric()
+  @IsString()
   bio: string;
 
-  @Field((type) => String, { nullable: true })
+  @Field(() => String, { nullable: true })
   @MinLength(2)
   @MaxLength(30)
-  @IsAlphanumeric()
+  @IsString()
   location: string;
 
-  @Field((type) => String, { nullable: true })
+  @Field(() => String, { nullable: true })
   @MinLength(2)
   @MaxLength(30)
-  @IsAlphanumeric()
+  @IsString()
   school: string;
 }
 
@@ -35,12 +29,12 @@ export class AdditionalUserInfoType {
   @Field()
   provider: string;
 
-  @Field((type) => String, { nullable: true })
+  @Field(() => String, { nullable: true })
   bio: string;
 
-  @Field((type) => String, { nullable: true })
+  @Field(() => String, { nullable: true })
   location: string;
 
-  @Field((type) => String, { nullable: true })
+  @Field(() => String, { nullable: true })
   school: string;
 }
