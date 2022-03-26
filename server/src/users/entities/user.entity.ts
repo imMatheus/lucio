@@ -12,11 +12,11 @@ export class User extends IntersectionType(
   AdditionalUserInfoType,
 ) {
   @Field()
-  createdAt: DateScalarMode;
+  createdAt: Date;
 
   @Field()
-  updatedAt: DateScalarMode;
+  updatedAt: Date;
 
   @Field(() => Boolean)
-  email_verified: string;
+  email_verified: boolean;
 }

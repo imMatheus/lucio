@@ -24,6 +24,10 @@ export class UsersService {
     return this.userModel.findById(id).exec();
   }
 
+  findByName(name: string) {
+    return this.userModel.findOne({ name }).exec();
+  }
+
   update(id: string, updateUserInput: UpdateUserInput) {
     console.log(updateUserInput);
 
