@@ -7,10 +7,9 @@ import {
 } from '@nestjs/graphql';
 import { IsAlphanumeric, IsEmail, MinLength, MaxLength } from 'class-validator';
 
-class BaseUser {
-  //   @Field(() => ID)
-  //   id: string;
-
+// for mutations
+@InputType()
+export class BaseUserInput {
   @Field()
   @IsAlphanumeric()
   @MinLength(2)
@@ -22,8 +21,12 @@ class BaseUser {
   email: string;
 }
 
-@InputType()
-export class BaseUserInput extends BaseUser {}
-
+// for resolvers
 @ObjectType()
-export class BaseUserType extends BaseUser {}
+export class BaseUserType {
+  @Field()
+  name: string;
+
+  @Field()
+  email: string;
+}

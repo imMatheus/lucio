@@ -40,6 +40,12 @@ enum Difficulty {
 }
 
 type User {
+  name: String!
+  email: String!
+  provider: String!
+  bio: String
+  location: String
+  school: String
   createdAt: String!
   updatedAt: String!
   email_verified: Boolean!
@@ -73,9 +79,15 @@ input UpdateProblemInput {
 }
 
 input CreateUserInput {
+  name: String!
+  email: String!
   password: String!
 }
 
 input UpdateUserInput {
+  name: String
+  bio: String
+  location: String
+  school: String
   id: ID!
 }

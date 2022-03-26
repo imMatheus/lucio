@@ -7,11 +7,9 @@ import {
 } from '@nestjs/graphql';
 import { IsAlphanumeric, IsEmail, MinLength, MaxLength } from 'class-validator';
 
-class AdditionalUserInfo {
-  @Field()
-  @IsAlphanumeric()
-  provider: string;
-
+// for mutations
+@InputType()
+export class AdditionalUserInfoInput {
   @Field((type) => String, { nullable: true })
   @MinLength(2)
   @MaxLength(30)
@@ -31,8 +29,18 @@ class AdditionalUserInfo {
   school: string;
 }
 
-@InputType()
-export class AdditionalUserInfoInput extends AdditionalUserInfo {}
-
+// for resolver
 @ObjectType()
-export class AdditionalUserInfoType extends AdditionalUserInfo {}
+export class AdditionalUserInfoType {
+  @Field()
+  provider: string;
+
+  @Field((type) => String, { nullable: true })
+  bio: string;
+
+  @Field((type) => String, { nullable: true })
+  location: string;
+
+  @Field((type) => String, { nullable: true })
+  school: string;
+}
