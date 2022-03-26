@@ -13,10 +13,8 @@ import { UsersModule } from './users/users.module';
   imports: [
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
-      autoSchemaFile: 'schema.gql',
-      // typePaths: ['./**/*.graphql'],
-      // autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
-      // sortSchema: true,
+      autoSchemaFile: join(process.cwd(), 'schema.gql'),
+      sortSchema: true,
     }),
 
     ConfigModule.forRoot({

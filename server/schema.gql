@@ -2,75 +2,71 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+input CreateProblemInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+input CreateUserInput {
+  bio: String
+  email: String!
+  location: String
+  name: String!
+  password: String!
+  school: String
+}
+
+enum Difficulty {
+  easy
+  hard
+  medium
+}
+
 interface Input {
   input: String!
   inputType: InputEnum!
 }
 
 enum InputEnum {
-  String
-  Integer
-  Float
-  Double
   Char
-  StringArray
-  IntegerArray
-  FloatArray
-  DoubleArray
   CharArray
+  Double
+  DoubleArray
+  Float
+  FloatArray
+  Integer
+  IntegerArray
+  String
+  StringArray
+}
+
+type Mutation {
+  createProblem(createProblemInput: CreateProblemInput!): Problem!
+  createUser(createUserInput: CreateUserInput!): User!
+  removeProblem(id: Int!): Problem!
+  removeUser(id: Int!): User!
+  updateProblem(updateProblemInput: UpdateProblemInput!): Problem!
+  updateUser(updateUserInput: UpdateUserInput!): User!
+}
+
+type Problem {
+  difficulty: Difficulty!
+  id: ID!
+  markdown: String!
+  name: String!
+  sampleCases: [SampleCase!]!
+}
+
+type Query {
+  problem(id: Int!): Problem!
+  problems: [Problem!]!
+  user(id: String!): User!
+  users: [User!]!
 }
 
 interface SampleCase {
   inputs: Input!
   outputs: [String!]!
-}
-
-type Problem {
-  id: ID!
-  name: String!
-  markdown: String!
-  difficulty: Difficulty!
-  sampleCases: [SampleCase!]!
-}
-
-enum Difficulty {
-  easy
-  medium
-  hard
-}
-
-type User {
-  id: ID!
-  name: String!
-  email: String!
-  provider: String!
-  bio: String
-  location: String
-  school: String
-  createdAt: String!
-  updatedAt: String!
-  email_verified: Boolean!
-}
-
-type Query {
-  problems: [Problem!]!
-  problem(id: Int!): Problem!
-  users: [User!]!
-  user(id: String!): User!
-}
-
-type Mutation {
-  createProblem(createProblemInput: CreateProblemInput!): Problem!
-  updateProblem(updateProblemInput: UpdateProblemInput!): Problem!
-  removeProblem(id: Int!): Problem!
-  createUser(createUserInput: CreateUserInput!): User!
-  updateUser(updateUserInput: UpdateUserInput!): User!
-  removeUser(id: Int!): User!
-}
-
-input CreateProblemInput {
-  """Example field (placeholder)"""
-  exampleField: Int!
 }
 
 input UpdateProblemInput {
@@ -79,19 +75,23 @@ input UpdateProblemInput {
   id: Int!
 }
 
-input CreateUserInput {
-  name: String!
-  email: String!
+input UpdateUserInput {
   bio: String
+  id: ID!
   location: String
+  name: String
   school: String
-  password: String!
 }
 
-input UpdateUserInput {
-  name: String
+type User {
   bio: String
-  location: String
-  school: String
+  createdAt: String!
+  email: String!
+  email_verified: Boolean!
   id: ID!
+  location: String
+  name: String!
+  provider: String!
+  school: String
+  updatedAt: String!
 }
