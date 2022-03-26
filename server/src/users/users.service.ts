@@ -24,8 +24,10 @@ export class UsersService {
     return this.userModel.findById(id).exec();
   }
 
-  update(id: number, updateUserInput: UpdateUserInput) {
-    return `This action updates a #${id} user`;
+  update(id: string, updateUserInput: UpdateUserInput) {
+    console.log(updateUserInput);
+
+    return this.userModel.findByIdAndUpdate(id, updateUserInput).exec();
   }
 
   remove(id: number) {

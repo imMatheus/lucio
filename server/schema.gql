@@ -136,5 +136,5 @@ input UpdateUserInput {
   name: String
   email: String
   password: String
-  id: Int!
+  id: ID!
 }
