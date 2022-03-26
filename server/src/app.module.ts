@@ -9,6 +9,7 @@ import { CatsModule } from './cats/cats.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigModule } from '@nestjs/config';
 import { ProblemsModule } from './problems/problems.module';
+import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
@@ -29,6 +30,7 @@ import { ProblemsModule } from './problems/problems.module';
     AuthorsModule,
     CatsModule,
     ProblemsModule,
+    UsersModule,
   ],
   controllers: [AppController],
   // controllers: [AppController, AuthorController],

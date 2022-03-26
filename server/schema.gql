@@ -57,12 +57,27 @@ enum Difficulty {
   hard
 }
 
+type User {
+  id: ID!
+  name: String!
+  email: String!
+  provider: String!
+  bio: String!
+  location: String!
+  school: String!
+  createdAt: String!
+  updatedAt: String!
+  email_verified: Boolean!
+}
+
 type Query {
   authors: [Author!]!
   author(id: Int!): Author!
   cats: [Cat!]!
   problems: [Problem!]!
   problem(id: Int!): Problem!
+  users: [User!]!
+  user(id: String!): User!
 }
 
 type Mutation {
@@ -73,6 +88,9 @@ type Mutation {
   createProblem(createProblemInput: CreateProblemInput!): Problem!
   updateProblem(updateProblemInput: UpdateProblemInput!): Problem!
   removeProblem(id: Int!): Problem!
+  createUser(createUserInput: CreateUserInput!): User!
+  updateUser(updateUserInput: UpdateUserInput!): User!
+  removeUser(id: Int!): User!
 }
 
 input CreateAuthorInput {
@@ -105,5 +123,18 @@ input CreateProblemInput {
 input UpdateProblemInput {
   """Example field (placeholder)"""
   exampleField: Int
+  id: Int!
+}
+
+input CreateUserInput {
+  name: String!
+  email: String!
+  password: String!
+}
+
+input UpdateUserInput {
+  name: String
+  email: String
+  password: String
   id: Int!
 }
