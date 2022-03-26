@@ -62,9 +62,9 @@ type User {
   name: String!
   email: String!
   provider: String!
-  bio: String!
-  location: String!
-  school: String!
+  bio: String
+  location: String
+  school: String
   createdAt: String!
   updatedAt: String!
   email_verified: Boolean!

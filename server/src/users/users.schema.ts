@@ -1,7 +1,7 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 
-@Schema()
+@Schema({ timestamps: true })
 export class User {
   @Prop({
     type: String,
@@ -74,7 +74,7 @@ export class User {
     type: Boolean,
     default: false,
   })
-  email_verified: string;
+  email_verified: boolean;
 }
 
 export type UserDocument = User & Document;

@@ -14,13 +14,13 @@ export class User {
   @Field()
   provider: string;
 
-  @Field()
+  @Field((type) => String, { nullable: true })
   bio: string;
 
-  @Field()
+  @Field((type) => String, { nullable: true })
   location: string;
 
-  @Field()
+  @Field((type) => String, { nullable: true })
   school: string;
 
   @Field()
