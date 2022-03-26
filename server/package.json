@@ -19,7 +19,10 @@
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./test/jest-e2e.json"
+    "test:e2e": "jest --config ./test/jest-e2e.json",
+    "count": "git ls-files --exclude-standard -- ':!:**/*.[pjs][npv]g' ':!:**/*.jpeg' ':!:**/*.webp' ':!:yarn.lock' ':!:package-lock.json' | xargs wc -l",
+    "count-all": "git ls-files | xargs wc -l",
+    "count-files": "git ls-files | wc -l"
   },
   "dependencies": {
     "@nestjs/apollo": "^10.0.7",
