@@ -8,7 +8,7 @@ import { useQuery, gql } from 'urql'
 const Home: NextPage = () => {
 	const TodosQuery = gql`
 		query {
-			cats {
+			users {
 				id
 				name
 			}
