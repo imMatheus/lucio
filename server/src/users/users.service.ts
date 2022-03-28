@@ -20,12 +20,16 @@ export class UsersService {
     return this.userModel.find().exec();
   }
 
-  findOne(id: string) {
+  findOne(id: string): Promise<User> {
     return this.userModel.findById(id).exec();
   }
 
-  findByName(name: string) {
+  findByName(name: string): Promise<User> {
     return this.userModel.findOne({ name }).exec();
+  }
+
+  findByEmail(email: string): Promise<User> {
+    return this.userModel.findOne({ email }).exec();
   }
 
   update(id: string, updateUserInput: UpdateUserInput) {

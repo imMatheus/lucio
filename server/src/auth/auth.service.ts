@@ -10,6 +10,8 @@ export class AuthService {
   constructor(private usersService: UsersService) {}
 
   async validateUser(name: string, password: string): Promise<any> {
+    console.log('122');
+
     const user = await this.usersService.findByName(name);
     const hashed = bcrypt.hashSync(password, 10); // hash password
 
@@ -21,11 +23,14 @@ export class AuthService {
   }
 
   async login(loginInput: LoginInput): Promise<LoginResponse> {
+    console.log('32');
     const user = await this.usersService.findByName(loginInput.name);
+    console.log(user);
+
     const { password, ...result } = user;
 
     return {
-      access_token: 'jwt',
+      access_token: 'jt',
       user: result as User,
     };
   }
