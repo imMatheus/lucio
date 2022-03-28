@@ -1,5 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
+import { ProviderEnum } from '@Types/enums/UserProvider.enum';
 
 @Schema({ timestamps: true })
 export class User {
@@ -28,7 +29,7 @@ export class User {
     trim: true,
     default: 'luciocode',
     immutable: true,
-    enum: ['luciocode', 'github', 'google'],
+    enum: Object.values(ProviderEnum),
   })
   provider: string;
 
@@ -60,6 +61,12 @@ export class User {
   password: string;
 
   @Prop({
+    type: Boolean,
+    default: false,
+  })
+  email_verified: boolean;
+
+  @Prop({
     type: Date,
     immutable: true,
   })
@@ -69,12 +76,6 @@ export class User {
     type: Date,
   })
   updatedAt: Date; // comes from mongoose timestamps
-
-  @Prop({
-    type: Boolean,
-    default: false,
-  })
-  email_verified: boolean;
 }
 
 export type UserDocument = User & Document;

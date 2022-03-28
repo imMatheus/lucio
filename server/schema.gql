@@ -2,6 +2,16 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type Classroom {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+input CreateClassroomInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
 input CreateProblemInput {
   """Example field (placeholder)"""
   exampleField: Int!
@@ -56,11 +66,14 @@ type LoginResponse {
 }
 
 type Mutation {
+  createClassroom(createClassroomInput: CreateClassroomInput!): Classroom!
   createProblem(createProblemInput: CreateProblemInput!): Problem!
   createUser(createUserInput: CreateUserInput!): User!
   login(loginInput: LoginInput!): LoginResponse!
+  removeClassroom(id: Int!): Classroom!
   removeProblem(id: Int!): Problem!
   removeUser(id: Int!): User!
+  updateClassroom(updateClassroomInput: UpdateClassroomInput!): Classroom!
   updateProblem(updateProblemInput: UpdateProblemInput!): Problem!
   updateUser(updateUserInput: UpdateUserInput!): User!
 }
@@ -74,6 +87,8 @@ type Problem {
 }
 
 type Query {
+  classroom(id: Int!): Classroom!
+  classrooms: [Classroom!]!
   problem(id: Int!): Problem!
   problems: [Problem!]!
   user(id: String!): User!
@@ -83,6 +98,12 @@ type Query {
 interface SampleCase {
   inputs: Input!
   outputs: [String!]!
+}
+
+input UpdateClassroomInput {
+  """Example field (placeholder)"""
+  exampleField: Int
+  id: Int!
 }
 
 input UpdateProblemInput {
