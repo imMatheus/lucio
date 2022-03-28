@@ -1,0 +1,113 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+input CreateProblemInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+input CreateUserInput {
+  bio: String
+  email: String!
+  location: String
+  name: String!
+  password: String!
+  school: String
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+enum Difficulty {
+  easy
+  hard
+  medium
+}
+
+interface Input {
+  input: String!
+  inputType: InputEnum!
+}
+
+enum InputEnum {
+  Char
+  CharArray
+  Double
+  DoubleArray
+  Float
+  FloatArray
+  Integer
+  IntegerArray
+  String
+  StringArray
+}
+
+input LoginInput {
+  name: String!
+  password: String!
+}
+
+type LoginResponse {
+  access_token: String!
+  user: User!
+}
+
+type Mutation {
+  createProblem(createProblemInput: CreateProblemInput!): Problem!
+  createUser(createUserInput: CreateUserInput!): User!
+  login(loginInput: LoginInput!): LoginResponse!
+  removeProblem(id: Int!): Problem!
+  removeUser(id: Int!): User!
+  updateProblem(updateProblemInput: UpdateProblemInput!): Problem!
+  updateUser(updateUserInput: UpdateUserInput!): User!
+}
+
+type Problem {
+  difficulty: Difficulty!
+  id: ID!
+  markdown: String!
+  name: String!
+  sampleCases: [SampleCase!]!
+}
+
+type Query {
+  problem(id: Int!): Problem!
+  problems: [Problem!]!
+  user(id: String!): User!
+  users: [User!]!
+}
+
+interface SampleCase {
+  inputs: Input!
+  outputs: [String!]!
+}
+
+input UpdateProblemInput {
+  """Example field (placeholder)"""
+  exampleField: Int
+  id: Int!
+}
+
+input UpdateUserInput {
+  bio: String
+  id: ID!
+  location: String
+  name: String
+  school: String
+}
+
+type User {
+  bio: String
+  createdAt: DateTime!
+  email: String!
+  email_verified: Boolean!
+  id: ID!
+  location: String
+  name: String!
+  provider: String!
+  school: String
+  updatedAt: DateTime!
+}
