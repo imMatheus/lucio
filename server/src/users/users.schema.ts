@@ -63,12 +63,12 @@ export class User {
     type: Date,
     immutable: true,
   })
-  createdAt: Date;
+  createdAt: Date; // comes from mongoose timestamps
 
   @Prop({
     type: Date,
   })
-  updatedAt: Date;
+  updatedAt: Date; // comes from mongoose timestamps
 
   @Prop({
     type: Boolean,

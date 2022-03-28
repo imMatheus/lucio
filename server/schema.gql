@@ -16,6 +16,11 @@ input CreateUserInput {
   school: String
 }
 
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
 enum Difficulty {
   easy
   hard
@@ -40,9 +45,20 @@ enum InputEnum {
   StringArray
 }
 
+input LoginInput {
+  name: String!
+  password: String!
+}
+
+type LoginResponse {
+  access_token: String!
+  user: User!
+}
+
 type Mutation {
   createProblem(createProblemInput: CreateProblemInput!): Problem!
   createUser(createUserInput: CreateUserInput!): User!
+  login(loginInput: LoginInput!): LoginResponse!
   removeProblem(id: Int!): Problem!
   removeUser(id: Int!): User!
   updateProblem(updateProblemInput: UpdateProblemInput!): Problem!
@@ -85,7 +101,7 @@ input UpdateUserInput {
 
 type User {
   bio: String
-  createdAt: String!
+  createdAt: DateTime!
   email: String!
   email_verified: Boolean!
   id: ID!
@@ -93,5 +109,5 @@ type User {
   name: String!
   provider: String!
   school: String
-  updatedAt: String!
+  updatedAt: DateTime!
 }
