@@ -10,7 +10,6 @@ const Home: NextPage = () => {
 		query {
 			users {
 				id
-				name
 			}
 		}
 	`
