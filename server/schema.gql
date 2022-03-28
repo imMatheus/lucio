@@ -3,8 +3,8 @@
 # ------------------------------------------------------
 
 type Classroom {
-  """Example field (placeholder)"""
-  exampleField: Int!
+  createdAt: DateTime!
+  updatedAt: DateTime!
 }
 
 input CreateClassroomInput {

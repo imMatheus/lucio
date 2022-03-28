@@ -34,23 +34,27 @@ export class Problem {
   @Prop({
     type: [
       {
-        input: [
-          {
-            input: { type: String, trim: true, required: true },
-            type: {
+        input: {
+          type: [
+            {
+              input: { type: String, trim: true, required: true },
+              type: {
+                type: String,
+                enum: Object.values(InputEnum),
+                required: true,
+              },
+            },
+          ],
+        },
+        output: {
+          type: [
+            {
               type: String,
-              enum: Object.values(InputEnum),
+              trim: true,
               required: true,
             },
-          },
-        ],
-        output: [
-          {
-            type: String,
-            trim: true,
-            required: true,
-          },
-        ],
+          ],
+        },
       },
     ],
   })
