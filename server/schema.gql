@@ -3,7 +3,12 @@
 # ------------------------------------------------------
 
 type Classroom {
+  code: String!
   createdAt: DateTime!
+  id: ID!
+  name: String!
+  privacy: String!
+  theme: [String!]!
   updatedAt: DateTime!
 }
 

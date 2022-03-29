@@ -55,16 +55,17 @@ export class ClassRoom {
           required: true,
         },
         role: {
+          type: String,
           default: RoleEnum.STUDENT,
           enum: Object.values(RoleEnum),
           immutable: true,
           required: true,
         },
         userId: {
+          type: Schema.Types.ObjectId,
           required: true,
           immutable: true,
           unique: true,
-          type: Schema.Types.ObjectId,
         },
       },
     ],
@@ -84,6 +85,6 @@ export class ClassRoom {
   updatedAt: Date; // comes from mongoose timestamps
 }
 
-export type UserDocument = ClassRoom & Document;
+export type ClassRoomDocument = ClassRoom & Document;
 
-export const UserSchema = SchemaFactory.createForClass(ClassRoom);
+export const ClassRoomSchema = SchemaFactory.createForClass(ClassRoom);
