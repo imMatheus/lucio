@@ -1,7 +1,26 @@
-import { ObjectType, Field, Int } from '@nestjs/graphql';
+import { ObjectType, Field, ID } from '@nestjs/graphql';
+import { PrivacyEnum } from '@Types/enums/ClassRoomPrivacy.enum';
 
 @ObjectType()
 export class Classroom {
-  @Field(() => Int, { description: 'Example field (placeholder)' })
-  exampleField: number;
+  @Field(() => ID)
+  id: string;
+
+  @Field()
+  name: string;
+
+  @Field()
+  code: string;
+
+  @Field(() => [String, String])
+  theme: [string, string];
+
+  @Field()
+  privacy: string;
+
+  @Field()
+  createdAt: Date;
+
+  @Field()
+  updatedAt: Date;
 }

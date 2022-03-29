@@ -3,8 +3,13 @@
 # ------------------------------------------------------
 
 type Classroom {
-  """Example field (placeholder)"""
-  exampleField: Int!
+  code: String!
+  createdAt: DateTime!
+  id: ID!
+  name: String!
+  privacy: String!
+  theme: [String!]!
+  updatedAt: DateTime!
 }
 
 input CreateClassroomInput {
