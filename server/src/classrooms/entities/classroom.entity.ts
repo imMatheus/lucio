@@ -1,5 +1,19 @@
 import { ObjectType, Field, ID } from '@nestjs/graphql';
 import { PrivacyEnum } from '@Types/enums/ClassRoomPrivacy.enum';
+import { ClassRoomMember } from './classroomMember.interface';
+import { RoleEnum } from '@Types/enums/ClassRoomRole.enum';
+
+@ObjectType()
+export class Member implements ClassRoomMember {
+  @Field()
+  joinedAt: Date;
+
+  @Field()
+  role: RoleEnum;
+
+  @Field()
+  userId: string;
+}
 
 @ObjectType()
 export class Classroom {
@@ -16,7 +30,10 @@ export class Classroom {
   theme: [string, string];
 
   @Field()
-  privacy: string;
+  privacy: PrivacyEnum;
+
+  @Field(() => [Member])
+  members: ClassRoomMember[];
 
   @Field()
   createdAt: Date;
