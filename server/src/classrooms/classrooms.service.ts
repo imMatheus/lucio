@@ -3,13 +3,13 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { CreateClassroomInput } from './dto/create-classroom.input';
 import { UpdateClassroomInput } from './dto/update-classroom.input';
-import { ClassRoom, ClassRoomDocument } from './classrooms.schema';
+import { Classroom, ClassroomDocument } from './classrooms.schema';
 
 @Injectable()
 export class ClassroomsService {
   constructor(
-    @InjectModel(ClassRoom.name)
-    private classRoomModel: Model<ClassRoomDocument>,
+    @InjectModel(Classroom.name)
+    private classroomModel: Model<ClassroomDocument>,
   ) {}
 
   create(createClassroomInput: CreateClassroomInput) {
@@ -17,7 +17,7 @@ export class ClassroomsService {
   }
 
   findAll() {
-    return this.classRoomModel.find().exec();
+    return this.classroomModel.find().exec();
   }
 
   findOne(id: number) {

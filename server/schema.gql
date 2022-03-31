@@ -8,6 +8,7 @@ type Classroom {
   id: ID!
   members: [Member!]!
   name: String!
+  owner: String!
   privacy: String!
   theme: [String!]!
   updatedAt: DateTime!

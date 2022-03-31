@@ -4,12 +4,12 @@ import {
   SchemaFactory,
 } from '@nestjs/mongoose';
 import { Document, Schema } from 'mongoose';
-import { PrivacyEnum } from '@Types/enums/ClassRoomPrivacy.enum';
-import { RoleEnum } from '@Types/enums/ClassRoomRole.enum';
+import { PrivacyEnum } from '@Types/enums/ClassroomPrivacy.enum';
+import { RoleEnum } from '@Types/enums/ClassroomRole.enum';
 import { colors } from '@Constants/colors';
 
 @SchemaDecorator({ timestamps: true })
-export class ClassRoom {
+export class Classroom {
   @Prop({
     type: String,
     required: true,
@@ -18,6 +18,14 @@ export class ClassRoom {
     maxLength: 40,
   })
   name: string;
+
+  @Prop({
+    type: Schema.Types.ObjectId,
+    required: true,
+    trim: true,
+    immutable: true,
+  })
+  owner: string;
 
   @Prop({
     type: String,
@@ -85,6 +93,6 @@ export class ClassRoom {
   updatedAt: Date; // comes from mongoose timestamps
 }
 
-export type ClassRoomDocument = ClassRoom & Document;
+export type ClassroomDocument = Classroom & Document;
 
-export const ClassRoomSchema = SchemaFactory.createForClass(ClassRoom);
+export const ClassroomSchema = SchemaFactory.createForClass(Classroom);
