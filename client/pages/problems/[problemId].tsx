@@ -11,10 +11,11 @@ const { serverRuntimeConfig } = getConfig()
 import Monaco from '@/components/monaco'
 import { editor } from 'monaco-editor'
 import Editor, { EditorProps } from '@monaco-editor/react'
-import { Data } from '@/pages/api/problems/[problemName]'
+// import { Data } from '@/pages/api/problems/[problemName]'
 
 interface Props {
-	problem: Data
+	problem: any
+	// problem: Data
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
@@ -41,7 +42,8 @@ export const getStaticProps: GetStaticProps<Props> = async (context) => {
 		}
 
 	const response = await fetch(`http://localhost:3000/api/problems/${context.params.problemId}`)
-	const data: Data = await response.json()
+	const data: any = await response.json()
+	// const data: Data = await response.json()
 
 	return {
 		props: {
@@ -67,9 +69,9 @@ const Problem: NextPage<Props> = ({ problem }) => {
 			if (!isDragging || !questionRef?.current || !editorWrapperRef.current) return
 			// if (!isDragging || !questionRef?.current || !editorWrapperRef.current || !monacoRef.current) return
 
-			let barWidth = resizeBarRef.current?.@Width || 0
+			let barWidth = resizeBarRef.current?.clientWidth || 0
 			//setting width to the mouse x cord or to a min or max value specified in the css
-			const pointerRelativeXpos = e.@X
+			const pointerRelativeXpos = e.clientX
 			const windowWidth = window.innerWidth
 			console.log(window.innerWidth)
 

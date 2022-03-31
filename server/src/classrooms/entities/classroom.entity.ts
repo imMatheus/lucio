@@ -2,7 +2,7 @@ import { ObjectType, Field, InputType, ID } from '@nestjs/graphql';
 import { PrivacyEnum } from '@Types/enums/ClassroomPrivacy.enum';
 import { ClassroomMember } from './classroomMember.interface';
 import { Classroom as IClassroom } from './classroom.interface';
-import { Member } from './member.entity';
+import { MemberType } from './member.entity';
 import {
   MinLength,
   MaxLength,
@@ -53,7 +53,7 @@ export class ClassroomType implements IClassroom {
   @Field()
   privacy: PrivacyEnum;
 
-  @Field(() => [Member])
+  @Field(() => [MemberType])
   members: ClassroomMember[];
 
   @Field()

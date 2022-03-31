@@ -4,7 +4,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { CreateClassroomInput } from './dto/create-classroom.input';
 import { UpdateClassroomInput } from './dto/update-classroom.input';
 import { Classroom, ClassroomDocument } from './classrooms.schema';
-import { BaseClassroom } from './entities/classroom.interface';
+import { BaseClassroom as IClassroom } from './entities/classroom.interface';
 import { generateClassroomCode } from '@Utils/generateClassroomCode';
 import { validateThemeColors } from '@Utils/validateThemeColors';
 import { RoleEnum } from '@/Types/enums/ClassroomRole.enum';
@@ -27,13 +27,15 @@ export class ClassroomsService {
         (await this.classroomModel.findOne({ code }).exec()) === null;
     }
 
-    const data: BaseClassroom = {
+    const data: IClassroom = {
       owner: '621644aea84dd644878aa7f6',
       code: generateClassroomCode(),
       members: [
         {
           role: RoleEnum.OWNER,
           userId: '621644aea84dd644878aa7f6',
+          email: 'asdasd@asdad.com',
+          name: 'sss',
           joinedAt: new Date(),
         },
       ],
