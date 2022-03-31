@@ -1,7 +1,4 @@
-import { InputType, Int, Field } from '@nestjs/graphql';
-
+import { InputType } from '@nestjs/graphql';
+import { ClassroomInput } from '../entities/classroom.entity';
 @InputType()
-export class CreateClassroomInput {
-  @Field(() => Int, { description: 'Example field (placeholder)' })
-  exampleField: number;
-}
+export class CreateClassroomInput extends ClassroomInput {}

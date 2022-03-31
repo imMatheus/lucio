@@ -1,22 +1,40 @@
-import { ObjectType, Field, ID } from '@nestjs/graphql';
+import { ObjectType, Field, InputType, ID } from '@nestjs/graphql';
 import { PrivacyEnum } from '@Types/enums/ClassroomPrivacy.enum';
 import { ClassroomMember } from './classroomMember.interface';
-import { RoleEnum } from '@Types/enums/ClassroomRole.enum';
+import { Classroom as IClassroom } from './classroom.interface';
+import { Member } from './member.entity';
+import {
+  MinLength,
+  MaxLength,
+  IsString,
+  IsArray,
+  ArrayMaxSize,
+  ArrayMinSize,
+  IsEnum,
+} from 'class-validator';
 
-@ObjectType()
-export class Member implements ClassroomMember {
-  @Field()
-  joinedAt: Date;
+@InputType()
+export class ClassroomInput {
+  @Field(() => String)
+  @MinLength(2)
+  @MaxLength(30)
+  @IsString()
+  name: string;
 
-  @Field()
-  role: RoleEnum;
+  @Field(() => [String, String])
+  @IsArray()
+  @ArrayMinSize(2)
+  @ArrayMaxSize(2)
+  theme: [string, string];
 
-  @Field()
-  userId: string;
+  @Field(() => String)
+  @IsString()
+  @IsEnum(PrivacyEnum)
+  privacy: PrivacyEnum;
 }
 
 @ObjectType()
-export class Classroom {
+export class ClassroomType implements IClassroom {
   @Field(() => ID)
   id: string;
 

@@ -1,3 +1,3 @@
 export const colors = {
-  primary: '#2266ff',
+  theme: '#2266ff',
 };

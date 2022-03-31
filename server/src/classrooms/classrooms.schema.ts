@@ -7,7 +7,7 @@ import { Document, Schema } from 'mongoose';
 import { PrivacyEnum } from '@Types/enums/ClassroomPrivacy.enum';
 import { RoleEnum } from '@Types/enums/ClassroomRole.enum';
 import { colors } from '@Constants/colors';
-
+import { User } from '../users/users.schema';
 @SchemaDecorator({ timestamps: true })
 export class Classroom {
   @Prop({
@@ -21,6 +21,7 @@ export class Classroom {
 
   @Prop({
     type: Schema.Types.ObjectId,
+    ref: User.name,
     required: true,
     trim: true,
     immutable: true,
@@ -40,7 +41,7 @@ export class Classroom {
   @Prop({
     type: [String],
     required: true,
-    default: [colors.primary, colors.primary],
+    default: [colors.theme, colors.theme],
   })
   theme: string;
 
@@ -70,10 +71,11 @@ export class Classroom {
           required: true,
         },
         userId: {
-          type: Schema.Types.ObjectId,
+          // type: Schema.Types.ObjectId,
+          type: String,
+          // ref: User.name,
           required: true,
           immutable: true,
-          unique: true,
         },
       },
     ],

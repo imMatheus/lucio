@@ -20,7 +20,8 @@
     "paths": {
       "@/*": ["src/*"],
       "@Types/*": ["src/types/*"],
-      "@Constants/*": ["src/constants/*"]
+      "@Constants/*": ["src/constants/*"],
+      "@Utils/*": ["src/utils/*"]
     }
   }
 }
