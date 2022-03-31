@@ -6,6 +6,7 @@ type Classroom {
   code: String!
   createdAt: DateTime!
   id: ID!
+  members: [Member!]!
   name: String!
   privacy: String!
   theme: [String!]!
@@ -68,6 +69,12 @@ input LoginInput {
 type LoginResponse {
   access_token: String!
   user: User!
+}
+
+type Member {
+  joinedAt: DateTime!
+  role: String!
+  userId: String!
 }
 
 type Mutation {
