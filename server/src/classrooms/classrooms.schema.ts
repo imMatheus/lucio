@@ -71,9 +71,9 @@ export class Classroom {
           required: true,
         },
         userId: {
-          // type: Schema.Types.ObjectId,
-          type: String,
-          // ref: User.name,
+          // type: String,
+          type: Schema.Types.ObjectId,
+          ref: User.name,
           required: true,
           immutable: true,
         },

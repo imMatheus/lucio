@@ -45,7 +45,7 @@ export class ClassroomsService {
   }
 
   findAll() {
-    return this.classroomModel.find().exec();
+    return this.classroomModel.find().populate('members.userId').exec();
   }
 
   findOne(id: string) {
