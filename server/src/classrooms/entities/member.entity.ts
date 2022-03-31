@@ -1,9 +1,9 @@
-import { ObjectType, Field, ID } from '@nestjs/graphql';
+import { ObjectType, InputType, Field, ID } from '@nestjs/graphql';
 import { ClassroomMember } from './classroomMember.interface';
 import { RoleEnum } from '@Types/enums/ClassroomRole.enum';
 
 @ObjectType()
-export class Member implements ClassroomMember {
+export class MemberType implements ClassroomMember {
   @Field()
   joinedAt: Date;
 
@@ -11,5 +11,11 @@ export class Member implements ClassroomMember {
   role: RoleEnum;
 
   @Field()
+  name: string;
+
+  @Field()
+  email: string;
+
+  @Field(() => ID)
   userId: string;
 }

@@ -8,6 +8,7 @@ import { PrivacyEnum } from '@Types/enums/ClassroomPrivacy.enum';
 import { RoleEnum } from '@Types/enums/ClassroomRole.enum';
 import { colors } from '@Constants/colors';
 import { User } from '../users/users.schema';
+import { ClassroomMember } from './entities/classroomMember.interface';
 @SchemaDecorator({ timestamps: true })
 export class Classroom {
   @Prop({
@@ -71,17 +72,31 @@ export class Classroom {
           required: true,
         },
         userId: {
-          // type: String,
           type: Schema.Types.ObjectId,
           ref: User.name,
           required: true,
           immutable: true,
         },
+        name: {
+          type: String,
+          required: true,
+          trim: true,
+          minlength: 2,
+          maxLength: 40,
+        },
+        email: {
+          type: String,
+          required: true,
+          trim: true,
+          lowercase: true,
+          immutable: true,
+          maxLength: 50,
+        },
       },
     ],
     required: true,
   })
-  members: string;
+  members: ClassroomMember[];
 
   @Prop({
     type: Date,

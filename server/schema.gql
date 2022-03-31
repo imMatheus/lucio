@@ -6,7 +6,7 @@ type ClassroomType {
   code: String!
   createdAt: DateTime!
   id: ID!
-  members: [Member!]!
+  members: [MemberType!]!
   name: String!
   owner: String!
   privacy: String!
@@ -73,10 +73,12 @@ type LoginResponse {
   user: User!
 }
 
-type Member {
+type MemberType {
+  email: String!
   joinedAt: DateTime!
+  name: String!
   role: String!
-  userId: String!
+  userId: ID!
 }
 
 type Mutation {
