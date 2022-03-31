@@ -3,25 +3,53 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { CreateClassroomInput } from './dto/create-classroom.input';
 import { UpdateClassroomInput } from './dto/update-classroom.input';
-import { ClassRoom, ClassRoomDocument } from './classrooms.schema';
+import { Classroom, ClassroomDocument } from './classrooms.schema';
+import { BaseClassroom } from './entities/classroom.interface';
+import { generateClassroomCode } from '@Utils/generateClassroomCode';
+import { validateThemeColors } from '@Utils/validateThemeColors';
+import { RoleEnum } from '@/Types/enums/ClassroomRole.enum';
 
 @Injectable()
 export class ClassroomsService {
   constructor(
-    @InjectModel(ClassRoom.name)
-    private classRoomModel: Model<ClassRoomDocument>,
+    @InjectModel(Classroom.name)
+    private classroomModel: Model<ClassroomDocument>,
   ) {}
 
-  create(createClassroomInput: CreateClassroomInput) {
-    return 'This action adds a new classroom';
+  async create(createClassroomInput: CreateClassroomInput) {
+    let code: string;
+    let isUniqueCode = false;
+
+    // makes sure code is unique
+    while (!isUniqueCode) {
+      code = generateClassroomCode();
+      isUniqueCode =
+        (await this.classroomModel.findOne({ code }).exec()) === null;
+    }
+
+    const data: BaseClassroom = {
+      owner: '621644aea84dd644878aa7f6',
+      code: generateClassroomCode(),
+      members: [
+        {
+          role: RoleEnum.OWNER,
+          userId: '621644aea84dd644878aa7f6',
+          joinedAt: new Date(),
+        },
+      ],
+      ...createClassroomInput,
+      theme: validateThemeColors(createClassroomInput.theme),
+    };
+
+    return this.classroomModel.create(data);
   }
 
   findAll() {
-    return this.classRoomModel.find().exec();
+    return this.classroomModel.find().exec();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} classroom`;
+  findOne(id: string) {
+    return this.classroomModel.findById(id).exec();
   }
 
   update(id: number, updateClassroomInput: UpdateClassroomInput) {

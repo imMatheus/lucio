@@ -1,6 +1,6 @@
-import { RoleEnum } from '@/Types/enums/ClassRoomRole.enum';
+import { RoleEnum } from '@/Types/enums/ClassroomRole.enum';
 
-export interface ClassRoomMember {
+export interface ClassroomMember {
   joinedAt: Date;
   role: RoleEnum;
   userId: string;

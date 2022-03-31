@@ -2,20 +2,22 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type Classroom {
+type ClassroomType {
   code: String!
   createdAt: DateTime!
   id: ID!
   members: [Member!]!
   name: String!
+  owner: String!
   privacy: String!
   theme: [String!]!
   updatedAt: DateTime!
 }
 
 input CreateClassroomInput {
-  """Example field (placeholder)"""
-  exampleField: Int!
+  name: String!
+  privacy: String!
+  theme: [String!]!
 }
 
 input CreateProblemInput {
@@ -78,14 +80,14 @@ type Member {
 }
 
 type Mutation {
-  createClassroom(createClassroomInput: CreateClassroomInput!): Classroom!
+  createClassroom(createClassroomInput: CreateClassroomInput!): ClassroomType!
   createProblem(createProblemInput: CreateProblemInput!): Problem!
   createUser(createUserInput: CreateUserInput!): User!
   login(loginInput: LoginInput!): LoginResponse!
-  removeClassroom(id: Int!): Classroom!
+  removeClassroom(id: Int!): ClassroomType!
   removeProblem(id: Int!): Problem!
   removeUser(id: Int!): User!
-  updateClassroom(updateClassroomInput: UpdateClassroomInput!): Classroom!
+  updateClassroom(updateClassroomInput: UpdateClassroomInput!): ClassroomType!
   updateProblem(updateProblemInput: UpdateProblemInput!): Problem!
   updateUser(updateUserInput: UpdateUserInput!): User!
 }
@@ -99,8 +101,8 @@ type Problem {
 }
 
 type Query {
-  classroom(id: Int!): Classroom!
-  classrooms: [Classroom!]!
+  classroom(id: String!): ClassroomType!
+  classrooms: [ClassroomType!]!
   problem(id: Int!): Problem!
   problems: [Problem!]!
   user(id: String!): User!
@@ -113,9 +115,10 @@ interface SampleCase {
 }
 
 input UpdateClassroomInput {
-  """Example field (placeholder)"""
-  exampleField: Int
   id: Int!
+  name: String
+  privacy: String
+  theme: [String!]
 }
 
 input UpdateProblemInput {
