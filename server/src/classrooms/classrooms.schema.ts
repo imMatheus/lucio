@@ -9,8 +9,9 @@ import { RoleEnum } from '@Types/enums/ClassroomRole.enum';
 import { colors } from '@Constants/colors';
 import { User } from '../users/users.schema';
 import { ClassroomMember } from './entities/classroomMember.interface';
+import { BaseClassroom } from './entities/classroom.interface';
 @SchemaDecorator({ timestamps: true })
-export class Classroom {
+export class Classroom implements BaseClassroom {
   @Prop({
     type: String,
     required: true,
@@ -44,7 +45,7 @@ export class Classroom {
     required: true,
     default: [colors.theme, colors.theme],
   })
-  theme: string;
+  theme: [string, string];
 
   @Prop({
     type: String,
@@ -54,7 +55,7 @@ export class Classroom {
     immutable: true,
     enum: Object.values(PrivacyEnum),
   })
-  privacy: string;
+  privacy: PrivacyEnum;
 
   @Prop({
     type: [
@@ -98,16 +99,16 @@ export class Classroom {
   })
   members: ClassroomMember[];
 
-  @Prop({
-    type: Date,
-    immutable: true,
-  })
-  createdAt: Date; // comes from mongoose timestamps
+  // @Prop({
+  //   type: Date,
+  //   immutable: true,
+  // })
+  // createdAt: Date; // comes from mongoose timestamps
 
-  @Prop({
-    type: Date,
-  })
-  updatedAt: Date; // comes from mongoose timestamps
+  // @Prop({
+  //   type: Date,
+  // })
+  // updatedAt: Date; // comes from mongoose timestamps
 }
 
 export type ClassroomDocument = Classroom & Document;

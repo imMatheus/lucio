@@ -28,6 +28,7 @@ export class ClassroomsService {
     }
 
     const data: IClassroom = {
+      ...createClassroomInput,
       owner: '621644aea84dd644878aa7f6',
       code: generateClassroomCode(),
       members: [
@@ -39,7 +40,6 @@ export class ClassroomsService {
           joinedAt: new Date(),
         },
       ],
-      ...createClassroomInput,
       theme: validateThemeColors(createClassroomInput.theme),
     };
 
