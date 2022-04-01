@@ -1,11 +1,7 @@
-import {
-  ObjectType,
-  Field,
-  DateScalarMode,
-  IntersectionType,
-} from '@nestjs/graphql';
+import { ObjectType, Field, IntersectionType } from '@nestjs/graphql';
 import { BaseUserType } from './baseUser.entity';
 import { AdditionalUserInfoType } from './additionalUserInfo.entity';
+
 @ObjectType()
 export class User extends IntersectionType(
   BaseUserType,

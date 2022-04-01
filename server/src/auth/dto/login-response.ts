@@ -6,6 +6,6 @@ export class LoginResponse {
   @Field()
   access_token: string;
 
-  @Field(() => User)
-  user: User;
+  @Field(() => User, { nullable: true })
+  user?: User;
 }

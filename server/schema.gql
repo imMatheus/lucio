@@ -70,7 +70,7 @@ input LoginInput {
 
 type LoginResponse {
   access_token: String!
-  user: User!
+  user: User
 }
 
 type MemberType {

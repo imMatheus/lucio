@@ -3,7 +3,8 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { CreateUserInput } from './dto/create-user.input';
 import { UpdateUserInput } from './dto/update-user.input';
-import { User, UserDocument } from './users.schema';
+import { UserDocument } from './users.schema';
+import { User } from './entities/user.entity';
 import * as bcrypt from 'bcrypt';
 
 @Injectable()
@@ -20,15 +21,30 @@ export class UsersService {
     return this.userModel.find().exec();
   }
 
-  findOne(id: string): Promise<User> {
+  findOne(id: string) {
     return this.userModel.findById(id).exec();
   }
 
-  findByName(name: string): Promise<User> {
+  findByName(name: string) {
     return this.userModel.findOne({ name }).exec();
   }
 
-  findByEmail(email: string): Promise<User> {
+  async findByNameAndPassword(name: string, password: string): Promise<User> {
+    const user = await this.userModel.findOne({ name }).exec();
+    const passwordsEqual = bcrypt.compareSync(password, user.password); // make sure password matches
+
+    // console.log(user);
+
+    // const { password: _storedPassword, ...result } = user;
+
+    // console.log(result);
+
+    return passwordsEqual
+      ? await this.userModel.findOne({ name }, { password: -1 }).exec()
+      : null;
+  }
+
+  findByEmail(email: string) {
     return this.userModel.findOne({ email }).exec();
   }
 

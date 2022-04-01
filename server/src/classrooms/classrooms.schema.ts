@@ -10,6 +10,7 @@ import { colors } from '@Constants/colors';
 import { User } from '../users/users.schema';
 import { ClassroomMember } from './entities/classroomMember.interface';
 import { BaseClassroom } from './entities/classroom.interface';
+
 @SchemaDecorator({ timestamps: true })
 export class Classroom implements BaseClassroom {
   @Prop({

@@ -6,6 +6,11 @@ import { ProviderEnum } from '@Types/enums/UserProvider.enum';
 export class User {
   @Prop({
     type: String,
+  })
+  id: string;
+
+  @Prop({
+    type: String,
     required: true,
     trim: true,
     minlength: 2,
@@ -31,7 +36,7 @@ export class User {
     immutable: true,
     enum: Object.values(ProviderEnum),
   })
-  provider: string;
+  provider: ProviderEnum;
 
   @Prop({
     type: String,

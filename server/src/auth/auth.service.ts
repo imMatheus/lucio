@@ -12,26 +12,29 @@ export class AuthService {
   async validateUser(name: string, password: string): Promise<any> {
     console.log('122');
 
-    const user = await this.usersService.findByName(name);
-    const hashed = bcrypt.hashSync(password, 10); // hash password
+    const user = await this.usersService.findByNameAndPassword(name, password);
+    // const hashed = bcrypt.hashSync(password, 10); // hash password
 
-    if (user && user.password === hashed) {
-      const { password, ...result } = user;
-      return result;
+    if (user) {
+      return user;
     }
     return null;
   }
 
   async login(loginInput: LoginInput): Promise<LoginResponse> {
     console.log('32');
-    const user = await this.usersService.findByName(loginInput.name);
-    console.log(user);
+    console.log(loginInput);
 
-    const { password, ...result } = user;
+    const user = await this.usersService.findByNameAndPassword(
+      loginInput.name,
+      loginInput.password,
+    );
+
+    console.log(user);
 
     return {
       access_token: 'jt',
-      user: result as User,
+      user: user as User,
     };
   }
 }
