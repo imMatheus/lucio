@@ -55,6 +55,22 @@ export class ClassroomsService {
     return this.classroomModel.findById(id).exec();
   }
 
+  async join(id: string, user: UserJwt) {
+    const classroom = await this.classroomModel.findById(id).exec();
+
+    // adds new student
+    classroom.members.push({
+      role: RoleEnum.STUDENT,
+      userId: user.userId,
+      email: user.email,
+      name: user.username,
+      joinedAt: new Date(),
+    });
+    await classroom.save();
+
+    return classroom;
+  }
+
   update(id: number, updateClassroomInput: UpdateClassroomInput) {
     return `This action updates a #${id} classroom`;
   }

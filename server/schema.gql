@@ -85,6 +85,7 @@ type Mutation {
   createClassroom(createClassroomInput: CreateClassroomInput!): ClassroomType!
   createProblem(createProblemInput: CreateProblemInput!): Problem!
   createUser(createUserInput: CreateUserInput!): User!
+  joinClassroom(id: String!): ClassroomType!
   login(loginInput: LoginInput!): LoginResponse!
   removeClassroom(id: Int!): ClassroomType!
   removeProblem(id: Int!): Problem!
