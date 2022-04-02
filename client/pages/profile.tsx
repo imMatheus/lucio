@@ -32,7 +32,6 @@ const Profile: NextPage = () => {
 	const bioInputRef = useRef<HTMLTextAreaElement>(null)
 
 	console.log(currentUser)
-	console.log('Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam.'.length)
 
 	if (!currentUser) return null
 

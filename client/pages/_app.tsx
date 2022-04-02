@@ -9,7 +9,8 @@ import { createClient, Provider } from 'urql'
 
 function MyApp({ Component, pageProps }: AppProps) {
 	const client = createClient({
-		url: 'http://localhost:4000/graphql'
+		url: 'http://localhost:4000/graphql',
+		exchanges: []
 	})
 
 	return (

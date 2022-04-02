@@ -10,28 +10,18 @@ export async function userHasAccessToClass(
 	str: string | string[] | undefined,
 	token: string | undefined
 ): Promise<boolean> {
-	console.log(1)
-
 	if (!str || !token) return false
-	console.log(2)
-	console.log(str, token)
 
 	try {
-		console.log(3)
 		const id = Array.isArray(str) ? str[0] : str
 
 		const res = await fetch(`http://localhost:3000/api/classes/${id}/access`, {
 			headers: { token }
 		})
 		const data: Data = await res.json()
-		console.log(4)
-		console.log(data)
 
 		return data.access
 	} catch (error) {
-		console.log(5)
-		console.log(error)
-
 		return false
 	}
 }
