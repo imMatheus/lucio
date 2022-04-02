@@ -1,5 +1,6 @@
 import { InputType, ObjectType, Field } from '@nestjs/graphql';
 import { MinLength, MaxLength, IsString } from 'class-validator';
+import { ProviderEnum } from '@Types/enums/UserProvider.enum';
 
 // for mutations
 @InputType()
@@ -27,7 +28,7 @@ export class AdditionalUserInfoInput {
 @ObjectType()
 export class AdditionalUserInfoType {
   @Field()
-  provider: string;
+  provider: ProviderEnum;
 
   @Field(() => String, { nullable: true })
   bio: string;

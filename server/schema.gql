@@ -64,13 +64,13 @@ enum InputEnum {
 }
 
 input LoginInput {
-  name: String!
   password: String!
+  username: String!
 }
 
 type LoginResponse {
   access_token: String!
-  user: User!
+  user: User
 }
 
 type MemberType {
@@ -89,6 +89,7 @@ type Mutation {
   removeClassroom(id: Int!): ClassroomType!
   removeProblem(id: Int!): Problem!
   removeUser(id: Int!): User!
+  signup(createUserInput: CreateUserInput!): User!
   updateClassroom(updateClassroomInput: UpdateClassroomInput!): ClassroomType!
   updateProblem(updateProblemInput: UpdateProblemInput!): Problem!
   updateUser(updateUserInput: UpdateUserInput!): User!
