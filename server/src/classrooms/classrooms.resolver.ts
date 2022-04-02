@@ -24,10 +24,10 @@ export class ClassroomsResolver {
   @Mutation(() => ClassroomType)
   @UseGuards(JwtAuthGuard)
   joinClassroom(
-    @Args('id', { type: () => String }) id: string,
+    @Args('code', { type: () => String }) code: string,
     @Context() context: MyContext,
   ) {
-    return this.classroomsService.join(id, context.req.user);
+    return this.classroomsService.join(code, context.req.user);
   }
 
   @Query(() => [ClassroomType], { name: 'classrooms' })
