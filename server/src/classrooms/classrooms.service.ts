@@ -8,7 +8,7 @@ import { BaseClassroom as IClassroom } from './entities/classroom.interface';
 import { generateClassroomCode } from '@Utils/generateClassroomCode';
 import { validateThemeColors } from '@Utils/validateThemeColors';
 import { RoleEnum } from '@/Types/enums/ClassroomRole.enum';
-
+import { UserJwt } from '../auth/user-jwt.interface';
 @Injectable()
 export class ClassroomsService {
   constructor(
@@ -16,7 +16,7 @@ export class ClassroomsService {
     private classroomModel: Model<ClassroomDocument>,
   ) {}
 
-  async create(createClassroomInput: CreateClassroomInput) {
+  async create(createClassroomInput: CreateClassroomInput, user: UserJwt) {
     let code: string;
     let isUniqueCode = false;
 
@@ -29,14 +29,14 @@ export class ClassroomsService {
 
     const data: IClassroom = {
       ...createClassroomInput,
-      owner: '621644aea84dd644878aa7f6',
-      code: generateClassroomCode(),
+      owner: user.userId,
+      code: code,
       members: [
         {
           role: RoleEnum.OWNER,
-          userId: '621644aea84dd644878aa7f6',
-          email: 'asdasd@asdad.com',
-          name: 'sss',
+          userId: user.userId,
+          email: user.email,
+          name: user.username,
           joinedAt: new Date(),
         },
       ],
@@ -46,8 +46,9 @@ export class ClassroomsService {
     return this.classroomModel.create(data);
   }
 
-  findAll() {
-    return this.classroomModel.find().exec();
+  // takes in user id, and finds all classrooms where that user is a part of
+  findAll(id: string) {
+    return this.classroomModel.find({ 'members.userId': id }).exec();
   }
 
   findOne(id: string) {
