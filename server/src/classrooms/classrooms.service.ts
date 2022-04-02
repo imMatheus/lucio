@@ -46,7 +46,7 @@ export class ClassroomsService {
     return this.classroomModel.create(data);
   }
 
-  // takes in user id, and finds all classrooms where that user is a part of
+  // takes in user id, and finds all classrooms where that user is a part of the members array
   findAll(id: string) {
     return this.classroomModel.find({ 'members.userId': id }).exec();
   }
