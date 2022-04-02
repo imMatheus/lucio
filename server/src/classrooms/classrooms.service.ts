@@ -1,5 +1,5 @@
 import { Model } from 'mongoose';
-import { Injectable } from '@nestjs/common';
+import { Injectable, BadRequestException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { CreateClassroomInput } from './dto/create-classroom.input';
 import { UpdateClassroomInput } from './dto/update-classroom.input';
@@ -9,6 +9,7 @@ import { generateClassroomCode } from '@Utils/generateClassroomCode';
 import { validateThemeColors } from '@Utils/validateThemeColors';
 import { RoleEnum } from '@/Types/enums/ClassroomRole.enum';
 import { UserJwt } from '../auth/user-jwt.interface';
+
 @Injectable()
 export class ClassroomsService {
   constructor(
@@ -53,6 +54,36 @@ export class ClassroomsService {
 
   findOne(id: string) {
     return this.classroomModel.findById(id).exec();
+  }
+
+  async join(code: string, user: UserJwt) {
+    const classroom = await this.classroomModel
+      .findOne({
+        code,
+        'members.userId': {
+          $nin: [user.userId],
+        },
+      })
+      .exec();
+
+    // the code provided was either invalid or the user is already in the class
+    if (!classroom) {
+      // TODO send classroom even if the user is part of it, so client can redirect user to the class
+      throw new BadRequestException('Classroom not found');
+      return;
+    }
+
+    // adds new student
+    classroom.members.push({
+      role: RoleEnum.STUDENT,
+      userId: user.userId,
+      email: user.email,
+      name: user.username,
+      joinedAt: new Date(),
+    });
+    await classroom.save();
+
+    return classroom;
   }
 
   update(id: number, updateClassroomInput: UpdateClassroomInput) {

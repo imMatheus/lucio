@@ -21,6 +21,15 @@ export class ClassroomsResolver {
     return this.classroomsService.create(createClassroomInput, user);
   }
 
+  @Mutation(() => ClassroomType)
+  @UseGuards(JwtAuthGuard)
+  joinClassroom(
+    @Args('code', { type: () => String }) code: string,
+    @Context() context: MyContext,
+  ) {
+    return this.classroomsService.join(code, context.req.user);
+  }
+
   @Query(() => [ClassroomType], { name: 'classrooms' })
   @UseGuards(JwtAuthGuard)
   findAll(@Context() context: MyContext) {

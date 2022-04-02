@@ -10,6 +10,7 @@ import { X } from 'react-feather'
 import QueryChip from '@/components/problems/QueryChip'
 import axios from 'axios'
 import { Data } from '@/types/returns/api/problems'
+import { useQuery, gql } from 'urql'
 
 interface Props {
 	problems: AlgorithmProblem[]
@@ -20,7 +21,23 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
 	// const response: any[] = await axios.get('http://localhost:3000/api/problems')
 	const { data }: { data: Data } = await axios.get('http://localhost:3000/api' + url)
+	// 	const TodosQuery = gql`
+	// 	query {
+	// 		problems {
+	// 			id
+	// 		}
+	// 	}
+	// `
 
+	// const [result, reexecuteQuery] = useQuery({
+	// 	query: TodosQuery
+	// })
+
+	// const { data: data2, fetching, error } = result
+	// console.log('data', data)
+	// console.log(fetching)
+
+	// console.log('___----___')
 	// const problems: AlgorithmProblem[] = data.map((prob: any) => prob as AlgorithmProblem)
 
 	return {

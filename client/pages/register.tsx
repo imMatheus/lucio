@@ -86,7 +86,7 @@ export default function Register(): ReactElement {
 			<div className={styles.modal}>
 				<TypedText className="text-theme-700">Welcome to LucioCode</TypedText>
 				<TypedText className="text-theme-700" delay={1}>
-					<span className="bg-red-500">Let us begin the adventure</span>
+					<span>Let us begin the adventure</span>
 				</TypedText>
 				{/* <Image src={`data:image/svg+xml;base64,${base64data}`} alt="" width={100} height={100} /> */}
 				<TypedText className="mt-5 mb-2 text-base font-semibold text-theme" delay={2}>

@@ -22,6 +22,7 @@ import { ClassroomsModule } from './classrooms/classrooms.module';
     ConfigModule.forRoot({
       // changes default env file that nest looks for
       envFilePath: '.env.local',
+      isGlobal: true,
     }),
     // env variabel from .env.local file
     MongooseModule.forRoot(process.env.MONGODB_URI),

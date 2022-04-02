@@ -48,18 +48,13 @@ export const AuthProvider: React.FC = ({ children }) => {
 	const { setToast } = useToast()
 
 	const fetchUser = async () => {
-		console.log('abcc')
-
 		setFetchingUser(true)
 
 		const { data }: { data: meData } = await axios.get('/api/auth/me')
-		console.log('23')
-		console.log(data)
 
 		setFetchingUser(false)
 		if (!data || !data.user || !data.token) return setCurrentUser(null)
 
-		console.log('45')
 		setCurrentUser(data.user)
 	}
 
@@ -74,9 +69,7 @@ export const AuthProvider: React.FC = ({ children }) => {
 			if (data.user) {
 				await fetchUser()
 				const { redirect_url } = router.query
-				console.log('ass')
-				console.log(router.query)
-				console.log(redirect_url)
+
 				if (redirect_url && typeof redirect_url === 'string') {
 					router.replace(redirect_url)
 				} else {
@@ -110,7 +103,6 @@ export const AuthProvider: React.FC = ({ children }) => {
 
 	const updateUser = async (props: UpdateUserProps): Promise<updateData> => {
 		const { data }: { data: updateData } = await axios.put('/api/auth/update', { ...props })
-		console.log(props)
 
 		if (data.message === null) {
 			await fetchUser()

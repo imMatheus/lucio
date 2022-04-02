@@ -13,7 +13,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
   constructor() {
     super({
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-      secretOrKey: 'hide-me',
+      secretOrKey: process.env.JWT_SIGN_SALT,
       ignoreExpired: false,
     });
   }
