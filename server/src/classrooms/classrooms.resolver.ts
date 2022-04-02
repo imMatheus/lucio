@@ -1,8 +1,10 @@
-import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
+import { Resolver, Query, Mutation, Args, Int, Context } from '@nestjs/graphql';
 import { ClassroomsService } from './classrooms.service';
 import { ClassroomType } from './entities/classroom.entity';
 import { CreateClassroomInput } from './dto/create-classroom.input';
 import { UpdateClassroomInput } from './dto/update-classroom.input';
+import { UseGuards } from '@nestjs/common';
+import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 
 @Resolver(() => ClassroomType)
 export class ClassroomsResolver {
@@ -16,7 +18,12 @@ export class ClassroomsResolver {
   }
 
   @Query(() => [ClassroomType], { name: 'classrooms' })
-  findAll() {
+  @UseGuards(JwtAuthGuard)
+  findAll(@Context() context: any) {
+    console.log('********************************');
+
+    console.log(context.req.user);
+
     return this.classroomsService.findAll();
   }
 

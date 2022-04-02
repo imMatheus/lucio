@@ -31,17 +31,18 @@ export class UsersService {
 
   async findByNameAndPassword(name: string, password: string): Promise<User> {
     const user = await this.userModel.findOne({ name }).exec();
+    if (!user) return null;
     const passwordsEqual = bcrypt.compareSync(password, user.password); // make sure password matches
 
-    // console.log(user);
+    const userWithOutPassword = await this.userModel
+      .findOne({ name }, { password: 0 })
+      .exec();
 
-    // const { password: _storedPassword, ...result } = user;
+    userWithOutPassword.id = userWithOutPassword._id;
 
-    // console.log(result);
+    console.log(userWithOutPassword);
 
-    return passwordsEqual
-      ? await this.userModel.findOne({ name }, { password: -1 }).exec()
-      : null;
+    return passwordsEqual ? userWithOutPassword : null;
   }
 
   findByEmail(email: string) {
