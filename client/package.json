@@ -4,6 +4,7 @@
 	"private": true,
 	"scripts": {
 		"analyze": "ANALYZE=true yarn build",
+		"generate": "graphql-codegen",
 		"dev": "next dev",
 		"reset": "rm -r .next && rm -r node_modules && yarn && yarn dev",
 		"build": "next build",
@@ -20,6 +21,11 @@
 	"dependencies": {
 		"@dicebear/adventurer-neutral": "^4.10.0",
 		"@dicebear/avatars": "^4.10.0",
+		"@graphql-codegen/cli": "^2.6.2",
+		"@graphql-codegen/typed-document-node": "^2.2.8",
+		"@graphql-codegen/typescript": "^2.4.8",
+		"@graphql-codegen/typescript-operations": "^2.3.5",
+		"@graphql-codegen/typescript-react-query": "^3.5.9",
 		"@headlessui/react": "^1.5.0",
 		"@monaco-editor/react": "^4.3.1",
 		"@next/bundle-analyzer": "^12.0.9",

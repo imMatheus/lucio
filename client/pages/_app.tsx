@@ -5,13 +5,24 @@ import { ToastProvider } from '@/context/ToastContext'
 import { ModalProvider } from '@/context/ModalContext'
 import { AuthProvider } from '@/context/AuthContext'
 import { EditorSettingsProvider } from '@/context/EditorSettingsContext'
-import { createClient, Provider } from 'urql'
+import { createClient, Provider, ssrExchange, dedupExchange, cacheExchange, fetchExchange } from 'urql'
+
+// setting up urql
+const isServerSide = typeof window === 'undefined'
+export const ssrCache = ssrExchange({ isClient: !isServerSide })
+
+export const client = createClient({
+	url: 'http://localhost:4000/graphql',
+	exchanges: [ssrCache, dedupExchange, cacheExchange, fetchExchange],
+	fetchOptions: () => {
+		return { headers: {} }
+	}
+})
 
 function MyApp({ Component, pageProps }: AppProps) {
-	const client = createClient({
-		url: 'http://localhost:4000/graphql',
-		exchanges: []
-	})
+	if (pageProps.urqlState) {
+		ssrCache.restoreData(pageProps.urqlState)
+	}
 
 	return (
 		<Provider value={client}>
