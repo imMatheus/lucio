@@ -3,8 +3,6 @@ import type { NextPage } from 'next'
 import { ArrowLeft } from 'react-feather'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import ReactQuill from 'react-quill'
-import { Quill } from 'quill'
 import dynamic from 'next/dynamic'
 import Dropzone, { FileProps } from '@/components/dropzone'
 import FileCard from '@/components/dropzone/FileCard'
@@ -15,7 +13,6 @@ const NoSsr = () => {
 	const router = useRouter()
 	const { classId } = router.query
 	console.log(router.query)
-	const [showQuill, setShowQuill] = useState(false)
 	console.log('-___-')
 	const [text, setText] = useState('hello world!')
 	const [files, setFiles] = useState<FileProps[]>([])
@@ -28,10 +25,6 @@ const NoSsr = () => {
 		console.log('opoooasasas')
 		console.log(files)
 	}, [files])
-
-	useEffect(() => {
-		setShowQuill(true)
-	}, [])
 
 	return (
 		<PaddingContainer>
@@ -51,8 +44,6 @@ const NoSsr = () => {
 					</span>
 				)}
 			</h3>
-			{/* {showQuill && <ReactQuill value={'.text'} />} */}
-			{/* <ReactQuill value={text} onChange={handeChange} /> */}
 			<FileCardWrapper>
 				{files.map((file) => (
 					<FileCard file={file} key={file.lastModified} />
