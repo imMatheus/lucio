@@ -107,6 +107,7 @@ type Problem {
 type Query {
   classroom(id: String!): ClassroomType!
   classrooms: [ClassroomType!]!
+  me: User!
   problem(id: Int!): Problem!
   problems: [Problem!]!
   user(id: String!): User!
