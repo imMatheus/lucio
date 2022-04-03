@@ -15,7 +15,7 @@ import { ClassroomsModule } from './classrooms/classrooms.module';
   imports: [
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
-      autoSchemaFile: join(process.cwd(), 'schema.gql'),
+      autoSchemaFile: join(process.cwd(), '../shared/schema.gql'),
       sortSchema: true,
     }),
 
