@@ -14,8 +14,8 @@
 		"count": "git ls-files --exclude-standard -- ':!:**/*.[pjs][npv]g' ':!:**/*.jpeg' ':!:**/*.webp' ':!:yarn.lock' ':!:package-lock.json' | xargs wc -l",
 		"count-all": "git ls-files | xargs wc -l",
 		"count-files": "git ls-files | wc -l",
-		"prettier-write": "npx prettier --write .",
-		"prettier-check": "npx prettier --check ."
+		"format": "npx prettier --write .",
+		"format-check": "npx prettier --check ."
 	},
 	"dependencies": {
 		"@dicebear/adventurer-neutral": "^4.10.0",
@@ -71,6 +71,6 @@
 		"sass": "^1.49.8",
 		"tailwindcss": "^3.0.13",
 		"ts-node": "^10.4.0",
-		"typescript": "4.4.4"
+		"typescript": "4.6.3"
 	}
 }
