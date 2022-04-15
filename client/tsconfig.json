@@ -24,7 +24,8 @@
 			"@/returns/*": ["types/returns/*"],
 			"@/hooks/*": ["hooks/*"],
 			"@/models/*": ["models/*"],
-			"@/gql": ["graphql/generated.ts"],
+			"@/gql": ["graphql/index.ts"],
+			"@/apollo": ["apollo/init.ts"],
 			"styles/*": ["styles/*"]
 		},
 		"incremental": true

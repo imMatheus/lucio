@@ -1,7 +1,7 @@
 import React from 'react'
-import { useQuery, gql } from 'urql'
-import { Problem } from '@/gql'
-import { client, ssrCache } from './_app'
+import { useQuery, gql } from '@apollo/client'
+import { ClassroomType } from '@/gql'
+import { client } from '@/apollo'
 
 const ProblemsQuery = gql`
 	query {
@@ -13,23 +13,23 @@ const ProblemsQuery = gql`
 `
 
 export async function getServerSideProps() {
-	await client.query(ProblemsQuery).toPromise()
-	return { props: { urqlState: ssrCache.extractData() } }
+	const data = await client.query({ query: ProblemsQuery })
+	console.log(data)
+
+	return { props: { state: data } }
 }
 
 const Test: React.FC = (props) => {
 	console.log('props')
 	console.log(props)
 
-	const [result] = useQuery<{ problems: Problem }>({
-		query: ProblemsQuery
-	})
+	const { data, loading, error } = useQuery<ClassroomType[]>(ProblemsQuery)
 
-	// console.log(result.data?.problems)
+	console.log(data)
 	return (
 		<div>
 			<h2>test</h2>
-			<h1>{JSON.stringify(result)}</h1>
+			{/* <h1>{JSON.stringify(data)}</h1> */}
 		</div>
 	)
 }

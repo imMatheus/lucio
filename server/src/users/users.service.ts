@@ -11,10 +11,18 @@ import * as bcrypt from 'bcrypt';
 export class UsersService {
   constructor(@InjectModel(User.name) private userModel: Model<UserDocument>) {}
 
-  create(createUserInput: CreateUserInput) {
+  async create(createUserInput: CreateUserInput) {
     const hashed = bcrypt.hashSync(createUserInput.password, 10); // hash password
 
-    return this.userModel.create({ ...createUserInput, password: hashed });
+    const user = await this.userModel.create({
+      ...createUserInput,
+      password: hashed,
+    });
+
+    // needs to be added because graphql expects a "id" field and not "_id"
+    user.id = user._id;
+
+    return user;
   }
 
   findAll() {

@@ -1,7 +1,0 @@
-# this file needs to be here for the 'yarn generate' command to work
-# TODO: find a better solution then this
-query GetUsers {
-	users {
-		name
-	}
-}
