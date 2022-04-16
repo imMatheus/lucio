@@ -1,5 +1,8 @@
 mutation signup($signupInput: CreateUserInput!) {
 	signup(signupInput: $signupInput) {
-		...FullUser
+		access_token
+		user {
+			...FullUser
+		}
 	}
 }

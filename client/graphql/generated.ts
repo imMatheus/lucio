@@ -104,7 +104,7 @@ export type Mutation = {
   removeClassroom: ClassroomType;
   removeProblem: Problem;
   removeUser: User;
-  signup: User;
+  signup: LoginResponse;
   updateClassroom: ClassroomType;
   updateProblem: Problem;
   updateUser: User;
@@ -259,7 +259,7 @@ export type SignupMutationVariables = Exact<{
 }>;
 
 
-export type SignupMutation = { __typename?: 'Mutation', signup: { __typename?: 'User', bio?: string | null, id: string, name: string, email: string, email_verified: boolean, location?: string | null, school?: string | null, provider: string, createdAt: any, updatedAt: any } };
+export type SignupMutation = { __typename?: 'Mutation', signup: { __typename?: 'LoginResponse', access_token: string, user?: { __typename?: 'User', bio?: string | null, id: string, name: string, email: string, email_verified: boolean, location?: string | null, school?: string | null, provider: string, createdAt: any, updatedAt: any } | null } };
 
 export type MeQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -319,7 +319,10 @@ export type LoginMutationOptions = Apollo.BaseMutationOptions<LoginMutation, Log
 export const SignupDocument = gql`
     mutation signup($signupInput: CreateUserInput!) {
   signup(signupInput: $signupInput) {
-    ...FullUser
+    access_token
+    user {
+      ...FullUser
+    }
   }
 }
     ${FullUserFragmentDoc}`;

@@ -35,8 +35,8 @@ export class AuthService {
   }
 
   async signup(createUserInput: CreateUserInput): Promise<LoginResponse> {
+    console.log('server signup');
     const user = await this.usersService.create(createUserInput);
-    console.log('asdaddd');
     console.log(user);
 
     const sign: IPayload = {

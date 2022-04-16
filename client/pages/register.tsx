@@ -67,7 +67,9 @@ export default function Register(): ReactElement {
 	}, [email])
 
 	async function signupHandler() {
-		const res = await signup({ signupInput: { email, password, name } })
+		console.log('signup 70')
+
+		const res = await signup({ email, password, name })
 		console.log(res)
 	}
 

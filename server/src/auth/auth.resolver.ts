@@ -31,8 +31,8 @@ export class AuthResolver {
     return this.usersService.findOne(user.userId);
   }
 
+  // @UseGuards(GqlAuthGuard)
   @Mutation(() => LoginResponse)
-  @UseGuards(GqlAuthGuard)
   signup(@Args('signupInput') createUserInput: CreateUserInput) {
     return this.authService.signup(createUserInput);
   }

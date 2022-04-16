@@ -8,6 +8,7 @@ import { Data as updateData } from '@/api/auth/update'
 import { useRouter } from 'next/router'
 import { User, LoginInput, CreateUserInput, useLoginMutation, useSignupMutation, useMeQuery } from '@/gql'
 import { client } from '@/apollo'
+import { setCookie } from 'nookies'
 
 type IUser = User | null
 
@@ -43,9 +44,18 @@ export const AuthProvider: React.FC = ({ children }) => {
 	const [loginMutation, { error: loginError, data: loginData }] = useLoginMutation()
 	const [signupMutation, { error: signupError, data: signupData }] = useSignupMutation()
 
-	console.log('userData: ', userData)
-	console.log('loginData: ', loginData)
-	console.log('signupData: ', signupData)
+	// console.log('userData: ', userData)
+	// console.log('loginData: ', loginData)
+	console.log('signupData: ', signupData?.signup)
+	console.log('signupError, ', signupError)
+	console.log('user, ', currentUser)
+
+	useEffect(() => {
+		setCurrentUser(signupData?.signup.user || null)
+		setCookie(null, 'access_token', signupData?.signup.access_token || '', {
+			maxAge: 30 * 24 * 60 * 60 // 30 days
+		})
+	}, [signupData])
 
 	const me = async () => {
 		fetchMore({})
