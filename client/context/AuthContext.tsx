@@ -9,6 +9,7 @@ import { useRouter } from 'next/router'
 import { User, LoginInput, CreateUserInput, useLoginMutation, useSignupMutation, useMeQuery } from '@/gql'
 import { client } from '@/apollo'
 import { setCookie, parseCookies } from 'nookies'
+import { JWT_USER_SIGN_TTL } from '@/shared/constants'
 
 type IUser = User | null
 
@@ -56,7 +57,7 @@ export const AuthProvider: React.FC = ({ children }) => {
 		if (access_token) return
 		setCurrentUser(signupData?.signup.user || null)
 		setCookie(null, 'access_token', signupData?.signup.access_token || '', {
-			maxAge: 30 * 24 * 60 * 60 // 30 days
+			maxAge: JWT_USER_SIGN_TTL
 		})
 	}, [signupData])
 
