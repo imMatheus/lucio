@@ -9,7 +9,7 @@ import { useRouter } from 'next/router'
 import { User, LoginInput, CreateUserInput, useLoginMutation, useSignupMutation, useMeQuery } from '@/gql'
 import { client } from '@/apollo'
 import { setCookie, parseCookies } from 'nookies'
-import { JWT_USER_SIGN_TTL } from '@/shared/constants'
+import { JWT_USER_SIGN_TTL } from '@/constants/index'
 
 type IUser = User | null
 

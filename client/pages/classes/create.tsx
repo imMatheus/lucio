@@ -10,7 +10,7 @@ import { arrayEquals } from '@/utils/arrayEquals'
 import { Data } from '@/types/returns/api/classes/create'
 import ColorSelector from '@/components/classes/colorselector'
 
-import { colors as Colors } from '@/constants/colors'
+import { colors as Colors } from '@/constants'
 
 const Create: NextPage = () => {
 	const router = useRouter()

@@ -1,7 +1,7 @@
 import React from 'react'
 import { arrayEquals } from '@/utils/arrayEquals'
 import Color from './Color'
-import { colors } from '@/constants/colors'
+import { colors } from '@/constants'
 
 interface Props {
 	currentColors: [string, string]

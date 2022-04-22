@@ -1,6 +1,6 @@
 import { Schema, model, Model, models, Document } from 'mongoose'
 import { PrivacyEnum } from '@/types/ClassType'
-import { colors } from '@/constants/colors'
+import { colors } from '@/constants'
 
 export interface ClassRoomInterface extends Document {
 	name: string
