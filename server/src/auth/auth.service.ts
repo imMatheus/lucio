@@ -34,7 +34,21 @@ export class AuthService {
     };
   }
 
-  async signup(createUserInput: CreateUserInput) {
-    return this.usersService.create(createUserInput);
+  async signup(createUserInput: CreateUserInput): Promise<LoginResponse> {
+    console.log('server signup');
+    const user = await this.usersService.create(createUserInput);
+    console.log(user);
+
+    const sign: IPayload = {
+      username: user.name,
+      sub: user.id,
+      email: user.email,
+    };
+
+    return {
+      // access_token: 'jwtlol',
+      access_token: this.jwtService.sign(sign),
+      user: user ? (user as User) : null,
+    };
   }
 }

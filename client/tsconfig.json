@@ -17,15 +17,18 @@
 		"paths": {
 			"@/api/*": ["pages/api/*"],
 			"@/components/*": ["components/*"],
-			"@/utils/*": ["utils/*"],
-			"@/context/*": ["context/*"],
+			"@/constants": ["constants/index.ts"],
 			"@/constants/*": ["constants/*"],
+			"@/context/*": ["context/*"],
+			"@/utils/*": ["utils/*"],
 			"@/types/*": ["types/*"],
 			"@/returns/*": ["types/returns/*"],
 			"@/hooks/*": ["hooks/*"],
 			"@/models/*": ["models/*"],
-			"@/gql": ["graphql/generated.ts"],
-			"styles/*": ["styles/*"]
+			"@/gql": ["graphql/index.ts"],
+			"@/apollo": ["apollo/init.ts"],
+			"styles/*": ["styles/*"],
+			"@/shared/*": ["../shared/*"]
 		},
 		"incremental": true
 	},

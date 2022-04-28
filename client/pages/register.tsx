@@ -14,6 +14,9 @@ import { GetServerSideProps } from 'next'
 import axios from 'axios'
 import Cookies from 'cookies'
 import { useRouter } from 'next/router'
+import { useQuery, gql } from '@apollo/client'
+import { ClassroomType } from '@/gql'
+import { client } from '@/apollo'
 
 export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
 	const cookies = new Cookies(req, res)
@@ -26,12 +29,6 @@ export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
 			props: {}
 		}
 	}
-
-	// {
-	// 	headers: {
-	// 		token
-	// 	}
-	// }
 
 	const { data } = await axios.get('http://localhost:3000/api/auth/me', {
 		headers: {
@@ -60,6 +57,7 @@ export default function Register(): ReactElement {
 	const { signup } = useAuth()
 
 	useEffect(() => {
+		// validates email for UI purposes
 		setIsValidEmail(EmailValidator.validate(email))
 		setAvatar(
 			createAvatar(style, {
@@ -69,7 +67,9 @@ export default function Register(): ReactElement {
 	}, [email])
 
 	async function signupHandler() {
-		const res = await signup(email, password, name)
+		console.log('signup 70')
+
+		const res = await signup({ email, password, name })
 		console.log(res)
 	}
 

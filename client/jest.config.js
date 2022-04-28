@@ -18,6 +18,7 @@ const customJestConfig = {
 		'^@/components/(.*)$': '<rootDir>/components/$1',
 		'^@/utils/(.*)$': '<rootDir>/utils/$1',
 		'^@/context/(.*)$': '<rootDir>/context/$1',
+		'^@/constants(.*)$': '<rootDir>/constants/$1',
 		'^@/constants/(.*)$': '<rootDir>/constants/$1',
 		'^@/types/(.*)$': '<rootDir>/types/$1',
 		'^@/returns/(.*)$': '<rootDir>/types/returns/$1',

@@ -90,7 +90,7 @@ type Mutation {
   removeClassroom(id: Int!): ClassroomType!
   removeProblem(id: Int!): Problem!
   removeUser(id: Int!): User!
-  signup(createUserInput: CreateUserInput!): User!
+  signup(signupInput: CreateUserInput!): LoginResponse!
   updateClassroom(updateClassroomInput: UpdateClassroomInput!): ClassroomType!
   updateProblem(updateProblemInput: UpdateProblemInput!): Problem!
   updateUser(updateUserInput: UpdateUserInput!): User!
