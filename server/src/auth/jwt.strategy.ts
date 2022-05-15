@@ -5,7 +5,7 @@ import { Injectable } from '@nestjs/common';
 
 export interface IPayload {
   sub: string;
-  username: string;
+  name: string;
   email: string;
 }
 @Injectable()
@@ -20,10 +20,10 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
 
   async validate(payload: IPayload) {
     // TODO add necessary info for context here
-
+    console.log('ggg');
     const userInfo: UserJwt = {
       userId: payload.sub,
-      username: payload.username,
+      name: payload.name,
       email: payload.email,
     };
 

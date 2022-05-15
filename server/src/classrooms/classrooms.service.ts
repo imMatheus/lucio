@@ -37,7 +37,7 @@ export class ClassroomsService {
           role: RoleEnum.OWNER,
           userId: user.userId,
           email: user.email,
-          name: user.username,
+          name: user.name,
           joinedAt: new Date(),
         },
       ],
@@ -78,7 +78,7 @@ export class ClassroomsService {
       role: RoleEnum.STUDENT,
       userId: user.userId,
       email: user.email,
-      name: user.username,
+      name: user.name,
       joinedAt: new Date(),
     });
     await classroom.save();
