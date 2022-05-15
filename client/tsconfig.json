@@ -18,6 +18,7 @@
 			"@/components/*": ["components/*"],
 			"@/constants": ["constants/index.ts"],
 			"@/constants/*": ["constants/*"],
+			"@/firebase": ["firebase/index.ts"],
 			"@/context/*": ["context/*"],
 			"@/utils/*": ["utils/*"],
 			"@/types/*": ["types/*"],
