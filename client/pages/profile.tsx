@@ -9,7 +9,7 @@ import useDarkMode from '@/hooks/useDarkMode'
 import { useToast } from '@/context/ToastContext'
 
 const Profile: NextPage = () => {
-	const { currentUser, logout, updateUser } = useAuth()
+	// const { currentUser, logout } = useAuth()
 	const { setToast } = useToast()
 	const [darkMode, setDarkMode] = useDarkMode()
 	const [loading, setLoading] = useState(false)
@@ -31,44 +31,44 @@ const Profile: NextPage = () => {
 	const [bioError, setBioError] = useState('')
 	const bioInputRef = useRef<HTMLTextAreaElement>(null)
 
-	console.log(currentUser)
+	// console.log(currentUser)
 
-	if (!currentUser) return null
+	// if (!currentUser) return null
 
 	async function updateProfileHandler() {
 		try {
 			if (nameInputRef.current && bioInputRef.current && locationInputRef.current && schoolInputRef.current) {
 				setLoading(true)
 
-				const { message, errorType } = await updateUser({
-					name: nameInputRef.current.value,
+				// const { message, errorType } = await updateUser({
+				// 	name: nameInputRef.current.value,
 
-					bio: bioInputRef.current.value,
-					location: locationInputRef.current.value,
-					school: schoolInputRef.current.value
-				})
+				// 	bio: bioInputRef.current.value,
+				// 	location: locationInputRef.current.value,
+				// 	school: schoolInputRef.current.value
+				// })
 
 				// success
-				if (!message) {
-					setToast({ message: 'Successfully updated profile', type: 'success' })
-					setLoading(false)
-					return
-				}
+				// if (!message) {
+				// 	setToast({ message: 'Successfully updated profile', type: 'success' })
+				// 	setLoading(false)
+				// 	return
+				// }
 
-				// it was not an error with the name or bio, something else went wrong
-				if (!errorType) {
-					setToast({ message: message, type: 'error' })
-				}
-				if (errorType === 'name') {
-					setNameError(message)
-					setBioError('')
-					nameInputRef.current.focus()
-				}
-				if (errorType === 'bio') {
-					setBioError(message)
-					setNameError('')
-					bioInputRef.current.focus()
-				}
+				// // it was not an error with the name or bio, something else went wrong
+				// if (!errorType) {
+				// 	setToast({ message: message, type: 'error' })
+				// }
+				// if (errorType === 'name') {
+				// 	setNameError(message)
+				// 	setBioError('')
+				// 	nameInputRef.current.focus()
+				// }
+				// if (errorType === 'bio') {
+				// 	setBioError(message)
+				// 	setNameError('')
+				// 	bioInputRef.current.focus()
+				// }
 			}
 		} catch (error) {
 			setToast({ message: 'Could not update profile', type: 'error' })
@@ -81,7 +81,7 @@ const Profile: NextPage = () => {
 			<section className="my-5 max-w-2xl">
 				<h2 className="mb-2 text-lg font-bold md:text-xl lg:text-2xl">
 					Personal info{' '}
-					<span className="text-sm font-light text-gray-500 xl:text-base">- {currentUser.email}</span>
+					{/* <span className="text-sm font-light text-gray-500 xl:text-base">- {currentUser.email}</span> */}
 				</h2>
 
 				<Input
@@ -92,7 +92,7 @@ const Profile: NextPage = () => {
 					id="name"
 					autoComplete="name"
 					maxLength={40}
-					defaultValue={currentUser.name}
+					// defaultValue={currentUser.name}
 				/>
 				<div className="grid md:grid-cols-2 md:gap-3">
 					<Input
@@ -103,7 +103,7 @@ const Profile: NextPage = () => {
 						id="location"
 						autoComplete="location"
 						maxLength={50}
-						defaultValue={currentUser.location}
+						// defaultValue={currentUser.location}
 					/>
 					<Input
 						ref={schoolInputRef}
@@ -113,7 +113,7 @@ const Profile: NextPage = () => {
 						id="school"
 						autoComplete="school"
 						maxLength={50}
-						defaultValue={currentUser.school}
+						// defaultValue={currentUser.school}
 					/>
 				</div>
 
@@ -128,7 +128,7 @@ const Profile: NextPage = () => {
 							name="bio"
 							rows={4}
 							maxLength={1000}
-							defaultValue={currentUser.bio}
+							// defaultValue={currentUser.bio}
 							className="mt-1 block max-h-80 min-h-[3rem] w-full rounded-md border border-gray-300 shadow-sm focus:border-theme-500 focus:ring-theme-500 dark:border-gray-700 dark:bg-black sm:text-sm"
 							placeholder="Tell people about yourself"
 						></textarea>
@@ -143,9 +143,9 @@ const Profile: NextPage = () => {
 						Update profile
 					</button>
 					<button className="btn-shadow-2">Change password</button>
-					<button className="btn-shadow-1" onClick={async () => await logout()}>
-						Logout
-					</button>
+					{/* <button className="btn-shadow-1" onClick={async () => await logout()}> */}
+					Logout
+					{/* </button> */}
 				</div>
 			</section>
 

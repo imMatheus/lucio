@@ -4,10 +4,8 @@ import { Lock, Inbox, BookOpen } from 'react-feather'
 import { PrivacyEnum } from '@/types/ClassType'
 import PrivacyOption from '@/components/classes/PrivacyOption'
 import Button from '@/components/button'
-import axios from 'axios'
 import { useRouter } from 'next/router'
 import { arrayEquals } from '@/utils/arrayEquals'
-import { Data } from '@/types/returns/api/classes/create'
 import ColorSelector from '@/components/classes/colorselector'
 
 import { colors as Colors } from '@/constants'
@@ -17,18 +15,6 @@ const Create: NextPage = () => {
 	const [name, setName] = useState('')
 	const [colors, setColors] = useState<[string, string]>([Colors.theme, Colors.theme])
 	const [privacy, setPrivacy] = useState(PrivacyEnum.Public)
-
-	async function createClassRoom() {
-		const res = await axios.post('http://localhost:3000/api/classes/create', {
-			name,
-			privacy,
-			theme: colors
-		})
-		const { data }: { data: Data } = res
-		if (res.status === 200 && data.class && data.class._id) return router.push(`/classes/${data.class._id}`)
-
-		router.push('/classes')
-	}
 
 	return (
 		<div className="min-h-full-wo-nav bg-gray-200/40 p-4 dark:bg-gray-900 md:p-6">
@@ -97,7 +83,7 @@ const Create: NextPage = () => {
 					</div>
 				</form>
 			</div>
-			<Button onClick={createClassRoom}>Create class</Button>
+			{/* <Button onClick={createClassRoom}>Create class</Button> */}
 		</div>
 	)
 }

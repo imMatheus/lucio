@@ -2,7 +2,6 @@ import type { NextPage } from 'next'
 import React, { useEffect } from 'react'
 import Image from 'next/image'
 import Card from '@/components/home/Card'
-import axios from 'axios'
 
 const Home: NextPage = () => {
 	return (

@@ -3,39 +3,13 @@ import ClassCard from '@/components/classes/classcard/index'
 import { useToast } from '@/context/ToastContext'
 import Button from '@/components/button'
 import { GetServerSideProps } from 'next'
-import axios from 'axios'
 import type { NextPage } from 'next'
-import Cookies from 'cookies'
 import ClassType from '@/types/ClassType'
 import NoClasses from '@/components/classes/NoClasses'
 import Link from 'next/link'
-import { Data } from '@/types/returns/api/classes/join'
 import { useRouter } from 'next/router'
 interface Props {
 	classes: ClassType[]
-}
-
-export const getServerSideProps: GetServerSideProps<Props> = async ({ req, res }) => {
-	const cookies = new Cookies(req, res)
-
-	// get token from the users cookie
-	const token = cookies.get('jwt')
-
-	if (!token) {
-		return {
-			props: { classes: [] }
-		}
-	}
-
-	const classes = await axios.get('http://localhost:3000/api/classes/mine', {
-		headers: {
-			token
-		}
-	})
-
-	return {
-		props: { classes: classes.data }
-	}
 }
 
 const Classes: NextPage<Props> = ({ classes }) => {
@@ -43,23 +17,6 @@ const Classes: NextPage<Props> = ({ classes }) => {
 	const { setToast } = useToast()
 
 	// https://dribbble.com/shots/14653202-Coursebook-Your-Education-Platform
-
-	async function joinClassHandler() {
-		const code = prompt('Whats the code?')
-		if (!code) return
-
-		try {
-			const { data }: { data: Data } = await axios.post('/api/classes/join', {
-				code
-			})
-
-			if (data.classRoom) {
-				router.push(`/classes/${data.classRoom._id}`)
-			}
-		} catch (error) {
-			setToast({ message: 'Could not find class', type: 'error' })
-		}
-	}
 
 	return (
 		<section className="py-8 px-3 sm:px-6 lg:px-8">
@@ -71,9 +28,7 @@ const Classes: NextPage<Props> = ({ classes }) => {
 						</a>
 					</Link>
 
-					<Button variant="dimmed" onClick={joinClassHandler}>
-						Join class
-					</Button>
+					<Button variant="dimmed">Join class</Button>
 				</div>
 
 				{classes?.length > 0 ? (
@@ -85,7 +40,6 @@ const Classes: NextPage<Props> = ({ classes }) => {
 				) : (
 					<NoClasses />
 				)}
-				{/* {JSON.stringify(classes)} */}
 			</main>
 		</section>
 	)

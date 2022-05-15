@@ -18,39 +18,39 @@ interface Props {
 	// problem: Data
 }
 
-export const getStaticPaths: GetStaticPaths = async () => {
-	const response = await fetch('http://localhost:3000/api/problems')
-	const data = await response.json()
+// export const getStaticPaths: GetStaticPaths = async () => {
+// 	const response = await fetch('http://localhost:3000/api/problems')
+// 	const data = await response.json()
 
-	const problems: AlgorithmProblem[] = data.problems.map((problem: any) => problem as AlgorithmProblem)
-	const paths = problems.map((problem) => ({
-		params: { problemId: problem.name }
-	}))
+// 	const problems: AlgorithmProblem[] = data.problems.map((problem: any) => problem as AlgorithmProblem)
+// 	const paths = problems.map((problem) => ({
+// 		params: { problemId: problem.name }
+// 	}))
 
-	return {
-		paths,
-		fallback: false
-	}
-}
+// 	return {
+// 		paths,
+// 		fallback: false
+// 	}
+// }
 
-export const getStaticProps: GetStaticProps<Props> = async (context) => {
-	if (!context.params)
-		return {
-			props: {
-				problem: null
-			}
-		}
+// export const getStaticProps: GetStaticProps<Props> = async (context) => {
+// 	if (!context.params)
+// 		return {
+// 			props: {
+// 				problem: null
+// 			}
+// 		}
 
-	const response = await fetch(`http://localhost:3000/api/problems/${context.params.problemId}`)
-	const data: any = await response.json()
-	// const data: Data = await response.json()
+// 	const response = await fetch(`http://localhost:3000/api/problems/${context.params.problemId}`)
+// 	const data: any = await response.json()
+// 	// const data: Data = await response.json()
 
-	return {
-		props: {
-			problem: data
-		}
-	}
-}
+// 	return {
+// 		props: {
+// 			problem: data
+// 		}
+// 	}
+// }
 
 const Problem: NextPage<Props> = ({ problem }) => {
 	const resizeBarRef = useRef<HTMLDivElement>(null)

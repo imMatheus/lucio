@@ -1,5 +1,3 @@
-import { Document } from 'mongoose'
-
 export enum InputEnum {
 	String = 'string',
 	Integer = 'integer',

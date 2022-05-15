@@ -15,20 +15,14 @@
 		"jsx": "preserve",
 		"baseUrl": ".",
 		"paths": {
-			"@/api/*": ["pages/api/*"],
 			"@/components/*": ["components/*"],
 			"@/constants": ["constants/index.ts"],
 			"@/constants/*": ["constants/*"],
 			"@/context/*": ["context/*"],
 			"@/utils/*": ["utils/*"],
 			"@/types/*": ["types/*"],
-			"@/returns/*": ["types/returns/*"],
 			"@/hooks/*": ["hooks/*"],
-			"@/models/*": ["models/*"],
-			"@/gql": ["graphql/index.ts"],
-			"@/apollo": ["apollo/init.ts"],
-			"styles/*": ["styles/*"],
-			"@/shared/*": ["../shared/*"]
+			"styles/*": ["styles/*"]
 		},
 		"incremental": true
 	},

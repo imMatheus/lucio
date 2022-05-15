@@ -7,27 +7,9 @@ import { problems as _problems } from '../../problems/Algorithms'
 import Dropdown from '@/components/problems/Dropdown'
 import { useRouter } from 'next/router'
 import QueryChip from '@/components/problems/QueryChip'
-import axios from 'axios'
-import { Data } from '@/types/returns/api/problems'
 
 interface Props {
 	problems: AlgorithmProblem[]
-}
-
-export const getServerSideProps: GetServerSideProps = async (context) => {
-	const url = context.resolvedUrl
-
-	// const response: any[] = await axios.get('http://localhost:3000/api/problems')
-	const { data }: { data: Data } = await axios.get('http://localhost:3000/api' + url)
-
-	// console.log('___----___')
-	// const problems: AlgorithmProblem[] = data.map((prob: any) => prob as AlgorithmProblem)
-
-	return {
-		props: {
-			problems: data.problems
-		}
-	}
 }
 
 const Problems: NextPage<Props> = ({ problems, ...props }) => {

@@ -48,7 +48,7 @@ function FileCard({ file }: { file: File & FileProps }) {
 	)
 	if (downloadUrl)
 		return (
-			<a href={downloadUrl} target="_blank">
+			<a href={downloadUrl} target="_blank" rel="noreferrer">
 				{card}
 			</a>
 		)

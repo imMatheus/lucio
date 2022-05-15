@@ -1,4 +1,3 @@
-// jest.config.js
 const nextJest = require('next/jest')
 
 const createJestConfig = nextJest({
@@ -14,16 +13,13 @@ const customJestConfig = {
 	moduleDirectories: ['node_modules', '<rootDir>/'],
 	testEnvironment: 'jest-environment-jsdom',
 	moduleNameMapper: {
-		'^@/api/(.*)$': '<rootDir>/pages/api/$1',
 		'^@/components/(.*)$': '<rootDir>/components/$1',
 		'^@/utils/(.*)$': '<rootDir>/utils/$1',
 		'^@/context/(.*)$': '<rootDir>/context/$1',
 		'^@/constants(.*)$': '<rootDir>/constants/$1',
 		'^@/constants/(.*)$': '<rootDir>/constants/$1',
 		'^@/types/(.*)$': '<rootDir>/types/$1',
-		'^@/returns/(.*)$': '<rootDir>/types/returns/$1',
 		'^@/hooks/(.*)$': '<rootDir>/hooks/$1',
-		'^@/models/(.*)$': '<rootDir>/models/$1',
 		'^styles/(.*)$': '<rootDir>/styles/$1'
 	}
 }

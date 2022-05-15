@@ -1,24 +1,14 @@
 import React, { createContext, useContext, useEffect, useState } from 'react'
-import { UserInterface } from '@/models/User'
-import axios from 'axios'
-import { Data as logoutData } from '@/types/returns/api/logout'
-import Cookies from 'cookies'
 import { useToast } from './ToastContext'
-import { Data as updateData } from '@/api/auth/update'
 import { useRouter } from 'next/router'
-import { User, LoginInput, CreateUserInput, useLoginMutation, useSignupMutation, useMeQuery } from '@/gql'
-import { client } from '@/apollo'
-import { setCookie, parseCookies } from 'nookies'
 import { JWT_USER_SIGN_TTL } from '@/constants/index'
 
-type IUser = User | null
-
 interface Context {
-	currentUser: IUser
-	fetchingUser: boolean
-	signup: (signupInput: CreateUserInput) => Promise<void>
-	login: (loginInput: LoginInput) => Promise<void>
-	logout: () => Promise<void>
+	// currentUser: IUser
+	// fetchingUser: boolean
+	// signup: (signupInput: CreateUserInput) => Promise<void>
+	// login: (loginInput: LoginInput) => Promise<void>
+	// logout: () => Promise<void>
 	// updateUser: ({ name, bio }: UpdateUserProps) => Promise<updateData>
 }
 
@@ -36,102 +26,40 @@ export function useAuth() {
 }
 
 export const AuthProvider: React.FC = ({ children }) => {
-	const [currentUser, setCurrentUser] = useState<IUser>(null)
+	// const [currentUser, setCurrentUser] = useState<IUser>(null)
 	// const [fetchingUser, setFetchingUser] = useState(true)
 	const router = useRouter()
 	const { setToast } = useToast()
 
-	const { data: userData, loading: fetchingUser, error, fetchMore } = useMeQuery()
-	const [loginMutation, { error: loginError, data: loginData }] = useLoginMutation()
-	const [signupMutation, { error: signupError, data: signupData }] = useSignupMutation()
+	// const signup = async (signupInput: CreateUserInput) => {
+	// 	console.log('gggg')
+	// 	try {
+	// 		const res = await signupMutation({ variables: { signupInput } })
+	// 		console.log('res: ', res)
+	// 	} catch (error) {
+	// 		console.log(error)
+	// 	}
+	// }
 
-	console.log('userData: ', userData)
-	// console.log('loginData: ', loginData)
-	console.log('signupData: ', signupData?.signup)
-	console.log('signupError, ', signupError)
-	console.log('user, ', currentUser)
+	// const login = async (loginInput: LoginInput) => {
+	// 	loginMutation({ variables: { loginInput } })
+	// }
 
-	useEffect(() => {
-		const { access_token } = parseCookies()
-
-		if (access_token) return
-		setCurrentUser(signupData?.signup.user || null)
-		setCookie(null, 'access_token', signupData?.signup.access_token || '', {
-			maxAge: JWT_USER_SIGN_TTL
-		})
-	}, [signupData])
-
-	const me = async () => {
-		fetchMore({})
-		// setFetchingUser(true)
-
-		// const { data }: { data: meData } = await axios.get('/api/auth/me')
-
-		// setFetchingUser(false)
-		// if (!data || !data.user || !data.token) return setCurrentUser(null)
-
-		// setCurrentUser(data.user)
-	}
-
-	const signup = async (signupInput: CreateUserInput) => {
-		console.log('gggg')
-		try {
-			const res = await signupMutation({ variables: { signupInput } })
-			console.log('res: ', res)
-		} catch (error) {
-			console.log(error)
-		}
-
-		// const { redirect_url } = router.query
-
-		// if (redirect_url && typeof redirect_url === 'string') {
-		// 	router.replace(redirect_url)
+	const logout = async () => {
+		// if (data.success) {
+		// 	// await fetchUser()
+		// 	router.replace('/register')
 		// } else {
-		// 	router.replace('/classes')
+		// 	setToast({ message: 'Could not logout', type: 'error' })
 		// }
 	}
 
-	const login = async (loginInput: LoginInput) => {
-		loginMutation({ variables: { loginInput } })
-	}
-
-	const logout = async () => {
-		const { data }: { data: logoutData } = await axios.get('/api/auth/logout')
-
-		if (data.success) {
-			// await fetchUser()
-			router.replace('/register')
-		} else {
-			setToast({ message: 'Could not logout', type: 'error' })
-		}
-	}
-
-	// const updateUser = async (props: UpdateUserProps): Promise<updateData> => {
-	// 	const { data }: { data: updateData } = await axios.put('/api/auth/update', { ...props })
-
-	// if (data.message === null) {
-	// 	await fetchUser()
-	// }
-
-	// return data
-
-	// setToast({ message: 'Could not logout', type: 'error' })
-	// }
-
-	// useEffect(() => {
-	// 	async function init() {
-	// 		await fetchUser()
-	// 	}
-	// 	init()
-	// 	return () => {}
-	// }, [])
-
 	const value = {
-		currentUser,
-		fetchingUser,
-		signup,
-		login,
-		logout
+		// currentUser,
+		// fetchingUser,
+		// signup,
+		// login,
+		// logout
 		// updateUser
 	}
 	return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>

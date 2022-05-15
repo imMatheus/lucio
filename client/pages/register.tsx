@@ -11,38 +11,7 @@ import usePasswordStrength from '@/hooks/usePasswordStrength'
 import Head from 'next/head'
 import { useAuth } from '@/context/AuthContext'
 import { GetServerSideProps } from 'next'
-import axios from 'axios'
-import Cookies from 'cookies'
 import { useRouter } from 'next/router'
-import { useQuery, gql } from '@apollo/client'
-import { ClassroomType } from '@/gql'
-import { client } from '@/apollo'
-
-export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
-	const cookies = new Cookies(req, res)
-
-	// get token from the users cookie
-	const token = cookies.get('jwt')
-
-	if (!token) {
-		return {
-			props: {}
-		}
-	}
-
-	const { data } = await axios.get('http://localhost:3000/api/auth/me', {
-		headers: {
-			token
-		}
-	})
-
-	if (data.user) {
-		res.statusCode = 302
-		res.setHeader('Location', `/`) // Replace <link> with your url link
-		return { props: {} }
-	}
-	return { props: {} }
-}
 
 export default function Register(): ReactElement {
 	const [email, setEmail] = useState('')
@@ -54,7 +23,7 @@ export default function Register(): ReactElement {
 	const [name, setName] = useState('')
 	const [showNameContainer, setShowNameContainer] = useState(false)
 	const [avatar, setAvatar] = useState('')
-	const { signup } = useAuth()
+	// const { signup } = useAuth()
 
 	useEffect(() => {
 		// validates email for UI purposes
@@ -69,8 +38,8 @@ export default function Register(): ReactElement {
 	async function signupHandler() {
 		console.log('signup 70')
 
-		const res = await signup({ email, password, name })
-		console.log(res)
+		// const res = await signup({ email, password, name })
+		// console.log(res)
 	}
 
 	const buff = new Buffer(avatar)

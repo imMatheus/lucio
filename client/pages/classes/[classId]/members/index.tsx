@@ -3,7 +3,6 @@ import type { NextPage } from 'next'
 import ClassNavbar from '@/components/classes/classnavbar/index'
 import StudentsTable from '@/components/classes/StudentsTable'
 import Head from 'next/head'
-import useClassData from '@/hooks/useClassData'
 import { useRouter } from 'next/router'
 import PaddingContainer from '@/components/classes/PaddingContainer'
 
@@ -11,13 +10,11 @@ const Members: NextPage = () => {
 	const router = useRouter()
 	const classId = router.query.classId
 
-	const [classData, loadingClassData] = useClassData(classId)
-
 	return (
 		<PaddingContainer>
 			<Head>
-				<title>{classData?.name} | Members</title>
-				<meta property="og:title" content={`${classData?.name} | Students`} key="title" />
+				{/* <title>{classData?.name} | Members</title> */}
+				{/* <meta property="og:title" content={`${classData?.name} | Students`} key="title" /> */}
 			</Head>
 			<ClassNavbar />
 			<StudentsTable />
