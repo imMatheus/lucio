@@ -12,18 +12,22 @@ export class AuthService {
     private jwtService: JwtService,
   ) {}
 
-  async validateUser(username: string, password: string): Promise<any> {
-    const user = await this.usersService.findByNameAndPassword(
-      username,
+  async validateUser(email: string, password: string): Promise<any> {
+    console.log('16');
+    const user = await this.usersService.findByEmailAndPassword(
+      email,
       password,
     );
+
+    console.log(user);
 
     return user;
   }
 
   async login(user: User): Promise<LoginResponse> {
+    console.log('25');
     const sign: IPayload = {
-      username: user.name,
+      name: user.name,
       sub: user.id,
       email: user.email,
     };
@@ -40,7 +44,7 @@ export class AuthService {
     console.log(user);
 
     const sign: IPayload = {
-      username: user.name,
+      name: user.name,
       sub: user.id,
       email: user.email,
     };

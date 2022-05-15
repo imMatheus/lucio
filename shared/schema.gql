@@ -64,8 +64,8 @@ enum InputEnum {
 }
 
 input LoginInput {
+  email: String!
   password: String!
-  username: String!
 }
 
 type LoginResponse {
