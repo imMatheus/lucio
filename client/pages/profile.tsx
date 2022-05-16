@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import type { NextPage } from 'next'
 import { useAuth } from '@/context/AuthContext'
 import Button from '@/components/button'
@@ -7,12 +7,14 @@ import ThemeCard from '@/components/profile/ThemeCard'
 import Input from '@/components/profile/Input'
 import useDarkMode from '@/hooks/useDarkMode'
 import { useToast } from '@/context/ToastContext'
+import { useRouter } from 'next/router'
 
 const Profile: NextPage = () => {
-	// const { currentUser, logout } = useAuth()
+	const { currentUser, fetchingUser, logout } = useAuth()
 	const { setToast } = useToast()
 	const [darkMode, setDarkMode] = useDarkMode()
 	const [loading, setLoading] = useState(false)
+	const router = useRouter()
 
 	// state for form
 	// name
@@ -31,9 +33,11 @@ const Profile: NextPage = () => {
 	const [bioError, setBioError] = useState('')
 	const bioInputRef = useRef<HTMLTextAreaElement>(null)
 
-	// console.log(currentUser)
-
-	// if (!currentUser) return null
+	// useEffect(() => {
+	// 	if (!currentUser || !fetchingUser) {
+	// 		router.replace('/')
+	// 	}
+	// }, [router, currentUser, fetchingUser])
 
 	async function updateProfileHandler() {
 		try {
@@ -92,18 +96,18 @@ const Profile: NextPage = () => {
 					id="name"
 					autoComplete="name"
 					maxLength={40}
-					// defaultValue={currentUser.name}
+					defaultValue={currentUser?.name}
 				/>
 				<div className="grid md:grid-cols-2 md:gap-3">
 					<Input
 						ref={locationInputRef}
 						type="text"
 						label="Location"
-						placeholder="United States of America..."
+						placeholder="Boston, USA..."
 						id="location"
 						autoComplete="location"
 						maxLength={50}
-						// defaultValue={currentUser.location}
+						defaultValue={currentUser?.location}
 					/>
 					<Input
 						ref={schoolInputRef}
@@ -113,7 +117,7 @@ const Profile: NextPage = () => {
 						id="school"
 						autoComplete="school"
 						maxLength={50}
-						// defaultValue={currentUser.school}
+						defaultValue={currentUser?.school}
 					/>
 				</div>
 
@@ -143,9 +147,9 @@ const Profile: NextPage = () => {
 						Update profile
 					</button>
 					<button className="btn-shadow-2">Change password</button>
-					{/* <button className="btn-shadow-1" onClick={async () => await logout()}> */}
-					Logout
-					{/* </button> */}
+					<button className="btn-shadow-1" onClick={async () => await logout()}>
+						Logout
+					</button>
 				</div>
 			</section>
 

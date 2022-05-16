@@ -24,26 +24,31 @@ import {
 	onAuthStateChanged
 } from 'firebase/auth'
 
-import { auth, fs } from '../firebase'
+import { auth, fs } from '@/firebase'
 import { User, FirestoreUser } from '@/types/User'
 
-async function signup(email: string, password: string, displayName: string, imageUrl: string | ArrayBuffer) {
-	const usersNamesRef = query(collection(fs, 'users'), where('displayName', '==', displayName), limit(1))
-	const document: DocumentData = await getDocs(usersNamesRef)
-	if (document.exists) {
-		// checking if the display name already exist
-		const error = { message: 'Display name already exist' }
-		return error
-	}
+async function signup(email: string, password: string, name: string) {
+	// const usersNamesRef = query(collection(fs, 'users'), where('displayName', '==', name), limit(1))
+	// const document: DocumentData = await getDocs(usersNamesRef)
+
+	console.log('made it here')
+	// if (document.exists) {
+	// 	// checking if the display name already exist
+	// 	const error = { message: 'Display name already exist' }
+	// 	return error
+	// }
 	try {
 		await createUserWithEmailAndPassword(auth, email, password)
 		if (!auth.currentUser) return
-		setDoc(doc(fs, 'users', auth.currentUser.uid), {
-			displayName: displayName,
-			email: email,
-			userUID: auth.currentUser?.uid,
-			profileImage: imageUrl
+
+		const ref = await setDoc(doc(fs, `users/${auth.currentUser.uid}`), {
+			name,
+			email,
+			userUID: auth.currentUser?.uid
 		})
+
+		console.log('success')
+		console.log(ref)
 	} catch (error) {
 		return error
 	}
@@ -71,7 +76,7 @@ interface Context {
 	fetchingUser: boolean
 	logout: () => Promise<void>
 	login: (email: string, password: string) => Promise<UserCredential>
-	signup: (email: string, password: string, displayName: string, imageUrl: string | ArrayBuffer) => Promise<unknown>
+	signup: (email: string, password: string, name: string) => Promise<unknown>
 	resetPassword: (email: string) => Promise<string | void>
 }
 
@@ -94,6 +99,8 @@ export const AuthProvider: React.FC = ({ children }) => {
 
 	useEffect(() => {
 		const unsubscribe = onAuthStateChanged(auth, async (user) => {
+			console.log('in user change state')
+
 			if (!user) {
 				setCurrentUser(null)
 				setFetchingUser(false)

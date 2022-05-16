@@ -14,6 +14,7 @@ import { GetServerSideProps } from 'next'
 import { useRouter } from 'next/router'
 
 export default function Register(): ReactElement {
+	const router = useRouter()
 	const [email, setEmail] = useState('')
 	const [isValidEmail, setIsValidEmail] = useState(false)
 	const [showPassword, setShowPassword] = useState(false)
@@ -23,7 +24,7 @@ export default function Register(): ReactElement {
 	const [name, setName] = useState('')
 	const [showNameContainer, setShowNameContainer] = useState(false)
 	const [avatar, setAvatar] = useState('')
-	// const { signup } = useAuth()
+	const { signup } = useAuth()
 
 	useEffect(() => {
 		// validates email for UI purposes
@@ -37,9 +38,12 @@ export default function Register(): ReactElement {
 
 	async function signupHandler() {
 		console.log('signup 70')
-
-		// const res = await signup({ email, password, name })
-		// console.log(res)
+		const signupRes = await signup(email, password, name)
+		console.log('sss')
+		console.log(signupRes)
+		if (!signupRes) {
+			router.replace('/profile')
+		}
 	}
 
 	const buff = new Buffer(avatar)
