@@ -13,17 +13,17 @@
 
 .white {
 	@extend .btn;
-	@apply col-span-full border-black bg-white text-black;
+	@apply col-span-full border-clr-border bg-clr-bg text-clr-text;
 }
 
 .black {
 	@extend .btn;
-	@apply col-span-full border-black bg-clr-bg text-gray-100 hover:bg-clr-bg;
+	@apply col-span-full border-clr-border bg-clr-bg text-clr-text hover:bg-clr-bg;
 }
 
 .dimmed {
 	@extend .btn;
-	@apply hover:bg-gray-500/10;
+	@apply hover:bg-clr-text-grayed;
 }
 
 .error {

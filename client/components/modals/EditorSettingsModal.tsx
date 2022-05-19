@@ -18,15 +18,15 @@ const EditorSettingsModal: React.FC = () => {
 		>
 			<div className="flex min-h-screen items-center justify-center p-4 text-center sm:block sm:p-0">
 				{/* A dark overlay */}
-				<div className="fixed inset-0 bg-gray-500/75 transition-opacity" aria-hidden="true"></div>
+				<div className="bg-clr-bg-grayed/75 fixed inset-0 transition-opacity" aria-hidden="true"></div>
 
 				<span className="hidden sm:inline-block sm:h-screen sm:align-middle" aria-hidden="true">
 					&#8203;
 				</span>
 
-				<div className="prose prose-gray inline-block max-h-[95vh] transform overflow-x-hidden overflow-y-scroll rounded-lg bg-gray-50 p-4 pb-6 text-left align-bottom shadow-xl transition-all dark:prose-invert sm:my-8 sm:w-full sm:max-w-lg sm:align-middle">
+				<div className="prose prose-gray inline-block max-h-[95vh] transform overflow-x-hidden overflow-y-scroll rounded-lg bg-clr-text p-4 pb-6 text-left align-bottom shadow-xl transition-all dark:prose-invert sm:my-8 sm:w-full sm:max-w-lg sm:align-middle">
 					<div
-						className="absolute top-2 left-2 cursor-pointer rounded-full p-1 transition-colors hover:bg-gray-100"
+						className="absolute top-2 left-2 cursor-pointer rounded-full p-1 transition-colors hover:bg-clr-bg"
 						onClick={() => {
 							setShowModal(false)
 						}}

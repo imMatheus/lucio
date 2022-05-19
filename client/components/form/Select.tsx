@@ -17,7 +17,7 @@ const Select: React.FC<SelectProps> = ({ name, id, value, onChange, Icon, childr
 				id={id}
 				value={value}
 				onChange={onChange}
-				className="rounded-lg border-gray-500 bg-gray-100 py-1.5 pl-6 text-xs shadow-sm md:pl-7 md:text-sm"
+				className="rounded-lg border-clr-bg-grayed bg-clr-bg py-1.5 pl-6 text-xs shadow-sm md:pl-7 md:text-sm"
 			>
 				{children}
 			</select>

@@ -54,7 +54,7 @@ const Options: React.FC = () => {
 			</Select>
 
 			<Settings
-				className="h-5 w-5 cursor-pointer text-gray-900"
+				className="h-5 w-5 cursor-pointer text-clr-text"
 				role="button"
 				onClick={() => {
 					setModal('editor')

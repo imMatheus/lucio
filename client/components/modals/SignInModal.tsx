@@ -20,7 +20,10 @@ const SignInModal: React.FC = () => {
 			aria-modal="true"
 		>
 			<div className="flex min-h-screen items-end justify-center px-4 pt-4 pb-20 text-center sm:block sm:p-0">
-				<div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
+				<div
+					className="fixed inset-0 bg-clr-bg-grayed bg-opacity-75 transition-opacity"
+					aria-hidden="true"
+				></div>
 
 				<span className="hidden sm:inline-block sm:h-screen sm:align-middle" aria-hidden="true">
 					&#8203;
@@ -28,7 +31,7 @@ const SignInModal: React.FC = () => {
 
 				<div className="prose inline-block transform overflow-hidden rounded-lg bg-white p-4 pb-6 text-left align-bottom shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:align-middle">
 					<div
-						className="absolute top-2 left-2 cursor-pointer rounded-full p-1 transition-colors hover:bg-gray-100"
+						className="absolute top-2 left-2 cursor-pointer rounded-full p-1 transition-colors hover:bg-clr-bg"
 						onClick={() => {
 							setShowModal(false)
 						}}

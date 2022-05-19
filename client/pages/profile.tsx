@@ -85,7 +85,7 @@ const Profile: NextPage = () => {
 			<section className="my-5 max-w-2xl">
 				<h2 className="mb-2 text-lg font-bold md:text-xl lg:text-2xl">
 					Personal info{' '}
-					{/* <span className="text-sm font-light text-gray-500 xl:text-base">- {currentUser.email}</span> */}
+					{/* <span className="text-sm font-light text-clr-bg-grayed xl:text-base">- {currentUser.email}</span> */}
 				</h2>
 
 				<Input

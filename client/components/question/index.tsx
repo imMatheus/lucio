@@ -32,18 +32,18 @@ const Question = React.forwardRef<HTMLElement, QuestionProps>(({ markdown }, ref
 
 	return (
 		<section
-			className="w-full overflow-scroll border-b border-b-gray-900 bg-gray-100 dark:border-b-gray-100 dark:bg-gray-900 md:h-full md:border-0"
+			className="w-full overflow-scroll border-b border-b-clr-text bg-clr-bg dark:border-b-clr-bg dark:bg-clr-text md:h-full md:border-0"
 			ref={ref}
 		>
 			<article className="py-10 sm:py-12">
 				<div
-					className={`prose prose-gray max-w-none px-6 prose-headings:text-gray-900 
-					prose-strong:rounded-lg prose-strong:bg-gray-900/10 
-					prose-strong:px-2 prose-strong:py-0.5 prose-strong:text-gray-900 
-					prose-li:marker:text-clr-accent-1000 prose-img:max-w-[min(48rem,_100%)] 
-					dark:prose-invert dark:prose-headings:text-gray-100 
-					dark:prose-strong:bg-gray-600/10 dark:prose-strong:text-gray-50 
-					dark:prose-li:marker:text-gray-100`}
+					className={`dark:prose-strong:bg-clr-text-grayed/10 prose-strong:bg-clr-text/10 prose prose-gray max-w-none 
+					px-6 prose-headings:text-clr-text 
+					prose-strong:rounded-lg prose-strong:px-2 prose-strong:py-0.5 
+					prose-strong:text-clr-text prose-li:marker:text-clr-accent-1000 
+					prose-img:max-w-[min(48rem,_100%)] dark:prose-invert 
+					dark:prose-headings:text-clr-bg dark:prose-strong:text-clr-text 
+					dark:prose-li:marker:text-clr-bg`}
 					ref={divRef}
 				></div>
 			</article>

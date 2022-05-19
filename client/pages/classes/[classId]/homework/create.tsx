@@ -38,7 +38,7 @@ const NoSsr = () => {
 			<h3 className="mb-2 text-2xl font-bold">
 				Files
 				{files.length >= 1 && (
-					<span className="text-base font-normal text-gray-600"> - {files.length} added</span>
+					<span className="text-base font-normal text-clr-text-grayed"> - {files.length} added</span>
 				)}
 			</h3>
 			<FileCardWrapper>

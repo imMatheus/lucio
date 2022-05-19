@@ -8,7 +8,7 @@ const Home: NextPage = () => {
 		<div className="selection:bg-clr-accent-100 selection:text-clr-accent-900">
 			<header className="relative px-5 py-12 lg:px-14 lg:py-24 xl:py-32">
 				<div className="relative z-10 mx-auto max-w-7xl">
-					<h1 className="mb-3 text-center font-grotesk text-6xl font-extrabold text-gray-80 xl:text-8xl">
+					<h1 className="text-gray-80 mb-3 text-center font-grotesk text-6xl font-extrabold xl:text-8xl">
 						LucioCode
 					</h1>
 				</div>
@@ -17,7 +17,7 @@ const Home: NextPage = () => {
 				</p>
 			</header>
 
-			<section className="bg-clr-accent-200 p-12 text-gray-900 md:p-24">
+			<section className="bg-clr-accent-200 p-12 text-clr-text md:p-24">
 				<div className="mx-auto grid max-w-7xl gap-4 md:grid-cols-2 md:gap-12">
 					<h2 className="text-3xl font-semibold md:text-4xl">
 						With the Right Software, Great Things Can Happen
@@ -54,7 +54,7 @@ const Home: NextPage = () => {
 				</div>
 			</section>
 
-			<section className="bg-secondary-500 p-12 text-gray-100 md:p-24">
+			<section className="bg-secondary-500 p-12 text-clr-bg md:p-24">
 				<div className="mx-auto grid max-w-7xl gap-4 md:grid-cols-2 md:gap-12">
 					<h2 className="text-3xl font-semibold md:text-4xl">
 						With the Right Software, Great Things Can Happen

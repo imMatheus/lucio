@@ -93,10 +93,10 @@ const Problem: NextPage<Props> = ({ problem }) => {
 				className="hidden h-full w-2 cursor-ew-resize flex-col items-center justify-center gap-1 bg-gray-300 md:flex"
 				onMouseDown={mouseDownHandler}
 			>
-				<div className="h-0.5 w-0.5 rounded-full bg-gray-600"></div>
-				<div className="h-0.5 w-0.5 rounded-full bg-gray-600"></div>
-				<div className="h-0.5 w-0.5 rounded-full bg-gray-600"></div>
-				<div className="h-0.5 w-0.5 rounded-full bg-gray-600"></div>
+				<div className="h-0.5 w-0.5 rounded-full bg-clr-text-grayed"></div>
+				<div className="h-0.5 w-0.5 rounded-full bg-clr-text-grayed"></div>
+				<div className="h-0.5 w-0.5 rounded-full bg-clr-text-grayed"></div>
+				<div className="h-0.5 w-0.5 rounded-full bg-clr-text-grayed"></div>
 			</div>
 			<Monaco ref={editorWrapperRef} problem={problem} />
 		</main>

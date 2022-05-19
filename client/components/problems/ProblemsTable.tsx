@@ -20,7 +20,7 @@ const ProblemTable: React.FC<ProblemsListProps> = ({ problems, loading }) => {
 		<div className="inline-block w-full py-2 align-middle">
 			<div className="overflow-hidden overflow-x-scroll rounded-t-lg border-b border-gray-200 shadow">
 				<table className="my-0 min-w-full divide-y divide-gray-200">
-					<thead className="bg-gray-100">
+					<thead className="bg-clr-bg">
 						<tr>
 							<Column>Status</Column>
 							<Column>Name</Column>

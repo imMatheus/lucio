@@ -25,7 +25,7 @@ const Create: NextPage = () => {
 				<h2 className="mb-4 text-2xl font-black md:mb-6 md:text-5xl">Create a class</h2>
 			</div>
 
-			<label htmlFor="name" className="mb-2 block text-base font-semibold text-gray-900 lg:text-lg">
+			<label htmlFor="name" className="mb-2 block text-base font-semibold text-clr-text lg:text-lg">
 				Class name
 			</label>
 			<input
@@ -40,13 +40,13 @@ const Create: NextPage = () => {
 			/>
 
 			<div className="my-3 md:my-4">
-				<p className="m-0 text-base font-semibold text-gray-900 lg:text-lg">Theme</p>
+				<p className="m-0 text-base font-semibold text-clr-text lg:text-lg">Theme</p>
 				<ColorSelector currentColors={colors} setColors={setColors} />
 			</div>
 
 			<div className="my-3 md:py-4">
 				<form>
-					<p className="m-0 mb-2 text-lg font-black text-gray-900">Privacy</p>
+					<p className="m-0 mb-2 text-lg font-black text-clr-text">Privacy</p>
 					<div className="space-y-3">
 						<PrivacyOption
 							Icon={BookOpen}
@@ -55,7 +55,7 @@ const Create: NextPage = () => {
 							setPrivacy={setPrivacy}
 							privacy={privacy}
 						>
-							<span className="font-semibold text-gray-900"> Public: </span> Anyone with the class code
+							<span className="font-semibold text-clr-text"> Public: </span> Anyone with the class code
 							can join the class
 						</PrivacyOption>
 						<PrivacyOption
@@ -65,7 +65,7 @@ const Create: NextPage = () => {
 							setPrivacy={setPrivacy}
 							privacy={privacy}
 						>
-							<span className="font-semibold text-gray-900"> Invite: </span>
+							<span className="font-semibold text-clr-text"> Invite: </span>
 							Anyone with the class code can send an invite to join the class
 						</PrivacyOption>
 						<PrivacyOption
@@ -75,7 +75,7 @@ const Create: NextPage = () => {
 							setPrivacy={setPrivacy}
 							privacy={privacy}
 						>
-							<span className="font-semibold text-gray-900"> Closed: </span>No-one can join or request to
+							<span className="font-semibold text-clr-text"> Closed: </span>No-one can join or request to
 							join the class
 						</PrivacyOption>
 					</div>

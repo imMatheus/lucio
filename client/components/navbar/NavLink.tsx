@@ -8,7 +8,7 @@ interface NavLinkProps {
 const NavLink: React.FC<NavLinkProps> = ({ href, children }) => {
 	return (
 		<Link href={href} passHref={true}>
-			<a className="cursor-pointer text-sm font-medium text-gray-700 transition-colors hover:text-gray-900">
+			<a className="cursor-pointer text-sm font-medium text-gray-700 transition-colors hover:text-clr-text">
 				{children}
 			</a>
 		</Link>

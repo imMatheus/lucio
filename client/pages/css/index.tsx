@@ -26,12 +26,12 @@ const index: NextPage = () => {
 					<div className="mb-1.5 h-2.5 w-6 rounded-full bg-gray-400"></div>
 					<div className="mb-1.5 h-2.5 w-6 rounded-full bg-gray-400"></div>
 				</div>
-				<div className="bg-gray-900 pt-2 pl-2">
+				<div className="bg-clr-text pt-2 pl-2">
 					<Row>
 						<div className="h-2.5 w-9 rounded-full bg-indigo-400"></div>
 						<div className="h-2.5 w-14 rounded-full bg-rose-700"></div>
 						<div className="h-2.5 w-7 rounded-full bg-indigo-400"></div>
-						<div className="h-2.5 w-5 rounded-full bg-gray-100"></div>
+						<div className="h-2.5 w-5 rounded-full bg-clr-bg"></div>
 					</Row>
 
 					<Row></Row>
@@ -52,7 +52,7 @@ const index: NextPage = () => {
 						<div className="h-2.5 w-2 rounded-full bg-transparent"></div>
 						<div className="h-2.5 w-7 rounded-full bg-rose-700"></div>
 						<div className="h-2.5 w-4 rounded-full bg-amber-400"></div>
-						<div className="h-2.5 w-8 rounded-full bg-gray-100"></div>
+						<div className="h-2.5 w-8 rounded-full bg-clr-bg"></div>
 					</Row>
 
 					<Row>
@@ -61,7 +61,7 @@ const index: NextPage = () => {
 						<div className="h-2.5 w-2 rounded-full bg-transparent"></div>
 						<div className="h-2.5 w-9 rounded-full bg-rose-700"></div>
 						<div className="h-2.5 w-3 rounded-full bg-amber-400"></div>
-						<div className="h-2.5 w-6 rounded-full bg-gray-100"></div>
+						<div className="h-2.5 w-6 rounded-full bg-clr-bg"></div>
 						<div className="h-2.5 w-9 rounded-full bg-rose-700"></div>
 					</Row>
 

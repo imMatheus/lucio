@@ -18,7 +18,7 @@ const Table: React.FC<ProblemsListProps> = ({ problems }) => {
 				<div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
 					<div className="overflow-hidden border-b border-gray-200 shadow sm:rounded-lg">
 						<table className="min-w-full divide-y divide-gray-200">
-							<thead className="bg-gray-50">
+							<thead className="bg-clr-text">
 								<tr>
 									<Column>Name</Column>
 									<Column>Title</Column>
@@ -29,15 +29,15 @@ const Table: React.FC<ProblemsListProps> = ({ problems }) => {
 							<tbody className="divide-y divide-gray-200 bg-white">
 								<tr>
 									<td className="whitespace-nowrap px-6 py-4">
-										<div className="text-sm text-gray-900">Regional Paradigm Technician</div>
-										<div className="text-sm text-gray-500">Optimization</div>
+										<div className="text-sm text-clr-text">Regional Paradigm Technician</div>
+										<div className="text-sm text-clr-bg-grayed">Optimization</div>
 									</td>
 									<td className="whitespace-nowrap px-6 py-4">
 										<span className="inline-flex rounded-full bg-green-100 px-2 text-xs font-semibold leading-5 text-green-800">
 											Active
 										</span>
 									</td>
-									<td className="whitespace-nowrap px-6 py-4 text-sm text-gray-500">Admin</td>
+									<td className="whitespace-nowrap px-6 py-4 text-sm text-clr-bg-grayed">Admin</td>
 									<td className="whitespace-nowrap px-6 py-4 text-right text-sm font-medium">
 										<a href="#" className="text-indigo-600 hover:text-indigo-900">
 											Edit

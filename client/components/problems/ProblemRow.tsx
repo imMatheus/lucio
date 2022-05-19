@@ -19,22 +19,22 @@ const TableRow: React.FC<TableRowProps> = ({ name, loading, difficulty, index })
 				} group cursor-pointer transition-shadow`}
 			>
 				<td className="relative w-10 whitespace-nowrap">
-					<div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-sm text-gray-900">
+					<div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-sm text-clr-text">
 						<div className="h-[3px] w-5 bg-gray-400" />
 						{/* <Activity className="w-5 h-5 text-mustard" /> */}
 						{/* <Check className="w-5 h-5 text-olive" /> */}
 					</div>
 				</td>
 				<td className="whitespace-nowrap px-6 py-4">
-					<div className="text-base font-semibold text-gray-900 transition-colors group-hover:text-clr-accent">
+					<div className="text-base font-semibold text-clr-text transition-colors group-hover:text-clr-accent">
 						{name}
 					</div>
 				</td>
 				<td className="whitespace-nowrap px-6 py-4">
-					<div className="text-sm text-gray-900">47.5%</div>
+					<div className="text-sm text-clr-text">47.5%</div>
 				</td>
 				<td className="whitespace-nowrap px-6 py-4">
-					<div className="text-sm text-gray-900">34.6k</div>
+					<div className="text-sm text-clr-text">34.6k</div>
 				</td>
 				<td className="whitespace-nowrap px-6 py-4">
 					<span className="inline-flex text-sm font-semibold leading-5">

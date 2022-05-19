@@ -40,7 +40,7 @@ const FileCard: React.FC<FileCardProps> = ({ file }) => {
 				)}
 			</div>
 			<p className="text-one-line">{file.name}</p>
-			<span className="ml-2 flex-shrink-0 text-sm text-gray-500">{getFileSize(file.size)}</span>
+			<span className="ml-2 flex-shrink-0 text-sm text-clr-bg-grayed">{getFileSize(file.size)}</span>
 		</div>
 	)
 }

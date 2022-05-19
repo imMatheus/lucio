@@ -43,7 +43,7 @@ const MonacoEditor = React.forwardRef<HTMLDivElement, Props>(({ problem }, ref) 
 		<div className="md:max-h-full-wo-nav md:h-full-wo-nav h-screen w-screen overflow-y-scroll md:w-full">
 			{editorSettings.zenMode && (
 				<button
-					className="rounded-4 fixed bottom-7 right-7 z-50 rounded-md border border-gray-200 bg-gray-900 px-3 py-1.5 font-light text-gray-100"
+					className="rounded-4 fixed bottom-7 right-7 z-50 rounded-md border border-gray-200 bg-clr-text px-3 py-1.5 font-light text-clr-bg"
 					onClick={() => {
 						setEditorSettings({ ...editorSettings, zenMode: false })
 					}}

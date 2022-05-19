@@ -43,33 +43,33 @@ export default function StudentCard({ user, role, joinedAt, edit, loading }: Pro
 							/>
 						</div>
 						<div className="ml-4">
-							<div className="text-sm font-medium text-gray-900">
+							<div className="text-sm font-medium text-clr-text">
 								{loading ? <SkeletonText className="mb-1" min={8} max={15} /> : user.name}
 							</div>
-							<div className="text-sm text-gray-500">
+							<div className="text-sm text-clr-text-grayed">
 								{loading ? <SkeletonText min={12} max={22} /> : user.email}
 							</div>
 						</div>
 					</div>
 				</td>
 				<td className="whitespace-nowrap px-6 py-4">
-					<div className="text-sm text-gray-600">
+					<div className="text-sm text-clr-text-grayed">
 						{loading ? <SkeletonText min={6} max={10} /> : convertDate(joinedAt)}
 					</div>
 				</td>
 				<td className="whitespace-nowrap px-6 py-4">
-					<div className="text-sm text-gray-600">
+					<div className="text-sm text-clr-text-grayed">
 						{loading ? <SkeletonText min={6} max={10} /> : convertDate(joinedAt)}
 					</div>
 				</td>
 				<td className="items-center whitespace-nowrap px-6 py-4">
 					<StatusChip status="active" loading={true} />
 				</td>
-				<td className="whitespace-nowrap px-6 py-4 text-sm text-gray-600">
+				<td className="whitespace-nowrap px-6 py-4 text-sm text-clr-text-grayed">
 					{loading ? (
 						<SkeletonText min={4} max={8} />
 					) : role.toLowerCase() === 'admin' ? (
-						<div className="font-black text-gray-900">{capitalizeFirstLetter(role)}</div>
+						<div className="font-black text-clr-text">{capitalizeFirstLetter(role)}</div>
 					) : (
 						capitalizeFirstLetter(role)
 					)}
