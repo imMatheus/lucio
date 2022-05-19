@@ -90,13 +90,13 @@ const Problem: NextPage<Props> = ({ problem }) => {
 			<Question ref={questionRef} markdown={problem?.markdown || ''} />
 			<div
 				ref={resizeBarRef}
-				className="hidden h-full w-2 cursor-ew-resize flex-col items-center justify-center gap-1 bg-gray-300 dark:bg-gray-700 md:flex"
+				className="hidden h-full w-2 cursor-ew-resize flex-col items-center justify-center gap-1 bg-gray-300 md:flex"
 				onMouseDown={mouseDownHandler}
 			>
-				<div className="h-0.5 w-0.5 rounded-full bg-gray-600 dark:bg-gray-200"></div>
-				<div className="h-0.5 w-0.5 rounded-full bg-gray-600 dark:bg-gray-200"></div>
-				<div className="h-0.5 w-0.5 rounded-full bg-gray-600 dark:bg-gray-200"></div>
-				<div className="h-0.5 w-0.5 rounded-full bg-gray-600 dark:bg-gray-200"></div>
+				<div className="h-0.5 w-0.5 rounded-full bg-gray-600"></div>
+				<div className="h-0.5 w-0.5 rounded-full bg-gray-600"></div>
+				<div className="h-0.5 w-0.5 rounded-full bg-gray-600"></div>
+				<div className="h-0.5 w-0.5 rounded-full bg-gray-600"></div>
 			</div>
 			<Monaco ref={editorWrapperRef} problem={problem} />
 		</main>

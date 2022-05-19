@@ -25,10 +25,8 @@ const PrivacyOption: React.FC<PrivacyOptionProps> = ({ Icon, id, value, privacy,
 			/>
 
 			<label htmlFor={id} className="ml-3 flex items-center" onClick={() => setPrivacy(value)}>
-				<Icon className="h-5 w-5 flex-shrink-0 text-gray-900 dark:text-gray-200/80" />
-				<p className="m-0 ml-2 break-words pt-0.5 text-sm text-gray-900 dark:text-gray-200/80 lg:text-base">
-					{children}
-				</p>
+				<Icon className="h-5 w-5 flex-shrink-0 text-gray-900" />
+				<p className="m-0 ml-2 break-words pt-0.5 text-sm text-gray-900 lg:text-base">{children}</p>
 			</label>
 		</div>
 	)

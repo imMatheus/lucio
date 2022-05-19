@@ -97,7 +97,7 @@ const MonacoEditor = React.forwardRef<HTMLDivElement, Props>(({ problem }, ref) 
 					}}
 				/>
 
-				<div className="flex max-w-full flex-wrap justify-end gap-4 border-y border-y-gray-700 bg-gray-200 p-6 dark:border-y-gray-500 dark:bg-gray-800">
+				<div className="flex max-w-full flex-wrap justify-end gap-4 border-y border-y-gray-700 bg-gray-200 p-6 ">
 					<Button variant="primary">Run code</Button>
 					<Button variant="success">Submit</Button>
 				</div>

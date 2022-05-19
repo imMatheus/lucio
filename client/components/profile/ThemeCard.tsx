@@ -9,8 +9,8 @@ interface ThemeCardProps {
 const ThemeCard: React.FC<ThemeCardProps> = ({ id, label, onClick, checked, children }) => {
 	return (
 		<div
-			className={`relative rounded-md border bg-gray-200 dark:bg-gray-800 ${
-				checked ? 'border-clr-accent-400' : 'border-black dark:border-gray-700'
+			className={`relative rounded-md border bg-gray-200 ${
+				checked ? 'border-clr-accent-400' : 'border-black'
 			} overflow-hidden`}
 		>
 			<div className="relative aspect-video w-full p-2 lg:w-72">{children}</div>

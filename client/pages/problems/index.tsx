@@ -52,16 +52,13 @@ const Problems: NextPage<Props> = ({ problems, ...props }) => {
 		<div className="w-maxed mx-auto my-4 w-full p-4">
 			<div className="my-2 flex gap-2">
 				<Dropdown title="Difficulty">
-					<div className="mb-1 text-olive dark:text-oliveDark" onClick={() => setDifficulty(Difficulty.easy)}>
+					<div className="mb-1 text-olive" onClick={() => setDifficulty(Difficulty.easy)}>
 						Easy
 					</div>
-					<div
-						className="mb-1 text-mustard dark:text-mustardDark"
-						onClick={() => setDifficulty(Difficulty.medium)}
-					>
+					<div className="mb-1 text-mustard" onClick={() => setDifficulty(Difficulty.medium)}>
 						Medium
 					</div>
-					<div className="text-ketchup dark:text-ketchupDark" onClick={() => setDifficulty(Difficulty.hard)}>
+					<div className="text-ketchup" onClick={() => setDifficulty(Difficulty.hard)}>
 						Hard
 					</div>
 				</Dropdown>

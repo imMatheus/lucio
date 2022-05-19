@@ -22,7 +22,7 @@ export default function ClassCard({ data: { _id, name, code, members, theme, pri
 					style={{ backgroundImage: `linear-gradient(to bottom right, ${theme[0]},${theme[1]}` }}
 				>
 					<div
-						className={`flex min-h-[200px] w-full flex-col bg-black/10 p-4 transition hover:bg-black/20 md:py-5 lg:h-80`}
+						className={`bg-clr-bg/10 hover:bg-clr-bg/20 flex min-h-[200px] w-full flex-col p-4 transition md:py-5 lg:h-80`}
 					>
 						<p className="text-two-line lg:text-five-line m-0 mt-2 overflow-hidden text-ellipsis break-words font-serif text-3xl font-black text-white">
 							{name}

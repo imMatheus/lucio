@@ -19,10 +19,7 @@ export default function Navbar(): ReactElement {
 	}, [navbarRef, navbarRef.current, navbarRef.current?.clientHeight])
 
 	return (
-		<nav
-			className="border-b border-b-gray-400 bg-gray-50 px-3 py-4 dark:border-b-gray-500 dark:bg-gray-800 sm:px-6 lg:px-8 "
-			ref={navbarRef}
-		>
+		<nav className="border-b border-b-gray-400 bg-gray-50 px-3 py-4 sm:px-6 lg:px-8 " ref={navbarRef}>
 			<div className="w-maxed mx-auto">
 				<div className="mx-auto flex text-sm">
 					<section className="flex flex-1 items-center">
@@ -58,7 +55,7 @@ export default function Navbar(): ReactElement {
 									<div className="bg-clr-accent-700"></div>
 									<div className="bg-clr-accent-900"></div>
 								</div> */}
-								<h4 className="cursor-pointer text-2xl font-bold text-gray-900 dark:text-gray-50 md:text-3xl 2xl:text-4xl 2xl:font-extrabold">
+								<h4 className="cursor-pointer text-2xl font-bold text-gray-900 md:text-3xl 2xl:text-4xl 2xl:font-extrabold">
 									Luciocode
 								</h4>
 							</a>

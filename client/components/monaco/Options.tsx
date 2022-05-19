@@ -16,7 +16,7 @@ const Options: React.FC = () => {
 	}, [])
 
 	return (
-		<div className="flex flex-wrap items-center gap-2 bg-gray-200 p-2 dark:bg-gray-700">
+		<div className="flex flex-wrap items-center gap-2 bg-gray-200 p-2">
 			<Select
 				name="lang"
 				id="lang"
@@ -54,7 +54,7 @@ const Options: React.FC = () => {
 			</Select>
 
 			<Settings
-				className="h-5 w-5 cursor-pointer text-gray-900 dark:text-gray-100"
+				className="h-5 w-5 cursor-pointer text-gray-900"
 				role="button"
 				onClick={() => {
 					setModal('editor')

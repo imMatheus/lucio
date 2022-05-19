@@ -16,7 +16,7 @@ const Dropdown: React.FC<DropdownProps> = ({ title, children }) => {
 	return (
 		<div
 			ref={divRef}
-			className="relative flex flex-shrink-0 cursor-pointer items-center rounded-md bg-gray-200 px-3 py-1 text-gray-800 dark:bg-gray-800 dark:text-gray-200"
+			className="relative flex flex-shrink-0 cursor-pointer items-center rounded-md bg-gray-200 px-3 py-1 text-gray-800"
 			onClick={() => {
 				setOpen((c) => !c)
 			}}
@@ -24,7 +24,7 @@ const Dropdown: React.FC<DropdownProps> = ({ title, children }) => {
 			{/* Rotate the arrow 180deg if the dropdown is open */}
 			{title} <ArrowDown className={`ml-1 w-5 transition-transform ${open ? 'rotate-180' : ''}`} />
 			{open && (
-				<div className="absolute top-[100%] -ml-3 mt-1 min-w-[155%] rounded-md bg-gray-200 px-3 py-1.5 shadow-sm dark:bg-gray-800">
+				<div className="absolute top-[100%] -ml-3 mt-1 min-w-[155%] rounded-md bg-gray-200 px-3 py-1.5 shadow-sm">
 					{children}
 				</div>
 			)}

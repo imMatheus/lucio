@@ -24,14 +24,14 @@ const EditorSettingsModal: React.FC = () => {
 					&#8203;
 				</span>
 
-				<div className="prose prose-gray inline-block max-h-[95vh] transform overflow-x-hidden overflow-y-scroll rounded-lg bg-gray-50 p-4 pb-6 text-left align-bottom shadow-xl transition-all dark:prose-invert dark:bg-gray-900 sm:my-8 sm:w-full sm:max-w-lg sm:align-middle">
+				<div className="prose prose-gray inline-block max-h-[95vh] transform overflow-x-hidden overflow-y-scroll rounded-lg bg-gray-50 p-4 pb-6 text-left align-bottom shadow-xl transition-all dark:prose-invert sm:my-8 sm:w-full sm:max-w-lg sm:align-middle">
 					<div
-						className="absolute top-2 left-2 cursor-pointer rounded-full p-1 transition-colors hover:bg-gray-100 dark:hover:bg-gray-800/70"
+						className="absolute top-2 left-2 cursor-pointer rounded-full p-1 transition-colors hover:bg-gray-100"
 						onClick={() => {
 							setShowModal(false)
 						}}
 					>
-						<X className="text-black dark:text-gray-100" />
+						<X className="text-black" />
 					</div>
 					<h2 className="m-0 mb-2 text-center text-2xl md:text-4xl">Editor settings</h2>
 					<p className="text-center text-xs md:text-sm">Modify your editor preferences</p>
@@ -39,7 +39,7 @@ const EditorSettingsModal: React.FC = () => {
 					<div className="mb-5 flex items-end">
 						<div className="mr-auto pr-2">
 							<h4 className="m-0 -mb-1 text-base md:text-lg">Font size</h4>
-							<p className="m-0 text-xs text-gray-800 dark:text-gray-300 md:text-sm">
+							<p className="m-0 text-xs text-gray-800 md:text-sm">
 								Determines the size of the text inside your editor
 							</p>
 						</div>
@@ -67,7 +67,7 @@ const EditorSettingsModal: React.FC = () => {
 					<div className="mb-5 flex items-end">
 						<div className="mr-auto pr-2">
 							<h4 className="m-0 -mb-1 text-base md:text-lg">Show line number</h4>
-							<p className="m-0 text-xs text-gray-800 dark:text-gray-300 md:text-sm">
+							<p className="m-0 text-xs text-gray-800 md:text-sm">
 								Line numbers will be displayed on the left of your code
 							</p>
 						</div>
@@ -81,7 +81,7 @@ const EditorSettingsModal: React.FC = () => {
 					<div className="mb-5 flex items-end">
 						<div className="mr-auto pr-2">
 							<h4 className="m-0 -mb-1 text-base md:text-lg">Show minimap</h4>
-							<p className="m-0 text-xs text-gray-800 dark:text-gray-300 md:text-sm">
+							<p className="m-0 text-xs text-gray-800 md:text-sm">
 								Minimap will be displayed on the right of your code
 							</p>
 						</div>
@@ -95,9 +95,7 @@ const EditorSettingsModal: React.FC = () => {
 					<div className="mb-5 flex items-end">
 						<div className="mr-auto pr-2">
 							<h4 className="m-0 -mb-1 text-base md:text-lg">Cursor style</h4>
-							<p className="m-0 text-xs text-gray-800 dark:text-gray-300 md:text-sm">
-								Change the style of the cursor
-							</p>
+							<p className="m-0 text-xs text-gray-800 md:text-sm">Change the style of the cursor</p>
 						</div>
 						<Select
 							name="editor-cursor_style"

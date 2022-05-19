@@ -25,7 +25,7 @@ const FileCard: React.FC<FileCardProps> = ({ file }) => {
 	}
 
 	return (
-		<div className="flex items-center rounded-md border border-gray-300 bg-gray-200 p-3 dark:border-gray-700 dark:bg-gray-800">
+		<div className="flex items-center rounded-md border border-gray-300 bg-gray-200 p-3">
 			<div className="mr-2 h-5 w-5 flex-shrink-0">
 				{getType(file.type) === 'image' ? (
 					<ImageIcon className="h-full w-full text-indigo-500" />
@@ -40,9 +40,7 @@ const FileCard: React.FC<FileCardProps> = ({ file }) => {
 				)}
 			</div>
 			<p className="text-one-line">{file.name}</p>
-			<span className="ml-2 flex-shrink-0 text-sm text-gray-500 dark:text-gray-400">
-				{getFileSize(file.size)}
-			</span>
+			<span className="ml-2 flex-shrink-0 text-sm text-gray-500">{getFileSize(file.size)}</span>
 		</div>
 	)
 }

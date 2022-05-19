@@ -29,7 +29,7 @@ const NoSsr = () => {
 	return (
 		<PaddingContainer>
 			<Link href={`/classes/${classId}/homework`} passHref={true}>
-				<a className="mb-2 flex h-8 w-8 items-center justify-center rounded-full transition-colors hover:bg-gray-200/80 dark:hover:bg-gray-800/80">
+				<a className="mb-2 flex h-8 w-8 items-center justify-center rounded-full transition-colors hover:bg-gray-200/80">
 					<ArrowLeft className="h-5 w-5" />
 				</a>
 			</Link>
@@ -38,10 +38,7 @@ const NoSsr = () => {
 			<h3 className="mb-2 text-2xl font-bold">
 				Files
 				{files.length >= 1 && (
-					<span className="text-base font-normal text-gray-600 dark:text-gray-400">
-						{' '}
-						- {files.length} added
-					</span>
+					<span className="text-base font-normal text-gray-600"> - {files.length} added</span>
 				)}
 			</h3>
 			<FileCardWrapper>

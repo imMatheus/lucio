@@ -13,12 +13,12 @@
 
 .white {
 	@extend .btn;
-	@apply col-span-full border-black bg-white text-black hover:dark:bg-black/60;
+	@apply col-span-full border-black bg-white text-black;
 }
 
 .black {
 	@extend .btn;
-	@apply col-span-full border-black bg-black text-gray-100 hover:bg-black/90 hover:dark:bg-black/60;
+	@apply col-span-full border-black bg-clr-bg text-gray-100 hover:bg-clr-bg;
 }
 
 .dimmed {
