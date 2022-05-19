@@ -22,7 +22,7 @@ const TestCases: React.FC<TestCasesProps> = ({}) => {
 					className="prose prose-gray max-w-none p-5 text-gray-800 
 					prose-headings:text-gray-900 prose-strong:rounded-lg 
 					prose-strong:bg-gray-900/10 prose-strong:px-2 prose-strong:py-0.5 
-					prose-strong:text-gray-900 prose-li:marker:text-theme-1000 
+					prose-strong:text-gray-900 prose-li:marker:text-clr-accent-1000 
 					prose-img:max-w-[min(48rem,_100%)] dark:text-gray-200 dark:prose-headings:text-gray-100 
 					dark:prose-strong:bg-gray-600/10 dark:prose-strong:text-gray-50 
 					dark:prose-li:marker:text-gray-100"

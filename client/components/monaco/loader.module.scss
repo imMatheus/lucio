@@ -5,10 +5,10 @@
 .ball1 {
 	@extend .ball;
 	animation-delay: -250ms;
-	@apply -right-3 bg-theme-600;
+	@apply -right-3 bg-clr-accent-600;
 }
 
 .ball2 {
 	@extend .ball;
-	@apply -left-3 bg-secondary-600;
+	@apply bg-secondary-600 -left-3;
 }

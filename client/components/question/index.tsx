@@ -40,7 +40,7 @@ const Question = React.forwardRef<HTMLElement, QuestionProps>(({ markdown }, ref
 					className={`prose prose-gray max-w-none px-6 prose-headings:text-gray-900 
 					prose-strong:rounded-lg prose-strong:bg-gray-900/10 
 					prose-strong:px-2 prose-strong:py-0.5 prose-strong:text-gray-900 
-					prose-li:marker:text-theme-1000 prose-img:max-w-[min(48rem,_100%)] 
+					prose-li:marker:text-clr-accent-1000 prose-img:max-w-[min(48rem,_100%)] 
 					dark:prose-invert dark:prose-headings:text-gray-100 
 					dark:prose-strong:bg-gray-600/10 dark:prose-strong:text-gray-50 
 					dark:prose-li:marker:text-gray-100`}

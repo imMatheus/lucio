@@ -26,7 +26,7 @@ const TableRow: React.FC<TableRowProps> = ({ name, loading, difficulty, index })
 					</div>
 				</td>
 				<td className="whitespace-nowrap px-6 py-4">
-					<div className="text-base font-semibold text-gray-900 transition-colors group-hover:text-theme dark:text-gray-100">
+					<div className="text-base font-semibold text-gray-900 transition-colors group-hover:text-clr-accent dark:text-gray-100">
 						{name}
 					</div>
 				</td>

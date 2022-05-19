@@ -13,7 +13,7 @@ const Switch: React.FC<SwitchProps> = ({ checked, onChange, srText }) => {
 			checked={checked}
 			onChange={onChange}
 			className={`${
-				checked ? 'bg-theme-800' : 'bg-theme-200'
+				checked ? 'bg-clr-accent-800' : 'bg-clr-accent-200'
 			} relative inline-flex h-6 w-12 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2  focus-visible:ring-white focus-visible:ring-opacity-75`}
 		>
 			<span className="sr-only">{srText}</span>

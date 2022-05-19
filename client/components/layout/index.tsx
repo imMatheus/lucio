@@ -11,7 +11,7 @@ const Layout: React.FC = ({ children }) => {
 	const [] = useDarkMode()
 
 	return (
-		<div className="min-h-screen bg-gray-100 text-gray-900 accent-theme dark:bg-gray-900 dark:text-gray-100">
+		<div className="min-h-screen bg-gray-100 text-gray-900 accent-clr-accent dark:bg-gray-900 dark:text-gray-100">
 			<Toast />
 			<Navbar />
 			{children}

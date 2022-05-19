@@ -36,7 +36,7 @@ $value2: ();
 		box-shadow: $value2;
 	}
 
-	@apply mx-auto rounded-lg border border-theme p-6 transition-shadow dark:bg-gray-900;
+	@apply mx-auto rounded-lg border border-clr-accent p-6 transition-shadow dark:bg-gray-900;
 }
 
 .chip {

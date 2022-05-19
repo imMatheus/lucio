@@ -1,5 +1,4 @@
-.btn,
-.dimmed {
+.btn {
 	min-height: 32px;
 	display: flex;
 	justify-content: center;
@@ -9,7 +8,7 @@
 
 .primary {
 	@extend .btn;
-	@apply bg-theme text-white hover:bg-theme-600;
+	@apply bg-success text-white;
 }
 
 .white {
@@ -23,6 +22,7 @@
 }
 
 .dimmed {
+	@extend .btn;
 	@apply hover:bg-gray-500/10;
 }
 

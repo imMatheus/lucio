@@ -42,18 +42,18 @@ const SignInModal: React.FC = () => {
 							ref={emailRef}
 							type="text"
 							placeholder="Email..."
-							className="peer h-11 w-full rounded-lg border border-gray-300 pl-11 outline-none focus-within:border-theme"
+							className="peer h-11 w-full rounded-lg border border-gray-300 pl-11 outline-none focus-within:border-clr-accent"
 						/>
-						<Mail className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-300 peer-focus-within:text-theme" />
+						<Mail className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-300 peer-focus-within:text-clr-accent" />
 					</div>
-					<div className="group relative mb-6 flex h-11 items-center rounded-lg border border-gray-300 focus-within:border-theme ">
+					<div className="group relative mb-6 flex h-11 items-center rounded-lg border border-gray-300 focus-within:border-clr-accent ">
 						<input
 							ref={passwordRef}
 							type={showPassword ? 'text' : 'password'}
 							placeholder="Password..."
 							className="peer w-full border-none bg-transparent pl-11 pr-2 outline-none focus:border-none focus:outline-none"
 						/>
-						<Lock className="absolute left-3 top-1/2 -translate-y-1/2 bg-transparent text-gray-300 group-focus-within:text-theme" />
+						<Lock className="absolute left-3 top-1/2 -translate-y-1/2 bg-transparent text-gray-300 group-focus-within:text-clr-accent" />
 						<Button
 							variant="white"
 							className="mr-2 flex-shrink-0"

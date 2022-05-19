@@ -4,5 +4,5 @@
 
 .optionActive {
 	@extend .option;
-	@apply border-b-theme hover:border-b-theme;
+	@apply border-b-clr-accent hover:border-b-clr-accent;
 }

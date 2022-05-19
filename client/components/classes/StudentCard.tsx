@@ -1,11 +1,11 @@
 import React, { ReactElement } from 'react'
 import styles from './studentstable.module.scss'
-import { UserInterface } from '@/models/User'
 import { capitalizeFirstLetter, convertDate } from '@/utils/index'
 import StatusChip from './statuschip'
+import { User } from '@/types/User'
 import Image from 'next/image'
 interface Props {
-	user: UserInterface
+	user: User
 	role: 'student' | 'admin'
 	joinedAt: Date
 	loading: boolean
@@ -27,7 +27,7 @@ export default function StudentCard({ user, role, joinedAt, edit, loading }: Pro
 			<tr>
 				{edit && (
 					<td className="px-6 py-4">
-						<input type="checkbox" className="h-5 w-5 rounded focus:ring-theme-800" />
+						<input type="checkbox" className="h-5 w-5 rounded focus:ring-clr-accent" />
 					</td>
 				)}
 				<td className="whitespace-nowrap px-6 py-4">
@@ -75,7 +75,7 @@ export default function StudentCard({ user, role, joinedAt, edit, loading }: Pro
 					)}
 				</td>
 				<td className="whitespace-nowrap px-6 py-4 text-right text-sm font-medium">
-					<a href="#" className="text-theme hover:text-theme-800">
+					<a href="#" className="text-clr-accent hover:text-clr-accent-800">
 						Edit
 					</a>
 				</td>

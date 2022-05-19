@@ -4,6 +4,14 @@
 
 :root {
 	--navbar-height: 73px;
+	--clr-accent: rgb(29, 155, 240);
+	--clr-danger: rgb(244, 33, 46);
+	--clr-bg: #000;
+	--clr-bg-grayed: #202327;
+	--clr-bg-grayed-dark: #16181c;
+	--clr-text: #e7e9ea;
+	--clr-text-grayed: #71767b;
+	--clr-border: #2f3336;
 }
 
 @layer utilities {
@@ -21,10 +29,6 @@
 	}
 	.max-h-full-wo-nav {
 		max-height: calc(100vh - var(--navbar-height));
-	}
-
-	.orgaa {
-		background: orange;
 	}
 
 	.text-line-base {
@@ -79,7 +83,7 @@
 	}
 	.btn-shadow-4 {
 		@extend .btn-shadow;
-		@apply border-theme-500 text-theme-500 shadow-theme-500;
+		@apply border-clr-accent-500 text-clr-accent-500 shadow-clr-accent-500;
 	}
 	.btn-shadow-5 {
 		@extend .btn-shadow;

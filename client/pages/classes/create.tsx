@@ -37,8 +37,9 @@ const Create: NextPage = () => {
 				value={name}
 				onChange={(e) => setName(e.target.value)}
 				id="name"
+				placeholder="Intro to computer science..."
 				autoComplete="given-name"
-				className="mt-1 block w-full rounded-md border-gray-300 bg-transparent shadow-sm focus:border-theme-500 focus:ring-theme-500 dark:border-gray-600/70 sm:max-w-lg sm:text-sm lg:max-w-lg 2xl:max-w-5xl"
+				className="mt-1 block w-full rounded-md border-gray-300 bg-transparent shadow-sm focus:border-clr-accent-500 focus:ring-clr-accent-500 dark:border-gray-600/70 sm:max-w-lg sm:text-sm lg:max-w-lg 2xl:max-w-5xl"
 			/>
 
 			<div className="my-3 md:my-4">

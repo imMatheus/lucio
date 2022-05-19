@@ -4,10 +4,10 @@
 
 .primary {
 	@extend .alert;
-	@apply bg-theme text-white;
+	@apply bg-clr-accent text-white;
 
 	&:hover {
-		@apply bg-theme-800;
+		@apply bg-clr-accent;
 	}
 }
 

@@ -7,6 +7,7 @@
 }
 
 .logo {
+	transform: rotate(90deg);
 	@apply relative mr-2 flex h-8 w-8 items-center justify-center transition-transform;
 
 	> div {
@@ -21,31 +22,20 @@
 		}
 	}
 	> div:nth-child(1) {
-		// background: #f94144;
-		@apply bg-theme-500;
-		// @apply bg-theme-300;
-		// background: #3a86ff;
+		@apply bg-clr-accent-300;
 	}
 	> div:nth-child(2) {
 		border-top-right-radius: 0px;
-		// background: #f8961e;
-		// background: #8338ec;
-		@apply bg-theme-600;
+		@apply bg-clr-accent;
 	}
 	> div:nth-child(3) {
 		border-bottom-right-radius: 0px;
-		// background: #90be6d;
-		// background: #ff006e;
-		@apply bg-theme-700;
+		@apply bg-clr-accent-700;
 	}
 	> div:nth-child(4) {
 		border-bottom-left-radius: 0px;
-		// background: #277da1;
-		@apply bg-theme-800;
-		// background: #fb5607;
+		@apply bg-clr-accent-800;
 	}
-	// &:hover {
-	transform: rotate(90deg);
 	> div {
 		@apply rounded-tl-none;
 	}
@@ -65,7 +55,7 @@
 @keyframes logoSwitcher {
 	0%,
 	50% {
-		@apply mr-1 text-theme;
+		@apply mr-1 text-success;
 	}
 
 	100% {

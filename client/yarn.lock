@@ -3851,9 +3851,9 @@ monaco-editor@^0.32.1:
   resolved "https://registry.npmjs.org/monaco-editor/-/monaco-editor-0.32.1.tgz"
   integrity sha512-LUt2wsUvQmEi2tfTOK+tjAPvt7eQ+K5C4rZPr6SeuyzjAuAHrIvlUloTcOiGjZW3fn3a/jFQCONrEJbNOaCqbA==
 
-monaco-themes@^0.4.0:
+monaco-clr-accents@^0.4.0:
   version "0.4.0"
-  resolved "https://registry.npmjs.org/monaco-themes/-/monaco-themes-0.4.0.tgz"
+  resolved "https://registry.npmjs.org/monaco-clr-accents/-/monaco-clr-accents-0.4.0.tgz"
   integrity sha512-AJL7Sk3j1DrQo94RqaYBr+IrGNP/2f5drFkKXKyjNZHYY/j+2Pv+O4+WETYkrTj9m1Zm2K3YRuGP/I3+5rHPxw==
   dependencies:
     fast-plist "^0.1.2"

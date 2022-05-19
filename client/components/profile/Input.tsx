@@ -26,7 +26,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
 					placeholder={placeholder}
 					id={id}
 					autoComplete={autoComplete}
-					className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-theme-500 focus:ring-theme-500 dark:border-gray-700 dark:bg-black sm:text-sm"
+					className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-clr-accent-500 focus:ring-clr-accent-500 dark:border-gray-700 dark:bg-black sm:text-sm"
 				/>
 			</div>
 		)

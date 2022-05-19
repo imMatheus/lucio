@@ -57,12 +57,12 @@ export default function Register(): ReactElement {
 			</Head>
 			{/* <div className={styles.blob}></div> */}
 			<div className={styles.modal}>
-				<TypedText className="text-theme-700">Welcome to LucioCode</TypedText>
-				<TypedText className="text-theme-700" delay={1}>
+				<TypedText className="text-clr-accent-700">Welcome to LucioCode</TypedText>
+				<TypedText className="text-clr-accent-700" delay={1}>
 					<span>Let us begin the adventure</span>
 				</TypedText>
 				{/* <Image src={`data:image/svg+xml;base64,${base64data}`} alt="" width={100} height={100} /> */}
-				<TypedText className="mt-5 mb-2 text-base font-semibold text-theme" delay={2}>
+				<TypedText className="mt-5 mb-2 text-base font-semibold text-clr-accent" delay={2}>
 					Enter your email
 				</TypedText>
 				<InputField
@@ -75,7 +75,7 @@ export default function Register(): ReactElement {
 				/>
 				{showPasswordContainer && (
 					<>
-						<TypedText className="mt-5 text-base font-semibold text-theme" delay={0}>
+						<TypedText className="mt-5 text-base font-semibold text-clr-accent" delay={0}>
 							Create a password
 						</TypedText>
 						<InputField

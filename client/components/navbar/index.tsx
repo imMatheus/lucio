@@ -53,10 +53,10 @@ export default function Navbar(): ReactElement {
 									<div className="bg-[#5c4d7d]"></div>
 									<div className="bg-[#2e6f95]"></div> 
 
-									<div className="bg-theme-300"></div>
-									<div className="bg-theme-500"></div>
-									<div className="bg-theme-700"></div>
-									<div className="bg-theme-900"></div>
+									<div className="bg-clr-accent-300"></div>
+									<div className="bg-clr-accent-500"></div>
+									<div className="bg-clr-accent-700"></div>
+									<div className="bg-clr-accent-900"></div>
 								</div> */}
 								<h4 className="cursor-pointer text-2xl font-bold text-gray-900 dark:text-gray-50 md:text-3xl 2xl:text-4xl 2xl:font-extrabold">
 									Luciocode

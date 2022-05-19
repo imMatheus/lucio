@@ -12,7 +12,7 @@ interface PrivacyOptionProps {
 
 const PrivacyOption: React.FC<PrivacyOptionProps> = ({ Icon, id, value, privacy, setPrivacy, children }) => {
 	return (
-		<div className="flex items-center accent-theme">
+		<div className="flex items-center accent-clr-accent">
 			<input
 				onClick={() => setPrivacy(value)}
 				type="radio"
@@ -21,7 +21,7 @@ const PrivacyOption: React.FC<PrivacyOptionProps> = ({ Icon, id, value, privacy,
 				value={value}
 				checked={privacy === value}
 				onChange={() => setPrivacy(value)}
-				className="h-4 w-4 border border-gray-500/60 text-theme-600 shadow-md !outline-0 !ring-0 focus:ring-0 focus:ring-transparent lg:h-5 lg:w-5"
+				className="h-4 w-4 border border-gray-500/60 text-clr-accent-600 shadow-md !outline-0 !ring-0 focus:ring-0 focus:ring-transparent lg:h-5 lg:w-5"
 			/>
 
 			<label htmlFor={id} className="ml-3 flex items-center" onClick={() => setPrivacy(value)}>
