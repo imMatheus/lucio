@@ -122,7 +122,7 @@ const Profile: NextPage = () => {
 				</div>
 
 				<div className="mb-3">
-					<label htmlFor="bio" className="block text-sm font-medium text-gray-700">
+					<label htmlFor="bio" className="block text-sm font-medium text-clr-text">
 						Bio
 					</label>
 					<div className="mt-1">
@@ -133,7 +133,7 @@ const Profile: NextPage = () => {
 							rows={4}
 							maxLength={1000}
 							// defaultValue={currentUser.bio}
-							className="mt-1 block max-h-80 min-h-[3rem] w-full rounded-md border border-gray-300 shadow-sm focus:border-clr-accent-500 focus:ring-clr-accent-500 sm:text-sm"
+							className="mt-1 block max-h-80 min-h-[3rem] w-full rounded-md border border-clr-border shadow-sm focus:border-clr-accent-500 focus:ring-clr-accent-500 sm:text-sm"
 							placeholder="Tell people about yourself"
 						></textarea>
 					</div>

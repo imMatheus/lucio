@@ -14,7 +14,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
 	({ id, label, defaultValue, placeholder, type, maxLength, autoComplete }, ref) => {
 		return (
 			<div className="mb-3">
-				<label htmlFor={id} className="block text-sm font-medium text-gray-700">
+				<label htmlFor={id} className="block text-sm font-medium text-clr-text">
 					{label}
 				</label>
 				<input
@@ -26,7 +26,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
 					placeholder={placeholder}
 					id={id}
 					autoComplete={autoComplete}
-					className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-clr-accent-500 focus:ring-clr-accent-500 sm:text-sm"
+					className="mt-1 block w-full rounded-md border-clr-border text-clr-bg shadow-sm placeholder:text-clr-text-grayed focus:border-clr-accent-500 focus:ring-clr-accent-500 sm:text-sm"
 				/>
 			</div>
 		)

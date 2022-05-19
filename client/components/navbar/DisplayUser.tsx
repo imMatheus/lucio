@@ -11,7 +11,7 @@ const DisplayUser: React.FC<DisplayUserProps> = ({}) => {
 	const { fetchingUser, currentUser } = useAuth()
 
 	return (
-		<div className="flex items-center border-l border-l-gray-400 pl-3">
+		<div className="flex items-center border-l border-l-clr-border pl-3">
 			{fetchingUser ? (
 				<div className="mx-2 h-8 w-8">
 					<Spinner />
@@ -21,7 +21,7 @@ const DisplayUser: React.FC<DisplayUserProps> = ({}) => {
 				<div className="flex gap-2">
 					<div className="text-right">
 						<p className="text-sm text-clr-text">{currentUser.name}</p>
-						<p className="text-sm text-clr-bg-grayed">{currentUser.email}</p>
+						<p className="text-sm text-clr-text-grayed">{currentUser.email}</p>
 					</div>
 
 					<Link href="/profile" passHref={true}>

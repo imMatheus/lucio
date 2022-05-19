@@ -17,15 +17,9 @@ export default function useDarkMode() {
 	useEffect(
 		() => {
 			if (!window) return
-			const enabled = state === 'system' ? (prefersDarkMode ? 'dark' : 'light') : state
+			const theme = state === 'system' ? (prefersDarkMode ? 'dark' : 'light') : state
 
-			const className = 'dark'
-			const element = window!.document?.body
-			if (enabled === 'dark') {
-				element.classList.add(className)
-			} else {
-				element.classList.remove(className)
-			}
+			document.documentElement.setAttribute('data-theme', theme)
 		},
 		[prefersDarkMode, state] // Only re-call effect when value changes
 	)
