@@ -7,17 +7,37 @@ import Button from '@/components/button'
 import { useRouter } from 'next/router'
 import { arrayEquals } from '@/utils/arrayEquals'
 import ColorSelector from '@/components/classes/colorselector'
-
+import { fs } from '@/firebase'
+import { addDoc, collection } from 'firebase/firestore'
 import { colors as Colors } from '@/constants'
+import { useAuth } from '@/context/AuthContext'
 
 const Create: NextPage = () => {
 	const router = useRouter()
+	const { currentUser } = useAuth()
 	const [name, setName] = useState('')
 	const [colors, setColors] = useState<[string, string]>([Colors.theme, Colors.theme])
 	const [privacy, setPrivacy] = useState(PrivacyEnum.Public)
+	const [loading, setLoading] = useState(false)
+
+	async function createClassRoom() {
+		if (!currentUser) return
+		const data = {
+			name,
+			colors,
+			privacy,
+			ownerId: currentUser.uid,
+			members: [{ name: currentUser.name, email: currentUser.email, id: currentUser.uid }]
+		}
+
+		setLoading(true)
+		const res = await addDoc(collection(fs, 'classes'), data)
+		setLoading(false)
+		if (res.id) router.push('/classes/' + res.id)
+	}
 
 	return (
-		<div className="min-h-full-wo-nav bg-gray-200/40 p-4 md:p-6">
+		<div className="min-h-full-wo-nav p-4 md:p-6">
 			<div
 				className="text-hollow w-max"
 				style={{ backgroundImage: `linear-gradient(45deg, ${colors[0]}, ${colors[1]}` }}
@@ -36,7 +56,7 @@ const Create: NextPage = () => {
 				id="name"
 				placeholder="Intro to computer science..."
 				autoComplete="given-name"
-				className="mt-1 block w-full rounded-md border-gray-300 bg-transparent shadow-sm focus:border-clr-accent-500 focus:ring-clr-accent-500 sm:max-w-lg sm:text-sm lg:max-w-lg 2xl:max-w-5xl"
+				className="mt-1 block w-full max-w-lg rounded-md border-clr-border bg-transparent shadow-sm focus:border-clr-accent-500 focus:ring-clr-accent-500 sm:text-sm lg:max-w-lg 2xl:max-w-5xl"
 			/>
 
 			<div className="my-3 md:my-4">
@@ -81,7 +101,7 @@ const Create: NextPage = () => {
 					</div>
 				</form>
 			</div>
-			{/* <Button onClick={createClassRoom}>Create class</Button> */}
+			<Button onClick={createClassRoom}>Create class</Button>
 		</div>
 	)
 }
