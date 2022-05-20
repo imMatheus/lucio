@@ -34,7 +34,7 @@ html[data-theme='dark'] {
 	--clr-bg-grayed-dark: #16181c;
 	--clr-text: #e7e9ea;
 	--clr-text-grayed: #71767b;
-	--border: #2f3336;
+	--clr-border: #2f3336;
 }
 
 html[data-theme='dimmed'] {
@@ -43,7 +43,7 @@ html[data-theme='dimmed'] {
 	--clr-bg-grayed-dark: #1e2732;
 	--clr-text: #f7f9f9;
 	--clr-text-grayed: #8b98a5;
-	--border: #38444d;
+	--clr-border: #38444d;
 }
 
 @layer utilities {

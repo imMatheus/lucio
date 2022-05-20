@@ -8,7 +8,7 @@
 
 .primary {
 	@extend .btn;
-	@apply bg-success text-white;
+	@apply bg-clr-accent text-white transition-opacity hover:opacity-80;
 }
 
 .white {
@@ -23,7 +23,7 @@
 
 .dimmed {
 	@extend .btn;
-	@apply hover:bg-clr-text-grayed;
+	@apply hover:bg-clr-bg-grayed;
 }
 
 .error {

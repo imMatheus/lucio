@@ -8,11 +8,9 @@ const Home: NextPage = () => {
 		<div className="selection:bg-clr-accent-100 selection:text-clr-accent-900">
 			<header className="relative px-5 py-12 lg:px-14 lg:py-24 xl:py-32">
 				<div className="relative z-10 mx-auto max-w-7xl">
-					<h1 className="text-gray-80 mb-3 text-center font-grotesk text-6xl font-extrabold xl:text-8xl">
-						LucioCode
-					</h1>
+					<h1 className="mb-3 text-center text-6xl font-extrabold xl:text-8xl">LucioCode</h1>
 				</div>
-				<p className="relative z-10 text-center text-gray-700">
+				<p className="relative z-10 text-center text-clr-text-grayed">
 					Teaching code made easier, faster and more enjoyable
 				</p>
 			</header>
