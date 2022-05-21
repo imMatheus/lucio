@@ -4,17 +4,11 @@ export enum PrivacyEnum {
 	Closed = 'closed'
 }
 
-type ClassType = {
+export type ClassType = {
 	name: string
 	code: string
 	owner: string
 	theme: [string, string]
 	members: string[]
 	privacy: PrivacyEnum
-	createdAt: Date
-	updatedAt: Date
-	_id: string
-	__v: number
 }
-
-export default ClassType

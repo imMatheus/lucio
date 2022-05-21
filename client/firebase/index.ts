@@ -16,4 +16,6 @@ const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0
 export const fs = getFirestore(app)
 export const auth = getAuth(app)
 
+export * from './hooks/useDocs'
+
 export default app
