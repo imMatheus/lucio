@@ -43,8 +43,7 @@ async function signup(email: string, password: string, name: string) {
 
 		const ref = await setDoc(doc(fs, `users/${auth.currentUser.uid}`), {
 			name,
-			email,
-			userUID: auth.currentUser?.uid
+			email
 		})
 
 		console.log('success')

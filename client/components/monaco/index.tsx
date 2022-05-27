@@ -2,7 +2,7 @@ import React, { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import Editor, { useMonaco } from '@monaco-editor/react'
 import { editor } from 'monaco-editor'
 import Button from '@/components/button'
-import Loader from './Loader'
+import Loader from '@/components/loaders/Loader'
 import TestCases from './TestCases'
 import { Italic, Sun } from 'react-feather'
 import Options from './Options'
@@ -10,10 +10,9 @@ import useLocalStorage from '@/hooks/useLocalStorage'
 import { useEditorSettings } from '@/context/EditorSettingsContext'
 import themes from './themes'
 import { generator } from '@/utils/editor/startingcode'
-import { Data } from '@/pages/api/problems/[problemName]'
 
 interface Props {
-	problem: Data
+	problem: any
 }
 
 const MonacoEditor = React.forwardRef<HTMLDivElement, Props>(({ problem }, ref) => {

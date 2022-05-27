@@ -10,5 +10,5 @@
 
 .ball2 {
 	@extend .ball;
-	@apply bg-secondary-600 -left-3;
+	@apply -left-3 bg-red-500;
 }

@@ -7,11 +7,11 @@ interface WithId {
 	id: string
 }
 
-export function useListenDocs<T extends WithId>(
+export function useListenDocs<T>(
 	path: string,
 	...queryConstraints: QueryConstraint[]
-): [Array<T>, boolean, string | null] {
-	const [data, setData] = useState<T[]>([])
+): [Array<T & WithId>, boolean, string | null] {
+	const [data, setData] = useState<(T & WithId)[]>([])
 	const [loading, setLoading] = useState(true)
 	const [error, setError] = useState<string | null>(null)
 	const { currentUser } = useAuth()
@@ -21,13 +21,13 @@ export function useListenDocs<T extends WithId>(
 		try {
 			const q = query(collection(fs, path), ...queryConstraints)
 			const unsubscribe = onSnapshot(q, (querySnapshot) => {
+				setLoading(false)
 				setData(querySnapshot.docs.map((doc) => ({ ...(doc.data() as T), id: doc.id })))
 			})
 			return unsubscribe
 		} catch (error) {
-			setError('Could not retrieve documents')
-		} finally {
 			setLoading(false)
+			setError('Could not retrieve documents')
 		}
 	}, [currentUser])
 

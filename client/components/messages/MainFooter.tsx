@@ -5,18 +5,30 @@ import { useRouter } from 'next/router'
 import Button from '@/components/button'
 import { fs } from '@/firebase'
 import { addDoc, collection } from 'firebase/firestore'
+import { useAuth } from '@/context/AuthContext'
+import { Message as MessageType } from '@/types/Message'
 
 interface MainFooterProps {}
 
 const MainFooter: React.FC<MainFooterProps> = ({}) => {
 	const router = useRouter()
 	const [message, setMessage] = useState('')
+	const { currentUser } = useAuth()
 
 	async function sendMessage() {
-		if (!message) return
+		if (!message || !currentUser) return
+		console.log(currentUser)
 
 		setMessage('')
-		await addDoc(collection(fs, `chats/${router.query.id}/messages`), { text: message })
+
+		const data: MessageType = {
+			text: message,
+			author: { uid: currentUser.uid, name: currentUser.name },
+			createdAt: new Date(),
+			edited: false
+		}
+
+		await addDoc(collection(fs, `chats/${router.query.id}/messages`), data)
 	}
 
 	return (
