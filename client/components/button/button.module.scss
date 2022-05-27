@@ -3,7 +3,7 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	@apply min-h-[1.75rem] rounded-lg border border-transparent px-2 text-xs transition-colors md:min-h-[2rem] md:px-3 md:text-sm;
+	@apply min-h-[1.75rem] rounded-lg border border-transparent px-2 text-xs transition-colors disabled:opacity-70 md:min-h-[2rem] md:px-3 md:text-sm;
 }
 
 .primary {

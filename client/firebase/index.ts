@@ -17,5 +17,6 @@ export const fs = getFirestore(app)
 export const auth = getAuth(app)
 
 export * from './hooks/useDocs'
+export * from './hooks/useListenDocs'
 
 export default app
