@@ -8,7 +8,7 @@ export type ClassType = {
 	name: string
 	code: string
 	owner: string
-	theme: [string, string]
+	colors: [string, string]
 	members: string[]
 	privacy: PrivacyEnum
 }

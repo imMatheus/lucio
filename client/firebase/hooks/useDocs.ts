@@ -3,8 +3,15 @@ import { collection, query, getDocs, QueryConstraint } from 'firebase/firestore'
 import { fs } from '@/firebase'
 import { useAuth } from '@/context/AuthContext'
 
-export function useDocs<T>(path: string, ...queryConstraints: QueryConstraint[]): [T[], boolean, string | null] {
-	const [data, setData] = useState<T[]>([])
+interface WithId {
+	id: string
+}
+
+export function useDocs<T>(
+	path: string,
+	...queryConstraints: QueryConstraint[]
+): [(T & WithId)[], boolean, string | null] {
+	const [data, setData] = useState<(T & WithId)[]>([])
 	const [loading, setLoading] = useState(true)
 	const [error, setError] = useState<string | null>(null)
 	const { currentUser } = useAuth()
@@ -16,10 +23,10 @@ export function useDocs<T>(path: string, ...queryConstraints: QueryConstraint[])
 				const q = query(collection(fs, path), ...queryConstraints)
 				const querySnapshot = await getDocs(q)
 
-				setData(querySnapshot.docs.map((doc) => doc.data() as T))
+				setData(querySnapshot.docs.map((doc) => ({ ...(doc.data() as T), id: doc.id })))
+				setLoading(false)
 			} catch (error) {
 				setError('Could not retrieve documents')
-			} finally {
 				setLoading(false)
 			}
 		}

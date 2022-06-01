@@ -12,6 +12,7 @@ import { fs, auth } from '@/firebase'
 import { useAuth } from '@/context/AuthContext'
 import { collection, query, where, getDocs } from 'firebase/firestore'
 import { useDocs } from '@/firebase'
+import Loader from '@/components/loaders/Loader'
 
 interface Props {
 	classes: ClassType[]
@@ -40,8 +41,10 @@ const Classes: NextPage<Props> = ({}) => {
 
 					<Button variant="dimmed">Join class</Button>
 				</div>
-
-				{classes?.length > 0 ? (
+				{loading ? 'yes' : 'no'}
+				{loading ? (
+					<Loader />
+				) : classes?.length > 0 ? (
 					<div className="grid grid-cols-1 gap-3 sm:grid-cols-2 md:gap-4 lg:grid-cols-3 lg:gap-6 xl:grid-cols-4 2xl:grid-cols-5">
 						{classes?.map((classRoom) => (
 							<ClassCard data={classRoom} key={classRoom.name} />
