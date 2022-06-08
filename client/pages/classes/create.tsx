@@ -7,7 +7,7 @@ import Button from '@/components/button'
 import { useRouter } from 'next/router'
 import { arrayEquals } from '@/utils/arrayEquals'
 import ColorSelector from '@/components/classes/colorselector'
-import { fs } from '@/firebase'
+import { fs, useCreateClassroom } from '@/firebase'
 import { addDoc, collection } from 'firebase/firestore'
 import { colors as Colors } from '@/constants'
 import { useAuth } from '@/context/AuthContext'
@@ -19,22 +19,26 @@ const Create: NextPage = () => {
 	const [colors, setColors] = useState<[string, string]>([Colors.theme, Colors.theme])
 	const [privacy, setPrivacy] = useState(PrivacyEnum.Public)
 	const [loading, setLoading] = useState(false)
+	const [createClassRoom] = useCreateClassroom()
 
-	async function createClassRoom() {
-		if (!currentUser) return
-		const data = {
-			name,
-			colors,
-			privacy,
-			ownerId: currentUser.uid,
-			members: [{ name: currentUser.name, email: currentUser.email, id: currentUser.uid }]
-		}
-
-		setLoading(true)
-		const res = await addDoc(collection(fs, 'classes'), data)
-		setLoading(false)
-		if (res.id) router.push('/classes/' + res.id)
+	function createClassRoomHandler() {
+		createClassRoom({ name, colors, privacy })
 	}
+	// async function createClassRoom() {
+	// 	if (!currentUser) return
+	// 	const data = {
+	// 		name,
+	// 		colors,
+	// 		privacy,
+	// 		ownerId: currentUser.uid,
+	// 		members: [{ name: currentUser.name, email: currentUser.email, id: currentUser.uid }]
+	// 	}
+
+	// 	setLoading(true)
+	// 	const res = await addDoc(collection(fs, 'classes'), data)
+	// 	setLoading(false)
+	// 	if (res.id) router.push('/classes/' + res.id)
+	// }
 
 	return (
 		<div className="min-h-full-wo-nav p-4 md:p-6">
@@ -101,7 +105,7 @@ const Create: NextPage = () => {
 					</div>
 				</form>
 			</div>
-			<Button onClick={createClassRoom}>Create class</Button>
+			<Button onClick={createClassRoomHandler}>Create class</Button>
 		</div>
 	)
 }

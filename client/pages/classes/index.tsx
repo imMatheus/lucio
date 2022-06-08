@@ -22,9 +22,8 @@ interface Props {
 const Classes: NextPage<Props> = ({}) => {
 	const router = useRouter()
 	const { setToast } = useToast()
-	// const { currentUser } = useAuth()
-	const user = auth.currentUser
-	const [classes, loading, error] = useDocs<ClassType>('classes', where('ownerId', '==', user?.uid))
+	const { currentUser } = useAuth()
+	const [classes, loading, error] = useDocs<ClassType>('classes', where('ownerId', '==', currentUser?.uid))
 
 	console.log('asasasas')
 	console.log(classes)
@@ -41,7 +40,7 @@ const Classes: NextPage<Props> = ({}) => {
 
 					<Button variant="dimmed">Join class</Button>
 				</div>
-				{loading ? 'yes' : 'no'}
+
 				{loading ? (
 					<Loader />
 				) : classes?.length > 0 ? (

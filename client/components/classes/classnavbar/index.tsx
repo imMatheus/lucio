@@ -13,13 +13,13 @@ const ClassNavbar: React.FC = () => {
 	return (
 		<div>
 			<Link href="/classes" passHref={true}>
-				<a className="group mb-1 flex w-max items-center gap-1 text-gray-700">
+				<a className="group mb-1 flex w-max items-center gap-1 text-clr-text-grayed">
 					<ArrowLeft className="h-4 w-4" />
 					<p className="text-xs underline-offset-1 group-hover:underline sm:text-sm">All classes</p>
 				</a>
 			</Link>
 			{/* <h2 className="mb-2 text-3xl font-medium">{classData.name}</h2> */}
-			<div className="flex border-b border-gray-300">
+			<div className="flex border-b">
 				<ClassNavbarOption link={`/classes/${classId}`}>Class</ClassNavbarOption>
 				<ClassNavbarOption link={`/classes/${classId}/homework`}>Homework</ClassNavbarOption>
 				<ClassNavbarOption link={`/classes/${classId}/members`}>Members</ClassNavbarOption>

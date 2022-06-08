@@ -17,6 +17,9 @@ export const fs = getFirestore(app)
 export const auth = getAuth(app)
 
 export * from './hooks/useDocs'
+export * from './hooks/useDoc'
 export * from './hooks/useListenDocs'
+export * from './hooks/classroom/useCreateClassroom'
+export * from './hooks/classroom/useJoinClassroom'
 
 export default app

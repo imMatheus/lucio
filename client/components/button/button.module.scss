@@ -8,7 +8,7 @@
 
 .primary {
 	@extend .btn;
-	@apply bg-clr-accent text-white transition-opacity hover:opacity-80;
+	@apply bg-clr-accent text-white transition-opacity hover:opacity-90;
 }
 
 .white {
@@ -23,7 +23,7 @@
 
 .dimmed {
 	@extend .btn;
-	@apply hover:bg-clr-bg-grayed;
+	@apply hover:bg-clr-bg-grayed-dark;
 }
 
 .error {
@@ -39,5 +39,4 @@
 .warning {
 	@extend .btn;
 	@apply border-black bg-orange-700 text-amber-50 hover:bg-orange-800;
-	// @apply bg-orange-100 text-orange-700 border-orange-500 hover:bg-orange-200;
 }

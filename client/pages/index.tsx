@@ -15,7 +15,7 @@ const Home: NextPage = () => {
 				</p>
 			</header>
 
-			<section className="bg-clr-accent-200 p-12 text-clr-text md:p-24">
+			<section className="bg-clr-accent-400 p-12 text-clr-text md:p-24">
 				<div className="mx-auto grid max-w-7xl gap-4 md:grid-cols-2 md:gap-12">
 					<h2 className="text-3xl font-semibold md:text-4xl">
 						With the Right Software, Great Things Can Happen
@@ -52,7 +52,7 @@ const Home: NextPage = () => {
 				</div>
 			</section>
 
-			<section className="bg-secondary-500 p-12 text-clr-bg md:p-24">
+			<section className="bg-ketchup p-12 text-clr-bg md:p-24">
 				<div className="mx-auto grid max-w-7xl gap-4 md:grid-cols-2 md:gap-12">
 					<h2 className="text-3xl font-semibold md:text-4xl">
 						With the Right Software, Great Things Can Happen
