@@ -11,21 +11,27 @@
 }
 
 html[data-theme='light'] {
-	--clr-bg: #fff;
-	--clr-bg-grayed: #f7f9f9;
+	--clr-bg: #ffffff;
+	--clr-bg-grayed: #f6f8fa;
 	--clr-bg-grayed-dark: #f0f3f4;
-	--clr-text: #0f1419;
-	--clr-text-grayed: #536471;
-	--clr-border: #eff3f4;
+	--clr-text: #24292f;
+	--clr-text-grayed: #57606a;
+	--clr-border: #d8dee4;
 }
 
 html[data-theme='dark'] {
-	--clr-bg: #000;
-	--clr-bg-grayed: #202327;
-	--clr-bg-grayed-dark: #16181c;
-	--clr-text: #e7e9ea;
-	--clr-text-grayed: #71767b;
-	--clr-border: #2f3336;
+	// --clr-bg: #000;
+	// --clr-bg-grayed: #202327;
+	// --clr-bg-grayed-dark: #16181c;
+	// --clr-text: #e7e9ea;
+	// --clr-text-grayed: #71767b;
+	// --clr-border: #2f3336;
+	--clr-bg: #0d1117;
+	--clr-bg-grayed: #21262d;
+	--clr-bg-grayed-dark: #161b22;
+	--clr-text: #ffffff;
+	--clr-text-grayed: #8b949e;
+	--clr-border: #21262d;
 }
 
 html[data-theme='dimmed'] {
