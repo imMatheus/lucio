@@ -12,3 +12,7 @@ export type ClassType = {
 	members: string[]
 	privacy: PrivacyEnum
 }
+
+export type ClassTypeWithId = {
+	id: string
+} & ClassType

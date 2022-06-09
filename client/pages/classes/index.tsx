@@ -11,7 +11,7 @@ import { useRouter } from 'next/router'
 import { fs, auth } from '@/firebase'
 import { useAuth } from '@/context/AuthContext'
 import { collection, query, where, getDocs } from 'firebase/firestore'
-import { useDocs } from '@/firebase'
+import { useMyClassrooms } from '@/firebase'
 import Loader from '@/components/loaders/Loader'
 
 interface Props {
@@ -23,10 +23,12 @@ const Classes: NextPage<Props> = ({}) => {
 	const router = useRouter()
 	const { setToast } = useToast()
 	const { currentUser } = useAuth()
-	const [classes, loading, error] = useDocs<ClassType>('classes', where('ownerId', '==', currentUser?.uid))
+	const [classes, loading, error] = useMyClassrooms()
 
 	console.log('asasasas')
 	console.log(classes)
+	console.log(loading)
+	console.log(error)
 
 	return (
 		<section className="py-8 px-3 sm:px-6 lg:px-8">

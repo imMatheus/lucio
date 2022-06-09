@@ -16,10 +16,7 @@ const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0
 export const fs = getFirestore(app)
 export const auth = getAuth(app)
 
-export * from './hooks/useDocs'
-export * from './hooks/useDoc'
-export * from './hooks/useListenDocs'
-export * from './hooks/classroom/useCreateClassroom'
-export * from './hooks/classroom/useJoinClassroom'
+export * from './hooks/getters'
+export * from './hooks/classroom'
 
 export default app
