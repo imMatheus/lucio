@@ -1,0 +1,58 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isSignedIn(){
+      return request.auth != null;
+	  }
+
+	  function isOwnerId(){
+	 	  return request.auth.uid == resource.data.ownderId;
+	  }
+    
+	  function verifyFields(required, optional) {
+      let allAllowedFields = required.concat(optional);
+      return request.resource.data.keys().hasAll(required) &&
+             request.resource.data.keys().hasOnly(allAllowedFields);
+    }
+    
+    function hasOnly(fields) {
+      return request.resource.data.keys().hasOnly(fields);
+    }
+    
+    function didNotChange(fields){
+    	return !request.resource.data.diff(resource.data).affectedKeys().hasAny(fields);
+    }
+
+    match /problems/{problemID} {
+      allow read, write;
+		}
+    
+    match /chats/{chatId} {
+      allow read,write: if isSignedIn();
+    		
+      match /messages/{messageId} {
+    		allow read, write:  if isSignedIn();
+      }
+    }
+   
+    
+    match /classes/{classId} {
+  	  allow read: if true;
+   		allow create: if isSignedIn();
+   		allow update, delete: if isOwnerId();
+    
+     	match /homework/{homeworkId} {
+     		allow read,write;
+    	}
+    }
+
+    match /users/{userId} {
+   	  allow read, update, delete: if isSignedIn() && request.auth.uid == userId;
+      allow update: if isSignedIn() 
+      && request.auth.uid == userId
+      && didNotChange(['userUID'])
+      && hasOnly(['name', 'email']);
+      allow create: if verifyFields(['name', 'email', 'userUID'], ['location', 'school']);
+		}
+  }
+}
