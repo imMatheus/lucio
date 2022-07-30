@@ -5,7 +5,7 @@
 .ball1 {
 	@extend .ball;
 	animation-delay: -250ms;
-	@apply -right-3 bg-clr-accent-600;
+	@apply -right-3 bg-clr-accent;
 }
 
 .ball2 {

@@ -37,13 +37,13 @@ const Question = React.forwardRef<HTMLElement, QuestionProps>(({ markdown }, ref
 		>
 			<article className="py-10 sm:py-12">
 				<div
-					className={`dark:prose-strong:bg-clr-text-grayed/10 prose-strong:bg-clr-text/10 prose prose-gray max-w-none 
-					px-6 prose-headings:text-clr-text 
-					prose-strong:rounded-lg prose-strong:px-2 prose-strong:py-0.5 
-					prose-strong:text-clr-text prose-li:marker:text-clr-accent-1000 
+					className={`dark:prose-strong:bg-clr-text-grayed/10 prose-strong:bg-clr-text/10 prose prose-gray prose-headings:text-clr-text 
+					prose-strong:rounded-lg prose-strong:px-2 
+					prose-strong:py-0.5 prose-strong:text-clr-text prose-li:marker:text-clr-accent 
 					prose-img:max-w-[min(48rem,_100%)] dark:prose-invert 
 					dark:prose-headings:text-clr-bg dark:prose-strong:text-clr-text 
-					dark:prose-li:marker:text-clr-bg`}
+					dark:prose-li:marker:text-clr-bg max-w-none 
+					px-6`}
 					ref={divRef}
 				></div>
 			</article>

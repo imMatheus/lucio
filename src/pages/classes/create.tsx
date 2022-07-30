@@ -60,7 +60,7 @@ const Create: NextPage = () => {
 				id="name"
 				placeholder="Intro to computer science..."
 				autoComplete="given-name"
-				className="mt-1 block w-full max-w-lg rounded-md border-clr-border bg-transparent shadow-sm focus:border-clr-accent-500 focus:ring-clr-accent-500 sm:text-sm lg:max-w-lg 2xl:max-w-5xl"
+				className="mt-1 block w-full max-w-lg rounded-md border-clr-border bg-transparent shadow-sm focus:border-clr-accent focus:ring-clr-accent sm:text-sm lg:max-w-lg 2xl:max-w-5xl"
 			/>
 
 			<div className="my-3 md:my-4">

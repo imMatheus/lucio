@@ -21,7 +21,11 @@ export function useToast() {
 	return useContext(ToastContext)
 }
 
-export const ToastProvider: React.FC = ({ children }) => {
+interface ToastProps {
+	children: React.ReactNode
+}
+
+export const ToastProvider: React.FC<ToastProps> = ({ children }) => {
 	const [toast, setToast] = useState<Toast>({
 		message: '',
 		type: 'info'

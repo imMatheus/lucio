@@ -3,7 +3,7 @@ import { useModal } from '@/context/ModalContext'
 import { useEditorSettings, FontSize, CursorStyle } from '@/context/EditorSettingsContext'
 import { X, Type, MousePointer } from 'react-feather'
 import Select from '@/components/form/Select'
-import Switch from '@/components/form/Switch'
+// import Switch from '@/components/form/Switch'
 
 const EditorSettingsModal: React.FC = () => {
 	const { setShowModal } = useModal()
@@ -24,7 +24,7 @@ const EditorSettingsModal: React.FC = () => {
 					&#8203;
 				</span>
 
-				<div className="prose prose-gray inline-block max-h-[95vh] transform overflow-x-hidden overflow-y-scroll rounded-lg bg-clr-text p-4 pb-6 text-left align-bottom shadow-xl transition-all dark:prose-invert sm:my-8 sm:w-full sm:max-w-lg sm:align-middle">
+				<div className="prose prose-gray dark:prose-invert inline-block max-h-[95vh] transform overflow-x-hidden overflow-y-scroll rounded-lg bg-clr-text p-4 pb-6 text-left align-bottom shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:align-middle">
 					<div
 						className="absolute top-2 left-2 cursor-pointer rounded-full p-1 transition-colors hover:bg-clr-bg"
 						onClick={() => {
@@ -71,11 +71,11 @@ const EditorSettingsModal: React.FC = () => {
 								Line numbers will be displayed on the left of your code
 							</p>
 						</div>
-						<Switch
+						{/* <Switch
 							checked={editorSettings.showLineNumber}
 							onChange={(val) => setEditorSettings({ ...editorSettings, showLineNumber: val })}
 							srText="Use line numbers"
-						/>
+						/> */}
 					</div>
 
 					<div className="mb-5 flex items-end">
@@ -85,11 +85,11 @@ const EditorSettingsModal: React.FC = () => {
 								Minimap will be displayed on the right of your code
 							</p>
 						</div>
-						<Switch
+						{/* <Switch
 							checked={editorSettings.minimap}
 							onChange={(val) => setEditorSettings({ ...editorSettings, minimap: val })}
 							srText="Use minimap"
-						/>
+						/> */}
 					</div>
 
 					<div className="mb-5 flex items-end">

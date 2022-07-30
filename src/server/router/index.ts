@@ -7,7 +7,7 @@ import { problemsRouter } from './problems'
 export const appRouter = createRouter()
 	.merge('classrooms.', classroomsRouter)
 	.merge('problems.', problemsRouter)
-	.merge('', meRouter)
+	.merge('me.', meRouter)
 
 // export type definition of API
 export type AppRouter = typeof appRouter

@@ -3,7 +3,7 @@ import { Italic, Sun, Settings } from 'react-feather'
 import { useModal } from '@/context/ModalContext'
 import { useEditorSettings, Language, Theme } from '@/context/EditorSettingsContext'
 import Select from '@/components/form/Select'
-import Switch from '@/components/form/Switch'
+// import Switch from '@/components/form/Switch'
 
 const Options: React.FC = () => {
 	const { setModal, setShowModal } = useModal()
@@ -63,13 +63,13 @@ const Options: React.FC = () => {
 			/>
 			<div className="ml-3 flex items-center gap-2">
 				<p className="text-sm">Zen mode - </p>
-				<Switch
+				{/* <Switch
 					checked={editorSettings.zenMode}
 					onChange={(val) => {
 						setEditorSettings({ ...editorSettings, zenMode: val })
 					}}
 					srText="Use zen mode"
-				/>
+				/> */}
 			</div>
 		</div>
 	)

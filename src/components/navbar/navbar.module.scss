@@ -22,7 +22,7 @@
 		}
 	}
 	> div:nth-child(1) {
-		@apply bg-clr-accent-300;
+		@apply bg-clr-accent;
 	}
 	> div:nth-child(2) {
 		border-top-right-radius: 0px;
@@ -30,11 +30,11 @@
 	}
 	> div:nth-child(3) {
 		border-bottom-right-radius: 0px;
-		@apply bg-clr-accent-700;
+		@apply bg-clr-accent;
 	}
 	> div:nth-child(4) {
 		border-bottom-left-radius: 0px;
-		@apply bg-clr-accent-800;
+		@apply bg-clr-accent;
 	}
 	> div {
 		@apply rounded-tl-none;
@@ -55,7 +55,7 @@
 @keyframes logoSwitcher {
 	0%,
 	50% {
-		@apply mr-1 text-success;
+		@apply mr-1 text-clr-success;
 	}
 
 	100% {

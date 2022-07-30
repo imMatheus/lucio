@@ -64,7 +64,7 @@
 	}
 	.btn-shadow-4 {
 		@extend .btn-shadow;
-		@apply border-clr-accent-500 text-clr-accent-500 shadow-clr-accent-500;
+		@apply border-clr-accent text-clr-accent shadow-clr-accent;
 	}
 	.btn-shadow-5 {
 		@extend .btn-shadow;

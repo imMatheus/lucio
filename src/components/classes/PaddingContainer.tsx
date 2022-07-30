@@ -1,6 +1,10 @@
 import React from 'react'
 
-const PaddingContainer: React.FC = ({ children }) => {
+interface PaddingContainerProps {
+	children: React.ReactNode
+}
+
+const PaddingContainer: React.FC<PaddingContainerProps> = ({ children }) => {
 	return <section className="py-8 px-3 sm:px-6 lg:px-8">{children}</section>
 }
 

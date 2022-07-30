@@ -1,11 +1,12 @@
 import React from 'react'
 import styles from './alert.module.scss'
 
-interface indexProps extends React.HTMLAttributes<HTMLDivElement> {
+interface AlertProps extends React.HTMLAttributes<HTMLDivElement> {
 	variant?: 'primary' | 'error' | 'success' | 'warning'
+	children: React.ReactNode
 }
 
-const Alert: React.FC<indexProps> = ({ children, variant = 'primary', ...props }) => {
+const Alert: React.FC<AlertProps> = ({ children, variant = 'primary', ...props }) => {
 	return (
 		<div {...props} className={styles[variant] + (props.className ? ' ' + props.className : '')}>
 			{children}

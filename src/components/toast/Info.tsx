@@ -9,10 +9,10 @@ const Info: React.FC = () => {
 	const { toast, setToast } = useToast()
 
 	return (
-		<div className="sticky top-0 z-50 bg-clr-accent-600">
+		<div className="sticky top-0 z-50 bg-clr-accent">
 			<Wrapper>
 				<div className="flex w-0 flex-1 items-center">
-					<span className="flex rounded-lg bg-clr-accent-800 p-2">
+					<span className="flex rounded-lg bg-clr-accent p-2">
 						<svg
 							className="h-6 w-6 text-white"
 							xmlns="http://www.w3.org/2000/svg"
@@ -34,7 +34,7 @@ const Info: React.FC = () => {
 				<div className="order-3 mt-2 hidden w-full flex-shrink-0 sm:order-2 sm:mt-0 sm:w-auto md:block">
 					<a
 						href="#"
-						className="flex items-center justify-center rounded-md border border-transparent bg-white px-4 py-2 text-sm font-medium text-clr-accent-600 shadow-sm hover:bg-clr-accent-50"
+						className="hover:bg-clr-accent-50 flex items-center justify-center rounded-md border border-transparent bg-white px-4 py-2 text-sm font-medium text-clr-accent shadow-sm"
 					>
 						Learn more
 					</a>
@@ -43,7 +43,7 @@ const Info: React.FC = () => {
 					<button
 						type="button"
 						onClick={() => setToast({ message: 'Could not create class, please try again', type: 'error' })}
-						className="-mr-1 flex rounded-md p-2 transition-colors hover:bg-clr-accent-500 focus:outline-none focus:ring-2 focus:ring-white sm:-mr-2"
+						className="-mr-1 flex rounded-md p-2 transition-colors hover:bg-clr-accent focus:outline-none focus:ring-2 focus:ring-white sm:-mr-2"
 					>
 						<span className="sr-only">Dismiss</span>
 						<X className="h-6 w-6 text-white" />

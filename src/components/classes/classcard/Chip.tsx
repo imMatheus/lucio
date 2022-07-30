@@ -3,6 +3,7 @@ import { Icon as IconsType } from 'react-feather'
 
 interface Props {
 	Icon?: IconsType
+	children: React.ReactNode
 }
 
 const Chip: React.FC<Props> = ({ Icon, children }) => {

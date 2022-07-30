@@ -22,7 +22,7 @@ export default function InputField({
 }: InputFieldProps) {
 	const [focused, setFocused] = useState(false)
 	const [isLastedRendered, setIsLastedRendered] = useState(true)
-	const colors = success ? 'border-success text-success' : 'border-[#627597] text-[#627597]'
+	const colors = success ? 'border-clr-success text-clr-success' : 'border-[#627597] text-[#627597]'
 	const showActionsButtons = isLastedRendered || focused
 	const inputRef = useRef<HTMLInputElement>(null)
 
@@ -41,9 +41,9 @@ export default function InputField({
 			{focused ? (
 				<ArrowRight className="mr-2 w-5 flex-shrink-0 text-clr-text" />
 			) : success ? (
-				<Check className="mr-2 w-5 flex-shrink-0 text-success" />
+				<Check className="text-clr-success mr-2 w-5 flex-shrink-0" />
 			) : (
-				<X className="mr-2 w-5 flex-shrink-0 text-error" />
+				<X className="text-error mr-2 w-5 flex-shrink-0" />
 			)}
 			<input
 				value={state}

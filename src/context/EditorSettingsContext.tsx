@@ -41,7 +41,11 @@ export function useEditorSettings() {
 	return useContext(EditorSettingsContext)
 }
 
-export const EditorSettingsProvider: React.FC = ({ children }) => {
+interface EditorProps {
+	children: React.ReactNode
+}
+
+export const EditorSettingsProvider: React.FC<EditorProps> = ({ children }) => {
 	// works just like useState, but will be cached in local storage
 	const [settings, setSettings] = useLocalStorage('editor-settings', defaultSettings)
 

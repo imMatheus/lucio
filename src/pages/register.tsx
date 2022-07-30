@@ -4,8 +4,6 @@ import { Eye, EyeOff } from 'react-feather'
 import * as EmailValidator from 'email-validator'
 import TypedText from '@/components/TypedText'
 import InputField from '@/components/input/index'
-import * as style from '@dicebear/adventurer-neutral'
-import { createAvatar } from '@dicebear/avatars'
 import Image from 'next/image'
 import usePasswordStrength from '@/hooks/usePasswordStrength'
 import Head from 'next/head'
@@ -24,26 +22,16 @@ export default function Register(): ReactElement {
 	const [name, setName] = useState('')
 	const [showNameContainer, setShowNameContainer] = useState(false)
 	const [avatar, setAvatar] = useState('')
-	const { signup } = useAuth()
 
 	useEffect(() => {
 		// validates email for UI purposes
 		setIsValidEmail(EmailValidator.validate(email))
-		setAvatar(
-			createAvatar(style, {
-				seed: email
-			})
-		)
 	}, [email])
 
 	async function signupHandler() {
 		console.log('signup 70')
-		const signupRes = await signup(email, password, name)
+		alert('fix the code bozzo')
 		console.log('sss')
-		console.log(signupRes)
-		if (!signupRes) {
-			router.replace('/profile')
-		}
 	}
 
 	const buff = new Buffer(avatar)
@@ -57,8 +45,8 @@ export default function Register(): ReactElement {
 			</Head>
 			{/* <div className={styles.blob}></div> */}
 			<div className={styles.modal}>
-				<TypedText className="text-clr-accent-700">Welcome to LucioCode</TypedText>
-				<TypedText className="text-clr-accent-700" delay={1}>
+				<TypedText className="text-clr-accent">Welcome to LucioCode</TypedText>
+				<TypedText className="text-clr-accent" delay={1}>
 					<span>Let us begin the adventure</span>
 				</TypedText>
 				{/* <Image src={`data:image/svg+xml;base64,${base64data}`} alt="" width={100} height={100} /> */}

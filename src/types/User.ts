@@ -1,11 +1,3 @@
-import { User as FirebaseUser } from 'firebase/Auth'
+import type { inferQueryResponse } from '@/utils/inferQueryResponse'
 
-export interface FirestoreUser {
-	email: string
-	name: string
-	location?: string
-	school?: string
-	bio?: string
-}
-
-export type User = FirestoreUser & FirebaseUser
+export type User = inferQueryResponse<'me'>['user']

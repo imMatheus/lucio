@@ -1,8 +1,0 @@
-.textArea__wrapper {
-	flex: 1;
-	overflow-y: scroll;
-	textarea {
-		// removes default ring from tailwind
-		@apply ring-0;
-	}
-}

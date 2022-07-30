@@ -7,6 +7,7 @@ interface SelectProps {
 	value: any
 	onChange: React.ChangeEventHandler<HTMLSelectElement>
 	Icon: IconType
+	children: React.ReactNode
 }
 
 const Select: React.FC<SelectProps> = ({ name, id, value, onChange, Icon, children }) => {

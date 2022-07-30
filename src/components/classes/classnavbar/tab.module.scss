@@ -1,8 +1,0 @@
-.option {
-	@apply border-b-2 border-b-transparent px-3 py-2 transition-colors hover:border-b-blue-500;
-}
-
-.optionActive {
-	@extend .option;
-	@apply border-b-clr-accent hover:border-b-clr-accent;
-}
