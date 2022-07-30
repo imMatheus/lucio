@@ -1,0 +1,146 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+datasource db {
+    provider             = "mysql"
+    url                  = env("DATABASE_URL")
+    referentialIntegrity = "prisma"
+}
+
+generator client {
+    provider        = "prisma-client-js"
+    previewFeatures = ["referentialIntegrity"]
+}
+
+model Session {
+    id           String   @id @default(cuid())
+    sessionToken String   @unique
+    userId       String
+    expires      DateTime
+    user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model VerificationToken {
+    identifier String
+    token      String   @unique
+    expires    DateTime
+
+    @@unique([identifier, token])
+}
+
+model Account {
+    id                       String  @id @default(cuid())
+    userId                   String
+    type                     String
+    provider                 String
+    providerAccountId        String
+    refresh_token            String? @db.Text
+    refresh_token_expires_in Int?
+    access_token             String? @db.Text
+    expires_at               Int?
+    token_type               String?
+    scope                    String?
+    id_token                 String? @db.Text
+    session_state            String?
+    oauth_token_secret       String?
+    oauth_token              String?
+
+    user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+    @@unique([provider, providerAccountId])
+}
+
+enum Privacy {
+    PRIVATE
+    PUBLIC
+}
+
+model User {
+    id            String    @id @default(cuid())
+    createdAt     DateTime  @default(now())
+    updatedAt     DateTime  @default(now()) @updatedAt
+    name          String    @db.VarChar(50)
+    image         String
+    email         String    @unique
+    emailVerified DateTime?
+    bio           String?   @db.VarChar(191)
+    location      String?   @db.VarChar(30)
+    website       String?   @db.VarChar(100)
+    privacy       Privacy   @default(PUBLIC)
+
+    accounts   Account[]
+    sessions   Session[]
+    classrooms Member[]     @relation("member")
+    submission Submission[]
+
+    @@index([createdAt, name, email])
+}
+
+enum CLASSROOM_PRIVACY {
+    OPEN
+    INVITE
+    CLOSED
+}
+
+model ClassRoom {
+    id             String            @id @default(cuid())
+    name           String            @db.VarChar(50)
+    code           String            @unique @db.VarChar(10)
+    privacy        CLASSROOM_PRIVACY @default(CLOSED)
+    mainColor      String            @db.VarChar(10)
+    secondaryColor String            @db.VarChar(10)
+    members        Member[]          @relation("members")
+}
+
+enum MEMBER_ROLE {
+    MEMBER
+    ADMIN
+    OWNER
+}
+
+model Member {
+    userId      String
+    user        User      @relation("member", fields: [userId], references: [id])
+    classroomId String
+    classroom   ClassRoom @relation("members", fields: [classroomId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @default(now()) @updatedAt
+
+    role MEMBER_ROLE @default(MEMBER)
+
+    @@id([classroomId, userId])
+    @@unique([classroomId, userId])
+    @@index([classroomId, userId, createdAt])
+}
+
+enum PROBLEM_DIFFICULTY {
+    EASY
+    MEDIUM
+    HARD
+}
+
+model Problem {
+    id         String             @id @default(cuid())
+    name       String             @db.VarChar(60)
+    difficulty PROBLEM_DIFFICULTY
+    markdown   String             @db.LongText
+
+    createdAt  DateTime     @default(now())
+    updatedAt  DateTime     @default(now()) @updatedAt
+    Submission Submission[]
+}
+
+model Submission {
+    id String @id @default(cuid())
+
+    userId    String
+    user      User    @relation(fields: [userId], references: [id])
+    problemId String
+    problem   Problem @relation(fields: [problemId], references: [id])
+
+    completed Boolean @default(false)
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @default(now()) @updatedAt
+}
