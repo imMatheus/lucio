@@ -1,144 +1,47 @@
-import React, { createContext, useContext, useState, useEffect } from 'react'
-import firebase from 'firebase/app'
-import {
-	where,
-	query,
-	getDocs,
-	doc,
-	getDoc,
-	setDoc,
-	collection,
-	limit,
-	DocumentData,
-	DocumentSnapshot,
-	SnapshotOptions,
-	QueryDocumentSnapshot
-} from 'firebase/firestore'
+import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react'
+import { useSession, signIn, signOut } from 'next-auth/react'
+import { trpc } from '@/utils/trpc'
+import type { User } from '@/types/User'
 
-import {
-	createUserWithEmailAndPassword,
-	User as FirebaseUser,
-	signInWithEmailAndPassword,
-	sendPasswordResetEmail,
-	UserCredential,
-	onAuthStateChanged
-} from 'firebase/auth'
-
-import { auth, fs } from '@/firebase'
-import { User, FirestoreUser } from '@/types/User'
-
-async function signup(email: string, password: string, name: string) {
-	// const usersNamesRef = query(collection(fs, 'users'), where('displayName', '==', name), limit(1))
-	// const document: DocumentData = await getDocs(usersNamesRef)
-
-	console.log('made it here')
-	// if (document.exists) {
-	// 	// checking if the display name already exist
-	// 	const error = { message: 'Display name already exist' }
-	// 	return error
-	// }
-	try {
-		await createUserWithEmailAndPassword(auth, email, password)
-		if (!auth.currentUser) return
-
-		const ref = await setDoc(doc(fs, `users/${auth.currentUser.uid}`), {
-			name,
-			email
-		})
-
-		console.log('success')
-		console.log(ref)
-	} catch (error) {
-		return error
-	}
-}
-
-function login(email: string, password: string): Promise<UserCredential> {
-	return signInWithEmailAndPassword(auth, email, password)
+function login() {
+	signIn('')
 }
 
 function logout() {
-	sessionStorage.clear()
-	return auth.signOut()
-}
-
-async function resetPassword(email: string): Promise<string | void> {
-	try {
-		await sendPasswordResetEmail(auth, email)
-	} catch (error: any) {
-		return error.message
-	}
+	signOut()
 }
 
 interface Context {
 	currentUser: User | null
 	fetchingUser: boolean
-	logout: () => Promise<void>
-	login: (email: string, password: string) => Promise<UserCredential>
-	signup: (email: string, password: string, name: string) => Promise<unknown>
-	resetPassword: (email: string) => Promise<string | void>
+	logout: () => void
+	login: () => void
 }
 
 const AuthContext = createContext<Context>({
 	currentUser: null,
-	logout,
 	fetchingUser: false,
-	login,
-	signup,
-	resetPassword
+	logout,
+	login
 })
 
 export function useAuth() {
 	return useContext(AuthContext)
 }
 
-export const AuthProvider: React.FC = ({ children }) => {
-	const [currentUser, setCurrentUser] = useState<User | null>(null)
-	const [fetchingUser, setFetchingUser] = useState(true)
+type ProviderProps = {
+	children: ReactNode
+}
 
-	useEffect(() => {
-		const unsubscribe = onAuthStateChanged(auth, async (user) => {
-			console.log('in user change state')
-
-			if (!user) {
-				setCurrentUser(null)
-				setFetchingUser(false)
-				return
-			}
-
-			// getting the users data from firestore
-			const response = await getDoc(
-				doc(fs, 'users', user.uid).withConverter({
-					toFirestore: (data: FirestoreUser) => data,
-					fromFirestore: (snap: QueryDocumentSnapshot<FirestoreUser>, options: SnapshotOptions) =>
-						snap.data(options)
-				})
-			)
-
-			console.log('response')
-
-			console.log(response.data())
-			console.log(user)
-
-			const data: User = { ...user, ...(response.data() as FirestoreUser) }
-
-			//TODO dix dis
-			setCurrentUser(data)
-			setFetchingUser(false)
-		})
-		return unsubscribe
-	}, [])
-	console.log('final user is here ~~~~')
-
-	console.log(currentUser)
+export const AuthProvider: React.FC<ProviderProps> = ({ children }) => {
+	const { data, isLoading: fetchingUser } = trpc.useQuery(['me'])
+	const currentUser = data?.user || null
 
 	const value = {
 		currentUser,
-		logout,
 		fetchingUser,
-		login,
-		signup,
-		resetPassword
+		logout,
+		login
 	}
 	return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
 }
