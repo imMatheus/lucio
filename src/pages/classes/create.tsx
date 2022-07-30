@@ -2,13 +2,10 @@ import React, { useState } from 'react'
 import type { NextPage } from 'next'
 import { Lock, Inbox, BookOpen } from 'react-feather'
 import { PrivacyEnum } from '@/types/ClassType'
-import PrivacyOption from '@/components/classes/PrivacyOption'
+
 import Button from '@/components/button'
 import { useRouter } from 'next/router'
 import { arrayEquals } from '@/utils/arrayEquals'
-import ColorSelector from '@/components/classes/colorselector'
-import { fs, useCreateClassroom } from '@/firebase'
-import { addDoc, collection } from 'firebase/firestore'
 import { colors as Colors } from '@/constants'
 import { useAuth } from '@/context/AuthContext'
 
@@ -19,11 +16,7 @@ const Create: NextPage = () => {
 	const [colors, setColors] = useState<[string, string]>([Colors.theme, Colors.theme])
 	const [privacy, setPrivacy] = useState(PrivacyEnum.Public)
 	const [loading, setLoading] = useState(false)
-	const [createClassRoom] = useCreateClassroom()
 
-	function createClassRoomHandler() {
-		createClassRoom({ name, colors, privacy })
-	}
 	// async function createClassRoom() {
 	// 	if (!currentUser) return
 	// 	const data = {
@@ -65,47 +58,18 @@ const Create: NextPage = () => {
 
 			<div className="my-3 md:my-4">
 				<p className="m-0 text-base font-semibold text-clr-text lg:text-lg">Theme</p>
-				<ColorSelector currentColors={colors} setColors={setColors} />
 			</div>
 
 			<div className="my-3 md:py-4">
 				<form>
 					<p className="m-0 mb-2 text-lg font-black text-clr-text">Privacy</p>
 					<div className="space-y-3">
-						<PrivacyOption
-							Icon={BookOpen}
-							value={PrivacyEnum.Public}
-							id="privacy_public"
-							setPrivacy={setPrivacy}
-							privacy={privacy}
-						>
-							<span className="font-semibold text-clr-text"> Public: </span> Anyone with the class code
-							can join the class
-						</PrivacyOption>
-						<PrivacyOption
-							Icon={Inbox}
-							value={PrivacyEnum.Invite}
-							id="privacy_invite"
-							setPrivacy={setPrivacy}
-							privacy={privacy}
-						>
-							<span className="font-semibold text-clr-text"> Invite: </span>
-							Anyone with the class code can send an invite to join the class
-						</PrivacyOption>
-						<PrivacyOption
-							Icon={Lock}
-							value={PrivacyEnum.Closed}
-							id="privacy_closed"
-							setPrivacy={setPrivacy}
-							privacy={privacy}
-						>
-							<span className="font-semibold text-clr-text"> Closed: </span>No-one can join or request to
-							join the class
-						</PrivacyOption>
+						Public:Anyone with the class code can join the class Anyone with the class code can send an
+						invite to join the class Closed: No-one can join or request to join the class
 					</div>
 				</form>
 			</div>
-			<Button onClick={createClassRoomHandler}>Create class</Button>
+			{/* <Button >Create class</Button> */}
 		</div>
 	)
 }

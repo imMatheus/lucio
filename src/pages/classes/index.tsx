@@ -5,13 +5,10 @@ import Button from '@/components/button'
 import { GetServerSideProps } from 'next'
 import type { NextPage } from 'next'
 import { ClassType } from '@/types/ClassType'
-import NoClasses from '@/components/classes/NoClasses'
+// import NoClasses from '@/components/classes/NoClasses'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { fs, auth } from '@/firebase'
 import { useAuth } from '@/context/AuthContext'
-import { collection, query, where, getDocs } from 'firebase/firestore'
-import { useMyClassrooms } from '@/firebase'
 import Loader from '@/components/loaders/Loader'
 
 interface Props {
@@ -23,12 +20,8 @@ const Classes: NextPage<Props> = ({}) => {
 	const router = useRouter()
 	const { setToast } = useToast()
 	const { currentUser } = useAuth()
-	const [classes, loading, error] = useMyClassrooms()
 
 	console.log('asasasas')
-	console.log(classes)
-	console.log(loading)
-	console.log(error)
 
 	return (
 		<section className="py-8 px-3 sm:px-6 lg:px-8">
@@ -42,8 +35,8 @@ const Classes: NextPage<Props> = ({}) => {
 
 					<Button variant="dimmed">Join class</Button>
 				</div>
-
-				{loading ? (
+				hh
+				{/* {loading ? (
 					<Loader />
 				) : classes?.length > 0 ? (
 					<div className="grid grid-cols-1 gap-3 sm:grid-cols-2 md:gap-4 lg:grid-cols-3 lg:gap-6 xl:grid-cols-4 2xl:grid-cols-5">
@@ -53,7 +46,7 @@ const Classes: NextPage<Props> = ({}) => {
 					</div>
 				) : (
 					<NoClasses />
-				)}
+				)} */}
 			</main>
 		</section>
 	)

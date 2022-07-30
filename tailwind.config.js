@@ -12,7 +12,7 @@ module.exports = {
 				inter: ["'Inter'", 'sans-serif']
 			},
 			colors: {
-				'clr-accent': 'rgb(var(--accent-color) / <alpha-value>)',
+				'clr-accent': 'rgb(var(--accent) / <alpha-value>)',
 				'clr-carolina': '#1D9BF0',
 				'clr-olive': '#00ba7c',
 				'clr-success': '#00ba7c',

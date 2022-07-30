@@ -41,43 +41,6 @@
 		@extend .text-line-base;
 		-webkit-line-clamp: 5;
 	}
-	.btn-shadow {
-		@apply rounded-lg border-2 border-indigo-500 bg-clr-bg px-2.5 py-1 text-sm text-indigo-500 shadow-indigo-500 transition-shadow dark:bg-clr-text;
-		$offset: 3px;
-		box-shadow: calc(-1 * $offset) $offset 0px var(--tw-shadow-color);
-
-		&:hover {
-			box-shadow: $offset calc(-1 * $offset) 0px var(--tw-shadow-color);
-		}
-	}
-	.btn-shadow-1 {
-		@extend .btn-shadow;
-		@apply border-red-500 text-red-500 shadow-red-500;
-	}
-	.btn-shadow-2 {
-		@extend .btn-shadow;
-		@apply border-orange-500 text-orange-500 shadow-orange-500;
-	}
-	.btn-shadow-3 {
-		@extend .btn-shadow;
-		@apply border-lime-600 text-lime-600 shadow-lime-600;
-	}
-	.btn-shadow-4 {
-		@extend .btn-shadow;
-		@apply border-clr-accent text-clr-accent shadow-clr-accent;
-	}
-	.btn-shadow-5 {
-		@extend .btn-shadow;
-		@apply border-rose-500 text-rose-500 shadow-rose-500;
-	}
-	.btn-shadow-6 {
-		@extend .btn-shadow;
-		@apply border-purple-500 text-purple-500 shadow-purple-500;
-	}
-	.btn-shadow-7 {
-		@extend .btn-shadow;
-		@apply border-gray-800 text-gray-800 shadow-gray-800 dark:border-gray-300 dark:text-gray-300 dark:shadow-gray-400;
-	}
 
 	.text-hollow {
 		/* Use the text as a mask for the background. */
