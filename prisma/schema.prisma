@@ -65,11 +65,11 @@ model User {
     emailVerified DateTime?
     bio           String?   @db.VarChar(191)
     location      String?   @db.VarChar(30)
-    website       String?   @db.VarChar(100)
     privacy       Privacy   @default(PUBLIC)
 
-    accounts   Account[]
-    sessions   Session[]
+    accounts Account[]
+    sessions Session[]
+
     classrooms Member[]     @relation("member")
     submission Submission[]
 
@@ -87,6 +87,8 @@ model ClassRoom {
     name           String            @db.VarChar(50)
     code           String            @unique @db.VarChar(10)
     privacy        CLASSROOM_PRIVACY @default(CLOSED)
+    createdAt      DateTime          @default(now())
+    updatedAt      DateTime          @default(now()) @updatedAt
     mainColor      String            @db.VarChar(10)
     secondaryColor String            @db.VarChar(10)
     members        Member[]          @relation("members")
@@ -121,14 +123,15 @@ enum PROBLEM_DIFFICULTY {
 }
 
 model Problem {
-    id         String             @id @default(cuid())
+    id         Int                @id @default(autoincrement())
     name       String             @db.VarChar(60)
     difficulty PROBLEM_DIFFICULTY
     markdown   String             @db.LongText
 
-    createdAt  DateTime     @default(now())
-    updatedAt  DateTime     @default(now()) @updatedAt
-    Submission Submission[]
+    createdAt           DateTime     @default(now())
+    updatedAt           DateTime     @default(now()) @updatedAt
+    numberOfSubmissions Int          @default(0)
+    Submission          Submission[]
 }
 
 model Submission {
@@ -136,7 +139,7 @@ model Submission {
 
     userId    String
     user      User    @relation(fields: [userId], references: [id])
-    problemId String
+    problemId Int
     problem   Problem @relation(fields: [problemId], references: [id])
 
     completed Boolean @default(false)

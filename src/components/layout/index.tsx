@@ -1,6 +1,5 @@
 import React from 'react'
 import Navbar from '@/components/navbar'
-import Toast from '@/components/toast'
 import { useModal } from '@/context/ModalContext'
 import useDarkMode from '@/hooks/useDarkMode'
 
@@ -15,8 +14,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
 	const [] = useDarkMode()
 
 	return (
-		<div className="accent-clr-accent min-h-screen bg-clr-bg text-clr-text">
-			<Toast />
+		<div className="min-h-screen bg-clr-bg text-clr-text accent-clr-accent">
 			<Navbar />
 			{children}
 			{showModal && modal}

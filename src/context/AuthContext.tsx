@@ -35,7 +35,7 @@ type ProviderProps = {
 
 export const AuthProvider: React.FC<ProviderProps> = ({ children }) => {
 	const { data, isLoading: fetchingUser } = trpc.useQuery(['me.me'])
-	const currentUser = data?.user
+	const currentUser = data?.user || null
 
 	const value = {
 		currentUser,
