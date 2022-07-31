@@ -1,9 +1,7 @@
 import React from 'react'
 
 const Spinner: React.FC = () => {
-	return (
-		<div className="h-full w-full animate-spin rounded-full border-4 border-clr-accent border-t-clr-accent opacity-80"></div>
-	)
+	return <div className="h-7 w-7 animate-spin rounded-full border-[3px] border-t-clr-accent"></div>
 }
 
 export default Spinner

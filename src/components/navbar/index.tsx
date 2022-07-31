@@ -16,7 +16,7 @@ export default function Navbar(): ReactElement {
 				document.documentElement.style.setProperty('--navbar-height', navbarRef.current?.clientHeight + 'px')
 			}
 		}
-	}, [navbarRef, navbarRef.current, navbarRef.current?.clientHeight])
+	}, [navbarRef, navbarRef.current?.clientHeight])
 
 	return (
 		<nav className="border-b border-b-clr-border bg-clr-bg-grayed-dark px-3 py-4 sm:px-6 lg:px-8" ref={navbarRef}>

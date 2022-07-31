@@ -100,6 +100,15 @@ enum MEMBER_ROLE {
     OWNER
 }
 
+model Test {
+    id Int @id @default(autoincrement())
+
+    number Int
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @default(now()) @updatedAt
+}
+
 model Member {
     userId      String
     user        User      @relation("member", fields: [userId], references: [id])

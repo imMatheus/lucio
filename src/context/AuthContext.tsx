@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react'
-import { signIn, signOut } from 'next-auth/react'
+import { signIn, signOut, useSession } from 'next-auth/react'
 import { trpc } from '@/utils/trpc'
 import type { User } from '@/types/User'
 
@@ -34,12 +34,13 @@ type ProviderProps = {
 }
 
 export const AuthProvider: React.FC<ProviderProps> = ({ children }) => {
+	const { data: session } = useSession()
 	const { data, isLoading: fetchingUser } = trpc.useQuery(['me.me'])
 	const currentUser = data?.user || null
 
 	const value = {
 		currentUser,
-		fetchingUser,
+		fetchingUser: !session || fetchingUser,
 		logout,
 		login
 	}

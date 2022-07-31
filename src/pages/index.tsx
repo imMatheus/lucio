@@ -2,8 +2,11 @@ import type { NextPage } from 'next'
 import React, { useEffect } from 'react'
 import Image from 'next/image'
 import Card from '@/components/home/Card'
+import { trpc } from '@/utils/trpc'
 
 const Home: NextPage = () => {
+	const { data } = trpc.useQuery(['problems.get'])
+	const mut = trpc.useMutation(['problems.push'])
 	return (
 		<div className="selection:bg-clr-accent selection:text-clr-accent">
 			<header className="relative px-5 py-12 lg:px-14 lg:py-24 xl:py-32">
@@ -14,7 +17,9 @@ const Home: NextPage = () => {
 					Teaching code made easier, faster and more enjoyable
 				</p>
 			</header>
-
+			<button onClick={() => mut.mutate()}>Add</button>
+			hej
+			<h2 className="text-xs font-bold">{JSON.stringify(data)}</h2>
 			<section className="bg-clr-accent p-12 text-clr-text md:p-24">
 				<div className="mx-auto grid max-w-7xl gap-4 md:grid-cols-2 md:gap-12">
 					<h2 className="text-3xl font-semibold md:text-4xl">
@@ -27,7 +32,6 @@ const Home: NextPage = () => {
 					</p>
 				</div>
 			</section>
-
 			<section className="p-12 md:p-24">
 				<div className="mx-auto max-w-7xl">
 					<h2 className="mb-8 text-3xl font-semibold md:mb-12 md:text-4xl">What we bring to the game</h2>
@@ -51,7 +55,6 @@ const Home: NextPage = () => {
 					</div>
 				</div>
 			</section>
-
 			<section className="bg-ketchup p-12 text-clr-bg md:p-24">
 				<div className="mx-auto grid max-w-7xl gap-4 md:grid-cols-2 md:gap-12">
 					<h2 className="text-3xl font-semibold md:text-4xl">
