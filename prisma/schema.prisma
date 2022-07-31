@@ -82,7 +82,7 @@ enum CLASSROOM_PRIVACY {
     CLOSED
 }
 
-model ClassRoom {
+model Classroom {
     id             String            @id @default(cuid())
     name           String            @db.VarChar(50)
     code           String            @unique @db.VarChar(10)
@@ -113,7 +113,7 @@ model Member {
     userId      String
     user        User      @relation("member", fields: [userId], references: [id])
     classroomId String
-    classroom   ClassRoom @relation("members", fields: [classroomId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+    classroom   Classroom @relation("members", fields: [classroomId], references: [id], onDelete: NoAction, onUpdate: NoAction)
 
     createdAt DateTime @default(now())
     updatedAt DateTime @default(now()) @updatedAt

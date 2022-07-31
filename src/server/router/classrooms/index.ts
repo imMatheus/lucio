@@ -4,14 +4,16 @@ import prisma from '@/server/utils/prisma'
 
 export const classroomsRouter = createProtectedRouter().query('getClassrooms', {
 	resolve: async ({ ctx }) => {
-		const user = await prisma.user.findUniqueOrThrow({
+		const classrooms = await prisma.classroom.findMany({
 			where: {
-				id: ctx.session.userId
+				members: {
+					some: {
+						userId: ctx.session.userId
+					}
+				}
 			}
 		})
 
-		return {
-			hello: 'world'
-		}
+		return classrooms
 	}
 })
