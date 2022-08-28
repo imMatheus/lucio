@@ -2,7 +2,7 @@
  * @return {string} class code - a random generated string of 7 characters, example 'djA1k81'
  */
 
-export const generateNewLink = (CODE_LENGTH = 7): string => {
+export const generateCode = (CODE_LENGTH = 7): string => {
 	const alphabet = 'abcdefghijklmnopqrstuvwxyz'
 	const upperCaseAlphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 	const numbers = '0123456789'

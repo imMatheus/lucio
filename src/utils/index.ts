@@ -1,6 +1,5 @@
 export * from './arrayEquals'
 export * from './capitalizeFirstLetter'
-export * from './generateCode'
 export * from './getDateSince'
 export * from './getFileSize'
 export * from './trpc'
