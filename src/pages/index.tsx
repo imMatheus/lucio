@@ -1,12 +1,12 @@
 import type { NextPage } from 'next'
 import React, { useEffect } from 'react'
 import Image from 'next/image'
-import Card from '@/components/home/Card'
+
 import { trpc } from '@/utils/trpc'
 
 const Home: NextPage = () => {
-	const { data } = trpc.useQuery(['problems.get'])
-	const mut = trpc.useMutation(['problems.push'])
+	const { data } = trpc.useQuery(['me.gg'])
+	// const mut = trpc.useMutation(['problems.push'])
 	return (
 		<div className="selection:bg-clr-accent selection:text-clr-accent">
 			<header className="relative px-5 py-12 lg:px-14 lg:py-24 xl:py-32">
@@ -17,9 +17,9 @@ const Home: NextPage = () => {
 					Teaching code made easier, faster and more enjoyable
 				</p>
 			</header>
-			<button onClick={() => mut.mutate()}>Add</button>
-			hej
-			<h2 className="text-xs font-bold">{JSON.stringify(data)}</h2>
+			{/* <button onClick={() => mut.mutate()}>Add</button> */}
+			<h2 className="text-xl">{JSON.stringify(data)}</h2>
+			{/* <h2 className="text-xs font-bold">{JSON.stringify(data)}</h2> */}
 			<section className="bg-clr-accent p-12 text-clr-text md:p-24">
 				<div className="mx-auto grid max-w-7xl gap-4 md:grid-cols-2 md:gap-12">
 					<h2 className="text-3xl font-semibold md:text-4xl">
@@ -30,29 +30,6 @@ const Home: NextPage = () => {
 						incidunt sed aliquam dolore, doloremque saepe esse officiis aperiam consequatur excepturi dolor
 						porro. Test
 					</p>
-				</div>
-			</section>
-			<section className="p-12 md:p-24">
-				<div className="mx-auto max-w-7xl">
-					<h2 className="mb-8 text-3xl font-semibold md:mb-12 md:text-4xl">What we bring to the game</h2>
-					<div className="grid grid-cols-1 gap-10 md:grid-cols-2 md:gap-20 lg:grid-cols-3 xl:grid-cols-4">
-						<Card src="/dashboard.png" title="Analize classes" alt="juan">
-							Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem, corrupti possimus placeat
-							unde cumque pariatur omnis incidunt, commodi consequatur, in ab magnam.
-						</Card>
-						<Card src="/messages.png" title="Realtime chats" alt="juan">
-							Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut iusto et itaque perferendis
-							architecto quibusdam autem!
-						</Card>
-						<Card src="/dashboard.png" title="Exam environment" alt="juan">
-							Lorem ipsum dolor sit, amet consectetur adipisicing elit. Totam assumenda recusandae ex.
-							Excepturi fuga, at rem commodi eos reiciendis ut blanditiis possimus!
-						</Card>
-
-						<Card src="/checklist.png" title="1000+ coding problems" alt="juan">
-							Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem, corrupti possimus placeat.{' '}
-						</Card>
-					</div>
 				</div>
 			</section>
 			<section className="bg-ketchup p-12 text-clr-bg md:p-24">

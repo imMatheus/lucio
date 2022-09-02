@@ -14,6 +14,7 @@ const DisplayUser: React.FC<DisplayUserProps> = ({}) => {
 		return (
 			<div className="mx-2 h-8 w-8">
 				<Spinner />
+				hej
 			</div>
 		)
 

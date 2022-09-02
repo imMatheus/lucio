@@ -1,8 +1,6 @@
 import '../styles/globals.scss'
 import Layout from '@/components/layout'
 import type { AppProps } from 'next/app'
-import { ToastProvider } from '@/context/ToastContext'
-import { ModalProvider } from '@/context/ModalContext'
 import { AuthProvider } from '@/context/AuthContext'
 import { EditorSettingsProvider } from '@/context/EditorSettingsContext'
 import { SessionProvider } from 'next-auth/react'
@@ -11,15 +9,11 @@ function MyApp({ Component, pageProps, ...appProps }: AppProps) {
 	return (
 		<SessionProvider session={pageProps.session}>
 			<AuthProvider>
-				<ToastProvider>
-					<ModalProvider>
-						<EditorSettingsProvider>
-							<Layout>
-								<Component {...pageProps} />
-							</Layout>
-						</EditorSettingsProvider>
-					</ModalProvider>
-				</ToastProvider>
+				<EditorSettingsProvider>
+					<Layout>
+						<Component {...pageProps} />
+					</Layout>
+				</EditorSettingsProvider>
 			</AuthProvider>
 		</SessionProvider>
 	)

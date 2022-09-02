@@ -37,10 +37,13 @@ export const AuthProvider: React.FC<ProviderProps> = ({ children }) => {
 	const { data: session } = useSession()
 	const { data, isLoading: fetchingUser } = trpc.useQuery(['me.me'])
 	const currentUser = data?.user || null
+	console.log('absc')
+	console.log(data)
+	console.log(fetchingUser)
 
 	const value = {
 		currentUser,
-		fetchingUser: !session || fetchingUser,
+		fetchingUser: fetchingUser,
 		logout,
 		login
 	}

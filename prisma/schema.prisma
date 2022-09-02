@@ -76,6 +76,11 @@ model User {
     @@index([createdAt, name, email])
 }
 
+model Test {
+    id     String @id @default(cuid())
+    number Int
+}
+
 enum CLASSROOM_PRIVACY {
     OPEN
     INVITE
@@ -98,15 +103,6 @@ enum MEMBER_ROLE {
     MEMBER
     ADMIN
     OWNER
-}
-
-model Test {
-    id Int @id @default(autoincrement())
-
-    number Int
-
-    createdAt DateTime @default(now())
-    updatedAt DateTime @default(now()) @updatedAt
 }
 
 model Member {
