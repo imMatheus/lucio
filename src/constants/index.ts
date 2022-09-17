@@ -14,3 +14,9 @@ export enum CLASS_PRIVACY {
 	INVITE = 'INVITE',
 	CLOSED = 'CLOSED'
 }
+
+export enum CLASS_ROLES {
+	MEMBER = 'MEMBER',
+	ADMIN = 'ADMIN',
+	OWNER = 'OWNER'
+}

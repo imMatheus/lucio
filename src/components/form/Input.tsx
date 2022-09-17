@@ -20,7 +20,7 @@ const Input: React.FC<InputProps> = ({ value, onChange, label, maxLength, requir
 			<label
 				htmlFor={inputId}
 				className={classNames(
-					'border-clr-text/20 group relative block rounded border p-2 focus-within:border-clr-accent',
+					'group relative block rounded border border-clr-text/20 px-4 py-2 focus-within:border-clr-accent',
 					invalidText && '!border-clr-danger'
 				)}
 			>

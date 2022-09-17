@@ -1,8 +1,8 @@
 import { z } from 'zod'
 import { createProtectedRouter } from '@/server/utils/create-protected-router'
 import prisma from '@/server/utils/prisma'
-import { MAX_LENGTHS, CLASS_PRIVACY } from '@/constants'
-import { generateCode } from '@/server/utils/generateCode'
+import { MAX_LENGTHS, CLASS_PRIVACY, CLASS_ROLES } from '@/constants'
+import { getUniqueCode } from '@/server/utils/getUniqueCode'
 
 export const classroomsRouter = createProtectedRouter()
 	.query('getClassrooms', {
@@ -26,29 +26,29 @@ export const classroomsRouter = createProtectedRouter()
 			privacy: z.enum([CLASS_PRIVACY.OPEN, CLASS_PRIVACY.CLOSED, CLASS_PRIVACY.INVITE])
 		}),
 		resolve: async ({ ctx, input }) => {
-			let code = generateCode()
-			let uniqueCode = false
+			const code = await getUniqueCode()
+			const { userId } = ctx.session
 
-			while (!uniqueCode) {
-				const classroomWithSameCode = await prisma.classroom.findUnique({
-					where: {
-						code
+			const createdClass = await prisma.classroom.create({
+				data: {
+					code,
+					name: input.name,
+					mainColor: '#f00',
+					secondaryColor: '#00f',
+					privacy: input.privacy,
+					members: {
+						create: {
+							userId,
+							role: CLASS_ROLES.OWNER
+						}
 					}
-				})
-
-				if (!classroomWithSameCode) uniqueCode = true
-				else {
-					code = generateCode()
+				},
+				select: {
+					id: true,
+					code: true
 				}
-			}
+			})
 
-			// await prisma.classroom.create({
-			// 	data: {},
-			// 	select: {
-			// 		id: true,
-			// 		code: true
-			// 	}
-			// })
-			return {}
+			return createdClass
 		}
 	})

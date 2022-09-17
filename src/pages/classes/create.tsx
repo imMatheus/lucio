@@ -3,29 +3,40 @@ import type { NextPage } from 'next'
 import { Lock, Inbox, BookOpen } from 'react-feather'
 import Button from '@/components/button'
 import { useRouter } from 'next/router'
-import { arrayEquals } from '@/utils/arrayEquals'
-import { colors as Colors } from '@/constants'
-import { useAuth } from '@/context/AuthContext'
 import Input from '@/components/form/Input'
 import { MAX_LENGTHS, CLASS_PRIVACY } from '@/constants'
 import PrivacyOption from '@/components/classes/PrivacyOption'
+import { trpc } from '@/utils'
 
 const Create: NextPage = () => {
 	const router = useRouter()
-	const { currentUser } = useAuth()
 	const [name, setName] = useState('')
-	const [colors, setColors] = useState<[string, string]>([Colors.theme, Colors.theme])
 	const [privacy, setPrivacy] = useState(CLASS_PRIVACY.OPEN)
-	const [loading, setLoading] = useState(false)
+	const createClassroomMutation = trpc.useMutation(['classrooms.create'])
 
-	function createClassroom() {}
+	function createClassroom() {
+		createClassroomMutation.mutate(
+			{
+				name,
+				privacy
+			},
+			{
+				onSuccess(res) {
+					console.log('abc')
+					console.log(res)
+					router.push(`/classes/${res.id}`)
+				},
+				onError(e) {
+					console.log('we succ')
+					console.log(e)
+				}
+			}
+		)
+	}
 
 	return (
 		<div className="min-h-full-wo-nav max-w-4xl p-4 md:p-6">
-			<div
-				className="text-hollow w-max"
-				style={{ backgroundImage: `linear-gradient(45deg, ${colors[0]}, ${colors[1]}` }}
-			>
+			<div className="text-hollow w-max">
 				<h2 className="mb-4 text-2xl font-black md:mb-6 md:text-5xl">Create a class</h2>
 			</div>
 
@@ -65,7 +76,7 @@ const Create: NextPage = () => {
 					</div>
 				</div>
 
-				<Button>Create class</Button>
+				<Button onClick={createClassroom}>Create class - {createClassroomMutation.isLoading + ''}</Button>
 			</div>
 		</div>
 	)
