@@ -9,7 +9,7 @@ interface NavbarLinkProps {
 const NavbarLink: React.FC<NavbarLinkProps> = ({ href, children }) => {
 	return (
 		<Link href={href}>
-			<a className="transition-colors hover:text-clr-text-grayed">{children}</a>
+			<a className="text-sm transition-colors hover:brightness-75">{children}</a>
 		</Link>
 	)
 }
