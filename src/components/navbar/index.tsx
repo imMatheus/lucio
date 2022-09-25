@@ -11,8 +11,8 @@ const Navbar: React.FC = ({}) => {
 		<nav className="flex items-center justify-between bg-clr-bg-grayed-dark p-4 sm:px-8">
 			<h2 className="text-4xl font-black tracking-wider">LucioCode</h2>
 			<div className="flex items-center gap-2">
-				<NavbarLink href="/classes">classes</NavbarLink>
-				<NavbarLink href="/problems">problems</NavbarLink>
+				<NavbarLink href="/classrooms">Classrooms</NavbarLink>
+				<NavbarLink href="/problems">Problems</NavbarLink>
 				{session?.user && (
 					<Link href="/profile" passHref={true}>
 						<a className="relative block h-10 w-10">

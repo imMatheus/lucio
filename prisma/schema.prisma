@@ -81,13 +81,13 @@ enum CLASSROOM_PRIVACY {
 
 model Classroom {
     id             String            @id @default(cuid())
-    name           String            @db.VarChar(50)
+    name           String            @db.VarChar(70)
     code           String            @unique @db.VarChar(10)
     privacy        CLASSROOM_PRIVACY @default(CLOSED)
     createdAt      DateTime          @default(now())
     updatedAt      DateTime          @default(now()) @updatedAt
-    mainColor      String            @db.VarChar(10)
-    secondaryColor String            @db.VarChar(10)
+    mainColor      String            @db.VarChar(30)
+    secondaryColor String            @db.VarChar(30)
 
     members Member[] @relation("members")
 }
