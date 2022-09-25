@@ -88,7 +88,8 @@ model Classroom {
     updatedAt      DateTime          @default(now()) @updatedAt
     mainColor      String            @db.VarChar(10)
     secondaryColor String            @db.VarChar(10)
-    members        Member[]          @relation("members")
+
+    members Member[] @relation("members")
 }
 
 enum MEMBER_ROLE {
@@ -99,14 +100,12 @@ enum MEMBER_ROLE {
 
 model Member {
     userId      String
-    user        User      @relation("member", fields: [userId], references: [id])
+    user        User        @relation("member", fields: [userId], references: [id])
     classroomId String
-    classroom   Classroom @relation("members", fields: [classroomId], references: [id], onDelete: NoAction, onUpdate: NoAction)
-
-    createdAt DateTime @default(now())
-    updatedAt DateTime @default(now()) @updatedAt
-
-    role MEMBER_ROLE @default(MEMBER)
+    classroom   Classroom   @relation("members", fields: [classroomId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+    createdAt   DateTime    @default(now())
+    updatedAt   DateTime    @default(now()) @updatedAt
+    role        MEMBER_ROLE @default(MEMBER)
 
     @@id([classroomId, userId])
     @@unique([classroomId, userId])
@@ -120,27 +119,51 @@ enum PROBLEM_DIFFICULTY {
 }
 
 model Problem {
-    id         Int                @id @default(autoincrement())
-    name       String             @db.VarChar(60)
-    difficulty PROBLEM_DIFFICULTY
-    markdown   String             @db.LongText
+    id                  Int                @id @default(autoincrement())
+    name                String             @db.VarChar(60)
+    difficulty          PROBLEM_DIFFICULTY
+    markdown            String             @db.LongText
+    numberOfSubmissions Int                @default(0)
+    createdAt           DateTime           @default(now())
+    updatedAt           DateTime           @default(now()) @updatedAt
 
-    createdAt           DateTime     @default(now())
-    updatedAt           DateTime     @default(now()) @updatedAt
-    numberOfSubmissions Int          @default(0)
-    Submission          Submission[]
+    testCases   TestCase[]
+    submissions Submission[]
+}
+
+model TestCase {
+    id        String          @id @default(cuid())
+    inputs    TestCaseInput[]
+    output    String
+    Problem   Problem         @relation(fields: [problemId], references: [id])
+    problemId Int
+}
+
+model TestCaseInput {
+    id         String   @id @default(cuid())
+    input      String
+    testCase   TestCase @relation(fields: [testCaseId], references: [id])
+    testCaseId String
+}
+
+enum SUBMISSION_LANGUAGE {
+    JAVASCRIPT
+    PYTHON
+    TYPESCRIPT
+    CPP
+    GO
+    RUST
 }
 
 model Submission {
-    id String @id @default(cuid())
-
+    id        String              @id @default(cuid())
     userId    String
-    user      User    @relation(fields: [userId], references: [id])
+    user      User                @relation(fields: [userId], references: [id])
     problemId Int
-    problem   Problem @relation(fields: [problemId], references: [id])
-
-    completed Boolean @default(false)
-
-    createdAt DateTime @default(now())
-    updatedAt DateTime @default(now()) @updatedAt
+    problem   Problem             @relation(fields: [problemId], references: [id])
+    code      String              @db.LongText
+    language  SUBMISSION_LANGUAGE
+    completed Boolean             @default(false)
+    createdAt DateTime            @default(now())
+    updatedAt DateTime            @default(now()) @updatedAt
 }
